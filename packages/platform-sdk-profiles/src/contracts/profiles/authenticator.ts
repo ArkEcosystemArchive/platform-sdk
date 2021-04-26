@@ -17,7 +17,7 @@ export interface IAuthenticator {
 	 * Verify the password for the currently selected profile.
 	 *
 	 * @param {string} password
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IAuthenticator
 	 */
 	verifyPassword(password: string): boolean;

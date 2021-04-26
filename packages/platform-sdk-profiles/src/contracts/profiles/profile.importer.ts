@@ -1,5 +1,3 @@
-import { IProfile } from "./profile";
-
 export interface IProfileImporter {
 	/**
 	 * Restore a profile from either a base64 raw or base64 encrypted string.
@@ -8,5 +6,5 @@ export interface IProfileImporter {
 	 * @returns {Promise<void>}
 	 * @memberof Profile
 	 */
-	import(profile: IProfile, password?: string): Promise<void>;
+	import(password?: string): Promise<void>;
 }

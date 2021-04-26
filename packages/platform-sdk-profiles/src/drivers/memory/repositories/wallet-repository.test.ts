@@ -21,7 +21,7 @@ const generate = async (coin: string, network: string): Promise<IReadWriteWallet
 	subject.push(wallet);
 
 	return wallet;
-}
+};
 
 const importByMnemonic = async (mnemonic: string, coin: string, network: string): Promise<IReadWriteWallet> => {
 	const wallet = await factory.fromMnemonic({
@@ -33,7 +33,7 @@ const importByMnemonic = async (mnemonic: string, coin: string, network: string)
 	subject.push(wallet);
 
 	return wallet;
-}
+};
 
 let subject: WalletRepository;
 let factory: WalletFactory = new WalletFactory();

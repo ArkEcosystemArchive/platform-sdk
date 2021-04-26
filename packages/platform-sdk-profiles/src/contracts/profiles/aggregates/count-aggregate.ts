@@ -8,7 +8,7 @@ export interface ICountAggregate {
 	/**
 	 * Count how many contacts there are in the current profile.
 	 *
-	 * @return {*}  {number}
+	 * @return {number}
 	 * @memberof ICountAggregate
 	 */
 	contacts(): number;
@@ -16,7 +16,7 @@ export interface ICountAggregate {
 	/**
 	 * Count how many notifications there are in the current profile.
 	 *
-	 * @return {*}  {number}
+	 * @return {number}
 	 * @memberof ICountAggregate
 	 */
 	notifications(): number;
@@ -24,7 +24,7 @@ export interface ICountAggregate {
 	/**
 	 * Count how many wallets there are in the current profile.
 	 *
-	 * @return {*}  {number}
+	 * @return {number}
 	 * @memberof ICountAggregate
 	 */
 	wallets(): number;

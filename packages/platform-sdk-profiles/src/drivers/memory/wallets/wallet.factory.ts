@@ -3,22 +3,30 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { decrypt, encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
-import { IReadWriteWallet, IWalletFactory, WalletData } from "../../../contracts";
+import {
+	IAddressOptions,
+	IAddressWithLedgerPathOptions,
+	IGenerateOptions,
+	IMnemonicOptions,
+	IMnemonicWithEncryptionOptions,
+	IPrivateKeyOptions,
+	IPublicKeyOptions,
+	IReadWriteWallet,
+	IWalletFactory,
+	IWifOptions,
+	IWifWithEncryptionOptions,
+	WalletData,
+} from "../../../contracts";
 
 import { Wallet } from "./wallet";
 
-/** {@inheritDoc IWalletFactory} */
 export class WalletFactory implements IWalletFactory {
 	/** {@inheritDoc IWalletFactory.generate} */
 	public async generate({
 		coin,
 		network,
 		locale,
-	}: {
-		coin: string;
-		network: string;
-		locale?: string
-	}): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
+	}: IGenerateOptions): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
 		const mnemonic: string = BIP39.generate(locale);
 
 		return { mnemonic, wallet: await this.fromMnemonic({ mnemonic, coin, network }) };
@@ -31,22 +39,16 @@ export class WalletFactory implements IWalletFactory {
 		mnemonic,
 		useBIP39 = true,
 		useBIP44 = false,
-	}: {
-		coin: string;
-		network: string;
-		mnemonic: string;
-		useBIP39?: boolean;
-		useBIP44?: boolean;
-	}): Promise<IReadWriteWallet> {
+	}: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
 
-		if (useBIP39 && this.canDeriveWithBIP39(wallet)) {
+		if (useBIP39 && this.allowsDeriveWithBIP39(wallet)) {
 			await wallet.mutator().identity(mnemonic);
 		}
 
-		if (useBIP44 && this.canDeriveWithBIP44(wallet)) {
+		if (useBIP44 && this.allowsDeriveWithBIP44(wallet)) {
 			await wallet.mutator().address(
 				await wallet
 					.coin()
@@ -61,15 +63,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromAddress} */
-	public async fromAddress({
-		coin,
-		network,
-		address,
-	}: {
-		coin: string;
-		network: string;
-		address: string;
-	}): Promise<IReadWriteWallet> {
+	public async fromAddress({ coin, network, address }: IAddressOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
@@ -79,15 +73,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromPublicKey} */
-	public async fromPublicKey({
-		coin,
-		network,
-		publicKey,
-	}: {
-		coin: string;
-		network: string;
-		publicKey: string;
-	}): Promise<IReadWriteWallet> {
+	public async fromPublicKey({ coin, network, publicKey }: IPublicKeyOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
@@ -97,15 +83,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromPrivateKey} */
-	public async fromPrivateKey({
-		coin,
-		network,
-		privateKey,
-	}: {
-		coin: string;
-		network: string;
-		privateKey: string;
-	}): Promise<IReadWriteWallet> {
+	public async fromPrivateKey({ coin, network, privateKey }: IPrivateKeyOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
@@ -120,12 +98,7 @@ export class WalletFactory implements IWalletFactory {
 		network,
 		address,
 		path,
-	}: {
-		coin: string;
-		network: string;
-		address: string;
-		path: string;
-	}): Promise<IReadWriteWallet> {
+	}: IAddressWithLedgerPathOptions): Promise<IReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address
 
 		const wallet: IReadWriteWallet = await this.fromAddress({ coin, network, address });
@@ -141,12 +114,7 @@ export class WalletFactory implements IWalletFactory {
 		network,
 		mnemonic,
 		password,
-	}: {
-		coin: string;
-		network: string;
-		mnemonic: string;
-		password: string;
-	}): Promise<IReadWriteWallet> {
+	}: IMnemonicWithEncryptionOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
 
 		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
@@ -157,15 +125,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromWIF} */
-	public async fromWIF({
-		coin,
-		network,
-		wif,
-	}: {
-		coin: string;
-		network: string;
-		wif: string;
-	}): Promise<IReadWriteWallet> {
+	public async fromWIF({ coin, network, wif }: IWifOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
@@ -180,30 +140,27 @@ export class WalletFactory implements IWalletFactory {
 		network,
 		wif,
 		password,
-	}: {
-		coin: string;
-		network: string;
-		wif: string;
-		password: string;
-	}): Promise<IReadWriteWallet> {
+	}: IWifWithEncryptionOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
 
 		await wallet.mutator().coin(coin, network);
 
 		const { compressed, privateKey } = decrypt(wif, password);
 
-		await wallet.mutator().address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
+		await wallet
+			.mutator()
+			.address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
 		return wallet;
 	}
 
-	private canDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().can(Coins.FeatureFlag.DerivationBIP39);
+	private allowsDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
+		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP39);
 	}
 
-	private canDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().can(Coins.FeatureFlag.DerivationBIP44);
+	private allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
+		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP44);
 	}
 }

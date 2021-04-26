@@ -1,3 +1,5 @@
+import { IReadWriteWallet } from ".";
+
 /**
  * Defines the implementation contract for the wallet authorisation gate.
  *
@@ -6,46 +8,38 @@
  */
 export interface IWalletGate {
 	/**
-	 * Determine if the wallet can vote.
+	 * Determine if the given ability should be granted for the current wallet.
 	 *
-	 * @return {*}  {boolean}
+	 * @param {string} ability
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
-	canVote(): boolean;
+	allows(ability: string): boolean;
 
 	/**
-	 * Determine if the wallet can perform the given action.
+	 * Determine if the given ability should be denied for the current wallet.
 	 *
-	 * @param {string} feature
-	 * @return {*}  {boolean}
+	 * @param {string} ability
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
-	can(feature: string): boolean;
+	denies(ability: string): boolean;
 
 	/**
-	 * Determine if the wallet can perform any of the given actions.
+	 * Determine if any one of the given abilities should be granted for the current wallet.
 	 *
-	 * @param {string[]} features
-	 * @return {*}  {boolean}
+	 * @param {string[]} abilities
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
-	canAny(features: string[]): boolean;
+	any(abilities: string[]): boolean;
 
 	/**
-	 * Determine if the wallet can perform all of the given actions.
+	 * Determine if all one of the given abilities should be granted for the current wallet.
 	 *
-	 * @param {string[]} features
-	 * @return {*}  {boolean}
+	 * @param {string[]} abilities
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
-	canAll(features: string[]): boolean;
-
-	/**
-	 * Determine if the wallet cannot perform the given action.
-	 *
-	 * @param {string} feature
-	 * @return {*}  {boolean}
-	 * @memberof IReadWriteWallet
-	 */
-	cannot(feature: string): boolean;
+	all(abilities: string[]): boolean;
 }

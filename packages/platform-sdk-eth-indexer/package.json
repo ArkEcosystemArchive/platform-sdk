@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-eth-indexer",
-	"version": "4.2.26",
+	"version": "5.0.1",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],

@@ -10,7 +10,7 @@ export interface ICoinService {
 	/**
 	 * Get all keys and instances.
 	 *
-	 * @return {*}  {Record<string, Coins.Coin>}
+	 * @return {Record<string, Coins.Coin>}
 	 * @memberof ICoinService
 	 */
 	all(): Record<string, Coins.Coin>;
@@ -18,7 +18,7 @@ export interface ICoinService {
 	/**
 	 * Get all coin instances.
 	 *
-	 * @return {*}  {Coins.Coin[]}
+	 * @return {Coins.Coin[]}
 	 * @memberof ICoinService
 	 */
 	values(): Coins.Coin[];
@@ -26,7 +26,7 @@ export interface ICoinService {
 	/**
 	 * Get all entries.
 	 *
-	 * @return {*}  {[string, string[]][]}
+	 * @return {[string, string[]][]}
 	 * @memberof ICoinService
 	 */
 	entries(): [string, string[]][];
@@ -36,7 +36,7 @@ export interface ICoinService {
 	 *
 	 * @param {string} coin
 	 * @param {string} network
-	 * @return {*}  {Coins.Coin}
+	 * @return {Coins.Coin}
 	 * @memberof ICoinService
 	 */
 	get(coin: string, network: string): Coins.Coin;
@@ -48,7 +48,7 @@ export interface ICoinService {
 	 * @param {string} network
 	 * @param {object} [options]
 	 * @param {boolean} [useForce]
-	 * @return {*}  {Coins.Coin}
+	 * @return {Coins.Coin}
 	 * @memberof ICoinService
 	 */
 	push(coin: string, network: string, options?: object, useForce?: boolean): Coins.Coin;
@@ -58,7 +58,7 @@ export interface ICoinService {
 	 *
 	 * @param {string} coin
 	 * @param {string} network
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof ICoinService
 	 */
 	has(coin: string, network: string): boolean;

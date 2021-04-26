@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "eos.testnet",
 	type: "test",
-	name: "EOS Testnet",
+	name: "Testnet",
+	coin: "EOS",
 	explorer: "https://eos-test.bloks.io/",
 	currency: {
 		ticker: "EOS",

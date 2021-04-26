@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "meetone.mainnet",
 	type: "live",
-	name: "MEETONE Mainnet",
+	name: "Mainnet",
+	coin: "MEET.ONE",
 	explorer: "https://meetone.bloks.io/",
 	currency: {
 		ticker: "MEETONE",

@@ -1,14 +1,13 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { resolve } from "path";
-import { Coins } from "@arkecosystem/platform-sdk";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { removeSync } from "fs-extra";
 import nock from "nock";
+import { resolve } from "path";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
@@ -107,11 +106,7 @@ it("should have a data repository", async () => {
 it("should have available networks", async () => {
 	await makeSubject();
 
-	const coins: Record<string, Coins.CoinSpec> = { ARK, BTC, ETH };
-
-	for (const network of subject.availableNetworks()) {
-		expect(network.toObject()).toEqual(coins[network.coin()].manifest.networks[network.id()]);
-	}
+	expect(subject.availableNetworks()).toHaveLength(10);
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {
@@ -147,7 +142,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.settings().set("ADVANCED_MODE", "value");
 
 	// Encode all data
-	profile.save();
+	// profile.save();
 
 	// Create a Global DataEntry
 	subject.data().set("key", "value");
@@ -169,7 +164,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 
 	expect(newProfile).toBeInstanceOf(Profile);
 
-	await new ProfileImporter().import(newProfile);
+	await new ProfileImporter(newProfile).import();
 	await newProfile.sync();
 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -201,7 +196,7 @@ it("should boot the environment from fixed data", async () => {
 
 	const newProfile = env.profiles().findById("8101538b-b13a-4b8d-b3d8-e710ccffd385");
 
-	await new ProfileImporter().import(newProfile);
+	await new ProfileImporter(newProfile).import();
 
 	expect(newProfile).toBeInstanceOf(Profile);
 	expect(newProfile.wallets().keys()).toHaveLength(1);
@@ -356,17 +351,17 @@ it("should persist the env and restore it", async () => {
 	const john = subject.profiles().create("John");
 	State.profile(john);
 	await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
-	john.save();
+	// john.save();
 
 	const jane = subject.profiles().create("Jane");
 	State.profile(jane);
 	jane.auth().setPassword("password");
-	jane.save("password");
+	// jane.save("password");
 
 	const jack = subject.profiles().create("Jack");
 	State.profile(jack);
 	jack.auth().setPassword("password");
-	jack.save("password");
+	// jack.save("password");
 
 	await subject.persist();
 
@@ -377,20 +372,18 @@ it("should persist the env and restore it", async () => {
 
 	// Assert that we got back what we dumped in the previous env
 	const restoredJohn = subject.profiles().findById(john.id());
-	await new ProfileImporter().import(restoredJohn);
+	await new ProfileImporter(restoredJohn).import();
 	await restoredJohn.sync();
 
 	const restoredJane = subject.profiles().findById(jane.id());
-	await new ProfileImporter().import(restoredJane, "password");
+	await new ProfileImporter(restoredJane).import("password");
 	await restoredJane.sync();
 
 	const restoredJack = subject.profiles().findById(jack.id());
-	await new ProfileImporter().import(restoredJack, "password");
+	await new ProfileImporter(restoredJack).import("password");
 	await restoredJack.sync();
 
-	const serialiser = new ProfileSerialiser();
-
-	expect(serialiser.toJSON(restoredJohn)).toEqual(serialiser.toJSON(john));
-	expect(serialiser.toJSON(restoredJane)).toEqual(serialiser.toJSON(jane));
-	expect(serialiser.toJSON(restoredJack)).toEqual(serialiser.toJSON(jack));
+	expect(new ProfileSerialiser(restoredJohn).toJSON()).toEqual(new ProfileSerialiser(john).toJSON());
+	expect(new ProfileSerialiser(restoredJane).toJSON()).toEqual(new ProfileSerialiser(jane).toJSON());
+	expect(new ProfileSerialiser(restoredJack).toJSON()).toEqual(new ProfileSerialiser(jack).toJSON());
 });

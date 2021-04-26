@@ -1,12 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import dot from "dot-prop";
 
-import {
-	IReadWriteWallet,
-	IWalletData,
-	WalletData,
-	WalletFlag,
-} from "../../../../contracts";
+import { IReadWriteWallet, IWalletData, WalletData, WalletFlag } from "../../../../contracts";
 
 export class WalletSerialiser {
 	readonly #wallet: IReadWriteWallet;
@@ -15,9 +10,10 @@ export class WalletSerialiser {
 		this.#wallet = wallet;
 	}
 
+	/** {@inheritDoc IWalletSerialiser.toJSON} */
 	public toJSON(): IWalletData {
 		if (this.#wallet.hasBeenPartiallyRestored()) {
-			return this.#wallet.getAttributes().get<IWalletData>('initialState');
+			return this.#wallet.getAttributes().get<IWalletData>("initialState");
 		}
 
 		this.#wallet.transaction().dump();
@@ -49,14 +45,12 @@ export class WalletSerialiser {
 				[WalletData.Votes]: this.#wallet.data().get(WalletData.Votes, []),
 				[WalletData.VotesAvailable]: this.#wallet.data().get(WalletData.VotesAvailable, 0),
 				[WalletData.VotesUsed]: this.#wallet.data().get(WalletData.VotesUsed, 0),
-				[WalletData.WaitingForOurSignatureTransactions]: this.#wallet.data().get(
-					WalletData.WaitingForOurSignatureTransactions,
-					[],
-				),
-				[WalletData.WaitingForOtherSignaturesTransactions]: this.#wallet.data().get(
-					WalletData.WaitingForOtherSignaturesTransactions,
-					[],
-				),
+				[WalletData.WaitingForOurSignatureTransactions]: this.#wallet
+					.data()
+					.get(WalletData.WaitingForOurSignatureTransactions, []),
+				[WalletData.WaitingForOtherSignaturesTransactions]: this.#wallet
+					.data()
+					.get(WalletData.WaitingForOtherSignaturesTransactions, []),
 				[WalletData.LedgerPath]: this.#wallet.data().get(WalletData.LedgerPath),
 				[WalletData.Bip38EncryptedKey]: this.#wallet.data().get(WalletData.Bip38EncryptedKey),
 				[WalletFlag.Starred]: this.#wallet.isStarred(),

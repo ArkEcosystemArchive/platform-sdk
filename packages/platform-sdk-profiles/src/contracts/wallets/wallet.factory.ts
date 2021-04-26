@@ -5,10 +5,10 @@ import { IReadWriteWallet } from "./wallet";
  *
  * @interface IGenerateOptions
  */
-interface IGenerateOptions {
+export interface IGenerateOptions {
 	coin: string;
 	network: string;
-	locale?: string
+	locale?: string;
 }
 
 /**
@@ -16,7 +16,7 @@ interface IGenerateOptions {
  *
  * @interface IMnemonicOptions
  */
-interface IMnemonicOptions {
+export interface IMnemonicOptions {
 	coin: string;
 	network: string;
 	mnemonic: string;
@@ -29,28 +29,40 @@ interface IMnemonicOptions {
  *
  * @interface IAddressOptions
  */
-interface IAddressOptions { coin: string; network: string; address: string }
+export interface IAddressOptions {
+	coin: string;
+	network: string;
+	address: string;
+}
 
 /**
  * Defines the options for an import with a public key.
  *
  * @interface IPublicKeyOptions
  */
-interface IPublicKeyOptions { coin: string; network: string; publicKey: string }
+export interface IPublicKeyOptions {
+	coin: string;
+	network: string;
+	publicKey: string;
+}
 
 /**
  * Defines the options for an import with a private key.
  *
  * @interface IPrivateKeyOptions
  */
-interface IPrivateKeyOptions { coin: string; network: string; privateKey: string }
+export interface IPrivateKeyOptions {
+	coin: string;
+	network: string;
+	privateKey: string;
+}
 
 /**
  * Defines the options for an import with a BIP44 path.
  *
  * @interface IAddressWithLedgerPathOptions
  */
-interface IAddressWithLedgerPathOptions {
+export interface IAddressWithLedgerPathOptions {
 	coin: string;
 	network: string;
 	address: string;
@@ -62,7 +74,7 @@ interface IAddressWithLedgerPathOptions {
  *
  * @interface IMnemonicWithEncryptionOptions
  */
-interface IMnemonicWithEncryptionOptions {
+export interface IMnemonicWithEncryptionOptions {
 	coin: string;
 	network: string;
 	mnemonic: string;
@@ -74,20 +86,23 @@ interface IMnemonicWithEncryptionOptions {
  *
  * @interface IWifOptions
  */
-interface IWifOptions { coin: string; network: string; wif: string }
+export interface IWifOptions {
+	coin: string;
+	network: string;
+	wif: string;
+}
 
 /**
  * Defines the options for an import with a WIF and password.
  *
  * @interface IWifWithEncryptionOptions
  */
-interface IWifWithEncryptionOptions {
+export interface IWifWithEncryptionOptions {
 	coin: string;
 	network: string;
 	wif: string;
 	password: string;
 }
-
 
 /**
  * Defines the implementation contract for the wallet factory.
@@ -100,7 +115,7 @@ export interface IWalletFactory {
 	 * Generates a wallet from a mnemonic.
 	 *
 	 * @param {IGenerateOptions} options
-	 * @return {*}  {Promise<{ mnemonic: string; wallet: IReadWriteWallet }>}
+	 * @return {Promise<{ mnemonic: string; wallet: IReadWriteWallet }>}
 	 * @memberof IWalletFactory
 	 */
 	generate(options: IGenerateOptions): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
@@ -109,7 +124,7 @@ export interface IWalletFactory {
 	 * Imports a wallet from a mnemonic.
 	 *
 	 * @param {IMnemonicOptions} options
-	 * @return {*}  {Promise<IReadWriteWallet>}
+	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
 	fromMnemonic(options: IMnemonicOptions): Promise<IReadWriteWallet>;
@@ -118,7 +133,7 @@ export interface IWalletFactory {
 	 * Imports a wallet from an address.
 	 *
 	 * @param {IAddressOptions} options
-	 * @return {*}  {Promise<IReadWriteWallet>}
+	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
 	fromAddress(options: IAddressOptions): Promise<IReadWriteWallet>;
@@ -127,7 +142,7 @@ export interface IWalletFactory {
 	 * Imports a wallet from a public key.
 	 *
 	 * @param {IPublicKeyOptions} options
-	 * @return {*}  {Promise<IReadWriteWallet>}
+	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
 	fromPublicKey(options: IPublicKeyOptions): Promise<IReadWriteWallet>;
@@ -136,7 +151,7 @@ export interface IWalletFactory {
 	 * Imports a wallet from a private key.
 	 *
 	 * @param {IPrivateKeyOptions} options
-	 * @return {*}  {Promise<IReadWriteWallet>}
+	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
 	fromPrivateKey(options: IPrivateKeyOptions): Promise<IReadWriteWallet>;
@@ -145,7 +160,7 @@ export interface IWalletFactory {
 	 * Imports a wallet from a BIP44 path.
 	 *
 	 * @param {IAddressWithLedgerPathOptions} options
-	 * @return {*}  {Promise<IReadWriteWallet>}
+	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
 	fromAddressWithLedgerPath(options: IAddressWithLedgerPathOptions): Promise<IReadWriteWallet>;
@@ -154,7 +169,7 @@ export interface IWalletFactory {
 	 * Imports a wallet from a mnemonic with a password.
 	 *
 	 * @param {IMnemonicWithEncryptionOptions} options
-	 * @return {*}  {Promise<IReadWriteWallet>}
+	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
 	fromMnemonicWithEncryption(options: IMnemonicWithEncryptionOptions): Promise<IReadWriteWallet>;
@@ -163,7 +178,7 @@ export interface IWalletFactory {
 	 * Imports a wallet from a WIF.
 	 *
 	 * @param {IWifOptions} options
-	 * @return {*}  {Promise<IReadWriteWallet>}
+	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
 	fromWIF(options: IWifOptions): Promise<IReadWriteWallet>;
@@ -172,7 +187,7 @@ export interface IWalletFactory {
 	 * Imports a wallet from a WIF with a password.
 	 *
 	 * @param {IWifWithEncryptionOptions} options
-	 * @return {*}  {Promise<IReadWriteWallet>}
+	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
 	fromWIFWithEncryption(options: IWifWithEncryptionOptions): Promise<IReadWriteWallet>;

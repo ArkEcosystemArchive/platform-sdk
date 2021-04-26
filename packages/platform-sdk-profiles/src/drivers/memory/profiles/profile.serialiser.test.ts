@@ -4,7 +4,12 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer, importByAddressWithLedgerPath, importByMnemonic, generateWallet } from "../../../../test/helpers";
+import {
+	bootContainer,
+	importByAddressWithLedgerPath,
+	importByMnemonic,
+	generateWallet,
+} from "../../../../test/helpers";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
@@ -33,8 +38,8 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-	subject = new ProfileSerialiser();
 	profile = new Profile({ id: "uuid", name: "name", data: "" });
+	subject = new ProfileSerialiser(profile);
 
 	State.profile(profile);
 
@@ -42,7 +47,7 @@ beforeEach(() => {
 });
 
 it("should turn into an object", () => {
-	expect(subject.toJSON(profile)).toMatchInlineSnapshot(`
+	expect(subject.toJSON()).toMatchInlineSnapshot(`
 		Object {
 		  "contacts": Object {},
 		  "data": Object {},
@@ -64,13 +69,14 @@ describe("should turn into an object with options", () => {
 	beforeEach(() => {
 		profile = new Profile({ id: "uuid", name: "name", data: "" });
 		profile.settings().set(ProfileSetting.Name, "John Doe");
+
+		subject = new ProfileSerialiser(profile);
 	});
 
 	it("should not exclude anything", async () => {
 		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
-		profile.save();
 
-		const filtered = subject.toJSON(profile, {
+		const filtered = subject.toJSON({
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
@@ -82,9 +88,7 @@ describe("should turn into an object with options", () => {
 
 	it("should exclude empty wallets", async () => {
 		await generateWallet(profile, "ARK", "ark.devnet");
-		profile.save();
-
-		const filtered = subject.toJSON(profile, {
+		const filtered = subject.toJSON({
 			excludeEmptyWallets: true,
 			excludeLedgerWallets: false,
 			addNetworkInformation: true,
@@ -96,9 +100,8 @@ describe("should turn into an object with options", () => {
 
 	it("should exclude ledger wallets", async () => {
 		await importByAddressWithLedgerPath(profile, identity.address, "ARK", "ark.devnet", "0");
-		profile.save();
 
-		const filtered = subject.toJSON(profile, {
+		const filtered = subject.toJSON({
 			excludeEmptyWallets: false,
 			excludeLedgerWallets: true,
 			addNetworkInformation: true,
@@ -110,10 +113,9 @@ describe("should turn into an object with options", () => {
 
 	it("should not include network information", async () => {
 		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
-		profile.save();
 
 		expect(() =>
-			subject.toJSON(profile, {
+			subject.toJSON({
 				excludeEmptyWallets: false,
 				excludeLedgerWallets: false,
 				addNetworkInformation: false,
@@ -123,10 +125,8 @@ describe("should turn into an object with options", () => {
 	});
 
 	it("should not include general settings", async () => {
-		profile.save();
-
 		expect(() =>
-			subject.toJSON(profile, {
+			subject.toJSON({
 				excludeEmptyWallets: false,
 				excludeLedgerWallets: false,
 				addNetworkInformation: true,

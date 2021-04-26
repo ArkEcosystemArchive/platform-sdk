@@ -9,31 +9,19 @@ import nock from "nock";
 
 import { Contact } from "../src/drivers/memory/contacts/contact";
 import { container } from "../src/environment/container";
-import { DataRepository } from "../src/repositories/data-repository";
-import { DelegateService } from "../src/drivers/memory/services/delegate-service";
-import { ExchangeRateService } from "../src/drivers/memory/services/exchange-rate-service";
-import { FeeService } from "../src/drivers/memory/services/fee-service";
-import { Identifiers } from "../src/environment/container.models";
-import { KnownWalletService } from "../src/drivers/memory/services/known-wallet-service";
 import { Profile } from "../src/drivers/memory/profiles/profile";
-import { ProfileRepository } from "../src/drivers/memory/repositories/profile-repository";
 import { StubStorage } from "./stubs/storage";
 import { Wallet } from "../src/drivers/memory/wallets/wallet";
-import { WalletService } from "../src/drivers/memory/services/wallet-service";
 import { IContactData, IProfile, IReadWriteWallet } from "../src/contracts";
 import { WalletFactory } from "../src/drivers/memory/wallets/wallet.factory";
+import { MemoryDriver } from "../src/drivers/memory";
 
 export const bootContainer = (): void => {
-	container.bind(Identifiers.Storage, new StubStorage());
-	container.bind(Identifiers.AppData, new DataRepository());
-	container.bind(Identifiers.Coins, { ADA, ARK, BTC, ETH });
-	container.bind(Identifiers.DelegateService, new DelegateService());
-	container.bind(Identifiers.ExchangeRateService, new ExchangeRateService());
-	container.bind(Identifiers.FeeService, new FeeService());
-	container.bind(Identifiers.HttpClient, new Request());
-	container.bind(Identifiers.KnownWalletService, new KnownWalletService());
-	container.bind(Identifiers.ProfileRepository, new ProfileRepository());
-	container.bind(Identifiers.WalletService, new WalletService());
+	new MemoryDriver().make(container, {
+		coins: { ADA, ARK, BTC, ETH },
+		storage: new StubStorage(),
+		httpClient: new Request(),
+	});
 };
 
 export const knock = (): void => {
@@ -66,7 +54,12 @@ export const makeContact = (data: IContactData): Contact => new Contact(data);
 
 export const makeWallet = (id: string): IReadWriteWallet => new Wallet(id, {});
 
-export const importByMnemonic = async (profile: IProfile, mnemonic: string, coin: string, network: string): Promise<IReadWriteWallet> => {
+export const importByMnemonic = async (
+	profile: IProfile,
+	mnemonic: string,
+	coin: string,
+	network: string,
+): Promise<IReadWriteWallet> => {
 	const factory: WalletFactory = new WalletFactory();
 
 	const wallet = await factory.fromMnemonic({
@@ -78,9 +71,15 @@ export const importByMnemonic = async (profile: IProfile, mnemonic: string, coin
 	profile.wallets().push(wallet);
 
 	return wallet;
-}
+};
 
-export const importByAddressWithLedgerPath = async (profile: IProfile, address: string, coin: string, network: string, path: string): Promise<IReadWriteWallet> => {
+export const importByAddressWithLedgerPath = async (
+	profile: IProfile,
+	address: string,
+	coin: string,
+	network: string,
+	path: string,
+): Promise<IReadWriteWallet> => {
 	const factory: WalletFactory = new WalletFactory();
 
 	const wallet = await factory.fromAddressWithLedgerPath({
@@ -93,7 +92,7 @@ export const importByAddressWithLedgerPath = async (profile: IProfile, address: 
 	profile.wallets().push(wallet);
 
 	return wallet;
-}
+};
 
 export const generateWallet = async (profile: IProfile, coin: string, network: string): Promise<IReadWriteWallet> => {
 	const factory: WalletFactory = new WalletFactory();
@@ -106,4 +105,4 @@ export const generateWallet = async (profile: IProfile, coin: string, network: s
 	profile.wallets().push(wallet);
 
 	return wallet;
-}
+};

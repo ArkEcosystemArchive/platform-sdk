@@ -1,9 +1,20 @@
 import "jest-extended";
 import "reflect-metadata";
+import { bootContainer } from "../../../../test/helpers";
 
 import { ProfileSetting, WalletSetting } from "../../../contracts";
+import { State } from "../../../environment/state";
+import { Profile } from "../profiles/profile";
 
 import { SettingRepository } from "./setting-repository";
+
+beforeAll(() => {
+	bootContainer();
+
+	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+
+	State.profile(profile);
+});
 
 describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 	let subject: SettingRepository;

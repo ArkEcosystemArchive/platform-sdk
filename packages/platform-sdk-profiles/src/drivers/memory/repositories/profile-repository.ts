@@ -8,43 +8,50 @@ import { DataRepository } from "../../../repositories/data-repository";
 import { ProfileExporter } from "../profiles/profile.exporter";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileDumper } from "../profiles/profile.dumper";
+import { State } from "../../../environment/state";
+import { ProfileInitialiser } from "../profiles/profile.initialiser";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;
-	readonly #dumper: ProfileDumper;
 
 	public constructor() {
 		this.#data = new DataRepository();
-		this.#dumper = new ProfileDumper();
 	}
 
+	/** {@inheritDoc IProfileRepository.fill} */
 	public fill(profiles: object): void {
 		for (const [id, profile] of Object.entries(profiles)) {
 			this.#data.set(id, new Profile(profile));
 		}
 	}
 
+	/** {@inheritDoc IProfileRepository.all} */
 	public all(): Record<string, IProfile> {
 		return this.#data.all() as Record<string, IProfile>;
 	}
 
+	/** {@inheritDoc IProfileRepository.first} */
 	public first(): IProfile {
 		return this.#data.first();
 	}
 
+	/** {@inheritDoc IProfileRepository.last} */
 	public last(): IProfile {
 		return this.#data.last();
 	}
 
+	/** {@inheritDoc IProfileRepository.keys} */
 	public keys(): string[] {
 		return this.#data.keys();
 	}
 
+	/** {@inheritDoc IProfileRepository.values} */
 	public values(): IProfile[] {
 		return this.#data.values();
 	}
 
+	/** {@inheritDoc IProfileRepository.findById} */
 	public findById(id: string): IProfile {
 		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
@@ -53,10 +60,12 @@ export class ProfileRepository implements IProfileRepository {
 		return this.#data.get(id) as IProfile;
 	}
 
+	/** {@inheritDoc IProfileRepository.findByName} */
 	public findByName(name: string): IProfile | undefined {
 		return this.values().find((profile: IProfile) => profile.name().toLowerCase() === name.toLowerCase());
 	}
 
+	/** {@inheritDoc IProfileRepository.create} */
 	public create(name: string): IProfile {
 		if (this.findByName(name)) {
 			throw new Error(`The profile [${name}] already exists.`);
@@ -66,9 +75,12 @@ export class ProfileRepository implements IProfileRepository {
 
 		this.#data.set(result.id(), result);
 
+		new ProfileInitialiser(result).initialise(name);
+
 		return result;
 	}
 
+	/** {@inheritDoc IProfileRepository.import} */
 	public async import(data: string, password?: string): Promise<Profile> {
 		const profile = new Profile({
 			id: uuidv4(),
@@ -77,24 +89,27 @@ export class ProfileRepository implements IProfileRepository {
 			data,
 		});
 
-		await new ProfileImporter().import(profile, password);
+		await new ProfileImporter(profile).import(password);
 
 		return profile;
 	}
 
+	/** {@inheritDoc IProfileRepository.export} */
 	public export(profile: IProfile, options: IProfileExportOptions, password?: string): string {
 		return new ProfileExporter(profile).export(password, options);
 	}
 
-	// @TODO: expose this in some other way
+	/** {@inheritDoc IProfileRepository.restore} */
 	public async restore(profile: IProfile, password?: string): Promise<void> {
-		new ProfileImporter().import(profile, password);
+		new ProfileImporter(profile).import(password);
 	}
 
+	/** {@inheritDoc IProfileRepository.has} */
 	public has(id: string): boolean {
 		return this.#data.has(id);
 	}
 
+	/** {@inheritDoc IProfileRepository.forget} */
 	public forget(id: string): void {
 		if (this.#data.missing(id)) {
 			throw new Error(`No profile found for [${id}].`);
@@ -103,20 +118,23 @@ export class ProfileRepository implements IProfileRepository {
 		this.#data.forget(id);
 	}
 
+	/** {@inheritDoc IProfileRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 	}
 
+	/** {@inheritDoc IProfileRepository.count} */
 	public count(): number {
 		return this.#data.count();
 	}
 
+	/** {@inheritDoc IProfileRepository.toObject} */
 	public toObject(): Record<string, object> {
 		const result: Record<string, object> = {};
 		const profiles: [string, Profile][] = Object.entries(this.#data.all());
 
 		for (const [id, profile] of profiles) {
-			result[id] = this.#dumper.dump(profile);
+			result[id] = new ProfileDumper(profile).dump();
 		}
 
 		return result;

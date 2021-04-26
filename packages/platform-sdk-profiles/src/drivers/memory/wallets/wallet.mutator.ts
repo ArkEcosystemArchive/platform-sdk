@@ -3,6 +3,7 @@ import { IReadWriteWallet, WalletSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { Coins } from "@arkecosystem/platform-sdk";
+import { emitProfileChanged } from "../helpers";
 
 export class WalletMutator implements IWalletMutator {
 	readonly #wallet: IReadWriteWallet;
@@ -11,23 +12,25 @@ export class WalletMutator implements IWalletMutator {
 		this.#wallet = wallet;
 	}
 
-	 public async coin(
-		coin: string,
-		network: string,
-		options: { sync: boolean } = { sync: true },
-	): Promise<void> {
+	/** {@inheritDoc IWalletMutator.coin} */
+	public async coin(coin: string, network: string, options: { sync: boolean } = { sync: true }): Promise<void> {
 		if (State.profile().usesCustomPeer() && State.profile().peers().has(coin, network)) {
-			this.#wallet.getAttributes().set('coin', State.profile().coins().push(
-				coin,
-				network,
-				{
-					peer: State.profile().peers().getRelay(coin, network)?.host,
-					peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
-				},
-				true,
-			));
+			this.#wallet.getAttributes().set(
+				"coin",
+				State.profile()
+					.coins()
+					.push(
+						coin,
+						network,
+						{
+							peer: State.profile().peers().getRelay(coin, network)?.host,
+							peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
+						},
+						true,
+					),
+			);
 		} else {
-			this.#wallet.getAttributes().set('coin', State.profile().coins().push(coin, network));
+			this.#wallet.getAttributes().set("coin", State.profile().coins().push(coin, network));
 		}
 
 		/**
@@ -36,9 +39,9 @@ export class WalletMutator implements IWalletMutator {
 		 * bad error handling inside the coin package which needs fixing asap.
 		 */
 		try {
-			if (!this.#wallet.getAttributes().get<Coins.Coin>('coin').hasBeenSynchronized()) {
+			if (!this.#wallet.getAttributes().get<Coins.Coin>("coin").hasBeenSynchronized()) {
 				if (options.sync) {
-					await this.#wallet.getAttributes().get<Coins.Coin>('coin').__construct();
+					await this.#wallet.getAttributes().get<Coins.Coin>("coin").__construct();
 
 					this.#wallet.markAsFullyRestored();
 				} else {
@@ -50,15 +53,34 @@ export class WalletMutator implements IWalletMutator {
 		} catch {
 			this.#wallet.markAsPartiallyRestored();
 		}
+
+		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IWalletMutator.identity} */
 	public async identity(mnemonic: string): Promise<void> {
-		this.#wallet.getAttributes().set('address', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().address().fromMnemonic(mnemonic));
-		this.#wallet.getAttributes().set('publicKey', await this.#wallet.getAttributes().get<Coins.Coin>('coin').identity().publicKey().fromMnemonic(mnemonic));
+		this.#wallet
+			.getAttributes()
+			.set(
+				"address",
+				await this.#wallet.getAttributes().get<Coins.Coin>("coin").identity().address().fromMnemonic(mnemonic),
+			);
+		this.#wallet
+			.getAttributes()
+			.set(
+				"publicKey",
+				await this.#wallet
+					.getAttributes()
+					.get<Coins.Coin>("coin")
+					.identity()
+					.publicKey()
+					.fromMnemonic(mnemonic),
+			);
 
-		return this.address(this.#wallet.getAttributes().get<string>('address'));
+		return this.address(this.#wallet.getAttributes().get<string>("address"));
 	}
 
+	/** {@inheritDoc IWalletMutator.address} */
 	public async address(
 		address: string,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
@@ -71,7 +93,7 @@ export class WalletMutator implements IWalletMutator {
 			}
 		}
 
-		this.#wallet.getAttributes().set('address', address);
+		this.#wallet.getAttributes().set("address", address);
 
 		if (options.syncIdentity) {
 			await this.#wallet.synchroniser().identity();
@@ -80,12 +102,14 @@ export class WalletMutator implements IWalletMutator {
 		this.avatar(Avatar.make(this.#wallet.address()));
 	}
 
+	/** {@inheritDoc IWalletMutator.avatar} */
 	public avatar(value: string): void {
-		this.#wallet.getAttributes().set('avatar', value);
+		this.#wallet.getAttributes().set("avatar", value);
 
 		this.#wallet.settings().set(WalletSetting.Avatar, value);
 	}
 
+	/** {@inheritDoc IWalletMutator.alias} */
 	public alias(alias: string): void {
 		this.#wallet.settings().set(WalletSetting.Alias, alias);
 	}

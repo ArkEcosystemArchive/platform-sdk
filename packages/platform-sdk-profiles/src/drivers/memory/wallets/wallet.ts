@@ -39,6 +39,7 @@ import { WalletImportFormat } from "./services/wif";
 import { IWalletImportFormat } from "../../../contracts/wallets/services/wif";
 import { MultiSignature } from "./services/multi-signature";
 import { IMultiSignature } from "../../../contracts/wallets/services/multi-signature";
+import { emitProfileChanged } from "../helpers";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
@@ -74,50 +75,63 @@ export class Wallet implements IReadWriteWallet {
 		this.restore();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.id} */
 	public id(): string {
 		return this.#attributes.get("id");
 	}
 
+	/** {@inheritDoc IReadWriteWallet.coin} */
 	public coin(): Coins.Coin {
-		return this.#attributes.get<Coins.Coin>('coin');
+		return this.#attributes.get<Coins.Coin>("coin");
 	}
 
+	/** {@inheritDoc IReadWriteWallet.network} */
 	public network(): Coins.Network {
 		return this.coin().network();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.currency} */
 	public currency(): string {
 		return this.network().ticker();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.exchangeCurrency} */
 	public exchangeCurrency(): string {
 		return State.profile().settings().get(ProfileSetting.ExchangeCurrency) as string;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.alias} */
 	public alias(): string | undefined {
 		return this.settings().get(WalletSetting.Alias);
 	}
 
+	/** {@inheritDoc IReadWriteWallet.displayName} */
 	public displayName(): string | undefined {
 		return this.alias() || this.username() || this.knownName();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.primaryKey} */
 	public primaryKey(): string {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').primaryKey();
+		return this.#attributes.get<Contracts.WalletData>("wallet").primaryKey();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.address} */
 	public address(): string {
 		return this.#attributes.get("address");
 	}
 
+	/** {@inheritDoc IReadWriteWallet.publicKey} */
 	public publicKey(): string | undefined {
 		return this.#attributes.get("publicKey");
 	}
 
+	/** {@inheritDoc IReadWriteWallet.balance} */
 	public balance(): BigNumber {
 		const value: string | undefined = this.data().get(WalletData.Balance);
 
@@ -128,6 +142,7 @@ export class Wallet implements IReadWriteWallet {
 		return BigNumber.make(value);
 	}
 
+	/** {@inheritDoc IReadWriteWallet.convertedBalance} */
 	public convertedBalance(): BigNumber {
 		if (this.network().isTest()) {
 			return BigNumber.ZERO;
@@ -138,6 +153,7 @@ export class Wallet implements IReadWriteWallet {
 			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().divide(1e8));
 	}
 
+	/** {@inheritDoc IReadWriteWallet.nonce} */
 	public nonce(): BigNumber {
 		const value: string | undefined = this.data().get(WalletData.Sequence);
 
@@ -148,6 +164,7 @@ export class Wallet implements IReadWriteWallet {
 		return BigNumber.make(value);
 	}
 
+	/** {@inheritDoc IReadWriteWallet.avatar} */
 	public avatar(): string {
 		const value: string | undefined = this.data().get(WalletSetting.Avatar);
 
@@ -155,286 +172,313 @@ export class Wallet implements IReadWriteWallet {
 			return value;
 		}
 
-		return this.#attributes.get<string>('avatar');
+		return this.#attributes.get<string>("avatar");
 	}
 
-	/**
-	 * These methods serve as helpers to proxy certain method calls to the parent profile.
-	 */
-
+	/** {@inheritDoc IReadWriteWallet.getRelays} */
 	public getRelays(): string[] {
-		return State.profile().peers()
+		return State.profile()
+			.peers()
 			.getRelays(this.coinId(), this.networkId())
 			.map((peer) => peer.host);
 	}
 
-	/**
-	 * Connects the coin to the blockchain and configures it.
-	 *
-	 * @remark
-	 * This only needs to be called if `setCoin` is called with `sync: false`.
-	 *
-	 * @returns {Promise<void>}
-	 * @memberof Wallet
-	 */
+	/** {@inheritDoc IReadWriteWallet.connect} */
 	public async connect(): Promise<void> {
 		if (!this.hasCoin()) {
 			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
 		}
 
-		await this.#attributes.get<Coins.Coin>('coin').__construct();
+		await this.#attributes.get<Coins.Coin>("coin").__construct();
 	}
 
-	/**
-	 * Determines if the instance already has a coin set.
-	 *
-	 * @remark
-	 * This only determines if a coin instance has been created, not if it
-	 * has been synchronized and configured with the blockchain network.
-	 *
-	 * @returns {boolean}
-	 * @memberof Wallet
-	 */
+	/** {@inheritDoc IReadWriteWallet.hasCoin} */
 	public hasCoin(): boolean {
-		return this.#attributes.hasStrict('coin');
+		return this.#attributes.hasStrict("coin");
 	}
 
-	/**
-	 * These methods serve as getters to the underlying data and dependencies.
-	 */
-
+	/** {@inheritDoc IReadWriteWallet.hasSyncedWithNetwork} */
 	public hasSyncedWithNetwork(): boolean {
-		if (this.#attributes.get<Contracts.WalletData>('wallet') === undefined) {
+		if (this.#attributes.get<Contracts.WalletData>("wallet") === undefined) {
 			return false;
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').hasPassed();
+		return this.#attributes.get<Contracts.WalletData>("wallet").hasPassed();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.data} */
 	public data(): IDataRepository {
 		return this.#dataRepository;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.settings} */
 	public settings(): ISettingRepository {
 		return this.#settingRepository;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.toData} */
 	public toData(): Contracts.WalletData {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet');
+		return this.#attributes.get<Contracts.WalletData>("wallet");
 	}
 
+	/** {@inheritDoc IReadWriteWallet.toObject} */
 	public toObject(): IWalletData {
 		return new WalletSerialiser(this).toJSON();
 	}
 
-	/**
-	 * These methods serve as identifiers for special types of wallets.
-	 */
-
+	/** {@inheritDoc IReadWriteWallet.knownName} */
 	public knownName(): string | undefined {
 		return container.get<KnownWalletService>(Identifiers.KnownWalletService).name(this.networkId(), this.address());
 	}
 
+	/** {@inheritDoc IReadWriteWallet.secondPublicKey} */
 	public secondPublicKey(): string | undefined {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').secondPublicKey();
+		return this.#attributes.get<Contracts.WalletData>("wallet").secondPublicKey();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.username} */
 	public username(): string | undefined {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').username();
+		return this.#attributes.get<Contracts.WalletData>("wallet").username();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isDelegate} */
 	public isDelegate(): boolean {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').isDelegate();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isDelegate();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isResignedDelegate} */
 	public isResignedDelegate(): boolean {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').isResignedDelegate();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isResignedDelegate();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isKnown} */
 	public isKnown(): boolean {
 		return container.get<IKnownWalletService>(Identifiers.KnownWalletService).is(this.networkId(), this.address());
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isOwnedByExchange} */
 	public isOwnedByExchange(): boolean {
 		return container
 			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.isExchange(this.networkId(), this.address());
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isOwnedByTeam} */
 	public isOwnedByTeam(): boolean {
 		return container
 			.get<IKnownWalletService>(Identifiers.KnownWalletService)
 			.isTeam(this.networkId(), this.address());
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isLedger} */
 	public isLedger(): boolean {
 		return this.data().get(WalletData.LedgerPath) !== undefined;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isMultiSignature} */
 	public isMultiSignature(): boolean {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').isMultiSignature();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isMultiSignature();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isSecondSignature} */
 	public isSecondSignature(): boolean {
-		if (!this.#attributes.get<Contracts.WalletData>('wallet')) {
-			throw new Error("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
+			throw new Error(
+				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>('wallet').isSecondSignature();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isSecondSignature();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.isStarred} */
 	public isStarred(): boolean {
 		return this.data().get(WalletFlag.Starred) === true;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.toggleStarred} */
 	public toggleStarred(): void {
 		this.data().set(WalletFlag.Starred, !this.isStarred());
+
+		emitProfileChanged();
 	}
 
-	/**
-	 * All methods below this line are convenience methods that serve as proxies to the underlying coin implementation.
-	 *
-	 * The purpose of these methods is to reduce duplication and prevent consumers from implementing
-	 * convoluted custom implementations that deviate from how things should be used.
-	 *
-	 * Any changes in how things need to be handled by consumers should be made in this package!
-	 */
-
+	/** {@inheritDoc IReadWriteWallet.coinId} */
 	public coinId(): string {
 		return this.manifest().get<string>("name");
 	}
 
+	/** {@inheritDoc IReadWriteWallet.networkId} */
 	public networkId(): string {
 		return this.network().id();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.manifest} */
 	public manifest(): Coins.Manifest {
-		return this.#attributes.get<Coins.Coin>('coin').manifest();
+		return this.#attributes.get<Coins.Coin>("coin").manifest();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.config} */
 	public config(): Coins.Config {
-		return this.#attributes.get<Coins.Coin>('coin').config();
+		return this.#attributes.get<Coins.Coin>("coin").config();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.client} */
 	public client(): Contracts.ClientService {
-		return this.#attributes.get<Coins.Coin>('coin').client();
+		return this.#attributes.get<Coins.Coin>("coin").client();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.dataTransferObject} */
 	public dataTransferObject(): Contracts.DataTransferObjectService {
-		return this.#attributes.get<Coins.Coin>('coin').dataTransferObject();
+		return this.#attributes.get<Coins.Coin>("coin").dataTransferObject();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.identity} */
 	public identity(): Contracts.IdentityService {
-		return this.#attributes.get<Coins.Coin>('coin').identity();
+		return this.#attributes.get<Coins.Coin>("coin").identity();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.ledger} */
 	public ledger(): Contracts.LedgerService {
-		return this.#attributes.get<Coins.Coin>('coin').ledger();
+		return this.#attributes.get<Coins.Coin>("coin").ledger();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.link} */
 	public link(): Contracts.LinkService {
-		return this.#attributes.get<Coins.Coin>('coin').link();
+		return this.#attributes.get<Coins.Coin>("coin").link();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.message} */
 	public message(): Contracts.MessageService {
-		return this.#attributes.get<Coins.Coin>('coin').message();
+		return this.#attributes.get<Coins.Coin>("coin").message();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.peer} */
 	public peer(): Contracts.PeerService {
-		return this.#attributes.get<Coins.Coin>('coin').peer();
+		return this.#attributes.get<Coins.Coin>("coin").peer();
 	}
 
+	/** {@inheritDoc IReadWriteWallet.transaction} */
 	public transaction(): ITransactionService {
 		return this.#transactionService;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.transactionTypes} */
 	public transactionTypes(): Coins.CoinTransactionTypes {
 		return this.coin().manifest().get<object>("networks")[this.networkId()].transactionTypes;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.gate} */
 	public gate(): IWalletGate {
 		return this.#walletGate;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.synchroniser} */
 	public synchroniser(): IWalletSynchroniser {
 		return this.#walletSynchroniser;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.mutator} */
 	public mutator(): IWalletMutator {
 		return this.#walletMutator;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.voting} */
 	public voting(): IVoteRegistry {
 		return this.#voteRegistry;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.transactionIndex} */
 	public transactionIndex(): ITransactionIndex {
 		return this.#transactionIndex;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.wif} */
 	public wif(): IWalletImportFormat {
 		return this.#walletImportFormat;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.multiSignature} */
 	public multiSignature(): IMultiSignature {
 		return this.#multiSignature;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.explorerLink} */
 	public explorerLink(): string {
 		return this.link().wallet(this.address());
 	}
 
+	/** {@inheritDoc IReadWriteWallet.markAsFullyRestored} */
 	public markAsFullyRestored(): void {
-		this.#attributes.set('restorationState', {
+		this.#attributes.set("restorationState", {
 			full: true,
 			partial: false,
 		});
 	}
 
+	/** {@inheritDoc IReadWriteWallet.hasBeenFullyRestored} */
 	public hasBeenFullyRestored(): boolean {
-		return this.#attributes.get('restorationState').full;
+		return this.#attributes.get("restorationState").full;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.markAsPartiallyRestored} */
 	public markAsPartiallyRestored(): void {
-		this.#attributes.set('restorationState', {
+		this.#attributes.set("restorationState", {
 			full: false,
 			partial: true,
 		});
 	}
 
+	/** {@inheritDoc IReadWriteWallet.hasBeenPartiallyRestored} */
 	public hasBeenPartiallyRestored(): boolean {
-		return this.#attributes.get('restorationState').partial;
+		return this.#attributes.get("restorationState").partial;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.getAttributes} */
-    public getAttributes(): AttributeBag<IReadWriteWalletAttributes>
-    {
-        return this.#attributes;
-    }
+	public getAttributes(): AttributeBag<IReadWriteWalletAttributes> {
+		return this.#attributes;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.canVote} */
+	public canVote(): boolean {
+		return this.voting().available() > 0;
+	}
 
 	private restore(): void {
 		this.data().set(

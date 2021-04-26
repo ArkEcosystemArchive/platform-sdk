@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "ada.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "Cardano",
 	explorer: "https://explorer.cardano.org/",
 	currency: {
 		ticker: "ADA",

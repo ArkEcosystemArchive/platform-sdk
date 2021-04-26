@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "cosmos.mainnet",
 	type: "live",
-	name: "Cosmos Mainnet",
+	name: "Mainnet",
+	coin: "Cosmos",
 	explorer: "https://stake.id/",
 	currency: {
 		ticker: "ATOM",

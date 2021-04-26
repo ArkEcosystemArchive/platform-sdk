@@ -137,7 +137,7 @@ export interface IWalletRepository {
 	 * @returns {IReadWriteWallet}
 	 * @memberof WalletRepository
 	 */
-	 push(wallet: IReadWriteWallet, options?: { force: boolean }): IReadWriteWallet;
+	push(wallet: IReadWriteWallet, options?: { force: boolean }): IReadWriteWallet;
 
 	/**
 	 * Update a wallet.

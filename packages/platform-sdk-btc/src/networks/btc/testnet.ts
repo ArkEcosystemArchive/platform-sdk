@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "btc.testnet",
 	type: "test",
 	name: "Testnet",
+	coin: "Bitcoin",
 	explorer: "https://blockstream.info/testnet/",
 	currency: {
 		ticker: "BTC",

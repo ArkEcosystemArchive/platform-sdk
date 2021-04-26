@@ -12,24 +12,29 @@ import {
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
+import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class WalletRepository implements IWalletRepository {
 	readonly #data: IDataRepository = new DataRepository();
 	#dataRaw: Record<string, any> = {};
 
+	/** {@inheritDoc IWalletRepository.all} */
 	public all(): Record<string, IReadWriteWallet> {
 		return this.#data.all() as Record<string, IReadWriteWallet>;
 	}
 
+	/** {@inheritDoc IWalletRepository.first} */
 	public first(): IReadWriteWallet {
 		return this.#data.first();
 	}
 
+	/** {@inheritDoc IWalletRepository.last} */
 	public last(): IReadWriteWallet {
 		return this.#data.last();
 	}
 
+	/** {@inheritDoc IWalletRepository.allByCoin} */
 	public allByCoin(): Record<string, Record<string, IReadWriteWallet>> {
 		const result = {};
 
@@ -46,14 +51,17 @@ export class WalletRepository implements IWalletRepository {
 		return result;
 	}
 
+	/** {@inheritDoc IWalletRepository.keys} */
 	public keys(): string[] {
 		return this.#data.keys();
 	}
 
+	/** {@inheritDoc IWalletRepository.values} */
 	public values(): IReadWriteWallet[] {
 		return this.#data.values();
 	}
 
+	/** {@inheritDoc IWalletRepository.findById} */
 	public findById(id: string): IReadWriteWallet {
 		const wallet: IReadWriteWallet | undefined = this.#data.get(id);
 
@@ -64,41 +72,38 @@ export class WalletRepository implements IWalletRepository {
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletRepository.findByAddress} */
 	public findByAddress(address: string): IReadWriteWallet | undefined {
 		return this.values().find((wallet: IReadWriteWallet) => wallet.address() === address);
 	}
 
+	/** {@inheritDoc IWalletRepository.findByPublicKey} */
 	public findByPublicKey(publicKey: string): IReadWriteWallet | undefined {
 		return this.values().find((wallet: IReadWriteWallet) => wallet.publicKey() === publicKey);
 	}
 
+	/** {@inheritDoc IWalletRepository.findByCoin} */
 	public findByCoin(coin: string): IReadWriteWallet[] {
 		return this.values().filter(
 			(wallet: IReadWriteWallet) => wallet.coin().manifest().get<string>("name") === coin,
 		);
 	}
 
+	/** {@inheritDoc IWalletRepository.findByCoinWithNetwork} */
 	public findByCoinWithNetwork(coin: string, network: string): IReadWriteWallet[] {
 		return this.values().filter(
 			(wallet: IReadWriteWallet) => wallet.coinId() === coin && wallet.networkId() === network,
 		);
 	}
 
+	/** {@inheritDoc IWalletRepository.findByAlias} */
 	public findByAlias(alias: string): IReadWriteWallet | undefined {
 		return this.values().find(
 			(wallet: IReadWriteWallet) => (wallet.alias() || "").toLowerCase() === alias.toLowerCase(),
 		);
 	}
 
-	/**
-	 * Store a new wallet instance using its unique ID.
-	 *
-	 * @private
-	 * @param {IReadWriteWallet} wallet
-	 * @param {{ force: boolean }} [options={ force: false }]
-	 * @returns {IReadWriteWallet}
-	 * @memberof WalletRepository
-	 */
+	/** {@inheritDoc IWalletRepository.push} */
 	public push(wallet: IReadWriteWallet, options: { force: boolean } = { force: false }): IReadWriteWallet {
 		if (!options.force) {
 			if (this.findByAddress(wallet.address())) {
@@ -108,9 +113,12 @@ export class WalletRepository implements IWalletRepository {
 
 		this.#data.set(wallet.id(), wallet);
 
+		emitProfileChanged();
+
 		return wallet;
 	}
 
+	/** {@inheritDoc IWalletRepository.update} */
 	public update(id: string, data: { alias?: string }): void {
 		const result = this.findById(id);
 
@@ -131,24 +139,35 @@ export class WalletRepository implements IWalletRepository {
 		}
 
 		this.#data.set(id, result);
+
+		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IWalletRepository.has} */
 	public has(id: string): boolean {
 		return this.#data.has(id);
 	}
 
+	/** {@inheritDoc IWalletRepository.forget} */
 	public forget(id: string): void {
 		this.#data.forget(id);
+
+		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IWalletRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
+
+		emitProfileChanged();
 	}
 
+	/** {@inheritDoc IWalletRepository.count} */
 	public count(): number {
 		return this.keys().length;
 	}
 
+	/** {@inheritDoc IWalletRepository.toObject} */
 	public toObject(
 		options: IWalletExportOptions = {
 			excludeEmptyWallets: false,
@@ -175,6 +194,7 @@ export class WalletRepository implements IWalletRepository {
 		return result;
 	}
 
+	/** {@inheritDoc IWalletRepository.sortBy} */
 	public sortBy(column: string, direction: "asc" | "desc" = "asc"): IReadWriteWallet[] {
 		// TODO: sort by balance as fiat (BigInt)
 
@@ -200,13 +220,8 @@ export class WalletRepository implements IWalletRepository {
 
 		return sortByDesc(this.values(), sortFunction);
 	}
-	/**
-	 * Restore wallets without syncing them.
-	 *
-	 * @param {Record<string, IWalletData>} struct
-	 * @returns {Promise<void>}
-	 * @memberof WalletRepository
-	 */
+
+	/** {@inheritDoc IWalletRepository.fill} */
 	public async fill(struct: Record<string, IWalletData>): Promise<void> {
 		this.#dataRaw = struct;
 
@@ -229,17 +244,7 @@ export class WalletRepository implements IWalletRepository {
 		}
 	}
 
-	/**
-	 * Synchronise each wallet by sending network requests to gather data.
-	 *
-	 * One wallet of each network is pre-synced to avoid duplicate
-	 * requests for subsequent imports to save bandwidth and time.
-	 *
-	 * @private
-	 * @param {object} wallets
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IWalletRepository.restore} */
 	public async restore(): Promise<void> {
 		const syncWallets = (wallets: object): Promise<IReadWriteWallet[]> =>
 			pqueue([...Object.values(wallets)].map((wallet) => () => this.restoreWallet(wallet)));
@@ -266,14 +271,6 @@ export class WalletRepository implements IWalletRepository {
 		await syncWallets(laterWallets);
 	}
 
-	/**
-	 * Fully restore the given wallet if it has been partially restored before.
-	 *
-	 * @private
-	 * @param {*} { id, address, coin, network, networkConfig }
-	 * @returns {Promise<void>}
-	 * @memberof WalletRepository
-	 */
 	private async restoreWallet({ id, address, coin, network, networkConfig }): Promise<void> {
 		const previousWallet: IReadWriteWallet = this.findById(id);
 

@@ -6,11 +6,8 @@ export interface IProfileExporter {
 	 *
 	 * @param {string} [password]
 	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof Profile
 	 */
-	export(
-		password?: string,
-		options?: IProfileExportOptions,
-	): string;
+	export(password?: string, options?: IProfileExportOptions): string;
 }

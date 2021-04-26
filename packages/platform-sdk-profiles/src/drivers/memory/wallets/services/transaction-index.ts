@@ -13,36 +13,36 @@ export class TransactionIndex implements ITransactionIndex {
 		this.#wallet = wallet;
 	}
 
-	public async all(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
+	/** {@inheritDoc ITransactionIndex.all} */
+	public async all(query: Contracts.ClientTransactionsInput = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.fetch({ ...query, addresses: [this.#wallet.address()] });
 	}
 
-	public async sent(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
+	/** {@inheritDoc ITransactionIndex.sent} */
+	public async sent(query: Contracts.ClientTransactionsInput = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.fetch({ ...query, senderId: this.#wallet.address() });
 	}
 
-	public async received(
-		query: Contracts.ClientTransactionsInput = {},
-	): Promise<ExtendedTransactionDataCollection> {
+	/** {@inheritDoc ITransactionIndex.received} */
+	public async received(query: Contracts.ClientTransactionsInput = {}): Promise<ExtendedTransactionDataCollection> {
 		return this.fetch({ ...query, recipientId: this.#wallet.address() });
 	}
 
+	/** {@inheritDoc ITransactionIndex.findById} */
 	public async findById(id: string): Promise<ExtendedTransactionData> {
-		return transformTransactionData(this.#wallet, await this.#wallet.getAttributes().get<Coins.Coin>('coin').client().transaction(id));
+		return transformTransactionData(
+			this.#wallet,
+			await this.#wallet.getAttributes().get<Coins.Coin>("coin").client().transaction(id),
+		);
 	}
 
+	/** {@inheritDoc ITransactionIndex.findByIds} */
 	public async findByIds(ids: string[]): Promise<ExtendedTransactionData[]> {
 		return Promise.all(ids.map((id: string) => this.findById(id)));
 	}
 
-	private async fetch(
-		query: Contracts.ClientTransactionsInput,
-	): Promise<ExtendedTransactionDataCollection> {
-		const result = await this.#wallet.getAttributes().get<Coins.Coin>('coin').client().transactions(query);
+	private async fetch(query: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection> {
+		const result = await this.#wallet.getAttributes().get<Coins.Coin>("coin").client().transactions(query);
 
 		for (const transaction of result.items()) {
 			transaction.setMeta("address", this.#wallet.address());

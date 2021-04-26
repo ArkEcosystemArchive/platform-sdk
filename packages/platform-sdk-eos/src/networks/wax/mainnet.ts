@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "wax.mainnet",
 	type: "live",
-	name: "WAX Mainnet",
+	name: "Mainnet",
+	coin: "WAX",
 	explorer: "https://wax.bloks.io/",
 	currency: {
 		ticker: "WAX",

@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "avax.testnet",
 	type: "live",
-	name: "AVAX Testnet",
+	name: "Testnet",
+	coin: "Avalanche",
 	explorer: "https://explorer.avax-test.network/",
 	currency: {
 		ticker: "FUJI",

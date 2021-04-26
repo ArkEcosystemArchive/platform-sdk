@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "compendia.mainnet",
 	type: "live",
-	name: "Compendia - Mainnet",
+	name: "Mainnet",
+	coin: "Compendia",
 	explorer: "https://bindscan.io/",
 	currency: {
 		ticker: "BIND",

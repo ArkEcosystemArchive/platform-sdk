@@ -10,31 +10,31 @@ import { ProfileEncrypter } from "./profile.encrypter";
 import { IProfileImporter } from "../../../contracts/profiles/profile.importer";
 
 export class ProfileImporter implements IProfileImporter {
-	/**
-	 * Restore a profile from either a base64 raw or base64 encrypted string.
-	 *
-	 * @param {string} [password]
-	 * @returns {Promise<void>}
-	 * @memberof Profile
-	 */
-	public async import(profile: IProfile, password?: string): Promise<void> {
-		const data: IProfileData | undefined = await this.validate(profile, await this.unpack(profile, password));
+	readonly #profile: IProfile;
 
-		State.profile(profile);
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
 
-		profile.peers().fill(data.peers);
+	/** {@inheritDoc IProfileImporter.import} */
+	public async import(password?: string): Promise<void> {
+		const data: IProfileData | undefined = await this.validate(await this.unpack(password));
 
-		profile.notifications().fill(data.notifications);
+		State.profile(this.#profile);
 
-		profile.data().fill(data.data);
+		this.#profile.peers().fill(data.peers);
 
-		profile.plugins().fill(data.plugins);
+		this.#profile.notifications().fill(data.notifications);
 
-		profile.settings().fill(data.settings);
+		this.#profile.data().fill(data.data);
 
-		await profile.wallets().fill(data.wallets);
+		this.#profile.plugins().fill(data.plugins);
 
-		profile.contacts().fill(data.contacts);
+		this.#profile.settings().fill(data.settings);
+
+		await this.#profile.wallets().fill(data.wallets);
+
+		this.#profile.contacts().fill(data.contacts);
 	}
 
 	/**
@@ -42,18 +42,18 @@ export class ProfileImporter implements IProfileImporter {
 	 *
 	 * @private
 	 * @param {string} [password]
-	 * @return {*}  {Promise<IProfileData>}
+	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
-	private async unpack (profile: IProfile, password?: string): Promise<IProfileData> {
+	private async unpack(password?: string): Promise<IProfileData> {
 		let data: IProfileData | undefined;
 		let errorReason = "";
 
 		try {
 			if (typeof password === "string") {
-				data = new ProfileEncrypter(profile).decrypt(password);
+				data = new ProfileEncrypter(this.#profile).decrypt(password);
 			} else {
-				data = JSON.parse(Base64.decode(profile.getAttributes().get<string>('data')));
+				data = JSON.parse(Base64.decode(this.#profile.getAttributes().get<string>("data")));
 			}
 		} catch (error) {
 			errorReason = ` Reason: ${error.message}`;
@@ -71,12 +71,12 @@ export class ProfileImporter implements IProfileImporter {
 	 *
 	 * @private
 	 * @param {string} [password]
-	 * @return {*}  {Promise<IProfileData>}
+	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
-	private async validate (profile: IProfile, data: IProfileData): Promise<IProfileData> {
+	private async validate(data: IProfileData): Promise<IProfileData> {
 		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
-			await new Migrator(profile).migrate(
+			await new Migrator(this.#profile).migrate(
 				container.get(Identifiers.MigrationSchemas),
 				container.get(Identifiers.MigrationVersion),
 			);

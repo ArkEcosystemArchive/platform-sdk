@@ -11,13 +11,7 @@ import { bootContainer } from "../../../../../test/helpers";
 import { container } from "../../../../environment/container";
 import { Identifiers } from "../../../../environment/container.models";
 import { Wallet } from "../wallet";
-import {
-	IProfile,
-	IProfileRepository,
-	IReadWriteWallet,
-	ProfileSetting,
-	WalletData,
-} from "../../../../contracts";
+import { IProfile, IProfileRepository, IReadWriteWallet, ProfileSetting, WalletData } from "../../../../contracts";
 import { State } from "../../../../environment/state";
 
 let profile: IProfile;
@@ -96,9 +90,7 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 it("should decrypt the WIF", async () => {
-	const { compressed, privateKey } = decode(
-		await subject.coin().identity().wif().fromMnemonic(identity.mnemonic),
-	);
+	const { compressed, privateKey } = decode(await subject.coin().identity().wif().fromMnemonic(identity.mnemonic));
 
 	subject.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, "password"));
 

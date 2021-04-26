@@ -2,24 +2,26 @@ import { IProfile, IProfileInput } from "../../../contracts";
 import { IProfileDumper } from "../../../contracts/profiles/profile.dumper";
 
 export class ProfileDumper implements IProfileDumper {
-	/**
-	 * Dumps the profile into a standardised object.
-	 *
-	 * @param {IProfile} profile
-	 * @return {*}  {IProfileInput}
-	 * @memberof ProfileDumper
-	 */
-	public dump(profile: IProfile): IProfileInput {
-		if (!profile.getAttributes().get<string>('data')) {
-			throw new Error("The profile has not been encoded or encrypted. Please call [save] before dumping.");
+	readonly #profile: IProfile;
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
+
+	/** {@inheritDoc IProfileDumper.dump} */
+	public dump(): IProfileInput {
+		if (!this.#profile.getAttributes().get<string>("data")) {
+			throw new Error(
+				`The profile [${this.#profile.name()}] has not been encoded or encrypted. Please call [save] before dumping.`,
+			);
 		}
 
 		return {
-			id: profile.id(),
-			name: profile.name(),
-			avatar: profile.avatar(),
-			password: profile.getAttributes().get<string>('password'),
-			data: profile.getAttributes().get<string>('data'),
+			id: this.#profile.id(),
+			name: this.#profile.name(),
+			avatar: this.#profile.avatar(),
+			password: this.#profile.getAttributes().get<string>("password"),
+			data: this.#profile.getAttributes().get<string>("data"),
 		};
 	}
 }

@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "lsk.mainnet",
 	type: "live",
 	name: "Mainnet",
+	coin: "Lisk",
 	explorer: "https://explorer.lisk.io/",
 	currency: {
 		ticker: "LSK",

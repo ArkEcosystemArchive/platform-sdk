@@ -7,7 +7,7 @@ import { IContactAddressRepository } from "../repositories/contact-address-repos
  * @export
  * @interface IContactData
  */
- export interface IContactData {
+export interface IContactData {
 	id: string;
 	name: string;
 	addresses?: object;
@@ -25,7 +25,7 @@ export interface IContact {
 	 * Restore the addresses of a contact.
 	 *
 	 * @param {object[]} addresses
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IContact
 	 */
 	restore(addresses: object[]): Promise<void>;
@@ -33,7 +33,7 @@ export interface IContact {
 	/**
 	 * Get the ID.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IContact
 	 */
 	id(): string;
@@ -41,7 +41,7 @@ export interface IContact {
 	/**
 	 * Get the name.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IContact
 	 */
 	name(): string;
@@ -49,7 +49,7 @@ export interface IContact {
 	/**
 	 * Get the address repository.
 	 *
-	 * @return {*}  {IContactAddressRepository}
+	 * @return {IContactAddressRepository}
 	 * @memberof IContact
 	 */
 	addresses(): IContactAddressRepository;
@@ -57,7 +57,7 @@ export interface IContact {
 	/**
 	 * Determine if the contact is starred.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IContact
 	 */
 	isStarred(): boolean;
@@ -89,7 +89,7 @@ export interface IContact {
 	 * Set the addresses of the contact in bulk.
 	 *
 	 * @param {IContactAddressInput[]} addresses
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IContact
 	 */
 	setAddresses(addresses: IContactAddressInput[]): Promise<void>;
@@ -97,7 +97,7 @@ export interface IContact {
 	/**
 	 * Get the avatar.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IContact
 	 */
 	avatar(): string;
@@ -105,7 +105,7 @@ export interface IContact {
 	/**
 	 * Turn the contact into a normalised object.
 	 *
-	 * @return {*}  {IContactData}
+	 * @return {IContactData}
 	 * @memberof IContact
 	 */
 	toObject(): IContactData;

@@ -50,15 +50,15 @@ export interface IWalletData {
  * @interface IReadWriteWalletAttributes
  */
 export interface IReadWriteWalletAttributes {
-	id: string,
-	initialState: IWalletData,
-	restorationState: { full: boolean, partial: boolean },
+	id: string;
+	initialState: IWalletData;
+	restorationState: { full: boolean; partial: boolean };
 	// Will be empty initially
-	coin: Coins.Coin,
-	wallet: Contracts.WalletData | undefined,
-	address: string,
-	publicKey: string | undefined,
-	avatar: string,
+	coin: Coins.Coin;
+	wallet: Contracts.WalletData | undefined;
+	address: string;
+	publicKey: string | undefined;
+	avatar: string;
 }
 
 /**
@@ -71,7 +71,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get all relay peers for the given coin and network.
 	 *
-	 * @return {*}  {string[]}
+	 * @return {string[]}
 	 * @memberof IReadWriteWallet
 	 */
 	getRelays(): string[];
@@ -79,7 +79,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet has synchronised itself with the network.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	hasSyncedWithNetwork(): boolean;
@@ -87,7 +87,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the id.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	id(): string;
@@ -95,7 +95,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the coin instance.
 	 *
-	 * @return {*}  {Coins.Coin}
+	 * @return {Coins.Coin}
 	 * @memberof IReadWriteWallet
 	 */
 	coin(): Coins.Coin;
@@ -103,7 +103,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the network data.
 	 *
-	 * @return {*}  {Coins.Network}
+	 * @return {Coins.Network}
 	 * @memberof IReadWriteWallet
 	 */
 	network(): Coins.Network;
@@ -111,7 +111,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the crypto currency.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	currency(): string;
@@ -119,7 +119,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the exchange currency.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	exchangeCurrency(): string;
@@ -127,7 +127,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the alias.
 	 *
-	 * @return {*}  {(string | undefined)}
+	 * @return {(string | undefined)}
 	 * @memberof IReadWriteWallet
 	 */
 	alias(): string | undefined;
@@ -135,7 +135,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the display name.
 	 *
-	 * @return {*}  {(string | undefined)}
+	 * @return {(string | undefined)}
 	 * @memberof IReadWriteWallet
 	 */
 	displayName(): string | undefined;
@@ -143,7 +143,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the primary key.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	primaryKey(): string;
@@ -151,7 +151,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the address.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	address(): string;
@@ -159,7 +159,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the public key
 	 *
-	 * @return {*}  {(string | undefined)}
+	 * @return {(string | undefined)}
 	 * @memberof IReadWriteWallet
 	 */
 	publicKey(): string | undefined;
@@ -167,7 +167,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the balance.
 	 *
-	 * @return {*}  {BigNumber}
+	 * @return {BigNumber}
 	 * @memberof IReadWriteWallet
 	 */
 	balance(): BigNumber;
@@ -175,7 +175,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the converted balance.
 	 *
-	 * @return {*}  {BigNumber}
+	 * @return {BigNumber}
 	 * @memberof IReadWriteWallet
 	 */
 	convertedBalance(): BigNumber;
@@ -183,7 +183,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the nonce.
 	 *
-	 * @return {*}  {BigNumber}
+	 * @return {BigNumber}
 	 * @memberof IReadWriteWallet
 	 */
 	nonce(): BigNumber;
@@ -191,7 +191,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the avatar.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	avatar(): string;
@@ -199,7 +199,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the data repository instance.
 	 *
-	 * @return {*}  {IDataRepository}
+	 * @return {IDataRepository}
 	 * @memberof IReadWriteWallet
 	 */
 	data(): IDataRepository;
@@ -207,7 +207,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the settings repository instance.
 	 *
-	 * @return {*}  {ISettingRepository}
+	 * @return {ISettingRepository}
 	 * @memberof IReadWriteWallet
 	 */
 	settings(): ISettingRepository;
@@ -215,7 +215,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the underlying wallet data.
 	 *
-	 * @return {*}  {Contracts.WalletData}
+	 * @return {Contracts.WalletData}
 	 * @memberof IReadWriteWallet
 	 */
 	toData(): Contracts.WalletData;
@@ -223,7 +223,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Turn the wallet into a normalised object.
 	 *
-	 * @return {*}  {IWalletData}
+	 * @return {IWalletData}
 	 * @memberof IReadWriteWallet
 	 */
 	toObject(): IWalletData;
@@ -231,7 +231,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the known name.
 	 *
-	 * @return {*}  {(string | undefined)}
+	 * @return {(string | undefined)}
 	 * @memberof IReadWriteWallet
 	 */
 	knownName(): string | undefined;
@@ -239,7 +239,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the second public key.
 	 *
-	 * @return {*}  {(string | undefined)}
+	 * @return {(string | undefined)}
 	 * @memberof IReadWriteWallet
 	 */
 	secondPublicKey(): string | undefined;
@@ -247,7 +247,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the username.
 	 *
-	 * @return {*}  {(string | undefined)}
+	 * @return {(string | undefined)}
 	 * @memberof IReadWriteWallet
 	 */
 	username(): string | undefined;
@@ -255,7 +255,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet is a delegate.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isDelegate(): boolean;
@@ -263,7 +263,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet is a resigned delegate.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isResignedDelegate(): boolean;
@@ -271,7 +271,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet is known.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isKnown(): boolean;
@@ -279,7 +279,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet is owned by an exchange.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isOwnedByExchange(): boolean;
@@ -287,7 +287,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet is owned by the blockchain development team.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isOwnedByTeam(): boolean;
@@ -295,7 +295,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet belongs to a ledger.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isLedger(): boolean;
@@ -303,7 +303,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet uses a multi signature.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isMultiSignature(): boolean;
@@ -311,7 +311,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet uses a second signature.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isSecondSignature(): boolean;
@@ -319,7 +319,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet is starred.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	isStarred(): boolean;
@@ -334,7 +334,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the coin ID.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	coinId(): string;
@@ -342,7 +342,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the network ID.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	networkId(): string;
@@ -350,7 +350,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the coin manifest.
 	 *
-	 * @return {*}  {Coins.Manifest}
+	 * @return {Coins.Manifest}
 	 * @memberof IReadWriteWallet
 	 */
 	manifest(): Coins.Manifest;
@@ -358,7 +358,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the coin configuration.
 	 *
-	 * @return {*}  {Coins.Config}
+	 * @return {Coins.Config}
 	 * @memberof IReadWriteWallet
 	 */
 	config(): Coins.Config;
@@ -366,7 +366,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the client service instance.
 	 *
-	 * @return {*}  {Contracts.ClientService}
+	 * @return {Contracts.ClientService}
 	 * @memberof IReadWriteWallet
 	 */
 	client(): Contracts.ClientService;
@@ -374,7 +374,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the data transfer object service instance.
 	 *
-	 * @return {*}  {Contracts.DataTransferObjectService}
+	 * @return {Contracts.DataTransferObjectService}
 	 * @memberof IReadWriteWallet
 	 */
 	dataTransferObject(): Contracts.DataTransferObjectService;
@@ -382,7 +382,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the identity service instance.
 	 *
-	 * @return {*}  {Contracts.IdentityService}
+	 * @return {Contracts.IdentityService}
 	 * @memberof IReadWriteWallet
 	 */
 	identity(): Contracts.IdentityService;
@@ -390,7 +390,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the ledger service instance.
 	 *
-	 * @return {*}  {Contracts.LedgerService}
+	 * @return {Contracts.LedgerService}
 	 * @memberof IReadWriteWallet
 	 */
 	ledger(): Contracts.LedgerService;
@@ -398,7 +398,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the link service instance.
 	 *
-	 * @return {*}  {Contracts.LinkService}
+	 * @return {Contracts.LinkService}
 	 * @memberof IReadWriteWallet
 	 */
 	link(): Contracts.LinkService;
@@ -406,7 +406,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the message service instance.
 	 *
-	 * @return {*}  {Contracts.MessageService}
+	 * @return {Contracts.MessageService}
 	 * @memberof IReadWriteWallet
 	 */
 	message(): Contracts.MessageService;
@@ -414,7 +414,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the peer service instance.
 	 *
-	 * @return {*}  {Contracts.PeerService}
+	 * @return {Contracts.PeerService}
 	 * @memberof IReadWriteWallet
 	 */
 	peer(): Contracts.PeerService;
@@ -422,7 +422,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the transaction service instance.
 	 *
-	 * @return {*}  {ITransactionService}
+	 * @return {ITransactionService}
 	 * @memberof IReadWriteWallet
 	 */
 	transaction(): ITransactionService;
@@ -430,7 +430,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the supported transaction types.
 	 *
-	 * @return {*}  {Coins.CoinTransactionTypes}
+	 * @return {Coins.CoinTransactionTypes}
 	 * @memberof IReadWriteWallet
 	 */
 	transactionTypes(): Coins.CoinTransactionTypes;
@@ -438,7 +438,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the explorer link.
 	 *
-	 * @return {*}  {string}
+	 * @return {string}
 	 * @memberof IReadWriteWallet
 	 */
 	explorerLink(): string;
@@ -453,7 +453,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet has been fully restored.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	hasBeenFullyRestored(): boolean;
@@ -468,7 +468,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet has been partially restored.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	hasBeenPartiallyRestored(): boolean;
@@ -476,7 +476,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Connect the coin to the network.
 	 *
-	 * @return {*}  {Promise<void>}
+	 * @return {Promise<void>}
 	 * @memberof IReadWriteWallet
 	 */
 	connect(): Promise<void>;
@@ -484,7 +484,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Determine if the wallet has yet configured a coin.
 	 *
-	 * @return {*}  {boolean}
+	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
 	hasCoin(): boolean;
@@ -492,7 +492,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the underlying attributes.
 	 *
-	 * @return {*}  {AttributeBag}
+	 * @return {AttributeBag}
 	 * @memberof IReadWriteWallet
 	 */
 	getAttributes(): AttributeBag<IReadWriteWalletAttributes>;
@@ -500,7 +500,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the wallet authorisation gate instance.
 	 *
-	 * @return {*}  {IWalletGate}
+	 * @return {IWalletGate}
 	 * @memberof IReadWriteWallet
 	 */
 	gate(): IWalletGate;
@@ -508,7 +508,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the wallet synchroniser instance.
 	 *
-	 * @return {*}  {IWalletGate}
+	 * @return {IWalletGate}
 	 * @memberof IReadWriteWallet
 	 */
 	synchroniser(): IWalletSynchroniser;
@@ -516,7 +516,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the wallet mutator instance.
 	 *
-	 * @return {*}  {IWalletMutator}
+	 * @return {IWalletMutator}
 	 * @memberof IReadWriteWallet
 	 */
 	mutator(): IWalletMutator;
@@ -524,7 +524,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the wallet vote registry instance.
 	 *
-	 * @return {*}  {IVoteRegistry}
+	 * @return {IVoteRegistry}
 	 * @memberof IReadWriteWallet
 	 */
 	voting(): IVoteRegistry;
@@ -532,7 +532,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the wallet transaction index instance.
 	 *
-	 * @return {*}  {ITransactionIndex}
+	 * @return {ITransactionIndex}
 	 * @memberof IReadWriteWallet
 	 */
 	transactionIndex(): ITransactionIndex;
@@ -540,7 +540,7 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the wallet transaction index instance.
 	 *
-	 * @return {*}  {IWalletImportFormat}
+	 * @return {IWalletImportFormat}
 	 * @memberof IReadWriteWallet
 	 */
 	wif(): IWalletImportFormat;
@@ -548,8 +548,16 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the wallet multi signature instance.
 	 *
-	 * @return {*}  {IMultiSignature}
+	 * @return {IMultiSignature}
 	 * @memberof IReadWriteWallet
 	 */
-	 multiSignature(): IMultiSignature;
+	multiSignature(): IMultiSignature;
+
+	/**
+	 * Determine if the wallet can vote.
+	 *
+	 * @return {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	canVote(): boolean;
 }

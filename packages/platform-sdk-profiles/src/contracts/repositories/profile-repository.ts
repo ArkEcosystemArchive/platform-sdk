@@ -111,7 +111,7 @@ export interface IProfileRepository {
 	 * @returns {Promise<void>}
 	 * @memberof IProfileRepository
 	 */
-	 restore(profile: IProfile, password?: string): Promise<void>;
+	restore(profile: IProfile, password?: string): Promise<void>;
 
 	/**
 	 * Determine if a profile for the given ID exists.

@@ -3,7 +3,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 const network: Coins.CoinNetwork = {
 	id: "ark.devnet",
 	type: "test",
-	name: "ARK Devnet",
+	name: "Devnet",
+	coin: "ARK",
 	explorer: "https://dexplorer.ark.io/",
 	currency: {
 		ticker: "DARK",

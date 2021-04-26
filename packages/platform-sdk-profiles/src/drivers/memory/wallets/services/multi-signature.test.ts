@@ -10,12 +10,7 @@ import { container } from "../../../../environment/container";
 import { Identifiers } from "../../../../environment/container.models";
 import { ReadOnlyWallet } from "../read-only-wallet";
 import { Wallet } from "../wallet";
-import {
-	IProfile,
-	IProfileRepository,
-	IReadWriteWallet,
-	WalletData,
-} from "../../../../contracts";
+import { IProfile, IProfileRepository, IReadWriteWallet, WalletData } from "../../../../contracts";
 import { State } from "../../../../environment/state";
 
 let profile: IProfile;

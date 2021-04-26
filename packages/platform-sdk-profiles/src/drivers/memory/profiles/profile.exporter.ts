@@ -12,14 +12,7 @@ export class ProfileExporter implements IProfileExporter {
 		this.#profile = profile;
 	}
 
-	/**
-	 * Export the profile data to a base64 string.
-	 *
-	 * @param {string} [password]
-	 * @param {IProfileExportOptions} [options]
-	 * @return {*}  {string}
-	 * @memberof Profile
-	 */
+	/** {@inheritDoc IProfileExporter.export} */
 	public export(
 		password?: string,
 		options: IProfileExportOptions = {
@@ -29,7 +22,7 @@ export class ProfileExporter implements IProfileExporter {
 			saveGeneralSettings: true,
 		},
 	): string {
-		const data = new ProfileSerialiser().toJSON(this.#profile, options);
+		const data = new ProfileSerialiser(this.#profile).toJSON(options);
 
 		if (this.#profile.usesPassword()) {
 			return Base64.encode(
@@ -38,7 +31,7 @@ export class ProfileExporter implements IProfileExporter {
 						id: this.#profile.id(),
 						name: this.#profile.name(),
 						avatar: this.#profile.avatar(),
-						password: this.#profile.getAttributes().get<string>('password'),
+						password: this.#profile.getAttributes().get<string>("password"),
 						data,
 					}),
 					password,

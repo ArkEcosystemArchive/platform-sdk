@@ -4,6 +4,7 @@ const network: Coins.CoinNetwork = {
 	id: "eth.goerli",
 	type: "test",
 	name: "Goerli",
+	coin: "Ethereum",
 	explorer: "https://goerli.etherscan.io/",
 	currency: {
 		ticker: "ETH",
