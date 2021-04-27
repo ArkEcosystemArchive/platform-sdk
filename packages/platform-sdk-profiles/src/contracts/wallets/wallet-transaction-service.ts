@@ -50,7 +50,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signTransfer(input: Contracts.TransferInput, options: Contracts.TransactionOptions): Promise<string>;
+	signTransfer(input: Contracts.TransferInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Second-Signature Registration transaction.
@@ -60,7 +60,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signSecondSignature(input: Contracts.SecondSignatureInput, options: Contracts.TransactionOptions): Promise<string>;
+	signSecondSignature(input: Contracts.SecondSignatureInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Delegate Registration transaction.
@@ -72,7 +72,7 @@ export interface ITransactionService {
 	 */
 	signDelegateRegistration(
 		input: Contracts.DelegateRegistrationInput,
-		options: Contracts.TransactionOptions,
+		options?: Contracts.TransactionOptions,
 	): Promise<string>;
 
 	/**
@@ -83,7 +83,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signVote(input: Contracts.VoteInput, options: Contracts.TransactionOptions): Promise<string>;
+	signVote(input: Contracts.VoteInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Multi-Signature Registration transaction.
@@ -93,7 +93,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signMultiSignature(input: Contracts.MultiSignatureInput, options: Contracts.TransactionOptions): Promise<string>;
+	signMultiSignature(input: Contracts.MultiSignatureInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign an IPFS transaction.
@@ -103,7 +103,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signIpfs(input: Contracts.IpfsInput, options: Contracts.TransactionOptions): Promise<string>;
+	signIpfs(input: Contracts.IpfsInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Multi-Payment transaction.
@@ -113,7 +113,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signMultiPayment(input: Contracts.MultiPaymentInput, options: Contracts.TransactionOptions): Promise<string>;
+	signMultiPayment(input: Contracts.MultiPaymentInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Delegate Resignation transaction.
@@ -125,7 +125,7 @@ export interface ITransactionService {
 	 */
 	signDelegateResignation(
 		input: Contracts.DelegateResignationInput,
-		options: Contracts.TransactionOptions,
+		options?: Contracts.TransactionOptions,
 	): Promise<string>;
 
 	/**
@@ -136,7 +136,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcLock(input: Contracts.HtlcLockInput, options: Contracts.TransactionOptions): Promise<string>;
+	signHtlcLock(input: Contracts.HtlcLockInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a HTLC Claim transaction.
@@ -146,7 +146,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcClaim(input: Contracts.HtlcClaimInput, options: Contracts.TransactionOptions): Promise<string>;
+	signHtlcClaim(input: Contracts.HtlcClaimInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a HTLC Refund transaction.
@@ -156,7 +156,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcRefund(input: Contracts.HtlcRefundInput, options: Contracts.TransactionOptions): Promise<string>;
+	signHtlcRefund(input: Contracts.HtlcRefundInput, options?: Contracts.TransactionOptions): Promise<string>;
 
 	/**
 	 * Get the transaction for the given ID if it is exists with any valid state.
