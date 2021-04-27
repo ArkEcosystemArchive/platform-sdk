@@ -74,6 +74,14 @@ export interface IProfileRepository {
 	findByName(name: string): IProfile | undefined;
 
 	/**
+	 * Store a new profile instance using its unique ID.
+	 *
+	 * @param {IProfile} profile
+	 * @memberof WalletRepository
+	 */
+	push(profile: IProfile): void;
+
+	/**
 	 * Create a new profile
 	 *
 	 * @param {string} name

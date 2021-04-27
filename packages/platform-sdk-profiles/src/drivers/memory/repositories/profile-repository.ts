@@ -65,6 +65,11 @@ export class ProfileRepository implements IProfileRepository {
 	}
 
 	/** {@inheritDoc IProfileRepository.create} */
+	public push(profile: IProfile): void {
+		this.#data.set(profile.id(), profile);
+	}
+
+	/** {@inheritDoc IProfileRepository.create} */
 	public create(name: string): IProfile {
 		if (this.findByName(name)) {
 			throw new Error(`The profile [${name}] already exists.`);
@@ -72,7 +77,7 @@ export class ProfileRepository implements IProfileRepository {
 
 		const result: IProfile = ProfileFactory.fromName(name);
 
-		this.#data.set(result.id(), result);
+		this.push(result);
 
 		new ProfileInitialiser(result).initialise(name);
 
@@ -87,8 +92,6 @@ export class ProfileRepository implements IProfileRepository {
 			password,
 			data,
 		});
-
-		this.#data.set(result.id(), result);
 
 		await new ProfileImporter(result).import(password);
 
