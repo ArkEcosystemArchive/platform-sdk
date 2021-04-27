@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 5.0.3 - 2021-04-27
+
+### Changed
+
+-    **[SDK]** Remove entity transaction types (1763e2bb, @luciorubeens)
+
+### Fixed
+
+-    **[PROFILES]** Restore ability to reset settings (d8688ede, @faustbrian)
+
 ## 5.0.1 - 2021-04-26
 
 ### Changed
