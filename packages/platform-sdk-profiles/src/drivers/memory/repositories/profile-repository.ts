@@ -81,16 +81,18 @@ export class ProfileRepository implements IProfileRepository {
 
 	/** {@inheritDoc IProfileRepository.import} */
 	public async import(data: string, password?: string): Promise<Profile> {
-		const profile = new Profile({
+		const result = new Profile({
 			id: uuidv4(),
 			name: "",
 			password,
 			data,
 		});
 
-		await new ProfileImporter(profile).import(password);
+		this.#data.set(result.id(), result);
 
-		return profile;
+		await new ProfileImporter(result).import(password);
+
+		return result;
 	}
 
 	/** {@inheritDoc IProfileRepository.export} */
