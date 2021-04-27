@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { injectable } from "inversify";
-import { IProfileRepository, IProfileExportOptions, IProfile } from "../../../contracts";
+import { IProfileRepository, IProfileExportOptions, IProfile, IProfileInput } from "../../../contracts";
 
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
@@ -106,6 +106,11 @@ export class ProfileRepository implements IProfileRepository {
 	/** {@inheritDoc IProfileRepository.restore} */
 	public async restore(profile: IProfile, password?: string): Promise<void> {
 		new ProfileImporter(profile).import(password);
+	}
+
+	/** {@inheritDoc IProfileRepository.dump} */
+	public dump(profile: IProfile): IProfileInput {
+		return new ProfileDumper(profile).dump();
 	}
 
 	/** {@inheritDoc IProfileRepository.has} */

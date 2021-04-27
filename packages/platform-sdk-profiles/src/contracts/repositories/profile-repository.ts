@@ -1,4 +1,4 @@
-import { IProfile, IProfileExportOptions } from "../profiles/profile";
+import { IProfile, IProfileExportOptions, IProfileInput } from "../profiles/profile";
 
 /**
  * Defines the implementation contract for the profile repository.
@@ -120,6 +120,15 @@ export interface IProfileRepository {
 	 * @memberof IProfileRepository
 	 */
 	restore(profile: IProfile, password?: string): Promise<void>;
+
+	/**
+	 * Dump the profile data.
+	 *
+	 * @param {IProfile} profile
+	 * @return {*}  {IProfileInput}
+	 * @memberof IProfile
+	 */
+	dump(profile: IProfile): IProfileInput;
 
 	/**
 	 * Determine if a profile for the given ID exists.
