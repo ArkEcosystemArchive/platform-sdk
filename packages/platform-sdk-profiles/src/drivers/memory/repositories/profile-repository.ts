@@ -8,7 +8,6 @@ import { DataRepository } from "../../../repositories/data-repository";
 import { ProfileExporter } from "../profiles/profile.exporter";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileDumper } from "../profiles/profile.dumper";
-import { State } from "../../../environment/state";
 import { ProfileInitialiser } from "../profiles/profile.initialiser";
 
 @injectable()

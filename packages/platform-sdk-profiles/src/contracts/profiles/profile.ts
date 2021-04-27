@@ -206,6 +206,13 @@ export interface IProfile {
 	flush(): void;
 
 	/**
+	 * Reset all settings to their defaults.
+	 *
+	 * @memberof IProfile
+	 */
+	 flushSettings(): void;
+
+	/**
 	 * Get the count aggregate instance.
 	 *
 	 * @return {ICountAggregate}

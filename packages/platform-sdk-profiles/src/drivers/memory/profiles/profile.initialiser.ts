@@ -11,10 +11,6 @@ export class ProfileInitialiser implements IProfileInitialiser {
 
 	/** {@inheritDoc IProfileInitialiser.initialise} */
 	public initialise(name: string): void {
-		if (name === undefined) {
-			throw new Error("The name of the profile could not be found. This looks like a bug.");
-		}
-
 		// Flush services
 		this.#profile.contacts().flush();
 		this.#profile.data().flush();
@@ -22,6 +18,16 @@ export class ProfileInitialiser implements IProfileInitialiser {
 		this.#profile.plugins().flush();
 		this.#profile.settings().flush();
 		this.#profile.wallets().flush();
+
+		// Default Settings
+		this.initialiseSettings(name);
+	}
+
+	/** {@inheritDoc IProfileInitialiser.initialiseSettings} */
+	public initialiseSettings(name: string): void {
+		if (name === undefined) {
+			throw new Error("The name of the profile could not be found. This looks like a bug.");
+		}
 
 		// Default Settings
 		this.#profile.settings().set(ProfileSetting.Name, name);
