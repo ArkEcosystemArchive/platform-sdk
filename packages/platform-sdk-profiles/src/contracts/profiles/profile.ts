@@ -210,7 +210,7 @@ export interface IProfile {
 	 *
 	 * @memberof IProfile
 	 */
-	 flushSettings(): void;
+	flushSettings(): void;
 
 	/**
 	 * Get the count aggregate instance.

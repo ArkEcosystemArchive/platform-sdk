@@ -15,5 +15,5 @@ export interface IProfileInitialiser {
 	 * @param {string} name
 	 * @memberof Profile
 	 */
-	 initialiseSettings(name: string): void;
+	initialiseSettings(name: string): void;
 }
