@@ -55,10 +55,6 @@ export interface ClientTransactionsInput extends ClientPagination {
 	// Public Keys
 	senderPublicKey?: string;
 	recipientPublicKey?: string;
-	// AIP36
-	entityType?: number;
-	entitySubType?: number;
-	entityAction?: string;
 	// Meta
 	asset?: Record<string, any>;
 	memo?: string;
