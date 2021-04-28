@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 5.0.8 - 2021-04-27
+
+### Added
+
+-   **[PROFILES]** Implement `IProfileRepository#dump` (78396fa1, @faustbrian)
+
+## 5.0.7 - 2021-04-27
+
+### Added
+
+-   **[PROFILES]** Implement `IProfileRepository#push` (5b34d52f, @faustbrian)
+
+## 5.0.6 - 2021-04-27
+
+### Fixed
+
+-   **[PROFILES]** Set profile when importing (d924bdb5, @faustbrian)
+-
+## 5.0.5 - 2021-04-27
+
+### Fixed
+
+-   **[PROFILES]** Adjust param types in `ITransactionService` sign methods (c0c0392d, @goga-m)
+
 ## 5.0.4 - 2021-04-27
 
 ### Changed
