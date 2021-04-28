@@ -15,7 +15,6 @@ export abstract class AbstractTransactionData {
 	readonly #meta: Record<string, TransactionDataMeta> = {};
 
 	readonly #types = {
-		// Core
 		transfer: "isTransfer",
 		secondSignature: "isSecondSignature",
 		delegateRegistration: "isDelegateRegistration",
@@ -29,32 +28,6 @@ export abstract class AbstractTransactionData {
 		htlcLock: "isHtlcLock",
 		htlcClaim: "isHtlcClaim",
 		htlcRefund: "isHtlcRefund",
-		// Magistrate
-		businessEntityRegistration: "isBusinessEntityRegistration",
-		businessEntityResignation: "isBusinessEntityResignation",
-		businessEntityUpdate: "isBusinessEntityUpdate",
-		productEntityRegistration: "isProductEntityRegistration",
-		productEntityResignation: "isProductEntityResignation",
-		productEntityUpdate: "isProductEntityUpdate",
-		pluginEntityRegistration: "isPluginEntityRegistration",
-		pluginEntityResignation: "isPluginEntityResignation",
-		pluginEntityUpdate: "isPluginEntityUpdate",
-		moduleEntityRegistration: "isModuleEntityRegistration",
-		moduleEntityResignation: "isModuleEntityResignation",
-		moduleEntityUpdate: "isModuleEntityUpdate",
-		delegateEntityRegistration: "isDelegateEntityRegistration",
-		delegateEntityResignation: "isDelegateEntityResignation",
-		delegateEntityUpdate: "isDelegateEntityUpdate",
-		entityRegistration: "isEntityRegistration",
-		entityResignation: "isEntityResignation",
-		entityUpdate: "isEntityUpdate",
-		// Legacy Magistrate
-		legacyBusinessRegistration: "isLegacyBusinessRegistration",
-		legacyBusinessResignation: "isLegacyBusinessResignation",
-		legacyBusinessUpdate: "isLegacyBusinessUpdate",
-		legacyBridgechainRegistration: "isLegacyBridgechainRegistration",
-		legacyBridgechainResignation: "isLegacyBridgechainResignation",
-		legacyBridgechainUpdate: "isLegacyBridgechainUpdate",
 	};
 
 	public constructor(protected readonly data: KeyValuePair) {}
@@ -125,53 +98,7 @@ export abstract class AbstractTransactionData {
 
 	abstract isHtlcRefund(): boolean;
 
-	abstract isEntityRegistration(): boolean;
-
-	abstract isEntityResignation(): boolean;
-
-	abstract isEntityUpdate(): boolean;
-
-	abstract isBusinessEntityRegistration(): boolean;
-
-	abstract isBusinessEntityResignation(): boolean;
-
-	abstract isBusinessEntityUpdate(): boolean;
-
-	abstract isProductEntityRegistration(): boolean;
-
-	abstract isProductEntityResignation(): boolean;
-
-	abstract isProductEntityUpdate(): boolean;
-
-	abstract isPluginEntityRegistration(): boolean;
-
-	abstract isPluginEntityResignation(): boolean;
-
-	abstract isPluginEntityUpdate(): boolean;
-
-	abstract isModuleEntityRegistration(): boolean;
-
-	abstract isModuleEntityResignation(): boolean;
-
-	abstract isModuleEntityUpdate(): boolean;
-
-	abstract isDelegateEntityRegistration(): boolean;
-
-	abstract isDelegateEntityResignation(): boolean;
-
-	abstract isDelegateEntityUpdate(): boolean;
-
-	abstract isLegacyBusinessRegistration(): boolean;
-
-	abstract isLegacyBusinessResignation(): boolean;
-
-	abstract isLegacyBusinessUpdate(): boolean;
-
-	abstract isLegacyBridgechainRegistration(): boolean;
-
-	abstract isLegacyBridgechainResignation(): boolean;
-
-	abstract isLegacyBridgechainUpdate(): boolean;
+	abstract isMagistrate(): boolean;
 
 	public toObject(): KeyValuePair {
 		return {

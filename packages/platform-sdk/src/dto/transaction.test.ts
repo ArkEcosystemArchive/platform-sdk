@@ -19,7 +19,7 @@ test("#type", () => {
 
 	expect(subject.type()).toBe("transfer");
 
-	jest.spyOn(subject, "isLegacyBusinessUpdate").mockReturnValue(true);
+	jest.spyOn(subject, "isMagistrate").mockReturnValue(true);
 
 	expect(subject.type()).toBe("legacyBusinessUpdate");
 });
@@ -128,100 +128,8 @@ test("#isHtlcRefund", () => {
 	expect(new Transaction({ key: "value" }).isHtlcRefund()).toBeFalse();
 });
 
-test("#isEntityRegistration", () => {
-	expect(new Transaction({ key: "value" }).isEntityRegistration()).toBeFalse();
-});
-
-test("#isEntityResignation", () => {
-	expect(new Transaction({ key: "value" }).isEntityResignation()).toBeFalse();
-});
-
-test("#isEntityUpdate", () => {
-	expect(new Transaction({ key: "value" }).isEntityUpdate()).toBeFalse();
-});
-
-test("#isBusinessEntityRegistration", () => {
-	expect(new Transaction({ key: "value" }).isBusinessEntityRegistration()).toBeFalse();
-});
-
-test("#isBusinessEntityResignation", () => {
-	expect(new Transaction({ key: "value" }).isBusinessEntityResignation()).toBeFalse();
-});
-
-test("#isBusinessEntityUpdate", () => {
-	expect(new Transaction({ key: "value" }).isBusinessEntityUpdate()).toBeFalse();
-});
-
-test("#isProductEntityRegistration", () => {
-	expect(new Transaction({ key: "value" }).isProductEntityRegistration()).toBeFalse();
-});
-
-test("#isProductEntityResignation", () => {
-	expect(new Transaction({ key: "value" }).isProductEntityResignation()).toBeFalse();
-});
-
-test("#isProductEntityUpdate", () => {
-	expect(new Transaction({ key: "value" }).isProductEntityUpdate()).toBeFalse();
-});
-
-test("#isPluginEntityRegistration", () => {
-	expect(new Transaction({ key: "value" }).isPluginEntityRegistration()).toBeFalse();
-});
-
-test("#isPluginEntityResignation", () => {
-	expect(new Transaction({ key: "value" }).isPluginEntityResignation()).toBeFalse();
-});
-
-test("#isPluginEntityUpdate", () => {
-	expect(new Transaction({ key: "value" }).isPluginEntityUpdate()).toBeFalse();
-});
-
-test("#isModuleEntityRegistration", () => {
-	expect(new Transaction({ key: "value" }).isModuleEntityRegistration()).toBeFalse();
-});
-
-test("#isModuleEntityResignation", () => {
-	expect(new Transaction({ key: "value" }).isModuleEntityResignation()).toBeFalse();
-});
-
-test("#isModuleEntityUpdate", () => {
-	expect(new Transaction({ key: "value" }).isModuleEntityUpdate()).toBeFalse();
-});
-
-test("#isDelegateEntityRegistration", () => {
-	expect(new Transaction({ key: "value" }).isDelegateEntityRegistration()).toBeFalse();
-});
-
-test("#isDelegateEntityResignation", () => {
-	expect(new Transaction({ key: "value" }).isDelegateEntityResignation()).toBeFalse();
-});
-
-test("#isDelegateEntityUpdate", () => {
-	expect(new Transaction({ key: "value" }).isDelegateEntityUpdate()).toBeFalse();
-});
-
-test("#isLegacyBusinessRegistration", () => {
-	expect(new Transaction({ key: "value" }).isLegacyBusinessRegistration()).toBeFalse();
-});
-
-test("#isLegacyBusinessResignation", () => {
-	expect(new Transaction({ key: "value" }).isLegacyBusinessResignation()).toBeFalse();
-});
-
-test("#isLegacyBusinessUpdate", () => {
-	expect(new Transaction({ key: "value" }).isLegacyBusinessUpdate()).toBeFalse();
-});
-
-test("#isLegacyBridgechainRegistration", () => {
-	expect(new Transaction({ key: "value" }).isLegacyBridgechainRegistration()).toBeFalse();
-});
-
-test("#isLegacyBridgechainResignation", () => {
-	expect(new Transaction({ key: "value" }).isLegacyBridgechainResignation()).toBeFalse();
-});
-
-test("#isLegacyBridgechainUpdate", () => {
-	expect(new Transaction({ key: "value" }).isLegacyBridgechainUpdate()).toBeFalse();
+test("#isMagistrate", () => {
+	expect(new Transaction({ key: "value" }).isMagistrate()).toBeFalse();
 });
 
 test("#toObject", () => {
@@ -389,99 +297,7 @@ class Transaction extends AbstractTransactionData {
 		return false;
 	}
 
-	public isEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isEntityResignation(): boolean {
-		return false;
-	}
-
-	public isEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isBusinessEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isBusinessEntityResignation(): boolean {
-		return false;
-	}
-
-	public isBusinessEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isProductEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isProductEntityResignation(): boolean {
-		return false;
-	}
-
-	public isProductEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isPluginEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isPluginEntityResignation(): boolean {
-		return false;
-	}
-
-	public isPluginEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isModuleEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isModuleEntityResignation(): boolean {
-		return false;
-	}
-
-	public isModuleEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isDelegateEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isDelegateEntityResignation(): boolean {
-		return false;
-	}
-
-	public isDelegateEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessRegistration(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessResignation(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessUpdate(): boolean {
-		return false;
-	}
-
-	public isLegacyBridgechainRegistration(): boolean {
-		return false;
-	}
-
-	public isLegacyBridgechainResignation(): boolean {
-		return false;
-	}
-
-	public isLegacyBridgechainUpdate(): boolean {
+	public isMagistrate(): boolean {
 		return false;
 	}
 }

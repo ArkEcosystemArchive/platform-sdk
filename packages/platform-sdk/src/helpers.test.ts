@@ -4,30 +4,6 @@ import { TransactionDataCollection } from "./coins";
 import { createTransactionDataCollectionWithType, createTransactionDataWithType } from "./helpers";
 
 class TransactionData {
-	public isLegacyBridgechainRegistration(): boolean {
-		return false;
-	}
-
-	public isLegacyBridgechainResignation(): boolean {
-		return false;
-	}
-
-	public isLegacyBridgechainUpdate(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessRegistration(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessResignation(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessUpdate(): boolean {
-		return false;
-	}
-
 	public isDelegateRegistration(): boolean {
 		return false;
 	}
@@ -36,11 +12,7 @@ class TransactionData {
 		return false;
 	}
 
-	public isEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isEntityResignation(): boolean {
+	public isMagistrate(): boolean {
 		return false;
 	}
 
@@ -89,17 +61,8 @@ class TransactionData {
 	}
 }
 
-class BridgechainRegistrationData {}
-class BridgechainResignationData {}
-class BridgechainUpdateData {}
-class BusinessRegistrationData {}
-class BusinessResignationData {}
-class BusinessUpdateData {}
 class DelegateRegistrationData {}
 class DelegateResignationData {}
-class EntityRegistrationData {}
-class EntityResignationData {}
-class EntityUpdateData {}
 class HtlcClaimData {}
 class HtlcLockData {}
 class HtlcRefundData {}
@@ -118,17 +81,8 @@ test("#createTransactionDataWithType (unknown type)", () => {
 });
 
 test.each([
-	["isLegacyBridgechainRegistration", "BridgechainRegistrationData", BridgechainRegistrationData],
-	["isLegacyBridgechainResignation", "BridgechainResignationData", BridgechainResignationData],
-	["isLegacyBridgechainUpdate", "BridgechainUpdateData", BridgechainUpdateData],
-	["isLegacyBusinessRegistration", "BusinessRegistrationData", BusinessRegistrationData],
-	["isLegacyBusinessResignation", "BusinessResignationData", BusinessResignationData],
-	["isLegacyBusinessUpdate", "BusinessUpdateData", BusinessUpdateData],
 	["isDelegateRegistration", "DelegateRegistrationData", DelegateRegistrationData],
 	["isDelegateResignation", "DelegateResignationData", DelegateResignationData],
-	["isEntityRegistration", "EntityRegistrationData", EntityRegistrationData],
-	["isEntityResignation", "EntityResignationData", EntityResignationData],
-	["isEntityUpdate", "EntityUpdateData", EntityUpdateData],
 	["isHtlcClaim", "HtlcClaimData", HtlcClaimData],
 	["isHtlcLock", "HtlcLockData", HtlcLockData],
 	["isHtlcRefund", "HtlcRefundData", HtlcRefundData],
@@ -147,17 +101,8 @@ test.each([
 });
 
 test.each([
-	["isLegacyBridgechainRegistration", "BridgechainRegistrationData", BridgechainRegistrationData],
-	["isLegacyBridgechainResignation", "BridgechainResignationData", BridgechainResignationData],
-	["isLegacyBridgechainUpdate", "BridgechainUpdateData", BridgechainUpdateData],
-	["isLegacyBusinessRegistration", "BusinessRegistrationData", BusinessRegistrationData],
-	["isLegacyBusinessResignation", "BusinessResignationData", BusinessResignationData],
-	["isLegacyBusinessUpdate", "BusinessUpdateData", BusinessUpdateData],
 	["isDelegateRegistration", "DelegateRegistrationData", DelegateRegistrationData],
 	["isDelegateResignation", "DelegateResignationData", DelegateResignationData],
-	["isEntityRegistration", "EntityRegistrationData", EntityRegistrationData],
-	["isEntityResignation", "EntityResignationData", EntityResignationData],
-	["isEntityUpdate", "EntityUpdateData", EntityUpdateData],
 	["isHtlcClaim", "HtlcClaimData", HtlcClaimData],
 	["isHtlcLock", "HtlcLockData", HtlcLockData],
 	["isHtlcRefund", "HtlcRefundData", HtlcRefundData],

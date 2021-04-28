@@ -378,17 +378,9 @@ describe("Transaction", () => {
 	});
 
 	const data = [
-		["isLegacyBridgechainRegistration"],
-		["isLegacyBridgechainResignation"],
-		["isLegacyBridgechainUpdate"],
-		["isLegacyBusinessRegistration"],
-		["isLegacyBusinessResignation"],
-		["isLegacyBusinessUpdate"],
+		["isMagistrate"],
 		["isDelegateRegistration"],
 		["isDelegateResignation"],
-		["isEntityRegistration"],
-		["isEntityResignation"],
-		["isEntityUpdate"],
 		["isHtlcClaim"],
 		["isHtlcLock"],
 		["isHtlcRefund"],
@@ -424,17 +416,9 @@ describe("Transaction", () => {
 	];
 
 	const dummyTransactionData = {
-		isLegacyBridgechainRegistration: () => false,
-		isLegacyBridgechainResignation: () => false,
-		isLegacyBridgechainUpdate: () => false,
-		isLegacyBusinessRegistration: () => false,
-		isLegacyBusinessResignation: () => false,
-		isLegacyBusinessUpdate: () => false,
+		isMagistrate: () => false,
 		isDelegateRegistration: () => false,
 		isDelegateResignation: () => false,
-		isEntityRegistration: () => false,
-		isEntityResignation: () => false,
-		isEntityUpdate: () => false,
 		isHtlcClaim: () => false,
 		isHtlcLock: () => false,
 		isHtlcRefund: () => false,

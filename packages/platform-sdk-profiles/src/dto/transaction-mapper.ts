@@ -33,48 +33,12 @@ export const transformTransactionData = (
 ): ExtendedTransactionData => {
 	const instance: ExtendedTransactionData = new TransactionData(wallet, transaction);
 
-	if (instance.isLegacyBridgechainRegistration()) {
-		return new BridgechainRegistrationData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBridgechainResignation()) {
-		return new BridgechainResignationData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBridgechainUpdate()) {
-		return new BridgechainUpdateData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBusinessRegistration()) {
-		return new BusinessRegistrationData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBusinessResignation()) {
-		return new BusinessResignationData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBusinessUpdate()) {
-		return new BusinessUpdateData(wallet, transaction);
-	}
-
 	if (instance.isDelegateRegistration()) {
 		return new DelegateRegistrationData(wallet, transaction);
 	}
 
 	if (instance.isDelegateResignation()) {
 		return new DelegateResignationData(wallet, transaction);
-	}
-
-	if (instance.isEntityRegistration()) {
-		return new EntityRegistrationData(wallet, transaction);
-	}
-
-	if (instance.isEntityResignation()) {
-		return new EntityResignationData(wallet, transaction);
-	}
-
-	if (instance.isEntityUpdate()) {
-		return new EntityUpdateData(wallet, transaction);
 	}
 
 	if (instance.isHtlcClaim()) {

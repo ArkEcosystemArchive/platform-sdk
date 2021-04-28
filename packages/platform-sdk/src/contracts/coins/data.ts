@@ -148,53 +148,7 @@ export interface TransactionData {
 
 	isHtlcRefund(): boolean;
 
-	isEntityRegistration(): boolean;
-
-	isEntityResignation(): boolean;
-
-	isEntityUpdate(): boolean;
-
-	isBusinessEntityRegistration(): boolean;
-
-	isBusinessEntityResignation(): boolean;
-
-	isBusinessEntityUpdate(): boolean;
-
-	isProductEntityRegistration(): boolean;
-
-	isProductEntityResignation(): boolean;
-
-	isProductEntityUpdate(): boolean;
-
-	isPluginEntityRegistration(): boolean;
-
-	isPluginEntityResignation(): boolean;
-
-	isPluginEntityUpdate(): boolean;
-
-	isModuleEntityRegistration(): boolean;
-
-	isModuleEntityResignation(): boolean;
-
-	isModuleEntityUpdate(): boolean;
-
-	isDelegateEntityRegistration(): boolean;
-
-	isDelegateEntityResignation(): boolean;
-
-	isDelegateEntityUpdate(): boolean;
-
-	isLegacyBusinessRegistration(): boolean;
-
-	isLegacyBusinessResignation(): boolean;
-
-	isLegacyBusinessUpdate(): boolean;
-
-	isLegacyBridgechainRegistration(): boolean;
-
-	isLegacyBridgechainResignation(): boolean;
-
-	isLegacyBridgechainUpdate(): boolean;
+	isMagistrate(): boolean;
 
 	toObject(): KeyValuePair;
 
@@ -207,97 +161,11 @@ export interface TransactionData {
 	setMeta(key: string, value: TransactionDataMeta): void;
 }
 
-export interface BridgechainRegistrationData extends TransactionData {
-	name(): string;
-
-	seedNodes(): string[];
-
-	genesisHash(): string;
-
-	bridgechainRepository(): string;
-
-	bridgechainAssetRepository(): string;
-
-	ports(): Record<string, number>;
-}
-
-export interface BridgechainResignationData extends TransactionData {
-	bridgechainId(): string;
-}
-
-export interface BridgechainUpdateData extends TransactionData {
-	name(): string;
-
-	seedNodes(): string[];
-
-	bridgechainRepository(): string;
-
-	bridgechainAssetRepository(): string;
-
-	ports(): Record<string, number>;
-}
-
-export interface BusinessRegistrationData extends TransactionData {
-	name(): string;
-
-	website(): string;
-
-	vatId(): string;
-
-	repository(): string;
-}
-
-export interface BusinessResignationData extends TransactionData {}
-
-export interface BusinessUpdateData extends TransactionData {
-	name(): string;
-
-	website(): string;
-
-	vatId(): string;
-
-	repository(): string;
-}
-
 export interface DelegateRegistrationData extends TransactionData {
 	username(): string;
 }
 
 export interface DelegateResignationData extends TransactionData {}
-
-export interface EntityRegistrationData extends TransactionData {
-	entityType(): number;
-
-	entitySubType(): number;
-
-	entityAction(): number;
-
-	name(): string;
-
-	ipfs(): string;
-}
-
-export interface EntityResignationData extends TransactionData {
-	entityType(): number;
-
-	entitySubType(): number;
-
-	entityAction(): number;
-
-	registrationId(): string;
-}
-
-export interface EntityUpdateData extends TransactionData {
-	entityType(): number;
-
-	entitySubType(): number;
-
-	entityAction(): number;
-
-	name(): string | undefined;
-
-	ipfs(): string | undefined;
-}
 
 export interface HtlcClaimData extends TransactionData {
 	lockTransactionId(): string;
@@ -345,17 +213,8 @@ export interface VoteData extends TransactionData {
 }
 
 export type TransactionDataType =
-	| BridgechainRegistrationData
-	| BridgechainResignationData
-	| BridgechainUpdateData
-	| BusinessRegistrationData
-	| BusinessResignationData
-	| BusinessUpdateData
 	| DelegateRegistrationData
 	| DelegateResignationData
-	| EntityRegistrationData
-	| EntityResignationData
-	| EntityUpdateData
 	| HtlcClaimData
 	| HtlcLockData
 	| HtlcRefundData

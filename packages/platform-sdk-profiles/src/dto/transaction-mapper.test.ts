@@ -37,17 +37,8 @@ import { ExtendedTransactionDataCollection } from "./transaction-collection";
 import { transformTransactionData, transformTransactionDataCollection } from "./transaction-mapper";
 
 const data = [
-	[BridgechainRegistrationData, "isLegacyBridgechainRegistration"],
-	[BridgechainResignationData, "isLegacyBridgechainResignation"],
-	[BridgechainUpdateData, "isLegacyBridgechainUpdate"],
-	[BusinessRegistrationData, "isLegacyBusinessRegistration"],
-	[BusinessResignationData, "isLegacyBusinessResignation"],
-	[BusinessUpdateData, "isLegacyBusinessUpdate"],
 	[DelegateRegistrationData, "isDelegateRegistration"],
 	[DelegateResignationData, "isDelegateResignation"],
-	[EntityRegistrationData, "isEntityRegistration"],
-	[EntityResignationData, "isEntityResignation"],
-	[EntityUpdateData, "isEntityUpdate"],
 	[HtlcClaimData, "isHtlcClaim"],
 	[HtlcLockData, "isHtlcLock"],
 	[HtlcRefundData, "isHtlcRefund"],
@@ -68,17 +59,9 @@ describe("transaction-mapper", () => {
 	let wallet: IReadWriteWallet;
 
 	const dummyTransactionData = {
-		isLegacyBridgechainRegistration: () => false,
-		isLegacyBridgechainResignation: () => false,
-		isLegacyBridgechainUpdate: () => false,
-		isLegacyBusinessRegistration: () => false,
-		isLegacyBusinessResignation: () => false,
-		isLegacyBusinessUpdate: () => false,
+		isMagistrate: () => false,
 		isDelegateRegistration: () => false,
 		isDelegateResignation: () => false,
-		isEntityRegistration: () => false,
-		isEntityResignation: () => false,
-		isEntityUpdate: () => false,
 		isHtlcClaim: () => false,
 		isHtlcLock: () => false,
 		isHtlcRefund: () => false,
@@ -135,7 +118,7 @@ describe("transaction-mapper", () => {
 
 		// @ts-ignore
 		const transactionData = new TransactionData(wallet, {
-			isLegacyBridgechainRegistration: () => true,
+			isMagistrate: () => true,
 		});
 
 		const collection = new Coins.TransactionDataCollection([transactionData], pagination);
