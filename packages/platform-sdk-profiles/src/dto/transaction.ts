@@ -230,7 +230,6 @@ export class TransactionData {
 	}
 }
 
-
 export class DelegateRegistrationData extends TransactionData {
 	public username(): string {
 		return this.data<Contracts.DelegateRegistrationData>().username();
