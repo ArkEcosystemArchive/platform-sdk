@@ -53,25 +53,6 @@ export class Address implements Contracts.Address {
 
 	public async validate(address: string): Promise<boolean> {
 		try {
-			if (this.#config.get(Coins.ConfigKey.NetworkId) === "neo.mainnet") {
-				let response;
-
-				try {
-					response = (
-						await this.#config
-							.get<Contracts.HttpClient>("httpClient")
-							.get(`https://explorer.ark.io/api/wallets/${address}`)
-					).json();
-				} catch {
-					response = undefined;
-				}
-
-				if (response && response.data) {
-					throw new Error("This address exists on the ARK Mainnet.");
-				}
-			}
-
-			// TODO: implement actual validation of NEO addresses
 			return address.length === 34;
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
