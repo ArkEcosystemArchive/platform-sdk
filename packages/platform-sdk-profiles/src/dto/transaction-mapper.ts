@@ -24,6 +24,10 @@ export const transformTransactionData = (
 ): ExtendedTransactionData => {
 	const instance: ExtendedTransactionData = new TransactionData(wallet, transaction);
 
+	if (instance.isMagistrate()) {
+		return instance;
+	}
+
 	if (instance.isDelegateRegistration()) {
 		return new DelegateRegistrationData(wallet, transaction);
 	}
