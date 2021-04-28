@@ -16,10 +16,6 @@ class TransactionData {
 		return false;
 	}
 
-	public isEntityUpdate(): boolean {
-		return false;
-	}
-
 	public isHtlcClaim(): boolean {
 		return false;
 	}
