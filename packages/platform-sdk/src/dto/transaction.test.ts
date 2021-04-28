@@ -21,7 +21,7 @@ test("#type", () => {
 
 	jest.spyOn(subject, "isMagistrate").mockReturnValue(true);
 
-	expect(subject.type()).toBe("legacyBusinessUpdate");
+	expect(subject.type()).toBe("magistrate");
 });
 
 test("#timestamp", () => {

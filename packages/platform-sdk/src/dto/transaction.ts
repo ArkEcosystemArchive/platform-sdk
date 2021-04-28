@@ -28,6 +28,7 @@ export abstract class AbstractTransactionData {
 		htlcLock: "isHtlcLock",
 		htlcClaim: "isHtlcClaim",
 		htlcRefund: "isHtlcRefund",
+		magistrate: "isMagistrate",
 	};
 
 	public constructor(protected readonly data: KeyValuePair) {}
