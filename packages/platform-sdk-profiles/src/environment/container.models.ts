@@ -24,5 +24,6 @@ export const State = {
 };
 
 export const Events = {
+	EnvironmentChanged: "EnvironmentChanged",
 	ProfileChanged: "ProfileChanged",
 };

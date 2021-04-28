@@ -58,6 +58,8 @@ export class MemoryDriver implements Driver {
 				} else {
 					profile.getAttributes().set("data", new ProfileExporter(profile).export());
 				}
+
+				emitter().emit(Events.EnvironmentChanged);
 			} catch (error) {
 				if (process.env.NODE_ENV !== "test") {
 					console.error(`[FATAL] Failed to encode or encrypt the profile. Reason: ${error.message}`);
