@@ -316,17 +316,8 @@ export class VoteData extends TransactionData {
 }
 
 export type ExtendedTransactionData =
-	| BridgechainRegistrationData
-	| BridgechainResignationData
-	| BridgechainUpdateData
-	| BusinessRegistrationData
-	| BusinessResignationData
-	| BusinessUpdateData
 	| DelegateRegistrationData
 	| DelegateResignationData
-	| EntityRegistrationData
-	| EntityResignationData
-	| EntityUpdateData
 	| HtlcClaimData
 	| HtlcLockData
 	| HtlcRefundData

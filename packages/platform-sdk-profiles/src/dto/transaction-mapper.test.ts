@@ -11,17 +11,8 @@ import { Profile } from "../drivers/memory/profiles/profile";
 import { Wallet } from "../drivers/memory/wallets/wallet";
 import { State } from "../environment/state";
 import {
-	BridgechainRegistrationData,
-	BridgechainResignationData,
-	BridgechainUpdateData,
-	BusinessRegistrationData,
-	BusinessResignationData,
-	BusinessUpdateData,
 	DelegateRegistrationData,
 	DelegateResignationData,
-	EntityRegistrationData,
-	EntityResignationData,
-	EntityUpdateData,
 	HtlcClaimData,
 	HtlcLockData,
 	HtlcRefundData,

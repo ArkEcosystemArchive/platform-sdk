@@ -2,17 +2,8 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { IReadWriteWallet } from "../contracts";
 import {
-	BridgechainRegistrationData,
-	BridgechainResignationData,
-	BridgechainUpdateData,
-	BusinessRegistrationData,
-	BusinessResignationData,
-	BusinessUpdateData,
 	DelegateRegistrationData,
 	DelegateResignationData,
-	EntityRegistrationData,
-	EntityResignationData,
-	EntityUpdateData,
 	ExtendedTransactionData,
 	HtlcClaimData,
 	HtlcLockData,
