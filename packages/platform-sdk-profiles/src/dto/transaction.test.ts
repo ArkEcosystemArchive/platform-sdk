@@ -389,21 +389,6 @@ describe("Transaction", () => {
 		["isReceived"],
 		["isTransfer"],
 		["isVoteCombination"],
-		["isBusinessEntityRegistration"],
-		["isBusinessEntityResignation"],
-		["isBusinessEntityUpdate"],
-		["isProductEntityRegistration"],
-		["isProductEntityResignation"],
-		["isProductEntityUpdate"],
-		["isPluginEntityRegistration"],
-		["isPluginEntityResignation"],
-		["isPluginEntityUpdate"],
-		["isModuleEntityRegistration"],
-		["isModuleEntityResignation"],
-		["isModuleEntityUpdate"],
-		["isDelegateEntityRegistration"],
-		["isDelegateEntityResignation"],
-		["isDelegateEntityUpdate"],
 	];
 
 	const dummyTransactionData = {
