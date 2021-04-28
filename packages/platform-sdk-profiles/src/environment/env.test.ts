@@ -274,7 +274,7 @@ it("#fees", async () => {
 	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
 
 	await subject.fees().sync("ARK", "ark.devnet");
-	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(11);
+	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(8);
 });
 
 it("#delegates", async () => {
