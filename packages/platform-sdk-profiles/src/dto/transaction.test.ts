@@ -118,7 +118,7 @@ afterEach(() => {
 
 describe("Transaction", () => {
 	beforeEach(() => {
-		subject = createSubject(wallet, undefined, BridgechainRegistrationData);
+		subject = createSubject(wallet, undefined, DelegateRegistrationData);
 	});
 
 	it("should have an explorer link", () => {
@@ -136,7 +136,7 @@ describe("Transaction", () => {
 				...subject,
 				blockId: () => undefined,
 			},
-			BridgechainRegistrationData,
+			DelegateRegistrationData,
 		);
 
 		expect(subject.explorerLinkForBlock()).toBeUndefined();
@@ -331,7 +331,7 @@ describe("Transaction", () => {
 
 	it("should have a total for unsent", () => {
 		// @ts-ignore
-		subject = new BridgechainRegistrationData(wallet, {
+		subject = new DelegateRegistrationData(wallet, {
 			amount: () => BigNumber.make(18),
 			fee: () => BigNumber.make(2),
 			isSent: () => false,
