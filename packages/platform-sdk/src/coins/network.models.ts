@@ -12,9 +12,6 @@ export type CoinTransactionTypes =
 	| "entity-registration"
 	| "entity-resignation"
 	| "entity-update"
-	| "htlc-claim"
-	| "htlc-lock"
-	| "htlc-refund"
 	| "ipfs"
 	| "multi-payment"
 	| "multi-signature"
@@ -112,15 +109,6 @@ export interface NetworkFeatureFlags {
 		delegateResignation?: boolean;
 		delegateResignationWithLedgerS?: boolean;
 		delegateResignationWithLedgerX?: boolean;
-		htlcLock?: boolean;
-		htlcLockWithLedgerS?: boolean;
-		htlcLockWithLedgerX?: boolean;
-		htlcClaim?: boolean;
-		htlcClaimWithLedgerS?: boolean;
-		htlcClaimWithLedgerX?: boolean;
-		htlcRefund?: boolean;
-		htlcRefundWithLedgerS?: boolean;
-		htlcRefundWithLedgerX?: boolean;
 	};
 	Miscellaneous?: {
 		memo?: boolean;

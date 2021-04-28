@@ -232,64 +232,6 @@ describe("Core", () => {
 		});
 	});
 
-	describe("#htlcLock", () => {
-		it("should verify", async () => {
-			const result = await subject.htlcLock({
-				nonce: "1",
-				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-				sign: {
-					mnemonic: "this is a top secret passphrase",
-				},
-				data: {
-					amount: "1",
-					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-					secretHash: "0f128d401958b1b30ad0d10406f47f9489321017b4614e6cb993fc63913c5454",
-					expiration: {
-						type: 1,
-						value: Math.floor(Date.now() / 1000),
-					},
-				},
-			});
-
-			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
-		});
-	});
-
-	describe("#htlcClaim", () => {
-		it("should verify", async () => {
-			const result = await subject.htlcClaim({
-				nonce: "1",
-				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-				sign: {
-					mnemonic: "this is a top secret passphrase",
-				},
-				data: {
-					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
-					unlockSecret: "c27f1ce845d8c29eebc9006be932b604fd06755521b1a8b0be4204c65377151a",
-				},
-			});
-
-			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
-		});
-	});
-
-	describe("#htlcRefund", () => {
-		it("should verify", async () => {
-			const result = await subject.htlcRefund({
-				nonce: "1",
-				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-				sign: {
-					mnemonic: "this is a top secret passphrase",
-				},
-				data: {
-					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
-				},
-			});
-
-			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
-		});
-	});
-
 	test("#estimateExpiration", async () => {
 		nock("http://127.0.0.1")
 			.get("/api/blockchain")

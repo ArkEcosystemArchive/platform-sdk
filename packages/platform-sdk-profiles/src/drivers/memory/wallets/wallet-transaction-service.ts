@@ -130,27 +130,6 @@ export class TransactionService implements ITransactionService {
 		return this.signTransaction("delegateResignation", input, options);
 	}
 
-	/** {@inheritDoc ITransactionService.signHtlcLock} */
-	public async signHtlcLock(input: Contracts.HtlcLockInput, options?: Contracts.TransactionOptions): Promise<string> {
-		return this.signTransaction("htlcLock", input, options);
-	}
-
-	/** {@inheritDoc ITransactionService.signHtlcClaim} */
-	public async signHtlcClaim(
-		input: Contracts.HtlcClaimInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<string> {
-		return this.signTransaction("htlcClaim", input, options);
-	}
-
-	/** {@inheritDoc ITransactionService.signHtlcRefund} */
-	public async signHtlcRefund(
-		input: Contracts.HtlcRefundInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<string> {
-		return this.signTransaction("htlcRefund", input, options);
-	}
-
 	/** {@inheritDoc ITransactionService.transaction} */
 	public transaction(id: string): Contracts.SignedTransactionData {
 		this.assertHasValidIdentifier(id);

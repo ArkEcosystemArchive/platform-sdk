@@ -27,7 +27,6 @@ export class FeeService implements Contracts.FeeService {
 		const dynamicFees: object = node.data;
 
 		return {
-			// Core
 			transfer: this.transform("transfer", 1, staticFees, dynamicFees),
 			secondSignature: this.transform("secondSignature", 1, staticFees, dynamicFees),
 			delegateRegistration: this.transform("delegateRegistration", 1, staticFees, dynamicFees),
@@ -36,9 +35,6 @@ export class FeeService implements Contracts.FeeService {
 			ipfs: this.transform("ipfs", 1, staticFees, dynamicFees),
 			multiPayment: this.transform("multiPayment", 1, staticFees, dynamicFees),
 			delegateResignation: this.transform("delegateResignation", 1, staticFees, dynamicFees),
-			htlcLock: this.transform("htlcLock", 1, staticFees, dynamicFees),
-			htlcClaim: this.transform("htlcClaim", 1, staticFees, dynamicFees),
-			htlcRefund: this.transform("htlcRefund", 1, staticFees, dynamicFees),
 		};
 	}
 

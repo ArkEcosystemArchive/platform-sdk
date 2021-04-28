@@ -48,18 +48,6 @@ class TransactionData {
 		return false;
 	}
 
-	public isHtlcClaim(): boolean {
-		return false;
-	}
-
-	public isHtlcLock(): boolean {
-		return false;
-	}
-
-	public isHtlcRefund(): boolean {
-		return false;
-	}
-
 	public isIpfs(): boolean {
 		return false;
 	}
@@ -100,9 +88,6 @@ class DelegateResignationData {}
 class EntityRegistrationData {}
 class EntityResignationData {}
 class EntityUpdateData {}
-class HtlcClaimData {}
-class HtlcLockData {}
-class HtlcRefundData {}
 class IpfsData {}
 class MultiPaymentData {}
 class MultiSignatureData {}
@@ -129,9 +114,6 @@ test.each([
 	["isEntityRegistration", "EntityRegistrationData", EntityRegistrationData],
 	["isEntityResignation", "EntityResignationData", EntityResignationData],
 	["isEntityUpdate", "EntityUpdateData", EntityUpdateData],
-	["isHtlcClaim", "HtlcClaimData", HtlcClaimData],
-	["isHtlcLock", "HtlcLockData", HtlcLockData],
-	["isHtlcRefund", "HtlcRefundData", HtlcRefundData],
 	["isIpfs", "IpfsData", IpfsData],
 	["isMultiPayment", "MultiPaymentData", MultiPaymentData],
 	["isMultiSignature", "MultiSignatureData", MultiSignatureData],
@@ -158,9 +140,6 @@ test.each([
 	["isEntityRegistration", "EntityRegistrationData", EntityRegistrationData],
 	["isEntityResignation", "EntityResignationData", EntityResignationData],
 	["isEntityUpdate", "EntityUpdateData", EntityUpdateData],
-	["isHtlcClaim", "HtlcClaimData", HtlcClaimData],
-	["isHtlcLock", "HtlcLockData", HtlcLockData],
-	["isHtlcRefund", "HtlcRefundData", HtlcRefundData],
 	["isIpfs", "IpfsData", IpfsData],
 	["isMultiPayment", "MultiPaymentData", MultiPaymentData],
 	["isMultiSignature", "MultiSignatureData", MultiSignatureData],

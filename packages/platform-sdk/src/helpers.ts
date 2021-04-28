@@ -48,18 +48,6 @@ export const createTransactionDataWithType = (transaction: unknown, dtos: Record
 		return new dtos.EntityUpdateData(transaction);
 	}
 
-	if (instance.isHtlcClaim()) {
-		return new dtos.HtlcClaimData(transaction);
-	}
-
-	if (instance.isHtlcLock()) {
-		return new dtos.HtlcLockData(transaction);
-	}
-
-	if (instance.isHtlcRefund()) {
-		return new dtos.HtlcRefundData(transaction);
-	}
-
 	if (instance.isIpfs()) {
 		return new dtos.IpfsData(transaction);
 	}

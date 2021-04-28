@@ -6,7 +6,6 @@ export interface TransactionFee {
 }
 
 export interface TransactionFees {
-	// Core
 	transfer: TransactionFee;
 	secondSignature: TransactionFee;
 	delegateRegistration: TransactionFee;
@@ -15,9 +14,6 @@ export interface TransactionFees {
 	ipfs: TransactionFee;
 	multiPayment: TransactionFee;
 	delegateResignation: TransactionFee;
-	htlcLock: TransactionFee;
-	htlcClaim: TransactionFee;
-	htlcRefund: TransactionFee;
 }
 
 export interface FeeService {

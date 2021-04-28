@@ -26,9 +26,6 @@ export abstract class AbstractTransactionData {
 		ipfs: "isIpfs",
 		multiPayment: "isMultiPayment",
 		delegateResignation: "isDelegateResignation",
-		htlcLock: "isHtlcLock",
-		htlcClaim: "isHtlcClaim",
-		htlcRefund: "isHtlcRefund",
 		// Magistrate
 		businessEntityRegistration: "isBusinessEntityRegistration",
 		businessEntityResignation: "isBusinessEntityResignation",
@@ -118,12 +115,6 @@ export abstract class AbstractTransactionData {
 	abstract isMultiPayment(): boolean;
 
 	abstract isDelegateResignation(): boolean;
-
-	abstract isHtlcLock(): boolean;
-
-	abstract isHtlcClaim(): boolean;
-
-	abstract isHtlcRefund(): boolean;
 
 	abstract isEntityRegistration(): boolean;
 

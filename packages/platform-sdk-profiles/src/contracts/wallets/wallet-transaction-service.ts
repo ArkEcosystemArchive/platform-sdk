@@ -129,36 +129,6 @@ export interface ITransactionService {
 	): Promise<string>;
 
 	/**
-	 * Sign a HTLC Lock transaction.
-	 *
-	 * @param {Contracts.HtlcLockInput} input
-	 * @param {Contracts.TransactionOptions} options
-	 * @return {Promise<string>}
-	 * @memberof ITransactionService
-	 */
-	signHtlcLock(input: Contracts.HtlcLockInput, options?: Contracts.TransactionOptions): Promise<string>;
-
-	/**
-	 * Sign a HTLC Claim transaction.
-	 *
-	 * @param {Contracts.HtlcClaimInput} input
-	 * @param {Contracts.TransactionOptions} options
-	 * @return {Promise<string>}
-	 * @memberof ITransactionService
-	 */
-	signHtlcClaim(input: Contracts.HtlcClaimInput, options?: Contracts.TransactionOptions): Promise<string>;
-
-	/**
-	 * Sign a HTLC Refund transaction.
-	 *
-	 * @param {Contracts.HtlcRefundInput} input
-	 * @param {Contracts.TransactionOptions} options
-	 * @return {Promise<string>}
-	 * @memberof ITransactionService
-	 */
-	signHtlcRefund(input: Contracts.HtlcRefundInput, options?: Contracts.TransactionOptions): Promise<string>;
-
-	/**
 	 * Get the transaction for the given ID if it is exists with any valid state.
 	 *
 	 * @param {string} id

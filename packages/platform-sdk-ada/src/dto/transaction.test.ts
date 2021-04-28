@@ -138,18 +138,6 @@ describe("TransactionData", function () {
 		expect(subject.isDelegateResignation()).toBeFalse();
 	});
 
-	it("#isHtlcLock", () => {
-		expect(subject.isHtlcLock()).toBeFalse();
-	});
-
-	it("#isHtlcClaim", () => {
-		expect(subject.isHtlcClaim()).toBeFalse();
-	});
-
-	it("#isHtlcRefund", () => {
-		expect(subject.isHtlcRefund()).toBeFalse();
-	});
-
 	it("#isEntityRegistration", () => {
 		expect(subject.isEntityRegistration()).toBeFalse();
 	});

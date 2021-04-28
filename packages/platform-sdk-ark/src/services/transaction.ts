@@ -141,45 +141,6 @@ export class TransactionService implements Contracts.TransactionService {
 		return this.createFromData("delegateResignation", input, options);
 	}
 
-	public async htlcLock(
-		input: Contracts.HtlcLockInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("htlcLock", input, options, ({ transaction, data }) => {
-			transaction.amount(data.amount);
-
-			transaction.recipientId(data.to);
-
-			transaction.htlcLockAsset({
-				secretHash: data.secretHash,
-				expiration: data.expiration,
-			});
-		});
-	}
-
-	public async htlcClaim(
-		input: Contracts.HtlcClaimInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("htlcClaim", input, options, ({ transaction, data }) =>
-			transaction.htlcClaimAsset({
-				lockTransactionId: data.lockTransactionId,
-				unlockSecret: data.unlockSecret,
-			}),
-		);
-	}
-
-	public async htlcRefund(
-		input: Contracts.HtlcRefundInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("htlcRefund", input, options, ({ transaction, data }) =>
-			transaction.htlcRefundAsset({
-				lockTransactionId: data.lockTransactionId,
-			}),
-		);
-	}
-
 	/**
 	 * This method should be used to split-sign transactions in combination with the MuSig Server.
 	 *

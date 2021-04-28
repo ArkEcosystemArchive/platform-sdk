@@ -30,9 +30,6 @@ describe("FeeService", function () {
 			"ipfs",
 			"multiPayment",
 			"delegateResignation",
-			"htlcLock",
-			"htlcClaim",
-			"htlcRefund",
 		]);
 
 		expect(result.transfer).toEqual({

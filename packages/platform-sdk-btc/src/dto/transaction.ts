@@ -103,18 +103,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return false;
 	}
 
-	public isHtlcLock(): boolean {
-		return false;
-	}
-
-	public isHtlcClaim(): boolean {
-		return false;
-	}
-
-	public isHtlcRefund(): boolean {
-		return false;
-	}
-
 	public isEntityRegistration(): boolean {
 		return false;
 	}

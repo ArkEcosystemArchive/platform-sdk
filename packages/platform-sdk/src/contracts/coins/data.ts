@@ -142,12 +142,6 @@ export interface TransactionData {
 
 	isDelegateResignation(): boolean;
 
-	isHtlcLock(): boolean;
-
-	isHtlcClaim(): boolean;
-
-	isHtlcRefund(): boolean;
-
 	isEntityRegistration(): boolean;
 
 	isEntityResignation(): boolean;
@@ -299,24 +293,6 @@ export interface EntityUpdateData extends TransactionData {
 	ipfs(): string | undefined;
 }
 
-export interface HtlcClaimData extends TransactionData {
-	lockTransactionId(): string;
-
-	unlockSecret(): string;
-}
-
-export interface HtlcLockData extends TransactionData {
-	secretHash(): string;
-
-	expirationType(): number;
-
-	expirationValue(): number;
-}
-
-export interface HtlcRefundData extends TransactionData {
-	lockTransactionId(): string;
-}
-
 export interface IpfsData extends TransactionData {
 	hash(): string;
 }
@@ -356,9 +332,6 @@ export type TransactionDataType =
 	| EntityRegistrationData
 	| EntityResignationData
 	| EntityUpdateData
-	| HtlcClaimData
-	| HtlcLockData
-	| HtlcRefundData
 	| IpfsData
 	| MultiPaymentData
 	| MultiSignatureData

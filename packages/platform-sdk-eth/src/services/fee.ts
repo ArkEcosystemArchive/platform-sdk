@@ -34,9 +34,6 @@ export class FeeService implements Contracts.FeeService {
 			ipfs: fees,
 			multiPayment: fees,
 			delegateResignation: fees,
-			htlcLock: fees,
-			htlcClaim: fees,
-			htlcRefund: fees,
 		};
 	}
 }

@@ -25,9 +25,6 @@ import {
 	EntityRegistrationData,
 	EntityResignationData,
 	EntityUpdateData,
-	HtlcClaimData,
-	HtlcLockData,
-	HtlcRefundData,
 	IpfsData,
 	MultiPaymentData,
 	MultiSignatureData,
@@ -389,9 +386,6 @@ describe("Transaction", () => {
 		["isEntityRegistration"],
 		["isEntityResignation"],
 		["isEntityUpdate"],
-		["isHtlcClaim"],
-		["isHtlcLock"],
-		["isHtlcRefund"],
 		["isIpfs"],
 		["isMultiPayment"],
 		["isMultiSignature"],
@@ -435,9 +429,6 @@ describe("Transaction", () => {
 		isEntityRegistration: () => false,
 		isEntityResignation: () => false,
 		isEntityUpdate: () => false,
-		isHtlcClaim: () => false,
-		isHtlcLock: () => false,
-		isHtlcRefund: () => false,
 		isIpfs: () => false,
 		isMultiPayment: () => false,
 		isMultiSignature: () => false,
@@ -749,69 +740,6 @@ describe("EntityUpdateData", () => {
 
 	test("#ipfs", () => {
 		expect(subject.ipfs()).toBe("ipfs");
-	});
-});
-
-describe("HtlcClaimData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				lockTransactionId: () => "lockTransactionId",
-				unlockSecret: () => "unlockSecret",
-			},
-			HtlcClaimData,
-		);
-	});
-
-	test("#lockTransactionId", () => {
-		expect(subject.lockTransactionId()).toBe("lockTransactionId");
-	});
-
-	test("#unlockSecret", () => {
-		expect(subject.unlockSecret()).toBe("unlockSecret");
-	});
-});
-
-describe("HtlcLockData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				secretHash: () => "secretHash",
-				expirationType: () => 5,
-				expirationValue: () => 3,
-			},
-			HtlcLockData,
-		);
-	});
-
-	test("#secretHash", () => {
-		expect(subject.secretHash()).toBe("secretHash");
-	});
-
-	test("#expirationType", () => {
-		expect(subject.expirationType()).toBe(5);
-	});
-
-	test("#expirationValue", () => {
-		expect(subject.expirationValue()).toBe(3);
-	});
-});
-
-describe("HtlcRefundData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				lockTransactionId: () => "lockTransactionId",
-			},
-			HtlcRefundData,
-		);
-	});
-
-	test("#lockTransactionId", () => {
-		expect(subject.lockTransactionId()).toBe("lockTransactionId");
 	});
 });
 

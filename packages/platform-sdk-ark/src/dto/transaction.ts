@@ -131,18 +131,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.typeGroup === 1 && this.data.type === 7;
 	}
 
-	public isHtlcLock(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 8;
-	}
-
-	public isHtlcClaim(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 9;
-	}
-
-	public isHtlcRefund(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 10;
-	}
-
 	public isEntityRegistration(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === EntityAction.Register;
 	}

@@ -21,9 +21,6 @@ describe("FeeService", function () {
 				"ipfs",
 				"multiPayment",
 				"delegateResignation",
-				"htlcLock",
-				"htlcClaim",
-				"htlcRefund",
 			]);
 
 			expect(result.transfer).toEqual({ avg: "10000000", max: "10000000", min: "10000000", static: "10000000" });

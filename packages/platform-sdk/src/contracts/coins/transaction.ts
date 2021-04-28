@@ -15,9 +15,6 @@ export interface TransactionService {
 	ipfs(input: IpfsInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 	multiPayment(input: MultiPaymentInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 	delegateResignation(input: DelegateResignationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	htlcLock(input: HtlcLockInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	htlcClaim(input: HtlcClaimInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	htlcRefund(input: HtlcRefundInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 
 	// Multi-Signature
 	multiSign(transaction: RawTransactionData, input: TransactionInputs): Promise<SignedTransactionData>;
@@ -98,29 +95,6 @@ export interface MultiPaymentInput extends TransactionInput {
 }
 
 export type DelegateResignationInput = TransactionInput;
-
-export interface HtlcLockInput extends TransactionInput {
-	data: {
-		amount: string;
-		to: string;
-		secretHash: string;
-		expiration: {
-			type: number;
-			value: number;
-		};
-	};
-}
-
-export interface HtlcClaimInput extends TransactionInput {
-	data: {
-		lockTransactionId: string;
-		unlockSecret: string;
-	};
-}
-
-export interface HtlcRefundInput extends TransactionInput {
-	data: { lockTransactionId: string };
-}
 
 export interface EntityRegistrationInput extends TransactionInput {
 	data: {

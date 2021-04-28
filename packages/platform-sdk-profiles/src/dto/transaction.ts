@@ -134,18 +134,6 @@ export class TransactionData {
 		return this.#data.isDelegateResignation();
 	}
 
-	public isHtlcLock(): boolean {
-		return this.#data.isHtlcLock();
-	}
-
-	public isHtlcClaim(): boolean {
-		return this.#data.isHtlcClaim();
-	}
-
-	public isHtlcRefund(): boolean {
-		return this.#data.isHtlcRefund();
-	}
-
 	public isEntityRegistration(): boolean {
 		return this.#data.isEntityRegistration();
 	}
@@ -487,36 +475,6 @@ export class EntityUpdateData extends TransactionData {
 	}
 }
 
-export class HtlcClaimData extends TransactionData {
-	public lockTransactionId(): string {
-		return this.data<Contracts.HtlcClaimData>().lockTransactionId();
-	}
-
-	public unlockSecret(): string {
-		return this.data<Contracts.HtlcClaimData>().unlockSecret();
-	}
-}
-
-export class HtlcLockData extends TransactionData {
-	public secretHash(): string {
-		return this.data<Contracts.HtlcLockData>().secretHash();
-	}
-
-	public expirationType(): number {
-		return this.data<Contracts.HtlcLockData>().expirationType();
-	}
-
-	public expirationValue(): number {
-		return this.data<Contracts.HtlcLockData>().expirationValue();
-	}
-}
-
-export class HtlcRefundData extends TransactionData {
-	public lockTransactionId(): string {
-		return this.data<Contracts.HtlcRefundData>().lockTransactionId();
-	}
-}
-
 export class IpfsData extends TransactionData {
 	public hash(): string {
 		return this.data<Contracts.IpfsData>().hash();
@@ -575,9 +533,6 @@ export type ExtendedTransactionData =
 	| EntityRegistrationData
 	| EntityResignationData
 	| EntityUpdateData
-	| HtlcClaimData
-	| HtlcLockData
-	| HtlcRefundData
 	| IpfsData
 	| MultiPaymentData
 	| MultiSignatureData

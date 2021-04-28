@@ -14,9 +14,6 @@ import {
 	EntityResignationData,
 	EntityUpdateData,
 	ExtendedTransactionData,
-	HtlcClaimData,
-	HtlcLockData,
-	HtlcRefundData,
 	IpfsData,
 	MultiPaymentData,
 	MultiSignatureData,
@@ -75,18 +72,6 @@ export const transformTransactionData = (
 
 	if (instance.isEntityUpdate()) {
 		return new EntityUpdateData(wallet, transaction);
-	}
-
-	if (instance.isHtlcClaim()) {
-		return new HtlcClaimData(wallet, transaction);
-	}
-
-	if (instance.isHtlcLock()) {
-		return new HtlcLockData(wallet, transaction);
-	}
-
-	if (instance.isHtlcRefund()) {
-		return new HtlcRefundData(wallet, transaction);
 	}
 
 	if (instance.isIpfs()) {

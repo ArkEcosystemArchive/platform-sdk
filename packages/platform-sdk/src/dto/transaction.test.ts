@@ -116,18 +116,6 @@ test("#isDelegateResignation", () => {
 	expect(new Transaction({ key: "value" }).isDelegateResignation()).toBeFalse();
 });
 
-test("#isHtlcLock", () => {
-	expect(new Transaction({ key: "value" }).isHtlcLock()).toBeFalse();
-});
-
-test("#isHtlcClaim", () => {
-	expect(new Transaction({ key: "value" }).isHtlcClaim()).toBeFalse();
-});
-
-test("#isHtlcRefund", () => {
-	expect(new Transaction({ key: "value" }).isHtlcRefund()).toBeFalse();
-});
-
 test("#isEntityRegistration", () => {
 	expect(new Transaction({ key: "value" }).isEntityRegistration()).toBeFalse();
 });
@@ -374,18 +362,6 @@ class Transaction extends AbstractTransactionData {
 	}
 
 	public isDelegateResignation(): boolean {
-		return false;
-	}
-
-	public isHtlcLock(): boolean {
-		return false;
-	}
-
-	public isHtlcClaim(): boolean {
-		return false;
-	}
-
-	public isHtlcRefund(): boolean {
 		return false;
 	}
 

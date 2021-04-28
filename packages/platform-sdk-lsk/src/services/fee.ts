@@ -18,7 +18,6 @@ export class FeeService implements Contracts.FeeService {
 
 	public async all(): Promise<Contracts.TransactionFees> {
 		return {
-			// Core
 			transfer: this.transform("TRANSFER_FEE"),
 			secondSignature: this.transform("SIGNATURE_FEE"),
 			delegateRegistration: this.transform("DELEGATE_FEE"),
@@ -27,9 +26,6 @@ export class FeeService implements Contracts.FeeService {
 			ipfs: this.transform(0),
 			multiPayment: this.transform(0),
 			delegateResignation: this.transform(0),
-			htlcLock: this.transform(0),
-			htlcClaim: this.transform(0),
-			htlcRefund: this.transform(0),
 		};
 	}
 
