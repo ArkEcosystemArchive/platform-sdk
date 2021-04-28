@@ -14,17 +14,8 @@ import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
 import { State } from "../environment/state";
 import {
-	BridgechainRegistrationData,
-	BridgechainResignationData,
-	BridgechainUpdateData,
-	BusinessRegistrationData,
-	BusinessResignationData,
-	BusinessUpdateData,
 	DelegateRegistrationData,
 	DelegateResignationData,
-	EntityRegistrationData,
-	EntityResignationData,
-	EntityUpdateData,
 	HtlcClaimData,
 	HtlcLockData,
 	HtlcRefundData,
@@ -127,7 +118,7 @@ afterEach(() => {
 
 describe("Transaction", () => {
 	beforeEach(() => {
-		subject = createSubject(wallet, undefined, BridgechainRegistrationData);
+		subject = createSubject(wallet, undefined, DelegateRegistrationData);
 	});
 
 	it("should have an explorer link", () => {
@@ -145,7 +136,7 @@ describe("Transaction", () => {
 				...subject,
 				blockId: () => undefined,
 			},
-			BridgechainRegistrationData,
+			DelegateRegistrationData,
 		);
 
 		expect(subject.explorerLinkForBlock()).toBeUndefined();
@@ -340,7 +331,7 @@ describe("Transaction", () => {
 
 	it("should have a total for unsent", () => {
 		// @ts-ignore
-		subject = new BridgechainRegistrationData(wallet, {
+		subject = new DelegateRegistrationData(wallet, {
 			amount: () => BigNumber.make(18),
 			fee: () => BigNumber.make(2),
 			isSent: () => false,
@@ -378,17 +369,9 @@ describe("Transaction", () => {
 	});
 
 	const data = [
-		["isLegacyBridgechainRegistration"],
-		["isLegacyBridgechainResignation"],
-		["isLegacyBridgechainUpdate"],
-		["isLegacyBusinessRegistration"],
-		["isLegacyBusinessResignation"],
-		["isLegacyBusinessUpdate"],
+		["isMagistrate"],
 		["isDelegateRegistration"],
 		["isDelegateResignation"],
-		["isEntityRegistration"],
-		["isEntityResignation"],
-		["isEntityUpdate"],
 		["isHtlcClaim"],
 		["isHtlcLock"],
 		["isHtlcRefund"],
@@ -406,35 +389,12 @@ describe("Transaction", () => {
 		["isReceived"],
 		["isTransfer"],
 		["isVoteCombination"],
-		["isBusinessEntityRegistration"],
-		["isBusinessEntityResignation"],
-		["isBusinessEntityUpdate"],
-		["isProductEntityRegistration"],
-		["isProductEntityResignation"],
-		["isProductEntityUpdate"],
-		["isPluginEntityRegistration"],
-		["isPluginEntityResignation"],
-		["isPluginEntityUpdate"],
-		["isModuleEntityRegistration"],
-		["isModuleEntityResignation"],
-		["isModuleEntityUpdate"],
-		["isDelegateEntityRegistration"],
-		["isDelegateEntityResignation"],
-		["isDelegateEntityUpdate"],
 	];
 
 	const dummyTransactionData = {
-		isLegacyBridgechainRegistration: () => false,
-		isLegacyBridgechainResignation: () => false,
-		isLegacyBridgechainUpdate: () => false,
-		isLegacyBusinessRegistration: () => false,
-		isLegacyBusinessResignation: () => false,
-		isLegacyBusinessUpdate: () => false,
+		isMagistrate: () => false,
 		isDelegateRegistration: () => false,
 		isDelegateResignation: () => false,
-		isEntityRegistration: () => false,
-		isEntityResignation: () => false,
-		isEntityUpdate: () => false,
 		isHtlcClaim: () => false,
 		isHtlcLock: () => false,
 		isHtlcRefund: () => false,
@@ -455,171 +415,6 @@ describe("Transaction", () => {
 			[String(functionName)]: () => true,
 		});
 		expect(transactionData[functionName.toString()]()).toBeTruthy();
-	});
-});
-
-describe("BridgechainRegistrationData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				name: () => "name",
-				seedNodes: () => "seedNodes",
-				genesisHash: () => "genesisHash",
-				bridgechainRepository: () => "bridgechainRepository",
-				bridgechainAssetRepository: () => "bridgechainAssetRepository",
-				ports: () => ({ thing: 1234 }),
-			},
-			BridgechainRegistrationData,
-		);
-	});
-
-	test("#name", () => {
-		expect(subject.name()).toBe("name");
-	});
-
-	test("#seedNodes", () => {
-		expect(subject.seedNodes()).toBe("seedNodes");
-	});
-
-	test("#genesisHash", () => {
-		expect(subject.genesisHash()).toBe("genesisHash");
-	});
-
-	test("#bridgechainRepository", () => {
-		expect(subject.bridgechainRepository()).toBe("bridgechainRepository");
-	});
-
-	test("#bridgechainAssetRepository", () => {
-		expect(subject.bridgechainAssetRepository()).toBe("bridgechainAssetRepository");
-	});
-
-	test("#ports", () => {
-		expect(subject.ports()).toEqual({ thing: 1234 });
-	});
-});
-
-describe("BridgechainResignationData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				bridgechainId: () => "bridgechainId",
-			},
-			BridgechainResignationData,
-		);
-	});
-
-	test("#bridgechainId", () => {
-		expect(subject.bridgechainId()).toBe("bridgechainId");
-	});
-});
-
-describe("BridgechainUpdateData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				name: () => "name",
-				seedNodes: () => "seedNodes",
-				bridgechainRepository: () => "bridgechainRepository",
-				bridgechainAssetRepository: () => "bridgechainAssetRepository",
-				ports: () => ({ thing: 1234 }),
-			},
-			BridgechainUpdateData,
-		);
-	});
-
-	test("#name", () => {
-		expect(subject.name()).toBe("name");
-	});
-
-	test("#seedNodes", () => {
-		expect(subject.seedNodes()).toBe("seedNodes");
-	});
-
-	test("#bridgechainRepository", () => {
-		expect(subject.bridgechainRepository()).toBe("bridgechainRepository");
-	});
-
-	test("#bridgechainAssetRepository", () => {
-		expect(subject.bridgechainAssetRepository()).toBe("bridgechainAssetRepository");
-	});
-
-	test("#ports", () => {
-		expect(subject.ports()).toEqual({ thing: 1234 });
-	});
-});
-
-describe("BusinessRegistrationData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				name: () => "name",
-				website: () => "website",
-				vatId: () => "vatId",
-				repository: () => "repository",
-			},
-			BusinessRegistrationData,
-		);
-	});
-
-	test("#name", () => {
-		expect(subject.name()).toBe("name");
-	});
-
-	test("#website", () => {
-		expect(subject.website()).toBe("website");
-	});
-
-	test("#vatId", () => {
-		expect(subject.vatId()).toBe("vatId");
-	});
-
-	test("#repository", () => {
-		expect(subject.repository()).toBe("repository");
-	});
-});
-
-describe("BusinessResignationData", () => {
-	beforeEach(() => {
-		subject = createSubject(wallet, undefined, BusinessResignationData);
-	});
-
-	test("#id", () => {
-		expect(subject.id()).toBe("transactionId");
-	});
-});
-
-describe("BusinessUpdateData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				name: () => "name",
-				website: () => "website",
-				vatId: () => "vatId",
-				repository: () => "repository",
-			},
-			BusinessUpdateData,
-		);
-	});
-
-	test("#name", () => {
-		expect(subject.name()).toBe("name");
-	});
-
-	test("#website", () => {
-		expect(subject.website()).toBe("website");
-	});
-
-	test("#vatId", () => {
-		expect(subject.vatId()).toBe("vatId");
-	});
-
-	test("#repository", () => {
-		expect(subject.repository()).toBe("repository");
 	});
 });
 
@@ -646,109 +441,6 @@ describe("DelegateResignationData", () => {
 
 	test("#id", () => {
 		expect(subject.id()).toBe("transactionId");
-	});
-});
-
-describe("EntityRegistrationData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				entityType: () => 1,
-				entitySubType: () => 2,
-				entityAction: () => 3,
-				name: () => "name",
-				ipfs: () => "ipfs",
-			},
-			EntityRegistrationData,
-		);
-	});
-
-	test("#entityType", () => {
-		expect(subject.entityType()).toBe(1);
-	});
-
-	test("#entitySubType", () => {
-		expect(subject.entitySubType()).toBe(2);
-	});
-
-	test("#entityAction", () => {
-		expect(subject.entityAction()).toBe(3);
-	});
-
-	test("#name", () => {
-		expect(subject.name()).toBe("name");
-	});
-
-	test("#ipfs", () => {
-		expect(subject.ipfs()).toBe("ipfs");
-	});
-});
-
-describe("EntityResignationData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				entityType: () => 1,
-				entitySubType: () => 2,
-				entityAction: () => 3,
-				registrationId: () => "registrationId",
-			},
-			EntityResignationData,
-		);
-	});
-
-	test("#entityType", () => {
-		expect(subject.entityType()).toBe(1);
-	});
-
-	test("#entitySubType", () => {
-		expect(subject.entitySubType()).toBe(2);
-	});
-
-	test("#entityAction", () => {
-		expect(subject.entityAction()).toBe(3);
-	});
-
-	test("#registrationId", () => {
-		expect(subject.registrationId()).toBe("registrationId");
-	});
-});
-
-describe("EntityUpdateData", () => {
-	beforeEach(() => {
-		subject = createSubject(
-			wallet,
-			{
-				entityType: () => 1,
-				entitySubType: () => 2,
-				entityAction: () => 3,
-				name: () => "name",
-				ipfs: () => "ipfs",
-			},
-			EntityUpdateData,
-		);
-	});
-
-	test("#entityType", () => {
-		expect(subject.entityType()).toBe(1);
-	});
-
-	test("#entitySubType", () => {
-		expect(subject.entitySubType()).toBe(2);
-	});
-
-	test("#entityAction", () => {
-		expect(subject.entityAction()).toBe(3);
-	});
-
-	test("#name", () => {
-		expect(subject.name()).toBe("name");
-	});
-
-	test("#ipfs", () => {
-		expect(subject.ipfs()).toBe("ipfs");
 	});
 });
 

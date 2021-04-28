@@ -2,17 +2,8 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { IReadWriteWallet } from "../contracts";
 import {
-	BridgechainRegistrationData,
-	BridgechainResignationData,
-	BridgechainUpdateData,
-	BusinessRegistrationData,
-	BusinessResignationData,
-	BusinessUpdateData,
 	DelegateRegistrationData,
 	DelegateResignationData,
-	EntityRegistrationData,
-	EntityResignationData,
-	EntityUpdateData,
 	ExtendedTransactionData,
 	HtlcClaimData,
 	HtlcLockData,
@@ -33,28 +24,8 @@ export const transformTransactionData = (
 ): ExtendedTransactionData => {
 	const instance: ExtendedTransactionData = new TransactionData(wallet, transaction);
 
-	if (instance.isLegacyBridgechainRegistration()) {
-		return new BridgechainRegistrationData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBridgechainResignation()) {
-		return new BridgechainResignationData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBridgechainUpdate()) {
-		return new BridgechainUpdateData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBusinessRegistration()) {
-		return new BusinessRegistrationData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBusinessResignation()) {
-		return new BusinessResignationData(wallet, transaction);
-	}
-
-	if (instance.isLegacyBusinessUpdate()) {
-		return new BusinessUpdateData(wallet, transaction);
+	if (instance.isMagistrate()) {
+		return instance;
 	}
 
 	if (instance.isDelegateRegistration()) {
@@ -63,18 +34,6 @@ export const transformTransactionData = (
 
 	if (instance.isDelegateResignation()) {
 		return new DelegateResignationData(wallet, transaction);
-	}
-
-	if (instance.isEntityRegistration()) {
-		return new EntityRegistrationData(wallet, transaction);
-	}
-
-	if (instance.isEntityResignation()) {
-		return new EntityResignationData(wallet, transaction);
-	}
-
-	if (instance.isEntityUpdate()) {
-		return new EntityUpdateData(wallet, transaction);
 	}
 
 	if (instance.isHtlcClaim()) {

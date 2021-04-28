@@ -146,100 +146,8 @@ export class TransactionData {
 		return this.#data.isHtlcRefund();
 	}
 
-	public isEntityRegistration(): boolean {
-		return this.#data.isEntityRegistration();
-	}
-
-	public isEntityResignation(): boolean {
-		return this.#data.isEntityResignation();
-	}
-
-	public isEntityUpdate(): boolean {
-		return this.#data.isEntityUpdate();
-	}
-
-	public isBusinessEntityRegistration(): boolean {
-		return this.#data.isBusinessEntityRegistration();
-	}
-
-	public isBusinessEntityResignation(): boolean {
-		return this.#data.isBusinessEntityResignation();
-	}
-
-	public isBusinessEntityUpdate(): boolean {
-		return this.#data.isBusinessEntityUpdate();
-	}
-
-	public isProductEntityRegistration(): boolean {
-		return this.#data.isProductEntityRegistration();
-	}
-
-	public isProductEntityResignation(): boolean {
-		return this.#data.isProductEntityResignation();
-	}
-
-	public isProductEntityUpdate(): boolean {
-		return this.#data.isProductEntityUpdate();
-	}
-
-	public isPluginEntityRegistration(): boolean {
-		return this.#data.isPluginEntityRegistration();
-	}
-
-	public isPluginEntityResignation(): boolean {
-		return this.#data.isPluginEntityResignation();
-	}
-
-	public isPluginEntityUpdate(): boolean {
-		return this.#data.isPluginEntityUpdate();
-	}
-
-	public isModuleEntityRegistration(): boolean {
-		return this.#data.isModuleEntityRegistration();
-	}
-
-	public isModuleEntityResignation(): boolean {
-		return this.#data.isModuleEntityResignation();
-	}
-
-	public isModuleEntityUpdate(): boolean {
-		return this.#data.isModuleEntityUpdate();
-	}
-
-	public isDelegateEntityRegistration(): boolean {
-		return this.#data.isDelegateEntityRegistration();
-	}
-
-	public isDelegateEntityResignation(): boolean {
-		return this.#data.isDelegateEntityResignation();
-	}
-
-	public isDelegateEntityUpdate(): boolean {
-		return this.#data.isDelegateEntityUpdate();
-	}
-
-	public isLegacyBusinessRegistration(): boolean {
-		return this.#data.isLegacyBusinessRegistration();
-	}
-
-	public isLegacyBusinessResignation(): boolean {
-		return this.#data.isLegacyBusinessResignation();
-	}
-
-	public isLegacyBusinessUpdate(): boolean {
-		return this.#data.isLegacyBusinessUpdate();
-	}
-
-	public isLegacyBridgechainRegistration(): boolean {
-		return this.#data.isLegacyBridgechainRegistration();
-	}
-
-	public isLegacyBridgechainResignation(): boolean {
-		return this.#data.isLegacyBridgechainResignation();
-	}
-
-	public isLegacyBridgechainUpdate(): boolean {
-		return this.#data.isLegacyBridgechainUpdate();
+	public isMagistrate(): boolean {
+		return this.#data.isMagistrate();
 	}
 
 	public explorerLink(): string {
@@ -322,98 +230,6 @@ export class TransactionData {
 	}
 }
 
-export class BridgechainRegistrationData extends TransactionData {
-	public name(): string {
-		return this.data<Contracts.BridgechainRegistrationData>().name();
-	}
-
-	public seedNodes(): string[] {
-		return this.data<Contracts.BridgechainRegistrationData>().seedNodes();
-	}
-
-	public genesisHash(): string {
-		return this.data<Contracts.BridgechainRegistrationData>().genesisHash();
-	}
-
-	public bridgechainRepository(): string {
-		return this.data<Contracts.BridgechainRegistrationData>().bridgechainRepository();
-	}
-
-	public bridgechainAssetRepository(): string {
-		return this.data<Contracts.BridgechainRegistrationData>().bridgechainAssetRepository();
-	}
-
-	public ports(): Record<string, number> {
-		return this.data<Contracts.BridgechainRegistrationData>().ports();
-	}
-}
-
-export class BridgechainResignationData extends TransactionData {
-	public bridgechainId(): string {
-		return this.data<Contracts.BridgechainResignationData>().bridgechainId();
-	}
-}
-
-export class BridgechainUpdateData extends TransactionData {
-	public name(): string {
-		return this.data<Contracts.BridgechainUpdateData>().name();
-	}
-
-	public seedNodes(): string[] {
-		return this.data<Contracts.BridgechainUpdateData>().seedNodes();
-	}
-
-	public bridgechainRepository(): string {
-		return this.data<Contracts.BridgechainUpdateData>().bridgechainRepository();
-	}
-
-	public bridgechainAssetRepository(): string {
-		return this.data<Contracts.BridgechainUpdateData>().bridgechainAssetRepository();
-	}
-
-	public ports(): Record<string, number> {
-		return this.data<Contracts.BridgechainUpdateData>().ports();
-	}
-}
-
-export class BusinessRegistrationData extends TransactionData {
-	public name(): string {
-		return this.data<Contracts.BusinessRegistrationData>().name();
-	}
-
-	public website(): string {
-		return this.data<Contracts.BusinessRegistrationData>().website();
-	}
-
-	public vatId(): string {
-		return this.data<Contracts.BusinessRegistrationData>().vatId();
-	}
-
-	public repository(): string {
-		return this.data<Contracts.BusinessRegistrationData>().repository();
-	}
-}
-
-export class BusinessResignationData extends TransactionData {}
-
-export class BusinessUpdateData extends TransactionData {
-	public name(): string {
-		return this.data<Contracts.BusinessUpdateData>().name();
-	}
-
-	public website(): string {
-		return this.data<Contracts.BusinessUpdateData>().website();
-	}
-
-	public vatId(): string {
-		return this.data<Contracts.BusinessUpdateData>().vatId();
-	}
-
-	public repository(): string {
-		return this.data<Contracts.BusinessUpdateData>().repository();
-	}
-}
-
 export class DelegateRegistrationData extends TransactionData {
 	public username(): string {
 		return this.data<Contracts.DelegateRegistrationData>().username();
@@ -421,71 +237,6 @@ export class DelegateRegistrationData extends TransactionData {
 }
 
 export class DelegateResignationData extends TransactionData {}
-
-// This type is currently only supported by ARK.
-export class EntityRegistrationData extends TransactionData {
-	public entityType(): number {
-		return this.data<Contracts.EntityRegistrationData>().entityType();
-	}
-
-	public entitySubType(): number {
-		return this.data<Contracts.EntityRegistrationData>().entitySubType();
-	}
-
-	public entityAction(): number {
-		return this.data<Contracts.EntityRegistrationData>().entityAction();
-	}
-
-	public name(): string {
-		return this.data<Contracts.EntityRegistrationData>().name();
-	}
-
-	public ipfs(): string | undefined {
-		return this.data<Contracts.EntityUpdateData>().ipfs();
-	}
-}
-
-// This type is currently only supported by ARK. We are more lenient with its strictness in data formatting and usage
-export class EntityResignationData extends TransactionData {
-	public entityType(): number {
-		return this.data<Contracts.EntityResignationData>().entityType();
-	}
-
-	public entitySubType(): number {
-		return this.data<Contracts.EntityResignationData>().entitySubType();
-	}
-
-	public entityAction(): number {
-		return this.data<Contracts.EntityResignationData>().entityAction();
-	}
-
-	public registrationId(): string {
-		return this.data<Contracts.EntityResignationData>().registrationId();
-	}
-}
-
-// This type is currently only supported by ARK.
-export class EntityUpdateData extends TransactionData {
-	public entityType(): number {
-		return this.data<Contracts.EntityUpdateData>().entityType();
-	}
-
-	public entitySubType(): number {
-		return this.data<Contracts.EntityUpdateData>().entitySubType();
-	}
-
-	public entityAction(): number {
-		return this.data<Contracts.EntityUpdateData>().entityAction();
-	}
-
-	public name(): string | undefined {
-		return this.data<Contracts.EntityUpdateData>().name();
-	}
-
-	public ipfs(): string | undefined {
-		return this.data<Contracts.EntityUpdateData>().ipfs();
-	}
-}
 
 export class HtlcClaimData extends TransactionData {
 	public lockTransactionId(): string {
@@ -564,17 +315,8 @@ export class VoteData extends TransactionData {
 }
 
 export type ExtendedTransactionData =
-	| BridgechainRegistrationData
-	| BridgechainResignationData
-	| BridgechainUpdateData
-	| BusinessRegistrationData
-	| BusinessResignationData
-	| BusinessUpdateData
 	| DelegateRegistrationData
 	| DelegateResignationData
-	| EntityRegistrationData
-	| EntityResignationData
-	| EntityUpdateData
 	| HtlcClaimData
 	| HtlcLockData
 	| HtlcRefundData

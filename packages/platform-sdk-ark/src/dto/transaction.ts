@@ -143,99 +143,199 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.typeGroup === 1 && this.data.type === 10;
 	}
 
-	public isEntityRegistration(): boolean {
+	public isMagistrate(): boolean {
+		if (this.isEntityRegistration()) {
+			return true;
+		}
+
+		if (this.isEntityResignation()) {
+			return true;
+		}
+
+		if (this.isEntityUpdate()) {
+			return true;
+		}
+
+		if (this.isBusinessEntityRegistration()) {
+			return true;
+		}
+
+		if (this.isBusinessEntityResignation()) {
+			return true;
+		}
+
+		if (this.isBusinessEntityUpdate()) {
+			return true;
+		}
+
+		if (this.isProductEntityRegistration()) {
+			return true;
+		}
+
+		if (this.isProductEntityResignation()) {
+			return true;
+		}
+
+		if (this.isProductEntityUpdate()) {
+			return true;
+		}
+
+		if (this.isPluginEntityRegistration()) {
+			return true;
+		}
+
+		if (this.isPluginEntityResignation()) {
+			return true;
+		}
+
+		if (this.isPluginEntityUpdate()) {
+			return true;
+		}
+
+		if (this.isModuleEntityRegistration()) {
+			return true;
+		}
+
+		if (this.isModuleEntityResignation()) {
+			return true;
+		}
+
+		if (this.isModuleEntityUpdate()) {
+			return true;
+		}
+
+		if (this.isDelegateEntityRegistration()) {
+			return true;
+		}
+
+		if (this.isDelegateEntityResignation()) {
+			return true;
+		}
+
+		if (this.isDelegateEntityUpdate()) {
+			return true;
+		}
+
+		if (this.isLegacyBusinessRegistration()) {
+			return true;
+		}
+
+		if (this.isLegacyBusinessResignation()) {
+			return true;
+		}
+
+		if (this.isLegacyBusinessUpdate()) {
+			return true;
+		}
+
+		if (this.isLegacyBridgechainRegistration()) {
+			return true;
+		}
+
+		if (this.isLegacyBridgechainResignation()) {
+			return true;
+		}
+
+		if (this.isLegacyBridgechainUpdate()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private isEntityRegistration(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === EntityAction.Register;
 	}
 
-	public isEntityResignation(): boolean {
+	private isEntityResignation(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === EntityAction.Resign;
 	}
 
-	public isEntityUpdate(): boolean {
+	private isEntityUpdate(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 6 && this.data.asset.action === EntityAction.Update;
 	}
 
-	public isBusinessEntityRegistration(): boolean {
+	private isBusinessEntityRegistration(): boolean {
 		return this.isEntityRegistration() && this.data.asset.type === EntityType.Business;
 	}
 
-	public isBusinessEntityResignation(): boolean {
+	private isBusinessEntityResignation(): boolean {
 		return this.isEntityResignation() && this.data.asset.type === EntityType.Business;
 	}
 
-	public isBusinessEntityUpdate(): boolean {
+	private isBusinessEntityUpdate(): boolean {
 		return this.isEntityUpdate() && this.data.asset.type === EntityType.Business;
 	}
 
-	public isProductEntityRegistration(): boolean {
+	private isProductEntityRegistration(): boolean {
 		return this.isEntityRegistration() && this.data.asset.type === EntityType.Product;
 	}
 
-	public isProductEntityResignation(): boolean {
+	private isProductEntityResignation(): boolean {
 		return this.isEntityResignation() && this.data.asset.type === EntityType.Product;
 	}
 
-	public isProductEntityUpdate(): boolean {
+	private isProductEntityUpdate(): boolean {
 		return this.isEntityUpdate() && this.data.asset.type === EntityType.Product;
 	}
 
-	public isPluginEntityRegistration(): boolean {
+	private isPluginEntityRegistration(): boolean {
 		return this.isEntityRegistration() && this.data.asset.type === EntityType.Plugin;
 	}
 
-	public isPluginEntityResignation(): boolean {
+	private isPluginEntityResignation(): boolean {
 		return this.isEntityResignation() && this.data.asset.type === EntityType.Plugin;
 	}
 
-	public isPluginEntityUpdate(): boolean {
+	private isPluginEntityUpdate(): boolean {
 		return this.isEntityUpdate() && this.data.asset.type === EntityType.Plugin;
 	}
 
-	public isModuleEntityRegistration(): boolean {
+	private isModuleEntityRegistration(): boolean {
 		return this.isEntityRegistration() && this.data.asset.type === EntityType.Module;
 	}
 
-	public isModuleEntityResignation(): boolean {
+	private isModuleEntityResignation(): boolean {
 		return this.isEntityResignation() && this.data.asset.type === EntityType.Module;
 	}
 
-	public isModuleEntityUpdate(): boolean {
+	private isModuleEntityUpdate(): boolean {
 		return this.isEntityUpdate() && this.data.asset.type === EntityType.Module;
 	}
 
-	public isDelegateEntityRegistration(): boolean {
+	private isDelegateEntityRegistration(): boolean {
 		return this.isEntityRegistration() && this.data.asset.type === EntityType.Delegate;
 	}
 
-	public isDelegateEntityResignation(): boolean {
+	private isDelegateEntityResignation(): boolean {
 		return this.isEntityResignation() && this.data.asset.type === EntityType.Delegate;
 	}
 
-	public isDelegateEntityUpdate(): boolean {
+	private isDelegateEntityUpdate(): boolean {
 		return this.isEntityUpdate() && this.data.asset.type === EntityType.Delegate;
 	}
 
-	public isLegacyBusinessRegistration(): boolean {
+	private isLegacyBusinessRegistration(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 0;
 	}
 
-	public isLegacyBusinessResignation(): boolean {
+	private isLegacyBusinessResignation(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 1;
 	}
 
-	public isLegacyBusinessUpdate(): boolean {
+	private isLegacyBusinessUpdate(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 2;
 	}
 
-	public isLegacyBridgechainRegistration(): boolean {
+	private isLegacyBridgechainRegistration(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 3;
 	}
 
-	public isLegacyBridgechainResignation(): boolean {
+	private isLegacyBridgechainResignation(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 4;
 	}
 
-	public isLegacyBridgechainUpdate(): boolean {
+	private isLegacyBridgechainUpdate(): boolean {
 		return this.data.typeGroup === 2 && this.data.type === 5;
 	}
 }
