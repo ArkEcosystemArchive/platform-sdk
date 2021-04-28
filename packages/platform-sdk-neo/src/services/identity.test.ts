@@ -40,19 +40,6 @@ describe("IdentityService", () => {
 			expect(result).toBe(identity.address);
 		});
 
-		it("should detect NEO duplicates on mainnet", async () => {
-			nock("https://explorer.ark.io/api/")
-				.get("/wallets/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")
-				.thrice()
-				.reply(200, require(`${__dirname}/../../test/fixtures/identity/ark-duplicate.json`));
-
-			subject = await IdentityService.__construct(createConfig({ network: "neo.mainnet" }));
-
-			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).rejects.toThrow(
-				"This address exists on the ARK Mainnet.",
-			);
-		});
-
 		it("should validate an address", async () => {
 			await expect(subject.address().validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).resolves.toBeTrue();
 			await expect(subject.address().validate("ABC")).resolves.toBeFalse();
