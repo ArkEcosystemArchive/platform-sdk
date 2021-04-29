@@ -1,17 +1,11 @@
 export const identity = {
 	// Standard
-	privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
-	publicKey: "03c2e699a70b15a3410c316c001abaec2bf015b53f2574a7b4febf177c124ab57a",
-	address: "AebGoHqMP9j9oE1RqBfCXu2QmLCzieXr9w",
-	wif: "L4UawZYmxjoBwP3UYmCgRCdzbwZm9fr82DZeZ1mDX1bZ67C58KEu",
-	mnemonic: "this is a top secret passphrase",
-	// Derived
-	derived: {
-		privateKey: "322467da14143f716713e1d55ca376531fe5cddab2015ecc3421cda4a5620a92",
-		publicKey: "02fe171ebae02dba8a17f5831119c571f71c639ab317e47fb130e46c5a471eda85",
-		address: "AenvmebJdnbbPsB7a9RUsjUt9NxnKpTNEg",
-		wif: "KxuBSQtcE1tFbE2VoinvnxC14paUHBHtfC7AVPfBppAbQcMMErAk",
-	},
+	privateKey: "604dbcf6e8473eb9a22a4f13a2a06898adcd6a69c6f2f4174d5b3d918a645702",
+	publicKey: "0312ff93f39cb02498304f1f3bfb4f730eb546f5ec80a21cb2421d05560a1f5fe3",
+	address: "APPJtAkysCKBssD5EJzEpakntNk81nR7X2",
+	wif: "KzSutJwb6Rwmqx7aYuABXHedpwBW65eCZAgqpdeRunzPfqZPSstA",
+	mnemonic:
+		"traffic fiscal note ahead eight morning answer pelican kitchen tired burst already report property wave world april person input piano laptop outdoor problem hurdle",
 	// Multi Signature
 	multiSignature: {
 		min: 3,

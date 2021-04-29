@@ -19,7 +19,7 @@ describe("IdentityService", () => {
 		it("should generate an output from a mnemonic", async () => {
 			const result: any = await subject.address().fromMnemonic(identity.mnemonic);
 
-			expect(result).toBe(identity.derived.address);
+			expect(result).toBe(identity.address);
 		});
 
 		it("should generate an output from a publicKey", async () => {
@@ -50,7 +50,7 @@ describe("IdentityService", () => {
 		it("should generate an output from a mnemonic", async () => {
 			const result: any = await subject.publicKey().fromMnemonic(identity.mnemonic);
 
-			expect(result).toBe(identity.derived.publicKey);
+			expect(result).toBe(identity.publicKey);
 		});
 
 		it("should generate an output from a wif", async () => {
@@ -64,7 +64,7 @@ describe("IdentityService", () => {
 		it("should generate an output from a mnemonic", async () => {
 			const result: any = await subject.privateKey().fromMnemonic(identity.mnemonic);
 
-			expect(result).toBe(identity.derived.privateKey);
+			expect(result).toBe(identity.privateKey);
 		});
 
 		it("should generate an output from a wif", async () => {
@@ -78,7 +78,7 @@ describe("IdentityService", () => {
 		it("should generate an output from a mnemonic", async () => {
 			const result: any = await subject.wif().fromMnemonic(identity.mnemonic);
 
-			expect(result).toBe(identity.derived.wif);
+			expect(result).toBe(identity.wif);
 		});
 	});
 
@@ -87,8 +87,8 @@ describe("IdentityService", () => {
 			const result: any = await subject.keys().fromMnemonic(identity.mnemonic);
 
 			expect(result).toEqual({
-				privateKey: identity.derived.privateKey,
-				publicKey: identity.derived.publicKey,
+				privateKey: identity.privateKey,
+				publicKey: identity.publicKey,
 			});
 		});
 
