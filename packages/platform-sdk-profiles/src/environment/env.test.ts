@@ -170,7 +170,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
-	expect(newProfile.data().all()).toEqual({ "HAS_COMPLETED_TUTORIAL": false, key: "value" });
+	expect(newProfile.data().all()).toEqual({ HAS_COMPLETED_TUTORIAL: false, key: "value" });
 	expect(newProfile.settings().all()).toEqual({
 		ADVANCED_MODE: "value",
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
