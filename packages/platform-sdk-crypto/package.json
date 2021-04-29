@@ -27,7 +27,7 @@
 	"dependencies": {
 		"argon2-browser": "^1.15.2",
 		"bcryptjs": "^2.4.3",
-		"bcrypto": "^5.3.0",
+		"bcrypto": "^5.4.0",
 		"bip32": "^2.0.6",
 		"bip38": "^3.1.1",
 		"bip39": "^3.0.3",

@@ -29,7 +29,7 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
-		"@ledgerhq/hw-app-eth": "^5.29.0",
+		"@ledgerhq/hw-app-eth": "^5.50.0",
 		"bip39": "^3.0.3",
 		"ethereumjs-tx": "^2.1.2",
 		"ethereumjs-wallet": "^1.0.1",
@@ -37,7 +37,7 @@
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
-		"@ledgerhq/hw-transport-mocker": "^5.29.0",
+		"@ledgerhq/hw-transport-mocker": "^5.50.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/hapi__joi": "17.1.6",

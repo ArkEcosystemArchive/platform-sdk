@@ -29,13 +29,13 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
-		"@ledgerhq/hw-app-xrp": "^5.29.0",
+		"@ledgerhq/hw-app-xrp": "^5.50.0",
 		"bignumber.js": "^9.0.1",
 		"ripple-keypairs": "^1.0.2",
 		"ripple-lib": "^1.8.2"
 	},
 	"devDependencies": {
-		"@ledgerhq/hw-transport-mocker": "^5.29.0",
+		"@ledgerhq/hw-transport-mocker": "^5.50.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/hapi__joi": "17.1.6",
