@@ -37,7 +37,7 @@
 		"dot-prop": "^5.0.0",
 		"joi": "^17.4.0",
 		"node-emoji": "^1.10.0",
-		"type-fest": "^0.21.2"
+		"type-fest": "^1.0.2"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.7.0",
