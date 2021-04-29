@@ -488,9 +488,9 @@ importers:
       '@typescript-eslint/parser': ^4.7.0
       bignumber.js: ^9.0.1
       bip32: ^2.0.6
-      bip84: ~0.2.4
+      bip84: ~0.2.5
       bitcoinjs-lib: ^5.2.0
-      bitcore-lib: ^8.23.1
+      bitcore-lib: ^8.25.8
       cross-env: ^7.0.2
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
