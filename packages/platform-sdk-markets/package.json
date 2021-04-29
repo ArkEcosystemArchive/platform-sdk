@@ -51,10 +51,10 @@
 		"got": "^11.8.2",
 		"jest": "^26.6.3",
 		"jest-extended": "^0.11.5",
-		"jest-localstorage-mock": "^2.4.3",
+		"jest-localstorage-mock": "^2.4.10",
 		"nock": "^13.0.11",
 		"npm-check-updates": "^11.5.6",
-		"prettier": "^2.1.2",
+		"prettier": "^2.2.1",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^26.4.4",
 		"typescript": "4.2.2"
