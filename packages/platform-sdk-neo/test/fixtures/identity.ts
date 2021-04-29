@@ -1,9 +1,9 @@
 export const identity = {
 	// Standard
-	privateKey: "1223fbf0c3ad5d4915767c238061c3cfb7a774ab86611a97a2abd5d442cd8e45",
-	publicKey: "024d91045e3d7aa46acb68c555b552e5795105c03f373dc03203d27dacd2817e09",
-	address: "ALSzRZ7npsmWDQ4FsH8QTs2f4HvuX5Hn9S",
-	wif: "KwpyRzxkWBn4tYkhJ5zyBJ3Hss5HWpq8fFaPw4ezH18PZeeFGxYa",
+	privateKey: "604dbcf6e8473eb9a22a4f13a2a06898adcd6a69c6f2f4174d5b3d918a645702",
+	publicKey: "0312ff93f39cb02498304f1f3bfb4f730eb546f5ec80a21cb2421d05560a1f5fe3",
+	address: "APPJtAkysCKBssD5EJzEpakntNk81nR7X2",
+	wif: "KzSutJwb6Rwmqx7aYuABXHedpwBW65eCZAgqpdeRunzPfqZPSstA",
 	mnemonic: "traffic fiscal note ahead eight morning answer pelican kitchen tired burst already report property wave world april person input piano laptop outdoor problem hurdle",
 	// Multi Signature
 	multiSignature: {
