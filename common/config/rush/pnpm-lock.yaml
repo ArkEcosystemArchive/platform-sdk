@@ -40,7 +40,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -63,7 +63,7 @@ importers:
       bent: ^7.3
       bignumber.js: ^9.0.1
       bip32: ^2.0.6
-      bip39: ^3.0.3
+      bip39: ^3.0.4
       censorify-it: ^3.0.2
       cross-env: ^7.0.3
       dayjs: ^1.10.4
@@ -81,7 +81,7 @@ importers:
       joi: ^17.4.0
       nock: ^13.0.11
       node-emoji: ^1.10.0
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -120,7 +120,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -156,7 +156,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -206,7 +206,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -252,7 +252,7 @@ importers:
       lodash.orderby: ^4.6.0
       nock: ^13.0.11
       node-dotify: ^1.0.2
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       semver: ^7.3.5
@@ -295,7 +295,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -333,7 +333,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       ledger-cosmos-js: ^2.1.8
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -379,7 +379,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -420,7 +420,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -464,7 +464,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -504,7 +504,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -550,7 +550,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -591,7 +591,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       p-each-series: ^2.2.0
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -642,7 +642,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -686,7 +686,7 @@ importers:
       joi: ^17.4.0
       meow: ^9.0.0
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -755,7 +755,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -814,7 +814,7 @@ importers:
       kleur: ^4.1.4
       meow: ^9.0.0
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       ora: ^5.4.0
       password-pwnd: ^1.0.6
       prettier: ^2.1.2
@@ -853,7 +853,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -884,7 +884,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -917,7 +917,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -948,7 +948,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -998,7 +998,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1021,12 +1021,12 @@ importers:
       '@types/wif': 2.0.2
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      argon2-browser: ^1.15.2
+      argon2-browser: ^1.15.4
       bcryptjs: ^2.4.3
       bcrypto: ^5.4.0
       bip32: ^2.0.6
       bip38: ^3.1.1
-      bip39: ^3.0.3
+      bip39: ^3.0.4
       bstring: ^0.3.9
       create-xpub: ~2.1.0
       cross-env: ^7.0.3
@@ -1041,10 +1041,10 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      keytar: ^7.1.0
+      keytar: ^7.7.0
       nock: ^13.0.11
       node-forge: ^0.10.0
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       safe-buffer: ^5.2.1
@@ -1081,7 +1081,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1112,7 +1112,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1158,7 +1158,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1201,7 +1201,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1249,7 +1249,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1289,7 +1289,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
       p-retry: ^4.3.0
       pino: ^6.11.0
@@ -1332,7 +1332,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1368,7 +1368,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1408,7 +1408,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1446,7 +1446,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       node-fetch: ^2.6.1
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1487,7 +1487,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1509,7 +1509,7 @@ importers:
       '@types/rimraf': ^3.0.0
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      bip39: ^3.0.3
+      bip39: ^3.0.4
       cross-env: ^7.0.3
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
@@ -1525,7 +1525,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1573,7 +1573,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1614,7 +1614,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
       p-retry: ^4.3.0
       prettier: ^2.1.2
@@ -1665,7 +1665,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1708,7 +1708,7 @@ importers:
       joi: ^17.4.0
       meow: ^9.0.0
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1742,7 +1742,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1772,7 +1772,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1805,7 +1805,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1836,7 +1836,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1870,7 +1870,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1902,7 +1902,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -1936,7 +1936,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -1968,7 +1968,7 @@ importers:
       ky: ^0.25.0
       ky-universal: ^0.8.2
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2001,7 +2001,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2032,7 +2032,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       node-fetch: ^2.6.1
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2063,7 +2063,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2092,7 +2092,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2134,7 +2134,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2174,7 +2174,7 @@ importers:
       joi: ^17.4.0
       meow: ^9.0.0
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2214,7 +2214,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2252,7 +2252,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2289,7 +2289,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2324,7 +2324,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2358,7 +2358,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2390,7 +2390,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2428,7 +2428,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2464,7 +2464,7 @@ importers:
       nanocurrency: ~2.5.0
       nanocurrency-web: ~1.3.1
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2503,7 +2503,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2539,7 +2539,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2573,7 +2573,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2603,7 +2603,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       rss-parser: ^3.9.0
@@ -2672,7 +2672,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2731,7 +2731,7 @@ importers:
       mem: ^8.0.0
       nock: ^13.0.11
       node-cache: ^5.1.2
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
       p-retry: ^4.3.0
       prettier: ^2.1.2
@@ -2778,7 +2778,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2815,7 +2815,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
@@ -2856,7 +2856,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2892,7 +2892,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       qrcode: ^1.4.4
       remarkable: ^2.0.1
@@ -2930,7 +2930,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -2963,7 +2963,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       tronweb: ^3.1.0
@@ -3002,7 +3002,7 @@ importers:
       jest-extended: 0.11.5
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
@@ -3035,7 +3035,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       stellar-hd-wallet: ^0.0.10
@@ -3080,7 +3080,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       lodash: 4.17.21
       nock: 13.0.11
-      npm-check-updates: 10.3.1
+      npm-check-updates: 11.5.6
       prettier: 2.2.1
       rimraf: 3.0.2
       ripple-binary-codec: 1.1.2
@@ -3121,7 +3121,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       lodash: ^4.17.20
       nock: ^13.0.11
-      npm-check-updates: ^10.1.1
+      npm-check-updates: ^11.5.6
       prettier: ^2.1.2
       rimraf: ^3.0.2
       ripple-binary-codec: ^1.0.2
@@ -9777,14 +9777,6 @@ packages:
   /hosted-git-info/2.8.9:
     resolution:
       integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
-  /hosted-git-info/3.0.8:
-    dependencies:
-      lru-cache: 6.0.0
-    dev: true
-    engines:
-      node: '>=10'
-    resolution:
-      integrity: sha512-aXpmwoOhRBrw6X3j0h5RloK4x1OzsxMPyxqIHyNfSe2pypkVTZFpEiRoSipPEPlMrh0HW/XsjkJ5WgnCirpNUw==
   /hosted-git-info/4.0.2:
     dependencies:
       lru-cache: 6.0.0
@@ -11677,7 +11669,6 @@ packages:
   /map-age-cleaner/0.1.3:
     dependencies:
       p-defer: 1.0.0
-    dev: false
     engines:
       node: '>=6'
     resolution:
@@ -11739,7 +11730,6 @@ packages:
     dependencies:
       map-age-cleaner: 0.1.3
       mimic-fn: 3.1.0
-    dev: false
     engines:
       node: '>=10'
     resolution:
@@ -11851,7 +11841,6 @@ packages:
     resolution:
       integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
   /mimic-fn/3.1.0:
-    dev: false
     engines:
       node: '>=8'
     resolution:
@@ -12334,7 +12323,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-x5DHup0SuyQcmL3s7Rx/YQ8sbw/Hzg0rj48eN0dV7hf5cmQq5PXIeioroH3raV1QC1yh3uTYuMThvEQF3iKgGQ==
-  /npm-check-updates/10.3.1:
+  /npm-check-updates/11.5.6:
     dependencies:
       chalk: 4.1.1
       cint: 8.2.1
@@ -12343,11 +12332,14 @@ packages:
       find-up: 5.0.0
       fp-and-or: 0.1.3
       get-stdin: 8.0.0
-      hosted-git-info: 3.0.8
+      globby: 11.0.3
+      hosted-git-info: 4.0.2
       json-parse-helpfulerror: 1.0.3
       jsonlines: 0.1.1
       libnpmconfig: 1.2.1
       lodash: 4.17.21
+      mem: 8.1.1
+      minimatch: 3.0.4
       p-map: 4.0.0
       pacote: 11.3.3
       parse-github-url: 1.0.2
@@ -12365,7 +12357,7 @@ packages:
       node: '>=10.17'
     hasBin: true
     resolution:
-      integrity: sha512-F89gU55do8QWhBcjhCh4NmC8TsK1EHhEPw5Oe5efJk+cgOVS2P/KH74DsNvbtGbBLYt6fhCBeTf7CF/Lrbi0og==
+      integrity: sha512-o3MSZKJg+TpMP2xneAc9QY0nX5mt4OTQmxNII/kB38JD+/HnjpZVUo6ws5JoZAh5qLgUK/qh7lYey4O3I2pXLA==
   /npm-install-checks/4.0.0:
     dependencies:
       semver: 7.3.5
@@ -12651,7 +12643,6 @@ packages:
     resolution:
       integrity: sha1-y38svu/YegnrqGHhErZ1J+Yh4v0=
   /p-defer/1.0.0:
-    dev: false
     engines:
       node: '>=4'
     resolution:
