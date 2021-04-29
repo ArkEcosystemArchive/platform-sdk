@@ -79,7 +79,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       node-emoji: ^1.10.0
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
@@ -155,7 +155,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -250,7 +250,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       lodash.orderby: ^4.6.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       node-dotify: ^1.0.2
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
@@ -332,7 +332,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       ledger-cosmos-js: ^2.1.8
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -419,7 +419,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -503,7 +503,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -558,7 +558,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/utils': ^1.3.0
-      '@konceiver/foreman': ^2.0.1
+      '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.4
@@ -574,9 +574,9 @@ importers:
       '@types/uuid': ^8.3.0
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      better-sqlite3: ^7.1.2
+      better-sqlite3: ^7.1.5
       cross-env: ^7.0.2
-      env-paths: ^2.2.0
+      env-paths: ^2.2.1
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
       eslint-plugin-import: ~2.22.1
@@ -590,7 +590,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       p-each-series: ^2.2.0
       prettier: ^2.1.2
@@ -651,7 +651,7 @@ importers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@hapi/hapi': ^20.1.0
-      '@konceiver/foreman': ^2.0.1
+      '@konceiver/foreman': ^2.0.2
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@ptkdev/logger': ^1.7.2
@@ -669,9 +669,9 @@ importers:
       '@types/uuid': ^8.3.0
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      better-sqlite3: ^7.1.2
+      better-sqlite3: ^7.1.5
       cross-env: ^7.0.2
-      env-paths: ^2.2.0
+      env-paths: ^2.2.1
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
       eslint-plugin-import: ~2.22.1
@@ -685,7 +685,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       meow: ^9.0.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -790,14 +790,14 @@ importers:
       '@types/rimraf': ^3.0.0
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      better-sqlite3: ^7.1.2
+      better-sqlite3: ^7.1.5
       boxen: ^5.0.0
       cfonts: ^2.9.0
       cli-table3: ^0.6.0
       conf: ^9.0.2
       cross-env: ^7.0.2
       delay: ~5.0.0
-      env-paths: ^2.2.0
+      env-paths: ^2.2.1
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
       eslint-plugin-import: ~2.22.1
@@ -813,7 +813,7 @@ importers:
       joi: ^17.4.0
       kleur: ^4.1.4
       meow: ^9.0.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       ora: ^5.3.0
       password-pwnd: ^1.0.5
@@ -883,7 +883,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -947,7 +947,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1042,7 +1042,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       keytar: ^7.1.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       node-forge: ^0.10.0
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
@@ -1111,7 +1111,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1200,7 +1200,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1256,7 +1256,7 @@ importers:
       typescript: 4.2.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
-      '@konceiver/foreman': ^2.0.1
+      '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@polkadot/api': ^3.6.4
       '@types/better-sqlite3': 5.4.1
@@ -1272,9 +1272,9 @@ importers:
       '@types/uuid': ^8.3.0
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      better-sqlite3: ^7.1.2
+      better-sqlite3: ^7.1.5
       cross-env: ^7.0.2
-      env-paths: ^2.2.0
+      env-paths: ^2.2.1
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
       eslint-plugin-import: ~2.22.1
@@ -1288,7 +1288,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       p-queue: ^6.6.2
       p-retry: ^4.3.0
@@ -1367,7 +1367,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1444,7 +1444,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       node-fetch: ^2.6.1
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
@@ -1524,7 +1524,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1580,7 +1580,7 @@ importers:
       typescript: 4.2.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
-      '@konceiver/foreman': ^2.0.1
+      '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@ptkdev/logger': ^1.7.2
       '@types/better-sqlite3': 5.4.1
@@ -1597,9 +1597,9 @@ importers:
       '@types/uuid': ^8.3.0
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      better-sqlite3: ^7.1.2
+      better-sqlite3: ^7.1.5
       cross-env: ^7.0.2
-      env-paths: ^2.2.0
+      env-paths: ^2.2.1
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
       eslint-plugin-import: ~2.22.1
@@ -1613,7 +1613,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       p-queue: ^6.6.2
       p-retry: ^4.3.0
@@ -1673,7 +1673,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@hapi/hapi': ^20.1.0
-      '@konceiver/foreman': ^2.0.1
+      '@konceiver/foreman': ^2.0.2
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@ptkdev/logger': ^1.7.2
@@ -1691,9 +1691,9 @@ importers:
       '@types/uuid': ^8.3.0
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      better-sqlite3: ^7.1.2
+      better-sqlite3: ^7.1.5
       cross-env: ^7.0.2
-      env-paths: ^2.2.0
+      env-paths: ^2.2.1
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
       eslint-plugin-import: ~2.22.1
@@ -1707,7 +1707,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       meow: ^9.0.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1771,7 +1771,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1835,7 +1835,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1901,7 +1901,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -1967,7 +1967,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       ky: ^0.25.0
       ky-universal: ^0.8.2
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2030,7 +2030,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       node-fetch: ^2.6.1
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
@@ -2091,7 +2091,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2145,7 +2145,7 @@ importers:
       '@arkecosystem/platform-sdk-crypto': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@hapi/hapi': ^20.1.0
-      '@konceiver/foreman': ^2.0.1
+      '@konceiver/foreman': ^2.0.2
       '@konceiver/hapi-json-rpc': ^1.0.0
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ptkdev/logger': ^1.7.2
@@ -2173,7 +2173,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       meow: ^9.0.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2251,7 +2251,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2323,7 +2323,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2389,7 +2389,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2463,7 +2463,7 @@ importers:
       jest-localstorage-mock: ^2.4.3
       nanocurrency: ~2.5.0
       nanocurrency-web: ~1.3.1
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2538,7 +2538,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2602,7 +2602,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2729,7 +2729,7 @@ importers:
       joi: ^17.4.0
       localforage: ^1.9.0
       mem: ^8.0.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       node-cache: ^5.1.2
       npm-check-updates: ^10.1.1
       p-queue: ^6.6.2
@@ -2814,7 +2814,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -2891,7 +2891,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       qrcode: ^1.4.4
@@ -2962,7 +2962,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -3034,7 +3034,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
@@ -3120,7 +3120,7 @@ importers:
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.3
       lodash: ^4.17.20
-      nock: ^13.0.5
+      nock: ^13.0.11
       npm-check-updates: ^10.1.1
       prettier: ^2.1.2
       rimraf: ^3.0.2
