@@ -6,7 +6,7 @@ export const createWallet = (input: string): any => new wallet.Account(input);
 export const deriveWallet = (mnemonic: string, coinType: number, account: number, change: number, index: number) => {
 	const privateKey: string = BIP44.deriveChild(mnemonic, { coinType, account, change, index }).privateKey!.toString("hex");
 
-	console.log(privateKey, { coinType, account, change, index });
+	console.log({ coinType, account, change, index, privateKey, mnemonic });
 
 	return createWallet(privateKey);
 }
