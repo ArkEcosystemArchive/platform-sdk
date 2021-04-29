@@ -37,29 +37,29 @@ describe("ProfileInitialiser", () => {
 	});
 
 	it("should be able to flush services like contacts, data, settings,...", () => {
-		profile.contacts().create('test');
+		profile.contacts().create("test");
 		profile.data().set(ProfileData.HasCompletedTutorial, true);
 		profile.settings().set(ProfileSetting.Theme, "dark");
 
 		expect(profile.contacts().count()).toBe(1);
 		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBe(true);
-		expect(profile.settings().get(ProfileSetting.Theme)).toBe('dark');
+		expect(profile.settings().get(ProfileSetting.Theme)).toBe("dark");
 
-		new ProfileInitialiser(profile).initialise('name');
+		new ProfileInitialiser(profile).initialise("name");
 
 		expect(profile.contacts().count()).toBe(0);
 		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBe(false);
-		expect(profile.settings().get(ProfileSetting.Theme)).toBe('light');
+		expect(profile.settings().get(ProfileSetting.Theme)).toBe("light");
 	});
 
 	it("should be able to initialise default settings", () => {
 		expect(profile.settings().get(ProfileSetting.Name)).toBeUndefined();
 		expect(profile.settings().get(ProfileSetting.Theme)).toBeUndefined();
 
-		new ProfileInitialiser(profile).initialiseSettings('name');
+		new ProfileInitialiser(profile).initialiseSettings("name");
 
-		expect(profile.settings().get(ProfileSetting.Name)).toBe('name');
-		expect(profile.settings().get(ProfileSetting.Theme)).toBe('light');
+		expect(profile.settings().get(ProfileSetting.Name)).toBe("name");
+		expect(profile.settings().get(ProfileSetting.Theme)).toBe("light");
 	});
 
 	it("should be able to initialise default data", () => {
