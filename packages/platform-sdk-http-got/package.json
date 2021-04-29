@@ -27,7 +27,7 @@
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
 		"form-data": "^3.0.0",
-		"got": "^11.8.0"
+		"got": "^11.8.2"
 	},
 	"devDependencies": {
 		"@types/eslint": "^7.2.4",
