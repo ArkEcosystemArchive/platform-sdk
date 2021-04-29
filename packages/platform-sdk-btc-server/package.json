@@ -31,7 +31,7 @@
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
-		"@hapi/hapi": "^20.1.0",
+		"@hapi/hapi": "^20.1.2",
 		"@konceiver/foreman": "^2.0.2",
 		"@konceiver/hapi-rate-limiter-flexible": "^1.0.3",
 		"@ptkdev/logger": "^1.7.2",
@@ -58,7 +58,7 @@
 		"@types/uuid": "^8.3.0",
 		"@typescript-eslint/eslint-plugin": "^4.7.0",
 		"@typescript-eslint/parser": "^4.7.0",
-		"cross-env": "^7.0.2",
+		"cross-env": "^7.0.3",
 		"eslint": "^7.13.0",
 		"eslint-config-prettier": "^6.15.0",
 		"eslint-plugin-import": "~2.22.1",
