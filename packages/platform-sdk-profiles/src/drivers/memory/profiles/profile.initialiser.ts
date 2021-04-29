@@ -10,7 +10,7 @@ export class ProfileInitialiser implements IProfileInitialiser {
 	}
 
 	/** {@inheritDoc IProfileInitialiser.initialise} */
-	public initialise(name: string): void {
+	public initialise(name: string | undefined): void {
 		// Flush services
 		this.#profile.contacts().flush();
 		this.#profile.data().flush();
@@ -24,7 +24,7 @@ export class ProfileInitialiser implements IProfileInitialiser {
 	}
 
 	/** {@inheritDoc IProfileInitialiser.initialiseSettings} */
-	public initialiseSettings(name: string): void {
+	public initialiseSettings(name: string | undefined): void {
 		if (name === undefined) {
 			throw new Error("The name of the profile could not be found. This looks like a bug.");
 		}

@@ -1,7 +1,7 @@
 import { injectable } from "inversify";
 
 import { ISettingRepository } from "../../../contracts";
-import { DataRepository } from "../../../repositories/data-repository";
+import { DataRepository } from "../../../repositories";
 import { emitProfileChanged } from "../helpers";
 
 @injectable()
