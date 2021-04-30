@@ -16,12 +16,4 @@ export interface IProfileInitialiser {
 	 * @memberof Profile
 	 */
 	initialiseSettings(name: string): void;
-
-	/**
-	 * Restore the default data.
-	 *
-	 * @private
-	 * @memberof Profile
-	 */
-	initialiseData(): void;
 }
