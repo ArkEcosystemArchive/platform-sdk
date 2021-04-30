@@ -28,7 +28,7 @@
 		"@arkecosystem/platform-sdk": "workspace:*",
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
-		"@polkadot/api": "^4.7.2",
+		"@polkadot/api": "^3.11.1",
 		"@polkadot/keyring": "^6.3.1",
 		"@polkadot/rpc-provider": "^4.7.2",
 		"@polkadot/util": "^6.3.1",
