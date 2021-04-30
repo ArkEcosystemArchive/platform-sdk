@@ -2,12 +2,11 @@ import { Managers, Types, Validation } from "@arkecosystem/crypto";
 import Boom from "@hapi/boom";
 import { Server } from "@hapi/hapi";
 
-import { IStoreTransaction } from "./contracts";
-import { memory } from "./memory";
-import { Storage } from "./database";
-import { TransactionStatus } from "./contracts";
-import { transactionSchemaVerifier } from "./transaction-schema-verifier";
+import { IStoreTransaction, TransactionStatus } from "./contracts";
 import { getBaseTransactionId, verifySignatures } from "./crypto";
+import { Storage } from "./database";
+import { memory } from "./memory";
+import { transactionSchemaVerifier } from "./transaction-schema-verifier";
 
 const bootDatabase = (network: string) => {
 	const storage = new Storage();
