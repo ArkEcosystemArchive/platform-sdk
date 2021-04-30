@@ -1,8 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { ProxyProvider, UserSigner } from "@elrondnetwork/erdjs";
-
-import { SignedTransactionData } from "../dto";
 import {
 	Address,
 	Balance,
@@ -11,8 +9,10 @@ import {
 	Mnemonic,
 	Transaction,
 	TransactionPayload,
-	UserSecretKey
+	UserSecretKey,
 } from "@elrondnetwork/erdjs/out";
+
+import { SignedTransactionData } from "../dto";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #provider: ProxyProvider;
@@ -62,14 +62,13 @@ export class TransactionService implements Contracts.TransactionService {
 		const secretKey: UserSecretKey = mnemonic.deriveKey(0);
 		const signer: UserSigner = new UserSigner(secretKey);
 
-		const tx: Transaction = new Transaction(
-			{
-				receiver: Address.fromString(input.data.to),
-				value: Balance.egld(input.data.amount),
-				gasPrice: new GasPrice((input.fee as unknown) as number),
-				gasLimit: new GasLimit((input.feeLimit as unknown) as number),
-				data: new TransactionPayload(input.data.memo),
-			});
+		const tx: Transaction = new Transaction({
+			receiver: Address.fromString(input.data.to),
+			value: Balance.egld(input.data.amount),
+			gasPrice: new GasPrice((input.fee as unknown) as number),
+			gasLimit: new GasLimit((input.feeLimit as unknown) as number),
+			data: new TransactionPayload(input.data.memo),
+		});
 		// tx.setNonce(account.nonce); // TODO Do we need specify this? If so we will need to sync account first, or receive it via param
 		await signer.sign(tx);
 
