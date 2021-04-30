@@ -3358,7 +3358,7 @@ packages:
       '@babel/compat-data': 7.14.0
       '@babel/core': 7.14.0
       '@babel/helper-validator-option': 7.12.17
-      browserslist: 4.16.5
+      browserslist: 4.16.6
       semver: 6.3.0
     dev: true
     peerDependencies:
@@ -7024,7 +7024,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-/vrA5fguVAKKAVTNJjgSm1tRQDHUU6DbwO9IROu/0WAzC8PKhucDSh18J0RMvVeHAn5puMd+QHC2erPRNf8lmg==
-  /browserslist/4.16.5:
+  /browserslist/4.16.6:
     dependencies:
       caniuse-lite: 1.0.30001219
       colorette: 1.2.2
@@ -7036,7 +7036,7 @@ packages:
       node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7
     hasBin: true
     resolution:
-      integrity: sha512-C2HAjrM1AI/djrpAUU/tr4pml1DqLIzJKSLDBXBrNErl9ZCCTXdhwxdJjYc16953+mBWf7Lw+uUJgpgb8cN71A==
+      integrity: sha512-Wspk/PqO+4W9qp5iUTJsa1B/QrYn1keNCcEP5OvP7WBwT4KaDly0uONYmC6Xa3Z5IqnUgS0KcgLYu1l74x0ZXQ==
   /bs-logger/0.2.6:
     dependencies:
       fast-json-stable-stringify: 2.1.0
