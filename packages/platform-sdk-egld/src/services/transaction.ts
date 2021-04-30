@@ -6,6 +6,7 @@ import {
 	GasLimit,
 	GasPrice,
 	Mnemonic,
+	Nonce,
 	ProxyProvider,
 	Transaction,
 	TransactionPayload,
@@ -50,6 +51,10 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "feeLimit");
 		}
 
+		if (input.nonce === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "nonce");
+		}
+
 		const unsignedTransaction = {
 			sender: input.from,
 			receiver: input.data.to,
@@ -60,7 +65,7 @@ export class TransactionService implements Contracts.TransactionService {
 		};
 
 		const mnemonic: Mnemonic = Mnemonic.fromString(input.sign.mnemonic);
-		const secretKey: UserSecretKey = mnemonic.deriveKey(0);
+		const secretKey: UserSecretKey = mnemonic.deriveKey(0); // TODO probably need to consider account index for all bip44 wallets
 		const signer: UserSigner = new UserSigner(secretKey);
 
 		const tx: Transaction = new Transaction({
@@ -69,8 +74,8 @@ export class TransactionService implements Contracts.TransactionService {
 			gasPrice: new GasPrice((input.fee as unknown) as number),
 			gasLimit: new GasLimit((input.feeLimit as unknown) as number),
 			data: new TransactionPayload(input.data.memo),
+			nonce: new Nonce(parseInt(input.nonce))
 		});
-		// tx.setNonce(account.nonce); // TODO Do we need specify this? If so we will need to sync account first, or receive it via param
 		await signer.sign(tx);
 
 		return new SignedTransactionData(tx.getSignature().hex(), unsignedTransaction, tx);
