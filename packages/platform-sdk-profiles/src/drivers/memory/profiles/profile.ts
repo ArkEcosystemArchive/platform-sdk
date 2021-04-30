@@ -19,7 +19,8 @@ import {
 	IReadWriteWallet,
 	ICoinService,
 	IAuthenticator,
-	IWalletFactory, ProfileData,
+	IWalletFactory,
+	ProfileData,
 } from "../../../contracts";
 
 import { PluginRepository } from "../plugins/plugin-repository";
