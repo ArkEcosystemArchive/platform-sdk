@@ -18,7 +18,7 @@ const bootDatabase = (network: string) => {
 	storage.disconnect();
 };
 
-export async function startServer(options: Record<string, string | number | boolean>): Promise<Server> {
+export async function subscribe(options: Record<string, string | number | boolean>): Promise<Server> {
 	const server = new Server({
 		host: options.host as string,
 		port: options.port as number,
