@@ -15,7 +15,7 @@ class Memory {
 	public saveTransaction(transaction: IStoreTransaction): string {
 		this.hasRemainingTransactionSlots(transaction.data.senderPublicKey!);
 
-		transaction.timestamp = Date.now();
+		transaction.timestampReceived = Date.now();
 		transaction.id = getBaseTransactionId(transaction.data);
 
 		this.transactions[transaction.id] = transaction;
@@ -115,7 +115,7 @@ class Memory {
 				throw new Error(`Transaction [${id}] could not be found.`);
 			}
 
-			if (Date.now() - transaction.timestamp > 24 * 60 * 60 * 1000) {
+			if (Date.now() - transaction.timestampReceived > 24 * 60 * 60 * 1000) {
 				this.removeById(id);
 			}
 		}
