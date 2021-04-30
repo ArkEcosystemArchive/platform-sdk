@@ -25,11 +25,6 @@ export class ProfileInitialiser implements IProfileInitialiser {
 
 	/** {@inheritDoc IProfileInitialiser.initialiseSettings} */
 	public initialiseSettings(name: string): void {
-		if (name === undefined) {
-			throw new Error("The name of the profile could not be found. This looks like a bug.");
-		}
-
-		// Default Settings
 		this.#profile.settings().set(ProfileSetting.Name, name);
 		this.#profile.settings().set(ProfileSetting.AdvancedMode, false);
 		this.#profile.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
