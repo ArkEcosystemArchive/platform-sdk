@@ -42,6 +42,12 @@
 			"shouldPublish": true
 		},
 		{
+			"packageName": "@arkecosystem/platform-sdk-ark-musig",
+			"projectFolder": "packages/platform-sdk-ark-musig",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
 			"packageName": "@arkecosystem/platform-sdk-atom",
 			"projectFolder": "packages/platform-sdk-atom",
 			"reviewCategory": "libraries",

@@ -10,6 +10,7 @@ export enum WalletData {
 	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
 	Delegates = "DELEGATES",
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
+	ImportMethod = "IMPORT_METHOD",
 	LedgerPath = "LEDGER_PATH",
 	MultiSignatureParticipants = "MULTI_SIGNATURE_PARTICIPANTS",
 	Sequence = "SEQUENCE",
@@ -41,4 +42,21 @@ export enum WalletSetting {
 	Alias = "ALIAS",
 	Avatar = "AVATAR",
 	Peer = "PEER",
+}
+
+/**
+ * Defines the import methods that can be used for wallets.
+ *
+ * @export
+ * @enum {number}
+ */
+export enum WalletImportMethod {
+	Mnemonic = "MNEMONIC",
+	Address = "ADDRESS",
+	PublicKey = "PUBLIC_KEY",
+	PrivateKey = "PRIVATE_KEY",
+	AddressWithLedgerPath = "ADDRESS_WITH_LEDGER_PATH",
+	MnemonicWithEncryption = "MNEMONIC_WITH_ENCRYPTION",
+	WIF = "WIF",
+	WIFWithEncryption = "WIF_WITH_ENCRYPTION",
 }
