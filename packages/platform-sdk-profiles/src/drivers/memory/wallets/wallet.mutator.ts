@@ -102,6 +102,20 @@ export class WalletMutator implements IWalletMutator {
 		this.avatar(Avatar.make(this.#wallet.address()));
 	}
 
+	/** {@inheritDoc IWalletMutator.extendedPublicKey} */
+	public async extendedPublicKey(
+		publicKey: string,
+		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
+	): Promise<void> {
+		this.#wallet.getAttributes().setMany({ address: publicKey, publicKey });
+
+		if (options.syncIdentity) {
+			await this.#wallet.synchroniser().identity();
+		}
+
+		this.avatar(Avatar.make(this.#wallet.address()));
+	}
+
 	/** {@inheritDoc IWalletMutator.avatar} */
 	public avatar(value: string): void {
 		this.#wallet.getAttributes().set("avatar", value);
