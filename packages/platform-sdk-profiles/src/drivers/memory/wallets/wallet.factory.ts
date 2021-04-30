@@ -104,6 +104,8 @@ export class WalletFactory implements IWalletFactory {
 		address,
 		path,
 	}: IAddressWithLedgerPathOptions): Promise<IReadWriteWallet> {
+		// @TODO: eventually handle the whole process from slip44 path to public key to address
+
 		const wallet: IReadWriteWallet = await this.fromAddress({ coin, network, address });
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.AddressWithLedgerPath);
 
