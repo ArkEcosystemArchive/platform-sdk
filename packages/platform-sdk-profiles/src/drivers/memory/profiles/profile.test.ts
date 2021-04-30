@@ -24,7 +24,7 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
-import { IProfile, ProfileSetting } from "../../../contracts";
+import { IProfile, ProfileData, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
 
 let subject: IProfile;
@@ -161,6 +161,14 @@ test("#usesMultiPeerBroadcasting", async () => {
 	subject.settings().set(ProfileSetting.UseMultiPeerBroadcast, true);
 
 	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
+});
+
+it("should determine if the tutorial has been completed", () => {
+	expect(subject.hasCompletedTutorial()).toBeFalse();
+
+	subject.data().set(ProfileData.HasCompletedTutorial, true);
+
+	expect(subject.hasCompletedTutorial()).toBeTrue();
 });
 
 // it("should fail to encrypt a profile if the password is invalid", () => {

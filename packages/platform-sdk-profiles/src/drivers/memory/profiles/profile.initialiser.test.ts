@@ -61,12 +61,4 @@ describe("ProfileInitialiser", () => {
 		expect(profile.settings().get(ProfileSetting.Name)).toBe("name");
 		expect(profile.settings().get(ProfileSetting.Theme)).toBe("light");
 	});
-
-	it("should initialise the default data", () => {
-		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBeUndefined();
-
-		new ProfileInitialiser(profile).initialiseData();
-
-		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBe(false);
-	});
 });
