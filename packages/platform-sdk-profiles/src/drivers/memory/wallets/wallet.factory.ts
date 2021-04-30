@@ -46,18 +46,46 @@ export class WalletFactory implements IWalletFactory {
 
 		await wallet.mutator().coin(coin, network);
 
+		if (useBIP39 && wallet.network().usesExtendedPublicKey()) {
+			throw new Error(
+				"The configured network uses extended public keys for derivation. Please pass in BIP44 arguments.",
+			);
+		}
+
 		if (useBIP39 && this.allowsDeriveWithBIP39(wallet)) {
 			await wallet.mutator().identity(mnemonic);
 		}
 
 		if (useBIP44 && this.allowsDeriveWithBIP44(wallet)) {
-			await wallet.mutator().address(
-				await wallet
-					.coin()
-					.identity()
-					.publicKey()
-					.fromMnemonic(mnemonic, { bip44: { account: 0 } }),
-			);
+			const publicKey: string = await wallet
+				.coin()
+				.identity()
+				.publicKey()
+				// @TODO: the account index should be configurable
+				.fromMnemonic(mnemonic, { bip44: { account: 0 } });
+
+			/**
+			 * @remarks
+			 * Coins like ADA use extended public keys for the wallets derivation
+			 *
+			 * This means that we need to use the EPK internally and let the coin
+			 * implementation handle the derivation of addresses for transactions
+			 * listing and UTXO collection. This is important so that the clients
+			 * don't have to deal with any coin specifics and guarantees that the
+			 * coin is in full control of the wanted behaviours and insurances it
+			 * needs to guarantee the specification conform derivation of wallets
+			 */
+			if (wallet.network().usesExtendedPublicKey()) {
+				await wallet.mutator().extendedPublicKey(publicKey);
+			} else {
+				await wallet.mutator().address(
+					// @TODO: the address index should be configurable
+					await wallet
+						.identity()
+						.address()
+						.fromMnemonic(mnemonic, { bip44: { account: 0, addressIndex: 0 } }),
+				);
+			}
 		}
 
 		return wallet;
