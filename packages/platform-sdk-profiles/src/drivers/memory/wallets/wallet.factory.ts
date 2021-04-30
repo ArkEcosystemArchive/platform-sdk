@@ -41,8 +41,8 @@ export class WalletFactory implements IWalletFactory {
 		useBIP39 = true,
 		useBIP44 = false,
 	}: IMnemonicOptions): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = new Wallet
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Mnemonic);(uuidv4(), {});
+		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {});
+		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Mnemonic);
 
 		await wallet.mutator().coin(coin, network);
 
