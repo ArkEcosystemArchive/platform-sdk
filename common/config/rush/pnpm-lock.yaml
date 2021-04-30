@@ -1533,9 +1533,10 @@ importers:
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
+      '@ethereumjs/common': 2.2.0
+      '@ethereumjs/tx': 3.1.4
       '@ledgerhq/hw-app-eth': 5.50.0
       bip39: 3.0.4
-      ethereumjs-tx: 2.1.2
       ethereumjs-wallet: 1.0.1
       web3: 1.3.5
     devDependencies:
@@ -1574,6 +1575,8 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
+      '@ethereumjs/common': ^2.2.0
+      '@ethereumjs/tx': ^3.1.4
       '@ledgerhq/hw-app-eth': ^5.50.0
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@types/eslint': ^7.2.4
@@ -1594,7 +1597,6 @@ importers:
       eslint-plugin-prettier: ^3.1.4
       eslint-plugin-simple-import-sort: ^6.0.0
       eslint-plugin-tsdoc: ~0.2.11
-      ethereumjs-tx: ^2.1.2
       ethereumjs-wallet: ^1.0.1
       got: ^11.8.2
       jest: ^26.6.3
@@ -3747,6 +3749,20 @@ packages:
       node: ^10.12.0 || >=12.0.0
     resolution:
       integrity: sha512-2ZPCc+uNbjV5ERJr+aKSPRwZgKd2z11x0EgLvb1PURmUrn9QNRXFqje0Ldq454PfAVyaJYyrDvvIKSFP4NnBog==
+  /@ethereumjs/common/2.2.0:
+    dependencies:
+      crc-32: 1.2.0
+      ethereumjs-util: 7.0.10
+    dev: false
+    resolution:
+      integrity: sha512-PyQiTG00MJtBRkJmv46ChZL8u2XWxNBeAthznAUIUiefxPAXjbkuiCZOuncgJS34/XkMbNc9zMt/PlgKRBElig==
+  /@ethereumjs/tx/3.1.4:
+    dependencies:
+      '@ethereumjs/common': 2.2.0
+      ethereumjs-util: 7.0.10
+    dev: false
+    resolution:
+      integrity: sha512-6cJpmmjCpG5ZVN9NJYtWvmrEQcevw9DIR8hj2ca2PszD2fxbIFXky3Z37gpf8S6u0Npv09kG8It+G4xjydZVLg==
   /@ethersproject/abi/5.0.7:
     dependencies:
       '@ethersproject/address': 5.1.0
@@ -7755,6 +7771,16 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
+  /crc-32/1.2.0:
+    dependencies:
+      exit-on-epipe: 1.0.1
+      printj: 1.1.2
+    dev: false
+    engines:
+      node: '>=0.8'
+    hasBin: true
+    resolution:
+      integrity: sha512-1uBwHxF+Y/4yF5G48fwnKq6QsIXheor3ZLPT80yGBV1oEUwpPojlEhQbWKVw1VwcTQyMGHK1/XMmTjmlsmTTGA==
   /crc/3.8.0:
     dependencies:
       buffer: 5.7.1
@@ -8993,6 +9019,12 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-ov6w/2LCiuyO4RLYGdpFGjkcs0wMTgGE8PrkTHikeUy5iJekXyPIKUjifk5CsE0pt7sMCrMZ3YNqoCj6idQOnQ==
+  /exit-on-epipe/1.0.1:
+    dev: false
+    engines:
+      node: '>=0.8'
+    resolution:
+      integrity: sha512-h2z5mrROTxce56S+pnvAV890uu7ls7f1kEvVGJbw1OlFH3/mlJ5bkXu0KRyW94v37zzHPiUd55iLn3DA7TjWpw==
   /exit/0.1.2:
     dev: true
     engines:
@@ -13336,6 +13368,13 @@ packages:
       node: '>= 10'
     resolution:
       integrity: sha512-7AeGuCYNGmycyQbCqd/3PWH4eOoX/OiCa0uphp57NVTeAGdJGaAliecxwBDHYQCIvrW7aDBZCYeNTP/WX69mkg==
+  /printj/1.1.2:
+    dev: false
+    engines:
+      node: '>=0.8'
+    hasBin: true
+    resolution:
+      integrity: sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ==
   /process-nextick-args/2.0.1:
     resolution:
       integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
@@ -16337,3 +16376,4 @@ packages:
     resolution:
       tarball: https://codeload.github.com/Zondax/bip32-ed25519/tar.gz/0949df01b5c93885339bc28116690292088f6134
     version: 0.0.4
+registry: ''

@@ -139,6 +139,14 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@ethereumjs/common",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@ethereumjs/tx",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@hapi/boom",
       "allowedCategories": [ "libraries" ]
     },
