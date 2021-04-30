@@ -160,6 +160,9 @@ export interface CoinNetwork {
 			privateKey?: boolean;
 			wif?: boolean;
 		};
+		derivation?: {
+			extendedPublicKey: boolean;
+		};
 		expirationType: ExpirationType;
 	};
 	networking: {

@@ -135,7 +135,15 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@hapi/boom",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@hapi/hapi",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@kodekeep/foreman",
       "allowedCategories": [ "libraries" ]
     },
     {
@@ -559,6 +567,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "lodash.minby",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "lodash.orderby",
       "allowedCategories": [ "libraries" ]
     },
@@ -571,11 +583,19 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "micromatch",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "nanocurrency",
       "allowedCategories": [ "libraries" ]
     },
     {
       "name": "nanocurrency-web",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "nanomatch",
       "allowedCategories": [ "libraries" ]
     },
     {
@@ -648,6 +668,10 @@
     },
     {
       "name": "qrcode",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "rate-limiter-flexible",
       "allowedCategories": [ "libraries" ]
     },
     {

@@ -14,6 +14,9 @@ const network: Coins.CoinNetwork = {
 		networkId: "1",
 		slip44: 1815,
 		expirationType: "height",
+		derivation: {
+			extendedPublicKey: true,
+		}
 	},
 	networking: {
 		hosts: [],

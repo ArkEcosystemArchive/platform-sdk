@@ -21,6 +21,7 @@ import {
 	ITransactionService,
 	ISettingRepository,
 	IDataRepository,
+	WalletImportMethod,
 } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
@@ -478,6 +479,46 @@ export class Wallet implements IReadWriteWallet {
 	/** {@inheritDoc IReadWriteWallet.canVote} */
 	public canVote(): boolean {
 		return this.voting().available() > 0;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithMnemonic} */
+	public actsWithMnemonic(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.Mnemonic;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithAddress} */
+	public actsWithAddress(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.Address;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithPublicKey} */
+	public actsWithPublicKey(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.PublicKey;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithPrivateKey} */
+	public actsWithPrivateKey(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.PrivateKey;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithAddressWithLedgerPath} */
+	public actsWithAddressWithLedgerPath(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.AddressWithLedgerPath;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithMnemonicWithEncryption} */
+	public actsWithMnemonicWithEncryption(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.MnemonicWithEncryption;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithWif} */
+	public actsWithWif(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.WIF;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithWifWithEncryption} */
+	public actsWithWifWithEncryption(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.WIFWithEncryption;
 	}
 
 	private restore(): void {
