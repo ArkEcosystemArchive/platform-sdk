@@ -6,7 +6,7 @@ export interface IProfileInitialiser {
 	 * @param {string} name
 	 * @memberof Profile
 	 */
-	initialise(name: string | undefined): void;
+	initialise(name: string): void;
 
 	/**
 	 * Restore the default settings, including the name of the profile.
@@ -15,5 +15,5 @@ export interface IProfileInitialiser {
 	 * @param {string} name
 	 * @memberof Profile
 	 */
-	initialiseSettings(name: string | undefined): void;
+	initialiseSettings(name: string): void;
 }

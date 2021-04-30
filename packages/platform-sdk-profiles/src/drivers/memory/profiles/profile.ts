@@ -223,12 +223,20 @@ export class Profile implements IProfile {
 	public flush(): void {
 		const name: string | undefined = this.settings().get(ProfileSetting.Name);
 
+		if (name === undefined) {
+			throw new Error("The name of the profile could not be found. This looks like a bug.");
+		}
+
 		new ProfileInitialiser(this).initialise(name);
 	}
 
 	/** {@inheritDoc IProfile.initialiseSettings} */
 	public flushSettings(): void {
 		const name: string | undefined = this.settings().get(ProfileSetting.Name);
+
+		if (name === undefined) {
+			throw new Error("The name of the profile could not be found. This looks like a bug.");
+		}
 
 		new ProfileInitialiser(this).initialiseSettings(name);
 	}
