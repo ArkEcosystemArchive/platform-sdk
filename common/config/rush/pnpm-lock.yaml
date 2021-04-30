@@ -77,12 +77,12 @@ importers:
       eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       nock: ^13.0.11
       node-emoji: ^1.10.0
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       type-fest: ^1.0.2
@@ -154,10 +154,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -248,12 +248,12 @@ importers:
       is-url-superb: ^4.0.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       lodash.orderby: ^4.6.0
       nock: ^13.0.11
       node-dotify: ^1.0.2
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       semver: ^7.3.5
       ts-jest: ^26.4.4
@@ -330,11 +330,11 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       ledger-cosmos-js: ^2.1.8
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -418,10 +418,10 @@ importers:
       hdkey: ^2.0.1
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -502,10 +502,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -588,12 +588,12 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       p-each-series: ^2.2.0
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -682,12 +682,12 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -809,7 +809,7 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       kleur: ^4.1.4
       meow: ^9.0.0
@@ -817,7 +817,7 @@ importers:
       npm-check-updates: ^11.5.6
       ora: ^5.4.0
       password-pwnd: ^1.0.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       prompts: ^2.4.1
       rimraf: ^3.0.2
       semver: ^7.3.5
@@ -882,10 +882,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -946,10 +946,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1040,12 +1040,12 @@ importers:
       hdkey: ^2.0.1
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       keytar: ^7.7.0
       nock: ^13.0.11
       node-forge: ^0.10.0
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       safe-buffer: ^5.2.1
       string-crypto: ^2.0.1
@@ -1110,10 +1110,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1123,13 +1123,13 @@ importers:
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@polkadot/api': 3.11.1
-      '@polkadot/keyring': 6.3.1
-      '@polkadot/rpc-provider': 4.7.2
-      '@polkadot/util': 6.3.1
-      '@polkadot/util-crypto': 6.3.1
-      '@polkadot/wasm-crypto': 4.0.2_544bdb17341e34beba43b5b26f7bafb3
-      '@polkadot/x-global': 6.3.1
-      '@polkadot/x-randomvalues': 6.3.1
+      '@polkadot/keyring': 5.9.2
+      '@polkadot/rpc-provider': 3.11.1
+      '@polkadot/util': 5.9.2
+      '@polkadot/util-crypto': 5.9.2
+      '@polkadot/wasm-crypto': 3.2.4_0f35bf840463e596806de0250e87a1b1
+      '@polkadot/x-global': 5.9.2
+      '@polkadot/x-randomvalues': 5.9.2
       '@zondax/ledger-polkadot': 0.13.6
       uuid: 8.3.2
     devDependencies:
@@ -1169,14 +1169,14 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@polkadot/api': ^3.11.1
-      '@polkadot/keyring': ^6.3.1
-      '@polkadot/rpc-provider': ^4.7.2
-      '@polkadot/util': ^6.3.1
-      '@polkadot/util-crypto': ^6.3.1
-      '@polkadot/wasm-crypto': ^4.0.2
-      '@polkadot/x-global': ^6.3.1
-      '@polkadot/x-randomvalues': ^6.3.1
+      '@polkadot/api': ^3.6.4
+      '@polkadot/keyring': ^5.5.1
+      '@polkadot/rpc-provider': ^3.7.3
+      '@polkadot/util': ^5.5.1
+      '@polkadot/util-crypto': ^5.5.1
+      '@polkadot/wasm-crypto': ^3.2.2
+      '@polkadot/x-global': ^5.5.1
+      '@polkadot/x-randomvalues': ^5.5.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -1187,7 +1187,7 @@ importers:
       '@types/uuid': ^8.3.0
       '@typescript-eslint/eslint-plugin': ^4.7.0
       '@typescript-eslint/parser': ^4.7.0
-      '@zondax/ledger-polkadot': ^0.13.6
+      '@zondax/ledger-polkadot': ^0.13.0
       cross-env: ^7.0.3
       eslint: ^7.13.0
       eslint-config-prettier: ^6.15.0
@@ -1199,10 +1199,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1258,7 +1258,7 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@polkadot/api': ^3.11.1
+      '@polkadot/api': ^3.6.4
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -1286,7 +1286,7 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
@@ -1294,7 +1294,7 @@ importers:
       p-retry: ^4.3.0
       pino: ^6.11.0
       pino-pretty: ^4.5.0
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1366,10 +1366,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1443,11 +1443,11 @@ importers:
       eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       node-fetch: ^2.6.1
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1523,10 +1523,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1611,13 +1611,13 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
       p-retry: ^4.3.0
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1704,12 +1704,12 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1770,10 +1770,10 @@ importers:
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1834,10 +1834,10 @@ importers:
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1900,10 +1900,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -1964,12 +1964,12 @@ importers:
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       ky: ^0.25.0
       ky-universal: ^0.8.2
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2029,11 +2029,11 @@ importers:
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       node-fetch: ^2.6.1
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2090,10 +2090,10 @@ importers:
       eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2170,12 +2170,12 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2250,10 +2250,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2322,10 +2322,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2388,10 +2388,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2460,12 +2460,12 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nanocurrency: ~2.5.0
       nanocurrency-web: ~1.3.1
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2537,10 +2537,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2601,10 +2601,10 @@ importers:
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       rss-parser: ^3.9.0
       ts-jest: ^26.4.4
@@ -2725,7 +2725,7 @@ importers:
       inversify: ~5.0.5
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       localforage: ^1.9.0
       mem: ^8.0.0
@@ -2734,7 +2734,7 @@ importers:
       npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
       p-retry: ^4.3.0
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       reflect-metadata: ~0.1.13
       rimraf: ^3.0.2
       semver: ^7.3.5
@@ -2813,10 +2813,10 @@ importers:
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ts-jest: ^26.4.4
       typescript: 4.2.2
@@ -2889,11 +2889,11 @@ importers:
       front-matter: ^4.0.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       joi: ^17.4.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       qrcode: ^1.4.4
       remarkable: ^2.0.1
       rimraf: ^3.0.2
@@ -2961,10 +2961,10 @@ importers:
       eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       tronweb: ^3.1.0
       ts-jest: ^26.4.4
@@ -3033,10 +3033,10 @@ importers:
       eslint-plugin-tsdoc: ~0.2.11
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       stellar-hd-wallet: ^0.0.10
       stellar-sdk: ^7.0.0
@@ -3118,11 +3118,11 @@ importers:
       eslint-plugin-unused-imports: ^1.0.1
       jest: ^26.6.3
       jest-extended: ^0.11.5
-      jest-localstorage-mock: ^2.4.10
+      jest-localstorage-mock: ^2.4.3
       lodash: ^4.17.20
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.1.2
       rimraf: ^3.0.2
       ripple-binary-codec: ^1.0.2
       ripple-keypairs: ^1.0.2
@@ -4930,16 +4930,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-h9AhrzyUmludbmo0ixRFLEyRJvUc7GTl5koSBrG0uv+9Yn0I/7YRgAKn3zKcUVZyvgoLvzZnBFwekGbdFcl9Yg==
-  /@polkadot/keyring/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/util': 6.3.1
-      '@polkadot/util-crypto': 6.3.1
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-uVWhdd4TVtLc4R2OtiKHJE5jgJZnuEognbgjl5RT2uKrCJYTsYnq0IeRTvMmtdPJAJvGeD3JTsX2ekgt3tJpuw==
   /@polkadot/metadata/3.11.1:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -4951,33 +4941,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Z3KtOTX2kU+vvbRDiGY+qyPpF/4xTpnUipoNGijIGQ/EWWcgrm8sSgPzZQhHCfgIqM+jq3g9GvPMYeQp2Yy3ng==
-  /@polkadot/metadata/4.7.2:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/types': 4.7.2
-      '@polkadot/types-known': 4.7.2
-      '@polkadot/util': 6.3.1
-      '@polkadot/util-crypto': 6.3.1
-      bn.js: 4.12.0
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-+YWeD828cpIpD31epoSZfK5kmtJsBcgTTyYsQ4bBO4NBJceLTipmHgyLXs7fXjU4cC6uvSuBnAV0KGJW7L9nDQ==
   /@polkadot/networks/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
     dev: false
     resolution:
       integrity: sha512-JQyXJDJTZKQtn8y3HBHWDhiBfijhpiXjVEhY+fKvFcQ82TaKmzhnipYX0EdBoopZbuxpn/BJy6Y1Y/3y85EC+g==
-  /@polkadot/networks/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-oANup0CLGt75CPbE3gz2HUWUlqQKucImdb1TtStLXMUH+Aj8ZOnQFA2lwixzaRdx+ymPfmEL7GkF36i96OqQVw==
   /@polkadot/rpc-core/3.11.1:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5003,22 +4972,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-5OKh3rAg8l10M+tGLCoxhEoH9uEtK0ehJfOHUmdtwmwIk5aBFZ/ZTeiDkPM+/l84PCzYmp2uzO+YNsyMWUoVLw==
-  /@polkadot/rpc-provider/4.7.2:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/types': 4.7.2
-      '@polkadot/util': 6.3.1
-      '@polkadot/util-crypto': 6.3.1
-      '@polkadot/x-fetch': 6.3.1
-      '@polkadot/x-global': 6.3.1
-      '@polkadot/x-ws': 6.3.1
-      bn.js: 4.12.0
-      eventemitter3: 4.0.7
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-nvKScoPTzi7PFA5XnVI1lbebLjdwF6OcvWC0QvaEUrbwoG3NPFtoAGF6r2HloX0Q/Qo6FEHowrX0nY4gTM+QCw==
   /@polkadot/types-known/3.11.1:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5029,18 +4982,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ImAxyCdqblmlXaMlgvuXZ6wzZgOYgE40FgWaYRJpFXRGJLDwtcJcpVI+7m/ns5dJ3WujboEMOHVR1HPpquw8Jw==
-  /@polkadot/types-known/4.7.2:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/networks': 6.3.1
-      '@polkadot/types': 4.7.2
-      '@polkadot/util': 6.3.1
-      bn.js: 4.12.0
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-vlIMBtBdVYHyjWqonQ39PCdZJ9WeTsA5h5zr2mEpkCSoopby5pZ6eOR8CPqjc1uYbdDHT72Dbtx8Wr9L7z8HXg==
   /@polkadot/types/3.11.1:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5053,20 +4994,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-+BWsmveYVkLFx/csvPmU+NhNFhf+0srAt2d0f+7y663nitc/sng1AcEDPbrbXHSQVyPdvI20Mh4Escl4aR+TLw==
-  /@polkadot/types/4.7.2:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/metadata': 4.7.2
-      '@polkadot/util': 6.3.1
-      '@polkadot/util-crypto': 6.3.1
-      '@polkadot/x-rxjs': 6.3.1
-      '@types/bn.js': 4.11.6
-      bn.js: 4.12.0
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-8qj/f6YAv5XCDLej60uWlX+cjuz2qt6AJKemi+lozA4vYZ9XTXIODYLv/XfjimbVABzeLdIAwWX1OQO9+F0Gng==
   /@polkadot/util-crypto/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5088,29 +5015,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-d8CW2grI3gWi6d/brmcZQWaMPHqQq5z7VcM74/v8D2KZ+hPYL3B0Jn8zGL1vtgMz2qdpWrZdAe89LBC8BvM9bw==
-  /@polkadot/util-crypto/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/networks': 6.3.1
-      '@polkadot/util': 6.3.1
-      '@polkadot/wasm-crypto': 4.0.2_544bdb17341e34beba43b5b26f7bafb3
-      '@polkadot/x-randomvalues': 6.3.1
-      base-x: 3.0.8
-      base64-js: 1.5.1
-      blakejs: 1.1.0
-      bn.js: 4.12.0
-      create-hash: 1.2.0
-      elliptic: 6.5.4
-      hash.js: 1.1.7
-      js-sha3: 0.8.0
-      scryptsy: 2.1.0
-      tweetnacl: 1.0.3
-      xxhashjs: 0.2.2
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-fwH4t6EN2XACwJB2Z5xUyNo4mQ1RXJj0MgVaaLua8PbG0qq9tt4eaEbdVzrm7A6igIfsTntDoZISTfVjBcRtkQ==
   /@polkadot/util/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5123,44 +5027,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-p225NJusnXeu7i2iAb8HAGWiMOUAnRaIyblIjJ4F89ZFZZ4amyliGxe5gKcyjRgxAJ44WdKyBLl/8L3rNv8hmQ==
-  /@polkadot/util/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/x-textdecoder': 6.3.1
-      '@polkadot/x-textencoder': 6.3.1
-      '@types/bn.js': 4.11.6
-      bn.js: 4.12.0
-      camelcase: 5.3.1
-      ip-regex: 4.3.0
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-M9pGaXSB67DZPckdNQU29wq5W7BUOh6qeu5LonzxpUek+riJfbiF9JOgZQ2Q/aEFYbd1hqLbOMsLRZLhSmlbYw==
   /@polkadot/wasm-crypto-asmjs/3.2.4:
     dependencies:
       '@babel/runtime': 7.13.17
     dev: false
     resolution:
       integrity: sha512-fgN26iL+Pbb35OYsDIRHC74Xnwde+A5u3OjEcQ9zJhM391eOTuKsQ2gyC9TLNAKqeYH8pxsa27yjRO71We7FUA==
-  /@polkadot/wasm-crypto-asmjs/4.0.2:
-    dependencies:
-      '@babel/runtime': 7.13.17
-    dev: false
-    resolution:
-      integrity: sha512-hlebqtGvfjg2ZNm4scwBGVHwOwfUhy2yw5RBHmPwkccUif3sIy4SAzstpcVBIVMdAEvo746bPWEInA8zJRcgJA==
   /@polkadot/wasm-crypto-wasm/3.2.4:
     dependencies:
       '@babel/runtime': 7.13.17
     dev: false
     resolution:
       integrity: sha512-Q/3IEpoo7vkTzg40GxehRK000A9oBgjbh/uWCNQ8cMqWLYYCfzZy4NIzw8szpxNiSiGfGL0iZlP4ZSx2ZqEe2g==
-  /@polkadot/wasm-crypto-wasm/4.0.2:
-    dependencies:
-      '@babel/runtime': 7.13.17
-    dev: false
-    resolution:
-      integrity: sha512-de/AfNPZ0uDKFWzOZ1rJCtaUbakGN29ks6IRYu6HZTRg7+RtqvE1rIkxabBvYgQVHIesmNwvEA9DlIkS6hYRFQ==
   /@polkadot/wasm-crypto/3.2.4_0f35bf840463e596806de0250e87a1b1:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5174,19 +5052,6 @@ packages:
       '@polkadot/x-randomvalues': '*'
     resolution:
       integrity: sha512-poeRU91zzZza0ZectT63vBiAqh6DsHCyd3Ogx1U6jsYiRa0yuECMWJx1onvnseDW4tIqsC8vZ/9xHXWwhjTAVg==
-  /@polkadot/wasm-crypto/4.0.2_544bdb17341e34beba43b5b26f7bafb3:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/util': 6.3.1
-      '@polkadot/wasm-crypto-asmjs': 4.0.2
-      '@polkadot/wasm-crypto-wasm': 4.0.2
-      '@polkadot/x-randomvalues': 6.3.1
-    dev: false
-    peerDependencies:
-      '@polkadot/util': '*'
-      '@polkadot/x-randomvalues': '*'
-    resolution:
-      integrity: sha512-2h9FuQFkBc+B3TwSapt6LtyPvgtd0Hq9QsHW8g8FrmKBFRiiFKYRpfJKHCk0aCZzuRf9h95bQl/X6IXAIWF2ng==
   /@polkadot/x-fetch/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5196,17 +5061,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Nx7GfyOmMdqn5EX+wf6PnIwleQX+aGqzdbYhozNLF54IoNFLHLOs6hCYnBlKbmM1WyukMZMjg2YxyZRQWcHKPQ==
-  /@polkadot/x-fetch/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/x-global': 6.3.1
-      '@types/node-fetch': 2.5.10
-      node-fetch: 2.6.1
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-goBtKZarq5sXV2G98inj2v1ivVNF9gif8sg6IqsGRbljca6K6pZWTVd0yGWe7OABnCkFQotk283nly9nkr9+1g==
   /@polkadot/x-global/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5215,16 +5069,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-wpY6IAOZMGiJQa8YMm7NeTLi9bwnqqVauR+v7HwyrssnGPuYX8heb6BQLOnnnPh/EK0+M8zNtwRBU48ez0/HOg==
-  /@polkadot/x-global/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@types/node-fetch': 2.5.10
-      node-fetch: 2.6.1
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-eFooGQdxJpiOsm3AKTSMInaecBKaQ/tqOUJNm/CpdJalCqTDMp/qzgj64Uflk9eUqGgk7jB7Q5FaQdyWsC0Mtg==
   /@polkadot/x-randomvalues/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5232,15 +5076,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Zv+eXSP3oBImMnB82y05Doo0A96WUFsQDbnLHI3jFHioIg848cL0nndB9TgBwPaFkZ2oiwoHEC8yxqNI6/jkzQ==
-  /@polkadot/x-randomvalues/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/x-global': 6.3.1
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-SZ5MUYm1fd1fgGFexMWbbG8zZgCS7b9QNKaIcnv1Dwlfp2meDoDlgoedn+1pCJ6VEa1adswqLHX4WbYA4D9ynA==
   /@polkadot/x-rxjs/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5248,15 +5083,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-cuF4schclspOfAqEPvbcA3aQ9d3TBy2ORZ8YehxD0ZSHWJNhefHDIUDgS5T3NtPhSKgcEmSlI5TfVfgGFxgVMg==
-  /@polkadot/x-rxjs/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      rxjs: 6.6.7
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-Z9mbvpixr0fopQh049tFlR8r/RItOyYRL4P7YqwnfeROqxU4R8UTmmB8As9y/zy0O5Jlkjzy9MdyQgwzhGQOcQ==
   /@polkadot/x-textdecoder/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5264,15 +5090,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MCkgITwGY3tG0UleDkBJEoiKGk/YWYwMM5OR6fNo07RymHRtJ8OLJC+Sej9QD05yz6TIhFaaRRYzmtungIcwTw==
-  /@polkadot/x-textdecoder/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/x-global': 6.3.1
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-lLb11yaAmyx2STw7ZmdgPtV7LI26U/5h1K527cM7QnxgTQgYggtAt4f9aLHiWsmOCvnT0U0PWsWSUbAJrLHLBA==
   /@polkadot/x-textencoder/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5280,15 +5097,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-IjdLY3xy0nUfps1Bdi0tRxAX7X081YyoiSWExwqUkChdcYGMqMe3T2wqrrt9qBr2IkW8O/tlfYBiZXdII0YCcw==
-  /@polkadot/x-textencoder/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/x-global': 6.3.1
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-7V5OuT43JPTm7rrwdBEMzXAF5nLg+t6q24ntZHNcFUH1pdkP/+2f3vGM3e9BK5k4wkQLoepod5gyY6Qbw9bsYQ==
   /@polkadot/x-ws/5.9.2:
     dependencies:
       '@babel/runtime': 7.13.17
@@ -5298,17 +5106,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-6A/cteC0B3hm64/xG6DNG8qGsHAXJgAy9wjcB38qnoJGYl12hysIFjPeHD+V0W/LOl9payW6kpZzhisLlVOZpQ==
-  /@polkadot/x-ws/6.3.1:
-    dependencies:
-      '@babel/runtime': 7.13.17
-      '@polkadot/x-global': 6.3.1
-      '@types/websocket': 1.0.2
-      websocket: 1.0.34
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-bDb9a+bxoaNOza0EeLp9M6FKYz9ogJcFQzRP+YR6ND7oQ0QcQG06XloRKTU0wtcZRKP8AzkYYN+FAc/6bnIqTw==
   /@ptkdev/logger/1.7.2:
     dependencies:
       chalk: 4.1.1
