@@ -19,7 +19,7 @@ import {
 	IReadWriteWallet,
 	ICoinService,
 	IAuthenticator,
-	IWalletFactory,
+	IWalletFactory, ProfileData,
 } from "../../../contracts";
 
 import { PluginRepository } from "../plugins/plugin-repository";
@@ -351,5 +351,10 @@ export class Profile implements IProfile {
 		await this.wallets().restore();
 
 		await this.contacts().restore();
+	}
+
+	/** {@inheritDoc IProfile.hasCompletedTutorial} */
+	public hasCompletedTutorial(): boolean {
+		return this.#dataRepository.has(ProfileData.HasCompletedTutorial);
 	}
 }
