@@ -111,6 +111,13 @@ export class Network {
 	}
 
 	/**
+	 * Determine if the network uses an extended public key for derivation.
+	 */
+	public usesExtendedPublicKey(): boolean {
+		return this.#network.crypto.derivation?.extendedPublicKey === true;
+	}
+
+	/**
 	 * Determine if the given feature is enabled.
 	 *
 	 * @param feature

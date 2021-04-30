@@ -560,4 +560,68 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	canVote(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a mnemonic.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	actsWithMnemonic(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a address.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	actsWithAddress(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a public key.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	actsWithPublicKey(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a private key.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	actsWithPrivateKey(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a address with ledger path.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	actsWithAddressWithLedgerPath(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a mnemonic with encryption.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	actsWithMnemonicWithEncryption(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a wif.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	actsWithWif(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a wif with encryption.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	actsWithWifWithEncryption(): boolean;
 }

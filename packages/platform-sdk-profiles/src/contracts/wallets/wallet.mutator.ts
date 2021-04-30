@@ -36,6 +36,16 @@ export interface IWalletMutator {
 	address(address: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<void>;
 
 	/**
+	 * Set the extended public key and optionally synchronise the wallet.
+	 *
+	 * @param {string} publicKey
+	 * @param {{ syncIdentity: boolean; validate: boolean }} [options]
+	 * @return {Promise<void>}
+	 * @memberof void
+	 */
+	extendedPublicKey(publicKey: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<void>;
+
+	/**
 	 * Set the avatar.
 	 *
 	 * @param {string} value

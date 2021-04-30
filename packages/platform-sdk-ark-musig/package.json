@@ -1,11 +1,14 @@
 {
-	"name": "@arkecosystem/platform-sdk-coincap",
+	"name": "@arkecosystem/platform-sdk-ark-musig",
 	"version": "6.0.5",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
 	"main": "dist/index",
 	"types": "dist/index",
+	"bin": {
+		"mark": "bin/run"
+	},
 	"files": [
 		"/dist"
 	],
@@ -22,21 +25,27 @@
 		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
 	},
 	"jest": {
-		"preset": "../../jest.coverage.js"
+		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "workspace:*",
-		"@arkecosystem/platform-sdk-intl": "workspace:*",
-		"@arkecosystem/platform-sdk-support": "workspace:*"
+		"@arkecosystem/crypto": "^3.0.0-next.20",
+		"@hapi/boom": "^9.1.0",
+		"@hapi/hapi": "^20.1.0",
+		"@konceiver/foreman": "^2.0.1",
+		"better-sqlite3": "^7.1.2",
+		"fs-extra": "^9.1.0",
+		"uuid": "^8.3.2",
+		"meow": "^9.0.0"
 	},
 	"devDependencies": {
-		"@arkecosystem/platform-sdk-http-got": "workspace:*",
+		"@sindresorhus/tsconfig": "^0.7.0",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/jest": "^26.0.15",
 		"@types/node": "^14.14.25",
 		"@types/prettier": "^2.1.5",
 		"@types/rimraf": "^3.0.0",
+		"@types/uuid": "^8.3.0",
 		"@typescript-eslint/eslint-plugin": "^4.7.0",
 		"@typescript-eslint/parser": "^4.7.0",
 		"cross-env": "^7.0.2",
