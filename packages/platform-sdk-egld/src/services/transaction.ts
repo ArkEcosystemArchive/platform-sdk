@@ -74,7 +74,7 @@ export class TransactionService implements Contracts.TransactionService {
 			gasPrice: new GasPrice((input.fee as unknown) as number),
 			gasLimit: new GasLimit((input.feeLimit as unknown) as number),
 			data: new TransactionPayload(input.data.memo),
-			nonce: new Nonce(parseInt(input.nonce))
+			nonce: new Nonce(parseInt(input.nonce)),
 		});
 		await signer.sign(tx);
 
