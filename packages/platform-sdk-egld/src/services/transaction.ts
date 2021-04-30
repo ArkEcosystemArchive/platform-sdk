@@ -9,9 +9,9 @@ import {
 	GasLimit,
 	GasPrice,
 	Mnemonic,
-	Transaction, TransactionPayload,
-	UserSecretKey,
-	UserWallet
+	Transaction,
+	TransactionPayload,
+	UserSecretKey
 } from "@elrondnetwork/erdjs/out";
 
 export class TransactionService implements Contracts.TransactionService {
