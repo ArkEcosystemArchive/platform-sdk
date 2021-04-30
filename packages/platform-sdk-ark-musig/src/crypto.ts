@@ -1,11 +1,12 @@
 import { Crypto, Interfaces, Transactions } from "@arkecosystem/crypto";
 
 // Get base transaction id without signatures
-export const getBaseTransactionId = (transaction: Interfaces.ITransactionData): string => Transactions.Utils.getId({
-	...transaction,
-	signature: undefined,
-	signatures: [],
-});
+export const getBaseTransactionId = (transaction: Interfaces.ITransactionData): string =>
+	Transactions.Utils.getId({
+		...transaction,
+		signature: undefined,
+		signatures: [],
+	});
 
 // Verifies that all signatures are valid
 export const verifySignatures = (
