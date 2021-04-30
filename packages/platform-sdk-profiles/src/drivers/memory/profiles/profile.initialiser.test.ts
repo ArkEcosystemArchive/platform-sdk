@@ -42,13 +42,13 @@ describe("ProfileInitialiser", () => {
 		profile.settings().set(ProfileSetting.Theme, "dark");
 
 		expect(profile.contacts().count()).toBe(1);
-		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBe(true);
+		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBeTrue();
 		expect(profile.settings().get(ProfileSetting.Theme)).toBe("dark");
 
 		new ProfileInitialiser(profile).initialise("name");
 
 		expect(profile.contacts().count()).toBe(0);
-		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBe(false);
+		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBeUndefined();
 		expect(profile.settings().get(ProfileSetting.Theme)).toBe("light");
 	});
 
