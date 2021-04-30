@@ -113,7 +113,7 @@ export class Network {
 	/**
 	 * Determine if the network uses an extended public key for derivation.
 	 */
-	 public usesExtendedPublicKey(): boolean {
+	public usesExtendedPublicKey(): boolean {
 		return this.#network.crypto.derivation?.extendedPublicKey === true;
 	}
 

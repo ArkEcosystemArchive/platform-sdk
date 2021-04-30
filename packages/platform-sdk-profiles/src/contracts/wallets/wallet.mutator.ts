@@ -43,7 +43,7 @@ export interface IWalletMutator {
 	 * @return {Promise<void>}
 	 * @memberof void
 	 */
-	 extendedPublicKey(publicKey: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<void>;
+	extendedPublicKey(publicKey: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<void>;
 
 	/**
 	 * Set the avatar.

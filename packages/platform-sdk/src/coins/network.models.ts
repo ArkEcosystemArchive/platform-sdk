@@ -162,7 +162,7 @@ export interface CoinNetwork {
 		};
 		derivation?: {
 			extendedPublicKey: boolean;
-		}
+		};
 		expirationType: ExpirationType;
 	};
 	networking: {

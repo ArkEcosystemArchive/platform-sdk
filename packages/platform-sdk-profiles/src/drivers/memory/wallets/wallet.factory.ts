@@ -47,7 +47,9 @@ export class WalletFactory implements IWalletFactory {
 		await wallet.mutator().coin(coin, network);
 
 		if (useBIP39 && wallet.network().usesExtendedPublicKey()) {
-			throw new Error("The configured network uses extended public keys for derivation. Please pass in BIP44 arguments.");
+			throw new Error(
+				"The configured network uses extended public keys for derivation. Please pass in BIP44 arguments.",
+			);
 		}
 
 		if (useBIP39 && this.allowsDeriveWithBIP39(wallet)) {
@@ -73,12 +75,15 @@ export class WalletFactory implements IWalletFactory {
 			 * coin is in full control of the wanted behaviours and insurances it
 			 * needs to guarantee the specification conform derivation of wallets
 			 */
-			if(wallet.network().usesExtendedPublicKey()) {
+			if (wallet.network().usesExtendedPublicKey()) {
 				await wallet.mutator().extendedPublicKey(publicKey);
 			} else {
 				await wallet.mutator().address(
 					// @TODO: the address index should be configurable
-					await wallet.identity().address().fromMnemonic(mnemonic, { bip44: { account: 0, addressIndex: 0 } }),
+					await wallet
+						.identity()
+						.address()
+						.fromMnemonic(mnemonic, { bip44: { account: 0, addressIndex: 0 } }),
 				);
 			}
 		}
