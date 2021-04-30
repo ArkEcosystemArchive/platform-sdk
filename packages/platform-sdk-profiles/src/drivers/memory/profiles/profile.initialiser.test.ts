@@ -36,7 +36,7 @@ describe("ProfileInitialiser", () => {
 		State.profile(profile);
 	});
 
-	it("should be able to flush services like contacts, data, settings,...", () => {
+	it("should flush service data", () => {
 		profile.contacts().create("test");
 		profile.data().set(ProfileData.HasCompletedTutorial, true);
 		profile.settings().set(ProfileSetting.Theme, "dark");
@@ -52,7 +52,7 @@ describe("ProfileInitialiser", () => {
 		expect(profile.settings().get(ProfileSetting.Theme)).toBe("light");
 	});
 
-	it("should be able to initialise default settings", () => {
+	it("should initialise the default settings", () => {
 		expect(profile.settings().get(ProfileSetting.Name)).toBeUndefined();
 		expect(profile.settings().get(ProfileSetting.Theme)).toBeUndefined();
 
@@ -62,7 +62,7 @@ describe("ProfileInitialiser", () => {
 		expect(profile.settings().get(ProfileSetting.Theme)).toBe("light");
 	});
 
-	it("should be able to initialise default data", () => {
+	it("should initialise the default data", () => {
 		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBeUndefined();
 
 		new ProfileInitialiser(profile).initialiseData();
