@@ -1,7 +1,7 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
-import { Transaction } from "@ethereumjs/tx";
 import Common from "@ethereumjs/common";
+import { Transaction } from "@ethereumjs/tx";
 import Web3 from "web3";
 
 import { SignedTransactionData } from "../dto";
@@ -73,7 +73,7 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			const transaction: Transaction = new Transaction(data, {
-				common: Common.forCustomChain(this.#chain, {})
+				common: Common.forCustomChain(this.#chain, {}),
 			});
 
 			transaction.sign(Buffoon.fromHex(privateKey));
