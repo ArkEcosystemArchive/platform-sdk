@@ -131,6 +131,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@elrondnetwork/erdjs",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@emurgo/cardano-serialization-lib-nodejs",
       "allowedCategories": [ "libraries" ]
     },

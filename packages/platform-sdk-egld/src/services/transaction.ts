@@ -1,8 +1,18 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { BasicWallet, BigVal, ProxyProvider } from "elrondjs";
+import { ProxyProvider, UserSigner } from "@elrondnetwork/erdjs";
 
 import { SignedTransactionData } from "../dto";
+import {
+	Address,
+	Balance,
+	GasLimit,
+	GasPrice,
+	Mnemonic,
+	Transaction, TransactionPayload,
+	UserSecretKey,
+	UserWallet
+} from "@elrondnetwork/erdjs/out";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #provider: ProxyProvider;
@@ -48,12 +58,22 @@ export class TransactionService implements Contracts.TransactionService {
 			data: input.data.memo,
 		};
 
-		const signedTransaction = await BasicWallet.fromMnemonic(input.sign.mnemonic).signTransaction(
-			unsignedTransaction,
-			this.#provider,
-		);
+		const mnemonic: Mnemonic = Mnemonic.fromString(input.sign.mnemonic);
+		const secretKey: UserSecretKey = mnemonic.deriveKey(0);
+		const signer: UserSigner = new UserSigner(secretKey);
 
-		return new SignedTransactionData(signedTransaction.signature, unsignedTransaction, signedTransaction);
+		const tx: Transaction = new Transaction(
+			{
+				receiver: Address.fromString(input.data.to),
+				value: Balance.egld(input.data.amount),
+				gasPrice: new GasPrice((input.fee as unknown) as number),
+				gasLimit: new GasLimit((input.feeLimit as unknown) as number),
+				data: new TransactionPayload(input.data.memo),
+			});
+		// tx.setNonce(account.nonce); // TODO Do we need specify this? If so we will need to sync account first, or receive it via param
+		await signer.sign(tx);
+
+		return new SignedTransactionData(tx.getSignature().hex(), unsignedTransaction, tx);
 	}
 
 	public async secondSignature(
