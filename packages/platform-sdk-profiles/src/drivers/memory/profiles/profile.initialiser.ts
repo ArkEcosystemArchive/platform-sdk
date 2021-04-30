@@ -1,4 +1,4 @@
-import { IProfile, ProfileSetting, ProfileData } from "../../../contracts";
+import { IProfile, ProfileSetting } from "../../../contracts";
 import { IProfileInitialiser } from "../../../contracts/profiles/profile.initialiser";
 import { emitProfileChanged } from "../helpers";
 
@@ -21,11 +21,6 @@ export class ProfileInitialiser implements IProfileInitialiser {
 
 		// Default Settings
 		this.initialiseSettings(name);
-
-		// Default Data
-		this.initialiseData();
-
-		emitProfileChanged();
 	}
 
 	/** {@inheritDoc IProfileInitialiser.initialiseSettings} */
@@ -49,10 +44,7 @@ export class ProfileInitialiser implements IProfileInitialiser {
 		this.#profile.settings().set(ProfileSetting.UseCustomPeer, false);
 		this.#profile.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
 		this.#profile.settings().set(ProfileSetting.UseTestNetworks, false);
-	}
 
-	/** {@inheritDoc IProfileInitialiser.initialiseData} */
-	public initialiseData(): void {
-		this.#profile.data().set(ProfileData.HasCompletedTutorial, false);
+		emitProfileChanged();
 	}
 }
