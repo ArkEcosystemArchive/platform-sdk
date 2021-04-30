@@ -1,16 +1,17 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { ProxyProvider, UserSigner } from "@elrondnetwork/erdjs";
 import {
 	Address,
 	Balance,
 	GasLimit,
 	GasPrice,
 	Mnemonic,
+	ProxyProvider,
 	Transaction,
 	TransactionPayload,
 	UserSecretKey,
-} from "@elrondnetwork/erdjs/out";
+	UserSigner,
+} from "@elrondnetwork/erdjs";
 
 import { SignedTransactionData } from "../dto";
 
