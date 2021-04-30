@@ -80,7 +80,6 @@ export class WalletFactory implements IWalletFactory {
 					.coin()
 					.identity()
 					.publicKey()
-					// @ts-ignore - We currently require all bip44 parameters to be specified but only need the account index to derive the account public key
 					.fromMnemonic(mnemonic, { bip44: { account: 0 } }),
 			);
 		}
