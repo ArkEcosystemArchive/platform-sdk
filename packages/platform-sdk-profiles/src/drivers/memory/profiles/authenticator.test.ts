@@ -4,7 +4,7 @@ import "reflect-metadata";
 import { bootContainer } from "../../../../test/helpers";
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
-import { MemoryPassword } from "../../../helpers/password";
+import { MemoryPassword } from "../../../helpers";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 
