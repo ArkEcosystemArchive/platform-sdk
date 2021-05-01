@@ -31,7 +31,7 @@
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@elrondnetwork/elrond-core-js": "^2.1.0",
 		"bech32": "^2.0.0",
-		"elrondjs": "^2.7.0"
+		"@elrondnetwork/erdjs": "^4.1.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",

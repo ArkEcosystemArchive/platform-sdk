@@ -1,6 +1,18 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { BasicWallet, BigVal, ProxyProvider } from "elrondjs";
+import {
+	Address,
+	Balance,
+	GasLimit,
+	GasPrice,
+	Mnemonic,
+	Nonce,
+	ProxyProvider,
+	Transaction,
+	TransactionPayload,
+	UserSecretKey,
+	UserSigner,
+} from "@elrondnetwork/erdjs";
 
 import { SignedTransactionData } from "../dto";
 
@@ -39,21 +51,34 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "feeLimit");
 		}
 
+		if (input.nonce === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "nonce");
+		}
+
 		const unsignedTransaction = {
 			sender: input.from,
 			receiver: input.data.to,
-			value: new BigVal(input.data.amount, "coins"),
+			value: Balance.egld(input.data.amount),
 			gasPrice: (input.fee as unknown) as number,
 			gasLimit: (input.feeLimit as unknown) as number,
 			data: input.data.memo,
 		};
 
-		const signedTransaction = await BasicWallet.fromMnemonic(input.sign.mnemonic).signTransaction(
-			unsignedTransaction,
-			this.#provider,
-		);
+		const mnemonic: Mnemonic = Mnemonic.fromString(input.sign.mnemonic);
+		const secretKey: UserSecretKey = mnemonic.deriveKey(0); // TODO probably need to consider account index for all bip44 wallets
+		const signer: UserSigner = new UserSigner(secretKey);
 
-		return new SignedTransactionData(signedTransaction.signature, unsignedTransaction, signedTransaction);
+		const tx: Transaction = new Transaction({
+			receiver: Address.fromString(input.data.to),
+			value: Balance.egld(input.data.amount),
+			gasPrice: new GasPrice((input.fee as unknown) as number),
+			gasLimit: new GasLimit((input.feeLimit as unknown) as number),
+			data: new TransactionPayload(input.data.memo),
+			nonce: new Nonce(parseInt(input.nonce)),
+		});
+		await signer.sign(tx);
+
+		return new SignedTransactionData(tx.getSignature().hex(), unsignedTransaction, tx);
 	}
 
 	public async secondSignature(
