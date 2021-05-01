@@ -299,4 +299,12 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	getAttributes(): AttributeBag<IProfileInput>;
+
+	/**
+	 * Determine if the tutorial has been completed.
+	 *
+	 * @return {boolean}
+	 * @memberof IProfile
+	 */
+	hasCompletedTutorial(): boolean;
 }
