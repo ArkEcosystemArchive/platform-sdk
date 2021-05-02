@@ -16,7 +16,7 @@ export class ProfileEncrypter implements IProfileEncrypter {
 			password = MemoryPassword.get();
 		}
 
-		if (!this.#profile.auth().verifyPassword(password)) {
+		if (!this.#profile.auth().verifyPassword({ profile: this.#profile, password })) {
 			throw new Error("The password did not match our records.");
 		}
 
