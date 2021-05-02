@@ -32,12 +32,25 @@ it("should set the password", async () => {
 it("should verify the password", async () => {
 	subject.setPassword("password");
 
-	expect(subject.verifyPassword("password")).toBeTrue();
-	expect(subject.verifyPassword("invalid")).toBeFalse();
+	expect(subject.verifyPassword({ password: "password" })).toBeTrue();
+	expect(subject.verifyPassword({ password: "invalid" })).toBeFalse();
+});
+
+it("should verify the password for a given profile", async () => {
+	const passwordProtectedProfile = new Profile({
+		id: "password-protected",
+		name: "name",
+		avatar: "avatar",
+		password: "$2a$10$Qy/Mcjg2AAZ.Wqj7MUba4eQtNTC5c4Vh6SCWKezmolrp/58TlCA8u", // password
+		data: "",
+	});
+
+	expect(subject.verifyPassword({ profile: passwordProtectedProfile, password: "password" })).toBeTrue();
+	expect(subject.verifyPassword({ profile: passwordProtectedProfile, password: "invalid" })).toBeFalse();
 });
 
 it("should fail to verify the password for a profile that doesn't use a profile", async () => {
-	expect(() => subject.verifyPassword("password")).toThrow("No password is set.");
+	expect(() => subject.verifyPassword({ password: "password" })).toThrow("No password is set.");
 });
 
 it("should change the password", () => {
