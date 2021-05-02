@@ -1,7 +1,7 @@
 import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 
 import { MemoryPassword } from "../../../helpers/password";
-import { IAuthenticator, ProfileSetting } from "../../../contracts";
+import { IAuthenticator, ProfileSetting, IProfile } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { emitProfileChanged } from "../helpers";
 
@@ -25,12 +25,14 @@ export class Authenticator implements IAuthenticator {
 	}
 
 	/** {@inheritDoc IAuthenticator.verifyPassword} */
-	public verifyPassword(password: string): boolean {
-		if (!State.profile().usesPassword()) {
+	public verifyPassword({ profile, password }: { profile?: IProfile; password: string }): boolean {
+		const activeProfile = profile || State.profile();
+
+		if (!activeProfile.usesPassword()) {
 			throw new Error("No password is set.");
 		}
 
-		return Bcrypt.verify(State.profile().getAttributes().get("password"), password);
+		return Bcrypt.verify(activeProfile.getAttributes().get("password"), password);
 	}
 
 	/** {@inheritDoc IAuthenticator.changePassword} */

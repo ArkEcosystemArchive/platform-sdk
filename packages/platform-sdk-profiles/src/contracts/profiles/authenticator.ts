@@ -1,3 +1,5 @@
+import { IProfile } from "../../contracts";
+
 /**
  * Defines the implementation contract for the authentication service.
  *
@@ -20,7 +22,7 @@ export interface IAuthenticator {
 	 * @return {boolean}
 	 * @memberof IAuthenticator
 	 */
-	verifyPassword(password: string): boolean;
+	verifyPassword({ profile, password }: { profile?: IProfile; password: string }): boolean;
 
 	/**
 	 * Change the password for the currently selected profile.
