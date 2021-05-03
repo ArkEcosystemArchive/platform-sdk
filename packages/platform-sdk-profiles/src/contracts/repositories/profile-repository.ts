@@ -165,11 +165,13 @@ export interface IProfileRepository {
 	/**
 	 * Tap the profile for the given ID.
 	 *
+	 * @template T
 	 * @param {string} id
 	 * @param {Function} callback
+	 * @return {*}  {T}
 	 * @memberof IProfileRepository
 	 */
-	tap(id: string, callback: Function): void;
+	tap<T>(id: string, callback: Function): T;
 
 	/**
 	 * Turn the profiles into a normalised object.

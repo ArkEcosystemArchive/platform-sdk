@@ -140,7 +140,7 @@ export class ProfileRepository implements IProfileRepository {
 	}
 
 	/** {@inheritDoc IProfileRepository.focus} */
-	public tap(id: string, callback: Function): void {
+	public tap<T>(id: string, callback: Function): T {
 		const profile = this.findById(id);
 
 		State.profile(profile);
