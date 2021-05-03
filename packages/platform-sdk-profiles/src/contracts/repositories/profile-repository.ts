@@ -163,6 +163,14 @@ export interface IProfileRepository {
 	count(): number;
 
 	/**
+	 * Focus the profile for the given ID.
+	 *
+	 * @param {string} id
+	 * @memberof IProfileRepository
+	 */
+	focus(id: string): void;
+
+	/**
 	 * Turn the profiles into a normalised object.
 	 *
 	 * @returns {Record<string, object>}

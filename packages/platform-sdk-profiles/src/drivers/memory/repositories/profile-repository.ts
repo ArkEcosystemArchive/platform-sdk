@@ -9,6 +9,7 @@ import { ProfileExporter } from "../profiles/profile.exporter";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileDumper } from "../profiles/profile.dumper";
 import { ProfileInitialiser } from "../profiles/profile.initialiser";
+import { State } from "../../../environment/state";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
@@ -135,6 +136,11 @@ export class ProfileRepository implements IProfileRepository {
 	/** {@inheritDoc IProfileRepository.count} */
 	public count(): number {
 		return this.#data.count();
+	}
+
+	/** {@inheritDoc IProfileRepository.focus} */
+	public focus(id: string): void {
+		State.profile(this.findById(id));
 	}
 
 	/** {@inheritDoc IProfileRepository.toObject} */
