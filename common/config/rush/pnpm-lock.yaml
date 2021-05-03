@@ -26,15 +26,15 @@ importers:
       '@types/node-emoji': 1.8.1
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -43,22 +43,22 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@sindresorhus/tsconfig': ^1.0.2
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
       '@types/node-emoji': 1.8.1
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bad-words: ^3.0.4
       bent: ^7.3
       bignumber.js: ^9.0.1
@@ -68,13 +68,13 @@ importers:
       cross-env: ^7.0.3
       dayjs: ^1.10.4
       dot-prop: ^6.0.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
@@ -84,9 +84,9 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
+      ts-jest: ^26.5.5
       type-fest: ^1.0.2
-      typescript: 4.2.2
+      typescript: 4.2.4
   ../../packages/platform-sdk-ada:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -104,16 +104,16 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cardano-crypto.js: 6.0.0
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -123,8 +123,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -132,25 +132,25 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@emurgo/cardano-serialization-lib-nodejs': ^7.0.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bech32: ^2.0.0
       cardano-crypto.js: ^6.0.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -159,8 +159,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-ark:
     dependencies:
       '@arkecosystem/crypto': 3.0.0-next.23
@@ -191,15 +191,15 @@ importers:
       '@types/rimraf': 3.0.0
       '@types/semver': 7.3.5
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -209,8 +209,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/crypto': ^3.0.0-next.23
       '@arkecosystem/crypto-identities': ^1.1.1
@@ -223,27 +223,27 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@sindresorhus/tsconfig': ^1.0.2
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/lodash.orderby': 4.6.6
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/semver': 7.3.5
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
       dot-prop: ^6.0.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       is-url-superb: ^4.0.0
       jest: ^26.6.3
@@ -256,8 +256,8 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       semver: ^7.3.5
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
   ../../packages/platform-sdk-ark-musig:
     dependencies:
@@ -278,15 +278,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -296,32 +296,32 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/crypto': ^3.0.0-next.23
       '@hapi/boom': ^9.1.0
       '@hapi/hapi': ^20.1.2
       '@konceiver/foreman': ^2.0.2
       '@sindresorhus/tsconfig': ^1.0.2
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       better-sqlite3: ^7.1.5
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       got: ^11.8.2
       jest: ^26.6.3
@@ -332,8 +332,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
   ../../packages/platform-sdk-atom:
     dependencies:
@@ -356,15 +356,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -374,8 +374,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -383,26 +383,26 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bcrypto: ^5.4.0
       bech32: ^2.0.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -412,8 +412,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
   ../../packages/platform-sdk-avax:
     dependencies:
@@ -440,15 +440,15 @@ importers:
       '@types/rimraf': 3.0.0
       '@types/semver': 7.3.5
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -458,8 +458,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -468,28 +468,28 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@arkecosystem/utils': ^1.3.0
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
       '@types/hdkey': 0.7.1
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/lodash.orderby': 4.6.6
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/semver': 7.3.5
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       avalanche: ^3.3.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       hdkey: ^2.0.1
       jest: ^26.6.3
@@ -499,8 +499,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       url-parse-lax: ^4.0.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-btc:
@@ -525,15 +525,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -543,8 +543,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -553,28 +553,28 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-btc': ^5.50.0
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bignumber.js: ^9.0.1
       bip32: ^2.0.6
       bip84: ~0.2.5
       bitcoinjs-lib: ^5.2.0
       bitcore-lib: ^8.25.8
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -583,8 +583,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-btc-indexer:
     dependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
@@ -611,15 +611,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -629,37 +629,37 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/utils': ^1.3.0
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@types/better-sqlite3': 5.4.1
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/meow': 5.0.0
-      '@types/node': ^14.14.25
+      '@types/node': ^14.14.43
       '@types/pino': ^6.3.5
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       better-sqlite3: ^7.1.5
       cross-env: ^7.0.3
       env-paths: ^2.2.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       got: ^11.8.2
       jest: ^26.6.3
@@ -671,8 +671,8 @@ importers:
       p-each-series: ^2.2.0
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       url-parse-lax: ^4.0.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-btc-server:
@@ -703,15 +703,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -721,8 +721,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
@@ -732,29 +732,29 @@ importers:
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@ptkdev/logger': ^1.7.2
       '@types/better-sqlite3': 5.4.1
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/meow': 5.0.0
-      '@types/node': ^14.14.25
+      '@types/node': ^14.14.43
       '@types/pino': ^6.3.5
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       better-sqlite3: ^7.1.5
       cross-env: ^7.0.3
       env-paths: ^2.2.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -765,8 +765,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       url-parse-lax: ^4.0.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-cli:
@@ -816,15 +816,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -834,8 +834,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk-ada': workspace:*
       '@arkecosystem/platform-sdk-ark': workspace:*
@@ -858,14 +858,14 @@ importers:
       '@arkecosystem/platform-sdk-xrp': workspace:*
       '@ledgerhq/hw-transport-node-hid-singleton': ~5.50.0
       '@ptkdev/logger': ^1.7.2
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       better-sqlite3: ^7.1.5
       boxen: ^5.0.1
       cfonts: ^2.9.1
@@ -874,13 +874,13 @@ importers:
       cross-env: ^7.0.3
       delay: ~5.0.0
       env-paths: ^2.2.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       got: ^11.8.2
       jest: ^26.6.3
@@ -898,9 +898,9 @@ importers:
       rimraf: ^3.0.2
       semver: ^7.3.5
       terminal-link: ^3.0.0
-      ts-jest: ^26.4.4
+      ts-jest: ^26.5.5
       type-fest: ^1.0.2
-      typescript: 4.2.2
+      typescript: 4.2.4
   ../../packages/platform-sdk-coincap:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -914,15 +914,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -932,29 +932,29 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -963,8 +963,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-coingecko:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -978,15 +978,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -996,29 +996,29 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1027,8 +1027,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-crypto:
     dependencies:
       argon2-browser: 1.15.4
@@ -1060,15 +1060,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/wif': 2.0.2
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1077,8 +1077,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
       wif: 2.0.6
     specifiers:
       '@sindresorhus/tsconfig': ^1.0.2
@@ -1086,17 +1086,17 @@ importers:
       '@types/bcryptjs': 2.4.2
       '@types/bent': ^7.3.2
       '@types/bip38': 2.0.1
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
       '@types/node-forge': 0.9.5
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/wif': 2.0.2
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       argon2-browser: ^1.15.4
       bcryptjs: ^2.4.3
       bcrypto: ^5.4.0
@@ -1106,13 +1106,13 @@ importers:
       bstring: ^0.3.9
       create-xpub: ~2.1.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       hdkey: ^2.0.1
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1125,8 +1125,8 @@ importers:
       rimraf: ^3.0.2
       safe-buffer: ^5.2.1
       string-crypto: ^2.0.1
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
       wif: ^2.0.6
   ../../packages/platform-sdk-cryptocompare:
@@ -1142,15 +1142,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -1160,29 +1160,29 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1191,8 +1191,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-dot:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -1219,15 +1219,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -1237,8 +1237,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -1253,25 +1253,25 @@ importers:
       '@polkadot/wasm-crypto': ^3.2.2
       '@polkadot/x-global': ^5.5.1
       '@polkadot/x-randomvalues': ^5.5.1
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       '@zondax/ledger-polkadot': ^0.13.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1280,8 +1280,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
   ../../packages/platform-sdk-dot-indexer:
     dependencies:
@@ -1310,15 +1310,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -1328,36 +1328,36 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@polkadot/api': ^3.6.4
       '@types/better-sqlite3': 5.4.1
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/meow': 5.0.0
-      '@types/node': ^14.14.25
+      '@types/node': ^14.14.43
       '@types/pino': ^6.3.5
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       better-sqlite3: ^7.1.5
       cross-env: ^7.0.3
       env-paths: ^2.2.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       got: ^11.8.2
       jest: ^26.6.3
@@ -1372,8 +1372,8 @@ importers:
       pino-pretty: ^4.5.0
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
   ../../packages/platform-sdk-egld:
     dependencies:
@@ -1393,15 +1393,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -1411,8 +1411,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -1421,24 +1421,24 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@elrondnetwork/elrond-core-js': ^2.1.0
       '@elrondnetwork/erdjs': ^4.1.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bech32: ^2.0.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1447,8 +1447,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-eos:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -1470,15 +1470,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -1487,8 +1487,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -1497,26 +1497,26 @@ importers:
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@types/bn.js': 4.11.6
       '@types/elliptic': 6.4.12
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bn.js: 5.1.3
       cross-env: ^7.0.3
       elliptic: ^6.5.3
       eosjs: ^21.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
@@ -1525,8 +1525,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-eth:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -1549,15 +1549,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -1567,8 +1567,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -1579,24 +1579,24 @@ importers:
       '@ethereumjs/tx': ^3.1.4
       '@ledgerhq/hw-app-eth': ^5.50.0
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bip39: ^3.0.4
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       ethereumjs-wallet: ^1.0.1
       got: ^11.8.2
       jest: ^26.6.3
@@ -1606,8 +1606,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       web3: ^1.3.4
   ../../packages/platform-sdk-eth-indexer:
     dependencies:
@@ -1636,15 +1636,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -1654,37 +1654,37 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@ptkdev/logger': ^1.7.2
       '@types/better-sqlite3': 5.4.1
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/meow': 5.0.0
-      '@types/node': ^14.14.25
+      '@types/node': ^14.14.43
       '@types/pino': ^6.3.5
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       better-sqlite3: ^7.1.5
       cross-env: ^7.0.3
       env-paths: ^2.2.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       got: ^11.8.2
       jest: ^26.6.3
@@ -1697,8 +1697,8 @@ importers:
       p-retry: ^4.3.0
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
       web3: ^1.3.4
   ../../packages/platform-sdk-eth-server:
@@ -1728,15 +1728,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -1746,8 +1746,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@hapi/hapi': ^20.1.2
@@ -1756,29 +1756,29 @@ importers:
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@ptkdev/logger': ^1.7.2
       '@types/better-sqlite3': 5.4.1
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/meow': 5.0.0
-      '@types/node': ^14.14.25
+      '@types/node': ^14.14.43
       '@types/pino': ^6.3.5
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       better-sqlite3: ^7.1.5
       cross-env: ^7.0.3
       env-paths: ^2.2.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1789,8 +1789,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
       web3: ^1.3.4
   ../../packages/platform-sdk-http-axios:
@@ -1805,15 +1805,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
       jest: 26.6.3
@@ -1823,28 +1823,28 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       axios: ^0.21.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1853,8 +1853,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-http-bent:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -1868,15 +1868,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
       jest: 26.6.3
@@ -1886,29 +1886,29 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@types/bent': ^7.3.2
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bent: ^7.3
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -1917,8 +1917,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-http-got:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -1933,15 +1933,15 @@ importers:
       '@types/node-fetch': 2.5.7
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
       jest: 26.6.3
@@ -1951,28 +1951,28 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
       '@types/node-fetch': 2.5.7
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       form-data: ^3.0.0
       fs-extra: ^9.1.0
       got: ^11.8.2
@@ -1983,8 +1983,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-http-ky:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -1999,15 +1999,15 @@ importers:
       '@types/node-fetch': 2.5.7
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
       jest: 26.6.3
@@ -2017,28 +2017,28 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
       '@types/node-fetch': 2.5.7
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2049,8 +2049,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-http-node-fetch:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2064,15 +2064,15 @@ importers:
       '@types/node-fetch': 2.5.7
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
       jest: 26.6.3
@@ -2082,28 +2082,28 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
       '@types/node-fetch': 2.5.7
-      '@types/prettier': ^2.1.5
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2113,8 +2113,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-intl:
     dependencies:
       dayjs: 1.10.4
@@ -2127,15 +2127,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -2144,28 +2144,28 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@types/dinero.js': 1.6.5
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
       dayjs: ^1.10.4
       dinero.js: ^1.8.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
@@ -2173,8 +2173,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-json-rpc:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2197,15 +2197,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -2215,8 +2215,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-ark': workspace:*
@@ -2227,24 +2227,24 @@ importers:
       '@konceiver/hapi-json-rpc': ^1.0.0
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ptkdev/logger': ^1.7.2
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/meow': 5.0.0
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2255,8 +2255,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-lsk:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2277,15 +2277,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -2295,8 +2295,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -2307,24 +2307,24 @@ importers:
       '@liskhq/lisk-client': ^2.0
       '@liskhq/lisk-cryptography': ^2.5
       '@liskhq/lisk-transactions': ^2.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
       dpos-ledger-api: ^3.0.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2333,8 +2333,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-luna:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2351,16 +2351,16 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cardano-crypto.js: 6.0.0
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -2370,8 +2370,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -2379,24 +2379,24 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@terra-money/terra.js': ~1.7.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cardano-crypto.js: ^6.0.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2405,8 +2405,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-markets:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2421,15 +2421,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -2439,30 +2439,30 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-coincap': workspace:*
       '@arkecosystem/platform-sdk-coingecko': workspace:*
       '@arkecosystem/platform-sdk-cryptocompare': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2471,8 +2471,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-nano:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2490,16 +2490,16 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cardano-crypto.js: 6.0.0
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -2509,32 +2509,32 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cardano-crypto.js: ^6.0.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2545,8 +2545,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-neo:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2566,15 +2566,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -2584,8 +2584,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -2594,24 +2594,24 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@cityofzion/neon-js': ^4.8.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2620,8 +2620,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
   ../../packages/platform-sdk-news:
     dependencies:
@@ -2636,15 +2636,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
       jest: 26.6.3
@@ -2654,28 +2654,28 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       fs-extra: ^9.1.0
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2685,8 +2685,8 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       rss-parser: ^3.9.0
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-profiles:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2734,15 +2734,15 @@ importers:
       '@types/semver': 7.3.5
       '@types/uuid': 8.3.0
       '@types/wif': 2.0.2
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
       got: 11.8.2
@@ -2753,8 +2753,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-ada': workspace:*
@@ -2771,32 +2771,32 @@ importers:
       '@sindresorhus/tsconfig': ^1.0.2
       '@types/async': 3.2.4
       '@types/bip38': 2.0.1
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/mersenne-twister': 1.1.2
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/semver': 7.3.5
       '@types/uuid': ^8.3.0
       '@types/wif': 2.0.2
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       '@vechain/picasso': ^2.1.1
       bcrypto: ^5.4.0
       bip38: ^3.1.1
       conf: ^10.0.1
       cross-env: ^7.0.3
       dot-prop: ^6.0.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       eventemitter3: ~4.0.7
       fs-extra: ^9.1.0
       got: ^11.8.2
@@ -2816,9 +2816,9 @@ importers:
       reflect-metadata: ~0.1.13
       rimraf: ^3.0.2
       semver: ^7.3.5
-      ts-jest: ^26.4.4
+      ts-jest: ^26.5.5
       type-fest: ^1.0.2
-      typescript: 4.2.2
+      typescript: 4.2.4
       uuid: ^8.3.2
       wif: ^2.0.6
   ../../packages/platform-sdk-sol:
@@ -2841,15 +2841,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/uuid': 8.3.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
       jest: 26.6.3
@@ -2859,8 +2859,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -2868,26 +2868,26 @@ importers:
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@solana/web3.js': ^1.9.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/uuid': ^8.3.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bstring: ^0.3.9
       cross-env: ^7.0.3
       ed25519-hd-key: ^1.2.0
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       got: ^11.8.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2896,8 +2896,8 @@ importers:
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
   ../../packages/platform-sdk-support:
     dependencies:
@@ -2920,15 +2920,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/qrcode': 1.3.5
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -2937,33 +2937,33 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@sindresorhus/tsconfig': ^1.0.2
       '@types/bent': ^7.3.2
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/qrcode': 1.3.5
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bad-words: ^3.0.4
       bignumber.js: ^9.0.1
       censorify-it: ^3.0.2
       cross-env: ^7.0.3
       dot-prop: ^6.0.1
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       front-matter: ^4.0.2
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -2975,8 +2975,8 @@ importers:
       qrcode: ^1.4.4
       remarkable: ^2.0.1
       rimraf: ^3.0.2
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-trx:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -2994,15 +2994,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -3011,8 +3011,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -3020,23 +3020,23 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-trx': ^5.50.0
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
@@ -3045,8 +3045,8 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       tronweb: ^3.2.6
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
   ../../packages/platform-sdk-xlm:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -3066,15 +3066,15 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
       jest-extended: 0.11.5
@@ -3083,8 +3083,8 @@ importers:
       npm-check-updates: 11.5.9
       prettier: 2.2.1
       rimraf: 3.0.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
@@ -3092,23 +3092,23 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-str': ^5.50.0
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
@@ -3118,8 +3118,8 @@ importers:
       rimraf: ^3.0.2
       stellar-hd-wallet: ^0.0.10
       stellar-sdk: ^8.1.1
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       uuid: ^8.3.2
   ../../packages/platform-sdk-xrp:
     dependencies:
@@ -3142,15 +3142,15 @@ importers:
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
       '@types/ws': 7.4.0
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
-      eslint-plugin-jest: 24.3.6_943c921d066d4ad7edfbc2fe63b55d8a
-      eslint-plugin-prettier: 3.4.0_a099a50d930481b678850774858d768f
-      eslint-plugin-simple-import-sort: 6.0.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       eslint-plugin-unused-imports: 1.1.1
       jest: 26.6.3
@@ -3162,8 +3162,8 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ripple-binary-codec: 1.1.2
-      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.2
-      typescript: 4.2.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
       typescript-language-server: 0.5.1
       ws: 7.4.5
     specifiers:
@@ -3173,26 +3173,26 @@ importers:
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-xrp': ^5.50.0
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@types/eslint': ^7.2.4
+      '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
-      '@types/jest': ^26.0.15
+      '@types/jest': ^26.0.23
       '@types/lodash': 4.14.165
-      '@types/node': ^14.14.25
-      '@types/prettier': ^2.1.5
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
       '@types/ws': 7.4.0
-      '@typescript-eslint/eslint-plugin': ^4.7.0
-      '@typescript-eslint/parser': ^4.7.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
       bignumber.js: ^9.0.1
       cross-env: ^7.0.3
-      eslint: ^7.13.0
-      eslint-config-prettier: ^6.15.0
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
-      eslint-plugin-jest: ^24.1.3
-      eslint-plugin-prettier: ^3.1.4
-      eslint-plugin-simple-import-sort: ^6.0.0
-      eslint-plugin-tsdoc: ~0.2.11
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
       eslint-plugin-unused-imports: ^1.0.1
       jest: ^26.6.3
       jest-extended: ^0.11.5
@@ -3205,8 +3205,8 @@ importers:
       ripple-binary-codec: ^1.0.2
       ripple-keypairs: ^1.0.3
       ripple-lib: ^1.9.4
-      ts-jest: ^26.4.4
-      typescript: 4.2.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
       typescript-language-server: ^0.5.1
       ws: ^7.4.5
 lockfileVersion: 5.2
@@ -5871,10 +5871,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-kQ5JNTrbDv3Rp5X2n/iUu37IJBDU2gsZ5R/g1/KHOOEc5IKfUFjXT6DENPGduh08I/pamwtEq4oul7gUqKTQDQ==
-  /@typescript-eslint/eslint-plugin/4.22.0_4adea8290246b616674d795e79eaa303:
+  /@typescript-eslint/eslint-plugin/4.22.0_e3b52a83531895e7febd6ecd5ba813eb:
     dependencies:
-      '@typescript-eslint/experimental-utils': 4.22.0_eslint@7.25.0+typescript@4.2.2
-      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/experimental-utils': 4.22.0_eslint@7.25.0+typescript@4.2.4
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       '@typescript-eslint/scope-manager': 4.22.0
       debug: 4.3.1
       eslint: 7.25.0
@@ -5882,8 +5882,8 @@ packages:
       lodash: 4.17.21
       regexpp: 3.1.0
       semver: 7.3.5
-      tsutils: 3.21.0_typescript@4.2.2
-      typescript: 4.2.2
+      tsutils: 3.21.0_typescript@4.2.4
+      typescript: 4.2.4
     dev: true
     engines:
       node: ^10.12.0 || >=12.0.0
@@ -5896,12 +5896,12 @@ packages:
         optional: true
     resolution:
       integrity: sha512-U8SP9VOs275iDXaL08Ln1Fa/wLXfj5aTr/1c0t0j6CdbOnxh+TruXu1p4I0NAvdPBQgoPjHsgKn28mOi0FzfoA==
-  /@typescript-eslint/experimental-utils/4.22.0_eslint@7.25.0+typescript@4.2.2:
+  /@typescript-eslint/experimental-utils/4.22.0_eslint@7.25.0+typescript@4.2.4:
     dependencies:
       '@types/json-schema': 7.0.7
       '@typescript-eslint/scope-manager': 4.22.0
       '@typescript-eslint/types': 4.22.0
-      '@typescript-eslint/typescript-estree': 4.22.0_typescript@4.2.2
+      '@typescript-eslint/typescript-estree': 4.22.0_typescript@4.2.4
       eslint: 7.25.0
       eslint-scope: 5.1.1
       eslint-utils: 2.1.0
@@ -5913,14 +5913,14 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-xJXHHl6TuAxB5AWiVrGhvbGL8/hbiCQ8FiWwObO3r0fnvBdrbWEDy1hlvGQOAWc6qsCWuWMKdVWlLAEMpxnddg==
-  /@typescript-eslint/parser/4.22.0_eslint@7.25.0+typescript@4.2.2:
+  /@typescript-eslint/parser/4.22.0_eslint@7.25.0+typescript@4.2.4:
     dependencies:
       '@typescript-eslint/scope-manager': 4.22.0
       '@typescript-eslint/types': 4.22.0
-      '@typescript-eslint/typescript-estree': 4.22.0_typescript@4.2.2
+      '@typescript-eslint/typescript-estree': 4.22.0_typescript@4.2.4
       debug: 4.3.1
       eslint: 7.25.0
-      typescript: 4.2.2
+      typescript: 4.2.4
     dev: true
     engines:
       node: ^10.12.0 || >=12.0.0
@@ -5947,7 +5947,7 @@ packages:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     resolution:
       integrity: sha512-sW/BiXmmyMqDPO2kpOhSy2Py5w6KvRRsKZnV0c4+0nr4GIcedJwXAq+RHNK4lLVEZAJYFltnnk1tJSlbeS9lYA==
-  /@typescript-eslint/typescript-estree/4.22.0_typescript@4.2.2:
+  /@typescript-eslint/typescript-estree/4.22.0_typescript@4.2.4:
     dependencies:
       '@typescript-eslint/types': 4.22.0
       '@typescript-eslint/visitor-keys': 4.22.0
@@ -5955,8 +5955,8 @@ packages:
       globby: 11.0.3
       is-glob: 4.0.1
       semver: 7.3.5
-      tsutils: 3.21.0_typescript@4.2.2
-      typescript: 4.2.2
+      tsutils: 3.21.0_typescript@4.2.4
+      typescript: 4.2.4
     dev: true
     engines:
       node: ^10.12.0 || >=12.0.0
@@ -8516,16 +8516,15 @@ packages:
       source-map: 0.6.1
     resolution:
       integrity: sha512-mmHKys/C8BFUGI+MAWNcSYoORYLMdPzjrknd2Vc+bUsjN5bXcr8EhrNB+UTqfL1y3I9c4fw2ihgtMPQLBRiQxw==
-  /eslint-config-prettier/6.15.0_eslint@7.25.0:
+  /eslint-config-prettier/8.3.0_eslint@7.25.0:
     dependencies:
       eslint: 7.25.0
-      get-stdin: 6.0.0
     dev: true
     hasBin: true
     peerDependencies:
-      eslint: '>=3.14.1'
+      eslint: '>=7.0.0'
     resolution:
-      integrity: sha512-a1+kOYLR8wMGustcgAjdydMsQ2A/2ipRPwRKUmfYaSxc9ZPcrku080Ctl6zrZzZNs/U82MjSv+qKREkoq3bJaw==
+      integrity: sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
   /eslint-import-resolver-node/0.3.4:
     dependencies:
       debug: 2.6.9
@@ -8565,10 +8564,10 @@ packages:
       eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0
     resolution:
       integrity: sha512-8K7JjINHOpH64ozkAhpT3sd+FswIZTfMZTjdx052pnWrgRCVfp8op9tbjpAk3DdUeI/Ba4C8OjdC0r90erHEOw==
-  /eslint-plugin-jest/24.3.6_943c921d066d4ad7edfbc2fe63b55d8a:
+  /eslint-plugin-jest/24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3:
     dependencies:
-      '@typescript-eslint/eslint-plugin': 4.22.0_4adea8290246b616674d795e79eaa303
-      '@typescript-eslint/experimental-utils': 4.22.0_eslint@7.25.0+typescript@4.2.2
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/experimental-utils': 4.22.0_eslint@7.25.0+typescript@4.2.4
       eslint: 7.25.0
     dev: true
     engines:
@@ -8582,10 +8581,10 @@ packages:
         optional: true
     resolution:
       integrity: sha512-WOVH4TIaBLIeCX576rLcOgjNXqP+jNlCiEmRgFTfQtJ52DpwnIQKAVGlGPAN7CZ33bW6eNfHD6s8ZbEUTQubJg==
-  /eslint-plugin-prettier/3.4.0_a099a50d930481b678850774858d768f:
+  /eslint-plugin-prettier/3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9:
     dependencies:
       eslint: 7.25.0
-      eslint-config-prettier: 6.15.0_eslint@7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
       prettier: 2.2.1
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -8600,14 +8599,14 @@ packages:
         optional: true
     resolution:
       integrity: sha512-UDK6rJT6INSfcOo545jiaOwB701uAIt2/dR7WnFQoGCVl1/EMqdANBmwUaqqQ45aXprsTGzSa39LI1PyuRBxxw==
-  /eslint-plugin-simple-import-sort/6.0.1_eslint@7.25.0:
+  /eslint-plugin-simple-import-sort/7.0.0_eslint@7.25.0:
     dependencies:
       eslint: 7.25.0
     dev: true
     peerDependencies:
       eslint: '>=5.0.0'
     resolution:
-      integrity: sha512-RfFnoi7fQtv7z9sZNJidIcZgWc0ZJe8uOPC3ldmatai4Igr5iDpzTmSUDEZKYm4TnrR01N0X32kfKvax7bivHQ==
+      integrity: sha512-U3vEDB5zhYPNfxT5TYR7u01dboFZp+HNpnGhkDB2g/2E4wZ/g1Q9Ton8UwCLfRV9yAKyYqDh62oHOamvkFxsvw==
   /eslint-plugin-tsdoc/0.2.14:
     dependencies:
       '@microsoft/tsdoc': 0.13.2
@@ -9381,7 +9380,7 @@ packages:
       lodash: 4.17.21
       prettier: 2.2.1
       shelljs: 0.8.4
-      typescript: 4.2.2
+      typescript: 4.2.4
       typescript-compiler: 1.4.1-2
     dev: false
     hasBin: true
@@ -9592,12 +9591,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-mHcr0QcW0W3rSzIlFsRp78oorEQ=
-  /get-stdin/6.0.0:
-    dev: true
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha512-jp4tHawyV7+fkkSKyvjuLZswblUtz+SQKzSWnBbii16BuZksJlU1wuBYXY75r+duh/llF1ur6oNwi+2ZzjKZ7g==
   /get-stdin/8.0.0:
     dev: true
     engines:
@@ -15101,7 +15094,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-IZLMNUi1V31bLeU/cK/O0+BUQVMpHdIhBjnQV0vs7D/pGka3qoZCYDS/bH66kPvehwXBZncsSYLJ/qTiJnQSSw==
-  /ts-jest/26.5.5_jest@26.6.3+typescript@4.2.2:
+  /ts-jest/26.5.5_jest@26.6.3+typescript@4.2.4:
     dependencies:
       bs-logger: 0.2.6
       buffer-from: 1.1.1
@@ -15113,7 +15106,7 @@ packages:
       make-error: 1.3.6
       mkdirp: 1.0.4
       semver: 7.3.5
-      typescript: 4.2.2
+      typescript: 4.2.4
       yargs-parser: 20.2.7
     dev: true
     engines:
@@ -15136,10 +15129,10 @@ packages:
   /tslib/1.14.1:
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-  /tsutils/3.21.0_typescript@4.2.2:
+  /tsutils/3.21.0_typescript@4.2.4:
     dependencies:
       tslib: 1.14.1
-      typescript: 4.2.2
+      typescript: 4.2.4
     dev: true
     engines:
       node: '>= 6'
@@ -15281,12 +15274,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-60Kguhwk/R1BB4pEIb6B9C7Ix7JzLzYnsODlmorYMPjMeEV0rCBqTR6FGAj4wVw/eHrHcpwLENmmURKUd8aybA==
-  /typescript/4.2.2:
+  /typescript/4.2.4:
     engines:
       node: '>=4.2.0'
     hasBin: true
     resolution:
-      integrity: sha512-tbb+NVrLfnsJy3M59lsDgrzWIflR4d4TIUjz+heUnHZwdF7YsrMTKoRERiIvI2lvBG95dfpLxB21WZhys1bgaQ==
+      integrity: sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
   /u2f-api/0.2.7:
     dev: false
     resolution:
