@@ -31,8 +31,8 @@
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@ledgerhq/hw-app-xrp": "^5.50.0",
 		"bignumber.js": "^9.0.1",
-		"ripple-keypairs": "^1.0.2",
-		"ripple-lib": "^1.8.2"
+		"ripple-keypairs": "^1.0.3",
+		"ripple-lib": "^1.9.4"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
@@ -68,7 +68,7 @@
 		"ts-jest": "^26.4.4",
 		"typescript": "4.2.2",
 		"typescript-language-server": "^0.5.1",
-		"ws": "^7.4.0"
+		"ws": "^7.4.5"
 	},
 	"engines": {
 		"node": ">=12.x"
