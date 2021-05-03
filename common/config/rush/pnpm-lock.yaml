@@ -2341,7 +2341,7 @@ importers:
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
-      '@terra-money/terra.js': 1.6.0
+      '@terra-money/terra.js': 1.7.0
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@types/eslint': 7.2.10
@@ -2378,7 +2378,7 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
-      '@terra-money/terra.js': ~1.6.0
+      '@terra-money/terra.js': ~1.7.0
       '@types/eslint': ^7.2.4
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/hapi__joi': 17.1.6
@@ -5396,7 +5396,7 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-PyRA9sm1Yayuj5OIoJ1hGt2YISX45w9WcFbh6ddT0Z/0yaFxOtGLInr4jUfU1EAFVs0Yfyfev4RNwBlUaHdlDQ==
-  /@terra-money/terra.js/1.6.0:
+  /@terra-money/terra.js/1.7.0:
     dependencies:
       axios: 0.21.1
       bech32: 2.0.0
@@ -5412,9 +5412,9 @@ packages:
       ws: 7.4.5_c70f8fc5586dd378b8c866035dbe710b
     dev: false
     engines:
-      node: '>=12'
+      node: '>=10'
     resolution:
-      integrity: sha512-8oOJ/KZbYTzv0GFvwC7Uo+5yIpG9NeSvbzLxy6EDmKqIUwIu/MTTBeNyFWCg7bln3fXDY9uRCT3h8ql3FfW4Fg==
+      integrity: sha512-VlBgDihBVEqI32i+jk2j56iOJGvv8InY+Qktg9Hjj7kzCgJTbzI7sI5zQU1OEZdRIQ9c5Vm+oPFBJuCFu6i8ag==
   /@tootallnate/once/1.1.2:
     dev: true
     engines:
