@@ -116,6 +116,10 @@ test("#destruct", async () => {
 	expect(services.transaction.__destruct).toHaveBeenCalledTimes(1);
 });
 
+test("#destruct with throw", async () => {
+	await expect(subject.__destruct()).rejects.toThrow();
+});
+
 test("#network", () => {
 	expect(subject.network()).toBeInstanceOf(Network);
 });
@@ -138,10 +142,18 @@ test("#client", async () => {
 	expect(subject.client()).toBeObject();
 });
 
+test("#client with throw", async () => {
+	expect(() => subject.client()).toThrow();
+});
+
 test("#dataTransferObject", async () => {
 	await subject.__construct();
 
 	expect(subject.dataTransferObject()).toBeObject();
+});
+
+test("#dataTransferObject with throw", async () => {
+	expect(() => subject.dataTransferObject()).toThrow();
 });
 
 test("#fee", async () => {
@@ -150,10 +162,18 @@ test("#fee", async () => {
 	expect(subject.fee()).toBeObject();
 });
 
+test("#fee with throw", async () => {
+	expect(() => subject.fee()).toThrow();
+});
+
 test("#identity", async () => {
 	await subject.__construct();
 
 	expect(subject.identity()).toBeObject();
+});
+
+test("#identity with throw", async () => {
+	expect(() => subject.identity()).toThrow();
 });
 
 test("#knownWallets", async () => {
@@ -162,10 +182,18 @@ test("#knownWallets", async () => {
 	expect(subject.knownWallets()).toBeObject();
 });
 
+test("#knownWallets with throw", async () => {
+	expect(() => subject.knownWallets()).toThrow();
+});
+
 test("#ledger", async () => {
 	await subject.__construct();
 
 	expect(subject.ledger()).toBeObject();
+});
+
+test("#ledger with throw", async () => {
+	expect(() => subject.ledger()).toThrow();
 });
 
 test("#link", async () => {
@@ -174,10 +202,18 @@ test("#link", async () => {
 	expect(subject.link()).toBeObject();
 });
 
+test("#link with throw", async () => {
+	expect(() => subject.link()).toThrow();
+});
+
 test("#message", async () => {
 	await subject.__construct();
 
 	expect(subject.message()).toBeObject();
+});
+
+test("#message with throw", async () => {
+	expect(() => subject.message()).toThrow();
 });
 
 test("#multiSignature", async () => {
@@ -186,14 +222,26 @@ test("#multiSignature", async () => {
 	expect(subject.multiSignature()).toBeObject();
 });
 
+test("#multiSignature with throw", async () => {
+	expect(() => subject.multiSignature()).toThrow();
+});
+
 test("#peer", async () => {
 	await subject.__construct();
 
 	expect(subject.peer()).toBeObject();
 });
 
+test("#peer with throw", async () => {
+	expect(() => subject.peer()).toThrow();
+});
+
 test("#transaction", async () => {
 	await subject.__construct();
 
 	expect(subject.transaction()).toBeObject();
+});
+
+test("#transaction with throw", async () => {
+	expect(() => subject.transaction()).toThrow();
 });
