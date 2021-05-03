@@ -36,7 +36,7 @@
 		"bcrypto": "^5.4.0",
 		"bip38": "^3.1.1",
 		"conf": "^10.0.1",
-		"dot-prop": "^6.0.1",
+		"dot-prop": "^5.3.0",
 		"eventemitter3": "~4.0.7",
 		"inversify": "~5.1.1",
 		"joi": "^17.4.0",
