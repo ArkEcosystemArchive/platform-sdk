@@ -2703,6 +2703,7 @@ importers:
       dot-prop: 5.3.0
       eventemitter3: 4.0.7
       inversify: 5.1.1
+      jest-mock-extended: 1.0.14_jest@26.6.3+typescript@4.2.4
       joi: 17.4.0
       localforage: 1.9.0
       mem: 8.1.1
@@ -2804,6 +2805,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
+      jest-mock-extended: ~1.0.14
       joi: ^17.4.0
       localforage: ^1.9.0
       mem: ^8.1.1
@@ -10959,6 +10961,17 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-rGiLePzQ3AzwUshu2+Rn+UMFk0pHN58sOG+IaJbk5Jxuqo3NYO1U2/MIR4S1sKgsoYSXSzdtSa0TgrmtUwEbmA==
+  /jest-mock-extended/1.0.14_jest@26.6.3+typescript@4.2.4:
+    dependencies:
+      jest: 26.6.3
+      ts-essentials: 4.0.0_typescript@4.2.4
+      typescript: 4.2.4
+    dev: false
+    peerDependencies:
+      jest: ^24.0.0 || ^25.0.0 || ^26.0.0
+      typescript: ^3.0.0 || ^4.0.0
+    resolution:
+      integrity: sha512-qZx93sSita+c9Qes7+FDCUN6yN9dGJa9gULN5oql5N9phThm5/4wYoxQgCDB6PXyDb07NuaTsAplk3T0nCl5tg==
   /jest-mock/26.6.2:
     dependencies:
       '@jest/types': 26.6.2
@@ -15093,6 +15106,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-IZLMNUi1V31bLeU/cK/O0+BUQVMpHdIhBjnQV0vs7D/pGka3qoZCYDS/bH66kPvehwXBZncsSYLJ/qTiJnQSSw==
+  /ts-essentials/4.0.0_typescript@4.2.4:
+    dependencies:
+      typescript: 4.2.4
+    dev: false
+    peerDependencies:
+      typescript: '>=3.7.0'
+    resolution:
+      integrity: sha512-uQJX+SRY9mtbKU+g9kl5Fi7AEMofPCvHfJkQlaygpPmHPZrtgaBqbWFOYyiA47RhnSwwnXdepUJrgqUYxoUyhQ==
   /ts-jest/26.5.5_jest@26.6.3+typescript@4.2.4:
     dependencies:
       bs-logger: 0.2.6
