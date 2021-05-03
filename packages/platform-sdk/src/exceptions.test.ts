@@ -1,4 +1,4 @@
-import { CryptoException, InvalidArguments, MissingArgument, NotImplemented, NotSupported } from "./exceptions";
+import { BadMethodDependencyException, BadStateException, BadVariableDependencyException, CryptoException, InvalidArguments, MissingArgument, NotImplemented, NotSupported } from "./exceptions";
 
 test("NotImplemented", () => {
 	expect(() => {
@@ -27,5 +27,23 @@ test("MissingArgument", () => {
 test("CryptoException", () => {
 	expect(() => {
 		throw new CryptoException(new Error("Boom"));
+	}).toThrow("Boom");
+});
+
+test("BadMethodDependencyException", () => {
+	expect(() => {
+		throw new BadMethodDependencyException("klass", "method", 'dependency');
+	}).toThrow("Boom");
+});
+
+test("BadVariableDependencyException", () => {
+	expect(() => {
+		throw new BadVariableDependencyException("klass", "method", 'dependency');
+	}).toThrow("Boom");
+});
+
+test("BadStateException", () => {
+	expect(() => {
+		throw new BadStateException("method", 'error');
 	}).toThrow("Boom");
 });
