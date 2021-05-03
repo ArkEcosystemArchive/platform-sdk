@@ -163,12 +163,13 @@ export interface IProfileRepository {
 	count(): number;
 
 	/**
-	 * Focus the profile for the given ID.
+	 * Tap the profile for the given ID.
 	 *
 	 * @param {string} id
+	 * @param {Function} callback
 	 * @memberof IProfileRepository
 	 */
-	focus(id: string): void;
+	tap(id: string, callback: Function): void;
 
 	/**
 	 * Turn the profiles into a normalised object.

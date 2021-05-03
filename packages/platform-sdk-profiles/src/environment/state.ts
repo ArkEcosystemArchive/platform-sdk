@@ -8,7 +8,10 @@ export class State {
 	/**
 	 * Get or set the active profile.
 	 *
-	 * @returns {IProfile}
+	 * @static
+	 * @param {IProfile} [instance]
+	 * @return {*}  {IProfile}
+	 * @memberof State
 	 */
 	public static profile(instance?: IProfile): IProfile {
 		if (instance !== undefined) {
@@ -22,9 +25,24 @@ export class State {
 		const profile: IProfile | undefined = container.get(Identifiers.Profile);
 
 		if (profile === undefined) {
-			throw new Exceptions.BadStateException("useProfile", "There is no active profile");
+			throw new Exceptions.BadStateException("profile", "There is no active profile");
 		}
 
 		return profile;
+	}
+
+	/**
+	 * Forget the given key.
+	 *
+	 * @static
+	 * @param {string} key
+	 * @memberof State
+	 */
+	public static forget(key: string): void {
+		if (container.missing(Identifiers.Profile)) {
+			throw new Exceptions.BadStateException("forget", "There is no active profile");
+		}
+
+		container.unbind(key);
 	}
 }

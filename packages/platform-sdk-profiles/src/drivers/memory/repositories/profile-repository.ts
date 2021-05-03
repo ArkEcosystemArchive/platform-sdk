@@ -10,6 +10,7 @@ import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileDumper } from "../profiles/profile.dumper";
 import { ProfileInitialiser } from "../profiles/profile.initialiser";
 import { State } from "../../../environment/state";
+import { State as Identifiers } from "../../../environment/container.models";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
@@ -139,8 +140,14 @@ export class ProfileRepository implements IProfileRepository {
 	}
 
 	/** {@inheritDoc IProfileRepository.focus} */
-	public focus(id: string): void {
-		State.profile(this.findById(id));
+	public tap(id: string, callback: Function): void {
+		const profile = this.findById(id);
+
+		State.profile(profile);
+
+		callback(profile);
+
+		State.forget(Identifiers.Profile);
 	}
 
 	/** {@inheritDoc IProfileRepository.toObject} */

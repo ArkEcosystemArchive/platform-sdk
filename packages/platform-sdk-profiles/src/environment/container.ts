@@ -32,6 +32,10 @@ export class Container {
 		return this.#container.isBound(key);
 	}
 
+	public missing(key: string): boolean {
+		return ! this.has(key);
+	}
+
 	public unbind(key: string): void {
 		this.#container.unbind(key);
 	}
