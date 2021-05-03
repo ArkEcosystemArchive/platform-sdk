@@ -31,7 +31,7 @@
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@ledgerhq/hw-app-str": "^5.50.0",
 		"stellar-hd-wallet": "^0.0.10",
-		"stellar-sdk": "^7.0.0",
+		"stellar-sdk": "^8.1.1",
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {

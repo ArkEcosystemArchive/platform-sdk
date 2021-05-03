@@ -3055,7 +3055,7 @@ importers:
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ledgerhq/hw-app-str': 5.50.0
       stellar-hd-wallet: 0.0.10
-      stellar-sdk: 7.0.0
+      stellar-sdk: 8.1.1
       uuid: 8.3.2
     devDependencies:
       '@ledgerhq/hw-transport-mocker': 5.50.0
@@ -3117,7 +3117,7 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       stellar-hd-wallet: ^0.0.10
-      stellar-sdk: ^7.0.0
+      stellar-sdk: ^8.1.1
       ts-jest: ^26.4.4
       typescript: 4.2.2
       uuid: ^8.3.2
@@ -14575,7 +14575,7 @@ packages:
       sodium-native: 2.4.9
     resolution:
       integrity: sha512-y0GO3L+HWPx4auyR8QiAC2uRqoa23MzJ9BnVzm1Li/0VsC5oWH82K7Nj040o++Q61KLIVhiZyKZNwCLHj1+0zw==
-  /stellar-base/4.0.3:
+  /stellar-base/5.1.0:
     dependencies:
       base32.js: 0.1.0
       bignumber.js: 4.1.0
@@ -14588,7 +14588,7 @@ packages:
     optionalDependencies:
       sodium-native: 2.4.9
     resolution:
-      integrity: sha512-Tf1Ko86j4CgUtaiTC6H6qPZ97EziXN6SVokH4FGv5+XvBhFg4V+u9ySMlgPjFbHQumplkHiw8JQx1IZRHnrT3A==
+      integrity: sha512-J0hdF2UGKlRmwaQCpL5IedetJMDBvxTmoFEnvwHMxZBeSNfGt3+pjLi+dghURiWyuBOF9ZeyS8lUBeOhy/tOpA==
   /stellar-hd-wallet/0.0.10:
     dependencies:
       bip39: 2.6.0
@@ -14598,27 +14598,27 @@ packages:
     dev: false
     resolution:
       integrity: sha512-rkg3Q394S6A4h1EYWwACz1v8hkU8zkW574THZ0yY96A8aUqifdBPtVYMInyYbq+le5S+K/Q05x/TZzTAPTIivQ==
-  /stellar-sdk/7.0.0:
+  /stellar-sdk/8.1.1:
     dependencies:
       '@types/eventsource': 1.1.5
       '@types/node': 14.14.43
       '@types/randombytes': 2.0.0
       '@types/urijs': 1.19.15
-      axios: 0.19.2
+      axios: 0.21.1
       bignumber.js: 4.1.0
       detect-node: 2.0.5
       es6-promise: 4.2.8
       eventsource: 1.1.0
       lodash: 4.17.21
       randombytes: 2.1.0
-      stellar-base: 4.0.3
+      stellar-base: 5.1.0
       toml: 2.3.6
       tslib: 1.14.1
       urijs: 1.19.6
       utility-types: 3.10.0
     dev: false
     resolution:
-      integrity: sha512-90hGtqs4W79CFs2SoRtlNC03LysbSZa0UI/msEckQstFnuDzfTxh0GXaN/9EU9OmCE9F13hCIb+E/LBLlPNeHg==
+      integrity: sha512-crZSONO1lDEg2TP2wsslB7kcBopP6r2jzA5fC7JNvFZMMf0yq14fGDOwQerWI9XaxzpXOJxuQ1ZP3yB93Ds0+Q==
   /steno/0.4.4:
     dependencies:
       graceful-fs: 4.2.6
@@ -16360,3 +16360,4 @@ packages:
     resolution:
       tarball: https://codeload.github.com/Zondax/bip32-ed25519/tar.gz/0949df01b5c93885339bc28116690292088f6134
     version: 0.0.4
+registry: ''
