@@ -30,7 +30,7 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@ledgerhq/hw-app-trx": "^5.50.0",
-		"tronweb": "^3.1.0"
+		"tronweb": "^3.2.6"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
