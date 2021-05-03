@@ -145,9 +145,11 @@ export class ProfileRepository implements IProfileRepository {
 
 		State.profile(profile);
 
-		callback(profile);
+		const result: T = callback(profile);
 
 		State.forget(Identifiers.Profile);
+
+		return result;
 	}
 
 	/** {@inheritDoc IProfileRepository.toObject} */
