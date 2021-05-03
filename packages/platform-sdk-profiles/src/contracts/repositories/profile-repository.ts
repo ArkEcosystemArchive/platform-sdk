@@ -163,6 +163,17 @@ export interface IProfileRepository {
 	count(): number;
 
 	/**
+	 * Tap the profile for the given ID.
+	 *
+	 * @template T
+	 * @param {string} id
+	 * @param {Function} callback
+	 * @return {*}  {T}
+	 * @memberof IProfileRepository
+	 */
+	tap<T>(id: string, callback: Function): T;
+
+	/**
 	 * Turn the profiles into a normalised object.
 	 *
 	 * @returns {Record<string, object>}
