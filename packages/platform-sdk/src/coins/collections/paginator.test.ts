@@ -86,6 +86,10 @@ test("#nextPage", () => {
 	expect(subject.nextPage()).toBe(4);
 });
 
+test("#lastPage", () => {
+	expect(subject.lastPage()).toBe(4);
+});
+
 test("#hasMorePages", () => {
 	expect(subject.hasMorePages()).toBeTrue();
 });

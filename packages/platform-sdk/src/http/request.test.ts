@@ -79,6 +79,20 @@ test("#asForm", () => {
 	});
 });
 
+test("#asOctet", () => {
+	subject.asOctet();
+
+	subject.get("/");
+
+	expect(spy).toHaveBeenCalledWith({
+		bodyFormat: "octet",
+		data: { query: undefined },
+		method: "GET",
+		options: { headers: { "Content-Type": "application/octet-stream" } },
+		url: "/",
+	});
+});
+
 test("#bodyFormat", () => {
 	subject.bodyFormat("bodyFormat");
 

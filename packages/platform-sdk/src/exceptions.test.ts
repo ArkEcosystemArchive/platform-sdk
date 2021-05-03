@@ -33,17 +33,17 @@ test("CryptoException", () => {
 test("BadMethodDependencyException", () => {
 	expect(() => {
 		throw new BadMethodDependencyException("klass", "method", 'dependency');
-	}).toThrow("Boom");
+	}).toThrow("Method klass#method depends on klass#dependency being called first.");
 });
 
 test("BadVariableDependencyException", () => {
 	expect(() => {
 		throw new BadVariableDependencyException("klass", "method", 'dependency');
-	}).toThrow("Boom");
+	}).toThrow("Method klass#method depends on klass#dependency being declared first.");
 });
 
 test("BadStateException", () => {
 	expect(() => {
 		throw new BadStateException("method", 'error');
-	}).toThrow("Boom");
+	}).toThrow("Method [method] has entered a bad state: error");
 });
