@@ -62,6 +62,10 @@ it("should get maximum votes per transaction", () => {
 	expect(subject.maximumVotesPerTransaction()).toBe(1);
 });
 
+it("should determine if the network uses extended public keys", () => {
+	expect(subject.usesExtendedPublicKey()).toBeFalse();
+});
+
 it("should have an object representation", () => {
 	expect(subject.toObject()).toMatchInlineSnapshot(`
 		Object {
