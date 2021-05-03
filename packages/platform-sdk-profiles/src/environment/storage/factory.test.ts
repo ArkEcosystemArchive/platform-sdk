@@ -1,8 +1,13 @@
 import "jest-extended";
+import { ConfStorage } from "./conf";
 
 import { StorageFactory } from "./factory";
 import { LocalStorage } from "./local";
 import { NullStorage } from "./null";
+
+test("StorageFactory#conf", () => {
+	expect(StorageFactory.make("conf")).toBeInstanceOf(ConfStorage);
+});
 
 test("StorageFactory#null", () => {
 	expect(StorageFactory.make("null")).toBeInstanceOf(NullStorage);
