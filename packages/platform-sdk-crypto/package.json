@@ -44,7 +44,7 @@
 		"@sindresorhus/tsconfig": "^1.0.2",
 		"@types/argon2-browser": "1.12.0",
 		"@types/bcryptjs": "2.4.2",
-		"@types/bent": "7.3.2",
+		"@types/bent": "^7.3.2",
 		"@types/bip38": "2.0.1",
 		"@types/eslint": "^7.2.4",
 		"@types/eslint-plugin-prettier": "^3.1.0",
