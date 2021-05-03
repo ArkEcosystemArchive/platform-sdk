@@ -6,7 +6,7 @@ interface Attributes {
 	a: string;
 	b: string;
 	c: string;
-};
+}
 
 const values = { a: "a", b: "b", c: "c" };
 
@@ -14,7 +14,7 @@ let subject: AttributeBag<Attributes>;
 
 beforeEach(() => {
 	subject = new AttributeBag<Attributes>();
-})
+});
 
 test("#all", async () => {
 	subject.setMany(values);
@@ -27,7 +27,7 @@ test("#get", async () => {
 
 	subject.set("a", "a");
 
-	expect(subject.get("a")).toBe('a');
+	expect(subject.get("a")).toBe("a");
 });
 
 test("#set", async () => {
