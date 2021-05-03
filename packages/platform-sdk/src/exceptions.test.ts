@@ -1,4 +1,13 @@
-import { CryptoException, InvalidArguments, MissingArgument, NotImplemented, NotSupported } from "./exceptions";
+import {
+	BadMethodDependencyException,
+	BadStateException,
+	BadVariableDependencyException,
+	CryptoException,
+	InvalidArguments,
+	MissingArgument,
+	NotImplemented,
+	NotSupported,
+} from "./exceptions";
 
 test("NotImplemented", () => {
 	expect(() => {
@@ -28,4 +37,22 @@ test("CryptoException", () => {
 	expect(() => {
 		throw new CryptoException(new Error("Boom"));
 	}).toThrow("Boom");
+});
+
+test("BadMethodDependencyException", () => {
+	expect(() => {
+		throw new BadMethodDependencyException("klass", "method", "dependency");
+	}).toThrow("Method klass#method depends on klass#dependency being called first.");
+});
+
+test("BadVariableDependencyException", () => {
+	expect(() => {
+		throw new BadVariableDependencyException("klass", "method", "dependency");
+	}).toThrow("Method klass#method depends on klass#dependency being declared first.");
+});
+
+test("BadStateException", () => {
+	expect(() => {
+		throw new BadStateException("method", "error");
+	}).toThrow("Method [method] has entered a bad state: error");
 });

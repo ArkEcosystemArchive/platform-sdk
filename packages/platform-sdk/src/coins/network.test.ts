@@ -42,24 +42,56 @@ it("should determine if the network is a test environment", () => {
 	expect(subject.isTest()).toBeTrue();
 });
 
-it("should allows voting", () => {
-	expect(subject.allowsVoting()).toBeTrue();
-});
-
 it("should get the expiration type", () => {
 	expect(subject.expirationType()).toBe("height");
 });
 
+it("should allows voting", () => {
+	expect(subject.allowsVoting()).toBeTrue();
+
+	subject = new Network({
+		...ARK.manifest.networks["ark.devnet"],
+		governance: {},
+	});
+
+	expect(subject.allowsVoting()).toBeFalse();
+});
+
 it("should get the delegate count", () => {
 	expect(subject.delegateCount()).toBe(51);
+
+	subject = new Network({
+		...ARK.manifest.networks["ark.devnet"],
+		governance: {},
+	});
+
+	expect(subject.delegateCount()).toBe(0);
 });
 
 it("should get maximum votes per wallet", () => {
 	expect(subject.maximumVotesPerWallet()).toBe(1);
+
+	subject = new Network({
+		...ARK.manifest.networks["ark.devnet"],
+		governance: {},
+	});
+
+	expect(subject.maximumVotesPerWallet()).toBe(0);
 });
 
 it("should get maximum votes per transaction", () => {
 	expect(subject.maximumVotesPerTransaction()).toBe(1);
+
+	subject = new Network({
+		...ARK.manifest.networks["ark.devnet"],
+		governance: {},
+	});
+
+	expect(subject.maximumVotesPerTransaction()).toBe(0);
+});
+
+it("should determine if the network uses extended public keys", () => {
+	expect(subject.usesExtendedPublicKey()).toBeFalse();
 });
 
 it("should have an object representation", () => {

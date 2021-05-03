@@ -33,7 +33,7 @@ export class Container {
 	}
 
 	public missing(key: string): boolean {
-		return ! this.has(key);
+		return !this.has(key);
 	}
 
 	public unbind(key: string): void {
