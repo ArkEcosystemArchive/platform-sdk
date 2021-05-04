@@ -189,7 +189,7 @@ export class Profile implements IProfile {
 		this.#transactionAggregate = new TransactionAggregate();
 		this.#walletAggregate = new WalletAggregate();
 		this.#authenticator = new Authenticator();
-		this.#password = new PasswordManager(this);
+		this.#password = new PasswordManager();
 	}
 
 	/** {@inheritDoc IProfile.id} */

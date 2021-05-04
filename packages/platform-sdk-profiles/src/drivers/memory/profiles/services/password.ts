@@ -5,13 +5,11 @@ export class PasswordManager implements IPasswordManager {
 
 	/** {@inheritDoc IPasswordManager.get} */
 	public get(): string {
-		const password: string | undefined = this.#password;
-
-		if (password === undefined) {
+		if (this.#password === undefined) {
 			throw new Error("Failed to find a password for the given profile.");
 		}
 
-		return password;
+		return this.#password;
 	}
 
 	/** {@inheritDoc IPasswordManager.set} */
