@@ -1,6 +1,5 @@
 import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 
-import { MemoryPassword } from "../../../helpers/password";
 import { IAuthenticator, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { emitProfileChanged } from "../helpers";
@@ -19,7 +18,7 @@ export class Authenticator implements IAuthenticator {
 
 		// We'll need the password for future use in plain-text
 		// during the lifetime of this profile session.
-		MemoryPassword.set(password);
+		State.profile().password().set(password);
 
 		emitProfileChanged();
 	}

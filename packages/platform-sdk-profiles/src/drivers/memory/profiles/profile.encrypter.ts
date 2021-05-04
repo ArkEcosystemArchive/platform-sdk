@@ -1,7 +1,6 @@
 import { Base64, PBKDF2 } from "@arkecosystem/platform-sdk-crypto";
 import { IProfile, IProfileData } from "../../../contracts";
 import { IProfileEncrypter } from "../../../contracts/profiles/profile.encrypter";
-import { MemoryPassword } from "../../../helpers/password";
 
 export class ProfileEncrypter implements IProfileEncrypter {
 	readonly #profile: IProfile;
@@ -13,7 +12,7 @@ export class ProfileEncrypter implements IProfileEncrypter {
 	/** {@inheritDoc IProfileEncrypter.encrypt} */
 	public encrypt(unencrypted: string, password?: string): string {
 		if (typeof password !== "string") {
-			password = MemoryPassword.get();
+			password = this.#profile.password().get();
 		}
 
 		if (!this.#profile.auth().verifyPassword(password)) {
