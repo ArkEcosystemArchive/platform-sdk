@@ -14,7 +14,6 @@ import { WalletService } from "./services/wallet-service";
 import { PluginRegistry } from "./plugins";
 import { emitter } from "./helpers";
 import { ProfileExporter } from "./profiles/profile.exporter";
-import { MemoryPassword } from "../../helpers";
 import { StorageFactory } from "../../environment/storage/factory";
 
 export class MemoryDriver implements Driver {
@@ -53,8 +52,8 @@ export class MemoryDriver implements Driver {
 			try {
 				const profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).findById(id);
 
-				if (MemoryPassword.exists()) {
-					profile.getAttributes().set("data", new ProfileExporter(profile).export(MemoryPassword.get()));
+				if (profile.password().exists()) {
+					profile.getAttributes().set("data", new ProfileExporter(profile).export(profile.password().get()));
 				} else {
 					profile.getAttributes().set("data", new ProfileExporter(profile).export());
 				}

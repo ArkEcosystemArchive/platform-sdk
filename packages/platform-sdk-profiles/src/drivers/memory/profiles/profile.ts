@@ -41,6 +41,8 @@ import { CoinService } from "./services/coin-service";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileInitialiser } from "./profile.initialiser";
+import { IPasswordManager } from "../../../contracts/profiles/services/password";
+import { PasswordManager } from "./services/password";
 
 export class Profile implements IProfile {
 	/**
@@ -156,6 +158,14 @@ export class Profile implements IProfile {
 	readonly #authenticator: IAuthenticator;
 
 	/**
+	 * The password service.
+	 *
+	 * @type {IAuthenticator}
+	 * @memberof Profile
+	 */
+	readonly #password: IPasswordManager;
+
+	/**
 	 * The normalise profile data.
 	 *
 	 * @type {AttributeBag<IProfileInput>}
@@ -179,6 +189,7 @@ export class Profile implements IProfile {
 		this.#transactionAggregate = new TransactionAggregate();
 		this.#walletAggregate = new WalletAggregate();
 		this.#authenticator = new Authenticator();
+		this.#password = new PasswordManager();
 	}
 
 	/** {@inheritDoc IProfile.id} */
@@ -315,6 +326,11 @@ export class Profile implements IProfile {
 	/** {@inheritDoc IProfile.auth} */
 	public auth(): IAuthenticator {
 		return this.#authenticator;
+	}
+
+	/** {@inheritDoc IProfile.password} */
+	public password(): IPasswordManager {
+		return this.#password;
 	}
 
 	/** {@inheritDoc IProfile.usesPassword} */

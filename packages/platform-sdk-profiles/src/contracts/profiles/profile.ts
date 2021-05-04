@@ -16,6 +16,7 @@ import { ITransactionAggregate } from "./aggregates/transaction-aggregate";
 import { IWalletAggregate } from "./aggregates/wallet-aggregate";
 import { IAuthenticator } from "./authenticator";
 import { IPortfolio } from "./portfolio";
+import { IPasswordManager } from "./services/password";
 
 /**
  *
@@ -251,6 +252,14 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	auth(): IAuthenticator;
+
+	/**
+	 * Get the password service instance.
+	 *
+	 * @return {IPasswordManager}
+	 * @memberof IProfile
+	 */
+	 password(): IPasswordManager;
 
 	/**
 	 * Determine if the profile uses a password.
