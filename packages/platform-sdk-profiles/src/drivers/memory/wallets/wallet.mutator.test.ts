@@ -90,6 +90,16 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 describe("#setCoin", () => {
+	it("should mark the wallet as partially restored if the coin construction fails", async () => {
+		subject = new Wallet(uuidv4(), {});
+
+		expect(subject.hasBeenPartiallyRestored()).toBeFalse();
+
+		await subject.mutator().coin("FAKE", "fake.network");
+
+		expect(subject.hasBeenPartiallyRestored()).toBeTrue();
+	});
+
 	it("should use the default peer if no custom one is available", async () => {
 		await subject.mutator().coin("ARK", "ark.devnet");
 

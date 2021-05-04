@@ -140,14 +140,14 @@ export class ProfileRepository implements IProfileRepository {
 	}
 
 	/** {@inheritDoc IProfileRepository.focus} */
-	public tap<T>(id: string, callback: Function): T {
+	public async tap<T>(id: string, callback: Function): Promise<T> {
 		const profile = this.findById(id);
 
 		State.profile(profile);
 
-		const result: T = callback(profile);
+		const result: T = await callback(profile);
 
-		State.forget(Identifiers.Profile);
+		State.reset();
 
 		return result;
 	}

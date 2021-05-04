@@ -22,27 +22,24 @@ export class State {
 			}
 		}
 
-		const profile: IProfile | undefined = container.get(Identifiers.Profile);
-
-		if (profile === undefined) {
-			throw new Exceptions.BadStateException("profile", "There is no active profile");
+		if (container.missing(Identifiers.Profile)) {
+			throw new Exceptions.BadStateException("profile", "There is no active profile.");
 		}
 
-		return profile;
+		return container.get(Identifiers.Profile);
 	}
 
 	/**
 	 * Forget the given key.
 	 *
 	 * @static
-	 * @param {string} key
 	 * @memberof State
 	 */
-	public static forget(key: string): void {
+	public static reset(): void {
 		if (container.missing(Identifiers.Profile)) {
-			throw new Exceptions.BadStateException("forget", "There is no active profile");
+			throw new Exceptions.BadStateException("forget", "There is no active profile.");
 		}
 
-		container.unbind(key);
+		container.unbind(Identifiers.Profile);
 	}
 }

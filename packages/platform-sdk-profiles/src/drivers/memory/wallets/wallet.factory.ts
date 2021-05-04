@@ -78,13 +78,8 @@ export class WalletFactory implements IWalletFactory {
 			if (wallet.network().usesExtendedPublicKey()) {
 				await wallet.mutator().extendedPublicKey(publicKey);
 			} else {
-				await wallet.mutator().address(
-					// @TODO: the address index should be configurable
-					await wallet
-						.identity()
-						.address()
-						.fromMnemonic(mnemonic, { bip44: { account: 0, addressIndex: 0 } }),
-				);
+				// @TODO: the address index should be configurable
+				await wallet.mutator().identity(mnemonic, { bip44: { account: 0, addressIndex: 0 } });
 			}
 		}
 

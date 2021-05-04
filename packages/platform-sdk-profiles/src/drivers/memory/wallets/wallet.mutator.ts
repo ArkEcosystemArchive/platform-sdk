@@ -2,7 +2,7 @@ import { Avatar } from "../../../helpers/avatar";
 import { IReadWriteWallet, WalletSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { emitProfileChanged } from "../helpers";
 
 export class WalletMutator implements IWalletMutator {
@@ -14,32 +14,34 @@ export class WalletMutator implements IWalletMutator {
 
 	/** {@inheritDoc IWalletMutator.coin} */
 	public async coin(coin: string, network: string, options: { sync: boolean } = { sync: true }): Promise<void> {
-		if (State.profile().usesCustomPeer() && State.profile().peers().has(coin, network)) {
-			this.#wallet.getAttributes().set(
-				"coin",
-				State.profile()
-					.coins()
-					.push(
-						coin,
-						network,
-						{
-							peer: State.profile().peers().getRelay(coin, network)?.host,
-							peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
-						},
-						true,
-					),
-			);
-		} else {
-			this.#wallet.getAttributes().set("coin", State.profile().coins().push(coin, network));
-		}
-
 		/**
 		 * If we fail to construct the coin it means we are having networking
 		 * issues or there is a bug in the coin package. This could also mean
 		 * bad error handling inside the coin package which needs fixing asap.
 		 */
 		try {
-			if (!this.#wallet.getAttributes().get<Coins.Coin>("coin").hasBeenSynchronized()) {
+			if (State.profile().usesCustomPeer() && State.profile().peers().has(coin, network)) {
+				this.#wallet.getAttributes().set(
+					"coin",
+					State.profile()
+						.coins()
+						.push(
+							coin,
+							network,
+							{
+								peer: State.profile().peers().getRelay(coin, network)?.host,
+								peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
+							},
+							true,
+						),
+				);
+			} else {
+				this.#wallet.getAttributes().set("coin", State.profile().coins().push(coin, network));
+			}
+
+			if (this.#wallet.getAttributes().get<Coins.Coin>("coin").hasBeenSynchronized()) {
+				this.#wallet.markAsFullyRestored();
+			} else {
 				if (options.sync) {
 					await this.#wallet.getAttributes().get<Coins.Coin>("coin").__construct();
 
@@ -47,8 +49,6 @@ export class WalletMutator implements IWalletMutator {
 				} else {
 					this.#wallet.markAsPartiallyRestored();
 				}
-			} else {
-				this.#wallet.markAsFullyRestored();
 			}
 		} catch {
 			this.#wallet.markAsPartiallyRestored();
@@ -58,13 +58,14 @@ export class WalletMutator implements IWalletMutator {
 	}
 
 	/** {@inheritDoc IWalletMutator.identity} */
-	public async identity(mnemonic: string): Promise<void> {
+	public async identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void> {
 		this.#wallet
 			.getAttributes()
 			.set(
 				"address",
-				await this.#wallet.getAttributes().get<Coins.Coin>("coin").identity().address().fromMnemonic(mnemonic),
+				await this.#wallet.getAttributes().get<Coins.Coin>("coin").identity().address().fromMnemonic(mnemonic, options),
 			);
+
 		this.#wallet
 			.getAttributes()
 			.set(
@@ -74,7 +75,7 @@ export class WalletMutator implements IWalletMutator {
 					.get<Coins.Coin>("coin")
 					.identity()
 					.publicKey()
-					.fromMnemonic(mnemonic),
+					.fromMnemonic(mnemonic, options),
 			);
 
 		return this.address(this.#wallet.getAttributes().get<string>("address"));

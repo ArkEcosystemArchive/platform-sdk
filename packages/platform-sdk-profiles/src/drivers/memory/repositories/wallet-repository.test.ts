@@ -127,6 +127,13 @@ test("#findByAlias", async () => {
 	expect(subject.findByAlias("Not Exist")).toBeUndefined();
 });
 
+test("#push", async () => {
+	subject.flush();
+
+	await expect(importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).toResolve();
+	await expect(importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).toReject();
+});
+
 test("#update", async () => {
 	expect(() => subject.update("invalid", { alias: "My Wallet" })).toThrowError("Failed to find");
 
