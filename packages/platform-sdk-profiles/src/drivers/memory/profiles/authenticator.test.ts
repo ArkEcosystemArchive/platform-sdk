@@ -4,7 +4,6 @@ import "reflect-metadata";
 import { bootContainer } from "../../../../test/helpers";
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { State } from "../../../environment/state";
-import { MemoryPassword } from "../../../helpers";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 
@@ -63,5 +62,5 @@ it("should fail to change the password if the old password is invalid", () => {
 it("should set password in memory", () => {
 	subject.setPassword("password");
 
-	expect(MemoryPassword.get()).toEqual("password");
+	expect(profile.password().get()).toEqual("password");
 });
