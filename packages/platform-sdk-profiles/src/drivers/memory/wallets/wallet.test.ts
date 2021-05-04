@@ -10,7 +10,6 @@ import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import {
 	IExchangeRateService,
@@ -21,7 +20,6 @@ import {
 	WalletFlag,
 	WalletSetting,
 } from "../../../contracts";
-import { ExtendedTransactionDataCollection } from "../../../dto";
 import { State } from "../../../environment/state";
 
 let profile: IProfile;
@@ -364,28 +362,8 @@ it("should fail to set an invalid address", async () => {
 	);
 });
 
-it("should sync multi signature when musig", async () => {
-	subject = new Wallet(uuidv4(), {});
-	await subject.mutator().coin("ARK", "ark.devnet");
-	await subject.mutator().identity("new super passphrase");
-
-	await subject.synchroniser().multiSignature();
-
-	expect(subject.isMultiSignature()).toBeTrue();
-});
-
-it("should sync multi signature when not musig", async () => {
-	await subject.synchroniser().multiSignature();
-
-	expect(subject.isMultiSignature()).toBeFalse();
-});
-
 it("should return explorer link", () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-});
-
-it("should sync", async () => {
-	await expect(subject.synchroniser().coin()).toResolve();
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
