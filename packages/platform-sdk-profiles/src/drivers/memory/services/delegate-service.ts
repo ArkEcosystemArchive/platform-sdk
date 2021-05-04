@@ -1,15 +1,15 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
-import { DataRepository } from "../../../repositories/data-repository";
 import { ReadOnlyWallet } from "../wallets/read-only-wallet";
-import { IDelegateService, IProfile, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
+import { IDataRepository, IDelegateService, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
 import { injectable } from "inversify";
 import { State } from "../../../environment/state";
+import { DataRepository } from "../../../repositories";
 
 @injectable()
 export class DelegateService implements IDelegateService {
-	readonly #dataRepository: DataRepository = new DataRepository();
+	readonly #dataRepository: IDataRepository = new DataRepository();
 
 	/** {@inheritDoc IDelegateService.all} */
 	public all(coin: string, network: string): IReadOnlyWallet[] {
