@@ -166,4 +166,11 @@ describe("#setCoin", () => {
 
 		expect(subject.getRelays()).toBeArrayOfSize(1);
 	});
+
+	it("should mutate extendedPublicKey", async () => {
+		await subject.mutator().extendedPublicKey("pubKey", { syncIdentity: false , validate: true });
+
+		expect(subject.publicKey()).toBe("pubKey");
+		expect(subject.address()).toBe("pubKey");
+	});
 });
