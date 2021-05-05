@@ -114,6 +114,10 @@ it("should have available networks", async () => {
 	await makeSubject();
 
 	expect(subject.availableNetworks()).toHaveLength(10);
+
+	for(const network of subject.availableNetworks()) {
+		expect(network.toObject()).toMatchSnapshot();
+	}
 });
 
 it("should set migrations", async () => {
