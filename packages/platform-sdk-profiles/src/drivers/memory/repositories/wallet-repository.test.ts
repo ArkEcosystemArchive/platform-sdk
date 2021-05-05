@@ -248,12 +248,6 @@ describe("#sortBy", () => {
 		await newWallet2.mutator().coin("ARK", "ark.devnet");
 		await newWallet2.mutator().identity("this is another top secret passphrase");
 
-		const newWallet3 = new Wallet(uuidv4(), {});
-		await newWallet3.mutator().coin("ARK", "ark.devnet");
-		await newWallet3.mutator().identity("this is another top secret passphrase");
-
-		jest.spyOn(newWallet3.mutator(), "address").mockRejectedValue('aaa');
-
 		// @ts-ignore
 		await subject.fill({
 			[newWallet.id()]: {
@@ -274,21 +268,42 @@ describe("#sortBy", () => {
 				data: newWallet2.data(),
 				settings: newWallet2.settings(),
 			},
-			[newWallet3.id()]: {
-				id: newWallet3.id(),
-				coin: newWallet3.coinId(),
-				network: newWallet3.networkId(),
-				networkConfig: newWallet3.config(),
-				address: newWallet3.address(),
-				data: newWallet3.data(),
-				settings: newWallet3.settings(),
-			},
 		});
 
 		await subject.restore();
 
 		expect(newWallet.hasBeenFullyRestored()).toBeTrue();
 		expect(newWallet2.hasBeenFullyRestored()).toBeTrue();
-		expect(newWallet3.hasBeenFullyRestored()).toBeTrue();
+	});
+
+	it("should retry if failure during wallet restore", async () => {
+		const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+		profile.settings().set(ProfileSetting.Name, "John Doe");
+
+		const newWallet = new Wallet(uuidv4(), {});
+		await newWallet.mutator().coin("ARK", "ark.devnet");
+		await newWallet.mutator().identity("this is another top secret passphrase");
+
+		// @ts-ignore
+		await subject.fill({
+			[newWallet.id()]: {
+				id: newWallet.id(),
+				coin: newWallet.coinId(),
+				network: newWallet.networkId(),
+				networkConfig: newWallet.config(),
+				address: newWallet.address(),
+				data: newWallet.data(),
+				settings: newWallet.settings(),
+			},
+		});
+
+		// Nasty: we need to mock a failure on the wallet instance the repository has
+		jest.spyOn(subject.findById(newWallet.id()), "mutator").mockImplementationOnce(() => {
+			throw new Error();
+		});
+
+		await subject.restore();
+
+		expect(newWallet.hasBeenFullyRestored()).toBeTrue();
 	});
 });
