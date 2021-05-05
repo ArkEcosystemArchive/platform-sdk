@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { injectable } from "inversify";
-import { IContact, IContactAddress, IContactAddressInput, IContactRepository, IProfile } from "../../../contracts";
+import { IContact, IContactAddress, IContactAddressInput, IContactRepository } from "../../../contracts";
 
 import { Contact } from "../contacts/contact";
 import { pqueue } from "../../../helpers/queue";

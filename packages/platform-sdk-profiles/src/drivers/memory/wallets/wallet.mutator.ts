@@ -1,6 +1,5 @@
 import { Avatar } from "../../../helpers/avatar";
 import { IReadWriteWallet, WalletSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { Coins } from "@arkecosystem/platform-sdk";
 import { emitProfileChanged } from "../helpers";
@@ -13,25 +12,8 @@ export class WalletMutator implements IWalletMutator {
 	}
 
 	/** {@inheritDoc IWalletMutator.coin} */
-	public async coin(coin: string, network: string, options: { sync: boolean } = { sync: true }): Promise<void> {
-		if (State.profile().usesCustomPeer() && State.profile().peers().has(coin, network)) {
-			this.#wallet.getAttributes().set(
-				"coin",
-				State.profile()
-					.coins()
-					.push(
-						coin,
-						network,
-						{
-							peer: State.profile().peers().getRelay(coin, network)?.host,
-							peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
-						},
-						true,
-					),
-			);
-		} else {
-			this.#wallet.getAttributes().set("coin", State.profile().coins().push(coin, network));
-		}
+	public async coin(coin: Coins.Coin, options: { sync: boolean } = { sync: true }): Promise<void> {
+		this.#wallet.getAttributes().set("coin", coin);
 
 		/**
 		 * If we fail to construct the coin it means we are having networking
@@ -39,9 +21,9 @@ export class WalletMutator implements IWalletMutator {
 		 * bad error handling inside the coin package which needs fixing asap.
 		 */
 		try {
-			if (!this.#wallet.getAttributes().get<Coins.Coin>("coin").hasBeenSynchronized()) {
+			if (!coin.hasBeenSynchronized()) {
 				if (options.sync) {
-					await this.#wallet.getAttributes().get<Coins.Coin>("coin").__construct();
+					await coin.__construct();
 
 					this.#wallet.markAsFullyRestored();
 				} else {

@@ -5,6 +5,7 @@ import { injectable } from "inversify";
 
 import { DataRepository } from "../../../repositories/data-repository";
 import { emitProfileChanged } from "../helpers";
+import { ContactAddressFactory } from "../contacts/contact-address.factory";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {
@@ -39,7 +40,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	public async create(data: IContactAddressInput): Promise<IContactAddress> {
 		const id: string = uuidv4();
 
-		const address: IContactAddress = await ContactAddress.make({ id, ...data });
+		const address: IContactAddress = await ContactAddressFactory.make({ id, ...data });
 
 		this.#data.set(id, address);
 
@@ -51,7 +52,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	/** {@inheritDoc IContactAddressRepository.fill} */
 	public async fill(addresses: any[]): Promise<void> {
 		for (const address of addresses) {
-			this.#data.set(address.id, await ContactAddress.make(address));
+			this.#data.set(address.id, await ContactAddressFactory.make(address));
 		}
 	}
 

@@ -44,14 +44,11 @@ export interface ICoinService {
 	/**
 	 * Push an instance of the given coin and network.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
-	 * @param {object} [options]
-	 * @param {boolean} [useForce]
+	 * @param {Coins.Coin} coin
 	 * @return {Coins.Coin}
 	 * @memberof ICoinService
 	 */
-	push(coin: string, network: string, options?: object, useForce?: boolean): Coins.Coin;
+	set(coin: Coins.Coin): void;
 
 	/**
 	 * Check if the given coin and network exist.

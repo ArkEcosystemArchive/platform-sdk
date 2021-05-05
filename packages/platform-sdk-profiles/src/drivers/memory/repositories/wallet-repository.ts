@@ -1,3 +1,4 @@
+import { Coins } from "@arkecosystem/platform-sdk";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import retry from "p-retry";
 
@@ -9,15 +10,22 @@ import {
 	IWalletRepository,
 	IWalletExportOptions,
 	IWalletData,
+	IProfile,
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
 import { emitProfileChanged } from "../helpers";
+import { CoinFactory } from "../profiles/services/coin.factory";
 
 @injectable()
 export class WalletRepository implements IWalletRepository {
+	readonly #profile: IProfile;
 	readonly #data: IDataRepository = new DataRepository();
 	#dataRaw: Record<string, any> = {};
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
 
 	/** {@inheritDoc IWalletRepository.all} */
 	public all(): Record<string, IReadWriteWallet> {
@@ -234,7 +242,10 @@ export class WalletRepository implements IWalletRepository {
 
 			wallet.settings().fill(settings);
 
-			await wallet.mutator().coin(coin!, network, { sync: false });
+			await wallet.mutator().coin(
+				new CoinFactory(this.#profile).make(coin, network),
+				{ sync: false },
+			);
 
 			await wallet.mutator().address(address, { syncIdentity: false, validate: false });
 
@@ -271,12 +282,12 @@ export class WalletRepository implements IWalletRepository {
 		await syncWallets(laterWallets);
 	}
 
-	private async restoreWallet({ id, address, coin, network, networkConfig }): Promise<void> {
+	private async restoreWallet({ id, address, coin, networkConfig }): Promise<void> {
 		const previousWallet: IReadWriteWallet = this.findById(id);
 
 		if (previousWallet.hasBeenPartiallyRestored()) {
 			try {
-				await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet: previousWallet });
+				await this.syncWalletWithNetwork({ address, coin, networkConfig, wallet: previousWallet });
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully
@@ -288,19 +299,17 @@ export class WalletRepository implements IWalletRepository {
 	private async syncWalletWithNetwork({
 		address,
 		coin,
-		network,
 		networkConfig,
 		wallet,
 	}: {
 		wallet: IReadWriteWallet;
-		coin: string;
-		network: string;
+		coin: Coins.Coin;
 		address: string;
 		networkConfig: any;
 	}): Promise<void> {
 		await retry(
 			async () => {
-				await wallet.mutator().coin(coin, network);
+				await wallet.mutator().coin(coin);
 
 				await wallet.mutator().address(address);
 

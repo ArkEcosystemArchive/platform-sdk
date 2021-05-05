@@ -1,3 +1,5 @@
+import { Coins } from "@arkecosystem/platform-sdk";
+
 /**
  * Defines the implementation contract for the wallet mutator.
  *
@@ -8,13 +10,12 @@ export interface IWalletMutator {
 	/**
 	 * Set the coin and network that should be communicated with.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @param {{ sync: boolean }} [options]
 	 * @return {Promise<void>}
 	 * @memberof void
 	 */
-	coin(coin: string, network: string, options?: { sync: boolean }): Promise<void>;
+	coin(coin: Coins.Coin, options?: { sync: boolean }): Promise<void>;
 
 	/**
 	 * Set the identity based on a mnemonic.

@@ -1,3 +1,5 @@
+import { Coins } from "@arkecosystem/platform-sdk";
+
 import { IReadWriteWallet } from "../wallets";
 import { IReadOnlyWallet } from "../wallets/read-only-wallet";
 
@@ -54,12 +56,11 @@ export interface IDelegateService {
 	/**
 	 * Synchronise delegates for the given coin and network.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @return {Promise<void>}
 	 * @memberof IDelegateService
 	 */
-	sync(coin: string, network: string): Promise<void>;
+	sync(coin: Coins.Coin): Promise<void>;
 
 	/**
 	 * Synchronise delegates for all coins and networks.

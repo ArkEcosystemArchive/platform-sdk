@@ -40,14 +40,8 @@ export class DelegateService implements IDelegateService {
 	}
 
 	/** {@inheritDoc IDelegateService.sync} */
-	public async sync(coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = State.profile().coins().push(coin, network);
-
-		if (!instance.hasBeenSynchronized()) {
-			await instance.__construct();
-		}
-
-		const instanceCanFastSync: boolean = instance.network().allows(Coins.FeatureFlag.InternalFastDelegateSync);
+	public async sync(coin: Coins.Coin): Promise<void> {
+		const instanceCanFastSync: boolean = coin.network().allows(Coins.FeatureFlag.InternalFastDelegateSync);
 
 		const result: Contracts.WalletData[] = [];
 		let hasMore = true;
@@ -55,9 +49,9 @@ export class DelegateService implements IDelegateService {
 
 		while (hasMore) {
 			if (lastResponse) {
-				lastResponse = await instance.client().delegates({ cursor: lastResponse.nextPage() });
+				lastResponse = await coin.client().delegates({ cursor: lastResponse.nextPage() });
 			} else {
-				lastResponse = await instance.client().delegates();
+				lastResponse = await coin.client().delegates();
 			}
 
 			hasMore = lastResponse.hasMorePages();
@@ -89,7 +83,7 @@ export class DelegateService implements IDelegateService {
 
 			if (lastPage > currentPage) {
 				const sendRequest = async (i: number) => {
-					const response = await instance.client().delegates({ cursor: i });
+					const response = await coin.client().delegates({ cursor: i });
 
 					for (const item of response.items()) {
 						result.push(item);
@@ -108,7 +102,7 @@ export class DelegateService implements IDelegateService {
 		}
 
 		this.#dataRepository.set(
-			`${coin}.${network}.delegates`,
+			`${coin.uuid()}.delegates`,
 			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
 		);
 	}
@@ -117,10 +111,8 @@ export class DelegateService implements IDelegateService {
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const [coin, networks] of State.profile().coins().entries()) {
-			for (const network of networks) {
-				promises.push(() => this.sync(coin, network));
-			}
+		for (const coin of State.profile().coins().values()) {
+			promises.push(() => this.sync(coin));
 		}
 
 		await pqueueSettled(promises);

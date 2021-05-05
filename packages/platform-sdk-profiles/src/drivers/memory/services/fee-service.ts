@@ -29,24 +29,16 @@ export class FeeService implements IFeeService {
 	}
 
 	/** {@inheritDoc IFeeService.sync} */
-	public async sync(coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = State.profile().coins().push(coin, network);
-
-		if (!instance.hasBeenSynchronized()) {
-			await instance.__construct();
-		}
-
-		this.#dataRepository.set(`${coin}.${network}.fees`, await instance.fee().all());
+	public async sync(coin: Coins.Coin): Promise<void> {
+		this.#dataRepository.set(`${coin.uuid()}.fees`, await coin.fee().all());
 	}
 
 	/** {@inheritDoc IFeeService.syncAll} */
 	public async syncAll(): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const [coin, networks] of State.profile().coins().entries()) {
-			for (const network of networks) {
-				promises.push(() => this.sync(coin, network));
-			}
+		for (const coin of State.profile().coins().values()) {
+			promises.push(() => this.sync(coin));
 		}
 
 		await pqueueSettled(promises);

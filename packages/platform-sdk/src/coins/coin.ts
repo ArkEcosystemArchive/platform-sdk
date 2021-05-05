@@ -68,6 +68,10 @@ export class Coin {
 		]);
 	}
 
+	public uuid(): string {
+		return `${this.#manifest.get<string>("name")}.${this.#network.id()}`;
+	}
+
 	public network(): Network {
 		return this.#network;
 	}

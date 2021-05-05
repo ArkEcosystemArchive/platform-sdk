@@ -1,3 +1,5 @@
+import { Coins } from "@arkecosystem/platform-sdk";
+
 import { IReadWriteWallet } from "./wallet";
 
 /**
@@ -6,8 +8,7 @@ import { IReadWriteWallet } from "./wallet";
  * @interface IGenerateOptions
  */
 export interface IGenerateOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	locale?: string;
 }
 
@@ -17,8 +18,7 @@ export interface IGenerateOptions {
  * @interface IMnemonicOptions
  */
 export interface IMnemonicOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	mnemonic: string;
 	useBIP39?: boolean;
 	useBIP44?: boolean;
@@ -30,8 +30,7 @@ export interface IMnemonicOptions {
  * @interface IAddressOptions
  */
 export interface IAddressOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	address: string;
 }
 
@@ -41,8 +40,7 @@ export interface IAddressOptions {
  * @interface IPublicKeyOptions
  */
 export interface IPublicKeyOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	publicKey: string;
 }
 
@@ -52,8 +50,7 @@ export interface IPublicKeyOptions {
  * @interface IPrivateKeyOptions
  */
 export interface IPrivateKeyOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	privateKey: string;
 }
 
@@ -63,8 +60,7 @@ export interface IPrivateKeyOptions {
  * @interface IAddressWithLedgerPathOptions
  */
 export interface IAddressWithLedgerPathOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	address: string;
 	path: string;
 }
@@ -75,8 +71,7 @@ export interface IAddressWithLedgerPathOptions {
  * @interface IMnemonicWithEncryptionOptions
  */
 export interface IMnemonicWithEncryptionOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	mnemonic: string;
 	password: string;
 }
@@ -87,8 +82,7 @@ export interface IMnemonicWithEncryptionOptions {
  * @interface IWifOptions
  */
 export interface IWifOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	wif: string;
 }
 
@@ -98,8 +92,7 @@ export interface IWifOptions {
  * @interface IWifWithEncryptionOptions
  */
 export interface IWifWithEncryptionOptions {
-	coin: string;
-	network: string;
+	coin: Coins.Coin;
 	wif: string;
 	password: string;
 }

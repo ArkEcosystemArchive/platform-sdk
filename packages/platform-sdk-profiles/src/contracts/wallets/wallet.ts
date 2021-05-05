@@ -25,7 +25,7 @@ import { ITransactionService } from "./wallet-transaction-service";
  */
 export interface IWalletData {
 	id: string;
-	coin: string | undefined;
+	coin: string;
 	network: string;
 	networkConfig: {
 		crypto: {

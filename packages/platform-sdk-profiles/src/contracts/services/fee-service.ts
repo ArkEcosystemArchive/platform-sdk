@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 /**
  * Defines the implementation contract for the fee service.
@@ -36,7 +36,7 @@ export interface IFeeService {
 	 * @return {Promise<void>}
 	 * @memberof IFeeService
 	 */
-	sync(coin: string, network: string): Promise<void>;
+	sync(coin: Coins.Coin): Promise<void>;
 
 	/**
 	 * Synchronise fees for all coins and networks.

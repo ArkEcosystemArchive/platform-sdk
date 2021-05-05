@@ -1,7 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { IReadWriteWallet, WalletData } from "../../../contracts";
 import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroniser";
-import { State } from "../../../environment/state";
 
 export class WalletSynchroniser implements IWalletSynchroniser {
 	readonly #wallet: IReadWriteWallet;
@@ -13,15 +12,17 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 	/** {@inheritDoc IWalletSynchroniser.coin} */
 	public async coin(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
 		if (options.resetCoin) {
-			this.#wallet.getAttributes().set(
-				"coin",
-				State.profile()
-					.coins()
-					.push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true),
-			);
+			// @TODO: create new instance without custom configuration
+
+			// this.#wallet.getAttributes().set(
+			// 	"coin",
+			// 	State.profile()
+			// 		.coins()
+			// 		.push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true),
+			// );
 		}
 
-		await this.#wallet.mutator().coin(this.#wallet.coinId(), this.#wallet.networkId());
+		await this.#wallet.mutator().coin(this.#wallet.coin());
 	}
 
 	/** {@inheritDoc IWalletSynchroniser.identity} */

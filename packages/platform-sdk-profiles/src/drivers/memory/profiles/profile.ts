@@ -183,7 +183,7 @@ export class Profile implements IProfile {
 		this.#peerRepository = new PeerRepository();
 		this.#pluginRepository = new PluginRepository();
 		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
-		this.#walletRepository = new WalletRepository();
+		this.#walletRepository = new WalletRepository(this);
 		this.#countAggregate = new CountAggregate();
 		this.#registrationAggregate = new RegistrationAggregate();
 		this.#transactionAggregate = new TransactionAggregate();
