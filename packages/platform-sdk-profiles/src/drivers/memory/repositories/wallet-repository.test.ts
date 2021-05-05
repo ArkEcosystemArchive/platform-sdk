@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
-import { IReadWriteWallet, ProfileSetting } from "../../../contracts";
+import { IProfile, IReadWriteWallet, IWalletData, ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { WalletRepository } from "./wallet-repository";
@@ -236,74 +236,92 @@ describe("#sortBy", () => {
 		expect(wallets[2].address()).toBe(walletETH.address());
 	});
 
-	it("should restore", async () => {
-		const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
-		profile.settings().set(ProfileSetting.Name, "John Doe");
+	it("should export toObject", async () => {
+		const wallets: Record<string, IWalletData> = subject.toObject();
 
-		const newWallet = new Wallet(uuidv4(), {});
-		await newWallet.mutator().coin("ARK", "ark.devnet");
-		await newWallet.mutator().identity("this is another top secret passphrase");
-
-		const newWallet2 = new Wallet(uuidv4(), {});
-		await newWallet2.mutator().coin("ARK", "ark.devnet");
-		await newWallet2.mutator().identity("this is another top secret passphrase");
-
-		// @ts-ignore
-		await subject.fill({
-			[newWallet.id()]: {
-				id: newWallet.id(),
-				coin: newWallet.coinId(),
-				network: newWallet.networkId(),
-				networkConfig: newWallet.config(),
-				address: newWallet.address(),
-				data: newWallet.data(),
-				settings: newWallet.settings(),
-			},
-			[newWallet2.id()]: {
-				id: newWallet2.id(),
-				coin: newWallet2.coinId(),
-				network: newWallet2.networkId(),
-				networkConfig: newWallet2.config(),
-				address: newWallet2.address(),
-				data: newWallet2.data(),
-				settings: newWallet2.settings(),
-			},
-		});
-
-		await subject.restore();
-
-		expect(newWallet.hasBeenFullyRestored()).toBeTrue();
-		expect(newWallet2.hasBeenFullyRestored()).toBeTrue();
+		expect(wallets).toBeInstanceOf(Object);
 	});
 
-	it("should retry if failure during wallet restore", async () => {
-		const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
-		profile.settings().set(ProfileSetting.Name, "John Doe");
+	describe("restore", function() {
+		let profile: IProfile;
+		let wallet: IReadWriteWallet;
 
-		const newWallet = new Wallet(uuidv4(), {});
-		await newWallet.mutator().coin("ARK", "ark.devnet");
-		await newWallet.mutator().identity("this is another top secret passphrase");
+		beforeEach(async () => {
+			profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+			profile.settings().set(ProfileSetting.Name, "John Doe");
 
-		// @ts-ignore
-		await subject.fill({
-			[newWallet.id()]: {
-				id: newWallet.id(),
-				coin: newWallet.coinId(),
-				network: newWallet.networkId(),
-				networkConfig: newWallet.config(),
-				address: newWallet.address(),
-				data: newWallet.data(),
-				settings: newWallet.settings(),
-			},
+			wallet = new Wallet(uuidv4(), {
+				networkConfig: {
+					a: true
+				}
+			});
+			await wallet.mutator().coin("ARK", "ark.devnet");
+			await wallet.mutator().identity("this is another top secret passphrase");
+
+			// @ts-ignore
+			await subject.fill({
+				[wallet.id()]: {
+					id: wallet.id(),
+					coin: wallet.coinId(),
+					network: wallet.networkId(),
+					networkConfig: wallet.config(),
+					address: wallet.address(),
+					data: wallet.data(),
+					settings: wallet.settings(),
+				},
+			});
+		})
+
+		it("should restore", async () => {
+			const newWallet2 = new Wallet(uuidv4(), {});
+			await newWallet2.mutator().coin("ARK", "ark.devnet");
+			await newWallet2.mutator().identity("this is another top secret passphrase");
+
+			// @ts-ignore
+			await subject.fill({
+				[wallet.id()]: {
+					id: wallet.id(),
+					coin: wallet.coinId(),
+					network: wallet.networkId(),
+					networkConfig: wallet.config(),
+					address: wallet.address(),
+					data: wallet.data(),
+					settings: wallet.settings(),
+				},
+				[newWallet2.id()]: {
+					id: newWallet2.id(),
+					coin: newWallet2.coinId(),
+					network: newWallet2.networkId(),
+					address: newWallet2.address(),
+					data: newWallet2.data(),
+					settings: newWallet2.settings(),
+				},
+			});
+
+			await subject.restore();
+
+			expect(subject.findById(wallet.id()).hasBeenFullyRestored()).toBeTrue();
+			expect(subject.findById(newWallet2.id()).hasBeenFullyRestored()).toBeTrue();
 		});
 
-		// Nasty: we need to mock a failure on the wallet instance the repository has
-		jest.spyOn(subject.findById(newWallet.id()), "mutator").mockImplementationOnce(() => {
-			throw new Error();
+		it("should do nothing if the wallet has already been fully restored", async () => {
+			subject.findById(wallet.id()).markAsFullyRestored();
+
+			await subject.restore();
+
+			expect(subject.findById(wallet.id()).hasBeenFullyRestored()).toBeTrue();
+			expect(subject.findById(wallet.id()).hasBeenPartiallyRestored()).toBeFalse();
 		});
 
-		await subject.restore();
+		it("should retry if failure during wallet restore", async () => {
+			// Nasty: we need to mock a failure on the wallet instance the repository has
+			jest.spyOn(subject.findById(wallet.id()), "mutator").mockImplementationOnce(() => {
+				throw new Error();
+			});
 
-		expect(newWallet.hasBeenFullyRestored()).toBeTrue();
+			await subject.restore();
+
+			expect(subject.findById(wallet.id()).hasBeenFullyRestored()).toBeTrue();
+		});
 	});
 });
