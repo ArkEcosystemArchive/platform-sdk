@@ -250,11 +250,7 @@ describe("#sortBy", () => {
 			profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 			profile.settings().set(ProfileSetting.Name, "John Doe");
 
-			wallet = new Wallet(uuidv4(), {
-				networkConfig: {
-					a: true
-				}
-			});
+			wallet = new Wallet(uuidv4(), {});
 			await wallet.mutator().coin("ARK", "ark.devnet");
 			await wallet.mutator().identity("this is another top secret passphrase");
 
