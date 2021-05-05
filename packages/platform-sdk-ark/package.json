@@ -33,7 +33,7 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
-		"dot-prop": "^5.3.0",
+		"dot-prop": "^6.0.0",
 		"is-url-superb": "^4.0.0",
 		"lodash.orderby": "^4.6.0",
 		"node-dotify": "^1.0.2",
