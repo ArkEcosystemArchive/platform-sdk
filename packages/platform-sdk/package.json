@@ -34,7 +34,7 @@
 		"bip39": "^3.0.4",
 		"censorify-it": "^3.0.2",
 		"dayjs": "^1.10.4",
-		"dot-prop": "^5.3.0",
+		"dot-prop": "^6.0.0",
 		"joi": "^17.4.0",
 		"node-emoji": "^1.10.0",
 		"type-fest": "^1.0.2"

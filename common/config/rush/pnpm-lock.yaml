@@ -12,7 +12,7 @@ importers:
       bip39: 3.0.4
       censorify-it: 3.0.2
       dayjs: 1.10.4
-      dot-prop: 5.3.0
+      dot-prop: 6.0.1
       joi: 17.4.0
       node-emoji: 1.10.0
       type-fest: 1.0.2
@@ -67,7 +67,7 @@ importers:
       censorify-it: ^3.0.2
       cross-env: ^7.0.3
       dayjs: ^1.10.4
-      dot-prop: ^5.3.0
+      dot-prop: ^6.0.0
       eslint: ^7.25.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
@@ -171,7 +171,7 @@ importers:
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
-      dot-prop: 5.3.0
+      dot-prop: 6.0.1
       is-url-superb: 4.0.0
       lodash.orderby: 4.6.0
       node-dotify: 1.1.0
@@ -236,7 +236,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^4.22.0
       '@typescript-eslint/parser': ^4.22.0
       cross-env: ^7.0.3
-      dot-prop: ^5.3.0
+      dot-prop: ^6.0.0
       eslint: ^7.25.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
@@ -2700,7 +2700,7 @@ importers:
       bcrypto: 5.4.0
       bip38: 3.1.1
       conf: 10.0.1
-      dot-prop: 5.3.0
+      dot-prop: 6.0.1
       eventemitter3: 4.0.7
       inversify: 5.1.1
       jest-mock-extended: 1.0.14_jest@26.6.3+typescript@4.2.4
@@ -2790,7 +2790,7 @@ importers:
       bip38: ^3.1.1
       conf: ^10.0.1
       cross-env: ^7.0.3
-      dot-prop: ^5.3.0
+      dot-prop: ^6.0.0
       eslint: ^7.25.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
@@ -2906,7 +2906,7 @@ importers:
       bad-words: 3.0.4
       bignumber.js: 9.0.1
       censorify-it: 3.0.2
-      dot-prop: 5.3.0
+      dot-prop: 6.0.1
       front-matter: 4.0.2
       joi: 17.4.0
       qrcode: 1.4.4
@@ -2958,7 +2958,7 @@ importers:
       bignumber.js: ^9.0.1
       censorify-it: ^3.0.2
       cross-env: ^7.0.3
-      dot-prop: ^5.3.0
+      dot-prop: ^6.0.0
       eslint: ^7.25.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-import: ~2.22.1
@@ -5290,7 +5290,7 @@ packages:
   /@ptkdev/logger/1.7.2:
     dependencies:
       chalk: 4.1.1
-      fs-extra: 9.1.0
+      fs-extra: 10.0.0
       lowdb: 1.0.0
       rotating-file-stream: 2.1.5
       strip-ansi: 7.0.0
@@ -8234,6 +8234,7 @@ packages:
   /dot-prop/5.3.0:
     dependencies:
       is-obj: 2.0.0
+    dev: true
     engines:
       node: '>=8'
     resolution:
@@ -9472,6 +9473,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==
+  /fs-extra/10.0.0:
+    dependencies:
+      graceful-fs: 4.2.6
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
   /fs-extra/4.0.3:
     dependencies:
       graceful-fs: 4.2.6
