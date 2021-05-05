@@ -107,6 +107,10 @@ it("should have available networks", async () => {
 	await makeSubject();
 
 	expect(subject.availableNetworks()).toHaveLength(10);
+
+	for(const network of subject.availableNetworks()) {
+		expect(network.toObject()).toMatchSnapshot();
+	}
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {
