@@ -1,15 +1,19 @@
 import { v4 as uuidv4 } from "uuid";
-import { IContactAddress, IContactAddressInput, IContactAddressRepository } from "../../../contracts";
+import { IContactAddress, IContactAddressInput, IContactAddressRepository, IProfile } from "../../../contracts";
 import { ContactAddress } from "../contacts/contact-address";
 import { injectable } from "inversify";
 
 import { DataRepository } from "../../../repositories/data-repository";
 import { emitProfileChanged } from "../helpers";
-import { ContactAddressFactory } from "../contacts/contact-address.factory";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {
+	readonly #profile: IProfile;
 	readonly #data: DataRepository = new DataRepository();
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
 
 	/** {@inheritDoc IContactAddressRepository.all} */
 	public all(): Record<string, IContactAddress> {
@@ -40,11 +44,16 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	public async create(data: IContactAddressInput): Promise<IContactAddress> {
 		const id: string = uuidv4();
 
-		const address: IContactAddress = await ContactAddressFactory.make({ id, ...data });
+		const address: IContactAddress = new ContactAddress(
+			{ id, ...data },
+			this.#profile.coins().get(data.coin, data.network),
+			this.#profile,
+		);
+		await address.syncIdentity();
 
 		this.#data.set(id, address);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 
 		return address;
 	}
@@ -52,7 +61,10 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	/** {@inheritDoc IContactAddressRepository.fill} */
 	public async fill(addresses: any[]): Promise<void> {
 		for (const address of addresses) {
-			this.#data.set(address.id, await ContactAddressFactory.make(address));
+			const result = new ContactAddress(address, this.#profile.coins().get(address.coin, address.network), this.#profile);
+			await result.syncIdentity();
+
+			this.#data.set(address.id, result);
 		}
 	}
 
@@ -96,7 +108,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 
 		this.#data.set(id, address);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContactAddressRepository.forget} */
@@ -105,14 +117,14 @@ export class ContactAddressRepository implements IContactAddressRepository {
 
 		this.#data.forget(id);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContactAddressRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContactAddressRepository.count} */

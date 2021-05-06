@@ -1,12 +1,17 @@
-import { IPortfolio, IPortfolioEntry } from "../../../contracts";
-import { State } from "../../../environment/state";
+import { IPortfolio, IPortfolioEntry, IProfile } from "../../../contracts";
 
 export class Portfolio implements IPortfolio {
+	readonly #profile: IProfile;
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
+
 	/** {@inheritDoc IPortfolio.breakdown} */
 	public breakdown(): IPortfolioEntry[] {
 		const result: Record<string, IPortfolioEntry> = {};
 
-		for (const wallet of State.profile().wallets().values()) {
+		for (const wallet of this.#profile.wallets().values()) {
 			if (wallet.network().isTest()) {
 				continue;
 			}

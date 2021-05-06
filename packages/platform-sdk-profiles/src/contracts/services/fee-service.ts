@@ -1,5 +1,7 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
+import { IProfile } from "../profiles";
+
 /**
  * Defines the implementation contract for the fee service.
  *
@@ -31,6 +33,7 @@ export interface IFeeService {
 	/**
 	 * Synchronise fees for the given coin and network.
 	 *
+	 * @param {IProfile} profile
 	 * @param {string} coin
 	 * @param {string} network
 	 * @return {Promise<void>}
@@ -41,8 +44,9 @@ export interface IFeeService {
 	/**
 	 * Synchronise fees for all coins and networks.
 	 *
+	 * @param {IProfile} profile
 	 * @return {Promise<void>}
 	 * @memberof IFeeService
 	 */
-	syncAll(): Promise<void>;
+	syncAll(profile: IProfile): Promise<void>;
 }

@@ -1,10 +1,15 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { IReadWriteWallet, IWalletAggregate } from "../../../../contracts";
-import { State } from "../../../../environment/state";
+import { IProfile, IReadWriteWallet, IWalletAggregate } from "../../../../contracts";
 
 type NetworkType = "live" | "test";
 
 export class WalletAggregate implements IWalletAggregate {
+	readonly #profile: IProfile;
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
+
 	/** {@inheritDoc IWalletAggregate.balance} */
 	public balance(networkType: NetworkType = "live"): BigNumber {
 		return this.balancesByNetworkType()[networkType];
@@ -12,7 +17,7 @@ export class WalletAggregate implements IWalletAggregate {
 
 	/** {@inheritDoc IWalletAggregate.balancesByNetworkType} */
 	public balancesByNetworkType(): Record<NetworkType, BigNumber> {
-		return State.profile()
+		return this.#profile
 			.wallets()
 			.values()
 			.reduce(
@@ -33,7 +38,7 @@ export class WalletAggregate implements IWalletAggregate {
 
 	/** {@inheritDoc IWalletAggregate.convertedBalance} */
 	public convertedBalance(): BigNumber {
-		return State.profile()
+		return this.#profile
 			.wallets()
 			.values()
 			.reduce(
@@ -47,7 +52,7 @@ export class WalletAggregate implements IWalletAggregate {
 		const result = {};
 
 		const totalByProfile: BigNumber = this.balance(networkType);
-		const walletsByCoin: Record<string, Record<string, IReadWriteWallet>> = State.profile().wallets().allByCoin();
+		const walletsByCoin: Record<string, Record<string, IReadWriteWallet>> = this.#profile.wallets().allByCoin();
 
 		for (const [coin, wallets] of Object.entries(walletsByCoin)) {
 			const matchingWallets = Object.values(wallets).filter(

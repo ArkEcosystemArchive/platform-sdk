@@ -40,6 +40,11 @@ export const createWallet = async (profile: Contracts.IProfile): Promise<void> =
 		return;
 	}
 
+	const coin = profile.coinFactory().make(asset[0], asset[1]);
+	await coin.__construct();
+
+	profile.coins().set(coin);
+
 	if (command === "address") {
 		const { address } = await prompts({
 			type: "text",
@@ -50,9 +55,8 @@ export const createWallet = async (profile: Contracts.IProfile): Promise<void> =
 
 		profile.wallets().push(
 			await profile.walletFactory().fromAddress({
-				coin: asset[0],
-				network: asset[1],
 				address,
+				coin,
 			}),
 		);
 	}
@@ -72,8 +76,7 @@ export const createWallet = async (profile: Contracts.IProfile): Promise<void> =
 		profile.wallets().push(
 			await profile.walletFactory().fromMnemonic({
 				mnemonic,
-				coin: asset[0],
-				network: asset[1],
+				coin,
 			}),
 		);
 	}

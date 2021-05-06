@@ -3,7 +3,6 @@ import Joi from "joi";
 import { IProfileData, IProfile } from "../../../contracts";
 
 import { Migrator } from "./migrator";
-import { State } from "../../../environment/state";
 import { Identifiers } from "../../../environment/container.models";
 import { container } from "../../../environment/container";
 import { ProfileEncrypter } from "./profile.encrypter";
@@ -19,8 +18,6 @@ export class ProfileImporter implements IProfileImporter {
 	/** {@inheritDoc IProfileImporter.import} */
 	public async import(password?: string): Promise<void> {
 		const data: IProfileData | undefined = await this.validate(await this.unpack(password));
-
-		State.profile(this.#profile);
 
 		this.#profile.peers().fill(data.peers);
 

@@ -10,7 +10,6 @@ import { Profile } from "../profiles/profile";
 import { Wallet } from "./wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
-import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let wallet: IReadWriteWallet;
@@ -66,12 +65,9 @@ beforeEach(async () => {
 		.persist();
 
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
-
-	State.profile(profile);
-
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	wallet = new Wallet(uuidv4(), {});
+	wallet = new Wallet(uuidv4(), {}, profile);
 
 	await wallet.mutator().coin("ARK", "ark.devnet");
 	await wallet.mutator().identity(identity.mnemonic);
@@ -1117,6 +1113,41 @@ it("should broadcast transaction", async () => {
 	walletMultiPeerMock.mockRestore();
 });
 
+it("should broadcast a transfer and confirm it", async () => {
+	nock(/.+/)
+		.post("/api/transactions")
+		.reply(201, {
+			data: {
+				accept: ["7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50"],
+				broadcast: [],
+				excess: [],
+				invalid: [],
+			},
+			errors: {},
+		})
+		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.reply(200, { data: { confirmations: 51 } });
+
+	const input = {
+		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		sign: {
+			mnemonic: "this is a top secret passphrase",
+		},
+		data: {
+			amount: "1",
+			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+	};
+
+	const id = await subject.signTransfer(input);
+	expect(subject.transaction(id)).toBeDefined();
+	await subject.broadcast(id);
+	expect(subject.broadcasted()).toContainKey(id);
+	await subject.confirm(id);
+	expect(subject.transaction(id)).toBeDefined();
+	expect(subject.hasBeenConfirmed(id)).toBeTrue();
+});
+
 it("should broadcast multisignature transaction", async () => {
 	nock(/.+/)
 		.get("/transactions")
@@ -1338,4 +1369,8 @@ it("should sync multisig transaction and delete the ones that do not require our
 	expect(subject.waitingForOurSignature()).toContainKey(id);
 	expect(subject.isAwaitingOurSignature(id)).toBeTrue();
 	cannotBeSigned.mockRestore();
+});
+
+it("should throw if a transaction is retrieved that does not exist", async () => {
+	expect(() => subject.transaction("id")).toThrow(/could not be found/);
 });

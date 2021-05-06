@@ -9,6 +9,7 @@ import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
 import { IWalletRepository } from "../repositories/wallet-repository";
 import { ICoinService } from "../services";
+import { ICoinFactory } from "../services/coin-factory";
 import { IWalletData, IWalletFactory } from "../wallets";
 import { ICountAggregate } from "./aggregates/count-aggregate";
 import { IRegistrationAggregate } from "./aggregates/registration-aggregate";
@@ -126,6 +127,14 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	coins(): ICoinService;
+
+	/**
+	 * Get the coin factory instance.
+	 *
+	 * @return {ICoinFactory}
+	 * @memberof IProfile
+	 */
+	 coinFactory(): ICoinFactory;
 
 	/**
 	 * Get the portfolio service instance.

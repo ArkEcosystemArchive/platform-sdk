@@ -3,17 +3,19 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Avatar } from "../../../helpers/avatar";
-import { IContactAddress, IContactAddressData, IKnownWalletService } from "../../../contracts";
+import { IContactAddress, IContactAddressData, IKnownWalletService, IProfile } from "../../../contracts";
 import { emitProfileChanged } from "../helpers";
 
 export class ContactAddress implements IContactAddress {
 	readonly #coin: Coins.Coin;
+	readonly #profile: IProfile;
 	readonly #data: IContactAddressData;
 	#wallet: Contracts.WalletData | undefined;
 
-	public constructor(data: IContactAddressData, coin: Coins.Coin) {
+	public constructor(data: IContactAddressData, coin: Coins.Coin, profile: IProfile) {
 		this.#data = data;
 		this.#coin = coin;
+		this.#profile = profile;
 	}
 
 	/** {@inheritDoc IContactAddress.id} */
@@ -118,14 +120,14 @@ export class ContactAddress implements IContactAddress {
 	public setName(value: string): void {
 		this.#data.name = value;
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContactAddress.setAddress} */
 	public setAddress(name: string): void {
 		this.#data.address = name;
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 	/** {@inheritDoc IContactAddress.syncIdentity} */
 	public async syncIdentity(): Promise<void> {

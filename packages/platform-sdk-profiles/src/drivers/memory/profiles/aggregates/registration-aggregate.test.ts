@@ -8,7 +8,6 @@ import { bootContainer, importByMnemonic } from "../../../../../test/helpers";
 import { IProfile } from "../../../../contracts";
 import { Profile } from "../profile";
 import { RegistrationAggregate } from "./registration-aggregate";
-import { State } from "../../../../environment/state";
 
 let subject: RegistrationAggregate;
 let profile: IProfile;
@@ -31,11 +30,9 @@ beforeAll(() => {
 beforeEach(async () => {
 	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
-	State.profile(profile);
-
 	await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
-	subject = new RegistrationAggregate();
+	subject = new RegistrationAggregate(profile);
 });
 
 describe("RegistrationAggregate", () => {

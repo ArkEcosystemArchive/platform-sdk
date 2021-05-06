@@ -10,9 +10,8 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Wallet } from "./wallet";
 import { IProfile, IProfileRepository, IReadWriteWallet } from "../../../contracts";
-import { WalletGate } from "./wallet.gate";
+import { WalletSynchroniser } from "./wallet.synchroniser";
 
-let subject: WalletGate;
 let profile: IProfile;
 let wallet: IReadWriteWallet;
 
@@ -33,14 +32,14 @@ beforeEach(async () => {
 
 		// default wallet
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../../test/fixtures/client/wallet-non-resigned.json"))
 		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.reply(200, require("../../../../test/fixtures/client/wallet-non-resigned.json"))
 
 		// second wallet
-		.get("/api/wallets/022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce")
-		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
 		.get("/api/wallets/DNc92FQmYu8G9Xvo6YqhPtRxYsUxdsUn9w")
+		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
+		.get("/api/wallets/022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce")
 		.reply(200, require("../../../../test/fixtures/client/wallet-2.json"))
 
 		// Musig wallet
@@ -78,9 +77,7 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-
 	wallet = new Wallet(uuidv4(), {}, profile);
-	subject = new WalletGate(wallet);
 
 	await wallet.mutator().coin("ARK", "ark.devnet");
 	await wallet.mutator().identity(identity.mnemonic);
@@ -88,20 +85,26 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
-test("#allows", () => {
-	expect(subject.allows("some-feature")).toBeFalse();
+it("should sync the coin", async () => {
+	await expect(new WalletSynchroniser(wallet).coin()).toResolve();
 });
 
-test("#denies", () => {
-	expect(subject.denies("some-feature")).toBeTrue();
+it("should sync and reset the coin", async () => {
+	await expect(new WalletSynchroniser(wallet).coin({ resetCoin: true })).toResolve();
 });
 
-test("#any", () => {
-	expect(subject.any(["some-feature"])).toBeFalse();
-	expect(subject.any(["Client.transactions"])).toBeTrue();
+it("should sync multi signature when musig", async () => {
+	wallet = new Wallet(uuidv4(), {}, profile);
+	await wallet.mutator().coin("ARK", "ark.devnet");
+	await wallet.mutator().identity("new super passphrase");
+
+	await new WalletSynchroniser(wallet).multiSignature();
+
+	expect(wallet.isMultiSignature()).toBeTrue();
 });
 
-test("#all", () => {
-	expect(subject.all(["some-feature"])).toBeFalse();
-	expect(subject.all(["Client.transactions"])).toBeTrue();
+it("should sync multi signature when not musig", async () => {
+	await new WalletSynchroniser(wallet).multiSignature();
+
+	expect(wallet.isMultiSignature()).toBeFalse();
 });

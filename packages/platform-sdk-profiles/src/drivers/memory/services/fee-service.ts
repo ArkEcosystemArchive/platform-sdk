@@ -2,9 +2,8 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
 import { DataRepository } from "../../../repositories/data-repository";
-import { IFeeService } from "../../../contracts";
+import { IFeeService, IProfile } from "../../../contracts";
 import { injectable } from "inversify";
-import { State } from "../../../environment/state";
 
 @injectable()
 export class FeeService implements IFeeService {
@@ -34,10 +33,10 @@ export class FeeService implements IFeeService {
 	}
 
 	/** {@inheritDoc IFeeService.syncAll} */
-	public async syncAll(): Promise<void> {
+	public async syncAll(profile: IProfile): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const coin of State.profile().coins().values()) {
+		for (const coin of profile.coins().values()) {
 			promises.push(() => this.sync(coin));
 		}
 

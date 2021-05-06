@@ -16,6 +16,7 @@ import { ITransactionIndex } from "./services/transaction-index";
 import { IWalletImportFormat } from "./services/wif";
 import { IMultiSignature } from "./services/multi-signature";
 import { ITransactionService } from "./wallet-transaction-service";
+import { IProfile } from "../profiles";
 
 /**
  * Defines the structure that represents the wallet data.
@@ -68,6 +69,14 @@ export interface IReadWriteWalletAttributes {
  * @interface IReadWriteWallet
  */
 export interface IReadWriteWallet {
+	/**
+	 * Get the profile that manages the wallet.
+	 *
+	 * @return {*}  {IProfile}
+	 * @memberof IReadWriteWallet
+	 */
+	profile(): IProfile;
+
 	/**
 	 * Get all relay peers for the given coin and network.
 	 *

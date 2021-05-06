@@ -1,23 +1,25 @@
-import { IContact, IContactAddressInput, IContactAddressRepository, IContactData } from "../../../contracts";
+import { IContact, IContactAddressInput, IContactAddressRepository, IContactData, IProfile } from "../../../contracts";
 import { pqueue } from "../../../helpers/queue";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Avatar } from "../../../helpers/avatar";
 import { emitProfileChanged } from "../helpers";
 
 export class Contact implements IContact {
+	readonly #profile: IProfile;
 	readonly #id: string;
 	#name: string;
-	#addresses: ContactAddressRepository = new ContactAddressRepository();
+	#addresses: ContactAddressRepository;
 	#starred: boolean;
 
 	#avatar: string;
 
-	public constructor({ id, name, starred }: IContactData) {
+	public constructor({ id, name, starred }: IContactData, profile: IProfile) {
+		this.#profile = profile;
 		this.#id = id;
 		this.#name = name;
 		this.#starred = starred;
-
 		this.#avatar = Avatar.make(name);
+		this.#addresses = new ContactAddressRepository(profile);
 	}
 
 	/** {@inheritDoc IContact.restore} */
@@ -49,14 +51,14 @@ export class Contact implements IContact {
 	public toggleStarred(): void {
 		this.#starred = !this.isStarred();
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContact.setAvatar} */
 	public setAvatar(value: string): void {
 		this.#avatar = value;
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContact.setName} */
@@ -72,7 +74,7 @@ export class Contact implements IContact {
 
 		await pqueue(addresses.map((address: IContactAddressInput) => () => this.#addresses.create(address)));
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContact.avatar} */

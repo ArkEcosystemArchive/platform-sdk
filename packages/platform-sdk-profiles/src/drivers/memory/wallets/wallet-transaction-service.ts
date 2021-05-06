@@ -1,7 +1,6 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 import { IReadWriteWallet, ITransactionService, WalletData } from "../../../contracts";
-import { State } from "../../../environment/state";
 
 import { pqueueSettled } from "../../../helpers/queue";
 import { SignedTransactionData } from "./dto/signed-transaction";
@@ -298,7 +297,7 @@ export class TransactionService implements ITransactionService {
 		};
 
 		if (this.canBeBroadcasted(id)) {
-			if (State.profile().usesMultiPeerBroadcasting()) {
+			if (this.#wallet.profile().usesMultiPeerBroadcasting()) {
 				result = await this.#wallet.client().broadcastSpread([transaction], this.#wallet.getRelays());
 			} else {
 				result = await this.#wallet.client().broadcast([transaction]);

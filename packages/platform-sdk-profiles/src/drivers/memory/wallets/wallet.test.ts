@@ -10,7 +10,6 @@ import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import {
 	IExchangeRateService,
@@ -21,8 +20,6 @@ import {
 	WalletFlag,
 	WalletSetting,
 } from "../../../contracts";
-import { ExtendedTransactionDataCollection } from "../../../dto";
-import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -89,9 +86,7 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-	State.profile(profile);
-
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	await subject.mutator().coin("ARK", "ark.devnet");
 	await subject.mutator().identity(identity.mnemonic);
@@ -258,7 +253,7 @@ it("should have a known name", () => {
 it("should have a second public key", () => {
 	expect(subject.secondPublicKey()).toBeUndefined();
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.secondPublicKey()).toThrow(
 		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
@@ -268,7 +263,7 @@ it("should have a second public key", () => {
 it("should have a username", () => {
 	expect(subject.username()).toBe("arkx");
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.username()).toThrow(
 		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
@@ -278,7 +273,7 @@ it("should have a username", () => {
 it("should respond on whether it is a delegate or not", () => {
 	expect(subject.isDelegate()).toBeTrue();
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.isDelegate()).toThrow(
 		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
@@ -288,7 +283,7 @@ it("should respond on whether it is a delegate or not", () => {
 it("should respond on whether it is a resigned delegate or not", () => {
 	expect(subject.isResignedDelegate()).toBeFalse();
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.isResignedDelegate()).toThrow(
 		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
@@ -326,7 +321,7 @@ it("should respond on whether it is ledger", () => {
 it("should respond on whether it is multi signature or not", () => {
 	expect(subject.isMultiSignature()).toBeFalse();
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.isMultiSignature()).toThrow(
 		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
@@ -336,7 +331,7 @@ it("should respond on whether it is multi signature or not", () => {
 it("should respond on whether it is second signature or not", () => {
 	expect(subject.isSecondSignature()).toBeFalse();
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.isSecondSignature()).toThrow(
 		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
@@ -348,7 +343,7 @@ it("should have a transaction service", () => {
 });
 
 it("should return whether it has synced with network", async () => {
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(subject.hasSyncedWithNetwork()).toBeFalse();
 
@@ -364,28 +359,8 @@ it("should fail to set an invalid address", async () => {
 	);
 });
 
-it("should sync multi signature when musig", async () => {
-	subject = new Wallet(uuidv4(), {});
-	await subject.mutator().coin("ARK", "ark.devnet");
-	await subject.mutator().identity("new super passphrase");
-
-	await subject.synchroniser().multiSignature();
-
-	expect(subject.isMultiSignature()).toBeTrue();
-});
-
-it("should sync multi signature when not musig", async () => {
-	await subject.synchroniser().multiSignature();
-
-	expect(subject.isMultiSignature()).toBeFalse();
-});
-
 it("should return explorer link", () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-});
-
-it("should sync", async () => {
-	await expect(subject.synchroniser().coin()).toResolve();
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
@@ -436,8 +411,20 @@ it("should have a primary key", () => {
 	expect(subject.primaryKey()).toBe(subject.address());
 });
 
+it("should throw if the primary key is accessed before the wallet has been synchronized", () => {
+	subject = new Wallet(uuidv4(), {}, profile);
+
+	expect(() => subject.primaryKey()).toThrow("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+});
+
 it("should have an underlying `WalletData` instance", () => {
 	expect(subject.toData().primaryKey()).toBe(subject.address());
+});
+
+it("should throw if the underlying `WalletData` instance is accessed before the wallet has been synchronized", () => {
+	subject = new Wallet(uuidv4(), {}, profile);
+
+	expect(() => subject.toData().primaryKey()).toThrow("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 });
 
 it("should return whether it can vote or not", () => {
@@ -448,4 +435,78 @@ it("should return whether it can vote or not", () => {
 	subject.data().set(WalletData.VotesAvailable, 2);
 
 	expect(subject.canVote()).toBeTrue();
+});
+
+it("should construct a coin instance", async () => {
+	const mockConstruct = jest.spyOn(subject.getAttributes().get<Coins.Coin>("coin"), "__construct");
+
+	await subject.connect();
+
+	expect(mockConstruct).toHaveBeenCalledTimes(1);
+});
+
+it("should throw if a connection is tried to be established but no coin has been set", async () => {
+	subject = new Wallet(uuidv4(), {}, profile);
+
+	await expect(subject.connect()).toReject();
+});
+
+it("should determine if the wallet has a coin attached to it", () => {
+	expect(subject.hasCoin()).toBeTrue();
+
+	subject = new Wallet(uuidv4(), {}, profile);
+
+	expect(subject.hasCoin()).toBeFalse();
+});
+
+it("should determine if the wallet has been fully restored", () => {
+	subject = new Wallet(uuidv4(), {}, profile);
+
+	expect(subject.hasBeenFullyRestored()).toBeFalse();
+
+	subject.markAsFullyRestored();
+
+	expect(subject.hasBeenFullyRestored()).toBeTrue();
+});
+
+it("should determine if the wallet has been partially restored", () => {
+	subject = new Wallet(uuidv4(), {}, profile);
+
+	expect(subject.hasBeenPartiallyRestored()).toBeFalse();
+
+	subject.markAsPartiallyRestored();
+
+	expect(subject.hasBeenPartiallyRestored()).toBeTrue();
+});
+
+it("should determine if the wallet acts with mnemonic", () => {
+	expect(subject.actsWithMnemonic()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with address", () => {
+	expect(subject.actsWithAddress()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with public key", () => {
+	expect(subject.actsWithPublicKey()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with private key", () => {
+	expect(subject.actsWithPrivateKey()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with address with ledger path", () => {
+	expect(subject.actsWithAddressWithLedgerPath()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with mnemonic with encryption", () => {
+	expect(subject.actsWithMnemonicWithEncryption()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with wif", () => {
+	expect(subject.actsWithWif()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with wif with encryption", () => {
+	expect(subject.actsWithWifWithEncryption()).toBeBoolean();
 });

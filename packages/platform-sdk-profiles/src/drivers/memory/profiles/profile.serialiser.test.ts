@@ -12,7 +12,6 @@ import {
 } from "../../../../test/helpers";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { ProfileSerialiser } from "./profile.serialiser";
 
 let subject: ProfileSerialiser;
@@ -41,7 +40,6 @@ beforeEach(() => {
 	profile = new Profile({ id: "uuid", name: "name", data: "" });
 	subject = new ProfileSerialiser(profile);
 
-	State.profile(profile);
 
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 });

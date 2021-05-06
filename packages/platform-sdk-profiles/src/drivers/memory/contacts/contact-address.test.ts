@@ -6,7 +6,6 @@ import nock from "nock";
 import { bootContainer } from "../../../../test/helpers";
 import { ContactAddress } from "./contact-address";
 import { Profile } from "../profiles/profile";
-import { State } from "../../../environment/state";
 
 let subject: ContactAddress;
 
@@ -28,15 +27,20 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/client/wallet-non-resigned.json"))
 		.persist();
 
-	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
+	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-	subject = await ContactAddress.make({
+	const coin = profile.coins().push("ARK", "ark.devnet");
+	await coin.__construct();
+
+	subject = new ContactAddress({
 		id: "uuid",
 		coin: "ARK",
 		network: "ark.devnet",
 		name: "John Doe",
 		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-	});
+	}, coin, profile);
+
+	await subject.syncIdentity();
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -110,13 +114,16 @@ describe("when contact has not been synchronized yet", () => {
 			.replyWithError("blah")
 			.persist();
 
-		subject = await ContactAddress.make({
+		const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+		const coin = profile.coins().push("ARK", "ark.devnet");
+
+		subject = new ContactAddress({
 			id: "uuid",
 			coin: "ARK",
 			network: "ark.devnet",
 			name: "John Doe",
 			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		});
+		}, coin, profile);
 	});
 
 	it("should throw Error trying to determine if the wallet is a delegate", async () => {

@@ -539,6 +539,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "jest-mock-extended",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "joi",
       "allowedCategories": [ "libraries" ]
     },

@@ -3,7 +3,6 @@ import "reflect-metadata";
 
 import { bootContainer } from "../../../../test/helpers";
 import { IProfile, ProfileSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
 
@@ -14,10 +13,7 @@ beforeAll(() => bootContainer());
 
 beforeEach(() => {
 	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-
-	State.profile(profile);
-
-	subject = new Authenticator();
+	subject = new Authenticator(profile);
 });
 
 it("should set the password", async () => {

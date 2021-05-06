@@ -1,12 +1,15 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
-import { DataRepository } from "../../../../repositories/data-repository";
-import { ICoinService } from "../../../../contracts";
+import { ICoinService, IDataRepository } from "../../../../contracts";
 import { injectable } from "inversify";
 
 @injectable()
 export class CoinService implements ICoinService {
-	readonly #dataRepository: DataRepository = new DataRepository();
+	readonly #dataRepository: IDataRepository;
+
+	public constructor(dataRepository: IDataRepository) {
+		this.#dataRepository = dataRepository;
+	}
 
 	/** {@inheritDoc ICoinService.all} */
 	public all(): Record<string, Coins.Coin> {

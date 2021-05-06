@@ -10,7 +10,6 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Wallet } from "../wallets/wallet";
 import { IExchangeRateService, IProfile, IProfileRepository, IReadWriteWallet, WalletData } from "../../../contracts";
-import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -46,9 +45,7 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-	State.profile(profile);
-
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	await subject.mutator().coin("ARK", "ark.devnet");
 	await subject.mutator().identity(identity.mnemonic);
@@ -89,4 +86,14 @@ it("should aggregate the balances of all wallets", async () => {
 	expect(profile.portfolio().breakdown()[0].source).toBe(3);
 	expect(profile.portfolio().breakdown()[0].target).toBe(0.00015144);
 	expect(profile.portfolio().breakdown()[0].shares).toBe(100);
+});
+
+it("should ignore test network wallets", async () => {
+	await Promise.all([
+		importByMnemonic(profile, "ark", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "btc", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "eth", "ARK", "ark.devnet"),
+	]);
+
+	expect(profile.portfolio().breakdown()).toEqual([]);
 });

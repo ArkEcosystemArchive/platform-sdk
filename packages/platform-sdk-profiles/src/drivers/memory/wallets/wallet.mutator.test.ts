@@ -12,7 +12,6 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Wallet } from "./wallet";
 import { IProfile, IProfileRepository, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
-import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -79,9 +78,8 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-	State.profile(profile);
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	await subject.mutator().coin("ARK", "ark.devnet");
 	await subject.mutator().identity(identity.mnemonic);
@@ -90,6 +88,16 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 describe("#setCoin", () => {
+	it("should mark the wallet as partially restored if the coin construction fails", async () => {
+		subject = new Wallet(uuidv4(), {}, profile);
+
+		expect(subject.hasBeenPartiallyRestored()).toBeFalse();
+
+		await subject.mutator().coin("FAKE", "fake.network");
+
+		expect(subject.hasBeenPartiallyRestored()).toBeTrue();
+	});
+
 	it("should use the default peer if no custom one is available", async () => {
 		await subject.mutator().coin("ARK", "ark.devnet");
 
@@ -155,5 +163,12 @@ describe("#setCoin", () => {
 		await subject.mutator().coin("ARK", "ark.devnet");
 
 		expect(subject.getRelays()).toBeArrayOfSize(1);
+	});
+
+	it("should mutate extendedPublicKey", async () => {
+		await subject.mutator().extendedPublicKey("pubKey", { syncIdentity: false , validate: true });
+
+		expect(subject.publicKey()).toBe("pubKey");
+		expect(subject.address()).toBe("pubKey");
 	});
 });

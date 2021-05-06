@@ -1,15 +1,16 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
-import { DataRepository } from "../../../repositories/data-repository";
 import { ReadOnlyWallet } from "../wallets/read-only-wallet";
-import { IDelegateService, IProfile, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
+import { IDataRepository, IDelegateService, IProfile, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
 import { injectable } from "inversify";
-import { State } from "../../../environment/state";
+import { DataRepository } from "../../../repositories";
+import { IDelegateSyncer, ParallelDelegateSyncer, SerialDelegateSyncer } from "./helpers/delegate-syncer";
 
 @injectable()
 export class DelegateService implements IDelegateService {
-	readonly #dataRepository: DataRepository = new DataRepository();
+	readonly #dataRepository: IDataRepository = new DataRepository();
+
 
 	/** {@inheritDoc IDelegateService.all} */
 	public all(coin: string, network: string): IReadOnlyWallet[] {
@@ -17,7 +18,7 @@ export class DelegateService implements IDelegateService {
 
 		if (result === undefined) {
 			throw new Error(
-				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
+				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`
 			);
 		}
 
@@ -108,10 +109,10 @@ export class DelegateService implements IDelegateService {
 	}
 
 	/** {@inheritDoc IDelegateService.syncAll} */
-	public async syncAll(): Promise<void> {
+	public async syncAll(profile: IProfile): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const coin of State.profile().coins().values()) {
+		for (const coin of profile.coins().values()) {
 			promises.push(() => this.sync(coin));
 		}
 
@@ -136,7 +137,7 @@ export class DelegateService implements IDelegateService {
 						rank: delegate.rank(),
 						explorerLink: wallet.link().wallet(delegate.address()),
 						isDelegate: delegate.isDelegate(),
-						isResignedDelegate: delegate.isResignedDelegate(),
+						isResignedDelegate: delegate.isResignedDelegate()
 					});
 				} catch {
 					return undefined;
@@ -163,7 +164,7 @@ export class DelegateService implements IDelegateService {
 			rank: (delegate.rank as unknown) as number,
 			explorerLink: "",
 			isDelegate: delegate.isDelegate,
-			isResignedDelegate: delegate.isResignedDelegate,
+			isResignedDelegate: delegate.isResignedDelegate
 		});
 	}
 }

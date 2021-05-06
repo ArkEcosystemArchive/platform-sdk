@@ -1,0 +1,294 @@
+{
+	"meta": {
+		"count": 10,
+		"pageCount": 1,
+		"totalCount": 10,
+		"next": null,
+		"previous": null,
+		"self": "/delegates?page=1&limit=100",
+		"first": "/delegates?page=1&limit=100",
+		"last": "/delegates?page=1&limit=100"
+	},
+	"data": [
+		{
+			"username": "alessio",
+			"address": "DSyG9hK9CE8eyfddUoEvsga4kNVQLdw2ve",
+			"publicKey": "033a5474f68f92f254691e93c06a2f22efaf7d66b543a53efcece021819653a200",
+			"votes": "2000707768009804",
+			"rank": 1,
+			"isResigned": false,
+			"blocks": {
+				"produced": 80764,
+				"last": {
+					"id": "758ff0d904f362b209fd210ae5ebdc61d6c053c4d6fa700d1cf3f6226dd43c85",
+					"height": 4638358,
+					"timestamp": {
+						"epoch": 94936640,
+						"unix": 1585037840,
+						"human": "2020-03-24T08:17:20.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 14.9
+			},
+			"forged": {
+				"fees": "468407250508",
+				"rewards": "16113200000000",
+				"total": "16581607250508"
+			}
+		},
+		{
+			"username": "alexxio",
+			"address": "DEz1Mr4uJ7NaiufwKEj28atCRPTmsUqh9t",
+			"publicKey": "0215789ac26155b7a338708f595b97c453e08918d0630c896cbd31d83fe2ad1c33",
+			"votes": "155465131019465",
+			"rank": 2,
+			"isResigned": false,
+			"blocks": {
+				"produced": 39835,
+				"last": {
+					"id": "31604c70715a3a33e7d3f2701abf13875c0400e19168539be8f26b294849dba4",
+					"height": 4638359,
+					"timestamp": {
+						"epoch": 94936648,
+						"unix": 1585037848,
+						"human": "2020-03-24T08:17:28.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 1.16
+			},
+			"forged": {
+				"fees": "44348677107",
+				"rewards": "7967000000000",
+				"total": "8011348677107"
+			}
+		},
+		{
+			"username": "genesis_15",
+			"address": "D8vwEEvKgMPVvvK2Zwzyb5uHzRadurCcKq",
+			"publicKey": "02e311d97f92dc879860ec0d63b344239f17149ed1700b279b5ef52d2baaa0226f",
+			"votes": "49768453449571",
+			"rank": 3,
+			"isResigned": false,
+			"blocks": {
+				"produced": 8096,
+				"last": {
+					"id": "ab38e8ee085c9c01c10b24f207b979f8eda00da6c9f96e93faa045c936adf192",
+					"height": 4638337,
+					"timestamp": {
+						"epoch": 94936472,
+						"unix": 1585037672,
+						"human": "2020-03-24T08:14:32.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 0.37
+			},
+			"forged": {
+				"fees": "58784721565",
+				"rewards": "1616400000000",
+				"total": "1675184721565"
+			}
+		},
+		{
+			"username": "geops",
+			"address": "DJpFwW39QnQvQRQJF2MCfAoKvsX4DJ28jq",
+			"publicKey": "027716e659220085e41389efc7cf6a05f7f7c659cf3db9126caabce6cda9156582",
+			"votes": "48618236178285",
+			"rank": 4,
+			"isResigned": false,
+			"blocks": {
+				"produced": 94439,
+				"last": {
+					"id": "3710f238ba9f281778098544a9dae173b0a8db7a36a5805a984bcca40d652de0",
+					"height": 4638351,
+					"timestamp": {
+						"epoch": 94936584,
+						"unix": 1585037784,
+						"human": "2020-03-24T08:16:24.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 0.36
+			},
+			"forged": {
+				"fees": "229122095493",
+				"rewards": "18847800000000",
+				"total": "19076922095493"
+			}
+		},
+		{
+			"username": "genesis_42",
+			"address": "D5L5zXgvqtg7qoGimt5vYhFuf5Ued6iWVr",
+			"publicKey": "0346e1a1b5cb0720e863e8cf8a91dc8ed827e09fb4a4812f9f4d51f606e5359516",
+			"votes": "48401235390937",
+			"rank": 5,
+			"isResigned": false,
+			"blocks": {
+				"produced": 59259,
+				"last": {
+					"id": "b3034cac1fb4326930fe85bd2a1f81c9d24f5b14e9727320e00c46690f559f25",
+					"height": 4638370,
+					"timestamp": {
+						"epoch": 94936736,
+						"unix": 1585037936,
+						"human": "2020-03-24T08:18:56.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 0.36
+			},
+			"forged": {
+				"fees": "140914818763",
+				"rewards": "11809200000000",
+				"total": "11950114818763"
+			}
+		},
+		{
+			"username": "genesis_39",
+			"address": "DDU4aLrxw9VYJzrMTYtRAyDM9fKsqciiYd",
+			"publicKey": "02ac8d84d81648154f79ba64fbf64cd6ee60f385b2aa52e8eb72bc1374bf55a68c",
+			"votes": "46445435503558",
+			"rank": 6,
+			"isResigned": false,
+			"blocks": {
+				"produced": 29469,
+				"last": {
+					"id": "126c60cd06d4c2f93856786032c233c69e00b9cbfea7b1770bc749a7340749a8",
+					"height": 4638375,
+					"timestamp": {
+						"epoch": 94936776,
+						"unix": 1585037976,
+						"human": "2020-03-24T08:19:36.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 0.35
+			},
+			"forged": {
+				"fees": "125845318151",
+				"rewards": "5851400000000",
+				"total": "5977245318151"
+			}
+		},
+		{
+			"username": "genesis_45",
+			"address": "D7u9gSS3KsykEoRys7DxsRNwHjpYoG8mqS",
+			"publicKey": "022e13de675e14a409ce636706c76d42857c673d8dc0dda4e5bfceffdbf86e13c9",
+			"votes": "43437754070126",
+			"rank": 7,
+			"isResigned": false,
+			"blocks": {
+				"produced": 24441,
+				"last": {
+					"id": "dafe0cd2b5efc2bb4b16443c275f53563e87ab1bca6ac55f518bbae295c8551b",
+					"height": 4638365,
+					"timestamp": {
+						"epoch": 94936696,
+						"unix": 1585037896,
+						"human": "2020-03-24T08:18:16.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 0.32
+			},
+			"forged": {
+				"fees": "83327238230",
+				"rewards": "4845200000000",
+				"total": "4928527238230"
+			}
+		},
+		{
+			"username": "genesis_40",
+			"address": "D8xN3Nsa3KfC3H68Ek9xnkfdSwzv8Kkh3q",
+			"publicKey": "026a423b3323de175dd82788c7eab57850c6a37ea6a470308ebadd7007baf8ceb3",
+			"votes": "43103272246893",
+			"rank": 8,
+			"isResigned": false,
+			"blocks": {
+				"produced": 25319,
+				"last": {
+					"id": "385d4e5b90bac3f5228f7e0d569d302ce0d7e6ac2fe7af00ef56544cde929390",
+					"height": 4638360,
+					"timestamp": {
+						"epoch": 94936656,
+						"unix": 1585037856,
+						"human": "2020-03-24T08:17:36.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 0.32
+			},
+			"forged": {
+				"fees": "78873746893",
+				"rewards": "5020800000000",
+				"total": "5099673746893"
+			}
+		},
+		{
+			"username": "cam",
+			"address": "DACFobAjNEKsc1CtPSMyp5uA4wp6uC3fgC",
+			"publicKey": "032cfbb18f4e49952c6d6475e8adc6d0cba00b81ef6606cc4927b78c6c50558beb",
+			"votes": "42934515458103",
+			"rank": 9,
+			"isResigned": false,
+			"blocks": {
+				"produced": 75659,
+				"last": {
+					"id": "7b32b2a0013191b4271b9fded2c4f0a8348ee092b076df2a2ca6ee8844358f27",
+					"height": 4638372,
+					"timestamp": {
+						"epoch": 94936752,
+						"unix": 1585037952,
+						"human": "2020-03-24T08:19:12.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 0.32
+			},
+			"forged": {
+				"fees": "54006777668",
+				"rewards": "15131800000000",
+				"total": "15185806777668"
+			}
+		},
+		{
+			"username": "genesis_50",
+			"address": "DRW3wNMA4ijPfm7KA3XtupDNb5Hb8kL4AE",
+			"publicKey": "02677f73453da6073f5cf76db8f65fabc1a3b7aadc7b06027e0df709f14e097790",
+			"votes": "42917231296180",
+			"rank": 10,
+			"isResigned": false,
+			"blocks": {
+				"produced": 24185,
+				"last": {
+					"id": "2aff03de08a86761ba36a03d65fc09dedabf03699d2c891926a80b2bcb387e45",
+					"height": 4638378,
+					"timestamp": {
+						"epoch": 94936800,
+						"unix": 1585038000,
+						"human": "2020-03-24T08:20:00.000Z"
+					}
+				}
+			},
+			"production": {
+				"approval": 0.32
+			},
+			"forged": {
+				"fees": "118282291858",
+				"rewards": "4794400000000",
+				"total": "4912682291858"
+			}
+		}
+	]
+}

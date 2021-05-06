@@ -6,11 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
-import { IReadWriteWallet, ProfileSetting } from "../../../contracts";
+import { IProfile, IReadWriteWallet, IWalletData, ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { WalletRepository } from "./wallet-repository";
-import { State } from "../../../environment/state";
 import { WalletFactory } from "../wallets/wallet.factory";
 
 jest.setTimeout(60000);
@@ -36,7 +35,7 @@ const importByMnemonic = async (mnemonic: string, coin: string, network: string)
 };
 
 let subject: WalletRepository;
-let factory: WalletFactory = new WalletFactory();
+let factory: WalletFactory;
 
 beforeAll(() => bootContainer());
 
@@ -58,11 +57,10 @@ beforeEach(async () => {
 
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-	State.profile(profile);
-
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	subject = new WalletRepository();
+	subject = new WalletRepository(profile);
+	factory = new WalletFactory(profile);
 
 	const wallet = await importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 	subject.update(wallet.id(), { alias: "Alias" });
@@ -127,6 +125,13 @@ test("#findByAlias", async () => {
 	expect(subject.findByAlias("Not Exist")).toBeUndefined();
 });
 
+test("#push", async () => {
+	subject.flush();
+
+	await expect(importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).toResolve();
+	await expect(importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).toReject();
+});
+
 test("#update", async () => {
 	expect(() => subject.update("invalid", { alias: "My Wallet" })).toThrowError("Failed to find");
 
@@ -151,7 +156,7 @@ test("#fill", async () => {
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	const newWallet = new Wallet(uuidv4(), {});
+	const newWallet = new Wallet(uuidv4(), {}, profile);
 	await newWallet.mutator().coin("ARK", "ark.devnet");
 	await newWallet.mutator().identity("this is another top secret passphrase");
 
@@ -227,5 +232,90 @@ describe("#sortBy", () => {
 		expect(wallets[0].address()).toBe(walletARK.address());
 		expect(wallets[1].address()).toBe(walletBTC.address());
 		expect(wallets[2].address()).toBe(walletETH.address());
+	});
+
+	it("should export toObject", async () => {
+		const wallets: Record<string, IWalletData> = subject.toObject();
+
+		expect(wallets).toBeInstanceOf(Object);
+	});
+
+	describe("restore", function() {
+		let profile: IProfile;
+		let wallet: IReadWriteWallet;
+
+		beforeEach(async () => {
+			profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+			profile.settings().set(ProfileSetting.Name, "John Doe");
+
+			wallet = new Wallet(uuidv4(), {}, profile);
+			await wallet.mutator().coin("ARK", "ark.devnet");
+			await wallet.mutator().identity("this is another top secret passphrase");
+
+			// @ts-ignore
+			await subject.fill({
+				[wallet.id()]: {
+					id: wallet.id(),
+					coin: wallet.coinId(),
+					network: wallet.networkId(),
+					networkConfig: wallet.config(),
+					address: wallet.address(),
+					data: wallet.data(),
+					settings: wallet.settings(),
+				},
+			});
+		})
+
+		it("should restore", async () => {
+			const newWallet2 = new Wallet(uuidv4(), {}, profile);
+			await newWallet2.mutator().coin("ARK", "ark.devnet");
+			await newWallet2.mutator().identity("this is another top secret passphrase");
+
+			// @ts-ignore
+			await subject.fill({
+				[wallet.id()]: {
+					id: wallet.id(),
+					coin: wallet.coinId(),
+					network: wallet.networkId(),
+					networkConfig: wallet.config(),
+					address: wallet.address(),
+					data: wallet.data(),
+					settings: wallet.settings(),
+				},
+				[newWallet2.id()]: {
+					id: newWallet2.id(),
+					coin: newWallet2.coinId(),
+					network: newWallet2.networkId(),
+					address: newWallet2.address(),
+					data: newWallet2.data(),
+					settings: newWallet2.settings(),
+				},
+			});
+
+			await subject.restore();
+
+			expect(subject.findById(wallet.id()).hasBeenFullyRestored()).toBeTrue();
+			expect(subject.findById(newWallet2.id()).hasBeenFullyRestored()).toBeTrue();
+		});
+
+		it("should do nothing if the wallet has already been fully restored", async () => {
+			subject.findById(wallet.id()).markAsFullyRestored();
+
+			await subject.restore();
+
+			expect(subject.findById(wallet.id()).hasBeenFullyRestored()).toBeTrue();
+			expect(subject.findById(wallet.id()).hasBeenPartiallyRestored()).toBeFalse();
+		});
+
+		it("should retry if failure during wallet restore", async () => {
+			// Nasty: we need to mock a failure on the wallet instance the repository has
+			jest.spyOn(subject.findById(wallet.id()), "mutator").mockImplementationOnce(() => {
+				throw new Error();
+			});
+
+			await subject.restore();
+
+			expect(subject.findById(wallet.id()).hasBeenFullyRestored()).toBeTrue();
+		});
 	});
 });

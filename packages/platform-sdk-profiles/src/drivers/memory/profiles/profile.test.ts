@@ -1,17 +1,8 @@
 import "jest-extended";
 import "reflect-metadata";
-
-import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
-
-import { identity } from "../../../../test/fixtures/identity";
-import {
-	bootContainer,
-	importByAddressWithLedgerPath,
-	importByMnemonic,
-	generateWallet,
-} from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/helpers";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../../../repositories/data-repository";
@@ -24,8 +15,9 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
-import { IProfile, ProfileData, ProfileSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
+import { IProfile, IReadWriteWallet, ProfileData, ProfileSetting } from "../../../contracts";
+import { WalletFactory } from "../wallets/wallet.factory";
+import { mock, MockProxy } from "jest-mock-extended";
 
 let subject: IProfile;
 
@@ -51,8 +43,6 @@ beforeAll(() => {
 beforeEach(() => {
 	subject = new Profile({ id: "uuid", name: "name", data: "" });
 
-	State.profile(subject);
-
 	subject.settings().set(ProfileSetting.Name, "John Doe");
 });
 
@@ -72,6 +62,13 @@ it("should have a default avatar", () => {
 
 it("should have a custom avatar", () => {
 	subject.settings().set(ProfileSetting.Avatar, "custom-avatar");
+
+	expect(subject.avatar()).toBe("custom-avatar");
+});
+
+it("should have a custom avatar in data", () => {
+	subject.getAttributes().set("data.avatar", "something");
+	subject.getAttributes().set("avatar", "custom-avatar");
 
 	expect(subject.avatar()).toBe("custom-avatar");
 });
@@ -126,6 +123,26 @@ it("should fail to flush all data if the name is missing", () => {
 	expect(() => subject.flush()).toThrowError("The name of the profile could not be found. This looks like a bug.");
 });
 
+it("should flush settings", () => {
+	expect(subject.settings().keys()).toHaveLength(1);
+
+	subject.flushSettings();
+
+	expect(subject.settings().keys()).toHaveLength(14);
+});
+
+it("should fail to flush settings if the name is missing", () => {
+	subject.settings().forget(ProfileSetting.Name);
+
+	expect(subject.settings().keys()).toHaveLength(0);
+
+	expect(() => subject.flushSettings()).toThrowError("The name of the profile could not be found. This looks like a bug.");
+});
+
+it("should have a a wallet factory", () => {
+	expect(subject.walletFactory()).toBeInstanceOf(WalletFactory);
+});
+
 it("should have a count aggregate", () => {
 	expect(subject.countAggregate()).toBeInstanceOf(CountAggregate);
 });
@@ -161,6 +178,14 @@ test("#usesMultiPeerBroadcasting", async () => {
 	subject.settings().set(ProfileSetting.UseMultiPeerBroadcast, true);
 
 	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
+});
+
+test("#hasBeenPartiallyRestored", async () => {
+	const wallet: MockProxy<IReadWriteWallet> = mock<IReadWriteWallet>();
+	wallet.id.mockReturnValue("some-id");
+	wallet.hasBeenPartiallyRestored.mockReturnValue(true);
+	subject.wallets().push(wallet);
+	expect(subject.hasBeenPartiallyRestored()).toBeTrue();
 });
 
 it("should determine if the tutorial has been completed", () => {

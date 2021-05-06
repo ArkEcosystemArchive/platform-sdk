@@ -121,7 +121,7 @@ export class WalletRepository implements IWalletRepository {
 
 		this.#data.set(wallet.id(), wallet);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 
 		return wallet;
 	}
@@ -148,7 +148,7 @@ export class WalletRepository implements IWalletRepository {
 
 		this.#data.set(id, result);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IWalletRepository.has} */
@@ -160,14 +160,14 @@ export class WalletRepository implements IWalletRepository {
 	public forget(id: string): void {
 		this.#data.forget(id);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IWalletRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IWalletRepository.count} */
@@ -236,7 +236,7 @@ export class WalletRepository implements IWalletRepository {
 		for (const item of Object.values(struct)) {
 			const { id, coin, network, address, data, settings } = item;
 
-			const wallet = new Wallet(id, item);
+			const wallet = new Wallet(id, item, this.#profile);
 
 			wallet.data().fill(data);
 
@@ -321,6 +321,7 @@ export class WalletRepository implements IWalletRepository {
 			},
 			{
 				onFailedAttempt: (error) =>
+					/* istanbul ignore next */
 					console.log(
 						`Attempt #${error.attemptNumber} to restore [${address}] failed. There are ${error.retriesLeft} retries left.`,
 					),

@@ -246,15 +246,7 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	private configureDriver(options: EnvironmentOptions): void {
-		if (options.driver === undefined) {
-			return DriverFactory.make("memory", container, options);
-		}
-
-		if (typeof options.driver === "string") {
-			return DriverFactory.make(options.driver, container, options);
-		}
-
-		return options.driver?.make(container, options);
+		return DriverFactory.make("memory", container, options);
 	}
 
 	/**

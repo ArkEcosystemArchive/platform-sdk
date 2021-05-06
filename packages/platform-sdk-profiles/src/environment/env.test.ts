@@ -23,8 +23,8 @@ import { DataRepository } from "../repositories/data-repository";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
-import { State } from "./state";
 import { MemoryStorage } from "./storage/memory";
+import { PluginRegistry } from "../drivers/memory/plugins";
 
 let subject: Environment;
 
@@ -103,14 +103,32 @@ it("should have a data repository", async () => {
 	expect(subject.data()).toBeInstanceOf(DataRepository);
 });
 
+it("should have a plugin registry", async () => {
+	await makeSubject();
+
+	expect(subject.plugins()).toBeInstanceOf(PluginRegistry);
+});
+
 it("should have available networks", async () => {
 	await makeSubject();
 
 	expect(subject.availableNetworks()).toHaveLength(10);
 
-	for(const network of subject.availableNetworks()) {
+	for (const network of subject.availableNetworks()) {
 		expect(network.toObject()).toMatchSnapshot();
 	}
+});
+
+it("should set migrations", async () => {
+	await makeSubject();
+
+	expect(container.has(Identifiers.MigrationSchemas)).toBeFalse();
+	expect(container.has(Identifiers.MigrationVersion)).toBeFalse();
+
+	subject.setMigrations({}, "1.0.0");
+
+	expect(container.has(Identifiers.MigrationSchemas)).toBeTrue();
+	expect(container.has(Identifiers.MigrationVersion)).toBeTrue();
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {
@@ -121,8 +139,6 @@ it("should create a profile with data and persist it when instructed to do so", 
 	 */
 
 	const profile = subject.profiles().create("John Doe");
-
-	State.profile(profile);
 
 	// Create a Contact
 	profile.contacts().create("Jane Doe");
@@ -174,7 +190,16 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
-	expect(newProfile.data().all()).toEqual({ key: "value" });
+	expect(newProfile.data().all()).toMatchInlineSnapshot(`
+		Object {
+		  "ARK": Object {
+		    "ark": Object {
+		      "devnet": Object {},
+		    },
+		  },
+		  "key": "value",
+		}
+	`);
 	expect(newProfile.settings().all()).toEqual({
 		ADVANCED_MODE: "value",
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
@@ -206,7 +231,16 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
-	expect(newProfile.data().all()).toEqual({ key: "value" });
+	expect(newProfile.data().all()).toMatchInlineSnapshot(`
+		Object {
+		  "ARK": Object {
+		    "ark": Object {
+		      "devnet": Coin {},
+		    },
+		  },
+		  "key": "value",
+		}
+	`);
 	expect(newProfile.settings().all()).toEqual({
 		ADVANCED_MODE: "value",
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
@@ -275,27 +309,21 @@ it("#exchangeRates", async () => {
 it("#fees", async () => {
 	await makeSubject();
 
-	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
-
-	await subject.fees().sync("ARK", "ark.devnet");
+	await subject.fees().sync(subject.profiles().create("John"), "ARK", "ark.devnet");
 	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(11);
 });
 
 it("#delegates", async () => {
 	await makeSubject();
 
-	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
-
-	await subject.delegates().sync("ARK", "ark.devnet");
+	await subject.delegates().sync(subject.profiles().create("John"), "ARK", "ark.devnet");
 	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(200);
 });
 
 it("#knownWallets", async () => {
 	await makeSubject();
 
-	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
-
-	await subject.knownWallets().syncAll();
+	await subject.knownWallets().syncAll(subject.profiles().create("John Doe"));
 	expect(subject.knownWallets().is("ark.devnet", "unknownWallet")).toBeFalse();
 });
 
@@ -327,7 +355,6 @@ it("should create a profile with password and persist", async () => {
 	await makeSubject();
 
 	const profile = subject.profiles().create("John Doe");
-	State.profile(profile);
 	profile.auth().setPassword("password");
 	expect(() => subject.persist()).not.toThrowError();
 });
@@ -353,19 +380,13 @@ it("should persist the env and restore it", async () => {
 	await makeSubject();
 
 	const john = subject.profiles().create("John");
-	State.profile(john);
 	await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
-	// john.save();
 
 	const jane = subject.profiles().create("Jane");
-	State.profile(jane);
 	jane.auth().setPassword("password");
-	// jane.save("password");
 
 	const jack = subject.profiles().create("Jack");
-	State.profile(jack);
 	jack.auth().setPassword("password");
-	// jack.save("password");
 
 	await subject.persist();
 

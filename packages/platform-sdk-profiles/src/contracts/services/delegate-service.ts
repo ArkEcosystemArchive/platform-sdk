@@ -1,5 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { IProfile } from "../profiles";
 import { IReadWriteWallet } from "../wallets";
 import { IReadOnlyWallet } from "../wallets/read-only-wallet";
 
@@ -65,10 +66,11 @@ export interface IDelegateService {
 	/**
 	 * Synchronise delegates for all coins and networks.
 	 *
+	 * @param {IProfile} profile
 	 * @return {Promise<void>}
 	 * @memberof IDelegateService
 	 */
-	syncAll(): Promise<void>;
+	syncAll(profile: IProfile): Promise<void>;
 
 	/**
 	 * Map the given public keys to delegates of the coin and network of the given wallet.

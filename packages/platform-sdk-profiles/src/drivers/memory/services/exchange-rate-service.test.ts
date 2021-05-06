@@ -11,7 +11,6 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { ProfileRepository } from "../repositories/profile-repository";
 import { ExchangeRateService } from "./exchange-rate-service";
-import { State } from "../../../environment/state";
 
 let profile: IProfile;
 let wallet: IReadWriteWallet;
@@ -55,7 +54,6 @@ beforeEach(async () => {
 
 	profile = profileRepository.create("John Doe");
 
-	State.profile(profile);
 
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 

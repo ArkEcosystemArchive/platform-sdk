@@ -9,7 +9,6 @@ import { bootContainer } from "../../test/helpers";
 import { IProfile, IReadWriteWallet, ProfileSetting } from "../contracts";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { Wallet } from "../drivers/memory/wallets/wallet";
-import { State } from "../environment/state";
 import {
 	DelegateRegistrationData,
 	DelegateResignationData,
@@ -79,11 +78,9 @@ describe("transaction-mapper", () => {
 
 		profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-		State.profile(profile);
-
 		profile.settings().set(ProfileSetting.Name, "John Doe");
 
-		wallet = new Wallet(uuidv4(), {});
+		wallet = new Wallet(uuidv4(), {}, profile);
 
 		await wallet.mutator().coin("ARK", "ark.devnet");
 		await wallet.mutator().identity(identity.mnemonic);

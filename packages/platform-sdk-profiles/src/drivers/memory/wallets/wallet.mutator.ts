@@ -1,7 +1,7 @@
 import { Avatar } from "../../../helpers/avatar";
-import { IReadWriteWallet, WalletSetting } from "../../../contracts";
+import { IProfile, IReadWriteWallet, WalletSetting } from "../../../contracts";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { emitProfileChanged } from "../helpers";
 
 export class WalletMutator implements IWalletMutator {
@@ -29,24 +29,23 @@ export class WalletMutator implements IWalletMutator {
 				} else {
 					this.#wallet.markAsPartiallyRestored();
 				}
-			} else {
-				this.#wallet.markAsFullyRestored();
 			}
 		} catch {
 			this.#wallet.markAsPartiallyRestored();
 		}
 
-		emitProfileChanged();
+		emitProfileChanged(this.#wallet.profile());
 	}
 
 	/** {@inheritDoc IWalletMutator.identity} */
-	public async identity(mnemonic: string): Promise<void> {
+	public async identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void> {
 		this.#wallet
 			.getAttributes()
 			.set(
 				"address",
-				await this.#wallet.getAttributes().get<Coins.Coin>("coin").identity().address().fromMnemonic(mnemonic),
+				await this.#wallet.getAttributes().get<Coins.Coin>("coin").identity().address().fromMnemonic(mnemonic, options),
 			);
+
 		this.#wallet
 			.getAttributes()
 			.set(
@@ -56,7 +55,7 @@ export class WalletMutator implements IWalletMutator {
 					.get<Coins.Coin>("coin")
 					.identity()
 					.publicKey()
-					.fromMnemonic(mnemonic),
+					.fromMnemonic(mnemonic, options),
 			);
 
 		return this.address(this.#wallet.getAttributes().get<string>("address"));

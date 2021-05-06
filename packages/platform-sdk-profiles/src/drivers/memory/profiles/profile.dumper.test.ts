@@ -6,7 +6,6 @@ import nock from "nock";
 import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "./profile";
 import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { ProfileDumper } from "./profile.dumper";
 import { Identifiers } from "../../../environment/container.models";
 import { container } from "../../../environment/container";
@@ -39,7 +38,6 @@ beforeEach(() => {
 	profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).create("John Doe");
 	subject = new ProfileDumper(profile);
 
-	State.profile(profile);
 });
 
 describe("#dump", () => {

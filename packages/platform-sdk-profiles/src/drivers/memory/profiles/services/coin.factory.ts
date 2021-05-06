@@ -1,9 +1,11 @@
 import { Coins } from "@arkecosystem/platform-sdk";
+
 import { IProfile } from "../../../../contracts";
+import { ICoinFactory } from "../../../../contracts/services/coin-factory";
 import { container } from "../../../../environment/container";
 import { Identifiers } from "../../../../environment/container.models";
 
-export class CoinFactory {
+export class CoinFactory implements ICoinFactory {
 	readonly #profile: IProfile;
 
 	public constructor(profile: IProfile) {
