@@ -90,7 +90,11 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// This is the expiration slot which should be estimated with #estimateExpiration
 		if (input.data.expiration === undefined) {
-			txBuilder.set_ttl(parseInt(await this.estimateExpiration()));
+			const expiration = await this.estimateExpiration();
+
+			if (expiration !== undefined) {
+				txBuilder.set_ttl(parseInt(expiration));
+			}
 		} else {
 			txBuilder.set_ttl(input.data.expiration);
 		}
@@ -209,7 +213,7 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
 	}
 
-	public async estimateExpiration(value?: string): Promise<string> {
+	public async estimateExpiration(value?: string): Promise<string | undefined> {
 		const tip: number = await fetchNetworkTip(this.#config);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 

@@ -219,7 +219,7 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 	}
 
-	public async estimateExpiration(value?: string): Promise<string> {
+	public async estimateExpiration(value?: string): Promise<string | undefined> {
 		const { data: blockchain } = (await this.#http.get(`${this.#peer}/blockchain`)).json();
 		const { data: configuration } = (await this.#http.get(`${this.#peer}/node/configuration`)).json();
 
