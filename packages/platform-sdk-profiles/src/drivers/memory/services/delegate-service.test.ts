@@ -18,6 +18,11 @@ beforeAll(() => {
 	bootContainer();
 
 	nock.disableNetConnect();
+});
+
+let wallet: IReadWriteWallet;
+
+beforeEach(async () => {
 
 	nock(/.+/)
 		.get("/api/node/configuration")
@@ -33,11 +38,7 @@ beforeAll(() => {
 		.get("/api/delegates?page=2")
 		.reply(200, require("../../../../test/fixtures/client/delegates-2.json"))
 		.persist();
-});
 
-let wallet: IReadWriteWallet;
-
-beforeEach(async () => {
 	subject = new DelegateService();
 
 	State.profile(new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" }));
@@ -51,6 +52,33 @@ beforeEach(async () => {
 describe("DelegateService", () => {
 	it("should sync the delegates", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+
+		await subject.sync("ARK", "ark.devnet");
+
+		expect(subject.all("ARK", "ark.devnet")).toBeArray();
+		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
+	});
+
+	it("should sync the delegates only one page", async () => {
+		nock.cleanAll();
+		nock(/.+/)
+			.get("/api/delegates")
+			.reply(200, require("../../../../test/fixtures/client/delegates-single-page.json"));
+
+		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+
+		await subject.sync("ARK", "ark.devnet");
+
+		expect(subject.all("ARK", "ark.devnet")).toBeArray();
+		expect(subject.all("ARK", "ark.devnet")).toHaveLength(10);
+	});
+
+	it("should sync the delegates when network does not support FastDelegateSync", async () => {
+		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+
+		jest.spyOn(
+			State.profile().coins().push("ARK", "ark.devnet").network(), "allows")
+			.mockReturnValue(false);
 
 		await subject.sync("ARK", "ark.devnet");
 

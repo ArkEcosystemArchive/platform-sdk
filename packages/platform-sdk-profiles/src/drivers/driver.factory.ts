@@ -21,14 +21,14 @@ export class DriverFactory {
 	 * @memberof DriverFactory
 	 */
 	public static make(name: string, container: Container, options: EnvironmentOptions): void {
-		const driver: Driver | undefined = {
+		const driver: (() => Driver) | undefined = {
 			memory: () => new MemoryDriver(),
-		}[name]();
+		}[name];
 
 		if (driver === undefined) {
 			throw new Error(`Driver [${name}] is not supported.`);
 		}
 
-		return driver.make(container, options);
+		return driver().make(container, options);
 	}
 }

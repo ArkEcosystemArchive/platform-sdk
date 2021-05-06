@@ -168,10 +168,10 @@ export interface IProfileRepository {
 	 * @template T
 	 * @param {string} id
 	 * @param {Function} callback
-	 * @return {*}  {T}
+	 * @return {*}  {Promise<T>}
 	 * @memberof IProfileRepository
 	 */
-	tap<T>(id: string, callback: Function): T;
+	tap<T>(id: string, callback: Function): Promise<T>;
 
 	/**
 	 * Turn the profiles into a normalised object.

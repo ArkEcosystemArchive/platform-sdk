@@ -1,3 +1,5 @@
+import { Contracts } from "@arkecosystem/platform-sdk";
+
 /**
  * Defines the implementation contract for the wallet mutator.
  *
@@ -20,10 +22,11 @@ export interface IWalletMutator {
 	 * Set the identity based on a mnemonic.
 	 *
 	 * @param {string} mnemonic
+	 * @param {Contracts.IdentityOptions} [options]
 	 * @return {Promise<void>}
 	 * @memberof void
 	 */
-	identity(mnemonic: string): Promise<void>;
+	identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void>;
 
 	/**
 	 * Set the address and optionally synchronise the wallet.

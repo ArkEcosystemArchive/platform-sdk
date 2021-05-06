@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { Coins } from "@arkecosystem/platform-sdk";
 import { ADA } from "@arkecosystem/platform-sdk-ada";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 import { BTC } from "@arkecosystem/platform-sdk-btc";
@@ -22,6 +23,25 @@ export const bootContainer = (): void => {
 		storage: new StubStorage(),
 		httpClient: new Request(),
 	});
+};
+
+const coins: Record<string, Coins.Coin> = {};
+
+export const makeCoin = async (coin: string, network: string): Promise<Coins.Coin> => {
+	const cacheKey = `${coin}.${network}`;
+
+	if (coins[cacheKey]) {
+		return coins[cacheKey];
+	}
+
+	coins[cacheKey] = Coins.CoinFactory.make({ ARK }[coin]!, {
+		network,
+		httpClient: new Request(),
+	});
+
+	await coins[cacheKey].__construct();
+
+	return coins[cacheKey];
 };
 
 export const knock = (): void => {

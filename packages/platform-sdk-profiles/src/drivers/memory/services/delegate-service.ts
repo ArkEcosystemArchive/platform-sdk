@@ -1,15 +1,16 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
-import { DataRepository } from "../../../repositories/data-repository";
 import { ReadOnlyWallet } from "../wallets/read-only-wallet";
-import { IDelegateService, IProfile, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
+import { IDataRepository, IDelegateService, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
 import { injectable } from "inversify";
 import { State } from "../../../environment/state";
+import { DataRepository } from "../../../repositories";
+import { IDelegateSyncer, ParallelDelegateSyncer, SerialDelegateSyncer } from "./helpers/delegate-syncer";
 
 @injectable()
 export class DelegateService implements IDelegateService {
-	readonly #dataRepository: DataRepository = new DataRepository();
+	readonly #dataRepository: IDataRepository = new DataRepository();
 
 	/** {@inheritDoc IDelegateService.all} */
 	public all(coin: string, network: string): IReadOnlyWallet[] {
@@ -17,7 +18,7 @@ export class DelegateService implements IDelegateService {
 
 		if (result === undefined) {
 			throw new Error(
-				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
+				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`
 			);
 		}
 
@@ -49,67 +50,14 @@ export class DelegateService implements IDelegateService {
 
 		const instanceCanFastSync: boolean = instance.network().allows(Coins.FeatureFlag.InternalFastDelegateSync);
 
-		const result: Contracts.WalletData[] = [];
-		let hasMore = true;
-		let lastResponse: Coins.WalletDataCollection | undefined = undefined;
+		// TODO injection here based on coin config would be awesome
+		const syncer: IDelegateSyncer = instanceCanFastSync ? new ParallelDelegateSyncer(instance.client()) : new SerialDelegateSyncer(instance.client());
 
-		while (hasMore) {
-			if (lastResponse) {
-				lastResponse = await instance.client().delegates({ cursor: lastResponse.nextPage() });
-			} else {
-				lastResponse = await instance.client().delegates();
-			}
-
-			hasMore = lastResponse.hasMorePages();
-
-			for (const item of lastResponse.items()) {
-				result.push(item);
-			}
-
-			/**
-			 * If we know the specific last page we can execute requests with
-			 * `Promise.all` to speed up the process. We'll need to send many
-			 * sequential requests for API's where we don't get back any last
-			 * page so we won't know when to stop except for not getting data.
-			 */
-			if (instanceCanFastSync) {
-				break;
-			}
-		}
-
-		/**
-		 * If a coin supports fasy sync for delegates we can assume that the
-		 * page is numerical which means that we can simply keep incrementing
-		 * the page count and send many requests concurrently because we are
-		 * not relying on timestamps or hashes for pagination of the data.
-		 */
-		if (instanceCanFastSync) {
-			const currentPage: number = parseInt(lastResponse?.currentPage()! as string);
-			const lastPage: number = parseInt(lastResponse?.lastPage()! as string);
-
-			if (lastPage > currentPage) {
-				const sendRequest = async (i: number) => {
-					const response = await instance.client().delegates({ cursor: i });
-
-					for (const item of response.items()) {
-						result.push(item);
-					}
-				};
-
-				const promises: (() => Promise<void>)[] = [];
-
-				// Skip the first page and start from page 2 up to the last page.
-				for (let i = currentPage + 1; i <= lastPage; i++) {
-					promises.push(() => sendRequest(i));
-				}
-
-				await pqueueSettled(promises);
-			}
-		}
+		let result: Contracts.WalletData[] = await syncer.sync();
 
 		this.#dataRepository.set(
 			`${coin}.${network}.delegates`,
-			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
+			result.map((delegate: Contracts.WalletData) => delegate.toObject())
 		);
 	}
 
@@ -144,7 +92,7 @@ export class DelegateService implements IDelegateService {
 						rank: delegate.rank(),
 						explorerLink: wallet.link().wallet(delegate.address()),
 						isDelegate: delegate.isDelegate(),
-						isResignedDelegate: delegate.isResignedDelegate(),
+						isResignedDelegate: delegate.isResignedDelegate()
 					});
 				} catch {
 					return undefined;
@@ -171,7 +119,7 @@ export class DelegateService implements IDelegateService {
 			rank: (delegate.rank as unknown) as number,
 			explorerLink: "",
 			isDelegate: delegate.isDelegate,
-			isResignedDelegate: delegate.isResignedDelegate,
+			isResignedDelegate: delegate.isResignedDelegate
 		});
 	}
 }

@@ -1,5 +1,6 @@
 import "jest-extended";
 import "reflect-metadata";
+import { mock } from 'jest-mock-extended';
 
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
@@ -8,7 +9,8 @@ import { bootContainer } from "../../../../../test/helpers";
 import NodeFeesFixture from "../../../../../test/fixtures/client/node-fees.json";
 import { State } from "../../../../environment/state";
 import { Profile } from "../profile";
-import { ICoinService } from "../../../../contracts";
+import { ICoinService, IDataRepository } from "../../../../contracts";
+import { CoinService } from "./coin-service";
 
 let subject: ICoinService;
 
@@ -40,7 +42,7 @@ beforeEach(async () => {
 
 	State.profile(profile);
 
-	subject = profile.coins();
+	subject = new CoinService(profile.data());
 });
 
 describe("CoinService", () => {
@@ -96,5 +98,15 @@ describe("CoinService", () => {
 		expect(subject.entries()).toEqual([["ARK", ["ark"]]]);
 
 		mockUndefinedNetwork.mockRestore();
+	});
+
+	it("#flush", async () => {
+
+		const dataRepository: IDataRepository = mock<IDataRepository>();
+		subject = new CoinService(dataRepository);
+
+		subject.flush();
+
+		expect(dataRepository.flush).toHaveBeenCalled();
 	});
 });
