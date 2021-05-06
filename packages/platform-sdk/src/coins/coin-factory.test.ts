@@ -12,6 +12,7 @@ test("#make", async () => {
 				manifest: {
 					name: "ARK",
 					networks: {
+						// @ts-ignore
 						"ark.mainnet": {},
 					},
 				},
