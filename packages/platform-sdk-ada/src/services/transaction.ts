@@ -209,7 +209,7 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
 	}
 
-	public async estimateExpiration(value?: string): Promise<string> {
+	public async estimateExpiration(value?: string): Promise<string | undefined> {
 		const tip: number = await fetchNetworkTip(this.#config);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
