@@ -90,9 +90,7 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-	State.profile(profile);
-
-	wallet = new Wallet(uuidv4(), {});
+	wallet = new Wallet(uuidv4(), {}, profile);
 
 	await wallet.mutator().coin("ARK", "ark.devnet");
 	await wallet.mutator().identity(identity.mnemonic);
