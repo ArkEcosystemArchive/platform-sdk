@@ -277,15 +277,3 @@ it("should dump", async () => {
 
 	expect(subject.dump(profile)).toBeObject();
 });
-
-it("should tap", async () => {
-	const profile = subject.create("John");
-
-	expect(profile.name()).toBe("John");
-
-	await subject.tap(profile.id(), (activeProfile: IProfile) => {
-		activeProfile.settings().set(ProfileSetting.Name, "Jane");
-	});
-
-	expect(profile.name()).toBe("Jane");
-});
