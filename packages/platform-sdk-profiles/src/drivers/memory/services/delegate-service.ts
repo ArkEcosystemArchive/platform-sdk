@@ -2,7 +2,7 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
 import { ReadOnlyWallet } from "../wallets/read-only-wallet";
-import { IDataRepository, IDelegateService, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
+import { IDataRepository, IDelegateService, IProfile, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
 import { injectable } from "inversify";
 import { DataRepository } from "../../../repositories";
 import { IDelegateSyncer, ParallelDelegateSyncer, SerialDelegateSyncer } from "./helpers/delegate-syncer";

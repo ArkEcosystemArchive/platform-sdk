@@ -175,7 +175,7 @@ export class Profile implements IProfile {
 
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
-		this.#coinService = new CoinService();
+		this.#coinService = new CoinService(this);
 		this.#portfolio = new Portfolio(this);
 		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
