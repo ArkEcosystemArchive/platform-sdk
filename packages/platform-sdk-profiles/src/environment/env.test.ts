@@ -114,7 +114,7 @@ it("should have available networks", async () => {
 
 	expect(subject.availableNetworks()).toHaveLength(10);
 
-	for(const network of subject.availableNetworks()) {
+	for (const network of subject.availableNetworks()) {
 		expect(network.toObject()).toMatchSnapshot();
 	}
 });
@@ -139,7 +139,6 @@ it("should create a profile with data and persist it when instructed to do so", 
 	 */
 
 	const profile = subject.profiles().create("John Doe");
-
 
 	// Create a Contact
 	profile.contacts().create("Jane Doe");
@@ -191,7 +190,16 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
-	expect(newProfile.data().all()).toEqual({ key: "value" });
+	expect(newProfile.data().all()).toMatchInlineSnapshot(`
+		Object {
+		  "ARK": Object {
+		    "ark": Object {
+		      "devnet": Object {},
+		    },
+		  },
+		  "key": "value",
+		}
+	`);
 	expect(newProfile.settings().all()).toEqual({
 		ADVANCED_MODE: "value",
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
@@ -223,7 +231,16 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
-	expect(newProfile.data().all()).toEqual({ key: "value" });
+	expect(newProfile.data().all()).toMatchInlineSnapshot(`
+		Object {
+		  "ARK": Object {
+		    "ark": Object {
+		      "devnet": Coin {},
+		    },
+		  },
+		  "key": "value",
+		}
+	`);
 	expect(newProfile.settings().all()).toEqual({
 		ADVANCED_MODE: "value",
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
