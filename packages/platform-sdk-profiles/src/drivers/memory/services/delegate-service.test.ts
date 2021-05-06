@@ -20,9 +20,9 @@ beforeAll(() => {
 });
 
 let wallet: IReadWriteWallet;
+let profile: Profile;
 
 beforeEach(async () => {
-
 	nock(/.+/)
 		.get("/api/node/configuration")
 		.reply(200, require("../../../../test/fixtures/client/configuration.json"))
@@ -38,10 +38,6 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/client/delegates-2.json"))
 		.persist();
 
-let wallet: IReadWriteWallet;
-let profile: Profile;
-
-beforeEach(async () => {
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	subject = new DelegateService();
 
@@ -69,7 +65,7 @@ describe("DelegateService", () => {
 
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		await subject.sync("ARK", "ark.devnet");
+		await subject.sync(profile, "ARK", "ark.devnet");
 
 		expect(subject.all("ARK", "ark.devnet")).toBeArray();
 		expect(subject.all("ARK", "ark.devnet")).toHaveLength(10);

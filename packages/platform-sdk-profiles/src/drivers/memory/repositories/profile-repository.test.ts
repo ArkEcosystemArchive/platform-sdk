@@ -264,12 +264,7 @@ it("should restore", async () => {
 
 	const profile = subject.create("John");
 
-	const mockState = jest.spyOn(State, "profile");
-
 	await expect(subject.restore(profile)).toResolve();
-
-	expect(mockState).toHaveBeenNthCalledWith(1, profile);
-	expect(mockState).toHaveBeenCalledTimes(15);
 });
 
 it("should dump", async () => {
