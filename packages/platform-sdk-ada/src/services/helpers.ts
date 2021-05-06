@@ -6,7 +6,7 @@ import CardanoWasm, {
 	Bip32PublicKey,
 	TransactionBuilder,
 	TransactionInput,
-} from "@emurgo/cardano-serialization-lib-nodejs";
+} from "@emurgo/cardano-serialization-lib-browser";
 import { Buffer } from "buffer";
 
 import { fetchUsedAddressesData } from "./graphql-helpers";

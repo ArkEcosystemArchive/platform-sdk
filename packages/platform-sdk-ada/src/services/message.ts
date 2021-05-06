@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { Ed25519Signature, PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
+import { Ed25519Signature, PublicKey } from "@emurgo/cardano-serialization-lib-browser";
 
 import { deriveRootKey } from "./identity/shelley";
 
