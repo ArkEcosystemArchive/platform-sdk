@@ -15,11 +15,10 @@ import { LSK } from "@arkecosystem/platform-sdk-lsk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 // import { NEO } from "@arkecosystem/platform-sdk-neo";
 import { SOL } from "@arkecosystem/platform-sdk-sol";
-import Logger from "@ptkdev/logger";
 
 import { ConfStorage } from "./storage";
 
-export const useLogger = (): Logger => new Logger();
+export const useLogger = (): Console => console;
 
 export const useEnvironment = async (): Promise<Environment> => {
 	const env = new Environment({
