@@ -150,6 +150,12 @@
 			"shouldPublish": true
 		},
 		{
+		  "packageName": "@arkecosystem/platform-sdk-examples",
+		  "projectFolder": "packages/platform-sdk-examples",
+		  "reviewCategory": "libraries",
+		  "shouldPublish": true
+		},
+		{
 			"packageName": "@arkecosystem/platform-sdk-http-axios",
 			"projectFolder": "packages/platform-sdk-http-axios",
 			"reviewCategory": "libraries",
