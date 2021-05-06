@@ -9,8 +9,13 @@ import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class ContactRepository implements IContactRepository {
+	readonly #profile: IProfile;
 	readonly #data: DataRepository = new DataRepository();
 	#dataRaw: object = {};
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
 
 	/** {@inheritDoc IContactRepository.all} */
 	public all(): Record<string, IContact> {
@@ -49,11 +54,11 @@ export class ContactRepository implements IContactRepository {
 
 		const id: string = uuidv4();
 
-		const result: IContact = new Contact({ id, name, starred: false });
+		const result: IContact = new Contact({ id, name, starred: false }, this.#profile);
 
 		this.#data.set(id, result);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 
 		return result;
 	}
@@ -95,7 +100,7 @@ export class ContactRepository implements IContactRepository {
 
 		this.#data.set(id, result);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContactRepository.forget} */
@@ -104,14 +109,14 @@ export class ContactRepository implements IContactRepository {
 
 		this.#data.forget(id);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContactRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContactRepository.count} */
@@ -150,7 +155,7 @@ export class ContactRepository implements IContactRepository {
 		this.#dataRaw = contacts;
 
 		for (const [id, contact] of Object.entries(contacts)) {
-			this.#data.set(id, new Contact(contact));
+			this.#data.set(id, new Contact(contact, this.#profile));
 		}
 	}
 

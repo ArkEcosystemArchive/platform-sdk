@@ -1,6 +1,6 @@
 import { Except } from "type-fest";
 import { v4 as uuidv4 } from "uuid";
-import { INotification, INotificationRepository } from "../../../contracts";
+import { INotification, INotificationRepository, IProfile } from "../../../contracts";
 import { injectable } from "inversify";
 
 import { DataRepository } from "../../../repositories/data-repository";
@@ -8,7 +8,12 @@ import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class NotificationRepository implements INotificationRepository {
+	readonly #profile: IProfile;
 	#data: DataRepository = new DataRepository();
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
 
 	/** {@inheritDoc INotificationRepository.all} */
 	public all(): Record<string, INotification> {
@@ -52,7 +57,7 @@ export class NotificationRepository implements INotificationRepository {
 
 		this.#data.set(id, { id, ...value });
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 
 		return this.get(id);
 	}
@@ -73,14 +78,14 @@ export class NotificationRepository implements INotificationRepository {
 
 		this.#data.forget(key);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc INotificationRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc INotificationRepository.count} */
@@ -106,6 +111,6 @@ export class NotificationRepository implements INotificationRepository {
 	public markAsRead(key: string): void {
 		this.get(key).read_at = +Date.now();
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 }

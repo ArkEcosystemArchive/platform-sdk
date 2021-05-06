@@ -8,8 +8,9 @@ import { FeeService } from "./fee-service";
 
 let subject: FeeService;
 import NodeFeesFixture from "../../../../test/fixtures/client/node-fees.json";
-import { State } from "../../../environment/state";
 import { Profile } from "../profiles/profile";
+
+let profile: Profile;
 
 beforeAll(() => {
 	bootContainer();
@@ -32,11 +33,12 @@ beforeAll(() => {
 		.query(true)
 		.reply(200, require("../../../../test/fixtures/client/transaction-fees.json"))
 		.persist();
-
-	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
 });
 
 beforeEach(async () => {
+	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+	profile.coins().push("ARK", "ark.devnet");
+
 	subject = new FeeService();
 });
 
@@ -44,14 +46,14 @@ describe("FeeService", () => {
 	it("should sync fees", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		await subject.sync("ARK", "ark.devnet");
+		await subject.sync(profile, "ARK", "ark.devnet");
 		expect(Object.keys(subject.all("ARK", "ark.devnet"))).toHaveLength(11);
 	});
 
 	it("should sync fees of all coins", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		await subject.syncAll();
+		await subject.syncAll(profile);
 
 		expect(Object.keys(subject.all("ARK", "ark.devnet"))).toHaveLength(11);
 	});
@@ -59,7 +61,7 @@ describe("FeeService", () => {
 	it("#findByType", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		await subject.syncAll();
+		await subject.syncAll(profile);
 
 		expect(subject.findByType("ARK", "ark.devnet", "transfer")).toEqual({
 			avg: "71538139",

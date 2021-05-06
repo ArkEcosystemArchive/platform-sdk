@@ -10,7 +10,6 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Wallet } from "./wallet";
 import { IProfile, IProfileRepository, IReadWriteWallet } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { WalletGate } from "./wallet.gate";
 
 let subject: WalletGate;
@@ -79,9 +78,8 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-	State.profile(profile);
 
-	wallet = new Wallet(uuidv4(), {});
+	wallet = new Wallet(uuidv4(), {}, profile);
 	subject = new WalletGate(wallet);
 
 	await wallet.mutator().coin("ARK", "ark.devnet");

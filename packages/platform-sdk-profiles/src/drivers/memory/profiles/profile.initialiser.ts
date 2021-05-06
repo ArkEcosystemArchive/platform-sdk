@@ -40,6 +40,6 @@ export class ProfileInitialiser implements IProfileInitialiser {
 		this.#profile.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
 		this.#profile.settings().set(ProfileSetting.UseTestNetworks, false);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 }

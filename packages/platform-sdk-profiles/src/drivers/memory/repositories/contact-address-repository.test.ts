@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 
 import { bootContainer } from "../../../../test/helpers";
 import { ContactAddressRepository } from "./contact-address-repository";
-import { State } from "../../../environment/state";
 import { Profile } from "../profiles/profile";
 
 let subject: ContactAddressRepository;
@@ -34,9 +33,10 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	State.profile(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }));
+	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+	profile.coins().push("ARK", "ark.devnet");
 
-	subject = new ContactAddressRepository();
+	subject = new ContactAddressRepository(profile);
 });
 
 beforeAll(() => {

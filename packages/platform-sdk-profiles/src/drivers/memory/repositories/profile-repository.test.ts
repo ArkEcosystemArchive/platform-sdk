@@ -8,7 +8,6 @@ import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { IProfileRepository } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
-import { State } from "../../../environment/state";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileSerialiser } from "../profiles/profile.serialiser";
 import { container } from "../../../environment/container";
@@ -189,7 +188,6 @@ describe("ProfileRepository", () => {
 
 	it("should dump profiles without a password", async () => {
 		const john = subject.create("John");
-		State.profile(john);
 		await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 
 		const repositoryDump = subject.toObject();
@@ -203,7 +201,6 @@ describe("ProfileRepository", () => {
 
 	it("should dump profiles with a password", async () => {
 		const jane = subject.create("Jane");
-		State.profile(jane);
 		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
 		jane.auth().setPassword("password");
 
@@ -218,7 +215,6 @@ describe("ProfileRepository", () => {
 
 	it("should export ok", async () => {
 		const profile = subject.create("John");
-		State.profile(profile);
 		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 		const exported = subject.export(profile, {
@@ -233,7 +229,6 @@ describe("ProfileRepository", () => {
 
 	it("should export ok with password", async () => {
 		const profile = subject.create("John");
-		State.profile(profile);
 		profile.auth().setPassword("some pass");
 		await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 		// profile.save("some pass");

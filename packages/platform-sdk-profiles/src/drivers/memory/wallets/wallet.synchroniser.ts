@@ -1,7 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { IReadWriteWallet, WalletData } from "../../../contracts";
 import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroniser";
-import { State } from "../../../environment/state";
 
 export class WalletSynchroniser implements IWalletSynchroniser {
 	readonly #wallet: IReadWriteWallet;
@@ -15,7 +14,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 		if (options.resetCoin) {
 			this.#wallet.getAttributes().set(
 				"coin",
-				State.profile()
+				this.#wallet.profile()
 					.coins()
 					.push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true),
 			);

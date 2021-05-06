@@ -8,7 +8,6 @@ import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { Profile } from "./profile";
 import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { ProfileImporter } from "./profile.importer";
 import { ProfileDumper } from "./profile.dumper";
 import { ProfileSerialiser } from "./profile.serialiser";
@@ -47,7 +46,6 @@ beforeEach(() => {
 	dumper = new ProfileDumper(profile);
 	serialiser = new ProfileSerialiser(profile);
 
-	State.profile(profile);
 });
 
 describe("#restore", () => {

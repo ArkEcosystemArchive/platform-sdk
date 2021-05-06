@@ -1,10 +1,9 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { IReadWriteWallet, ITransactionAggregate } from "../../../../contracts";
+import { IProfile, IReadWriteWallet, ITransactionAggregate } from "../../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../../dto";
 
 import { ExtendedTransactionData } from "../../../../dto/transaction";
 import { transformTransactionData } from "../../../../dto/transaction-mapper";
-import { State } from "../../../../environment/state";
 import { promiseAllSettledByKey } from "../../../../helpers/promise";
 
 type HistoryMethod = string;
@@ -15,7 +14,12 @@ type AggregateQuery = {
 } & Contracts.ClientPagination;
 
 export class TransactionAggregate implements ITransactionAggregate {
+	readonly #profile: IProfile;
 	#history: Record<HistoryMethod, Record<string, HistoryWallet>> = {};
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
 
 	/** {@inheritDoc ITransactionAggregate.all} */
 	public async all(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
@@ -106,11 +110,11 @@ export class TransactionAggregate implements ITransactionAggregate {
 	}
 
 	private getWallet(id: string): IReadWriteWallet {
-		return State.profile().wallets().findById(id);
+		return this.#profile.wallets().findById(id);
 	}
 
 	private getWallets(addresses: string[] = []): IReadWriteWallet[] {
-		return State.profile()
+		return this.#profile
 			.wallets()
 			.values()
 			.filter((wallet: IReadWriteWallet) => {

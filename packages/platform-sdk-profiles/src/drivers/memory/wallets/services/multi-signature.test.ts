@@ -11,7 +11,6 @@ import { Identifiers } from "../../../../environment/container.models";
 import { ReadOnlyWallet } from "../read-only-wallet";
 import { Wallet } from "../wallet";
 import { IProfile, IProfileRepository, IReadWriteWallet, WalletData } from "../../../../contracts";
-import { State } from "../../../../environment/state";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -78,9 +77,8 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-	State.profile(profile);
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	await subject.mutator().coin("ARK", "ark.devnet");
 	await subject.mutator().identity(identity.mnemonic);
@@ -91,7 +89,7 @@ beforeAll(() => nock.disableNetConnect());
 it("should return multi signature", () => {
 	expect(() => subject.multiSignature().all()).toThrow("This wallet does not have a multi-signature registered.");
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.multiSignature().all()).toThrow(
 		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",

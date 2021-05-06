@@ -12,7 +12,6 @@ import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from
 import { Profile } from "../drivers/memory/profiles/profile";
 import { container } from "../environment/container";
 import { Identifiers } from "../environment/container.models";
-import { State } from "../environment/state";
 import {
 	DelegateRegistrationData,
 	DelegateResignationData,
@@ -99,7 +98,6 @@ beforeAll(async () => {
 beforeEach(async () => {
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-	State.profile(profile);
 
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 	profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");

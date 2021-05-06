@@ -22,8 +22,8 @@ import {
 	ISettingRepository,
 	IDataRepository,
 	WalletImportMethod,
+	IProfile,
 } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { AttributeBag } from "../../../helpers/attribute-bag";
 import { WalletGate } from "./wallet.gate";
 import { WalletSynchroniser } from "./wallet.synchroniser";
@@ -43,6 +43,7 @@ import { IMultiSignature } from "../../../contracts/wallets/services/multi-signa
 import { emitProfileChanged } from "../helpers";
 
 export class Wallet implements IReadWriteWallet {
+	readonly #profile: IProfile;
 	readonly #attributes: AttributeBag<IReadWriteWalletAttributes> = new AttributeBag();
 	readonly #dataRepository: IDataRepository;
 	readonly #settingRepository: ISettingRepository;
@@ -55,7 +56,8 @@ export class Wallet implements IReadWriteWallet {
 	readonly #walletImportFormat: IWalletImportFormat;
 	readonly #multiSignature: IMultiSignature;
 
-	public constructor(id: string, initialState: any) {
+	public constructor(id: string, initialState: any, profile: IProfile) {
+		this.#profile = profile;
 		this.#attributes = new AttributeBag<IReadWriteWalletAttributes>({
 			id,
 			initialState,
@@ -63,7 +65,7 @@ export class Wallet implements IReadWriteWallet {
 		});
 
 		this.#dataRepository = new DataRepository();
-		this.#settingRepository = new SettingRepository(Object.values(WalletSetting));
+		this.#settingRepository = new SettingRepository(profile, Object.values(WalletSetting));
 		this.#transactionService = new TransactionService(this);
 		this.#walletGate = new WalletGate(this);
 		this.#walletSynchroniser = new WalletSynchroniser(this);
@@ -74,6 +76,11 @@ export class Wallet implements IReadWriteWallet {
 		this.#multiSignature = new MultiSignature(this);
 
 		this.restore();
+	}
+
+	/** {@inheritDoc IReadWriteWallet.profile} */
+	public profile(): IProfile {
+		return this.#profile;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.id} */
@@ -98,7 +105,7 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.exchangeCurrency} */
 	public exchangeCurrency(): string {
-		return State.profile().settings().get(ProfileSetting.ExchangeCurrency) as string;
+		return this.#profile.settings().get(ProfileSetting.ExchangeCurrency) as string;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.alias} */
@@ -178,7 +185,7 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.getRelays} */
 	public getRelays(): string[] {
-		return State.profile()
+		return this.#profile
 			.peers()
 			.getRelays(this.coinId(), this.networkId())
 			.map((peer) => peer.host);
@@ -337,7 +344,7 @@ export class Wallet implements IReadWriteWallet {
 	public toggleStarred(): void {
 		this.data().set(WalletFlag.Starred, !this.isStarred());
 
-		emitProfileChanged();
+		emitProfileChanged(this.profile());
 	}
 
 	/** {@inheritDoc IReadWriteWallet.coinId} */

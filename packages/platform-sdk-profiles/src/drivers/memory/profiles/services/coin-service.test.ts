@@ -6,7 +6,6 @@ import nock from "nock";
 
 import { bootContainer } from "../../../../../test/helpers";
 import NodeFeesFixture from "../../../../../test/fixtures/client/node-fees.json";
-import { State } from "../../../../environment/state";
 import { Profile } from "../profile";
 import { ICoinService } from "../../../../contracts";
 
@@ -38,7 +37,6 @@ beforeAll(() => {
 beforeEach(async () => {
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
-	State.profile(profile);
 
 	subject = profile.coins();
 });

@@ -1,36 +1,37 @@
 import { Avatar } from "../../../helpers/avatar";
-import { IReadWriteWallet, WalletSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
+import { IProfile, IReadWriteWallet, WalletSetting } from "../../../contracts";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { Coins } from "@arkecosystem/platform-sdk";
 import { emitProfileChanged } from "../helpers";
 
 export class WalletMutator implements IWalletMutator {
 	readonly #wallet: IReadWriteWallet;
+	readonly #profile: IProfile;
 
 	public constructor(wallet: IReadWriteWallet) {
 		this.#wallet = wallet;
+		this.#profile = wallet.profile();
 	}
 
 	/** {@inheritDoc IWalletMutator.coin} */
 	public async coin(coin: string, network: string, options: { sync: boolean } = { sync: true }): Promise<void> {
-		if (State.profile().usesCustomPeer() && State.profile().peers().has(coin, network)) {
+		if (this.#profile.usesCustomPeer() && this.#profile.peers().has(coin, network)) {
 			this.#wallet.getAttributes().set(
 				"coin",
-				State.profile()
+				this.#profile
 					.coins()
 					.push(
 						coin,
 						network,
 						{
-							peer: State.profile().peers().getRelay(coin, network)?.host,
-							peerMultiSignature: State.profile().peers().getMultiSignature(coin, network)?.host,
+							peer: this.#profile.peers().getRelay(coin, network)?.host,
+							peerMultiSignature: this.#profile.peers().getMultiSignature(coin, network)?.host,
 						},
 						true,
 					),
 			);
 		} else {
-			this.#wallet.getAttributes().set("coin", State.profile().coins().push(coin, network));
+			this.#wallet.getAttributes().set("coin", this.#profile.coins().push(coin, network));
 		}
 
 		/**
@@ -54,7 +55,7 @@ export class WalletMutator implements IWalletMutator {
 			this.#wallet.markAsPartiallyRestored();
 		}
 
-		emitProfileChanged();
+		emitProfileChanged(this.#wallet.profile());
 	}
 
 	/** {@inheritDoc IWalletMutator.identity} */

@@ -7,7 +7,6 @@ import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "../profiles/profile";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Contact } from "./contact";
-import { State } from "../../../environment/state";
 
 beforeAll(() => bootContainer());
 
@@ -16,14 +15,13 @@ describe("contact", () => {
 
 	beforeEach(async () => {
 		const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-
-		State.profile(profile);
+		profile.coins().push("ARK", "ark.devnet");
 
 		subject = new Contact({
 			id: "uuid",
 			name: "John Doe",
 			starred: true,
-		});
+		}, profile);
 	});
 
 	it("should have an id", () => {

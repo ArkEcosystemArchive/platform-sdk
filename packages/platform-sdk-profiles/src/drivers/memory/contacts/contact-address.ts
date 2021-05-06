@@ -4,31 +4,18 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Avatar } from "../../../helpers/avatar";
 import { IContactAddress, IContactAddressData, IKnownWalletService, IProfile } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { emitProfileChanged } from "../helpers";
 
 export class ContactAddress implements IContactAddress {
 	readonly #coin: Coins.Coin;
+	readonly #profile: IProfile;
 	readonly #data: IContactAddressData;
 	#wallet: Contracts.WalletData | undefined;
 
-	private constructor(data: IContactAddressData, coin: Coins.Coin) {
+	public constructor(data: IContactAddressData, coin: Coins.Coin, profile: IProfile) {
 		this.#data = data;
 		this.#coin = coin;
-	}
-
-	public static async make(data: IContactAddressData): Promise<ContactAddress> {
-		const instance: Coins.Coin = State.profile().coins().push(data.coin, data.network);
-
-		if (!instance.hasBeenSynchronized()) {
-			await instance.__construct();
-		}
-
-		const result: ContactAddress = new ContactAddress(data, instance);
-
-		await result.syncIdentity();
-
-		return result;
+		this.#profile = profile;
 	}
 
 	/** {@inheritDoc IContactAddress.id} */
@@ -133,14 +120,14 @@ export class ContactAddress implements IContactAddress {
 	public setName(value: string): void {
 		this.#data.name = value;
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IContactAddress.setAddress} */
 	public setAddress(name: string): void {
 		this.#data.address = name;
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 	/** {@inheritDoc IContactAddress.syncIdentity} */
 	public async syncIdentity(): Promise<void> {

@@ -1,9 +1,8 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueue } from "../../../helpers/queue";
-import { IKnownWalletService } from "../../../contracts";
+import { IKnownWalletService, IProfile } from "../../../contracts";
 import { injectable } from "inversify";
-import { State } from "../../../environment/state";
 
 type KnownWalletRegistry = Record<string, Contracts.KnownWallet[]>;
 
@@ -12,14 +11,14 @@ export class KnownWalletService implements IKnownWalletService {
 	readonly #registry: KnownWalletRegistry = {};
 
 	/** {@inheritDoc IKnownWalletService.syncAll} */
-	public async syncAll(): Promise<void> {
+	public async syncAll(profile: IProfile): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const [coin, networks] of State.profile().coins().entries()) {
+		for (const [coin, networks] of profile.coins().entries()) {
 			for (const network of networks) {
 				promises.push(async () => {
 					try {
-						this.#registry[network] = await State.profile().coins().get(coin, network).knownWallets().all();
+						this.#registry[network] = await profile.coins().get(coin, network).knownWallets().all();
 					} catch (error) {
 						// Do nothing if it fails. It's not critical functionality.
 					}

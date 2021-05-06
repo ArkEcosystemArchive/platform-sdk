@@ -6,7 +6,6 @@ import { IProfile, ProfileSetting, ProfileData } from "../../../contracts";
 import { ProfileInitialiser } from "./profile.initialiser";
 import { bootContainer } from "../../../../test/helpers";
 import nock from "nock";
-import { State } from "../../../environment/state";
 
 beforeAll(() => {
 	bootContainer();
@@ -32,8 +31,6 @@ describe("ProfileInitialiser", () => {
 
 	beforeEach(() => {
 		profile = new Profile({ id: "uuid", name: "name", data: "" });
-
-		State.profile(profile);
 	});
 
 	it("should flush service data", () => {
