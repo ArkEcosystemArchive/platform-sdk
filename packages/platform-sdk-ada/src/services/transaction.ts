@@ -90,7 +90,11 @@ export class TransactionService implements Contracts.TransactionService {
 
 		// This is the expiration slot which should be estimated with #estimateExpiration
 		if (input.data.expiration === undefined) {
-			txBuilder.set_ttl(parseInt(await this.estimateExpiration()));
+			const expiration = await this.estimateExpiration();
+
+			if (expiration !== undefined) {
+				txBuilder.set_ttl(parseInt(expiration));
+			}
 		} else {
 			txBuilder.set_ttl(input.data.expiration);
 		}
