@@ -31,7 +31,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			network: config.get<Coins.CoinNetwork>("network"),
+			network: config.get<Coins.NetworkManifest>("network"),
 			identity: await IdentityService.__construct(config),
 		});
 	}

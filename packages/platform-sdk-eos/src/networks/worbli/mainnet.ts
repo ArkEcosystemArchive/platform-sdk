@@ -1,6 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
-const network: Coins.CoinNetwork = {
+const network: Coins.NetworkManifest = {
 	id: "worbli.mainnet",
 	type: "live",
 	name: "Mainnet",

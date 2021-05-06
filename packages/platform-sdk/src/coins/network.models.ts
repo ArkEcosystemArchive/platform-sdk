@@ -139,7 +139,7 @@ export interface NetworkFeatureFlags {
 	};
 }
 
-export interface CoinNetwork {
+export interface NetworkManifest {
 	id: string;
 	type: string;
 	name: string;
@@ -183,4 +183,9 @@ export interface CoinNetwork {
 	transactionTypes: CoinTransactionTypes[];
 	knownWallets?: string;
 	meta?: KeyValuePair;
+}
+
+export interface CoinManifest {
+	name: string;
+	networks: Record<string, NetworkManifest>;
 }

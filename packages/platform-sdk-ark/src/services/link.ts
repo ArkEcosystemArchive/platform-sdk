@@ -3,12 +3,12 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 export class LinkService implements Contracts.LinkService {
 	readonly #baseUrl: string;
 
-	private constructor(network: Coins.CoinNetwork) {
+	private constructor(network: Coins.NetworkManifest) {
 		this.#baseUrl = network.explorer;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<LinkService> {
-		return new LinkService(config.get<Coins.CoinNetwork>("network"));
+		return new LinkService(config.get<Coins.NetworkManifest>("network"));
 	}
 
 	public async __destruct(): Promise<void> {
