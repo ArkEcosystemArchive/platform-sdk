@@ -199,4 +199,18 @@ describe("#restore", () => {
 		expect(profile.wallets().count()).toEqual(2);
 		expect(profile.settings().get(ProfileSetting.Theme)).toEqual("dark");
 	});
+
+	it("should apply migrations if any are set", async () => {
+		const migrationFunction = jest.fn();
+		const migrations = { "1.0.1": migrationFunction };
+
+		container.bind(Identifiers.MigrationSchemas, migrations);
+		container.bind(Identifiers.MigrationVersion, "1.0.2");
+
+		subject = new ProfileImporter(new Profile(dumper.dump()));
+
+		await subject.import();
+
+		expect(migrationFunction).toHaveBeenCalled();
+	});
 });

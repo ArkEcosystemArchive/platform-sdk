@@ -24,6 +24,7 @@ import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
 import { MemoryStorage } from "./storage/memory";
+import { PluginRegistry } from "../drivers/memory/plugins";
 
 let subject: Environment;
 
@@ -102,6 +103,12 @@ it("should have a data repository", async () => {
 	expect(subject.data()).toBeInstanceOf(DataRepository);
 });
 
+it("should have a plugin registry", async () => {
+	await makeSubject();
+
+	expect(subject.plugins()).toBeInstanceOf(PluginRegistry);
+});
+
 it("should have available networks", async () => {
 	await makeSubject();
 
@@ -110,6 +117,18 @@ it("should have available networks", async () => {
 	for(const network of subject.availableNetworks()) {
 		expect(network.toObject()).toMatchSnapshot();
 	}
+});
+
+it("should set migrations", async () => {
+	await makeSubject();
+
+	expect(container.has(Identifiers.MigrationSchemas)).toBeFalse();
+	expect(container.has(Identifiers.MigrationVersion)).toBeFalse();
+
+	subject.setMigrations({}, "1.0.0");
+
+	expect(container.has(Identifiers.MigrationSchemas)).toBeTrue();
+	expect(container.has(Identifiers.MigrationVersion)).toBeTrue();
 });
 
 it("should create a profile with data and persist it when instructed to do so", async () => {

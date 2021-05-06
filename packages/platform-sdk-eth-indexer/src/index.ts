@@ -60,7 +60,6 @@ export const subscribe = async (flags: {
 					},
 					{
 						onFailedAttempt: (error) => {
-							console.log(error);
 							logger.error(
 								`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
 							);

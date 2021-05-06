@@ -10,7 +10,6 @@ import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
 import {
 	IExchangeRateService,
@@ -21,7 +20,6 @@ import {
 	WalletFlag,
 	WalletSetting,
 } from "../../../contracts";
-import { ExtendedTransactionDataCollection } from "../../../dto";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -361,28 +359,8 @@ it("should fail to set an invalid address", async () => {
 	);
 });
 
-it("should sync multi signature when musig", async () => {
-	subject = new Wallet(uuidv4(), {}, profile);
-	await subject.mutator().coin("ARK", "ark.devnet");
-	await subject.mutator().identity("new super passphrase");
-
-	await subject.synchroniser().multiSignature();
-
-	expect(subject.isMultiSignature()).toBeTrue();
-});
-
-it("should sync multi signature when not musig", async () => {
-	await subject.synchroniser().multiSignature();
-
-	expect(subject.isMultiSignature()).toBeFalse();
-});
-
 it("should return explorer link", () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-});
-
-it("should sync", async () => {
-	await expect(subject.synchroniser().coin()).toResolve();
 });
 
 describe.each([123, 456, 789])("%s", (slip44) => {
@@ -433,8 +411,20 @@ it("should have a primary key", () => {
 	expect(subject.primaryKey()).toBe(subject.address());
 });
 
+it("should throw if the primary key is accessed before the wallet has been synchronized", () => {
+	subject = new Wallet(uuidv4(), {});
+
+	expect(() => subject.primaryKey()).toThrow("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+});
+
 it("should have an underlying `WalletData` instance", () => {
 	expect(subject.toData().primaryKey()).toBe(subject.address());
+});
+
+it("should throw if the underlying `WalletData` instance is accessed before the wallet has been synchronized", () => {
+	subject = new Wallet(uuidv4(), {});
+
+	expect(() => subject.toData().primaryKey()).toThrow("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 });
 
 it("should return whether it can vote or not", () => {
@@ -445,4 +435,78 @@ it("should return whether it can vote or not", () => {
 	subject.data().set(WalletData.VotesAvailable, 2);
 
 	expect(subject.canVote()).toBeTrue();
+});
+
+it("should construct a coin instance", async () => {
+	const mockConstruct = jest.spyOn(subject.getAttributes().get<Coins.Coin>("coin"), "__construct");
+
+	await subject.connect();
+
+	expect(mockConstruct).toHaveBeenCalledTimes(1);
+});
+
+it("should throw if a connection is tried to be established but no coin has been set", async () => {
+	subject = new Wallet(uuidv4(), {});
+
+	await expect(subject.connect()).toReject();
+});
+
+it("should determine if the wallet has a coin attached to it", () => {
+	expect(subject.hasCoin()).toBeTrue();
+
+	subject = new Wallet(uuidv4(), {});
+
+	expect(subject.hasCoin()).toBeFalse();
+});
+
+it("should determine if the wallet has been fully restored", () => {
+	subject = new Wallet(uuidv4(), {});
+
+	expect(subject.hasBeenFullyRestored()).toBeFalse();
+
+	subject.markAsFullyRestored();
+
+	expect(subject.hasBeenFullyRestored()).toBeTrue();
+});
+
+it("should determine if the wallet has been partially restored", () => {
+	subject = new Wallet(uuidv4(), {});
+
+	expect(subject.hasBeenPartiallyRestored()).toBeFalse();
+
+	subject.markAsPartiallyRestored();
+
+	expect(subject.hasBeenPartiallyRestored()).toBeTrue();
+});
+
+it("should determine if the wallet acts with mnemonic", () => {
+	expect(subject.actsWithMnemonic()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with address", () => {
+	expect(subject.actsWithAddress()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with public key", () => {
+	expect(subject.actsWithPublicKey()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with private key", () => {
+	expect(subject.actsWithPrivateKey()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with address with ledger path", () => {
+	expect(subject.actsWithAddressWithLedgerPath()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with mnemonic with encryption", () => {
+	expect(subject.actsWithMnemonicWithEncryption()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with wif", () => {
+	expect(subject.actsWithWif()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with wif with encryption", () => {
+	expect(subject.actsWithWifWithEncryption()).toBeBoolean();
 });

@@ -318,6 +318,7 @@ export class WalletRepository implements IWalletRepository {
 			},
 			{
 				onFailedAttempt: (error) =>
+					/* istanbul ignore next */
 					console.log(
 						`Attempt #${error.attemptNumber} to restore [${address}] failed. There are ${error.retriesLeft} retries left.`,
 					),

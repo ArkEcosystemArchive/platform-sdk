@@ -87,3 +87,13 @@ it("should aggregate the balances of all wallets", async () => {
 	expect(profile.portfolio().breakdown()[0].target).toBe(0.00015144);
 	expect(profile.portfolio().breakdown()[0].shares).toBe(100);
 });
+
+it("should ignore test network wallets", async () => {
+	await Promise.all([
+		importByMnemonic(profile, "ark", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "btc", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "eth", "ARK", "ark.devnet"),
+	]);
+
+	expect(profile.portfolio().breakdown()).toEqual([]);
+});
