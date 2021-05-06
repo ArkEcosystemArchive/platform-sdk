@@ -12,9 +12,10 @@ import {
 	PeerService,
 	TransactionService,
 } from "../contracts/coins";
+import { CoinManifest } from "./network.models";
 
 export interface CoinSpec {
-	manifest: any;
+	manifest: CoinManifest;
 	schema: any;
 	ServiceProvider: any;
 }

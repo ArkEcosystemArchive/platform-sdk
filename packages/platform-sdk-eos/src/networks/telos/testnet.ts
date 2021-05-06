@@ -1,6 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
-const network: Coins.CoinNetwork = {
+const network: Coins.NetworkManifest = {
 	id: "telos.testnet",
 	type: "test",
 	name: "Testnet",

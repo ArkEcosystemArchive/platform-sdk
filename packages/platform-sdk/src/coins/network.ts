@@ -1,28 +1,45 @@
 import { get } from "dot-prop";
 
-import { CoinNetwork, ExpirationType } from "./network.models";
+import { NetworkManifest, ExpirationType, CoinManifest } from "./network.models";
 
 export class Network {
 	/**
-	 * List of feature flags that are supported.
+	 * The coin of the network.
 	 *
 	 * @memberof Network
 	 */
-	readonly #network: CoinNetwork;
+	readonly #coin: CoinManifest;
+
+	/**
+	 * The manifest of the network.
+	 *
+	 * @memberof Network
+	 */
+	readonly #network: NetworkManifest;
 
 	/**
 	 * Create a new Network instance.
 	 *
-	 * @param network
+	 * @param {string} coin
+	 * @param {NetworkManifest} network
+	 * @memberof Network
 	 */
-	public constructor(network: CoinNetwork) {
-		this.#network = network;
+	public constructor(coin: CoinManifest, network: string) {
+		this.#coin = coin;
+		this.#network = coin.networks[network];
+	}
+
+	/**
+	 * Get the coin coin of the network.
+	 */
+	public coin(): string {
+		return this.#coin.name;
 	}
 
 	/**
 	 * Get the coin of the network.
 	 */
-	public coin(): string {
+	public coinName(): string {
 		return this.#network.coin;
 	}
 
@@ -138,7 +155,7 @@ export class Network {
 	/**
 	 * Return the object representation of the network.
 	 */
-	public toObject(): CoinNetwork {
+	public toObject(): NetworkManifest {
 		return this.#network;
 	}
 

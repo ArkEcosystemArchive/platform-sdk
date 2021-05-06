@@ -3,12 +3,12 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 export class PeerService implements Contracts.PeerService {
 	readonly #seeds: string[];
 
-	private constructor(network: Coins.CoinNetwork) {
+	private constructor(network: Coins.NetworkManifest) {
 		this.#seeds = network.networking.hosts;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<PeerService> {
-		return new PeerService(config.get<Coins.CoinNetwork>("network"));
+		return new PeerService(config.get<Coins.NetworkManifest>("network"));
 	}
 
 	public async __destruct(): Promise<void> {
