@@ -243,7 +243,7 @@ export class WalletRepository implements IWalletRepository {
 			wallet.settings().fill(settings);
 
 			await wallet.mutator().coin(
-				new CoinFactory(this.#profile).make(coin, network),
+				this.#profile.coinFactory().make(coin, network),
 				{ sync: false },
 			);
 
@@ -282,12 +282,17 @@ export class WalletRepository implements IWalletRepository {
 		await syncWallets(laterWallets);
 	}
 
-	private async restoreWallet({ id, address, coin, networkConfig }): Promise<void> {
+	private async restoreWallet({ id, address, coin, network, networkConfig }): Promise<void> {
 		const previousWallet: IReadWriteWallet = this.findById(id);
 
 		if (previousWallet.hasBeenPartiallyRestored()) {
 			try {
-				await this.syncWalletWithNetwork({ address, coin, networkConfig, wallet: previousWallet });
+				await this.syncWalletWithNetwork({
+					address,
+					coin: this.#profile.coinFactory().make(coin, network),
+					networkConfig,
+					wallet: previousWallet,
+				});
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully

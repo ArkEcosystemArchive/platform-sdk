@@ -12,30 +12,26 @@ export interface IFeeService {
 	/**
 	 * Get all fees for the given coin and network.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @return {Contracts.TransactionFees}
 	 * @memberof IFeeService
 	 */
-	all(coin: string, network: string): Contracts.TransactionFees;
+	all(coin: Coins.Coin): Contracts.TransactionFees;
 
 	/**
 	 * Get fees for the given coin, network and type.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @param {string} type
 	 * @return {Contracts.TransactionFee}
 	 * @memberof IFeeService
 	 */
-	findByType(coin: string, network: string, type: string): Contracts.TransactionFee;
+	findByType(coin: Coins.Coin, type: string): Contracts.TransactionFee;
 
 	/**
 	 * Synchronise fees for the given coin and network.
 	 *
-	 * @param {IProfile} profile
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @return {Promise<void>}
 	 * @memberof IFeeService
 	 */

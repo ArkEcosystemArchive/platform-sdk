@@ -10,17 +10,18 @@ import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateService } from "./delegate-service";
 import { IReadWriteWallet } from "../../../contracts";
+import { Coins } from "@arkecosystem/platform-sdk";
 
 let subject: DelegateService;
+let wallet: IReadWriteWallet;
+let profile: Profile;
+let coin: Coins.Coin;
 
 beforeAll(() => {
 	bootContainer();
 
 	nock.disableNetConnect();
 });
-
-let wallet: IReadWriteWallet;
-let profile: Profile;
 
 beforeEach(async () => {
 	nock(/.+/)
@@ -39,22 +40,23 @@ beforeEach(async () => {
 		.persist();
 
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
+	coin = profile.coinFactory().make("ARK", "ark.devnet");
 	subject = new DelegateService();
 
 	wallet = new Wallet(uuidv4(), {}, profile);
 
-	await wallet.mutator().coin("ARK", "ark.devnet");
+	await wallet.mutator().coin(profile.coinFactory().make("ARK", "ark.devnet"));
 	await wallet.mutator().identity(identity.mnemonic);
 });
 
 describe("DelegateService", () => {
 	it("should sync the delegates", async () => {
-		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+		expect(() => subject.all(coin)).toThrowError("have not been synchronized yet");
 
-		await subject.sync(profile, "ARK", "ark.devnet");
+		await subject.sync(coin);
 
-		expect(subject.all("ARK", "ark.devnet")).toBeArray();
-		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
+		expect(subject.all(coin)).toBeArray();
+		expect(subject.all(coin)).toHaveLength(200);
 	});
 
 	it("should sync the delegates only one page", async () => {
@@ -63,58 +65,57 @@ describe("DelegateService", () => {
 			.get("/api/delegates")
 			.reply(200, require("../../../../test/fixtures/client/delegates-single-page.json"));
 
-		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+		expect(() => subject.all(coin)).toThrowError("have not been synchronized yet");
 
-		await subject.sync(profile, "ARK", "ark.devnet");
+		await subject.sync(coin);
 
-		expect(subject.all("ARK", "ark.devnet")).toBeArray();
-		expect(subject.all("ARK", "ark.devnet")).toHaveLength(10);
+		expect(subject.all(coin)).toBeArray();
+		expect(subject.all(coin)).toHaveLength(10);
 	});
 
 	it("should sync the delegates when network does not support FastDelegateSync", async () => {
-		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+		expect(() => subject.all(coin)).toThrowError("have not been synchronized yet");
 
 		jest
-			.spyOn(profile.coins().push("ARK", "ark.devnet").network(), "allows")
+			.spyOn(coin.network(), "allows")
 			.mockReturnValue(false);
 
-		await subject.sync(profile, "ARK", "ark.devnet");
+		await subject.sync(coin);
 
-		expect(subject.all("ARK", "ark.devnet")).toBeArray();
-		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
+		expect(subject.all(coin)).toBeArray();
+		expect(subject.all(coin)).toHaveLength(200);
 	});
 
 	it("should sync the delegates of all coins", async () => {
-		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
+		expect(() => subject.all(coin)).toThrowError("have not been synchronized yet");
 
 		await subject.syncAll(profile);
 
-		expect(subject.all("ARK", "ark.devnet")).toBeArray();
-		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
+		expect(subject.all(coin)).toBeArray();
+		expect(subject.all(coin)).toHaveLength(200);
 	});
 
 	it("#findByAddress", async () => {
 		await subject.syncAll(profile);
-		expect(subject.findByAddress("ARK", "ark.devnet", "DSyG9hK9CE8eyfddUoEvsga4kNVQLdw2ve")).toBeTruthy();
-		expect(() => subject.findByAddress("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
+		expect(subject.findByAddress(coin, "DSyG9hK9CE8eyfddUoEvsga4kNVQLdw2ve")).toBeTruthy();
+		expect(() => subject.findByAddress(coin, "unknown")).toThrowError(/No delegate for/);
 	});
 
 	it("#findByPublicKey", async () => {
 		await subject.syncAll(profile);
 		expect(
 			subject.findByPublicKey(
-				"ARK",
-				"ark.devnet",
+				coin,
 				"033a5474f68f92f254691e93c06a2f22efaf7d66b543a53efcece021819653a200",
 			),
 		).toBeTruthy();
-		expect(() => subject.findByPublicKey("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
+		expect(() => subject.findByPublicKey(coin, "unknown")).toThrowError(/No delegate for/);
 	});
 
 	it("#findByUsername", async () => {
 		await subject.syncAll(profile);
-		expect(subject.findByUsername("ARK", "ark.devnet", "alessio")).toBeTruthy();
-		expect(() => subject.findByUsername("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
+		expect(subject.findByUsername(coin, "alessio")).toBeTruthy();
+		expect(() => subject.findByUsername(coin, "unknown")).toThrowError(/No delegate for/);
 	});
 
 	describe("#map", () => {
@@ -131,7 +132,7 @@ describe("DelegateService", () => {
 			const publicKeys = delegates.map((delegate) => delegate.publicKey);
 			const usernames = delegates.map((delegate) => delegate.usernames);
 
-			await subject.sync(profile, wallet.coinId(), wallet.networkId());
+			await subject.sync(profile.coinFactory().make(wallet.coinId(), wallet.networkId()));
 
 			const mappedDelegates = subject.map(wallet, publicKeys);
 
@@ -151,7 +152,7 @@ describe("DelegateService", () => {
 			const publicKeys = delegates.map((delegate) => delegate.publicKey);
 			const usernames = delegates.map((delegate) => delegate.usernames);
 
-			await subject.sync(profile, wallet.coinId(), wallet.networkId());
+			await subject.sync(profile.coinFactory().make(wallet.coinId(), wallet.networkId()));
 
 			const mappedDelegates = subject.map(wallet, publicKeys.concat(["pubkey"]));
 

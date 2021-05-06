@@ -309,15 +309,23 @@ it("#exchangeRates", async () => {
 it("#fees", async () => {
 	await makeSubject();
 
-	await subject.fees().sync(subject.profiles().create("John"), "ARK", "ark.devnet");
-	expect(Object.keys(subject.fees().all("ARK", "ark.devnet"))).toHaveLength(11);
+	const coin = subject.profiles().create("John").coinFactory().make("ARK", "ark.devnet");
+	await coin.__construct();
+
+	await subject.fees().sync(coin);
+
+	expect(Object.keys(subject.fees().all(coin))).toHaveLength(11);
 });
 
 it("#delegates", async () => {
 	await makeSubject();
 
-	await subject.delegates().sync(subject.profiles().create("John"), "ARK", "ark.devnet");
-	expect(subject.delegates().all("ARK", "ark.devnet")).toHaveLength(200);
+	const coin = subject.profiles().create("John").coinFactory().make("ARK", "ark.devnet");
+	await coin.__construct();
+
+	await subject.delegates().sync(coin);
+
+	expect(subject.delegates().all(coin)).toHaveLength(200);
 });
 
 it("#knownWallets", async () => {

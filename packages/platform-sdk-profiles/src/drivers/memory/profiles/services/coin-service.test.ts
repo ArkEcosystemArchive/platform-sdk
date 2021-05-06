@@ -12,6 +12,7 @@ import { ICoinService, IDataRepository } from "../../../../contracts";
 import { CoinService } from "./coin-service";
 
 let subject: ICoinService;
+let profile: Profile;
 
 beforeAll(() => {
 	bootContainer();
@@ -37,38 +38,37 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-
+	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 	subject = new CoinService(profile.data());
 });
 
 describe("CoinService", () => {
 	it("#push", () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set(profile.coinFactory().make("ARK", "ark.devnet"));
 		const coin = subject.get("ARK", "ark.devnet");
 		expect(coin.network().id()).toEqual("ark.devnet");
 
 		const useForce = false;
-		subject.push("ARK", "ark.devnet", {}, useForce);
+		subject.set(profile.coinFactory().make("ARK", "ark.devnet"));
 		expect(coin.network().id()).toEqual("ark.devnet");
 	});
 
 	it("#has", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set(profile.coinFactory().make("ARK", "ark.devnet"));
 
 		expect(subject.has("ARK", "ark.devnet")).toBeTrue();
 		expect(subject.has("UNKNOWN", "ark.devnet")).toBeFalse();
 	});
 
 	it("#get", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set(profile.coinFactory().make("ARK", "ark.devnet"));
 
 		expect(subject.get("ARK", "ark.devnet").network().id()).toEqual("ark.devnet");
 		expect(() => subject.get("ARK", "unknown")).toThrow(/does not exist/);
 	});
 
 	it("#values", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set(profile.coinFactory().make("ARK", "ark.devnet"));
 
 		const values = subject.values();
 		expect(values).toEqual([{ ark: { devnet: expect.anything() } }]);
@@ -77,13 +77,13 @@ describe("CoinService", () => {
 	});
 
 	it("#all", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set(profile.coinFactory().make("ARK", "ark.devnet"));
 
 		expect(Object.keys(subject.all())).toEqual(["ARK"]);
 	});
 
 	it("#entries", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set(profile.coinFactory().make("ARK", "ark.devnet"));
 
 		expect(subject.entries()).toEqual([["ARK", ["ark.devnet"]]]);
 

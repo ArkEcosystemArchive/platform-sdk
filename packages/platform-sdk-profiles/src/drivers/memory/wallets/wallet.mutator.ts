@@ -21,7 +21,9 @@ export class WalletMutator implements IWalletMutator {
 		 * bad error handling inside the coin package which needs fixing asap.
 		 */
 		try {
-			if (!coin.hasBeenSynchronized()) {
+			if (coin.hasBeenSynchronized()) {
+				this.#wallet.markAsFullyRestored();
+			} else {
 				if (options.sync) {
 					await coin.__construct();
 
@@ -43,7 +45,7 @@ export class WalletMutator implements IWalletMutator {
 			.getAttributes()
 			.set(
 				"address",
-				await this.#wallet.getAttributes().get<Coins.Coin>("coin").identity().address().fromMnemonic(mnemonic, options),
+				await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options),
 			);
 
 		this.#wallet
@@ -51,8 +53,7 @@ export class WalletMutator implements IWalletMutator {
 			.set(
 				"publicKey",
 				await this.#wallet
-					.getAttributes()
-					.get<Coins.Coin>("coin")
+					.coin()
 					.identity()
 					.publicKey()
 					.fromMnemonic(mnemonic, options),

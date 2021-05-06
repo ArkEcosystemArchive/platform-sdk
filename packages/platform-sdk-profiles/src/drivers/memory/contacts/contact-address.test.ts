@@ -29,8 +29,9 @@ beforeEach(async () => {
 
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-	const coin = profile.coins().push("ARK", "ark.devnet");
+	const coin = profile.coinFactory().make("ARK", "ark.devnet");
 	await coin.__construct();
+	profile.coins().set(coin);
 
 	subject = new ContactAddress({
 		id: "uuid",
@@ -39,8 +40,6 @@ beforeEach(async () => {
 		name: "John Doe",
 		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 	}, coin, profile);
-
-	await subject.syncIdentity();
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -71,19 +70,27 @@ it("should have an avatar", () => {
 	);
 });
 
-it("should determine if the wallet is a delegate", () => {
+it("should determine if the wallet is a delegate", async () => {
+	await subject.syncIdentity();
+
 	expect(subject.isDelegate()).toBeTrue();
 });
 
-it("should determine if the wallet has a multi signature", () => {
+it("should determine if the wallet has a multi signature", async () => {
+	await subject.syncIdentity();
+
 	expect(subject.isMultiSignature()).toBeFalse();
 });
 
-it("should determine if the wallet has a second signature", () => {
+it("should determine if the wallet has a second signature", async () => {
+	await subject.syncIdentity();
+
 	expect(subject.isSecondSignature()).toBeFalse();
 });
 
-it("should has synced with network", () => {
+it("should has synced with network", async () => {
+	await subject.syncIdentity();
+
 	expect(subject.hasSyncedWithNetwork()).toBeTrue();
 });
 
@@ -115,7 +122,9 @@ describe("when contact has not been synchronized yet", () => {
 			.persist();
 
 		const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
-		const coin = profile.coins().push("ARK", "ark.devnet");
+		const coin = profile.coinFactory().make("ARK", "ark.devnet");
+		await coin.__construct();
+		profile.coins().set(coin);
 
 		subject = new ContactAddress({
 			id: "uuid",

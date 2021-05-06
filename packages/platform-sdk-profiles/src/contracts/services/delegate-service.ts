@@ -14,45 +14,41 @@ export interface IDelegateService {
 	/**
 	 * Get all delegates for the given coin and network.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @return {IReadOnlyWallet[]}
 	 * @memberof IDelegateService
 	 */
-	all(coin: string, network: string): IReadOnlyWallet[];
+	all(coin: Coins.Coin): IReadOnlyWallet[];
 
 	/**
 	 * Find the delegate for the given coin, network and address.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @param {string} address
 	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
-	findByAddress(coin: string, network: string, address: string): IReadOnlyWallet;
+	findByAddress(coin: Coins.Coin, address: string): IReadOnlyWallet;
 
 	/**
 	 * Find the delegate for the given coin, network and public key.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @param {string} publicKey
 	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
-	findByPublicKey(coin: string, network: string, publicKey: string): IReadOnlyWallet;
+	findByPublicKey(coin: Coins.Coin, publicKey: string): IReadOnlyWallet;
 
 	/**
 	 * Find the delegate for the given coin, network and username.
 	 *
-	 * @param {string} coin
-	 * @param {string} network
+	 * @param {Coins.Coin} coin
 	 * @param {string} username
 	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
-	findByUsername(coin: string, network: string, username: string): IReadOnlyWallet;
+	findByUsername(coin: Coins.Coin, username: string): IReadOnlyWallet;
 
 	/**
 	 * Synchronise delegates for the given coin and network.

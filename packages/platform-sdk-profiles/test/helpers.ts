@@ -77,8 +77,7 @@ export const importByMnemonic = async (
 	const factory: WalletFactory = new WalletFactory(profile);
 
 	const wallet = await factory.fromMnemonic({
-		coin,
-		network,
+		coin: profile.coinFactory().make(coin, network),
 		mnemonic,
 	});
 
@@ -97,8 +96,7 @@ export const importByAddressWithLedgerPath = async (
 	const factory: WalletFactory = new WalletFactory(profile);
 
 	const wallet = await factory.fromAddressWithLedgerPath({
-		coin,
-		network,
+		coin: profile.coinFactory().make(coin, network),
 		address,
 		path,
 	});
@@ -112,8 +110,7 @@ export const generateWallet = async (profile: IProfile, coin: string, network: s
 	const factory: WalletFactory = new WalletFactory(profile);
 
 	const { wallet } = await factory.generate({
-		coin,
-		network,
+		coin: profile.coinFactory().make(coin, network),
 	});
 
 	profile.wallets().push(wallet);

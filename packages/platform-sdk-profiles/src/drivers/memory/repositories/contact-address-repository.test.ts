@@ -34,7 +34,9 @@ beforeEach(async () => {
 		.persist();
 
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-	profile.coins().push("ARK", "ark.devnet");
+	const coin = profile.coinFactory().make("ARK", "ark.devnet");
+	await coin.__construct();
+	profile.coins().set(coin);
 
 	subject = new ContactAddressRepository(profile);
 });

@@ -1,15 +1,13 @@
 import { get } from "dot-prop";
 
-import { CoinNetwork } from "./network.models";
-
 export class Manifest {
-	readonly #manifest: CoinNetwork;
+	readonly #manifest: Record<string, any>;
 
-	public constructor(manifest: CoinNetwork) {
+	public constructor(manifest: Record<string, any>) {
 		this.#manifest = manifest;
 	}
 
-	public all(): CoinNetwork {
+	public all(): Record<string, any> {
 		return this.#manifest;
 	}
 

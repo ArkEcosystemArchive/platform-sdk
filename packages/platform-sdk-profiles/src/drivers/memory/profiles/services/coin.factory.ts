@@ -39,8 +39,9 @@ export class CoinFactory implements ICoinFactory {
 			...options,
 		});
 
-		this.#profile.data().set(`${coin}.${network}`, instance);
+		// @TODO: we should move this out but that means potentially more repetitive work for the client
+		this.#profile.coins().set(instance);
 
-		return this.#profile.coins().get(coin, network);
+		return instance;
 	}
 }
