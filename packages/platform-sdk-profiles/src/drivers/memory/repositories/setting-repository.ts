@@ -1,15 +1,17 @@
 import { injectable } from "inversify";
 
-import { ISettingRepository } from "../../../contracts";
+import { IProfile, ISettingRepository } from "../../../contracts";
 import { DataRepository } from "../../../repositories";
 import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class SettingRepository implements ISettingRepository {
+	readonly #profile: IProfile;
 	#data: DataRepository;
 	#allowedKeys: string[];
 
-	public constructor(allowedKeys: string[]) {
+	public constructor(profile: IProfile, allowedKeys: string[]) {
+		this.#profile = profile;
 		this.#data = new DataRepository();
 		this.#allowedKeys = allowedKeys;
 	}
@@ -37,7 +39,7 @@ export class SettingRepository implements ISettingRepository {
 
 		this.#data.set(key, value);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc ISettingRepository.fill} */
@@ -65,14 +67,14 @@ export class SettingRepository implements ISettingRepository {
 
 		this.#data.forget(key);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc ISettingRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	private assertValidKey(key: string): void {

@@ -6,7 +6,12 @@ import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class PeerRepository implements IPeerRepository {
+	readonly #profile: IProfile;
 	readonly #data: DataRepository = new DataRepository();
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
 
 	/** {@inheritDoc IPeerRepository.fill} */
 	public fill(peers: object): void {
@@ -50,7 +55,7 @@ export class PeerRepository implements IPeerRepository {
 
 		this.#data.set(key, value);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IPeerRepository.has} */
@@ -68,7 +73,7 @@ export class PeerRepository implements IPeerRepository {
 
 		this.#data.set(`${coin}.${network}.${index}`, peer);
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IPeerRepository.forget} */
@@ -87,7 +92,7 @@ export class PeerRepository implements IPeerRepository {
 			this.#data.forget(`${coin}.${network}`);
 		}
 
-		emitProfileChanged();
+		emitProfileChanged(this.#profile);
 	}
 
 	/** {@inheritDoc IPeerRepository.toObject} */

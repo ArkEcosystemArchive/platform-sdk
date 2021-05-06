@@ -3,17 +3,12 @@ import "reflect-metadata";
 import { bootContainer } from "../../../../test/helpers";
 
 import { ProfileSetting, WalletSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
 import { Profile } from "../profiles/profile";
 
 import { SettingRepository } from "./setting-repository";
 
 beforeAll(() => {
 	bootContainer();
-
-	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-
-	State.profile(profile);
 });
 
 describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
@@ -21,7 +16,7 @@ describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 	let key: string;
 
 	beforeEach(() => {
-		subject = new SettingRepository(Object.values(type === "profile" ? ProfileSetting : WalletSetting));
+		subject = new SettingRepository(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }), Object.values(type === "profile" ? ProfileSetting : WalletSetting));
 		subject.flush();
 
 		key = type === "profile" ? ProfileSetting.Locale : WalletSetting.Peer;

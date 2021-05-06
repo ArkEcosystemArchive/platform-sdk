@@ -2,9 +2,8 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
 import { DataRepository } from "../../../repositories/data-repository";
-import { IFeeService } from "../../../contracts";
+import { IFeeService, IProfile } from "../../../contracts";
 import { injectable } from "inversify";
-import { State } from "../../../environment/state";
 
 @injectable()
 export class FeeService implements IFeeService {
@@ -29,8 +28,8 @@ export class FeeService implements IFeeService {
 	}
 
 	/** {@inheritDoc IFeeService.sync} */
-	public async sync(coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = State.profile().coins().push(coin, network);
+	public async sync(profile: IProfile, coin: string, network: string): Promise<void> {
+		const instance: Coins.Coin = profile.coins().push(coin, network);
 
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();
@@ -40,12 +39,12 @@ export class FeeService implements IFeeService {
 	}
 
 	/** {@inheritDoc IFeeService.syncAll} */
-	public async syncAll(): Promise<void> {
+	public async syncAll(profile: IProfile): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const [coin, networks] of State.profile().coins().entries()) {
+		for (const [coin, networks] of profile.coins().entries()) {
 			for (const network of networks) {
-				promises.push(() => this.sync(coin, network));
+				promises.push(() => this.sync(profile, coin, network));
 			}
 		}
 

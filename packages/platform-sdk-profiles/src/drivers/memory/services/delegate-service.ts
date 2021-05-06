@@ -2,15 +2,15 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
 import { ReadOnlyWallet } from "../wallets/read-only-wallet";
-import { IDataRepository, IDelegateService, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
+import { IDataRepository, IDelegateService, IProfile, IReadOnlyWallet, IReadWriteWallet } from "../../../contracts";
 import { injectable } from "inversify";
-import { State } from "../../../environment/state";
 import { DataRepository } from "../../../repositories";
 import { IDelegateSyncer, ParallelDelegateSyncer, SerialDelegateSyncer } from "./helpers/delegate-syncer";
 
 @injectable()
 export class DelegateService implements IDelegateService {
 	readonly #dataRepository: IDataRepository = new DataRepository();
+
 
 	/** {@inheritDoc IDelegateService.all} */
 	public all(coin: string, network: string): IReadOnlyWallet[] {
@@ -41,8 +41,8 @@ export class DelegateService implements IDelegateService {
 	}
 
 	/** {@inheritDoc IDelegateService.sync} */
-	public async sync(coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = State.profile().coins().push(coin, network);
+	public async sync(profile: IProfile, coin: string, network: string): Promise<void> {
+		const instance: Coins.Coin = profile.coins().push(coin, network);
 
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();
@@ -62,12 +62,12 @@ export class DelegateService implements IDelegateService {
 	}
 
 	/** {@inheritDoc IDelegateService.syncAll} */
-	public async syncAll(): Promise<void> {
+	public async syncAll(profile: IProfile): Promise<void> {
 		const promises: (() => Promise<void>)[] = [];
 
-		for (const [coin, networks] of State.profile().coins().entries()) {
+		for (const [coin, networks] of profile.coins().entries()) {
 			for (const network of networks) {
-				promises.push(() => this.sync(coin, network));
+				promises.push(() => this.sync(profile, coin, network));
 			}
 		}
 

@@ -8,12 +8,10 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { Contact } from "../src/drivers/memory/contacts/contact";
 import { container } from "../src/environment/container";
 import { Profile } from "../src/drivers/memory/profiles/profile";
 import { StubStorage } from "./stubs/storage";
-import { Wallet } from "../src/drivers/memory/wallets/wallet";
-import { IContactData, IProfile, IReadWriteWallet } from "../src/contracts";
+import { IProfile, IReadWriteWallet } from "../src/contracts";
 import { WalletFactory } from "../src/drivers/memory/wallets/wallet.factory";
 import { MemoryDriver } from "../src/drivers/memory";
 
@@ -70,17 +68,13 @@ export const knock = (): void => {
 export const makeProfile = (data: object = {}): IProfile =>
 	new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "", ...data });
 
-export const makeContact = (data: IContactData): Contact => new Contact(data);
-
-export const makeWallet = (id: string): IReadWriteWallet => new Wallet(id, {});
-
 export const importByMnemonic = async (
 	profile: IProfile,
 	mnemonic: string,
 	coin: string,
 	network: string,
 ): Promise<IReadWriteWallet> => {
-	const factory: WalletFactory = new WalletFactory();
+	const factory: WalletFactory = new WalletFactory(profile);
 
 	const wallet = await factory.fromMnemonic({
 		coin,
@@ -100,7 +94,7 @@ export const importByAddressWithLedgerPath = async (
 	network: string,
 	path: string,
 ): Promise<IReadWriteWallet> => {
-	const factory: WalletFactory = new WalletFactory();
+	const factory: WalletFactory = new WalletFactory(profile);
 
 	const wallet = await factory.fromAddressWithLedgerPath({
 		coin,
@@ -115,7 +109,7 @@ export const importByAddressWithLedgerPath = async (
 };
 
 export const generateWallet = async (profile: IProfile, coin: string, network: string): Promise<IReadWriteWallet> => {
-	const factory: WalletFactory = new WalletFactory();
+	const factory: WalletFactory = new WalletFactory(profile);
 
 	const { wallet } = await factory.generate({
 		coin,

@@ -1,18 +1,24 @@
-import { State } from "../../../../environment/state";
+import { IProfile } from "../../../../contracts";
 
 export class CountAggregate implements CountAggregate {
+	readonly #profile: IProfile;
+
+	public constructor(profile: IProfile) {
+		this.#profile = profile;
+	}
+
 	/** {@inheritDoc CountAggregate.contacts} */
 	public contacts(): number {
-		return State.profile().contacts().count();
+		return this.#profile.contacts().count();
 	}
 
 	/** {@inheritDoc CountAggregate.notifications} */
 	public notifications(): number {
-		return State.profile().notifications().count();
+		return this.#profile.notifications().count();
 	}
 
 	/** {@inheritDoc CountAggregate.wallets} */
 	public wallets(): number {
-		return State.profile().wallets().count();
+		return this.#profile.wallets().count();
 	}
 }

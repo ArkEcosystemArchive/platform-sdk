@@ -19,10 +19,6 @@ export const Identifiers = {
 	WalletService: Symbol("WalletService"),
 };
 
-export const State = {
-	Profile: Symbol("State<Profile>"),
-};
-
 export const Events = {
 	EnvironmentChanged: Symbol("EnvironmentChanged"),
 	ProfileChanged: Symbol("ProfileChanged"),

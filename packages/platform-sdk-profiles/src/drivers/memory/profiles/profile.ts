@@ -175,21 +175,21 @@ export class Profile implements IProfile {
 
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
-		this.#coinService = new CoinService(new DataRepository());
-		this.#portfolio = new Portfolio();
-		this.#contactRepository = new ContactRepository();
+		this.#portfolio = new Portfolio(this);
+		this.#contactRepository = new ContactRepository(this);
 		this.#dataRepository = new DataRepository();
-		this.#notificationRepository = new NotificationRepository();
-		this.#peerRepository = new PeerRepository();
+		this.#notificationRepository = new NotificationRepository(this);
+		this.#peerRepository = new PeerRepository(this);
 		this.#pluginRepository = new PluginRepository();
-		this.#settingRepository = new SettingRepository(Object.values(ProfileSetting));
-		this.#walletRepository = new WalletRepository();
-		this.#countAggregate = new CountAggregate();
-		this.#registrationAggregate = new RegistrationAggregate();
-		this.#transactionAggregate = new TransactionAggregate();
-		this.#walletAggregate = new WalletAggregate();
-		this.#authenticator = new Authenticator();
+		this.#settingRepository = new SettingRepository(this, Object.values(ProfileSetting));
+		this.#walletRepository = new WalletRepository(this);
+		this.#countAggregate = new CountAggregate(this);
+		this.#registrationAggregate = new RegistrationAggregate(this);
+		this.#transactionAggregate = new TransactionAggregate(this);
+		this.#walletAggregate = new WalletAggregate(this);
+		this.#authenticator = new Authenticator(this);
 		this.#password = new PasswordManager();
+		this.#coinService = new CoinService(this.data());
 	}
 
 	/** {@inheritDoc IProfile.id} */
@@ -300,7 +300,7 @@ export class Profile implements IProfile {
 
 	/** {@inheritDoc IProfile.walletFactory} */
 	public walletFactory(): IWalletFactory {
-		return new WalletFactory();
+		return new WalletFactory(this);
 	}
 
 	/** {@inheritDoc IProfile.countAggregate} */

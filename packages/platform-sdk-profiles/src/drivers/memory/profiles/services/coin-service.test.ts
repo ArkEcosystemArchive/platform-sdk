@@ -7,7 +7,6 @@ import nock from "nock";
 
 import { bootContainer } from "../../../../../test/helpers";
 import NodeFeesFixture from "../../../../../test/fixtures/client/node-fees.json";
-import { State } from "../../../../environment/state";
 import { Profile } from "../profile";
 import { ICoinService, IDataRepository } from "../../../../contracts";
 import { CoinService } from "./coin-service";
@@ -39,8 +38,6 @@ beforeAll(() => {
 
 beforeEach(async () => {
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-
-	State.profile(profile);
 
 	subject = new CoinService(profile.data());
 });
@@ -101,7 +98,6 @@ describe("CoinService", () => {
 	});
 
 	it("#flush", async () => {
-
 		const dataRepository: IDataRepository = mock<IDataRepository>();
 		subject = new CoinService(dataRepository);
 

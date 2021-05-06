@@ -1,3 +1,5 @@
+import { IProfile } from "../profiles";
+
 /**
  * Defines the implementation contract for the known wallet service.
  *
@@ -8,10 +10,11 @@ export interface IKnownWalletService {
 	/**
 	 * Synchronise all known wallets from all coins and networks.
 	 *
+	 * @param {IProfile} profile
 	 * @return {Promise<void>}
 	 * @memberof IKnownWalletService
 	 */
-	syncAll(): Promise<void>;
+	syncAll(profile: IProfile): Promise<void>;
 
 	/**
 	 * Get the human-readable name for the known wallet.

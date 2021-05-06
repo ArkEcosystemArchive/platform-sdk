@@ -33,7 +33,7 @@ export class WalletImportFormat implements IWalletImportFormat {
 
 		this.#wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
-		emitProfileChanged();
+		emitProfileChanged(this.#wallet.profile());
 	}
 
 	/** {@inheritDoc IWalletImportFormat.exists} */

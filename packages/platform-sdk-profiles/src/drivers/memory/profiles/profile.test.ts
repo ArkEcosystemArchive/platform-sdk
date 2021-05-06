@@ -15,8 +15,7 @@ import { TransactionAggregate } from "./aggregates/transaction-aggregate";
 import { WalletAggregate } from "./aggregates/wallet-aggregate";
 import { Authenticator } from "./authenticator";
 import { Profile } from "./profile";
-import { IProfile, IReadWriteWallet, IWalletFactory, ProfileData, ProfileSetting } from "../../../contracts";
-import { State } from "../../../environment/state";
+import { IProfile, IReadWriteWallet, ProfileData, ProfileSetting } from "../../../contracts";
 import { WalletFactory } from "../wallets/wallet.factory";
 import { mock, MockProxy } from "jest-mock-extended";
 
@@ -43,8 +42,6 @@ beforeAll(() => {
 
 beforeEach(() => {
 	subject = new Profile({ id: "uuid", name: "name", data: "" });
-
-	State.profile(subject);
 
 	subject.settings().set(ProfileSetting.Name, "John Doe");
 });

@@ -10,7 +10,6 @@ import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateService } from "./delegate-service";
 import { IReadWriteWallet } from "../../../contracts";
-import { State } from "../../../environment/state";
 
 let subject: DelegateService;
 
@@ -21,9 +20,9 @@ beforeAll(() => {
 });
 
 let wallet: IReadWriteWallet;
+let profile: Profile;
 
 beforeEach(async () => {
-
 	nock(/.+/)
 		.get("/api/node/configuration")
 		.reply(200, require("../../../../test/fixtures/client/configuration.json"))
@@ -39,11 +38,10 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/client/delegates-2.json"))
 		.persist();
 
+	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	subject = new DelegateService();
 
-	State.profile(new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" }));
-
-	wallet = new Wallet(uuidv4(), {});
+	wallet = new Wallet(uuidv4(), {}, profile);
 
 	await wallet.mutator().coin("ARK", "ark.devnet");
 	await wallet.mutator().identity(identity.mnemonic);
@@ -53,7 +51,7 @@ describe("DelegateService", () => {
 	it("should sync the delegates", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		await subject.sync("ARK", "ark.devnet");
+		await subject.sync(profile, "ARK", "ark.devnet");
 
 		expect(subject.all("ARK", "ark.devnet")).toBeArray();
 		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
@@ -67,7 +65,7 @@ describe("DelegateService", () => {
 
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		await subject.sync("ARK", "ark.devnet");
+		await subject.sync(profile, "ARK", "ark.devnet");
 
 		expect(subject.all("ARK", "ark.devnet")).toBeArray();
 		expect(subject.all("ARK", "ark.devnet")).toHaveLength(10);
@@ -76,11 +74,11 @@ describe("DelegateService", () => {
 	it("should sync the delegates when network does not support FastDelegateSync", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		jest.spyOn(
-			State.profile().coins().push("ARK", "ark.devnet").network(), "allows")
+		jest
+			.spyOn(profile.coins().push("ARK", "ark.devnet").network(), "allows")
 			.mockReturnValue(false);
 
-		await subject.sync("ARK", "ark.devnet");
+		await subject.sync(profile, "ARK", "ark.devnet");
 
 		expect(subject.all("ARK", "ark.devnet")).toBeArray();
 		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
@@ -89,20 +87,20 @@ describe("DelegateService", () => {
 	it("should sync the delegates of all coins", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		await subject.syncAll();
+		await subject.syncAll(profile);
 
 		expect(subject.all("ARK", "ark.devnet")).toBeArray();
 		expect(subject.all("ARK", "ark.devnet")).toHaveLength(200);
 	});
 
 	it("#findByAddress", async () => {
-		await subject.syncAll();
+		await subject.syncAll(profile);
 		expect(subject.findByAddress("ARK", "ark.devnet", "DSyG9hK9CE8eyfddUoEvsga4kNVQLdw2ve")).toBeTruthy();
 		expect(() => subject.findByAddress("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
 	});
 
 	it("#findByPublicKey", async () => {
-		await subject.syncAll();
+		await subject.syncAll(profile);
 		expect(
 			subject.findByPublicKey(
 				"ARK",
@@ -114,7 +112,7 @@ describe("DelegateService", () => {
 	});
 
 	it("#findByUsername", async () => {
-		await subject.syncAll();
+		await subject.syncAll(profile);
 		expect(subject.findByUsername("ARK", "ark.devnet", "alessio")).toBeTruthy();
 		expect(() => subject.findByUsername("ARK", "ark.devnet", "unknown")).toThrowError(/No delegate for/);
 	});
@@ -133,7 +131,7 @@ describe("DelegateService", () => {
 			const publicKeys = delegates.map((delegate) => delegate.publicKey);
 			const usernames = delegates.map((delegate) => delegate.usernames);
 
-			await subject.sync(wallet.coinId(), wallet.networkId());
+			await subject.sync(profile, wallet.coinId(), wallet.networkId());
 
 			const mappedDelegates = subject.map(wallet, publicKeys);
 
@@ -153,7 +151,7 @@ describe("DelegateService", () => {
 			const publicKeys = delegates.map((delegate) => delegate.publicKey);
 			const usernames = delegates.map((delegate) => delegate.usernames);
 
-			await subject.sync(wallet.coinId(), wallet.networkId());
+			await subject.sync(profile, wallet.coinId(), wallet.networkId());
 
 			const mappedDelegates = subject.map(wallet, publicKeys.concat(["pubkey"]));
 

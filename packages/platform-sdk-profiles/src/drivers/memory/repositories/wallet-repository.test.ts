@@ -10,7 +10,6 @@ import { IProfile, IReadWriteWallet, IWalletData, ProfileSetting } from "../../.
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { WalletRepository } from "./wallet-repository";
-import { State } from "../../../environment/state";
 import { WalletFactory } from "../wallets/wallet.factory";
 
 jest.setTimeout(60000);
@@ -36,7 +35,7 @@ const importByMnemonic = async (mnemonic: string, coin: string, network: string)
 };
 
 let subject: WalletRepository;
-let factory: WalletFactory = new WalletFactory();
+let factory: WalletFactory;
 
 beforeAll(() => bootContainer());
 
@@ -58,11 +57,10 @@ beforeEach(async () => {
 
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-	State.profile(profile);
-
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	subject = new WalletRepository();
+	subject = new WalletRepository(profile);
+	factory = new WalletFactory(profile);
 
 	const wallet = await importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
 	subject.update(wallet.id(), { alias: "Alias" });
@@ -158,7 +156,7 @@ test("#fill", async () => {
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 
-	const newWallet = new Wallet(uuidv4(), {});
+	const newWallet = new Wallet(uuidv4(), {}, profile);
 	await newWallet.mutator().coin("ARK", "ark.devnet");
 	await newWallet.mutator().identity("this is another top secret passphrase");
 
@@ -250,7 +248,7 @@ describe("#sortBy", () => {
 			profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 			profile.settings().set(ProfileSetting.Name, "John Doe");
 
-			wallet = new Wallet(uuidv4(), {});
+			wallet = new Wallet(uuidv4(), {}, profile);
 			await wallet.mutator().coin("ARK", "ark.devnet");
 			await wallet.mutator().identity("this is another top secret passphrase");
 
@@ -269,7 +267,7 @@ describe("#sortBy", () => {
 		})
 
 		it("should restore", async () => {
-			const newWallet2 = new Wallet(uuidv4(), {});
+			const newWallet2 = new Wallet(uuidv4(), {}, profile);
 			await newWallet2.mutator().coin("ARK", "ark.devnet");
 			await newWallet2.mutator().identity("this is another top secret passphrase");
 
