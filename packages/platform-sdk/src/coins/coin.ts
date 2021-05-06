@@ -17,6 +17,7 @@ import { CoinServices, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 import { Network } from "./network";
 import { NetworkRepository } from "./network-repository";
+import { NetworkManifest } from "./network.models";
 
 export class Coin {
 	readonly #networks: NetworkRepository;
@@ -41,7 +42,8 @@ export class Coin {
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#specification = specification;
-		this.#network = new Network(config.get(ConfigKey.Network));
+		// @TODO: merge the base and restored manifests
+		this.#network = new Network(specification.manifest, config.get<NetworkManifest>(ConfigKey.Network).id);
 	}
 
 	public async __construct(): Promise<void> {

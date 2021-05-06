@@ -48,8 +48,8 @@ beforeEach(async () => {
 			}),
 		),
 		specification: {
-			manifest: undefined,
-			schema: undefined,
+			manifest: ARK.manifest,
+			schema: ARK.schema,
 			ServiceProvider: {
 				make: () => {
 					services.client.__construct();

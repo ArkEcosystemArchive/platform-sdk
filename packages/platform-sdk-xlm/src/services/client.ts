@@ -24,7 +24,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config.get<Coins.CoinNetwork>("network").id);
+		return new ClientService(config.get<Coins.NetworkManifest>("network").id);
 	}
 
 	public async __destruct(): Promise<void> {

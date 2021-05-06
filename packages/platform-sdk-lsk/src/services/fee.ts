@@ -4,12 +4,12 @@ import { constants } from "@liskhq/lisk-transactions";
 export class FeeService implements Contracts.FeeService {
 	readonly #network;
 
-	private constructor(network: Coins.CoinNetwork) {
+	private constructor(network: Coins.NetworkManifest) {
 		this.#network = network.crypto.networkId;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<FeeService> {
-		return new FeeService(config.get<Coins.CoinNetwork>("network"));
+		return new FeeService(config.get<Coins.NetworkManifest>("network"));
 	}
 
 	public async __destruct(): Promise<void> {

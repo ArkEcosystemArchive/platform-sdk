@@ -1,18 +1,18 @@
-import { CoinNetwork } from "./network.models";
+import { NetworkManifest } from "./network.models";
 
 export class NetworkRepository {
-	readonly #networks: Record<string, CoinNetwork>;
+	readonly #networks: Record<string, NetworkManifest>;
 
-	public constructor(networks: Record<string, CoinNetwork>) {
+	public constructor(networks: Record<string, NetworkManifest>) {
 		this.#networks = networks;
 	}
 
-	public all(): Record<string, CoinNetwork> {
+	public all(): Record<string, NetworkManifest> {
 		return this.#networks;
 	}
 
-	public get(name: string): CoinNetwork {
-		const result: CoinNetwork | undefined = this.#networks[name];
+	public get(name: string): NetworkManifest {
+		const result: NetworkManifest | undefined = this.#networks[name];
 
 		if (!result) {
 			throw new Error(`The [${name}] network is not supported.`);
@@ -21,7 +21,7 @@ export class NetworkRepository {
 		return result;
 	}
 
-	public push(name: string, data: CoinNetwork): void {
+	public push(name: string, data: NetworkManifest): void {
 		this.#networks[name] = data;
 	}
 

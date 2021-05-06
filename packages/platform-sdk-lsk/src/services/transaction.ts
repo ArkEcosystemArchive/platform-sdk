@@ -13,12 +13,12 @@ import { SignedTransactionData } from "../dto/signed-transaction";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 
-	private constructor(network: Coins.CoinNetwork) {
+	private constructor(network: Coins.NetworkManifest) {
 		this.#network = network.crypto.networkId;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config.get<Coins.CoinNetwork>("network"));
+		return new TransactionService(config.get<Coins.NetworkManifest>("network"));
 	}
 
 	public async __destruct(): Promise<void> {
@@ -134,7 +134,7 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
 	}
 
-	public async estimateExpiration(value?: string): Promise<string> {
+	public async estimateExpiration(value?: string): Promise<string | undefined> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "estimateExpiration");
 	}
 

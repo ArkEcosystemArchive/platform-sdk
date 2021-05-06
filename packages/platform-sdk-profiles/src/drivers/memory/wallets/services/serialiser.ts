@@ -18,7 +18,7 @@ export class WalletSerialiser {
 
 		this.#wallet.transaction().dump();
 
-		const network: Coins.CoinNetwork = this.#wallet.coin().network().toObject();
+		const network: Coins.NetworkManifest = this.#wallet.coin().network().toObject();
 
 		return {
 			id: this.#wallet.id(),

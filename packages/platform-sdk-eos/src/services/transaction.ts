@@ -173,7 +173,7 @@ export class TransactionService implements Contracts.TransactionService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
 	}
 
-	public async estimateExpiration(value?: string): Promise<string> {
+	public async estimateExpiration(value?: string): Promise<string | undefined> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "estimateExpiration");
 	}
 

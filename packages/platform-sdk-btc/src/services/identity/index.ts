@@ -10,12 +10,12 @@ import { WIF } from "./wif";
 export class IdentityService implements Contracts.IdentityService {
 	readonly #network: string;
 
-	private constructor(network: Coins.CoinNetwork) {
+	private constructor(network: Coins.NetworkManifest) {
 		this.#network = network.id.split(".")[1];
 	}
 
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config.get<Coins.CoinNetwork>("network"));
+		return new IdentityService(config.get<Coins.NetworkManifest>("network"));
 	}
 
 	public async __destruct(): Promise<void> {
