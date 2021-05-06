@@ -9,7 +9,7 @@ import { injectable } from "inversify";
 export class CoinService implements ICoinService {
 	readonly #dataRepository: IDataRepository;
 
-	constructor(dataRepository: IDataRepository) {
+	public constructor(dataRepository: IDataRepository) {
 		this.#dataRepository = dataRepository;
 	}
 

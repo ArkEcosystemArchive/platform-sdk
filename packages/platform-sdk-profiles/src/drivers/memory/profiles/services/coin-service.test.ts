@@ -39,7 +39,6 @@ beforeAll(() => {
 beforeEach(async () => {
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 
-
 	subject = new CoinService(profile.data());
 });
 
@@ -99,7 +98,6 @@ describe("CoinService", () => {
 	});
 
 	it("#flush", async () => {
-
 		const dataRepository: IDataRepository = mock<IDataRepository>();
 		subject = new CoinService(dataRepository);
 
