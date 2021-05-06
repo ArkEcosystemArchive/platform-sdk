@@ -412,7 +412,7 @@ it("should have a primary key", () => {
 });
 
 it("should throw if the primary key is accessed before the wallet has been synchronized", () => {
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.primaryKey()).toThrow("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 });
@@ -422,7 +422,7 @@ it("should have an underlying `WalletData` instance", () => {
 });
 
 it("should throw if the underlying `WalletData` instance is accessed before the wallet has been synchronized", () => {
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(() => subject.toData().primaryKey()).toThrow("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
 });
@@ -446,7 +446,7 @@ it("should construct a coin instance", async () => {
 });
 
 it("should throw if a connection is tried to be established but no coin has been set", async () => {
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	await expect(subject.connect()).toReject();
 });
@@ -454,13 +454,13 @@ it("should throw if a connection is tried to be established but no coin has been
 it("should determine if the wallet has a coin attached to it", () => {
 	expect(subject.hasCoin()).toBeTrue();
 
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(subject.hasCoin()).toBeFalse();
 });
 
 it("should determine if the wallet has been fully restored", () => {
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(subject.hasBeenFullyRestored()).toBeFalse();
 
@@ -470,7 +470,7 @@ it("should determine if the wallet has been fully restored", () => {
 });
 
 it("should determine if the wallet has been partially restored", () => {
-	subject = new Wallet(uuidv4(), {});
+	subject = new Wallet(uuidv4(), {}, profile);
 
 	expect(subject.hasBeenPartiallyRestored()).toBeFalse();
 

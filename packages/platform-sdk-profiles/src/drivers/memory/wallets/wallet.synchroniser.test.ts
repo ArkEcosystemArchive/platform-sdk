@@ -1,28 +1,15 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { Coins } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer, importByMnemonic } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
-import { ReadOnlyWallet } from "./read-only-wallet";
 import { Wallet } from "./wallet";
-import {
-	IExchangeRateService,
-	IProfile,
-	IProfileRepository,
-	IReadWriteWallet,
-	WalletData,
-	WalletFlag,
-	WalletSetting,
-} from "../../../contracts";
-import { ExtendedTransactionDataCollection } from "../../../dto";
-import { State } from "../../../environment/state";
+import { IProfile, IProfileRepository, IReadWriteWallet } from "../../../contracts";
 import { WalletSynchroniser } from "./wallet.synchroniser";
 
 let profile: IProfile;
@@ -107,7 +94,7 @@ it("should sync and reset the coin", async () => {
 });
 
 it("should sync multi signature when musig", async () => {
-	wallet = new Wallet(uuidv4(), {});
+	wallet = new Wallet(uuidv4(), {}, profile);
 	await wallet.mutator().coin("ARK", "ark.devnet");
 	await wallet.mutator().identity("new super passphrase");
 

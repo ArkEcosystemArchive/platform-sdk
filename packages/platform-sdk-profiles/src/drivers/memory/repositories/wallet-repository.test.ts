@@ -248,7 +248,7 @@ describe("#sortBy", () => {
 			profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 			profile.settings().set(ProfileSetting.Name, "John Doe");
 
-			wallet = new Wallet(uuidv4(), {});
+			wallet = new Wallet(uuidv4(), {}, profile);
 			await wallet.mutator().coin("ARK", "ark.devnet");
 			await wallet.mutator().identity("this is another top secret passphrase");
 
@@ -267,7 +267,7 @@ describe("#sortBy", () => {
 		})
 
 		it("should restore", async () => {
-			const newWallet2 = new Wallet(uuidv4(), {});
+			const newWallet2 = new Wallet(uuidv4(), {}, profile);
 			await newWallet2.mutator().coin("ARK", "ark.devnet");
 			await newWallet2.mutator().identity("this is another top secret passphrase");
 

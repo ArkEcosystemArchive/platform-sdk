@@ -89,7 +89,7 @@ beforeAll(() => nock.disableNetConnect());
 
 describe("#setCoin", () => {
 	it("should mark the wallet as partially restored if the coin construction fails", async () => {
-		subject = new Wallet(uuidv4(), {});
+		subject = new Wallet(uuidv4(), {}, profile);
 
 		expect(subject.hasBeenPartiallyRestored()).toBeFalse();
 
