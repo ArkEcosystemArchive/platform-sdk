@@ -5,6 +5,7 @@ import { injectable } from "inversify";
 
 import { DataRepository } from "../../../repositories/data-repository";
 import { emitProfileChanged } from "../helpers";
+import { Coins } from "@arkecosystem/platform-sdk";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {
@@ -44,11 +45,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	public async create(data: IContactAddressInput): Promise<IContactAddress> {
 		const id: string = uuidv4();
 
-		const address: IContactAddress = new ContactAddress(
-			{ id, ...data },
-			this.#profile.coins().get(data.coin, data.network),
-			this.#profile,
-		);
+		const address: IContactAddress = await this.createAddress({ id, ...data });
 		await address.syncIdentity();
 
 		this.#data.set(id, address);
@@ -61,7 +58,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	/** {@inheritDoc IContactAddressRepository.fill} */
 	public async fill(addresses: any[]): Promise<void> {
 		for (const address of addresses) {
-			const result = new ContactAddress(address, this.#profile.coins().get(address.coin, address.network), this.#profile);
+			const result = await this.createAddress(address);
 			await result.syncIdentity();
 
 			this.#data.set(address.id, result);
@@ -157,5 +154,15 @@ export class ContactAddressRepository implements IContactAddressRepository {
 		}
 
 		return result;
+	}
+
+	public async createAddress(data): Promise<ContactAddress> {
+		const instance: Coins.Coin = this.#profile.coins().push(data.coin, data.network);
+
+		if (!instance.hasBeenSynchronized()) {
+			await instance.__construct();
+		}
+
+		return new ContactAddress(data, instance, this.#profile);
 	}
 }
