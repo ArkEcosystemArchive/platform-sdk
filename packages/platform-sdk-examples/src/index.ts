@@ -1,13 +1,7 @@
-import { Contracts } from "@arkecosystem/platform-sdk-profiles";
-import { createProfile } from "./commands";
-import { useEnvironment, useLogger } from "./helpers";
+import example1 from "./example1/basic-example";
 
 export const main = async (): Promise<void> => {
-	const logger = useLogger();
-	const env = await useEnvironment();
 
-	const name: string = 'my-profile-name';
-	const password: string = 'password';
+	await example1();
 
-	const profile: Contracts.IProfile = await createProfile(env, name, password);
 };

@@ -4,10 +4,11 @@ import Conf from "conf";
 import { useLogger } from "./helpers";
 
 export class ConfStorage implements Storage {
-	readonly #storage: Conf = new Conf();
+	readonly #storage: Conf = new Conf({ configName: "profile", cwd: "." });
 
 	public constructor() {
 		useLogger().debug(this.#storage.path);
+		this.#storage.clear(); // TODO remove this
 	}
 
 	public async all<T = Record<string, unknown>>(): Promise<T> {
