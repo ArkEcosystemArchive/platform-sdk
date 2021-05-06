@@ -30,7 +30,7 @@ export class Network {
 	}
 
 	/**
-	 * Get the coin coin of the network.
+	 * Get the parent coin of the network.
 	 */
 	public coin(): string {
 		return this.#coin.name;
