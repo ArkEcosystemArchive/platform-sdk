@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.0.12 - 2021-05-06
+
+### Changed
+
+- **[PROFILES]** Use symbols as container binding keys (fc40c40b, @faustbrian)
+- **[PROFILES]** Use constructor injection for profile (af88ae36, @faustbrian)
+- **[SDK]** Expose parent coin through network (70eaafa1, @faustbrian)
+
 ## 6.0.9 - 2021-05-04
 
 ### Changed
