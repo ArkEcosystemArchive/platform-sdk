@@ -162,7 +162,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const transactions = await this.#connection.getTransactions(query.address!, {
+		const transactions = await this.#connection.getTransactions(query.address || query.addresses![0], {
 			earliestFirst: true,
 			types: ["payment"],
 			limit: query.limit || 15,
