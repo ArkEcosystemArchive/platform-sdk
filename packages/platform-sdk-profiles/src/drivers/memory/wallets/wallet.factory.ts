@@ -213,11 +213,13 @@ export class WalletFactory implements IWalletFactory {
 		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP44);
 	}
 
+	/* istanbul ignore next */
 	private allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
 		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP49);
 	}
 
+	/* istanbul ignore next */
 	private allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
 		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP84);
