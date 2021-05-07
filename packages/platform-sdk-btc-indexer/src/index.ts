@@ -14,7 +14,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	const logger: Logger = useLogger();
 	const database = useDatabase(flags, logger);
 	const client = useClient(flags);
-	const step: number = flags.batchSize || 50;
+	const step: number = flags.batchSize;
 
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
