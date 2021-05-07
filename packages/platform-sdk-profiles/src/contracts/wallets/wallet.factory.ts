@@ -2,6 +2,8 @@ import { Coins } from "@arkecosystem/platform-sdk";
 
 import { IReadWriteWallet } from "./wallet";
 
+type BIP = 39 | 44 | 49 | 84;
+
 /**
  * Defines the options needed to generate a wallet.
  *
@@ -20,8 +22,7 @@ export interface IGenerateOptions {
 export interface IMnemonicOptions {
 	coin: Coins.Coin;
 	mnemonic: string;
-	useBIP39?: boolean;
-	useBIP44?: boolean;
+	bip?: BIP;
 }
 
 /**

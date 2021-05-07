@@ -155,6 +155,6 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string | undefined> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "estimateExpiration");
+		return undefined;
 	}
 }

@@ -14,6 +14,10 @@ it("should have an coin", () => {
 	expect(subject.coin()).toBe("ARK");
 });
 
+it("should have an coin name", () => {
+	expect(subject.coinName()).toBe("ARK");
+});
+
 it("should have an id", () => {
 	expect(subject.id()).toBe("ark.devnet");
 });
