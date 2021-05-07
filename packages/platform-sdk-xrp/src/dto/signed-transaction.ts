@@ -21,7 +21,7 @@ export class SignedTransactionData
 	}
 
 	public isMultiSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+		return false;
 	}
 
 	public isMultiSignatureRegistration(): boolean {
