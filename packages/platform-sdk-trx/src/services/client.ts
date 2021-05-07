@@ -61,6 +61,10 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const host: string = Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival"));
 
+		if (host === undefined) {
+			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "transactions", "hostsArchival");
+		}
+
 		const response: any = (await this.#config.get<Contracts.HttpClient>("httpClient")
 			.get(`${host}/api/transaction`, {
 				sort: "timestamp",
