@@ -8,7 +8,6 @@ export class ConfStorage implements Storage {
 
 	public constructor() {
 		useLogger().debug(this.#storage.path);
-		this.#storage.clear(); // TODO remove this
 	}
 
 	public async all<T = Record<string, unknown>>(): Promise<T> {

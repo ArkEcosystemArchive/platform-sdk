@@ -1,7 +1,7 @@
-import example1 from "./example1/basic-example";
+import createProfileWithWallets from "./examples/create-profile-with-wallets";
+import openProfile from "./examples/open-existing-profile";
 
-export const main = async (): Promise<void> => {
-
-	await example1();
-
-};
+export {
+	createProfileWithWallets,
+	openProfile,
+}
