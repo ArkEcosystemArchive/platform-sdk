@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.0.29 - 2021-05-07
+
+### Changed
+
+- **[TRX]** Throw an exception if the archival host is `undefined` (1a2c5f02, @faustbrian)
+
+### Fixed
+
+- **[SDK]** Merge default network manifest and stored manifest (b8682dc2, @faustbrian)
+
 ## 6.0.27 - 2021-05-07
 
 ### Fixed
