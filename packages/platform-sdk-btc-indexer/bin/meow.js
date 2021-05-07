@@ -21,7 +21,7 @@ module.exports = meow(
 				type: "string",
 			},
 			batchSize: {
-				type: "integer",
+				type: "number",
 				"default": 50,
 			},
 		},
