@@ -59,9 +59,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+		const host: string = Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival"));
+
 		const response: any = (await this.#config.get<Contracts.HttpClient>("httpClient")
-			.baseUrl(Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival")))
-			.get("transaction", {
+			.get(`${host}/api/transaction`, {
 				sort: "timestamp",
 				limit: query.limit || 25,
 				// count: true,
