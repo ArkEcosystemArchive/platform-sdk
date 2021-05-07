@@ -56,18 +56,18 @@ describe("WalletData", function () {
 	});
 
 	it("#isMultiSignature", () => {
-		expect(() => subject.isMultiSignature()).toBeFalse();
+		expect(subject.isMultiSignature()).toBeFalse();
 	});
 
 	it("#isDelegate", () => {
-		expect(() => subject.isDelegate()).toBeFalse();
+		expect(subject.isDelegate()).toBeFalse();
 	});
 
 	it("#isSecondSignature", () => {
-		expect(() => subject.isSecondSignature()).toBeFalse();
+		expect(subject.isSecondSignature()).toBeFalse();
 	});
 
 	it("#isResignedDelegate", () => {
-		expect(() => subject.isResignedDelegate()).toBeFalse();
+		expect(subject.isResignedDelegate()).toBeFalse();
 	});
 });
