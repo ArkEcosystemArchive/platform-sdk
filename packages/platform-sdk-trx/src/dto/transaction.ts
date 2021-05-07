@@ -8,11 +8,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public blockId(): string | undefined {
-		return this.data.block;
+		return this.data.block.toString();
 	}
 
 	public timestamp(): DateTime | undefined {
-		return DateTime.fromUnix(this.data.timestamp);
+		return DateTime.make(this.data.timestamp);
 	}
 
 	public confirmations(): BigNumber {
@@ -36,10 +36,18 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public fee(): BigNumber {
+		if (this.data.fee === "") {
+			return BigNumber.ZERO;
+		}
+
 		return BigNumber.make(this.data.fee);
 	}
 
 	public memo(): string | undefined {
+		if (this.data.data === "") {
+			return undefined;
+		}
+
 		return this.data.data;
 	}
 
@@ -60,11 +68,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isSent(): boolean {
-		return [this.getMeta("address"), this.getMeta("publicKey")].includes(this.sender());
+		return this.getMeta("address") === this.sender();
 	}
 
 	public isReceived(): boolean {
-		return [this.getMeta("address"), this.getMeta("publicKey")].includes(this.recipient());
+		return this.getMeta("address") === this.recipient();
 	}
 
 	public isTransfer(): boolean {
