@@ -6,8 +6,9 @@ import { schema } from "../src/schema";
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(
 		options || {
-			network: "xrp.testnet", // peer: "wss://s.altnet.rippletest.net:51233",
-			peer: "ws://localhost:51233",
+			network: "xrp.testnet",
+			peer: "wss://s2.ripple.com/",
+			// peer: "ws://localhost:51233",
 		},
 		schema,
 	);

@@ -165,7 +165,7 @@ export class ClientService implements Contracts.ClientService {
 		const transactions = await this.#connection.getTransactions(query.address!, {
 			earliestFirst: true,
 			types: ["payment"],
-			limit: query.limit || 100,
+			limit: query.limit || 15,
 			// includeRawTransactions: true,
 		});
 
