@@ -2,18 +2,89 @@ import "jest-extended";
 
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import WebSocket from "ws";
 
+import fixtures from "../../test/fixtures/services/rippled";
 import { createConfig } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
+let wss;
+let receivedSubmit;
 
 jest.setTimeout(30000);
 
 beforeAll(async () => {
+	wss = new WebSocket.Server({ port: 51233 });
+
+	wss.on("connection", function connection(ws) {
+		ws.on("message", function incoming(message) {
+			// console.log(`RECEIVED: ${message}`);
+
+			const { id, command } = JSON.parse(message);
+
+			if (command === "subscribe") {
+				ws.send(
+					JSON.stringify({
+						...fixtures.subscribe,
+						...{ id },
+					}),
+				);
+			}
+
+			if (command === "tx") {
+				ws.send(
+					JSON.stringify({
+						...fixtures.tx.Payment,
+						...{ id },
+					}),
+				);
+			}
+
+			if (command === "account_tx") {
+				ws.send(
+					fixtures.account_tx.normal({
+						id,
+					}),
+				);
+			}
+
+			if (command === "account_info") {
+				ws.send(
+					JSON.stringify({
+						...fixtures.account_info.normal,
+						...{ id },
+					}),
+				);
+			}
+
+			if (command === "submit") {
+				if (receivedSubmit) {
+					ws.send(
+						JSON.stringify({
+							...fixtures.submit.failure,
+							...{ id },
+						}),
+					);
+				} else {
+					receivedSubmit = true;
+
+					ws.send(
+						JSON.stringify({
+							...fixtures.submit.success,
+							...{ id },
+						}),
+					);
+				}
+			}
+		});
+	});
+
 	subject = await ClientService.__construct(createConfig());
 });
+
+afterAll(() => wss.close());
 
 describe("ClientService", function () {
 	describe("#transaction", () => {
@@ -36,16 +107,12 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe.only("#transactions", () => {
+	describe("#transactions", () => {
 		it("should succeed", async () => {
 			const result = await subject.transactions({
-				address: "rfK1rv3FMNNoGZ9ADMP3t8dWHqAAujvTtS",
-				// limit: 10,
+				address: "r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59",
+				limit: 10,
 			});
-
-			for(const tx of result.items()) {
-				console.log(tx.toObject())
-			}
 
 			expect(result).toBeObject();
 			expect(result.items()[0]).toBeInstanceOf(TransactionData);
@@ -64,8 +131,8 @@ describe("ClientService", function () {
 
 	describe("#wallet", () => {
 		it("should succeed", async () => {
-			const result = await subject.wallet("rfK1rv3FMNNoGZ9ADMP3t8dWHqAAujvTtS");
-			console.log(result.balance().toHuman())
+			const result = await subject.wallet("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
+
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toEqual("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
 			// expect(result.publicKey()).toBeUndefined();
