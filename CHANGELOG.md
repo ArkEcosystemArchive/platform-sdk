@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.0.25 - 2021-05-07
+
+### Fixed
+
+- **[XRP]** Look up specific address or first address (1505e518, @faustbrian)
+- **[XRP]** Grab amount for new field (5bc1c7b3, @faustbrian)
+- **[XRP]** Use correct explorer paths (1738e3fb, @faustbrian)
+
 ## 6.0.22 - 2021-05-07
 
 ### Fixed
