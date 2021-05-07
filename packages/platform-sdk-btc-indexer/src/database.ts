@@ -39,7 +39,7 @@ export class Database {
 	 */
 	public constructor(flags: Flags, logger: Logger) {
 		const databaseFile =
-			flags.database || `${envPaths(require("../package.json").name).data}/${flags.coin}/${flags.network}.db`;
+			flags.database || `${envPaths(require("../package.json").name).data}/btc/${flags.network}.db`;
 
 		ensureFileSync(databaseFile);
 
