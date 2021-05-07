@@ -1,7 +1,7 @@
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
 import { useEnvironment, useLogger } from "../helpers";
 
-const example1 = async () => {
+export default async () => {
 	const logger = useLogger();
 	const env: Environment = await useEnvironment();
 
@@ -15,39 +15,37 @@ const example1 = async () => {
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "ARK",
-		network: "ark.devnet"
+		network: "ark.mainnet"
 	});
 	await profile.wallets().push(wallet1);
 
 	// Create read-only wallet #2
 	const wallet2 = await profile.walletFactory().fromAddress({
-		address: "DHkQ3VT8vmshVzEtrRLYhTbj2j3tqkn5iN",
+		address: "ATsPMTAHNsUwKedzNpjTNRfcj1oRGaX5xC",
 		coin: "ARK",
-		network: "ark.devnet"
+		network: "ark.mainnet"
 	});
 	await profile.wallets().push(wallet2);
 
+	await profile.sync();
+
 	// Display profile balance
 	logger.log("Profile balance", profile.balance().toHuman(2));
-	// TODO wallet2 has a 15 DARK balance, it doesn't show up here. What am I missing?
 
 	// Create contact
 	const contact: Contracts.IContact = profile.contacts().create("friend1");
-	// await profile.contacts().flush(); // TODO Do I need this?
-
-	logger.log("Contact", contact.id(), contact.name());
-	await profile.contacts().update(contact.id(), { // TODO Why Exception? Failed to find a contact for [629fc29e-027e-4f4a-b429-11c62b4208cb].
+	await profile.contacts().update(contact.id(), {
 		name: "Gimli",
 		addresses: [
 			{
 				coin: "ARK",
-				network: "ark.devnet",
+				network: "ark.mainnet",
 				name: "main",
-				address: "DJSB9R56X5c1Wxu9Be6V4g64vWWFFLGgxn"
+				address: "AN77jrAmEPAqpUv51ZUP2vL1XquXz5Mhob"
 			}
 		]
 	});
 	contact.toggleStarred();
-	};
 
-export default example1;
+	logger.log("Contact", contact.id(), contact.name());
+};
