@@ -12,7 +12,7 @@ export default async () => {
 	}
 	profile.auth().verifyPassword("my-password");
 
-	await env.profiles().restore(profile);
+	await env.profiles().restore(profile, "my-password");
 	await profile.sync();
 
 	logger.log("Profile balance", profile.balance().toHuman(2));
