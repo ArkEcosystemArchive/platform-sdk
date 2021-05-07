@@ -37,7 +37,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		const satoshi: string = new BN(this.data.outcome.deliveredAmount.value).times(1e8).toFixed();
+		const satoshi: string = new BN(this.data.specification.source.maxAmount.value).times(1e8).toFixed();
 
 		return BigNumber.make(satoshi);
 	}
@@ -65,7 +65,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSent(): boolean {
