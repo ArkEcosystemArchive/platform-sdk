@@ -90,10 +90,12 @@ export class WalletFactory implements IWalletFactory {
 		}
 
 		if (bip === 49 && this.allowsDeriveWithBIP49(wallet)) {
+			/* istanbul ignore next */
 			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#49");
 		}
 
 		if (bip === 84 && this.allowsDeriveWithBIP84(wallet)) {
+			/* istanbul ignore next */
 			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#84");
 		}
 
@@ -210,10 +212,12 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	private allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
+		/* istanbul ignore next */
 		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP49);
 	}
 
 	private allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
+		/* istanbul ignore next */
 		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP84);
 	}
 }
