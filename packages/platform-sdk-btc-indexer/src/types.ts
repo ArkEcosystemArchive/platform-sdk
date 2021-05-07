@@ -13,6 +13,7 @@ export interface Flags {
 	username: string;
 	password: string;
 	database: string;
+	batchSize: number;
 }
 
 export interface VOut {
