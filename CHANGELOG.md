@@ -5,6 +5,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.0.18 - 2021-05-06
+
+### Changed
+
+- **[PROFILES]** Allow BIP49 and BIP84 as import methods (b75a048a, @faustbrian)
+
+## 6.0.17 - 2021-05-06
+
+### Fixed
+
+- **[PROFILES]** Avoid shared data repository for coin service (127f3c06, @faustbrian)
+
+## 6.0.16 - 2021-05-06
+
+### Fixed
+
+- **[PROFILES]** Create coin instance if necessary for contact address (a91dd9b3, @faustbrian)
+
+## 6.0.15 - 2021-05-06
+
+### Fixed
+
+- **[LSK]** Cast amount to string (ad6b7a1f, @faustbrian)
+
+## 6.0.14 - 2021-05-06
+
+### Fixed
+
+- **[PROFILES]** Return `undefined` if `estimateExpiration` is not supported (ebe39c10, @faustbrian)
+
+## 6.0.13 - 2021-05-06
+
+### Changed
+
+- **[SDK]** Allow `estimateExpiration` to return undefined (1317034a, @faustbrian)
+
 ## 6.0.12 - 2021-05-06
 
 ### Changed
