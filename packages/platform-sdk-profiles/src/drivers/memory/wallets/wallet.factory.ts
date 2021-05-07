@@ -89,11 +89,13 @@ export class WalletFactory implements IWalletFactory {
 			}
 		}
 
+		/* istanbul ignore next */
 		if (bip === 49 && this.allowsDeriveWithBIP49(wallet)) {
 			/* istanbul ignore next */
 			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#49");
 		}
 
+		/* istanbul ignore next */
 		if (bip === 84 && this.allowsDeriveWithBIP84(wallet)) {
 			/* istanbul ignore next */
 			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#84");
