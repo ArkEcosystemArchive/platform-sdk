@@ -27,8 +27,6 @@ export default async () => {
 	});
 	await profile.wallets().push(wallet2);
 
-	await profile.sync();
-
 	// Display profile balance
 	logger.log("Profile balance", profile.balance().toHuman(2));
 
