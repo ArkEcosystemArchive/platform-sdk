@@ -6,6 +6,7 @@ import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
+	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
 
 	readonly #broadcastErrors: Record<string, string> = {
@@ -23,7 +24,8 @@ export class ClientService implements Contracts.ClientService {
 		OTHER_ERROR: "ERR_OTHER_ERROR",
 	};
 
-	private constructor(peer: string) {
+	private constructor({ config, peer }) {
+		this.#config = config;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
@@ -31,9 +33,15 @@ export class ClientService implements Contracts.ClientService {
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		try {
-			return new ClientService(config.get<string>("peer"));
+			return new ClientService({
+				config,
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			return new ClientService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+			return new ClientService({
+				config,
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			});
 		}
 	}
 
@@ -51,7 +59,28 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const response: any = (await this.#config.get<Contracts.HttpClient>("httpClient")
+			.baseUrl(Arr.randomElement(this.#config.get<string[]>("network.networking.hosts")))
+			.get("transaction", {
+				sort: "timestamp",
+				limit: query.limit || 25,
+				// count: true,
+				// start_timestamp: min_timestamp,
+				// end_timestamp: max_timestamp,
+				address: query.address || query.addresses![0],
+			})).json();
+
+		return Helpers.createTransactionDataCollectionWithType(
+			response.data,
+			{
+				// @TODO: figure out how to calculate pages and decide where we are
+				prev: undefined,
+				self: undefined,
+				next: undefined,
+				last: undefined,
+			},
+			TransactionDTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
