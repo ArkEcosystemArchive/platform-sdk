@@ -19,6 +19,8 @@ test("FeatureFlag", () => {
 		  "ClientWallets": "Client.wallets",
 		  "DerivationBIP39": "Derivation.bip39",
 		  "DerivationBIP44": "Derivation.bip44",
+		  "DerivationBIP49": "Derivation.bip49",
+		  "DerivationBIP84": "Derivation.bip84",
 		  "FeeAll": "Fee.all",
 		  "IdentityAddressMnemonic": "Identity.address.mnemonic",
 		  "IdentityAddressMultiSignature": "Identity.address.multiSignature",
