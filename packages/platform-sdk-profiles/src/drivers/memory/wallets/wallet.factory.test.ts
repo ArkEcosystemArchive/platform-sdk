@@ -56,8 +56,7 @@ describe("#fromMnemonic", () => {
 			coin: "BTC",
 			network: "btc.testnet",
 			mnemonic: "this is a top secret passphrase",
-			useBIP39: false,
-			useBIP44: true,
+			bip: 44,
 		});
 
 		expect(wallet.address()).toBe("mghuMQjuyXbcsk7D4J6VSnftNC8bEKKQXU");
@@ -69,8 +68,7 @@ describe("#fromMnemonic", () => {
 			coin: "ADA",
 			network: "ada.testnet",
 			mnemonic: "excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
-			useBIP39: false,
-			useBIP44: true,
+			bip: 44,
 		});
 
 		expect(wallet.address()).toBe("aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304");
@@ -82,7 +80,6 @@ describe("#fromMnemonic", () => {
 			coin: "ADA",
 			network: "ada.testnet",
 			mnemonic: "this is a top secret passphrase",
-			useBIP39: true,
 		})).rejects.toThrow("The configured network uses extended public keys for derivation. Please pass in BIP44 arguments.");
 	});
 });

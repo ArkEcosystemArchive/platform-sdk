@@ -31,6 +31,8 @@ export class FeeService implements IFeeService {
 	public async sync(profile: IProfile, coin: string, network: string): Promise<void> {
 		const instance: Coins.Coin = profile.coins().push(coin, network);
 
+		// @TODO: remove this in a refactor
+		/* istanbul ignore next */
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();
 		}

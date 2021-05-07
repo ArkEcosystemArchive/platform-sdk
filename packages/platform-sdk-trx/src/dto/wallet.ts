@@ -15,7 +15,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(this.data.balance);
+		return BigNumber.make(this.data.balance).times(1e2);
 	}
 
 	public nonce(): BigNumber {
@@ -47,18 +47,18 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public isDelegate(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isDelegate");
+		return false;
 	}
 
 	public isResignedDelegate(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isResignedDelegate");
+		return false;
 	}
 
 	public isMultiSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+		return false;
 	}
 
 	public isSecondSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isSecondSignature");
+		return false;
 	}
 }
