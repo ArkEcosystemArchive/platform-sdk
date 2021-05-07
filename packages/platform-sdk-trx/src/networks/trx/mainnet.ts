@@ -20,6 +20,7 @@ const network: Coins.NetworkManifest = {
 	},
 	networking: {
 		hosts: ["https://api.trongrid.io"],
+		hostsArchival: ["https://apilist.tronscan.org/api"],
 	},
 	governance: {
 		voting: {
