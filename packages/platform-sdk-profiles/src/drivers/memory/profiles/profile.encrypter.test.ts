@@ -41,6 +41,7 @@ describe("ProfileEncrypter", () => {
 				get: () => "some-pass",
 				set: () => undefined,
 				exists: () => true,
+				forget: () => undefined,
 			}));
 			profile.auth.mockReturnValue(auth);
 
