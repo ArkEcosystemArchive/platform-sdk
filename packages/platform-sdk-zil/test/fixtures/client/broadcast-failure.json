@@ -1,0 +1,5 @@
+{
+	"id": 1,
+	"jsonrpc": "2.0",
+	"error": { "code": -26, "data": null, "message": "GasPrice 1 lower than minimum allowable 2000000000" }
+}
