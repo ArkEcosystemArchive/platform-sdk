@@ -151,9 +151,9 @@ export class ProfileRepository implements IProfileRepository {
 	}
 
 	/** {@inheritDoc IProfileRepository.completeTutorial} */
-	public completeTutorial = (profile: IProfile): void => {
+	public markIntroductoryTutorialAsComplete(profile: IProfile): void {
 		this.#data.set(ProfileData.HasCompletedTutorial, true);
 
 		emitProfileChanged(profile);
-	};
+	}
 }
