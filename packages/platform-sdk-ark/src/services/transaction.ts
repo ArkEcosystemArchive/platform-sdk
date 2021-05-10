@@ -266,7 +266,7 @@ export class TransactionService implements Contracts.TransactionService {
 				transaction.fee(input.fee);
 			}
 
-			if (input.data.expiration) {
+			if (input.data && input.data.expiration) {
 				transaction.expiration(input.data.expiration);
 			} else {
 				try {
