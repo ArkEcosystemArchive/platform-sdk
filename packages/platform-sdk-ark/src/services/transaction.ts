@@ -270,7 +270,10 @@ export class TransactionService implements Contracts.TransactionService {
 				transaction.expiration(input.data.expiration);
 			} else {
 				try {
-					transaction.expiration(await this.estimateExpiration());
+					const estimatedExpiration = await this.estimateExpiration();
+					if (estimatedExpiration) {
+						transaction.expiration(parseInt(estimatedExpiration));
+					}
 				} catch {
 					// If we fail to estimate the expiration we'll still continue.
 				}
