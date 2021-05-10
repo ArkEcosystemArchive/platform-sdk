@@ -50,10 +50,6 @@ export class TransactionService implements Contracts.TransactionService {
 			if (data.memo) {
 				transaction.vendorField(data.memo);
 			}
-
-			if (data.expiration) {
-				transaction.expiration(data.expiration);
-			}
 		});
 	}
 
@@ -270,7 +266,9 @@ export class TransactionService implements Contracts.TransactionService {
 				transaction.fee(input.fee);
 			}
 
-			if (input.data.expiration === undefined) {
+			if (input.data.expiration) {
+				transaction.expiration(input.data.expiration);
+			} else {
 				try {
 					transaction.expiration(await this.estimateExpiration());
 				} catch {
