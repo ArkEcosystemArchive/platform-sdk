@@ -22,4 +22,11 @@ export interface IPasswordManager {
 	 * @memberof IPasswordManager
 	 */
 	exists(): boolean;
+
+	/**
+	 * Forget the password.
+	 *
+	 * @memberof IPasswordManager
+	 */
+	forget(): void;
 }
