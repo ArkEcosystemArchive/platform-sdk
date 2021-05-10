@@ -11,9 +11,9 @@ beforeEach(async () => (subject = await IdentityService.__construct(createConfig
 describe("IdentityService", () => {
 	describe("#address", () => {
 		it("should generate an output from a mnemonic (BIP44)", async () => {
-			const result: any = await subject.address().fromMnemonic(identity.mnemonic);
+			const result: any = await subject.address().fromMnemonic(identity.mnemonic, { bip44: { account: 0 } });
 
-			expect(result).toBe(identity.address);
+			expect(result).toBe(identity.addressBIP44);
 		});
 
 		it("should generate an output from a mnemonic (BIP49)", async () => {
