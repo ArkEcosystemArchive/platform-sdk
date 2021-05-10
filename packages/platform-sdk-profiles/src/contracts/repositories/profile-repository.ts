@@ -169,4 +169,13 @@ export interface IProfileRepository {
 	 * @memberof IProfileRepository
 	 */
 	toObject(): Record<string, object>;
+
+	/**
+	 * Determine if a profile is restored
+	 *
+	 * @param {string} id
+	 * @returns {boolean}
+	 * @memberof IProfileRepository
+	 */
+	isRestored(profileid: string): boolean;
 }
