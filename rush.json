@@ -262,6 +262,12 @@
 			"projectFolder": "packages/platform-sdk-xrp",
 			"reviewCategory": "libraries",
 			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-zil",
+			"projectFolder": "packages/platform-sdk-zil",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
 		}
 	]
 }

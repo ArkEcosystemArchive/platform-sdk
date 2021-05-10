@@ -1,0 +1,8 @@
+{
+	"id": 1,
+	"jsonrpc": "2.0",
+	"result": {
+		"Info": "Non-contract txn, sent to shard",
+		"TranID": "0f7f4dfd523821f2dde05c7a322d3d882581ffbd8fd3a68720bf3b081d7c0002"
+	}
+}
