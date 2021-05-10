@@ -169,4 +169,11 @@ export interface IProfileRepository {
 	 * @memberof IProfileRepository
 	 */
 	toObject(): Record<string, object>;
+
+	/**
+	 * complete the profile tutorial.
+	 *
+	 * @memberof IProfileRepository
+	 */
+	completeTutorial(profile: IProfile): void;
 }

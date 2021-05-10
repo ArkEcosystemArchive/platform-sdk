@@ -372,6 +372,6 @@ export class Profile implements IProfile {
 
 	/** {@inheritDoc IProfile.hasCompletedTutorial} */
 	public hasCompletedTutorial(): boolean {
-		return this.#dataRepository.has(ProfileData.HasCompletedTutorial);
+		return this.data().has(ProfileData.HasCompletedTutorial);
 	}
 }
