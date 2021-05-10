@@ -9,6 +9,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
 	readonly #peer: string;
+	readonly #client: Contracts.HttpClient;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -31,6 +32,7 @@ export class ClientService implements Contracts.ClientService {
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
+		this.#client = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -61,14 +63,24 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const address: string = query.address || query.addresses![0];
+		const address: string = query.senderId || query.recipientId || query.address || query.addresses![0];
+		const payload: Record<string, boolean | number> = {
+			limit: query.limit || 15,
+		};
 
-		const response: any = (await this.#config.get<Contracts.HttpClient>("httpClient")
-			.get(`${this.#peer}/v1/accounts/${address}/transactions`, {
-				limit: query.limit || 25,
-				only_to: query.recipientId !== null,
-				only_from: query.senderId !== null,
-			})).json();
+		if (query.senderId) {
+			payload.only_from = true;
+		}
+
+		if (query.recipientId) {
+			payload.only_to = true;
+		}
+
+		const response: any = (await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)).json();
+
+		for(const tx of response.data) {
+			console.log(JSON.stringify(tx, null, 4))
+		}
 
 		return Helpers.createTransactionDataCollectionWithType(
 			response.data,
