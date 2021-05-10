@@ -11,7 +11,7 @@ export default async () => {
 		throw Error("Profile doesn't exist");
 	}
 
-	profile.password().set("my-password");
+	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
 	await profile.sync();
 
