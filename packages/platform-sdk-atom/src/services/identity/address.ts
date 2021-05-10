@@ -39,6 +39,6 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		throw new Exceptions.NotSupported(this.constructor.name, "validate");
+		return true;
 	}
 }
