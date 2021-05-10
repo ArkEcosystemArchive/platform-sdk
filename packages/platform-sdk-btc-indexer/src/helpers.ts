@@ -1,6 +1,6 @@
 import { Client } from "./client";
 import { Database } from "./database";
-import Logger from "./logger";
+import { Logger } from "./logger";
 import { Flags } from "./types";
 
 /**
