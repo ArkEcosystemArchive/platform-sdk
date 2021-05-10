@@ -270,6 +270,14 @@ export class TransactionService implements Contracts.TransactionService {
 				transaction.fee(input.fee);
 			}
 
+			if (input.data.expiration === undefined) {
+				try {
+					transaction.expiration(await this.estimateExpiration());
+				} catch {
+					// If we fail to estimate the expiration we'll still continue.
+				}
+			}
+
 			if (callback) {
 				callback({ transaction, data: input.data });
 			}
