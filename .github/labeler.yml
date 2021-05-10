@@ -154,3 +154,7 @@ test:
 "Domain: XRP":
     - packages/platform-sdk-xrp/*
     - packages/platform-sdk-xrp/**/*
+
+"Domain: ZIL":
+    - packages/platform-sdk-zil/*
+    - packages/platform-sdk-zil/**/*
