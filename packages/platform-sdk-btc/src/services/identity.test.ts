@@ -17,13 +17,13 @@ describe("IdentityService", () => {
 		});
 
 		it("should generate an output from a mnemonic (BIP49)", async () => {
-			const result: any = await subject.address().fromMnemonic(identity.mnemonic, { bip49: true });
+			const result: any = await subject.address().fromMnemonic(identity.mnemonic, { bip49: { account: 0 } });
 
 			expect(result).toBe(identity.addressBIP49);
 		});
 
 		it("should generate an output from a mnemonic (BIP84)", async () => {
-			const result: any = await subject.address().fromMnemonic(identity.mnemonic, { bip84: true });
+			const result: any = await subject.address().fromMnemonic(identity.mnemonic, { bip84: { account: 0 } });
 
 			expect(result).toBe(identity.addressBIP84);
 		});
