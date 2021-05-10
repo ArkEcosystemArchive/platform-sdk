@@ -139,6 +139,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	 */
 
 	const profile = subject.profiles().create("John Doe");
+	await subject.profiles().restore(profile);
 
 	// Create a Contact
 	profile.contacts().create("Jane Doe");
@@ -370,12 +371,15 @@ it("should persist the env and restore it", async () => {
 	await makeSubject();
 
 	const john = subject.profiles().create("John");
+	await subject.profiles().restore(john);
 	await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 
 	const jane = subject.profiles().create("Jane");
+	await subject.profiles().restore(jane);
 	jane.auth().setPassword("password");
 
 	const jack = subject.profiles().create("Jack");
+	await subject.profiles().restore(jack);
 	jack.auth().setPassword("password");
 
 	await subject.persist();
