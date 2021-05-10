@@ -24,7 +24,7 @@ export interface IPasswordManager {
 	exists(): boolean;
 
 	/**
-	 * Clear password
+	 * Forget the password.
 	 *
 	 * @memberof IPasswordManager
 	 */
