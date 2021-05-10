@@ -50,7 +50,12 @@ export class MemoryDriver implements Driver {
 	private registerListeners(container: Container): void {
 		emitter().on(Events.ProfileChanged, ({ id }) => {
 			try {
-				const profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).findById(id);
+				const profiles = container.get<IProfileRepository>(Identifiers.ProfileRepository);
+				const profile = profiles.findById(id);
+
+				if (!profiles.isRestored(id)) {
+					return;
+				}
 
 				if (profile.usesPassword() && profile.password().exists()) {
 					profile.getAttributes().set("data", new ProfileExporter(profile).export(profile.password().get()));
