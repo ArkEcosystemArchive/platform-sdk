@@ -18,6 +18,7 @@ let subject: ProfileImporter;
 let dumper: ProfileDumper;
 let serialiser: ProfileSerialiser;
 let profile: IProfile;
+let profiles: IProfileRepository;
 
 beforeAll(() => {
 	bootContainer();
@@ -38,14 +39,16 @@ beforeAll(() => {
 		.persist();
 });
 
-beforeEach(() => {
+beforeEach(async () => {
 	container.get<IProfileRepository>(Identifiers.ProfileRepository).flush();
 
+	profiles = container.get<IProfileRepository>(Identifiers.ProfileRepository);
 	profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).create("John Doe");
+	await profiles.restore(profile);
+
 	subject = new ProfileImporter(profile);
 	dumper = new ProfileDumper(profile);
 	serialiser = new ProfileSerialiser(profile);
-
 });
 
 describe("#restore", () => {
