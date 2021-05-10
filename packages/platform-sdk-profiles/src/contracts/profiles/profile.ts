@@ -310,6 +310,13 @@ export interface IProfile {
 	getAttributes(): AttributeBag<IProfileInput>;
 
 	/**
+	 * Mark the introductory tutorial as completed.
+	 *
+	 * @memberof IProfile
+	 */
+	markIntroductoryTutorialAsComplete(): void;
+
+	/**
 	 * Determine if the introductory tutorial has been completed.
 	 *
 	 * @return {boolean}

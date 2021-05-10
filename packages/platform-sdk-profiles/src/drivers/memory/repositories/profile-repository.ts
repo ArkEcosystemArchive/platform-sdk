@@ -149,11 +149,4 @@ export class ProfileRepository implements IProfileRepository {
 
 		return result;
 	}
-
-	/** {@inheritDoc IProfileRepository.markIntroductoryTutorialAsComplete} */
-	public markIntroductoryTutorialAsComplete(profile: IProfile): void {
-		this.#data.set(ProfileData.HasCompletedIntroductoryTutorial, true);
-
-		emitProfileChanged(profile);
-	}
 }
