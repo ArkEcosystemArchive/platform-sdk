@@ -36,7 +36,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.net_fee);
+		return BigNumber.make(this.data.ret[0].fee);
 	}
 
 	public memo(): string | undefined {
@@ -56,7 +56,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return this.data.confirmed;
+		return this.data.ret[0].contractRet === 'SUCCESS';
 	}
 
 	public isSent(): boolean {

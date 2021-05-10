@@ -1,3 +1,4 @@
+import { TransactionDataCollection } from "@arkecosystem/platform-sdk/dist/coins";
 import "jest-extended";
 
 // import nock from "nock";
@@ -31,7 +32,7 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			const result = await subject.transactions({ address: "TUrM3F7b7WVZSZVjgrqsVBYXQL3GVgAqXq" });
 
-			expect(result).toBeInstanceOf(TransactionData);
+			expect(result).toBeInstanceOf(TransactionDataCollection);
 		});
 	});
 

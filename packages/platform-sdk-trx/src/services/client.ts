@@ -83,7 +83,7 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response.data,
+			response.data.filter(({ raw_data }) => raw_data.contract[0].type === 'TransferContract'),
 			{
 				prev: undefined,
 				self: undefined,
