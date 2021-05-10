@@ -7,11 +7,15 @@ import { Network } from "./network";
 let subject: Network;
 
 beforeEach(() => {
-	subject = new Network(ARK.manifest, "ark.devnet");
+	subject = new Network(ARK.manifest, ARK.manifest.networks["ark.devnet"]);
 });
 
 it("should have an coin", () => {
 	expect(subject.coin()).toBe("ARK");
+});
+
+it("should have an coin name", () => {
+	expect(subject.coinName()).toBe("ARK");
 });
 
 it("should have an id", () => {
@@ -49,15 +53,13 @@ it("should get the expiration type", () => {
 it("should allows voting", () => {
 	expect(subject.allowsVoting()).toBeTrue();
 
-	subject = new Network({
-		...ARK.manifest,
-		networks: {
-			"ark.devnet": {
-				...ARK.manifest.networks["ark.devnet"],
-				governance: {},
-			}
+	subject = new Network(ARK.manifest, {
+		// @ts-ignore
+		"ark.devnet": {
+			...ARK.manifest.networks["ark.devnet"],
+			governance: {},
 		}
-	}, "ark.devnet");
+	});
 
 	expect(subject.allowsVoting()).toBeFalse();
 });
@@ -65,15 +67,13 @@ it("should allows voting", () => {
 it("should get the delegate count", () => {
 	expect(subject.delegateCount()).toBe(51);
 
-	subject = new Network({
-		...ARK.manifest,
-		networks: {
-			"ark.devnet": {
-				...ARK.manifest.networks["ark.devnet"],
-				governance: {},
-			}
+	subject = new Network(ARK.manifest, {
+		// @ts-ignore
+		"ark.devnet": {
+			...ARK.manifest.networks["ark.devnet"],
+			governance: {},
 		}
-	}, "ark.devnet");
+	});
 
 	expect(subject.delegateCount()).toBe(0);
 });
@@ -81,15 +81,13 @@ it("should get the delegate count", () => {
 it("should get maximum votes per wallet", () => {
 	expect(subject.maximumVotesPerWallet()).toBe(1);
 
-	subject = new Network({
-		...ARK.manifest,
-		networks: {
-			"ark.devnet": {
-				...ARK.manifest.networks["ark.devnet"],
-				governance: {},
-			}
+	subject = new Network(ARK.manifest, {
+		// @ts-ignore
+		"ark.devnet": {
+			...ARK.manifest.networks["ark.devnet"],
+			governance: {},
 		}
-	}, "ark.devnet");
+	});
 
 	expect(subject.maximumVotesPerWallet()).toBe(0);
 });
@@ -97,15 +95,13 @@ it("should get maximum votes per wallet", () => {
 it("should get maximum votes per transaction", () => {
 	expect(subject.maximumVotesPerTransaction()).toBe(1);
 
-	subject = new Network({
-		...ARK.manifest,
-		networks: {
-			"ark.devnet": {
-				...ARK.manifest.networks["ark.devnet"],
-				governance: {},
-			}
+	subject = new Network(ARK.manifest, {
+		// @ts-ignore
+		"ark.devnet": {
+			...ARK.manifest.networks["ark.devnet"],
+			governance: {},
 		}
-	}, "ark.devnet");
+	});
 
 	expect(subject.maximumVotesPerTransaction()).toBe(0);
 });

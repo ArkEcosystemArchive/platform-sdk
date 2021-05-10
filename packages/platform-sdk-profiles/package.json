@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-profiles",
-	"version": "6.0.17",
+	"version": "6.0.31",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -39,6 +39,7 @@
 		"dot-prop": "^6.0.0",
 		"eventemitter3": "~4.0.7",
 		"inversify": "~5.1.1",
+		"jest-mock-extended": "~1.0.14",
 		"joi": "^17.4.0",
 		"localforage": "^1.9.0",
 		"mem": "^8.1.1",
@@ -49,8 +50,7 @@
 		"semver": "^7.3.5",
 		"type-fest": "^1.0.2",
 		"uuid": "^8.3.2",
-		"wif": "^2.0.6",
-		"jest-mock-extended": "~1.0.14"
+		"wif": "^2.0.6"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-ada": "workspace:*",

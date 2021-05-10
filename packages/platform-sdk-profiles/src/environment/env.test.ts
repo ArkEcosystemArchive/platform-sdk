@@ -192,11 +192,6 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toMatchInlineSnapshot(`
 		Object {
-		  "ARK": Object {
-		    "ark": Object {
-		      "devnet": Object {},
-		    },
-		  },
 		  "key": "value",
 		}
 	`);
@@ -233,11 +228,6 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toMatchInlineSnapshot(`
 		Object {
-		  "ARK": Object {
-		    "ark": Object {
-		      "devnet": Coin {},
-		    },
-		  },
 		  "key": "value",
 		}
 	`);

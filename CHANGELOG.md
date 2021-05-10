@@ -5,6 +5,86 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.0.29 - 2021-05-07
+
+### Changed
+
+- **[TRX]** Throw an exception if the archival host is `undefined` (1a2c5f02, @faustbrian)
+
+### Fixed
+
+- **[SDK]** Merge default network manifest and stored manifest (b8682dc2, @faustbrian)
+
+## 6.0.27 - 2021-05-07
+
+### Fixed
+
+- **[TRX]** Handle empty values within transaction data (6a3b6114, @faustbrian)
+
+## 6.0.26 - 2021-05-07
+
+### Added
+
+- **[TRX]** Implement `ClientService#transactions` (033d8a26, @faustbrian)
+
+## 6.0.25 - 2021-05-07
+
+### Fixed
+
+- **[XRP]** Look up specific address or first address (1505e518, @faustbrian)
+- **[XRP]** Grab amount for new field (5bc1c7b3, @faustbrian)
+- **[XRP]** Use correct explorer paths (1738e3fb, @faustbrian)
+
+## 6.0.22 - 2021-05-07
+
+### Fixed
+
+- **[EGLD]** Divide balance by `1e18` (9b88c7b9, @faustbrian)
+- **[TRX]** Multi wallet balance by `1e2` (ecf0b0d3, @faustbrian)
+- **[XRP]** Return `undefined` for unavailable values (cb382288, @faustbrian)
+
+## 6.0.19 - 2021-05-07
+
+### Fixed
+
+- Return default values for methods that are always called (eecc3a1d, @faustbrian)
+
+## 6.0.18 - 2021-05-06
+
+### Changed
+
+- **[PROFILES]** Allow BIP49 and BIP84 as import methods (b75a048a, @faustbrian)
+
+## 6.0.17 - 2021-05-06
+
+### Fixed
+
+- **[PROFILES]** Avoid shared data repository for coin service (127f3c06, @faustbrian)
+
+## 6.0.16 - 2021-05-06
+
+### Fixed
+
+- **[PROFILES]** Create coin instance if necessary for contact address (a91dd9b3, @faustbrian)
+
+## 6.0.15 - 2021-05-06
+
+### Fixed
+
+- **[LSK]** Cast amount to string (ad6b7a1f, @faustbrian)
+
+## 6.0.14 - 2021-05-06
+
+### Fixed
+
+- **[PROFILES]** Return `undefined` if `estimateExpiration` is not supported (ebe39c10, @faustbrian)
+
+## 6.0.13 - 2021-05-06
+
+### Changed
+
+- **[SDK]** Allow `estimateExpiration` to return undefined (1317034a, @faustbrian)
+
 ## 6.0.12 - 2021-05-06
 
 ### Changed
