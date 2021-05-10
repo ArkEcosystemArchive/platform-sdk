@@ -3120,6 +3120,7 @@ importers:
       '@ledgerhq/hw-app-trx': 5.50.0
       tronweb: 3.2.6
     devDependencies:
+      '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.50.0
       '@types/eslint': 7.2.10
       '@types/eslint-plugin-prettier': 3.1.0
@@ -3150,6 +3151,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-trx': ^5.50.0
@@ -3343,6 +3345,80 @@ importers:
       typescript: 4.2.4
       typescript-language-server: ^0.5.1
       ws: ^7.4.5
+  ../../packages/platform-sdk-zil:
+    dependencies:
+      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
+      '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
+      '@zilliqa-js/account': 2.2.1
+      '@zilliqa-js/zilliqa': 2.2.1
+    devDependencies:
+      '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
+      '@types/eslint': 7.2.10
+      '@types/eslint-plugin-prettier': 3.1.0
+      '@types/hapi__joi': 17.1.6
+      '@types/jest': 26.0.23
+      '@types/node': 14.14.43
+      '@types/prettier': 2.2.3
+      '@types/rimraf': 3.0.0
+      '@types/uuid': 8.3.0
+      '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
+      '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
+      cross-env: 7.0.3
+      eslint: 7.25.0
+      eslint-config-prettier: 8.3.0_eslint@7.25.0
+      eslint-plugin-import: 2.22.1_eslint@7.25.0
+      eslint-plugin-jest: 24.3.6_cb6e3cead60137cd93a972cb2b6bc2b3
+      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
+      eslint-plugin-tsdoc: 0.2.14
+      got: 11.8.2
+      jest: 26.6.3
+      jest-extended: 0.11.5
+      jest-localstorage-mock: 2.4.10
+      nock: 13.0.11
+      npm-check-updates: 11.5.9
+      prettier: 2.2.1
+      rimraf: 3.0.2
+      ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
+      typescript: 4.2.4
+    specifiers:
+      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http-got': workspace:*
+      '@arkecosystem/platform-sdk-intl': workspace:*
+      '@arkecosystem/platform-sdk-support': workspace:*
+      '@types/eslint': ^7.2.10
+      '@types/eslint-plugin-prettier': ^3.1.0
+      '@types/hapi__joi': 17.1.6
+      '@types/jest': ^26.0.23
+      '@types/node': ^14.14.43
+      '@types/prettier': ^2.2.3
+      '@types/rimraf': ^3.0.0
+      '@types/uuid': ^8.3.0
+      '@typescript-eslint/eslint-plugin': ^4.22.0
+      '@typescript-eslint/parser': ^4.22.0
+      '@zilliqa-js/account': ^2.2.1
+      '@zilliqa-js/zilliqa': ^2.2.1
+      cross-env: ^7.0.3
+      eslint: ^7.25.0
+      eslint-config-prettier: ^8.3.0
+      eslint-plugin-import: ~2.22.1
+      eslint-plugin-jest: ^24.3.6
+      eslint-plugin-prettier: ^3.4.0
+      eslint-plugin-simple-import-sort: ^7.0.0
+      eslint-plugin-tsdoc: ~0.2.14
+      got: ^11.8.2
+      jest: ^26.6.3
+      jest-extended: ^0.11.5
+      jest-localstorage-mock: ^2.4.10
+      nock: ^13.0.11
+      npm-check-updates: ^11.5.6
+      prettier: ^2.2.1
+      rimraf: ^3.0.2
+      ts-jest: ^26.5.5
+      typescript: 4.2.4
 lockfileVersion: 5.2
 packages:
   /101/1.6.3:
@@ -5731,7 +5807,6 @@ packages:
   /@types/hdkey/0.7.1:
     dependencies:
       '@types/node': 14.14.43
-    dev: true
     resolution:
       integrity: sha512-4Kkr06hq+R8a9EzVNqXGOY2x1xA7dhY6qlp6OvaZ+IJy1BCca1Cv126RD9X7CMJoXoLo8WvAizy8gQHpqW6K0Q==
   /@types/http-cache-semantics/4.0.0:
@@ -6116,6 +6191,117 @@ packages:
     dev: false
     resolution:
       integrity: sha512-SOH35A4jxmxQeIn+Q6qA2X+ivRKDE+9n/gvLgCQnacsJrrwh/tSinUbhj9KnfU4ixm+g1aRgTm0IYuz1/uS+uw==
+  /@zilliqa-js/account/2.2.1:
+    dependencies:
+      '@types/bip39': 2.4.1
+      '@types/hdkey': 0.7.1
+      '@zilliqa-js/core': 2.2.1
+      '@zilliqa-js/crypto': 2.2.1
+      '@zilliqa-js/proto': 2.2.0
+      '@zilliqa-js/util': 2.2.0
+      bip39: 2.6.0
+      hdkey: 1.1.2
+    dev: false
+    engines:
+      node: '>=10.0.0 <15'
+    resolution:
+      integrity: sha512-egq/S1KyrH8qlmMBKHaAmLU/RLl66JYPDEPe3n97NP/yvrbPTt7sEfgfOwL1IO0hIBLlJPQYIdKtlYHzn22BLw==
+  /@zilliqa-js/blockchain/2.2.1:
+    dependencies:
+      '@zilliqa-js/account': 2.2.1
+      '@zilliqa-js/contract': 2.2.1
+      '@zilliqa-js/core': 2.2.1
+      '@zilliqa-js/crypto': 2.2.1
+      '@zilliqa-js/util': 2.2.0
+      utility-types: 3.10.0
+    dev: false
+    engines:
+      node: '>=10.0.0 <15'
+    resolution:
+      integrity: sha512-GiUzRAceOgsF9Nk/LzdionZt6QlLMDH72Z4/qt1SQY2vdK0rz9fbjBtQbZjVjfvwvGSjmOBo3KVYPhviJHuGYQ==
+  /@zilliqa-js/contract/2.2.1:
+    dependencies:
+      '@zilliqa-js/account': 2.2.1
+      '@zilliqa-js/blockchain': 2.2.1
+      '@zilliqa-js/core': 2.2.1
+      '@zilliqa-js/crypto': 2.2.1
+      '@zilliqa-js/util': 2.2.0
+      hash.js: 1.1.7
+      utility-types: 2.1.0
+    dev: false
+    engines:
+      node: '>=10.0.0 <15'
+    resolution:
+      integrity: sha512-DmhElqUbgyUNxwKwKSJq6L8WfxOBVrrQ72crHrnubIgnhN3uNRaS9lZ4oAMAi1o6eSYe94GCBHGOZ5imSYxFrg==
+  /@zilliqa-js/core/2.2.1:
+    dependencies:
+      '@zilliqa-js/crypto': 2.2.1
+      '@zilliqa-js/util': 2.2.0
+      cross-fetch: 2.2.3
+      mitt: 1.2.0
+    dev: false
+    engines:
+      node: '>=10.0.0 <15'
+    resolution:
+      integrity: sha512-dEViTcv54waiDckyWROgBcuwDX8iugSKY/Fooa2RynDGHTlb4XvvAxmShTy4+OF1tldhV86cE9nsDW//ICTZPQ==
+  /@zilliqa-js/crypto/2.2.1:
+    dependencies:
+      '@zilliqa-js/util': 2.2.0
+      aes-js: 3.1.2
+      bsert: 0.0.4
+      elliptic: 6.5.4
+      hash.js: 1.1.7
+      hmac-drbg: 1.0.1
+      pbkdf2: 3.1.2
+      randombytes: 2.1.0
+      scrypt-js: 3.0.1
+      scryptsy: 2.1.0
+      sodium-native: 3.2.1
+      uuid: 3.4.0
+    dev: false
+    resolution:
+      integrity: sha512-80fCuf6Bjpci+mmTfBp9r+umhWbxji8WE4Ii8jz1QtszkWBXLUvXhw6xFv0txgt74ZmUj12Ot1MENALAFEJEDg==
+  /@zilliqa-js/proto/2.2.0:
+    dependencies:
+      protobufjs: 6.11.2
+    dev: false
+    engines:
+      node: '>=10.0.0 <15'
+    resolution:
+      integrity: sha512-0QPNJdvafT0ItPGrqEff7KMYNCT/DkWCn0/x2/UwVoVANy5BHL3WkwDV3y49KthVwdZUotQVzRaweHTs6PIcuA==
+  /@zilliqa-js/subscriptions/2.2.1:
+    dependencies:
+      '@zilliqa-js/core': 2.2.1
+      mock-socket: 9.0.3
+      websocket: 1.0.34
+    dev: false
+    resolution:
+      integrity: sha512-MIz7i1kRCF7TpDzmpOFOhL13xl2CxCfmzpXvaBF1keGcOrqf8o/rgF7YARZ2H5YXobLlGDP5Gjm2qcShkiYfWw==
+  /@zilliqa-js/util/2.2.0:
+    dependencies:
+      '@types/bn.js': 4.11.6
+      '@types/long': 4.0.1
+      bn.js: 4.12.0
+      long: 4.0.0
+    dev: false
+    engines:
+      node: '>=10.0.0 <15'
+    resolution:
+      integrity: sha512-bzThiraMQKDumhQY0HMsutX28HPgqB+KKqiet8M8QQbCFvQODxAGpuxJX6bZiX+6K6tZUk8yDSW8Ri3dgOdRDg==
+  /@zilliqa-js/zilliqa/2.2.1:
+    dependencies:
+      '@zilliqa-js/account': 2.2.1
+      '@zilliqa-js/blockchain': 2.2.1
+      '@zilliqa-js/contract': 2.2.1
+      '@zilliqa-js/core': 2.2.1
+      '@zilliqa-js/crypto': 2.2.1
+      '@zilliqa-js/subscriptions': 2.2.1
+      '@zilliqa-js/util': 2.2.0
+    dev: false
+    engines:
+      node: '>=10.0.0 <15'
+    resolution:
+      integrity: sha512-gN3VnuwSvK7SFlzRiXUg18In9rBHn33iZRfmVrggRqTtwG04Dv4AyiCG37+ieNG5hQHI5O+gRrCIPSVG24/n2w==
   /@zondax/ledger-polkadot/0.13.6:
     dependencies:
       '@babel/runtime': 7.14.0
@@ -7208,6 +7394,12 @@ packages:
       node: '>=8.0.0'
     resolution:
       integrity: sha512-NHNwlac+WPy4t2LoNh8pXk8uaIGH3NSaIUbTTRXGpE2WEbq0te/tDykYHkFK57YKLPjv/aGHmbqvnGeVWDz57Q==
+  /bsert/0.0.4:
+    dev: false
+    engines:
+      node: '>=8.0.0'
+    resolution:
+      integrity: sha512-VReLe1aTaHRmf80YLOHUk8ONQ48SjseZP76GlNIDheD5REYByn/Mm9yrtI0/ZCaFrcfxzgpiw1/hMMCUOSMa3w==
   /bson-objectid/1.3.1:
     dev: false
     resolution:
@@ -7956,6 +8148,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+  /cross-fetch/2.2.3:
+    dependencies:
+      node-fetch: 2.1.2
+      whatwg-fetch: 2.0.4
+    dev: false
+    resolution:
+      integrity: sha512-PrWWNH3yL2NYIb/7WF/5vFG3DCQiXDOVf8k3ijatbrtnwNuhMWLC7YF7uqf53tbTFDzHIUD8oITw4Bxt8ST3Nw==
   /cross-spawn/6.0.5:
     dependencies:
       nice-try: 1.0.5
@@ -8386,6 +8585,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-CZ8nkVHjOYZQ/ZtbKCb5hgWy/JPsLmuDl59lE6cLVfVhXnpdpXOxsQPsxvkLCpxeUIAM7L98edxvju/sb0NRIA==
+  /drbg.js/1.0.1:
+    dependencies:
+      browserify-aes: 1.2.0
+      create-hash: 1.2.0
+      create-hmac: 1.1.7
+    dev: false
+    engines:
+      node: '>=0.10'
+    resolution:
+      integrity: sha1-Pja2xCs3BDgjzbwzLVjzHiRFSAs=
   /dset/2.1.0:
     dev: false
     engines:
@@ -10064,6 +10273,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==
+  /hdkey/1.1.2:
+    dependencies:
+      bs58check: 2.1.2
+      safe-buffer: 5.2.1
+      secp256k1: 3.8.0
+    dev: false
+    resolution:
+      integrity: sha512-PTQ4VKu0oRnCrYfLp04iQZ7T2Cxz0UsEXYauk2j8eh6PJXCpbXuCFhOmtIFtbET0i3PMWmHN9J11gU8LEgUljQ==
   /hdkey/2.0.1:
     dependencies:
       bs58check: 2.1.2
@@ -12312,6 +12529,10 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==
+  /mitt/1.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-r6lj77KlwqLhIUku9UWYes7KJtsczvolZkzp8hbaDPPaE24OmWl5s539Mytlj22siEQKosZ26qCBgda2PKwoJw==
   /mixin-deep/1.3.2:
     dependencies:
       for-in: 1.0.2
@@ -12351,6 +12572,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-qYvlv/exQ4+svI3UOvPUpLDF0OMX5euvUH0Ny4N5QyRyhNdgAgUrVH3iUINSzEPLvx0kbo/Bp28GJKIqvE7URw==
+  /mock-socket/9.0.3:
+    dependencies:
+      url-parse: 1.5.1
+    dev: false
+    engines:
+      node: '>= 8'
+    resolution:
+      integrity: sha512-SxIiD2yE/By79p3cNAAXyLQWTvEFNEzcAO7PH+DzRqKSFaplAPFjiQLmw8ofmpCsZf+Rhfn2/xCJagpdGmYdTw==
   /mri/1.1.4:
     dev: false
     engines:
@@ -12523,6 +12752,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Yt3384If5H6BYGVHiHwTL+99OzJKHhgp82S8/dktEK73T26BazdgZ4JZh92xSVtGNJvz9UbXdNAc5hcrXV42vw==
+  /node-fetch/2.1.2:
+    dev: false
+    engines:
+      node: 4.x || >=6.0.0
+    resolution:
+      integrity: sha1-q4hOjn5X44qUR1POxwb3iNF2i7U=
   /node-fetch/2.6.1:
     dev: false
     engines:
@@ -14258,6 +14493,22 @@ packages:
     dev: false
     resolution:
       integrity: sha512-1CdSqHQowJBnMAFyPEBRfqag/YP9OF394FV+4YREIJX4ljD7OxvQRDayyoyyCk+senRjSkP6VnUNQmVQqB6g7w==
+  /secp256k1/3.8.0:
+    dependencies:
+      bindings: 1.5.0
+      bip66: 1.1.5
+      bn.js: 4.12.0
+      create-hash: 1.2.0
+      drbg.js: 1.0.1
+      elliptic: 6.5.4
+      nan: 2.14.2
+      safe-buffer: 5.2.1
+    dev: false
+    engines:
+      node: '>=4.0.0'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-k5ke5avRZbtl9Tqx/SA7CbY3NF6Ro+Sj9cZxezFzuBlLDmyqPiL8hJJ+EmzD8Ig4LUDByHJ3/iPOVoRixs/hmw==
   /secp256k1/4.0.2:
     dependencies:
       elliptic: 6.5.4
@@ -14559,6 +14810,14 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-mbkiyA2clyfwAyOFIzMvsV6ny2KrKEIhFVASJxWfsmgfUEymgLIS2MLHHcGIQMkrcKhPErRaMR5Dzv0EEn+BWg==
+  /sodium-native/3.2.1:
+    dependencies:
+      ini: 1.3.8
+      node-gyp-build: 4.2.3
+    dev: false
+    requiresBuild: true
+    resolution:
+      integrity: sha512-EgDZ/Z7PxL2kCasKk7wnRkV8W9kvwuIlHuHXAxkQm3FF0MgVsjyLBXGjSRGhjE6u7rhSpk3KaMfFM23bfMysIQ==
   /sonic-boom/1.4.1:
     dependencies:
       atomic-sleep: 1.0.0
@@ -15690,6 +15949,12 @@ packages:
       which-typed-array: 1.1.4
     resolution:
       integrity: sha512-I8XkoQwE+fPQEhy9v012V+TSdH2kp9ts29i20TaaDUXsg7x/onePbhFJUExBfv/2ay1ZOp/Vsm3nDlmnFGSAog==
+  /utility-types/2.1.0:
+    dev: false
+    engines:
+      node: '>= 4'
+    resolution:
+      integrity: sha512-/nP2gqavggo6l38rtQI/CdeV+2fmBGXVvHgj9kV2MAnms3TIi77Mz9BtapPFI0+GZQCqqom0vACQ+VlTTaCovw==
   /utility-types/3.10.0:
     dev: false
     engines:
@@ -16154,6 +16419,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==
+  /whatwg-fetch/2.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng==
   /whatwg-mimetype/2.3.0:
     dev: true
     resolution:

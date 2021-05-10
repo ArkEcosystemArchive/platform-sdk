@@ -1,0 +1,12 @@
+{
+	"version": 21823489,
+	"toAddr": "0xE77555ff2103cAF9b8Ed5AC46277A50504bbC0EE",
+	"nonce": 6,
+	"pubKey": "0336c3f5ee054614b88633d608d38b91bddd8168def3396a432528899c585a155b",
+	"amount": "e8d4a51000",
+	"gasPrice": "77359400",
+	"gasLimit": { "low": 50, "high": 0, "unsigned": false },
+	"code": "",
+	"data": "",
+	"signature": "24672fa0ef6e83abed358fe3cafdcf607b59c4aeb2bf89b4c8764a8bbc7c19e5cace0880055f42c8877b8cbe71cfeecc01f49fd48268d614dfde7d3a568fd21c"
+}

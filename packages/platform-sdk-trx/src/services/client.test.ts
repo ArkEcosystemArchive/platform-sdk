@@ -1,3 +1,4 @@
+import { TransactionDataCollection } from "@arkecosystem/platform-sdk/dist/coins";
 import "jest-extended";
 
 import nock from "nock";
@@ -24,6 +25,19 @@ describe("ClientService", function () {
 			);
 
 			expect(result).toBeInstanceOf(TransactionData);
+		});
+	});
+
+	describe("#transactions", () => {
+		it("should succeed", async () => {
+			nock("https://api.shasta.trongrid.io")
+				.get("/v1/accounts/TUrM3F7b7WVZSZVjgrqsVBYXQL3GVgAqXq/transactions")
+				.query(true)
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
+
+			const result = await subject.transactions({ address: "TUrM3F7b7WVZSZVjgrqsVBYXQL3GVgAqXq" });
+
+			expect(result).toBeInstanceOf(TransactionDataCollection);
 		});
 	});
 
