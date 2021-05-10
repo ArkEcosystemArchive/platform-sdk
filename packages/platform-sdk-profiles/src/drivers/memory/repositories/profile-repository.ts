@@ -13,9 +13,11 @@ import { ProfileInitialiser } from "../profiles/profile.initialiser";
 @injectable()
 export class ProfileRepository implements IProfileRepository {
 	readonly #data: DataRepository;
+	#restoredProfileId: string | undefined;
 
 	public constructor() {
 		this.#data = new DataRepository();
+		this.clearRestored();
 	}
 
 	/** {@inheritDoc IProfileRepository.fill} */
@@ -106,7 +108,10 @@ export class ProfileRepository implements IProfileRepository {
 
 	/** {@inheritDoc IProfileRepository.restore} */
 	public async restore(profile: IProfile, password?: string): Promise<void> {
-		new ProfileImporter(profile).import(password);
+		this.clearRestored();
+
+		await new ProfileImporter(profile).import(password);
+		this.setRestored(profile.id());
 	}
 
 	/** {@inheritDoc IProfileRepository.dump} */
@@ -148,5 +153,20 @@ export class ProfileRepository implements IProfileRepository {
 		}
 
 		return result;
+	}
+
+	/** {@inheritDoc IProfileRepository.clearRestored} */
+	public clearRestored(): void {
+		this.#restoredProfileId = undefined;
+	}
+
+	/** {@inheritDoc IProfileRepository.isRestored} */
+	public isRestored(id: string): boolean {
+		return this.#restoredProfileId === id;
+	}
+
+	/** {@inheritDoc IProfileRepository.setRestored} */
+	private setRestored(id: string): void {
+		this.#restoredProfileId = id;
 	}
 }
