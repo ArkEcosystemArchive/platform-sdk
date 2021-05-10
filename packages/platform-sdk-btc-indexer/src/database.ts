@@ -39,7 +39,7 @@ export class Database {
 	 */
 	public constructor(flags: Flags, logger: Logger) {
 		const databaseFile =
-			flags.database || `${envPaths(require("../package.json").name).data}/${flags.coin}/${flags.network}.db`;
+			flags.database || `${envPaths(require("../package.json").name).data}/btc/${flags.network}.db`;
 
 		ensureFileSync(databaseFile);
 
@@ -83,7 +83,7 @@ export class Database {
 
 			if (block.tx) {
 				for (const transaction of block.tx) {
-					this.#logger.info(`Storing transaction [${transaction.hash}]`);
+					this.#logger.info(`Storing transaction [${transaction.txid}]`);
 
 					this.storeTransaction(transaction);
 				}
@@ -168,7 +168,7 @@ export class Database {
 				 VALUES (:hash, :time, :amount, :fee)`,
 			)
 			.run({
-				hash: transaction.hash,
+				hash: transaction.txid,
 				time: transaction.time,
 				amount: amount.toString(),
 				fee: fee.toString(),
@@ -179,7 +179,7 @@ export class Database {
 								VALUES (:output_hash, :output_idx, :amount, :address)`);
 		for (const vout of vouts) {
 			statement.run({
-				output_hash: transaction.hash,
+				output_hash: transaction.txid,
 				output_idx: vout.idx,
 				amount: vout.amount,
 				address: JSON.stringify(vout.addresses),
@@ -194,7 +194,7 @@ export class Database {
 		for (let i = 0; i < vIns.length; i++) {
 			const vIn = vIns[i];
 			updateStatement.run({
-				input_hash: transaction.hash,
+				input_hash: transaction.txid,
 				input_idx: i,
 				output_hash: vIn.txid,
 				output_idx: vIn.vout,
