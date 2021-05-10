@@ -5,7 +5,7 @@ import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
-import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";
+import { IProfileRepository } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
 import { ProfileImporter } from "../profiles/profile.importer";
@@ -188,6 +188,7 @@ describe("ProfileRepository", () => {
 
 	it("should dump profiles without a password", async () => {
 		const john = subject.create("John");
+		await subject.restore(john);
 		await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 
 		const repositoryDump = subject.toObject();
@@ -201,6 +202,7 @@ describe("ProfileRepository", () => {
 
 	it("should dump profiles with a password", async () => {
 		const jane = subject.create("Jane");
+		await subject.restore(jane);
 		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
 
 		jane.password().set("password");
@@ -273,4 +275,22 @@ it("should dump", async () => {
 	const profile = subject.create("John");
 
 	expect(subject.dump(profile)).toBeObject();
+});
+
+it("should restore and check if it is set as restored", async () => {
+	const profile = subject.create("John");
+	expect(subject.isRestored(profile.id())).toBeFalse();
+	await subject.restore(profile);
+
+	expect(subject.isRestored(profile.id())).toBeTrue();
+});
+
+it("should restore and check if it is set as restored", async () => {
+	const john = subject.create("John");
+
+	expect(subject.isRestored(john.id())).toBeFalse();
+	await subject.restore(john);
+	expect(subject.isRestored(john.id())).toBeTrue();
+
+	john.sync();
 });
