@@ -85,10 +85,9 @@ export class ClientService implements Contracts.ClientService {
 		return Helpers.createTransactionDataCollectionWithType(
 			response.data,
 			{
-				// @TODO: figure out how to calculate pages and decide where we are
 				prev: undefined,
 				self: undefined,
-				next: undefined,
+				next: response.meta.fingerprint,
 				last: undefined,
 			},
 			TransactionDTO,

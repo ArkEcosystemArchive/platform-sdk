@@ -29,7 +29,7 @@ describe("ClientService", function () {
 
 	describe("#transactions", () => {
 		it("should succeed", async () => {
-			const result = await subject.transactions({ address: "TFsDrvxnuaYqsrXU5t9cL3raHQhHuzjfWq" });
+			const result = await subject.transactions({ address: "TUrM3F7b7WVZSZVjgrqsVBYXQL3GVgAqXq" });
 
 			expect(result).toBeInstanceOf(TransactionData);
 		});
