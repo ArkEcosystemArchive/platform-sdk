@@ -5,12 +5,37 @@ import { PasswordManager } from "./password";
 
 beforeAll(() => bootContainer());
 
-it("should set, get and forget the password", () => {
-	const subject = new PasswordManager();
+describe("PasswordManager", () => {
+	it("should set and get password", () => {
+		const subject = new PasswordManager();
 
-	expect(() => subject.get()).toThrow("Failed to find a password for the given profile.");
+		expect(() => subject.get()).toThrow("Failed to find a password for the given profile.");
 
-	subject.set("password");
+		subject.set("password");
 
-	expect(subject.get()).toBe("password");
+		expect(subject.get()).toBe("password");
+	});
+
+	it("#exists", () => {
+		const subject = new PasswordManager();
+
+		expect(() => subject.get()).toThrow("Failed to find a password for the given profile.");
+
+		expect(subject.exists()).toBe(false);
+		subject.set("password");
+
+		expect(subject.exists()).toBe(true);
+	});
+
+	it("#forget", () => {
+		const subject = new PasswordManager();
+
+		expect(() => subject.get()).toThrow("Failed to find a password for the given profile.");
+
+		subject.set("password");
+		expect(subject.exists()).toBe(true);
+		subject.forget();
+
+		expect(subject.exists()).toBe(false);
+	});
 });
