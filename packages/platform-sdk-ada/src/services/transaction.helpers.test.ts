@@ -1,4 +1,4 @@
-import { Value } from "@emurgo/cardano-serialization-lib-nodejs";
+import { Value } from "@emurgo/cardano-serialization-lib-browser";
 
 import { createValue } from "./transaction.helpers";
 

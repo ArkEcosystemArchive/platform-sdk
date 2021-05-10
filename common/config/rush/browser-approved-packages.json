@@ -135,6 +135,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@emurgo/cardano-serialization-lib-browser",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@emurgo/cardano-serialization-lib-nodejs",
       "allowedCategories": [ "libraries" ]
     },

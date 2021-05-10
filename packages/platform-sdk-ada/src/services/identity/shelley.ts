@@ -1,5 +1,5 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import CardanoWasm, { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
+import CardanoWasm, { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-browser";
 
 export const HARDENED_THRESHOLD = 0x80000000;
 export const SHELLEY_COIN_PURPOSE = 1852;

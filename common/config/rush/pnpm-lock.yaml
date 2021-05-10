@@ -93,6 +93,7 @@ importers:
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
+      '@emurgo/cardano-serialization-lib-browser': 7.0.0
       '@emurgo/cardano-serialization-lib-nodejs': 7.0.0
       bech32: 2.0.0
     devDependencies:
@@ -131,6 +132,7 @@ importers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
+      '@emurgo/cardano-serialization-lib-browser': ~7.0.0
       '@emurgo/cardano-serialization-lib-nodejs': ^7.0.0
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -3731,6 +3733,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-gL4fjboaMzl7QqP9gDkxiLSV2o8YUTt6iyukiSEOY+b6zDt9Q4XwJkT9FjHdZs9m02llNlBUsCfpc59+TEXpxg==
+  /@emurgo/cardano-serialization-lib-browser/7.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-4/xgSE7u4BKdBsDOk54zMuTJl3IAHTldCkSiZvS/s6XSxNcoVnPKs0wfZb/swwSqyNKukTodz8GE1K7JhuVW9Q==
   /@emurgo/cardano-serialization-lib-nodejs/7.0.0:
     dev: false
     resolution:
