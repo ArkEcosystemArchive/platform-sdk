@@ -13,15 +13,15 @@ export class Address implements Contracts.Address {
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
+			if (options?.bip44) {
+				return (await bip44(mnemonic, this.#network.name))!;
+			}
+
 			if (options?.bip49) {
 				return (await bip49(mnemonic, this.#network.name))!;
 			}
 
-			if (options?.bip84) {
-				return bip84(mnemonic, options);
-			}
-
-			return (await bip44(mnemonic, this.#network.name))!;
+			return bip84(mnemonic, options!);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
