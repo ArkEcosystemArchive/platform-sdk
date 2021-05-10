@@ -33,6 +33,7 @@
 		"tronweb": "^3.2.6"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
 		"@types/eslint": "^7.2.10",
 		"@types/eslint-plugin-prettier": "^3.1.0",
