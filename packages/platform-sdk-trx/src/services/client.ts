@@ -8,6 +8,7 @@ import * as TransactionDTO from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
+	readonly #peer: string;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -26,6 +27,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private constructor({ config, peer }) {
 		this.#config = config;
+		this.#peer = peer;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
@@ -59,20 +61,13 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const host: string = Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival"));
-
-		if (host === undefined) {
-			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "transactions", "hostsArchival");
-		}
+		const address: string = query.address || query.addresses![0];
 
 		const response: any = (await this.#config.get<Contracts.HttpClient>("httpClient")
-			.get(`${host}/api/transaction`, {
-				sort: "timestamp",
+			.get(`${this.#peer}/v1/accounts/${address}/transactions`, {
 				limit: query.limit || 25,
-				// count: true,
-				// start_timestamp: min_timestamp,
-				// end_timestamp: max_timestamp,
-				address: query.address || query.addresses![0],
+				only_to: query.recipientId !== null,
+				only_from: query.senderId !== null,
 			})).json();
 
 		return Helpers.createTransactionDataCollectionWithType(
