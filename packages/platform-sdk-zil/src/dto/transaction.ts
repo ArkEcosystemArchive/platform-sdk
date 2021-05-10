@@ -116,6 +116,10 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return false;
 	}
 
+	public isMagistrate(): boolean {
+		return false;
+	}
+
 	public isEntityRegistration(): boolean {
 		return false;
 	}
