@@ -202,6 +202,8 @@ describe("ProfileRepository", () => {
 	it("should dump profiles with a password", async () => {
 		const jane = subject.create("Jane");
 		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
+
+		jane.password().set("password");
 		jane.auth().setPassword("password");
 
 		const repositoryDump = subject.toObject();
