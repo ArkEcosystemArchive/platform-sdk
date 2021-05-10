@@ -370,8 +370,8 @@ export class Profile implements IProfile {
 		await this.contacts().restore();
 	}
 
-	/** {@inheritDoc IProfile.hasCompletedTutorial} */
-	public hasCompletedTutorial(): boolean {
-		return this.data().has(ProfileData.HasCompletedTutorial);
+	/** {@inheritDoc IProfile.hasCompletedIntroductoryTutorial} */
+	public hasCompletedIntroductoryTutorial(): boolean {
+		return this.data().has(ProfileData.HasCompletedIntroductoryTutorial);
 	}
 }

@@ -189,11 +189,11 @@ test("#hasBeenPartiallyRestored", async () => {
 });
 
 it("should determine if the tutorial has been completed", () => {
-	expect(subject.hasCompletedTutorial()).toBeFalse();
+	expect(subject.hasCompletedIntroductoryTutorial()).toBeFalse();
 
-	subject.data().set(ProfileData.HasCompletedTutorial, true);
+	subject.data().set(ProfileData.HasCompletedIntroductoryTutorial, true);
 
-	expect(subject.hasCompletedTutorial()).toBeTrue();
+	expect(subject.hasCompletedIntroductoryTutorial()).toBeTrue();
 });
 
 // it("should fail to encrypt a profile if the password is invalid", () => {
