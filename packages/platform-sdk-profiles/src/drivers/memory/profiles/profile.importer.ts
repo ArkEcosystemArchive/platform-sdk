@@ -46,6 +46,8 @@ export class ProfileImporter implements IProfileImporter {
 		let data: IProfileData | undefined;
 		let errorReason = "";
 
+		this.#profile.password().forget();
+
 		try {
 			if (typeof password === "string") {
 				data = new ProfileEncrypter(this.#profile).decrypt(password);
