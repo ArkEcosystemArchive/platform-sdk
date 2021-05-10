@@ -8,6 +8,8 @@ import * as TransactionDTO from "../dto";
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
+	readonly #peer: string;
+	readonly #client: Contracts.HttpClient;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -26,9 +28,11 @@ export class ClientService implements Contracts.ClientService {
 
 	private constructor({ config, peer }) {
 		this.#config = config;
+		this.#peer = peer;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
+		this.#client = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -59,29 +63,27 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const host: string = Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival"));
+		const address: string = query.senderId || query.recipientId || query.address || query.addresses![0];
+		const payload: Record<string, boolean | number> = {
+			limit: query.limit || 15,
+		};
 
-		if (host === undefined) {
-			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "transactions", "hostsArchival");
+		if (query.senderId) {
+			payload.only_from = true;
 		}
 
-		const response: any = (await this.#config.get<Contracts.HttpClient>("httpClient")
-			.get(`${host}/api/transaction`, {
-				sort: "timestamp",
-				limit: query.limit || 25,
-				// count: true,
-				// start_timestamp: min_timestamp,
-				// end_timestamp: max_timestamp,
-				address: query.address || query.addresses![0],
-			})).json();
+		if (query.recipientId) {
+			payload.only_to = true;
+		}
+
+		const response: any = (await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)).json();
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response.data,
+			response.data.filter(({ raw_data }) => raw_data.contract[0].type === 'TransferContract'),
 			{
-				// @TODO: figure out how to calculate pages and decide where we are
 				prev: undefined,
 				self: undefined,
-				next: undefined,
+				next: response.meta.fingerprint,
 				last: undefined,
 			},
 			TransactionDTO,

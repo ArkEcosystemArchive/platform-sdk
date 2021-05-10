@@ -34,13 +34,15 @@ describe("ProfileEncrypter", () => {
 
 		it("should use provided password if available", () => {
 			const auth: MockProxy<IAuthenticator> = mock<IAuthenticator>();
-			auth.verifyPassword.calledWith("some-pass").mockReturnValue(false);
+			auth.verifyPassword.calledWith("some-pass").mockReturnValue(true);
 
 			const profile: MockProxy<IProfile> = mock<IProfile>();
-			profile.auth.mockReturnValue(auth);
-			profile.password.mockReturnValue({
+			profile.password.mockImplementation(() => ({
 				get: () => "some-pass",
-			});
+				set: () => undefined,
+				exists: () => true,
+			}));
+			profile.auth.mockReturnValue(auth);
 
 			const subject = new ProfileEncrypter(profile);
 
