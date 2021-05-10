@@ -1,7 +1,7 @@
-import Logger from "@ptkdev/logger";
 import PQueue from "p-queue";
 import Web3 from "web3";
 
+import { Logger } from "./logger";
 import { Database } from "./database";
 
 /**
