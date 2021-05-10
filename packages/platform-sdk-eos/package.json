@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-eos",
-	"version": "6.0.35",
+	"version": "6.1.0",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
