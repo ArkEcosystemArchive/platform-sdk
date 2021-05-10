@@ -21,4 +21,9 @@ export class PasswordManager implements IPasswordManager {
 	public exists(): boolean {
 		return this.#password !== undefined;
 	}
+
+	/** {@inheritDoc IPasswordManager.forget} */
+	public forget(): void {
+		this.#password = undefined;
+	}
 }
