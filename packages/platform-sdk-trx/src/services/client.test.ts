@@ -31,7 +31,8 @@ describe("ClientService", function () {
 	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
-				.post("/v1/accounts/TUrM3F7b7WVZSZVjgrqsVBYXQL3GVgAqXq/transactions")
+				.get("/v1/accounts/TUrM3F7b7WVZSZVjgrqsVBYXQL3GVgAqXq/transactions")
+				.query(true)
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ address: "TUrM3F7b7WVZSZVjgrqsVBYXQL3GVgAqXq" });

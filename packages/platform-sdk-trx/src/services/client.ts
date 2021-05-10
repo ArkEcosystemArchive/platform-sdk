@@ -78,10 +78,6 @@ export class ClientService implements Contracts.ClientService {
 
 		const response: any = (await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)).json();
 
-		for(const tx of response.data) {
-			console.log(JSON.stringify(tx, null, 4))
-		}
-
 		return Helpers.createTransactionDataCollectionWithType(
 			response.data.filter(({ raw_data }) => raw_data.contract[0].type === 'TransferContract'),
 			{
