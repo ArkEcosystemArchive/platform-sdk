@@ -11,7 +11,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public publicKey(): string | undefined {
-		return this.data.publicKey.value;
+		return this.data.publicKey;
 	}
 
 	public balance(): BigNumber {
