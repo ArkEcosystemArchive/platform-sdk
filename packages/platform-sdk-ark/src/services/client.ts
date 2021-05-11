@@ -12,7 +12,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>("httpClient");
+		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#network = config.get<string>("network.id");
 	}
 
