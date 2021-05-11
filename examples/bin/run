@@ -4,6 +4,7 @@ const {
 	createProfileWithWallets,
 	openProfile,
 	transfer,
+	transferTrx,
 } = require("../dist");
 
 const { input } = require("./meow");
@@ -18,4 +19,8 @@ if (input[0] === "open-profile") {
 
 if (input[0] === "transfer") {
 	(async () => transfer())();
+}
+
+if (input[0] === "transfer-trx") {
+	(async () => transferTrx())();
 }

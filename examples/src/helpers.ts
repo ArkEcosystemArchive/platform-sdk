@@ -5,7 +5,7 @@ import { AVAX } from "@arkecosystem/platform-sdk-avax";
 // import { BTC } from "@arkecosystem/platform-sdk-btc";
 import { DOT } from "@arkecosystem/platform-sdk-dot";
 import { EGLD } from "@arkecosystem/platform-sdk-egld";
-// import { TRX } from "@arkecosystem/platform-sdk-trx";
+import { TRX } from "@arkecosystem/platform-sdk-trx";
 // import { XLM } from "@arkecosystem/platform-sdk-xlm";
 // import { XRP } from "@arkecosystem/platform-sdk-xrp";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
@@ -35,7 +35,7 @@ export const useEnvironment = async (): Promise<Environment> => {
 			LSK,
 			// NEO,
 			SOL,
-			// TRX,
+			TRX,
 			// XLM,
 			// XRP,
 		},
