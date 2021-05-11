@@ -22,7 +22,7 @@ export const getZilliqaVersion = (config: Coins.Config) => {
 	}
 
 	if (id === "zil.mainnet") {
-		// TODO: add mainnet chainId
+		chainId = 1;
 	}
 
 	if (!chainId) {
