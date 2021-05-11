@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 	networking: {
 		// @NOTE: no longer responsive even though it should be official
 		// hosts: ["https://api.cosmos.network"],
-		hosts: ["https://node.atomscan.com/"],
+		hosts: ["https://node.atomscan.com"],
 	},
 	governance: {
 		voting: {
