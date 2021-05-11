@@ -35,17 +35,17 @@ describe("ProfileInitialiser", () => {
 
 	it("should flush service data", () => {
 		profile.contacts().create("test");
-		profile.data().set(ProfileData.HasCompletedTutorial, true);
+		profile.data().set(ProfileData.HasCompletedIntroductoryTutorial, true);
 		profile.settings().set(ProfileSetting.Theme, "dark");
 
 		expect(profile.contacts().count()).toBe(1);
-		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBeTrue();
+		expect(profile.data().get(ProfileData.HasCompletedIntroductoryTutorial)).toBeTrue();
 		expect(profile.settings().get(ProfileSetting.Theme)).toBe("dark");
 
 		new ProfileInitialiser(profile).initialise("name");
 
 		expect(profile.contacts().count()).toBe(0);
-		expect(profile.data().get(ProfileData.HasCompletedTutorial)).toBeUndefined();
+		expect(profile.data().get(ProfileData.HasCompletedIntroductoryTutorial)).toBeUndefined();
 		expect(profile.settings().get(ProfileSetting.Theme)).toBe("light");
 	});
 
