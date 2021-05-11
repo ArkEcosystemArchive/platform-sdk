@@ -29,12 +29,12 @@ export class ClientService implements Contracts.ClientService {
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		try {
 			return new ClientService({
-				http: config.get<Contracts.HttpClient>("httpClient"),
+				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 				peer: config.get<string>("peer"),
 			});
 		} catch {
 			return new ClientService({
-				http: config.get<Contracts.HttpClient>("httpClient"),
+				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}

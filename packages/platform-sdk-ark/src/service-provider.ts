@@ -61,7 +61,7 @@ export class ServiceProvider {
 	}
 
 	private static async retrieveNetworkConfiguration(config: Coins.Config): Promise<{ crypto; peer; status }> {
-		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>("httpClient");
+		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 
 		let peer: string = getPeerFromConfig(config);
 

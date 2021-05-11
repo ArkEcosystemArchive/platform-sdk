@@ -8,7 +8,7 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<FeeService> {
-		return new FeeService(config.get<Contracts.HttpClient>("httpClient"));
+		return new FeeService(config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient));
 	}
 
 	public async __destruct(): Promise<void> {
