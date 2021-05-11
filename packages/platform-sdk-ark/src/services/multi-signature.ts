@@ -28,7 +28,7 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	 */
 	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>("httpClient");
+		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	/** @inheritdoc */
