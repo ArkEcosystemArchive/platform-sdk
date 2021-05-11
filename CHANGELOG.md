@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.1.5 - 2021-05-11
+
+### Added
+
+- **[PROFILES]** Implement `IPasswordManager#forget` (00188ffa, @goga-m)
+- **[PROFILES]** Create complete tutorial function (a3f8b2c4, @w3ea)
+
+### Fixed
+
+- **[ARK]** Use of network expiration (5c5c08be, @marianogoldman)
+- **[ZIL]** Treat bech32 addresses as valid and turn balance into satoshi (3bb8aa08, @faustbrian)
+
 ## 6.0.34 - 2021-05-10
 
 ### Changed
