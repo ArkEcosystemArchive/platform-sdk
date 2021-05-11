@@ -5,49 +5,57 @@ export default async () => {
 	const logger = useLogger();
 	const env: Environment = await useEnvironment();
 
-	// Open profile
-	const profile: Contracts.IProfile | undefined = env.profiles().findByName("my-profile-name");
-	if (!profile) {
-		throw Error("Profile doesn't exist");
-	}
+	// Create profile
+	const profile: Contracts.IProfile = env.profiles().create("tron-profile");
+	profile.auth().setPassword("my-password");
+	await env.persist();
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
 	await profile.sync();
 
-	// Get read-write wallet #1
-	const wallet: Contracts.IReadWriteWallet | undefined = await profile.wallets().findByAddress("TFEdyfF1pqXn2XuqYwJbeLzwGrwwTUufLx");
-	if (!wallet) {
-		throw Error("Couldn't find wallet");
-	}
 	const mnemonic1: string = "cabin fold parrot grunt tide exact spoon regular wait mercy very fame";
+	const wallet1 = await profile.walletFactory().fromAddress({
+		address: "TFEdyfF1pqXn2XuqYwJbeLzwGrwwTUufLx",
+		coin: "TRX",
+		network: "trx.testnet"
+	});
+	profile.wallets().push(wallet1);
 
-		// Display profile and wallet balances
-	logger.log("Wallet", wallet.address(), "balance", wallet.balance().toHuman(2));
+	const address2: string = "TXaMbkVYxQySwumStDujGt5b9nkJwKDsSA";
+	const wallet2 = await profile.walletFactory().fromAddress({
+		address: address2,
+		coin: "TRX",
+		network: "trx.testnet"
+	});
+	profile.wallets().push(wallet2);
 
-	const destinationAddress: string = "TXaMbkVYxQySwumStDujGt5b9nkJwKDsSA";
+	// Display profile and wallet balances
+	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
+	logger.log("Wallet 2", wallet2.address(), "balance", wallet2.balance().toHuman(2));
 
-	const transactionId = await wallet
+	// Transfer from wallet1 to wallet2
+	const transactionId = await wallet1
 		.transaction()
 		.signTransfer({
-			from: wallet.address(),
+			from: wallet1.address(),
 			sign: {
 				mnemonic: mnemonic1
 			},
 			data: {
 				amount: "2",
-				to: destinationAddress
+				to: address2
 			}
 		});
 	logger.log("signedTransactionData", transactionId);
 
-	await wallet.transaction().broadcast(transactionId);
+	await wallet1.transaction().broadcast(transactionId);
 
 	logger.info(`Transaction [${transactionId}] is awaiting confirmation.`);
 	let awaitingConfirmation = true;
 	while (awaitingConfirmation) {
 		try {
-			awaitingConfirmation = await wallet.transaction().confirm(transactionId);
+			awaitingConfirmation = await wallet1.transaction().confirm(transactionId);
 		} catch {
 			awaitingConfirmation = false;
 		}
