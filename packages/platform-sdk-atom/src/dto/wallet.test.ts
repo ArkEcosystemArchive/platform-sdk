@@ -6,7 +6,13 @@ import Fixture from "../../test/fixtures/client/wallet.json";
 import { WalletData } from "./wallet";
 
 describe("WalletData", function () {
-	const subject = new WalletData(Fixture.result.value);
+	const subject = new WalletData({
+		address: Fixture.result.value.address,
+		publicKey: Fixture.result.value.public_key,
+		balance: 22019458509,
+		sequence: Fixture.result.value.sequence,
+	});
+
 	it("#address", () => {
 		expect(subject.address()).toEqual("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
 	});
@@ -16,7 +22,7 @@ describe("WalletData", function () {
 	});
 
 	it("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make(69519574));
+		expect(subject.balance()).toEqual(BigNumber.make(22019458509));
 	});
 
 	it("#entities", () => {

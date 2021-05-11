@@ -4,12 +4,6 @@
 		"type": "cosmos-sdk/Account",
 		"value": {
 			"address": "cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0",
-			"coins": [
-				{
-					"denom": "umuon",
-					"amount": "69519574"
-				}
-			],
 			"public_key": {
 				"type": "tendermint/PubKeySecp256k1",
 				"value": "Ap65s+Jdgo8BtvTbkc7GyUti8yJ7RpZ7cE1zCuKgNeXY"
