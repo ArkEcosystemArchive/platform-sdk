@@ -20,7 +20,8 @@ const network: Coins.NetworkManifest = {
 		expirationType: "height",
 	},
 	networking: {
-		hosts: ["https://api.cosmos.network"],
+		// hosts: ["https://api.cosmos.network"],
+		hosts: ["https://node.atomscan.com/"],
 	},
 	governance: {
 		voting: {
