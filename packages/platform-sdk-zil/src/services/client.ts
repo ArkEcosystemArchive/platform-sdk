@@ -48,15 +48,16 @@ export class ClientService implements Contracts.ClientService {
 
 		if (response.error) {
 			throw new Exceptions.Exception(`Received an error: ${JSON.stringify(response.error)}`);
-		} else if (!response?.result) {
+		}
+
+		if (response?.result === undefined) {
 			throw new Exceptions.Exception(`Received an invalid response: ${JSON.stringify(response)}`);
 		}
 
-		const { balance, nonce } = response.result;
 		return new WalletData({
 			address: id,
-			balance,
-			nonce,
+			balance: response.result.balance,
+			nonce: response.result.nonce,
 		});
 	}
 
