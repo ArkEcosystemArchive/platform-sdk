@@ -8,7 +8,7 @@ import { WalletData } from "./wallet";
 describe("WalletData", function () {
 	const subject = new WalletData({
 		address: Fixture.result.value.address,
-		publicKey: Fixture.result.value.public_key,
+		publicKey: Fixture.result.value.public_key.value,
 		balance: 22019458509,
 		sequence: Fixture.result.value.sequence,
 	});
