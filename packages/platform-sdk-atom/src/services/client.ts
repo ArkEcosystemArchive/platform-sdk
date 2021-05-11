@@ -93,9 +93,15 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { result } = await this.get(`auth/accounts/${id}`);
+		const { result: details } = await this.get(`auth/accounts/${id}`);
+		const { result: balance } = await this.get(`bank/balances/${id}`);
 
-		return new WalletData(result.value);
+		return new WalletData({
+			address: details.value.address,
+			publicKey: details.value.public_key.value,
+			balance: (Object.values(balance) as { denom }[]).find(({ denom }) => denom === "uatom"),
+			sequence: details.value.sequence,
+		});
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
