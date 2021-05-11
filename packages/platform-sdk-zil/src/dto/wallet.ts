@@ -12,11 +12,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public publicKey(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.publicKey.name);
+		return undefined;
 	}
 
 	public balance(): BigNumber {
-		return BigNumber.make(convertQaToZil(this.data.balance));
+		return BigNumber.make(this.data.balance).divide(1e4);
 	}
 
 	public nonce(): BigNumber {
@@ -24,23 +24,23 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public secondPublicKey(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.secondPublicKey.name);
+		return undefined;
 	}
 
 	public username(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.username.name);
+		return undefined;
 	}
 
 	public rank(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.rank.name);
+		return undefined;
 	}
 
 	public votes(): BigNumber | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.votes.name);
+		return undefined;
 	}
 
 	public entities(): Contracts.Entity[] {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.entities.name);
+		return [];
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {
