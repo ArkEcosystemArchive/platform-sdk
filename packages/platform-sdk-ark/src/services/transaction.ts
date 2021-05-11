@@ -28,7 +28,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const { crypto, peer, status }: any = config.get(Coins.ConfigKey.NetworkConfiguration);
 
 		return new TransactionService({
-			http: config.get<Contracts.HttpClient>("httpClient"),
+			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 			peer,
 			identity: await IdentityService.__construct(config),
 			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
