@@ -20,15 +20,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		const event = this.data.events.find((event) => event.type === "message");
-		const attribute = event.attributes.find((attribute) => attribute.key === "sender");
+		const event = this.data.events.find(({ type }) => type === "message");
+		const attribute = event.attributes.find(({ key }) => key === "sender");
 
 		return attribute.value;
 	}
 
 	public recipient(): string {
-		const event = this.data.events.find((event) => event.type === "transfer");
-		const attribute = event.attributes.find((attribute) => attribute.key === "recipient");
+		const event = this.data.events.find(({ type }) => type === "transfer");
+		const attribute = event.attributes.find(({ key }) => key === "recipient");
 
 		return attribute.value;
 	}
@@ -39,8 +39,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	// @ts-ignore
 	public amount(): BigNumber {
-		const event = this.data.events.find((event) => event.type === "transfer");
-		const attribute = event.attributes.find((attribute) => attribute.key === "amount");
+		const event = this.data.events.find(({ type }) => type === "transfer");
+		const attribute = event.attributes.find(({ key }) => key === "amount");
 
 		return BigNumber.make(attribute.value.replace(/\D/g, ""));
 	}
