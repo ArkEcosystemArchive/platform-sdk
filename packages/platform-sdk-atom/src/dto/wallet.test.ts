@@ -34,19 +34,19 @@ describe("WalletData", function () {
 	});
 
 	it("#secondPublicKey", () => {
-		expect(() => subject.secondPublicKey()).toThrow(/not implemented/);
+		expect(subject.secondPublicKey()).toBeUndefined();
 	});
 
 	it("#username", () => {
-		expect(() => subject.username()).toThrow(/not implemented/);
+		expect(subject.username()).toBeUndefined();
 	});
 
 	it("#rank", () => {
-		expect(() => subject.rank()).toThrow(/not implemented/);
+		expect(subject.rank()).toBeUndefined();
 	});
 
 	it("#votes", () => {
-		expect(() => subject.votes()).toThrow(/not implemented/);
+		expect(subject.votes()).toBeUndefined();
 	});
 
 	it("#multiSignature", () => {
