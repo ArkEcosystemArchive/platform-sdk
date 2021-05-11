@@ -1,4 +1,5 @@
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
+
 import { useEnvironment, useLogger } from "../helpers";
 
 export default async () => {
@@ -17,7 +18,7 @@ export default async () => {
 		coin: "ARK",
 		network: "ark.mainnet"
 	});
-	await profile.wallets().push(wallet1);
+	profile.wallets().push(wallet1);
 
 	// Create read-only wallet #2
 	const wallet2 = await profile.walletFactory().fromAddress({
@@ -25,7 +26,7 @@ export default async () => {
 		coin: "ARK",
 		network: "ark.mainnet"
 	});
-	await profile.wallets().push(wallet2);
+	profile.wallets().push(wallet2);
 
 	// Display profile balance
 	logger.log("Profile balance", profile.balance().toHuman(2));
