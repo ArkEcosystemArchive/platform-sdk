@@ -127,9 +127,9 @@ export class Database {
 			CREATE UNIQUE INDEX IF NOT EXISTS blocks_number ON blocks (number);
 
 			CREATE TABLE IF NOT EXISTS transactions(
-				hash        VARCHAR(66)   PRIMARY KEY,
-				sender      VARCHAR(66)   NOT NULL,
-				recipient   VARCHAR(66)   NOT NULL,
+				hash        VARCHAR(64)   PRIMARY KEY,
+				sender      VARCHAR(68)   NOT NULL,
+				recipient   VARCHAR(40)   NOT NULL,
 				amount      INTEGER       NOT NULL,
 				gas         INTEGER       NOT NULL,
 				gasLimit    INTEGER       NOT NULL,
@@ -138,8 +138,8 @@ export class Database {
 			);
 
 			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
-			CREATE INDEX IF NOT EXISTS transactions_sender ON transactions ("sender");
-			CREATE INDEX IF NOT EXISTS transactions_recipient ON transactions ("recipient");
+			CREATE INDEX IF NOT EXISTS transactions_sender ON transactions (sender);
+			CREATE INDEX IF NOT EXISTS transactions_recipient ON transactions (recipient);
 		`);
 	}
 }
