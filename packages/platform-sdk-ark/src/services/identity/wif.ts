@@ -26,4 +26,8 @@ export class WIF implements Contracts.WIF {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
+
+	public async fromSecret(secret: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
 }

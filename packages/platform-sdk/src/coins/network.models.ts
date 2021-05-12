@@ -49,6 +49,7 @@ export interface NetworkFeatureFlags {
 			publicKey?: boolean;
 			privateKey?: boolean;
 			wif?: boolean;
+			secret?: boolean;
 			validate?: boolean;
 		};
 		publicKey?: {

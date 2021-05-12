@@ -86,6 +86,10 @@ export class Address implements Contracts.Address {
         }
     }
 
+	public async fromSecret(secret: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
+
     public async validate(address: string): Promise<boolean> {
         return address !== undefined;
     }

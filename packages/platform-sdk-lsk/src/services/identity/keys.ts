@@ -19,4 +19,8 @@ export class Keys implements Contracts.Keys {
 	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
+
+	public async fromSecret(secret: string): Promise<Contracts.KeyPair> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
 }
