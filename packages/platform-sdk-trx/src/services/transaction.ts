@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import TronWeb from "tronweb";
+import TronWeb, { utils } from "tronweb";
 
 import { SignedTransactionData } from "../dto";
 import { PrivateKey } from "./identity/private-key";
@@ -51,11 +51,15 @@ export class TransactionService implements Contracts.TransactionService {
 			);
 
 			const pk: string = await new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic);
-			console.log("pk", pk);
-			const response = await this.#connection.trx.sign(
-				transaction,
-				pk,
-			);
+			// const pk = new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic);
+			console.log("pk", pk, "tx", transaction);
+			// Code: https://github.com/tronprotocol/tronweb/blob/master/src/lib/trx.js#L650
+			// const response = await this.#connection.trx.sign(
+			// 	transaction,
+			// 	pk, // This one expects a callback, but not sure what it should do. Removing await from above doesn't work
+			// );
+			const response = await utils.crypto.signTransaction(pk, transaction);
+			console.log("sign", response);
 
 			return new SignedTransactionData(response.txId, response, response);
 		} catch (error) {
