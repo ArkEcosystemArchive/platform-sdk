@@ -58,7 +58,7 @@ beforeEach(async () => {
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
 	wallet = await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
-	wallet.data().set(WalletData.Balance, 1e8);
+	wallet.data().set(WalletData.Balance, { available: 1e8, fees: 1e8 });
 
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);
 	testSpy = jest.spyOn(wallet.network(), "isTest").mockReturnValue(false);

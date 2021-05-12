@@ -22,7 +22,7 @@ describe("WalletData", function () {
 	});
 
 	it("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make(22019458509));
+		expect(subject.balance().available).toEqual(BigNumber.make(22019458509));
 	});
 
 	it("#entities", () => {

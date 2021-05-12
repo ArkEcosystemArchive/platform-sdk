@@ -51,7 +51,7 @@ describe("ClientService", function () {
 
 			expect(result).toBeObject();
 			expect(result.address()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
-			expect(result.balance()).toEqual(BigNumber.make(9).times(BigNumber.SATOSHI));
+			expect(result.balance().available).toEqual(BigNumber.make(9).times(BigNumber.SATOSHI));
 		});
 	});
 
