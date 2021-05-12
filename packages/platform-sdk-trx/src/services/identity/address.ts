@@ -13,7 +13,7 @@ export class Address implements Contracts.Address {
 		return TronWeb.address.fromPrivateKey(BIP44.deriveChild(mnemonic, {
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,
-		}).publicKey.toString("hex"));
+		}).privateKey!.toString("hex"));
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
