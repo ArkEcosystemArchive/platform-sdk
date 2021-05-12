@@ -15,6 +15,6 @@ describe("WalletData", function () {
 		expect(result).toBeInstanceOf(WalletData);
 		expect(result.address()).toEqual("rMWnHRpSWTYSsxbDjASvGvC31F4pRkyYHP");
 		expect(result.publicKey()).toBeUndefined();
-		expect(result.balance()).toEqual(BigNumber.make("92291324300"));
+		expect(result.balance().available).toEqual(BigNumber.make("92291324300"));
 	});
 });

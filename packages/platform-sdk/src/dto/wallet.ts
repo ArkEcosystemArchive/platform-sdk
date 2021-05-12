@@ -1,6 +1,6 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Entity } from "../contracts/coins";
+import { Entity, WalletBalance } from "../contracts/coins";
 import { KeyValuePair } from "../contracts/types";
 
 export abstract class AbstractWalletData {
@@ -13,7 +13,7 @@ export abstract class AbstractWalletData {
 
 	abstract publicKey(): string | undefined;
 
-	abstract balance(): BigNumber;
+	abstract balance(): WalletBalance;
 
 	abstract nonce(): BigNumber;
 
