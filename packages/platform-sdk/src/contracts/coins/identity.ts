@@ -83,5 +83,5 @@ export interface Keys {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<KeyPair>;
 	fromPrivateKey(privateKey: string): Promise<KeyPair>;
 	fromWIF(wif: string): Promise<KeyPair>;
-	fromSecret(secret: string): Promise<string>;
+	fromSecret(secret: string): Promise<KeyPair>;
 }
