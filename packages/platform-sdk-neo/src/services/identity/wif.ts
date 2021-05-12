@@ -26,4 +26,8 @@ export class WIF implements Contracts.WIF {
 	public async fromPrivateKey(privateKey: string): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
+
+	public async fromSecret(secret: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
 }

@@ -1,14 +1,9 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		try {
-			return deriveAddress(deriveKeypair(BIP39.normalize(mnemonic)).publicKey);
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
-		}
+		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
@@ -29,6 +24,10 @@ export class Address implements Contracts.Address {
 
 	public async fromWIF(wif: string): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
+	}
+
+	public async fromSecret(secret: string): Promise<string> {
+		return deriveAddress(deriveKeypair(secret).publicKey);
 	}
 
 	public async validate(address: string): Promise<boolean> {

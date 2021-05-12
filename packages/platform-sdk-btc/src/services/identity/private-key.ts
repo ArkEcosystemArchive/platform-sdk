@@ -24,4 +24,8 @@ export class PrivateKey implements Contracts.PrivateKey {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
+
+	public async fromSecret(secret: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
 }
