@@ -23,7 +23,7 @@ export class Keys implements Contracts.Keys {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.KeyPair> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }
