@@ -45,7 +45,8 @@ export class TransactionService implements Contracts.TransactionService {
 				1,
 			);
 
-			const response = await this.#connection.trx.sign(transaction, this.#address.fromMnemonic(input.sign.mnemonic));
+			const pk = await this.#address.fromMnemonic(input.sign.mnemonic);
+			const response = await this.#connection.trx.sign(transaction, pk);
 
 			return new SignedTransactionData(response.txId, response, response);
 		} catch (error) {
