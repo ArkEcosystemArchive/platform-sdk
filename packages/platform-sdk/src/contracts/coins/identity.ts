@@ -52,6 +52,7 @@ export interface Address {
 	fromPublicKey(publicKey: string, options?: IdentityOptions): Promise<string>;
 	fromPrivateKey(privateKey: string, options?: IdentityOptions): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
+	fromSecret(secret: string): Promise<string>;
 	validate(address: string): Promise<boolean>;
 }
 
@@ -64,11 +65,13 @@ export interface PublicKey {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
 	fromMultiSignature(min: number, publicKeys: string[]): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
+	fromSecret(secret: string): Promise<string>;
 }
 
 export interface PrivateKey {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
+	fromSecret(secret: string): Promise<string>;
 }
 
 export interface WIF {
@@ -80,4 +83,5 @@ export interface Keys {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<KeyPair>;
 	fromPrivateKey(privateKey: string): Promise<KeyPair>;
 	fromWIF(wif: string): Promise<KeyPair>;
+	fromSecret(secret: string): Promise<string>;
 }
