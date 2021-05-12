@@ -1,6 +1,5 @@
 import { Managers } from "@arkecosystem/crypto";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import { getPeerFromConfig } from "./helpers";
 
 import { ClientService } from "./services/client";

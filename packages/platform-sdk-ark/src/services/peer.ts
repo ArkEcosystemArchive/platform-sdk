@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Http } from "@arkecosystem/platform-sdk";
 import isUrl from "is-url-superb";
 import orderBy from "lodash.orderby";
 import semver from "semver";
@@ -6,11 +6,13 @@ import semver from "semver";
 import { getPeerFromConfig } from "../helpers";
 
 export class PeerService implements Contracts.PeerService {
+	readonly #config: Coins.Config;
 	readonly #http: Contracts.HttpClient;
 	readonly #seeds: string[];
 
-	private constructor({ http, seeds }) {
-		this.#http = http;
+	private constructor({ config, httpClient, seeds }) {
+		this.#config = config;
+		this.#http = httpClient;
 		this.#seeds = seeds;
 	}
 
@@ -49,7 +51,7 @@ export class PeerService implements Contracts.PeerService {
 			throw new Error("No seeds found");
 		}
 
-		return new PeerService({ http: httpClient, seeds });
+		return new PeerService({ config, httpClient, seeds });
 	}
 
 	public async __destruct(): Promise<void> {
@@ -82,5 +84,21 @@ export class PeerService implements Contracts.PeerService {
 		}
 
 		return orderBy(peers, [options.orderBy[0]], [options.orderBy[1]]);
+	}
+
+	public async validate(url: string): Promise<boolean> {
+		const http: Contracts.HttpClient = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+
+		const response = await http.get(`${url}/node/configuration/crypto`);
+
+		if (response.json().data.network.client.token !== this.#config.get(Coins.ConfigKey.CurrencyTicker)) {
+			throw new Http.BadResponseException(`ERR_NETWORK_MISMATCH`);
+		}
+
+		if (response.failed()) {
+			throw new Http.BadResponseException(`ERR_FAILED`);
+		}
+
+		return true;
 	}
 }
