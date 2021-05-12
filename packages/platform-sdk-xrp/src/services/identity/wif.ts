@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
+import { BIP32, BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
 export class WIF implements Contracts.WIF {
 	readonly #config: Coins.Config;
@@ -10,7 +10,10 @@ export class WIF implements Contracts.WIF {
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
-			return BIP32.fromMnemonic(mnemonic).toWIF();
+			return BIP44.deriveChild(mnemonic, {
+				coinType: this.#config.get(Coins.ConfigKey.Slip44),
+				index: options?.bip44?.addressIndex,
+			}).toWIF();
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
