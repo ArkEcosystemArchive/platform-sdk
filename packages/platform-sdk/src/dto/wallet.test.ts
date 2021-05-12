@@ -14,7 +14,7 @@ test("#publicKey", () => {
 });
 
 test("#balance", () => {
-	expect(new Wallet({ key: "value" }).balance()).toBe(BigNumber.ZERO);
+	expect(new Wallet({ key: "value" }).balance()).toBeObject();
 });
 
 test("#nonce", () => {
@@ -57,7 +57,11 @@ test("#toObject", () => {
 	expect(new Wallet({ key: "value" }).toObject()).toMatchInlineSnapshot(`
 		Object {
 		  "address": "address",
-		  "balance": BigNumber {},
+		  "balance": Object {
+		    "available": BigNumber {},
+		    "fees": BigNumber {},
+		    "total": BigNumber {},
+		  },
 		  "isDelegate": false,
 		  "isMultiSignature": false,
 		  "isResignedDelegate": false,
@@ -107,7 +111,7 @@ class Wallet extends AbstractWalletData {
 			total: BigNumber.ZERO,
 			available: BigNumber.ZERO,
 			fees: BigNumber.ZERO,
-		}
+		};
 	}
 
 	public nonce(): BigNumber {
