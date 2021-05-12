@@ -77,6 +77,7 @@ export interface PrivateKey {
 export interface WIF {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
 	fromPrivateKey(privateKey: string): Promise<string>;
+	fromSecret(secret: string): Promise<string>;
 }
 
 export interface Keys {
