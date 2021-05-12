@@ -31,18 +31,18 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public publicKey(): PublicKey {
-		return new PublicKey();
+		return new PublicKey(this.#config);
 	}
 
 	public privateKey(): PrivateKey {
-		return new PrivateKey();
+		return new PrivateKey(this.#config);
 	}
 
 	public wif(): WIF {
-		return new WIF();
+		return new WIF(this.#config);
 	}
 
 	public keys(): Keys {
-		return new Keys();
+		return new Keys(this.#config);
 	}
 }
