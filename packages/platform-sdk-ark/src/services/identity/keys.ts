@@ -33,4 +33,8 @@ export class Keys implements Contracts.Keys {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
+
+	public async fromSecret(secret: string): Promise<Contracts.KeyPair> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
 }

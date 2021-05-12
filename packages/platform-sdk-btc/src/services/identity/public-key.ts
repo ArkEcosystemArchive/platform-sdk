@@ -22,4 +22,8 @@ export class PublicKey implements Contracts.PublicKey {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
+
+	public async fromSecret(secret: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
 }
