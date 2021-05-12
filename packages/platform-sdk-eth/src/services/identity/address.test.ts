@@ -1,39 +1,38 @@
 import "jest-extended";
-
+import { Address } from "./address";
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/helpers";
-import { IdentityService } from ".";
 
-let subject: IdentityService;
+let subject: Address;
 
-beforeEach(async () => (subject = await IdentityService.__construct(createConfig())));
+beforeEach(async () => (subject = new Address(createConfig())));
 
 describe("#address", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result: any = await subject.address().fromMnemonic(identity.mnemonic);
+		const result: any = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toBe(identity.address);
 	});
 
 	it("should generate an output from a multiSignature", async () => {
 		await expect(
-			subject.address().fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
+			subject.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
 		).rejects.toThrow(/is not supported/);
 	});
 
 	it("should generate an output from a publicKey", async () => {
-		const result: any = await subject.address().fromPublicKey(identity.publicKey);
+		const result: any = await subject.fromPublicKey(identity.publicKey);
 
 		expect(result).toBe(identity.address);
 	});
 
 	it("should generate an output from a privateKey", async () => {
-		const result: any = await subject.address().fromPrivateKey(identity.privateKey);
+		const result: any = await subject.fromPrivateKey(identity.privateKey);
 
 		expect(result).toBe(identity.address);
 	});
 
 	it("should generate an output from a wif", async () => {
-		await expect(subject.address().fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
+		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
 	});
 });
