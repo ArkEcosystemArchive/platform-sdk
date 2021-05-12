@@ -50,9 +50,11 @@ export class TransactionService implements Contracts.TransactionService {
 				1,
 			);
 
+			const pk: string = await new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic);
+			console.log("pk", pk);
 			const response = await this.#connection.trx.sign(
 				transaction,
-				await new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic),
+				pk,
 			);
 
 			return new SignedTransactionData(response.txId, response, response);
