@@ -51,27 +51,36 @@ export const subscribe = async (flags: {
 					async () => {
 
 						const { result, error } = await zilliqa.blockchain.getTxBlock(height);
+
 						if (!result || error) {
 							logger.error(`Failed to fetch block at height ${height}: ${error}`);
 							logger.error(error);
+
+							// @TODO: don't exit the process, retry
 							process.exit();
 						}
 
 						let transactions: TransactionObj[] = [];
 						if (result.header.NumTxns > 0) {
-							const { result: txResult, error: txError } = await zilliqa.blockchain.getTxnBodiesForTxBlock(height);
-							if (!txResult || txError) {
-								logger.error(`Failed to fetch transactions at height ${height}`);
-								logger.error(txError);
+							const { result: transactionResult, error: transactionError } = await zilliqa.blockchain.getTxnBodiesForTxBlock(height);
+
+							if (!transactionResult || transactionError) {
+								logger.error(`Failed to fetch transactions at height ${height}: ${transactionError}`);
+								logger.error(transactionError);
+
+								// @TODO: don't exit the process, retry
 								process.exit();
 							}
-							transactions = txResult;
-						} 
+
+							transactions = transactionResult;
+						}
 
 						database.storeBlockWithTransactions(result, transactions);
 					},
 					{
 						onFailedAttempt: (error) => {
+							console.log(error);
+
 							logger.error(
 								`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
 							);
