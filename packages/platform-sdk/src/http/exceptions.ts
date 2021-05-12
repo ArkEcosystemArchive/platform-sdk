@@ -1,3 +1,4 @@
+import { Exception } from "../exceptions";
 import { Response } from "./response";
 
 export class RequestException extends Error {
@@ -25,4 +26,8 @@ export class RequestException extends Error {
 
 		Error.captureStackTrace(this, this.constructor);
 	}
+}
+
+export class BadResponseException extends Exception {
+	//
 }
