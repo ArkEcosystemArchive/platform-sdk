@@ -4,11 +4,14 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
+import { Address } from "./identity/address";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection: TronWeb;
+	readonly #address: Address;
 
-	private constructor(peer: string) {
+	private constructor(peer: string, config: Coins.Config) {
+		this.#address = new Address(config);
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
@@ -16,9 +19,9 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		try {
-			return new TransactionService(config.get<string>("peer"));
+			return new TransactionService(config.get<string>("peer"), config);
 		} catch {
-			return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+			return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")), config);
 		}
 	}
 
@@ -42,7 +45,7 @@ export class TransactionService implements Contracts.TransactionService {
 				1,
 			);
 
-			const response = await this.#connection.trx.sign(transaction, BIP39.normalize(input.sign.mnemonic));
+			const response = await this.#connection.trx.sign(transaction, this.#address.fromMnemonic(input.sign.mnemonic));
 
 			return new SignedTransactionData(response.txId, response, response);
 		} catch (error) {

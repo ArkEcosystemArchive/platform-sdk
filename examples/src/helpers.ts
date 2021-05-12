@@ -1,3 +1,5 @@
+import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
+
 // import { ADA } from "@arkecosystem/platform-sdk-ada";
 import { ARK } from "@arkecosystem/platform-sdk-ark";
 // import { ATOM } from "@arkecosystem/platform-sdk-atom";
@@ -12,7 +14,6 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 // import { EOS } from "@arkecosystem/platform-sdk-eos";
 // import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { LSK } from "@arkecosystem/platform-sdk-lsk";
-import { Environment } from "@arkecosystem/platform-sdk-profiles";
 // import { NEO } from "@arkecosystem/platform-sdk-neo";
 import { SOL } from "@arkecosystem/platform-sdk-sol";
 
@@ -48,4 +49,15 @@ export const useEnvironment = async (): Promise<Environment> => {
 
 	return env;
 };
+
+export async function createProfile(env: Environment, name: string, password: string) {
+	const findByName = env.profiles().findByName(name);
+	if (findByName) {
+		await env.profiles().forget(findByName.id());
+	}
+	const profile: Contracts.IProfile = env.profiles().create(name);
+	profile.auth().setPassword(password);
+	await env.persist();
+	return profile;
+}
 

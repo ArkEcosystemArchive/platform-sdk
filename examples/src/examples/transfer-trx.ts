@@ -1,14 +1,12 @@
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
-import { useEnvironment, useLogger } from "../helpers";
+import { createProfile, useEnvironment, useLogger } from "../helpers";
 
 export default async () => {
 	const logger = useLogger();
 	const env: Environment = await useEnvironment();
 
 	// Create profile
-	const profile: Contracts.IProfile = env.profiles().create("tron-profile");
-	profile.auth().setPassword("my-password");
-	await env.persist();
+	const profile = await createProfile(env,  "tron-profile", "my-password");
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
