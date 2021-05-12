@@ -44,7 +44,7 @@ describe("ClientService", function () {
 
 		expect(result).toBeInstanceOf(WalletData);
 		expect(result.address()).toBe(identity.address);
-		expect(result.balance()).toEqual(BigNumber.make(499890000000));
+		expect(result.balance().available).toEqual(BigNumber.make(499890000000));
 		expect(result.nonce()).toEqual(BigNumber.make(1));
 	});
 

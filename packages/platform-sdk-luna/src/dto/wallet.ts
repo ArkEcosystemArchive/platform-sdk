@@ -14,8 +14,12 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		throw new Exceptions.NotImplemented(this.constructor.name, "publicKey");
 	}
 
-	public balance(): BigNumber {
-		return BigNumber.ZERO;
+	public balance(): Contracts.WalletBalance {
+		return {
+			total: BigNumber.ZERO,
+			available: BigNumber.ZERO,
+			fees: BigNumber.ZERO,
+		}
 	}
 
 	public nonce(): BigNumber {

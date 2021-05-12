@@ -2,7 +2,7 @@ import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Entity } from "../contracts/coins";
+import { Entity, WalletBalance } from "../contracts/coins";
 import { AbstractWalletData } from "./wallet";
 
 test("#address", () => {
@@ -102,8 +102,12 @@ class Wallet extends AbstractWalletData {
 		return "publicKey";
 	}
 
-	public balance(): BigNumber {
-		return BigNumber.ZERO;
+	public balance(): WalletBalance {
+		return {
+			total: BigNumber.ZERO,
+			available: BigNumber.ZERO,
+			fees: BigNumber.ZERO,
+		}
 	}
 
 	public nonce(): BigNumber {
