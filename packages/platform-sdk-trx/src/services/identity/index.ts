@@ -39,7 +39,7 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public wif(): WIF {
-		return new WIF();
+		return new WIF(this.#config);
 	}
 
 	public keys(): Keys {
