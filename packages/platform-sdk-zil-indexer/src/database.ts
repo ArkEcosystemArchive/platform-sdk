@@ -24,7 +24,7 @@ export class Database {
 	 */
 	public constructor(flags: Record<string, string>, logger: Logger) {
 		const databaseFile =
-			flags.database || `${envPaths(require("../package.json").name).data}/${flags.coin}/${flags.network}.db`;
+			flags.database || `${envPaths(require("../package.json").name).data}/zil/${flags.network}.db`;
 		ensureFileSync(databaseFile);
 
 		logger.debug(`Using [${databaseFile}] as database`);
@@ -93,14 +93,15 @@ export class Database {
 	private storeTransaction(transaction: TransactionObj): void {
 		this.#database
 			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, sender, recipient, amount, gas, gasPrice, input, nonce) VALUES (:hash, :sender, :recipient, :amount, :gas, :gasPrice, :input, :nonce)`,
+				`INSERT OR IGNORE INTO transactions (hash, sender, recipient, amount, gas, gasLimit, gasPrice, nonce) VALUES (:hash, :sender, :recipient, :amount, :gas, :gasLimit, :gasPrice, :nonce)`,
 			)
 			.run({
-				hash: transaction.ID,  // TODO: check this is really the hash
-				sender: transaction.senderPubKey,  // sender is a public key,
-				recipient: transaction.toAddr,     // but recipient is an address. conversion needed or store as-is?
+				hash: transaction.ID,
+				sender: transaction.senderPubKey,
+				recipient: transaction.toAddr,
 				amount: transaction.amount,
-				gas: transaction.receipt.cumulative_gas, // is "gas" gas limit or gas used?
+				gas: transaction.receipt.cumulative_gas,
+				gasLimit: transaction.gasLimit,
 				gasPrice: transaction.gasPrice,
 				nonce: transaction.nonce,
 			});
@@ -130,6 +131,7 @@ export class Database {
 				recipient   VARCHAR(66)   NOT NULL,
 				amount      INTEGER       NOT NULL,
 				gas         INTEGER       NOT NULL,
+				gasLimit    INTEGER       NOT NULL,
 				gasPrice    INTEGER       NOT NULL,
 				nonce       INTEGER       NOT NULL
 			);

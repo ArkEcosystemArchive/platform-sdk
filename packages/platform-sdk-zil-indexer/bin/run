@@ -6,7 +6,7 @@ const { subscribe } = require("../dist");
 
 const { flags, input } = require("./meow");
 
-const processName = `${flags.coin}-indexer`;
+const processName = "zil-indexer";
 
 if (input[0] === "run") {
 	(async () => subscribe(flags))();
