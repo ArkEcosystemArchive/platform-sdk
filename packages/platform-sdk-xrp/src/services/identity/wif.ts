@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP32, BIP44 } from "@arkecosystem/platform-sdk-crypto";
+import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
 export class WIF implements Contracts.WIF {
 	readonly #config: Coins.Config;
