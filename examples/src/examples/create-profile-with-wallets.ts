@@ -28,20 +28,6 @@ export default async () => {
 	});
 	profile.wallets().push(wallet2);
 
-	const wallet3 = await profile.walletFactory().fromAddress({
-		address: "TXaMbkVYxQySwumStDujGt5b9nkJwKDsSA",
-		coin: "TRX",
-		network: "trx.testnet"
-	});
-	profile.wallets().push(wallet3);
-
-	const wallet4 = await profile.walletFactory().fromAddress({
-		address: "TFEdyfF1pqXn2XuqYwJbeLzwGrwwTUufLx",
-		coin: "TRX",
-		network: "trx.testnet"
-	});
-	profile.wallets().push(wallet4);
-
 	// Display profile balance
 	logger.log("Profile balance", profile.balance().toHuman(2));
 
