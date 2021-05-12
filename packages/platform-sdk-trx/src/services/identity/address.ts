@@ -1,9 +1,20 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
 export class Address implements Contracts.Address {
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
+	readonly #config: Coins.Config;
+
+	public constructor(config: Coins.Config) {
+		this.#config = config;
 	}
+
+	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+		return this.fromPublicKey(BIP44.deriveChild(mnemonic, {
+			coinType: this.#config.get(Coins.ConfigKey.Slip44),
+			index: options?.bip44?.addressIndex,
+		}).publicKey.toString("hex"));
+	}
+
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
