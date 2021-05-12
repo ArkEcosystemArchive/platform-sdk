@@ -21,13 +21,13 @@ export class ClientService implements Contracts.ClientService {
 		try {
 			return new ClientService({
 				config,
-				http: config.get<Contracts.HttpClient>("httpClient"),
+				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 				peer: config.get<string>("peer"),
 			});
 		} catch {
 			return new ClientService({
 				config,
-				http: config.get<Contracts.HttpClient>("httpClient"),
+				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}

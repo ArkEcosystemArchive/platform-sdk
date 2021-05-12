@@ -52,7 +52,7 @@ describe("ClientService", function () {
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toBe("my48EN4kDnGEpRZMBfiDS65wdfwfgCGZRz");
 			expect(result.publicKey()).toBe("76a914c05f53de525d80151e209a729cf1c7909c88f88e88ac");
-			expect(result.balance()).toEqual(BigNumber.make(3050000));
+			expect(result.balance().available).toEqual(BigNumber.make(3050000));
 		});
 	});
 

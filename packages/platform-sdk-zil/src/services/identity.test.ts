@@ -40,6 +40,7 @@ describe("IdentityService", () => {
 
 		it("should validate an address", async () => {
 			await expect(subject.address().validate(identity.address)).resolves.toBeTrue();
+			await expect(subject.address().validate(identity.bech32Address)).resolves.toBeTrue();
 			await expect(subject.address().validate(identity.address.slice(0, 10))).resolves.toBeFalse();
 		});
 	});

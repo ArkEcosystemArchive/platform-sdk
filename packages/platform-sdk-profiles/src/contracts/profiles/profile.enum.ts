@@ -44,5 +44,5 @@ export enum ProfileSetting {
  */
 export enum ProfileData {
 	LatestMigration = "LATEST_MIGRATION",
-	HasCompletedTutorial = "HAS_COMPLETED_TUTORIAL",
+	HasCompletedIntroductoryTutorial = "HAS_COMPLETED_INTRODUCTORY_TUTORIAL",
 }

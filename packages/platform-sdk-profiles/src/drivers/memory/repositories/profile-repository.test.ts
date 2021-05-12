@@ -5,7 +5,7 @@ import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
-import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";
+import { IProfileRepository } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
 import { ProfileImporter } from "../profiles/profile.importer";

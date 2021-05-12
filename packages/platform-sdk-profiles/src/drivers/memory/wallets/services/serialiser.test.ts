@@ -10,6 +10,7 @@ import { container } from "../../../../environment/container";
 import { Identifiers } from "../../../../environment/container.models";
 import { Wallet } from "../wallet";
 import { IProfile, IProfileRepository, IReadWriteWallet, WalletData, WalletFlag } from "../../../../contracts";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -112,7 +113,11 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.networkConfig.crypto.slip44).toBe(slip44);
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toEqual({
-			BALANCE: "55827093444556",
+			BALANCE: {
+				total: BigNumber.make("55827093444556"),
+				available: BigNumber.make("55827093444556"),
+				fees: BigNumber.make("55827093444556"),
+			},
 			BROADCASTED_TRANSACTIONS: {},
 			LEDGER_PATH: "1",
 			SEQUENCE: "111932",

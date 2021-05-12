@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+const {
+	createProfileWithWallets,
+	openProfile,
+	transfer,
+} = require("../dist");
+
+const { input } = require("./meow");
+
+if (input[0] === "create-profile") {
+	(async () => createProfileWithWallets())();
+}
+
+if (input[0] === "open-profile") {
+	(async () => openProfile())();
+}
+
+if (input[0] === "transfer") {
+	(async () => transfer())();
+}

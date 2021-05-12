@@ -17,7 +17,7 @@ describe("WalletData", function () {
 	});
 
 	it("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make(2000000000));
+		expect(subject.balance().available).toEqual(BigNumber.make(2000000000));
 	});
 
 	it("#entities", () => {

@@ -1,6 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { validation } from "@zilliqa-js/zilliqa";
 import { Wallet } from "@zilliqa-js/account";
+import { validation } from "@zilliqa-js/zilliqa";
 
 import { accountFromMnemonic, accountFromPrivateKey } from "../../zilliqa";
 
@@ -34,6 +34,10 @@ export class Address implements Contracts.Address {
 	}
 
 	public async validate(address: string): Promise<boolean> {
+		if (validation.isBech32(address)) {
+			return true;
+		}
+
 		return validation.isAddress(address);
 	}
 }

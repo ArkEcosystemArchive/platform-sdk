@@ -85,7 +85,7 @@ describe("ClientService", function () {
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toBe("GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB");
 			expect(result.publicKey()).toBe("GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB");
-			expect(result.balance()).toEqual(BigNumber.make("100000000000000"));
+			expect(result.balance().available).toEqual(BigNumber.make("100000000000000"));
 			expect(result.nonce()).toEqual(BigNumber.make("7275146318446606"));
 		});
 	});

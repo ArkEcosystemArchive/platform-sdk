@@ -67,7 +67,7 @@ describe("ClientService", function () {
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toBe("0xb5663d3a23706eb4537ffea78f56948a53ac2ebe");
 			expect(result.publicKey()).toBeUndefined();
-			expect(result.balance().toString()).toEqual("46478645338609751471");
+			expect(result.balance()).toBeObject();
 			expect(result.nonce().toString()).toEqual("665");
 		});
 	});
