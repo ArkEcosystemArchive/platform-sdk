@@ -5,13 +5,18 @@ import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
 import { Address } from "./identity/address";
+import { PrivateKey } from "./identity/private-key";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #connection: TronWeb;
+	readonly #config: Coins.Config;
 	readonly #address: Address;
+	readonly #pk: PrivateKey;
 
 	private constructor(peer: string, config: Coins.Config) {
 		this.#address = new Address(config);
+		this.#pk = new PrivateKey(config);
+		this.#config = config;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
@@ -45,7 +50,7 @@ export class TransactionService implements Contracts.TransactionService {
 				1,
 			);
 
-			const pk = await this.#address.fromMnemonic(input.sign.mnemonic);
+			const pk = await this.#pk.fromMnemonic(input.sign.mnemonic);
 			const response = await this.#connection.trx.sign(transaction, pk);
 
 			return new SignedTransactionData(response.txId, response, response);
