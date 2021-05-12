@@ -2,18 +2,18 @@ import "jest-extended";
 
 import { identity } from "../../../test/identity";
 import { createConfig } from "../../../test/helpers";
-import { Address } from "./address";
+import { PrivateKey } from "./private-key";
 
-let subject: Address;
+let subject: PrivateKey;
 
 beforeEach(async () => {
-	subject = new Address(createConfig());
+	subject = new PrivateKey(createConfig());
 });
 
-describe("Address", () => {
+describe("PrivateKey", () => {
 	describe("#fromMnemonic", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toBe(identity.address);
+			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toBe(identity.privateKey);
 		});
 	});
 });
