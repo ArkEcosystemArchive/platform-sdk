@@ -106,7 +106,7 @@ export class ProfileRepository implements IProfileRepository {
 
 	/** {@inheritDoc IProfileRepository.restore} */
 	public async restore(profile: IProfile, password?: string): Promise<void> {
-		new ProfileImporter(profile).import(password);
+		await new ProfileImporter(profile).import(password);
 	}
 
 	/** {@inheritDoc IProfileRepository.dump} */
