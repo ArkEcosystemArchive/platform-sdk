@@ -15,9 +15,14 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return undefined;
 	}
 
-	public balance(): BigNumber {
-		return BigNumber.make(Web3.utils.toBN(this.data.balance).toString());
+	public balance(): Contracts.WalletBalance {
+		return {
+			total: BigNumber.make(Web3.utils.toBN(this.data.balance).toString()),
+			available: BigNumber.make(Web3.utils.toBN(this.data.balance).toString()),
+			fees: BigNumber.make(Web3.utils.toBN(this.data.balance).toString()),
+		}
 	}
+
 
 	public nonce(): BigNumber {
 		return BigNumber.make(Web3.utils.toBN(this.data.nonce).toString());

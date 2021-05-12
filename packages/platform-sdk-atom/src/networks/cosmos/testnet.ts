@@ -32,8 +32,11 @@ const network: Coins.NetworkManifest = {
 	},
 	featureFlags: {
 		Client: {
-			syncing: true,
 			broadcast: true,
+			syncing: true,
+			transaction: true,
+			transactions: true,
+			wallet: true,
 		},
 		Identity: {
 			address: {

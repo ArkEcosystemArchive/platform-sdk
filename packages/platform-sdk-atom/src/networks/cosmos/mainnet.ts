@@ -20,7 +20,9 @@ const network: Coins.NetworkManifest = {
 		expirationType: "height",
 	},
 	networking: {
-		hosts: ["https://api.cosmos.network"],
+		// @NOTE: no longer responsive even though it should be official
+		// hosts: ["https://api.cosmos.network"],
+		hosts: ["https://node.atomscan.com"],
 	},
 	governance: {
 		voting: {
@@ -32,8 +34,11 @@ const network: Coins.NetworkManifest = {
 	},
 	featureFlags: {
 		Client: {
-			syncing: true,
 			broadcast: true,
+			syncing: true,
+			transaction: true,
+			transactions: true,
+			wallet: true,
 		},
 		Identity: {
 			address: {

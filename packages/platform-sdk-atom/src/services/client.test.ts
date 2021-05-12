@@ -68,6 +68,8 @@ describe("ClientService", function () {
 		it("should succeed", async () => {
 			nock("https://stargate.cosmos.network")
 				.get("/auth/accounts/cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0")
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`))
+				.get("/bank/balances/cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
@@ -75,7 +77,7 @@ describe("ClientService", function () {
 			expect(result).toBeInstanceOf(WalletData);
 			expect(result.address()).toBe("cosmos1de7pk372jkp9vrul0gv5j6r3l9mt3wa6m4h6h0");
 			expect(result.publicKey()).toBe("Ap65s+Jdgo8BtvTbkc7GyUti8yJ7RpZ7cE1zCuKgNeXY");
-			expect(result.balance()).toEqual(BigNumber.make(69519574));
+			expect(result.balance().available).toEqual(BigNumber.make(22019458509));
 			expect(result.nonce()).toEqual(BigNumber.make(24242));
 		});
 	});

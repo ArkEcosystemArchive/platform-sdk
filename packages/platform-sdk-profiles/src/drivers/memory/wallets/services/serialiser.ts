@@ -38,7 +38,7 @@ export class WalletSerialiser {
 			address: this.#wallet.address(),
 			publicKey: this.#wallet.publicKey(),
 			data: {
-				[WalletData.Balance]: this.#wallet.balance().toFixed(),
+				[WalletData.Balance]: this.#wallet.data().get<string>(WalletData.Balance),
 				[WalletData.BroadcastedTransactions]: this.#wallet.data().get(WalletData.BroadcastedTransactions, []),
 				[WalletData.Sequence]: this.#wallet.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.#wallet.data().get(WalletData.SignedTransactions, []),

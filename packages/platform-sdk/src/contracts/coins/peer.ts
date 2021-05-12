@@ -22,4 +22,6 @@ export interface PeerService {
 	getSeeds(): string[];
 
 	search(opts: any): Promise<PeerResponse[]>;
+
+	validate(url: string): Promise<boolean>;
 }
