@@ -1,7 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveAddress, deriveKeypair } from "ripple-keypairs";
-import TronWeb from "tronweb";
 
 export class Address implements Contracts.Address {
 	readonly #config: Coins.Config;
@@ -11,7 +10,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return TronWeb.address.fromPrivateKey(BIP44.deriveChild(mnemonic, {
+		return this.fromPublicKey(BIP44.deriveChild(mnemonic, {
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,
 		}).publicKey.toString("hex"));
