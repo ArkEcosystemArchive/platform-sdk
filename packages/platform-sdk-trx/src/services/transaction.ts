@@ -1,21 +1,15 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
-import { Address } from "./identity/address";
 import { PrivateKey } from "./identity/private-key";
 
 export class TransactionService implements Contracts.TransactionService {
-	readonly #connection: TronWeb;
 	readonly #config: Coins.Config;
-	readonly #address: Address;
-	readonly #pk: PrivateKey;
+	readonly #connection: TronWeb;
 
-	private constructor(peer: string, config: Coins.Config) {
-		this.#address = new Address(config);
-		this.#pk = new PrivateKey(config);
+	private constructor({ config, peer }) {
 		this.#config = config;
 		this.#connection = new TronWeb({
 			fullHost: peer,
@@ -24,9 +18,15 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		try {
-			return new TransactionService(config.get<string>("peer"), config);
+			return new TransactionService({
+				config,
+				peer: config.get<string>("peer")
+			});
 		} catch {
-			return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")), config);
+			return new TransactionService({
+				config,
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts"))
+			});
 		}
 	}
 
@@ -50,8 +50,10 @@ export class TransactionService implements Contracts.TransactionService {
 				1,
 			);
 
-			const pk = await this.#pk.fromMnemonic(input.sign.mnemonic);
-			const response = await this.#connection.trx.sign(transaction, pk);
+			const response = await this.#connection.trx.sign(
+				transaction,
+				await new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic),
+			);
 
 			return new SignedTransactionData(response.txId, response, response);
 		} catch (error) {

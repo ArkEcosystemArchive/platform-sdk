@@ -13,7 +13,7 @@ beforeEach(async () => {
 describe("Keys", () => {
 	describe("#fromMnemonic", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toBe({
+			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({
 				publicKey: identity.publicKey,
 				privateKey: identity.privateKey,
 			});
