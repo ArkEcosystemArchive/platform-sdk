@@ -61,6 +61,7 @@ export class Database {
 	public storeBlockWithTransactions(block: TxBlockObj, transactions: TransactionObj[]): void {
 		const hash = block.body.BlockHash;
 		const number = block.header.BlockNum;
+
 		this.#logger.info(`Storing block #${number} [${hash}] with ${transactions.length} transaction(s)`);
 
 		this.storeBlock({ hash, number });

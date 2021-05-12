@@ -27,13 +27,7 @@ export const subscribe = async (flags: {
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
 	// copy of the blockchain to avoid holes in the historical data of users.
-	const { result, error } = await zilliqa.blockchain.getNumTxBlocks();
-	if (!result || error) {
-		logger.error(error || "Failed to fetch remote block height");
-		process.exit();
-	}
-
-	const [localHeight, remoteHeight] = [database.lastBlockNumber(), new BN(result).toNumber() - 1];
+	const [localHeight, remoteHeight] = [database.lastBlockNumber(), new BN(await zilliqa.height()).toNumber() - 1];
 
 	for (let height = localHeight; height <= remoteHeight; height++) {
 		try {
@@ -49,33 +43,16 @@ export const subscribe = async (flags: {
 			queue.add(() =>
 				retry(
 					async () => {
+						const block = await zilliqa.block(height);
 
-						const { result, error } = await zilliqa.blockchain.getTxBlock(height);
-
-						if (!result || error) {
-							logger.error(`Failed to fetch block at height ${height}: ${error}`);
-							logger.error(error);
-
-							// @TODO: don't exit the process, retry
-							process.exit();
+						if (block === undefined) {
+							throw new Error(`Failed to fetch block at height ${height}`);
 						}
 
-						let transactions: TransactionObj[] = [];
-						if (result.header.NumTxns > 0) {
-							const { result: transactionResult, error: transactionError } = await zilliqa.blockchain.getTxnBodiesForTxBlock(height);
-
-							if (!transactionResult || transactionError) {
-								logger.error(`Failed to fetch transactions at height ${height}: ${transactionError}`);
-								logger.error(transactionError);
-
-								// @TODO: don't exit the process, retry
-								process.exit();
-							}
-
-							transactions = transactionResult;
-						}
-
-						database.storeBlockWithTransactions(result, transactions);
+						database.storeBlockWithTransactions(
+							block,
+							block.header.NumTxns > 0 ? await zilliqa.transactions(height) : [],
+						);
 					},
 					{
 						onFailedAttempt: (error) => {
@@ -91,6 +68,7 @@ export const subscribe = async (flags: {
 			);
 		} catch (error) {
 			logger.error(error);
+
 			process.exit();
 		}
 	}

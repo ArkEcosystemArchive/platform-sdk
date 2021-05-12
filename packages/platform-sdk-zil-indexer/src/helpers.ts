@@ -1,8 +1,8 @@
 import PQueue from "p-queue";
-import { Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { Logger } from "./logger";
 import { Database } from "./database";
+import { Client } from "./client";
 
 /**
  * Creates a new database instance.
@@ -41,4 +41,4 @@ export const useQueue = (): PQueue => {
  * @param {string} host
  * @returns Zilliqa
  */
-export const useClient = (host: string): Zilliqa => new Zilliqa(host);
+export const useClient = (host: string): Client => new Client(host);
