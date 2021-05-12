@@ -13,8 +13,8 @@ export default async () => {
 	await profile.sync();
 
 	const mnemonic1: string = "cabin fold parrot grunt tide exact spoon regular wait mercy very fame";
-	const wallet1 = await profile.walletFactory().fromAddress({
-		address: "TFEdyfF1pqXn2XuqYwJbeLzwGrwwTUufLx",
+	const wallet1 = await profile.walletFactory().fromMnemonic({
+		mnemonic: mnemonic1,
 		coin: "TRX",
 		network: "trx.testnet"
 	});
