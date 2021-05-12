@@ -29,5 +29,7 @@ export class RequestException extends Error {
 }
 
 export class BadResponseException extends Exception {
-	//
+	public constructor(code: string) {
+		super(`Bad Response: ${code}`);
+	}
 }

@@ -92,11 +92,11 @@ export class PeerService implements Contracts.PeerService {
 		const response = await http.get(`${url}/node/configuration/crypto`);
 
 		if (response.json().data.network.client.token !== this.#config.get(Coins.ConfigKey.CurrencyTicker)) {
-			throw new Http.BadResponseException(`Failed to connect to ${url} because it is on another network.`);
+			throw new Http.BadResponseException(`ERR_NETWORK_MISMATCH`);
 		}
 
 		if (response.failed()) {
-			throw new Http.BadResponseException(`Connected to ${url} but it returned a bad response.`);
+			throw new Http.BadResponseException(`ERR_FAILED`);
 		}
 
 		return true;
