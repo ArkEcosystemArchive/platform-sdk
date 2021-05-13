@@ -17,7 +17,7 @@ export class DelegateService implements IDelegateService {
 
 		if (result === undefined) {
 			throw new Error(
-				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
+				`The delegates for [${coin.uuid()}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
 			);
 		}
 
