@@ -189,7 +189,6 @@ describe("ProfileRepository", () => {
 
 	it("should dump profiles without a password", async () => {
 		const john = subject.create("John");
-		await subject.restore(john);
 
 		await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 
@@ -204,7 +203,7 @@ describe("ProfileRepository", () => {
 
 	it("should dump profiles with a password", async () => {
 		const jane = subject.create("Jane");
-		await subject.restore(jane);
+
 		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
 
 		jane.password().set("password");
@@ -273,7 +272,6 @@ describe("ProfileRepository", () => {
 
 	it("should dump", async () => {
 		const profile = subject.create("John");
-		await subject.restore(profile);
 
 		expect(subject.dump(profile)).toBeObject();
 	});
@@ -283,7 +281,6 @@ describe("ProfileRepository", () => {
 
 		const profile = subject.create("John");
 
-		expect(profile.status().isRestored()).toBeFalse();
 		await subject.restore(profile);
 
 		expect(profile.status().isRestored()).toBeTrue();
@@ -293,6 +290,8 @@ describe("ProfileRepository", () => {
 		subject.flush();
 
 		const profile = subject.create("John");
+		profile.status().reset();
+
 		const profileAttibuteSetMock = jest.spyOn(profile.getAttributes(), "set").mockImplementation(() => {
 			return true;
 		});
@@ -310,6 +309,8 @@ describe("ProfileRepository", () => {
 		subject.flush();
 
 		const profile = subject.create("John");
+		profile.status().reset();
+
 		const profileAttibuteSetMock = jest.spyOn(profile.getAttributes(), "set").mockImplementation(() => {
 			return true;
 		});
