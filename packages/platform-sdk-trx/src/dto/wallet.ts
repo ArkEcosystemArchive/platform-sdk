@@ -15,8 +15,6 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): Contracts.WalletBalance {
-		const available = BigNumber.make(this.data.balance).times(1e2);
-
 		const tokens = {};
 
 		if (this.data.trc20) {
@@ -24,6 +22,8 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 				tokens[address] = BigNumber.make(balance).times(1e2);
 			}
 		}
+
+		const available = BigNumber.make(this.data.balance).times(1e2);
 
 		return {
 			total: available,

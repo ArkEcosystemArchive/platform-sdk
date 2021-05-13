@@ -44,7 +44,7 @@ describe("ClientService", function () {
 	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
-				.post("/walletsolidity/getaccount")
+				.get("/v1/accounts/TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ");

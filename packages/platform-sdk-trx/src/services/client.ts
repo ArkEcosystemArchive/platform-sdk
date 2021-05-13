@@ -93,7 +93,7 @@ export class ClientService implements Contracts.ClientService {
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const { data } = (await this.#client.get(`${this.getHost()}/v1/accounts/${id}`)).json();
 
-		return new WalletData(data);
+		return new WalletData(data[0]);
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {

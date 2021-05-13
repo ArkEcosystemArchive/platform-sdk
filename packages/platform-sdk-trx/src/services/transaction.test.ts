@@ -2,7 +2,7 @@ import "jest-extended";
 
 import nock from "nock";
 
-import { testWallet } from "../../test/fixtures/wallet";
+import { identity } from "../../test/identity";
 import { createConfig } from "../../test/helpers";
 import { TransactionService } from "./transaction";
 
@@ -20,9 +20,9 @@ describe("TransactionService", function () {
 				.reply(200, require(`${__dirname}/../../test/fixtures/crypto/transfer.json`));
 
 			const result = await subject.transfer({
-				from: testWallet.address,
+				from: identity.address,
 				sign: {
-					mnemonic: testWallet.privateKey,
+					mnemonic: identity.mnemonic,
 				},
 				data: {
 					to: "TY689z7Q2NpZYBxGfXbYR4PmS2WXyTNrir",
