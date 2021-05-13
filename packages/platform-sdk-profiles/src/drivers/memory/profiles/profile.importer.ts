@@ -33,7 +33,7 @@ export class ProfileImporter implements IProfileImporter {
 
 		this.#profile.contacts().fill(data.contacts);
 
-		// @TODO: gather all coins here from wallets and contact addresses
+		this.gatherCoins(data);
 	}
 
 	/**
@@ -143,5 +143,21 @@ export class ProfileImporter implements IProfileImporter {
 		}
 
 		return value as IProfileData;
+	}
+
+	private gatherCoins(data: IProfileData): void {
+		const setCoin = (coin: string, network: string) => this.#profile.coins().set(
+			this.#profile.coinFactory().make(coin, network)
+		);
+
+		for (const { coin, network } of Object.values(data.wallets)) {
+			setCoin(coin, network);
+		}
+
+		for (const contact of Object.values(data.contacts) as any) {
+			for (const { coin, network } of (Object.values(contact.addresses) as { coin: string, network: string }[])) {
+				setCoin(coin, network);
+			}
+		}
 	}
 }
