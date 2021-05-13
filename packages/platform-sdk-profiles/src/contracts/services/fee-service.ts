@@ -1,5 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-
+import { Contracts } from "@arkecosystem/platform-sdk";
 import { IProfile } from "../profiles";
 
 /**
@@ -12,30 +11,34 @@ export interface IFeeService {
 	/**
 	 * Get all fees for the given coin and network.
 	 *
-	 * @param {Coins.Coin} coin
+	 * @param {string} coin
+	 * @param {string} network
 	 * @return {Contracts.TransactionFees}
 	 * @memberof IFeeService
 	 */
-	all(coin: Coins.Coin): Contracts.TransactionFees;
+	all(coin: string, network: string): Contracts.TransactionFees;
 
 	/**
 	 * Get fees for the given coin, network and type.
 	 *
-	 * @param {Coins.Coin} coin
+	 * @param {string} coin
+	 * @param {string} network
 	 * @param {string} type
 	 * @return {Contracts.TransactionFee}
 	 * @memberof IFeeService
 	 */
-	findByType(coin: Coins.Coin, type: string): Contracts.TransactionFee;
+	findByType(coin: string, network: string, type: string): Contracts.TransactionFee;
 
 	/**
 	 * Synchronise fees for the given coin and network.
 	 *
-	 * @param {Coins.Coin} coin
+	 * @param {IProfile} profile
+	 * @param {string} coin
+	 * @param {string} network
 	 * @return {Promise<void>}
 	 * @memberof IFeeService
 	 */
-	sync(coin: Coins.Coin): Promise<void>;
+	sync(profile: IProfile, coin: string, network: string): Promise<void>;
 
 	/**
 	 * Synchronise fees for all coins and networks.
