@@ -120,10 +120,6 @@ test("#destruct with throw", async () => {
 	await expect(subject.__destruct()).rejects.toThrow();
 });
 
-test("#uuid", () => {
-	expect(subject.uuid()).toBeString();
-});
-
 test("#network", () => {
 	expect(subject.network()).toBeInstanceOf(Network);
 });
