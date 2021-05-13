@@ -29,7 +29,7 @@ beforeEach(async () => {
 
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-	const coin = profile.coins().push("ARK", "ark.devnet");
+	const coin = profile.coins().set("ARK", "ark.devnet");
 	await coin.__construct();
 
 	subject = new ContactAddress(
@@ -119,7 +119,7 @@ describe("when contact has not been synchronized yet", () => {
 			.persist();
 
 		const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
-		const coin = profile.coins().push("ARK", "ark.devnet");
+		const coin = profile.coins().set("ARK", "ark.devnet");
 
 		subject = new ContactAddress(
 			{

@@ -29,7 +29,7 @@ export class FeeService implements IFeeService {
 
 	/** {@inheritDoc IFeeService.sync} */
 	public async sync(profile: IProfile, coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = profile.coins().push(coin, network);
+		const instance: Coins.Coin = profile.coins().set(coin, network);
 
 		// @TODO: remove this in a refactor
 		/* istanbul ignore next */
