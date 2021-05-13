@@ -291,6 +291,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@zilliqa-js/core",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@zilliqa-js/zilliqa",
       "allowedCategories": [ "libraries" ]
     },
