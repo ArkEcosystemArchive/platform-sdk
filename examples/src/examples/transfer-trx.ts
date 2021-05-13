@@ -1,5 +1,5 @@
-import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, useEnvironment, useLogger } from "../helpers";
+import { Environment } from "@arkecosystem/platform-sdk-profiles";
+import { pollTransactionStatus, createProfile, useEnvironment, useLogger } from "../helpers";
 
 export default async () => {
 	const logger = useLogger();
@@ -12,6 +12,7 @@ export default async () => {
 	await env.profiles().restore(profile, "my-password");
 	await profile.sync();
 
+	// Create read-write wallet 1
 	const mnemonic1: string = "cabin fold parrot grunt tide exact spoon regular wait mercy very fame";
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
@@ -20,6 +21,7 @@ export default async () => {
 	});
 	profile.wallets().push(wallet1);
 
+	// Create read-only wallet 2
 	const address2: string = "TXaMbkVYxQySwumStDujGt5b9nkJwKDsSA";
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: address2,
@@ -48,15 +50,5 @@ export default async () => {
 	logger.log("signedTransactionData", transactionId);
 
 	await wallet1.transaction().broadcast(transactionId);
-
-	logger.info(`Transaction [${transactionId}] is awaiting confirmation.`);
-	let awaitingConfirmation = true;
-	while (awaitingConfirmation) {
-		try {
-			awaitingConfirmation = await wallet1.transaction().confirm(transactionId);
-		} catch {
-			awaitingConfirmation = false;
-		}
-	}
-	logger.info(`Transaction [${transactionId}] is confirmed.`);
+	await pollTransactionStatus(transactionId, wallet1);
 };

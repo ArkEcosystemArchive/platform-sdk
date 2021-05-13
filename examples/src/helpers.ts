@@ -61,3 +61,15 @@ export async function createProfile(env: Environment, name: string, password: st
 	return profile;
 }
 
+export async function pollTransactionStatus(transactionId: string, wallet1: Contracts.IReadWriteWallet) {
+	useLogger().info(`Transaction [${transactionId}] is awaiting confirmation.`);
+	let awaitingConfirmation = true;
+	while (awaitingConfirmation) {
+		try {
+			awaitingConfirmation = await wallet1.transaction().confirm(transactionId);
+		} catch {
+			awaitingConfirmation = false;
+		}
+	}
+	useLogger().info(`Transaction [${transactionId}] is confirmed.`);
+}
