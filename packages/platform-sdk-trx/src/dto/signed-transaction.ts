@@ -5,19 +5,19 @@ export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
 	public sender(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "sender");
+		return "SENDER";
 	}
 
 	public recipient(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "recipient");
+		return "RECIPIENT";
 	}
 
 	public amount(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "amount");
+		return BigNumber.ZERO;
 	}
 
 	public fee(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "fee");
+		return BigNumber.ZERO;
 	}
 
 	public isMultiSignature(): boolean {

@@ -51,17 +51,9 @@ export class TransactionService implements Contracts.TransactionService {
 			);
 
 			const pk: string = await new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic);
-			// const pk = new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic);
-			console.log("pk", pk, "tx", transaction);
-			// Code: https://github.com/tronprotocol/tronweb/blob/master/src/lib/trx.js#L650
-			// const response = await this.#connection.trx.sign(
-			// 	transaction,
-			// 	pk, // This one expects a callback, but not sure what it should do. Removing await from above doesn't work
-			// );
 			const response = await utils.crypto.signTransaction(pk, transaction);
-			console.log("sign", response);
 
-			return new SignedTransactionData(response.txId, response, response);
+			return new SignedTransactionData(response.txID, response, JSON.stringify(response));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
