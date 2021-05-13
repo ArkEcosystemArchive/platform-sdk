@@ -1,38 +1,26 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 const network: Coins.NetworkManifest = {
-	id: "terra.mainnet",
-	type: "live",
-	name: "Mainnet",
-	coin: "Terra",
-	explorer: "https://terra.stake.id/",
+	id: "zil.testnet",
+	type: "test",
+	name: "Testnet",
+	coin: "Zilliqa",
+	explorer: "https://viewblock.io/zilliqa?network=testnet",
 	currency: {
-		ticker: "LUNA",
-		symbol: "LUNA",
+		ticker: "ZIL",
+		symbol: "ZIL",
 	},
 	crypto: {
-		networkId: "columbus-3",
-		slip44: 330,
-		bech32: "terra",
-		signingMethods: {
-			mnemonic: true,
-		},
+		slip44: 313,
 		expirationType: "height",
 	},
 	networking: {
-		hosts: [],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
+		hosts: ["https://dev-api.zilliqa.com"],
 	},
 	featureFlags: {
 		Client: {
-			syncing: true,
+			transaction: true,
+			wallet: true,
 			broadcast: true,
 		},
 		Identity: {
@@ -60,6 +48,10 @@ const network: Coins.NetworkManifest = {
 		},
 		Transaction: {
 			transfer: true,
+		},
+		Derivation: {
+			bip39: true,
+			bip44: true,
 		},
 	},
 	transactionTypes: ["transfer"],

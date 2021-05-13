@@ -268,7 +268,7 @@ export interface IProfile {
 	 * @return {IPasswordManager}
 	 * @memberof IProfile
 	 */
-	 password(): IPasswordManager;
+	password(): IPasswordManager;
 
 	/**
 	 * Determine if the profile uses a password.
@@ -319,10 +319,17 @@ export interface IProfile {
 	getAttributes(): AttributeBag<IProfileInput>;
 
 	/**
-	 * Determine if the tutorial has been completed.
+	 * Mark the introductory tutorial as completed.
+	 *
+	 * @memberof IProfile
+	 */
+	markIntroductoryTutorialAsComplete(): void;
+
+	/**
+	 * Determine if the introductory tutorial has been completed.
 	 *
 	 * @return {boolean}
 	 * @memberof IProfile
 	 */
-	hasCompletedTutorial(): boolean;
+	hasCompletedIntroductoryTutorial(): boolean;
 }

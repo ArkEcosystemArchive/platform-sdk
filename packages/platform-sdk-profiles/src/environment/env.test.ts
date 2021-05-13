@@ -13,6 +13,7 @@ import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { importByMnemonic } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
+import { PluginRegistry } from "../drivers/memory/plugins";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { ProfileImporter } from "../drivers/memory/profiles/profile.importer";
 import { ProfileSerialiser } from "../drivers/memory/profiles/profile.serialiser";
@@ -24,7 +25,6 @@ import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
 import { MemoryStorage } from "./storage/memory";
-import { PluginRegistry } from "../drivers/memory/plugins";
 
 let subject: Environment;
 

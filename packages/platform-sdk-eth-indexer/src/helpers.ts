@@ -1,8 +1,8 @@
-import Logger from "@ptkdev/logger";
 import PQueue from "p-queue";
 import Web3 from "web3";
 
 import { Database } from "./database";
+import { Logger } from "./logger";
 
 /**
  * Creates a new database instance.

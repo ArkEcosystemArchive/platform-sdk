@@ -3,7 +3,7 @@ import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
-import Logger from "./logger";
+import { Logger } from "./logger";
 import { getAmount, getFees, getVIns, getVOuts } from "./tx-parsing-helpers";
 import { Flags, VIn, VOut } from "./types";
 

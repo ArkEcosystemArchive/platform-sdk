@@ -1,4 +1,4 @@
-import { Environment, Helpers } from "@arkecosystem/platform-sdk-profiles";
+import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
 
 import { renderLogo } from "../helpers";

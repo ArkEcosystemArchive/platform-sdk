@@ -45,7 +45,6 @@ beforeEach(() => {
 	subject = new ProfileImporter(profile);
 	dumper = new ProfileDumper(profile);
 	serialiser = new ProfileSerialiser(profile);
-
 });
 
 describe("#restore", () => {

@@ -4,15 +4,15 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data.hash;
+		return this.data.txID;
 	}
 
 	public blockId(): string | undefined {
-		return this.data.block.toString();
+		return this.data.blockNumber;
 	}
 
 	public timestamp(): DateTime | undefined {
-		return DateTime.make(this.data.timestamp);
+		return DateTime.make(this.data.raw_data.timestamp);
 	}
 
 	public confirmations(): BigNumber {
@@ -20,11 +20,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return this.data.ownerAddress;
+		return this.data.raw_data.contract[0].parameter.value.owner_address;
 	}
 
 	public recipient(): string {
-		return this.data.toAddress;
+		return this.data.raw_data.contract[0].parameter.value.to_address;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -32,22 +32,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.amount);
+		return BigNumber.make(this.data.raw_data.contract[0].parameter.value.amount).times(100);
 	}
 
 	public fee(): BigNumber {
-		if (this.data.fee === "") {
-			return BigNumber.ZERO;
-		}
-
-		return BigNumber.make(this.data.fee);
+		return BigNumber.make(this.data.ret[0].fee);
 	}
 
 	public memo(): string | undefined {
-		if (this.data.data === "") {
-			return undefined;
-		}
-
 		return this.data.data;
 	}
 
@@ -64,7 +56,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return this.data.confirmed;
+		return this.data.ret[0].contractRet === "SUCCESS";
 	}
 
 	public isSent(): boolean {

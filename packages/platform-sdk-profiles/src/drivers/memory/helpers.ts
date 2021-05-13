@@ -6,4 +6,5 @@ import { Events, Identifiers } from "../../environment/container.models";
 
 export const emitter = (): EventEmitter => container.get(Identifiers.EventEmitter);
 
-export const emitProfileChanged = (profile: IProfile): boolean => emitter().emit(Events.ProfileChanged, { id: profile.id() });
+export const emitProfileChanged = (profile: IProfile): boolean =>
+	emitter().emit(Events.ProfileChanged, { id: profile.id() });

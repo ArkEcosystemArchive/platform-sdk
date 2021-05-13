@@ -44,6 +44,10 @@ export class Address implements Contracts.Address {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
 
+	public async fromSecret(secret: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
+
 	public async validate(address: string): Promise<boolean> {
 		try {
 			base58.decode(address);

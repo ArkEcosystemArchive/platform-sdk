@@ -33,13 +33,19 @@ beforeEach(async () => {
 	await coin.__construct();
 	profile.coins().set(coin);
 
-	subject = new ContactAddress({
-		id: "uuid",
-		coin: "ARK",
-		network: "ark.devnet",
-		name: "John Doe",
-		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-	}, coin, profile);
+	subject = new ContactAddress(
+		{
+			id: "uuid",
+			coin: "ARK",
+			network: "ark.devnet",
+			name: "John Doe",
+			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		},
+		coin,
+		profile,
+	);
+
+	await subject.syncIdentity();
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -126,13 +132,17 @@ describe("when contact has not been synchronized yet", () => {
 		await coin.__construct();
 		profile.coins().set(coin);
 
-		subject = new ContactAddress({
-			id: "uuid",
-			coin: "ARK",
-			network: "ark.devnet",
-			name: "John Doe",
-			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		}, coin, profile);
+		subject = new ContactAddress(
+			{
+				id: "uuid",
+				coin: "ARK",
+				network: "ark.devnet",
+				name: "John Doe",
+				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			},
+			coin,
+			profile,
+		);
 	});
 
 	it("should throw Error trying to determine if the wallet is a delegate", async () => {

@@ -1,6 +1,6 @@
 import "jest-extended";
 import "reflect-metadata";
-import { mock } from 'jest-mock-extended';
+import { mock } from "jest-mock-extended";
 
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";

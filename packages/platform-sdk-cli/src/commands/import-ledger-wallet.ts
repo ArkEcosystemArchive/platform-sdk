@@ -102,14 +102,14 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 							addressMap[identity.address()].path,
 							identity.address(),
 							addressMap[identity.address()].extendedKey,
-							identity.balance().toHuman(),
+							identity.balance().available.toHuman(),
 						]);
 
 						wallets.push({
 							path: addressMap[identity.address()].path,
 							address: identity.address(),
 							extendedKey: addressMap[identity.address()].extendedKey,
-							balance: identity.balance().toHuman(),
+							balance: identity.balance().available.toHuman(),
 						});
 					}
 				}

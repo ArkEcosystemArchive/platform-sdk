@@ -1,6 +1,6 @@
 import { get } from "dot-prop";
 
-import { NetworkManifest, ExpirationType, CoinManifest } from "./network.models";
+import { CoinManifest, ExpirationType, NetworkManifest } from "./network.models";
 
 export class Network {
 	/**

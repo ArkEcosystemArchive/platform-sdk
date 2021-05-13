@@ -1,6 +1,5 @@
 import { Managers } from "@arkecosystem/crypto";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import { getPeerFromConfig } from "./helpers";
 
 import { ClientService } from "./services/client";
@@ -61,7 +60,7 @@ export class ServiceProvider {
 	}
 
 	private static async retrieveNetworkConfiguration(config: Coins.Config): Promise<{ crypto; peer; status }> {
-		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>("httpClient");
+		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 
 		let peer: string = getPeerFromConfig(config);
 

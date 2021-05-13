@@ -70,8 +70,12 @@ describe("#fromMnemonic", () => {
 			bip: 44,
 		});
 
-		expect(wallet.address()).toBe("aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304");
-		expect(wallet.publicKey()).toBe("aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304");
+		expect(wallet.address()).toBe(
+			"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
+		);
+		expect(wallet.publicKey()).toBe(
+			"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
+		);
 	});
 
 	it("should throw if BIP39 is requested but extended public keys are used", async () => {

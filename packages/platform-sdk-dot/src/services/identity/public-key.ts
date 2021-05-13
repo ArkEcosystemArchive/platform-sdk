@@ -14,4 +14,8 @@ export class PublicKey implements Contracts.PublicKey {
 	public async fromWIF(wif: string): Promise<string> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
+
+	public async fromSecret(secret: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
 }

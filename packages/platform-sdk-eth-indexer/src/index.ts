@@ -1,7 +1,7 @@
-import Logger from "@ptkdev/logger";
 import retry from "p-retry";
 
 import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
+import { Logger } from "./logger";
 
 /**
  * Launch the indexer and subscribe to updates for new data.

@@ -12,14 +12,13 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 	/** {@inheritDoc IWalletSynchroniser.coin} */
 	public async coin(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
 		if (options.resetCoin) {
-			// @TODO: create new instance without custom configuration
-
-			// this.#wallet.getAttributes().set(
-			// 	"coin",
-			// 	State.profile()
-			// 		.coins()
-			// 		.push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true),
-			// );
+			this.#wallet.getAttributes().set(
+				"coin",
+				this.#wallet
+					.profile()
+					.coins()
+					.push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true),
+			);
 		}
 
 		await this.#wallet.mutator().coin(this.#wallet.coin());

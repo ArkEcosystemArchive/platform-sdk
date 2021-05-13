@@ -14,7 +14,7 @@ npm install @arkecosystem/platform-sdk-btc-indexer
 
 ## Usage
 
-Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/ada).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk).
 
 ## Security
 

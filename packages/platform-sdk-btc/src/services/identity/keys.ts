@@ -27,6 +27,10 @@ export class Keys implements Contracts.Keys {
 		}
 	}
 
+	public async fromSecret(secret: string): Promise<Contracts.KeyPair> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+	}
+
 	private normalize(privateKey: Buffer): Contracts.KeyPair {
 		try {
 			return {

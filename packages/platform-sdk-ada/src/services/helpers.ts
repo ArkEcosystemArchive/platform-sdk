@@ -15,7 +15,7 @@ import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 
 export const usedAddressesForAccount = async (config: Coins.Config, accountPublicKey: string) => {
-	const networkId: string = await config.get<string>(Coins.ConfigKey.CryptoNetworkId);
+	const networkId: string = config.get<string>(Coins.ConfigKey.CryptoNetworkId);
 	const usedSpendAddresses: Set<string> = new Set<string>();
 	const usedChangeAddresses: Set<string> = new Set<string>();
 

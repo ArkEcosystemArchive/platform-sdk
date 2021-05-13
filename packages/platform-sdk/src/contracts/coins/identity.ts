@@ -28,13 +28,22 @@ export interface KeyPair {
 }
 
 export interface IdentityOptions {
+	bip39?: boolean;
 	bip44?: {
 		account: number;
 		change?: number;
 		addressIndex?: number;
 	};
-	bip49?: boolean;
-	bip84?: boolean;
+	bip49?: {
+		account: number;
+		change?: number;
+		addressIndex?: number;
+	};
+	bip84?: {
+		account: number;
+		change?: number;
+		addressIndex?: number;
+	};
 }
 
 export interface Address {
@@ -43,6 +52,7 @@ export interface Address {
 	fromPublicKey(publicKey: string, options?: IdentityOptions): Promise<string>;
 	fromPrivateKey(privateKey: string, options?: IdentityOptions): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
+	fromSecret(secret: string): Promise<string>;
 	validate(address: string): Promise<boolean>;
 }
 
@@ -55,20 +65,24 @@ export interface PublicKey {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
 	fromMultiSignature(min: number, publicKeys: string[]): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
+	fromSecret(secret: string): Promise<string>;
 }
 
 export interface PrivateKey {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
 	fromWIF(wif: string): Promise<string>;
+	fromSecret(secret: string): Promise<string>;
 }
 
 export interface WIF {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
 	fromPrivateKey(privateKey: string): Promise<string>;
+	fromSecret(secret: string): Promise<string>;
 }
 
 export interface Keys {
 	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<KeyPair>;
 	fromPrivateKey(privateKey: string): Promise<KeyPair>;
 	fromWIF(wif: string): Promise<KeyPair>;
+	fromSecret(secret: string): Promise<KeyPair>;
 }
