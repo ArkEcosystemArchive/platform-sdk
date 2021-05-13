@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
@@ -43,14 +43,14 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		// try {
+		try {
 			if (!input.sign.mnemonic) {
 				throw new Error("No mnemonic provided.");
 			}
 
 			const transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
-				input.data.amount,
+				BigNumber.make(input.data.amount).times(1e6).toString(),
 				await this.#address.fromMnemonic(input.sign.mnemonic),
 				1,
 			);
@@ -60,10 +60,10 @@ export class TransactionService implements Contracts.TransactionService {
 				await this.#privateKey.fromMnemonic(input.sign.mnemonic),
 			);
 
-			return new SignedTransactionData(response.txId, response, response);
-		// } catch (error) {
-		// 	throw new Exceptions.CryptoException(error);
-		// }
+			return new SignedTransactionData(response.txID, response, response);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async secondSignature(
