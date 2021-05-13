@@ -84,7 +84,5 @@ export class SettingRepository implements ISettingRepository {
 
 		// If a key is invalid we'll remote it to ensure consistent data.
 		this.#data.forget(key);
-
-		emitProfileChanged(this.#profile);
 	}
 }
