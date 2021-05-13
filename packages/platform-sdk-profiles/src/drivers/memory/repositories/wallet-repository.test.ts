@@ -240,7 +240,7 @@ describe("#sortBy", () => {
 		expect(wallets).toBeInstanceOf(Object);
 	});
 
-	describe("restore", function() {
+	describe("restore", function () {
 		let profile: IProfile;
 		let wallet: IReadWriteWallet;
 
@@ -264,7 +264,7 @@ describe("#sortBy", () => {
 					settings: wallet.settings(),
 				},
 			});
-		})
+		});
 
 		it("should restore", async () => {
 			const newWallet2 = new Wallet(uuidv4(), {}, profile);

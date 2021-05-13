@@ -136,7 +136,9 @@ it("should fail to flush settings if the name is missing", () => {
 
 	expect(subject.settings().keys()).toHaveLength(0);
 
-	expect(() => subject.flushSettings()).toThrowError("The name of the profile could not be found. This looks like a bug.");
+	expect(() => subject.flushSettings()).toThrowError(
+		"The name of the profile could not be found. This looks like a bug.",
+	);
 });
 
 it("should have a a wallet factory", () => {
@@ -193,7 +195,7 @@ it("should mark the introductory tutorial as completed", () => {
 
 	subject.markIntroductoryTutorialAsComplete();
 
-	expect(subject.hasCompletedIntroductoryTutorial()).toBeTrue()
+	expect(subject.hasCompletedIntroductoryTutorial()).toBeTrue();
 });
 
 it("should determine if the introductory tutorial has been completed", () => {

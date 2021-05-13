@@ -41,12 +41,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromMnemonic} */
-	public async fromMnemonic({
-		coin,
-		network,
-		mnemonic,
-		bip = 39,
-	}: IMnemonicOptions): Promise<IReadWriteWallet> {
+	public async fromMnemonic({ coin, network, mnemonic, bip = 39 }: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Mnemonic);
 

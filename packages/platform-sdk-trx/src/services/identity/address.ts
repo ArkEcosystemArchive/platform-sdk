@@ -10,10 +10,12 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return TronWeb.address.fromPrivateKey(BIP44.deriveChild(mnemonic, {
-			coinType: this.#config.get(Coins.ConfigKey.Slip44),
-			index: options?.bip44?.addressIndex,
-		}).privateKey!.toString("hex"));
+		return TronWeb.address.fromPrivateKey(
+			BIP44.deriveChild(mnemonic, {
+				coinType: this.#config.get(Coins.ConfigKey.Slip44),
+				index: options?.bip44?.addressIndex,
+			}).privateKey!.toString("hex"),
+		);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

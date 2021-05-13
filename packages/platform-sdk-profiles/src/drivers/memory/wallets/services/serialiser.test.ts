@@ -77,7 +77,6 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-
 	subject = new Wallet(uuidv4(), {}, profile);
 
 	await subject.mutator().coin("ARK", "ark.devnet");

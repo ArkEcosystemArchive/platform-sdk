@@ -1,6 +1,5 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { convertQaToZil } from "../zilliqa";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public primaryKey(): string {
@@ -20,7 +19,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 			total: BigNumber.make(this.data.balance).divide(1e4),
 			available: BigNumber.make(this.data.balance).divide(1e4),
 			fees: BigNumber.make(this.data.balance).divide(1e4),
-		}
+		};
 	}
 
 	public nonce(): BigNumber {

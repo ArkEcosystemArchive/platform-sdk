@@ -25,12 +25,12 @@ export class TransactionService implements Contracts.TransactionService {
 		try {
 			return new TransactionService({
 				config,
-				peer: config.get<string>("peer")
+				peer: config.get<string>("peer"),
 			});
 		} catch {
 			return new TransactionService({
 				config,
-				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts"))
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}
 	}

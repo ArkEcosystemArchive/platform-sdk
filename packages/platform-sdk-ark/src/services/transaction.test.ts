@@ -106,7 +106,7 @@ describe("Core", () => {
 				.get("/api/blockchain")
 				.reply(200, require("../../test/fixtures/client/blockchain.json"))
 				.get("/api/node/configuration")
-				.reply(200, require("../../test/fixtures/client/configuration.json"))
+				.reply(200, require("../../test/fixtures/client/configuration.json"));
 
 			const result = await subject.transfer({
 				nonce: "1",

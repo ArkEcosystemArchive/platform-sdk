@@ -1,6 +1,7 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
 import { convertQaToZil } from "../zilliqa";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {

@@ -80,7 +80,6 @@ beforeEach(async () => {
 
 	profile = profileRepository.create("John Doe");
 
-
 	wallet = await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
 
 	liveSpy = jest.spyOn(wallet.network(), "isLive").mockReturnValue(true);

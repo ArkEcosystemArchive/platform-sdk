@@ -58,7 +58,7 @@ it("should allows voting", () => {
 		"ark.devnet": {
 			...ARK.manifest.networks["ark.devnet"],
 			governance: {},
-		}
+		},
 	});
 
 	expect(subject.allowsVoting()).toBeFalse();
@@ -72,7 +72,7 @@ it("should get the delegate count", () => {
 		"ark.devnet": {
 			...ARK.manifest.networks["ark.devnet"],
 			governance: {},
-		}
+		},
 	});
 
 	expect(subject.delegateCount()).toBe(0);
@@ -86,7 +86,7 @@ it("should get maximum votes per wallet", () => {
 		"ark.devnet": {
 			...ARK.manifest.networks["ark.devnet"],
 			governance: {},
-		}
+		},
 	});
 
 	expect(subject.maximumVotesPerWallet()).toBe(0);
@@ -100,7 +100,7 @@ it("should get maximum votes per transaction", () => {
 		"ark.devnet": {
 			...ARK.manifest.networks["ark.devnet"],
 			governance: {},
-		}
+		},
 	});
 
 	expect(subject.maximumVotesPerTransaction()).toBe(0);

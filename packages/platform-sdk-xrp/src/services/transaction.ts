@@ -10,7 +10,7 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
 	readonly #connection: RippleAPI;
 
-	private constructor({ config, connection }: { config: Coins.Config, connection: RippleAPI }) {
+	private constructor({ config, connection }: { config: Coins.Config; connection: RippleAPI }) {
 		this.#config = config;
 		this.#connection = connection;
 	}
