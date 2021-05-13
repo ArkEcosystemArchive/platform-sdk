@@ -33,8 +33,10 @@ jobs:
                   version: 5.18.1
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
+            - name: Lint
+              run: rush lint
             - name: Format
-              run: bash scripts/format.sh
+              run: rush prettier
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
                   commit_message: "style: resolve style guide violations"

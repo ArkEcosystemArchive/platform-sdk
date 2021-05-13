@@ -56,7 +56,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return this.data.ret[0].contractRet === 'SUCCESS';
+		return this.data.ret[0].contractRet === "SUCCESS";
 	}
 
 	public isSent(): boolean {

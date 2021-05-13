@@ -33,17 +33,14 @@ beforeEach(async () => {
 	coin = await makeCoin("ARK", "ark.devnet");
 });
 
-describe.each(["serial", "parallel"])
-("IDelegateSyncer %s", (type) => {
-
+describe.each(["serial", "parallel"])("IDelegateSyncer %s", (type) => {
 	let subject: IDelegateSyncer;
 
 	beforeEach(async () => {
 		const clientService = coin.client();
 
-		subject = type === "serial" ?
-			new SerialDelegateSyncer(clientService) :
-			new ParallelDelegateSyncer(clientService);
+		subject =
+			type === "serial" ? new SerialDelegateSyncer(clientService) : new ParallelDelegateSyncer(clientService);
 	});
 
 	it("should sync", async () => {

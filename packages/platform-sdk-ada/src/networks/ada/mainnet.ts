@@ -16,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		expirationType: "height",
 		derivation: {
 			extendedPublicKey: true,
-		}
+		},
 	},
 	networking: {
 		hosts: [],

@@ -19,7 +19,7 @@ describe("TransactionService", function () {
 			.post("/wallet/createtransaction")
 			.reply(200, require(`${__dirname}/../../test/fixtures/crypto/transfer.json`))
 			.post("/wallet/broadcasttransaction")
-			.reply(200, {"result":true,"txid":"920048e37005eb84299fe99ae666dcfe220a5befa587eec9c36c9e75dc37f821"});
+			.reply(200, { result: true, txid: "920048e37005eb84299fe99ae666dcfe220a5befa587eec9c36c9e75dc37f821" });
 
 		const result = await subject.transfer({
 			from: identity.address,

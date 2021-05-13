@@ -40,7 +40,6 @@ beforeEach(() => {
 	profile = new Profile({ id: "uuid", name: "name", data: "" });
 	subject = new ProfileSerialiser(profile);
 
-
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 });
 

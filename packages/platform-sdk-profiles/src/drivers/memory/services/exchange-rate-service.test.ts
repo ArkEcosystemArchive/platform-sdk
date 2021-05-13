@@ -54,7 +54,6 @@ beforeEach(async () => {
 
 	profile = profileRepository.create("John Doe");
 
-
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");
 
 	wallet = await importByMnemonic(profile, identity.mnemonic, "ARK", "ark.devnet");
