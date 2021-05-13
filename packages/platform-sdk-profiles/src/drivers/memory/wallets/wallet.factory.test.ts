@@ -13,12 +13,13 @@ import { WalletData } from "../../../contracts";
 jest.setTimeout(60000);
 
 let subject: WalletFactory;
-let profile: Profile;
 
 beforeAll(() => {
 	bootContainer();
 
 	nock.disableNetConnect();
+
+	subject = new WalletFactory(new Profile({ id: "id", name: "name", avatar: "avatar", data: "" }));
 });
 
 beforeEach(async () => {
@@ -36,15 +37,13 @@ beforeEach(async () => {
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
 		.persist();
-
-	profile = new Profile({ id: "id", name: "name", avatar: "avatar", data: "" });
-	subject = new WalletFactory(profile);
 });
 
 describe("#fromMnemonic", () => {
 	it("should create a wallet using BIP39", async () => {
 		const wallet = await subject.fromMnemonic({
-			coin: profile.coinFactory().make("ARK", "ark.devnet"),
+			coin: "ARK",
+			network: "ark.devnet",
 			mnemonic: "this is a top secret passphrase",
 		});
 
@@ -54,7 +53,8 @@ describe("#fromMnemonic", () => {
 
 	it("should create a wallet using BIP44 (passphrase > address)", async () => {
 		const wallet = await subject.fromMnemonic({
-			coin: profile.coinFactory().make("BTC", "btc.testnet"),
+			coin: "BTC",
+			network: "btc.testnet",
 			mnemonic: "this is a top secret passphrase",
 			bip: 44,
 		});
@@ -65,8 +65,10 @@ describe("#fromMnemonic", () => {
 
 	it("should create a wallet using BIP44 (passphrase > extended public key)", async () => {
 		const wallet = await subject.fromMnemonic({
-			coin: profile.coinFactory().make("ADA", "ada.testnet"),
-			mnemonic: "excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
+			coin: "ADA",
+			network: "ada.testnet",
+			mnemonic:
+				"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
 			bip: 44,
 		});
 
@@ -79,16 +81,22 @@ describe("#fromMnemonic", () => {
 	});
 
 	it("should throw if BIP39 is requested but extended public keys are used", async () => {
-		await expect(subject.fromMnemonic({
-			coin: profile.coinFactory().make("ADA", "ada.testnet"),
-			mnemonic: "this is a top secret passphrase",
-		})).rejects.toThrow("The configured network uses extended public keys for derivation. Please pass in BIP44 arguments.");
+		await expect(
+			subject.fromMnemonic({
+				coin: "ADA",
+				network: "ada.testnet",
+				mnemonic: "this is a top secret passphrase",
+			}),
+		).rejects.toThrow(
+			"The configured network uses extended public keys for derivation. Please pass in BIP44 arguments.",
+		);
 	});
 });
 
 test("#fromAddress", async () => {
 	const wallet = await subject.fromAddress({
-		coin: profile.coinFactory().make("ARK", "ark.devnet"),
+		coin: "ARK",
+		network: "ark.devnet",
 		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 	});
 
@@ -98,7 +106,8 @@ test("#fromAddress", async () => {
 
 test("#fromPublicKey", async () => {
 	const wallet = await subject.fromPublicKey({
-		coin: profile.coinFactory().make("ARK", "ark.devnet"),
+		coin: "ARK",
+		network: "ark.devnet",
 		publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 	});
 
@@ -108,7 +117,8 @@ test("#fromPublicKey", async () => {
 
 test("#fromPrivateKey", async () => {
 	const wallet = await subject.fromPrivateKey({
-		coin: profile.coinFactory().make("ARK", "ark.devnet"),
+		coin: "ARK",
+		network: "ark.devnet",
 		privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
 	});
 
@@ -118,7 +128,8 @@ test("#fromPrivateKey", async () => {
 
 test("#fromAddressWithLedgerPath", async () => {
 	const wallet = await subject.fromAddressWithLedgerPath({
-		coin: profile.coinFactory().make("ARK", "ark.devnet"),
+		coin: "ARK",
+		network: "ark.devnet",
 		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		path: "1",
 	});
@@ -129,7 +140,8 @@ test("#fromAddressWithLedgerPath", async () => {
 
 test("#fromMnemonicWithEncryption", async () => {
 	const wallet = await subject.fromMnemonicWithEncryption({
-		coin: profile.coinFactory().make("ARK", "ark.devnet"),
+		coin: "ARK",
+		network: "ark.devnet",
 		mnemonic: "this is a top secret passphrase",
 		password: "password",
 	});
@@ -146,7 +158,8 @@ test("#fromMnemonicWithEncryption", async () => {
 
 test("#fromWIF", async () => {
 	const wallet = await subject.fromWIF({
-		coin: profile.coinFactory().make("ARK", "ark.devnet"),
+		coin: "ARK",
+		network: "ark.devnet",
 		wif: "SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA",
 	});
 
@@ -158,7 +171,8 @@ test("#fromWIFWithEncryption", async () => {
 	const { compressed, privateKey } = decode("SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA");
 
 	const wallet = await subject.fromWIFWithEncryption({
-		coin: profile.coinFactory().make("ARK", "ark.devnet"),
+		coin: "ARK",
+		network: "ark.devnet",
 		wif: encrypt(privateKey, compressed, "password"),
 		password: "password",
 	});
