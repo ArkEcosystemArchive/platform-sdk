@@ -15,7 +15,7 @@
 		"plugin:import/warnings",
 		"plugin:jest/recommended",
 		"plugin:prettier/recommended",
-		"prettier/@typescript-eslint"
+		"prettier"
 	],
 	"rules": {
 		"@typescript-eslint/ban-ts-comment": "off",
