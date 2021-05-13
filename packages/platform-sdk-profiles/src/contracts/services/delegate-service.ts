@@ -1,5 +1,3 @@
-import { Coins } from "@arkecosystem/platform-sdk";
-
 import { IProfile } from "../profiles";
 import { IReadWriteWallet } from "../wallets";
 import { IReadOnlyWallet } from "../wallets/read-only-wallet";
@@ -14,50 +12,56 @@ export interface IDelegateService {
 	/**
 	 * Get all delegates for the given coin and network.
 	 *
-	 * @param {Coins.Coin} coin
+	 * @param {string} coin
+	 * @param {string} network
 	 * @return {IReadOnlyWallet[]}
 	 * @memberof IDelegateService
 	 */
-	all(coin: Coins.Coin): IReadOnlyWallet[];
+	all(coin: string, network: string): IReadOnlyWallet[];
 
 	/**
 	 * Find the delegate for the given coin, network and address.
 	 *
-	 * @param {Coins.Coin} coin
+	 * @param {string} coin
+	 * @param {string} network
 	 * @param {string} address
 	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
-	findByAddress(coin: Coins.Coin, address: string): IReadOnlyWallet;
+	findByAddress(coin: string, network: string, address: string): IReadOnlyWallet;
 
 	/**
 	 * Find the delegate for the given coin, network and public key.
 	 *
-	 * @param {Coins.Coin} coin
+	 * @param {string} coin
+	 * @param {string} network
 	 * @param {string} publicKey
 	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
-	findByPublicKey(coin: Coins.Coin, publicKey: string): IReadOnlyWallet;
+	findByPublicKey(coin: string, network: string, publicKey: string): IReadOnlyWallet;
 
 	/**
 	 * Find the delegate for the given coin, network and username.
 	 *
-	 * @param {Coins.Coin} coin
+	 * @param {string} coin
+	 * @param {string} network
 	 * @param {string} username
 	 * @return {IReadOnlyWallet}
 	 * @memberof IDelegateService
 	 */
-	findByUsername(coin: Coins.Coin, username: string): IReadOnlyWallet;
+	findByUsername(coin: string, network: string, username: string): IReadOnlyWallet;
 
 	/**
 	 * Synchronise delegates for the given coin and network.
 	 *
-	 * @param {Coins.Coin} coin
+	 * @param {IProfile} profile
+	 * @param {string} coin
+	 * @param {string} network
 	 * @return {Promise<void>}
 	 * @memberof IDelegateService
 	 */
-	sync(coin: Coins.Coin): Promise<void>;
+	sync(profile: IProfile, coin: string, network: string): Promise<void>;
 
 	/**
 	 * Synchronise delegates for all coins and networks.
