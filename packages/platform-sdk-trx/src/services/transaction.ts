@@ -4,7 +4,6 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
-import { Address } from "./identity/address";
 import { PrivateKey } from "./identity/private-key";
 
 export class TransactionService implements Contracts.TransactionService {
@@ -40,7 +39,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		// try {
+		try {
 			if (!input.sign.mnemonic) {
 				throw new Error("No mnemonic provided.");
 			}
@@ -52,20 +51,15 @@ export class TransactionService implements Contracts.TransactionService {
 				1,
 			);
 
-			console.log(
-				await new Address(this.#config).fromMnemonic(input.sign.mnemonic),
-				await new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic),
-			)
-
 			const response = await this.#connection.trx.sign(
 				transaction,
 				await new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic),
 			);
 
 			return new SignedTransactionData(response.txId, response, response);
-		// } catch (error) {
-		// 	throw new Exceptions.CryptoException(error);
-		// }
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async secondSignature(
