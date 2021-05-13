@@ -126,7 +126,7 @@ export class ClientService implements Contracts.ClientService {
 			rejected: [],
 			errors: {},
 		};
-		console.log(transactions)
+
 		for (const transaction of transactions) {
 			const response = (await this.#client.post(`${this.getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())).json();
 
