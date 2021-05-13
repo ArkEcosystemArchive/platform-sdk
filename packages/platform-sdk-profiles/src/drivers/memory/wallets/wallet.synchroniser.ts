@@ -11,18 +11,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 	}
 
 	/** {@inheritDoc IWalletSynchroniser.coin} */
-	public async coin(options: { resetCoin: boolean } = { resetCoin: false }): Promise<void> {
-		if (options.resetCoin) {
-			this.#wallet.getAttributes().set(
-				"coin",
-				this.#wallet
-					.profile()
-					.coins()
-					// @TODO: we shouldn't construct a new coin here
-					.set(new CoinFactory(this.#wallet.profile()).make(this.#wallet.coinId(), this.#wallet.networkId(), {}, true)),
-			);
-		}
-
+	public async coin(): Promise<void> {
 		await this.#wallet.mutator().coin(this.#wallet.coin());
 	}
 
