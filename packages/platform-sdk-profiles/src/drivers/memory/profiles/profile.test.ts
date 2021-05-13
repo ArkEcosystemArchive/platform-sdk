@@ -112,7 +112,7 @@ it("should flush all data", () => {
 
 	subject.flush();
 
-	expect(subject.settings().keys()).toHaveLength(14);
+	expect(subject.settings().keys()).toHaveLength(12);
 });
 
 it("should fail to flush all data if the name is missing", () => {
@@ -128,7 +128,7 @@ it("should flush settings", () => {
 
 	subject.flushSettings();
 
-	expect(subject.settings().keys()).toHaveLength(14);
+	expect(subject.settings().keys()).toHaveLength(12);
 });
 
 it("should fail to flush settings if the name is missing", () => {
@@ -171,15 +171,6 @@ it("should determine if the password uses a password", () => {
 	subject.auth().setPassword("password");
 
 	expect(subject.usesPassword()).toBeTrue();
-});
-
-test("#usesMultiPeerBroadcasting", async () => {
-	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
-
-	subject.settings().set(ProfileSetting.UseCustomPeer, true);
-	subject.settings().set(ProfileSetting.UseMultiPeerBroadcast, true);
-
-	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
 });
 
 test("#hasBeenPartiallyRestored", async () => {

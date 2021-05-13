@@ -36,8 +36,6 @@ export class ProfileInitialiser implements IProfileInitialiser {
 		this.#profile.settings().set(ProfileSetting.ScreenshotProtection, true);
 		this.#profile.settings().set(ProfileSetting.Theme, "light");
 		this.#profile.settings().set(ProfileSetting.TimeFormat, "h:mm A");
-		this.#profile.settings().set(ProfileSetting.UseCustomPeer, false);
-		this.#profile.settings().set(ProfileSetting.UseMultiPeerBroadcast, false);
 		this.#profile.settings().set(ProfileSetting.UseTestNetworks, false);
 
 		emitProfileChanged(this.#profile);

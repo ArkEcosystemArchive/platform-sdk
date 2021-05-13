@@ -28,14 +28,18 @@ export class SettingRepository implements ISettingRepository {
 
 	/** {@inheritDoc ISettingRepository.get} */
 	public get<T>(key: string, defaultValue?: T): T | undefined {
-		this.assertValidKey(key);
+		if (this.isUnknownKey(key)) {
+			return;
+		}
 
 		return this.#data.get(key, defaultValue);
 	}
 
 	/** {@inheritDoc ISettingRepository.set} */
 	public set(key: string, value: string | number | boolean | object): void {
-		this.assertValidKey(key);
+		if (this.isUnknownKey(key)) {
+			return;
+		}
 
 		this.#data.set(key, value);
 
@@ -51,7 +55,9 @@ export class SettingRepository implements ISettingRepository {
 
 	/** {@inheritDoc ISettingRepository.has} */
 	public has(key: string): boolean {
-		this.assertValidKey(key);
+		if (this.isUnknownKey(key)) {
+			return false;
+		}
 
 		return this.#data.has(key);
 	}
@@ -63,7 +69,9 @@ export class SettingRepository implements ISettingRepository {
 
 	/** {@inheritDoc ISettingRepository.forget} */
 	public forget(key: string): void {
-		this.assertValidKey(key);
+		if (this.isUnknownKey(key)) {
+			return;
+		}
 
 		this.#data.forget(key);
 
@@ -77,11 +85,15 @@ export class SettingRepository implements ISettingRepository {
 		emitProfileChanged(this.#profile);
 	}
 
-	private assertValidKey(key: string): void {
+	private isUnknownKey(key: string): boolean {
 		if (this.#allowedKeys.includes(key)) {
-			return;
+			return false;
 		}
 
-		throw new Error(`The [${key}] is not a valid setting.`);
+		if (this.#data.has(key)) {
+			this.#data.forget(key);
+		}
+
+		return true;
 	}
 }
