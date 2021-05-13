@@ -15,7 +15,6 @@ import {
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
 import { emitProfileChanged } from "../helpers";
-import { CoinFactory } from "../profiles/services/coin.factory";
 
 @injectable()
 export class WalletRepository implements IWalletRepository {

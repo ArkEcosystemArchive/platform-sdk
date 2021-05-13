@@ -6,7 +6,6 @@ import { injectable } from "inversify";
 import { DataRepository } from "../../../repositories/data-repository";
 import { emitProfileChanged } from "../helpers";
 import { Coins } from "@arkecosystem/platform-sdk";
-import { CoinFactory } from "../profiles/services/coin.factory";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {

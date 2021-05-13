@@ -1,7 +1,6 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { IReadWriteWallet, WalletData } from "../../../contracts";
 import { IWalletSynchroniser } from "../../../contracts/wallets/wallet.synchroniser";
-import { CoinFactory } from "../profiles/services/coin.factory";
 
 export class WalletSynchroniser implements IWalletSynchroniser {
 	readonly #wallet: IReadWriteWallet;

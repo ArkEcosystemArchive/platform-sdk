@@ -43,8 +43,6 @@ import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileInitialiser } from "./profile.initialiser";
 import { IPasswordManager } from "../../../contracts/profiles/services/password";
 import { PasswordManager } from "./services/password";
-import { CoinFactory } from "./services/coin.factory";
-import { ICoinFactory } from "../../../contracts/services/coin-factory";
 import { emitProfileChanged } from "../helpers";
 
 export class Profile implements IProfile {
@@ -259,11 +257,6 @@ export class Profile implements IProfile {
 	/** {@inheritDoc IProfile.coins} */
 	public coins(): ICoinService {
 		return this.#coinService;
-	}
-
-	/** {@inheritDoc IProfile.coinFactory} */
-	public coinFactory(): ICoinFactory {
-		return new CoinFactory(this);
 	}
 
 	/** {@inheritDoc IProfile.portfolio} */
