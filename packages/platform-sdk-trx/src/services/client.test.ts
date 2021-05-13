@@ -56,7 +56,7 @@ describe("ClientService", function () {
 			  "fees": BigNumber {},
 			  "locked": BigNumber {},
 			  "tokens": Object {
-			    "0": BigNumber {},
+			    "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7": BigNumber {},
 			  },
 			  "total": BigNumber {},
 			}
