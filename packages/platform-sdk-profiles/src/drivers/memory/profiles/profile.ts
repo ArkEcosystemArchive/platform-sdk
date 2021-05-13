@@ -21,6 +21,7 @@ import {
 	IAuthenticator,
 	IWalletFactory,
 	ProfileData,
+	IProfileStatus,
 } from "../../../contracts";
 
 import { PluginRepository } from "../plugins/plugin-repository";
@@ -44,6 +45,7 @@ import { ProfileInitialiser } from "./profile.initialiser";
 import { IPasswordManager } from "../../../contracts/profiles/services/password";
 import { PasswordManager } from "./services/password";
 import { emitProfileChanged } from "../helpers";
+import { ProfileStatus } from "./profile.status";
 
 export class Profile implements IProfile {
 	/**
@@ -174,6 +176,14 @@ export class Profile implements IProfile {
 	 */
 	readonly #attributes: AttributeBag<IProfileInput>;
 
+	/**
+	 * The status service.
+	 *
+	 * @type {IProfileStatus}
+	 * @memberof Profile
+	 */
+	readonly #status: IProfileStatus;
+
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
 		this.#coinService = new CoinService(new DataRepository());
@@ -191,6 +201,7 @@ export class Profile implements IProfile {
 		this.#walletAggregate = new WalletAggregate(this);
 		this.#authenticator = new Authenticator(this);
 		this.#password = new PasswordManager();
+		this.#status = new ProfileStatus();
 	}
 
 	/** {@inheritDoc IProfile.id} */
@@ -332,6 +343,11 @@ export class Profile implements IProfile {
 	/** {@inheritDoc IProfile.password} */
 	public password(): IPasswordManager {
 		return this.#password;
+	}
+
+	/** {@inheritDoc IProfile.status} */
+	public status(): IProfileStatus {
+		return this.#status;
 	}
 
 	/** {@inheritDoc IProfile.usesPassword} */
