@@ -12,12 +12,12 @@ export class DelegateService implements IDelegateService {
 	readonly #dataRepository: IDataRepository = new DataRepository();
 
 	/** {@inheritDoc IDelegateService.all} */
-	public all(coin: Coins.Coin): IReadOnlyWallet[] {
-		const result: any[] | undefined = this.#dataRepository.get(coin.uuid());
+	public all(coin: string, network: string): IReadOnlyWallet[] {
+		const result: any[] | undefined = this.#dataRepository.get(`${coin}.${network}.delegates`);
 
 		if (result === undefined) {
 			throw new Error(
-				`The delegates for [${coin.uuid()}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
+				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
 			);
 		}
 
@@ -25,31 +25,39 @@ export class DelegateService implements IDelegateService {
 	}
 
 	/** {@inheritDoc IDelegateService.findByAddress} */
-	public findByAddress(coin: Coins.Coin, address: string): IReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, "address", address);
+	public findByAddress(coin: string, network: string, address: string): IReadOnlyWallet {
+		return this.findDelegateByAttribute(coin, network, "address", address);
 	}
 
 	/** {@inheritDoc IDelegateService.findByPublicKey} */
-	public findByPublicKey(coin: Coins.Coin, publicKey: string): IReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, "publicKey", publicKey);
+	public findByPublicKey(coin: string, network: string, publicKey: string): IReadOnlyWallet {
+		return this.findDelegateByAttribute(coin, network, "publicKey", publicKey);
 	}
 
 	/** {@inheritDoc IDelegateService.findByUsername} */
-	public findByUsername(coin: Coins.Coin, username: string): IReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, "username", username);
+	public findByUsername(coin: string, network: string, username: string): IReadOnlyWallet {
+		return this.findDelegateByAttribute(coin, network, "username", username);
 	}
 
 	/** {@inheritDoc IDelegateService.sync} */
-	public async sync(coin: Coins.Coin): Promise<void> {
+	public async sync(profile: IProfile, coin: string, network: string): Promise<void> {
+		const instance: Coins.Coin = profile.coins().push(coin, network);
+
+		if (!instance.hasBeenSynchronized()) {
+			await instance.__construct();
+		}
+
+		const instanceCanFastSync: boolean = instance.network().allows(Coins.FeatureFlag.InternalFastDelegateSync);
+
 		// TODO injection here based on coin config would be awesome
-		const syncer: IDelegateSyncer = coin.network().allows(Coins.FeatureFlag.InternalFastDelegateSync)
-			? new ParallelDelegateSyncer(coin.client())
-			: new SerialDelegateSyncer(coin.client());
+		const syncer: IDelegateSyncer = instanceCanFastSync
+			? new ParallelDelegateSyncer(instance.client())
+			: new SerialDelegateSyncer(instance.client());
 
 		let result: Contracts.WalletData[] = await syncer.sync();
 
 		this.#dataRepository.set(
-			`${coin.uuid()}.delegates`,
+			`${coin}.${network}.delegates`,
 			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
 		);
 	}
@@ -60,7 +68,7 @@ export class DelegateService implements IDelegateService {
 
 		for (const [coin, networks] of profile.coins().entries()) {
 			for (const network of networks) {
-				promises.push(() => this.sync(profile.coins().get(coin, network)));
+				promises.push(() => this.sync(profile, coin, network));
 			}
 		}
 
@@ -76,7 +84,7 @@ export class DelegateService implements IDelegateService {
 		return publicKeys
 			.map((publicKey: string) => {
 				try {
-					const delegate = this.findByPublicKey(wallet.coin(), publicKey);
+					const delegate = this.findByPublicKey(wallet.coinId(), wallet.networkId(), publicKey);
 
 					return new ReadOnlyWallet({
 						address: delegate.address(),
@@ -94,8 +102,8 @@ export class DelegateService implements IDelegateService {
 			.filter(Boolean) as IReadOnlyWallet[];
 	}
 
-	private findDelegateByAttribute(coin: Coins.Coin, key: string, value: string): IReadOnlyWallet {
-		const result: any = this.all(coin).find((delegate) => delegate[key]() === value);
+	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): IReadOnlyWallet {
+		const result: any = this.all(coin, network).find((delegate) => delegate[key]() === value);
 
 		if (result === undefined) {
 			throw new Error(`No delegate for ${key} with ${value} could be found.`);
