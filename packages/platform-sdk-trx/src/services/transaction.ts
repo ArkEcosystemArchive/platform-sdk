@@ -64,25 +64,6 @@ export class TransactionService implements Contracts.TransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-
-		const transaction = await this.#connection.transactionBuilder.sendTrx(
-			input.data.to,
-			input.data.amount,
-			input.from,
-			1,
-		);
-
-		await this.#connection.transactionBuilder.extendExpiration(
-			transaction,
-			60,
-		);
-
-		const pk: string = await new PrivateKey(this.#config).fromMnemonic(input.sign.mnemonic);
-		const response = await utils.crypto.signTransaction(pk, transaction);
-
-		console.log(JSON.stringify(response))
-
-		return new SignedTransactionData(response.txID, response, JSON.stringify(response));
 	}
 
 	public async secondSignature(
