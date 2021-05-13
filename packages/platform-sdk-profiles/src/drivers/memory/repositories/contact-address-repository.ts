@@ -6,6 +6,7 @@ import { injectable } from "inversify";
 import { DataRepository } from "../../../repositories/data-repository";
 import { emitProfileChanged } from "../helpers";
 import { Coins } from "@arkecosystem/platform-sdk";
+import { CoinFactory } from "../profiles/services/coin.factory";
 
 @injectable()
 export class ContactAddressRepository implements IContactAddressRepository {
@@ -157,7 +158,11 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	}
 
 	private async createAddress(data): Promise<ContactAddress> {
-		const instance: Coins.Coin = this.#profile.coins().push(data.coin, data.network);
+		const instance: Coins.Coin = new CoinFactory(this.#profile).make(data.coin, data.network, {}, true);
+
+		this.#profile.coins().set(
+			new CoinFactory(this.#profile).make(data.coin, data.network, {}, true),
+		);
 
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();
