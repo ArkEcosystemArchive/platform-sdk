@@ -95,6 +95,7 @@ export class SettingRepository implements ISettingRepository {
 		}
 
 		if (this.#data.has(key)) {
+			/* istanbul ignore next */
 			this.#data.forget(key);
 		}
 
