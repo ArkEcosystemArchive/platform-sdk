@@ -122,47 +122,6 @@ export class ClientService implements Contracts.ClientService {
 		return this.handleBroadcastResponse(response);
 	}
 
-	public async broadcastSpread(
-		transactions: Contracts.SignedTransactionData[],
-		hosts: string[],
-	): Promise<Contracts.BroadcastResponse> {
-		const promises: any[] = [];
-
-		for (const host of hosts) {
-			promises.push(
-				new Promise(async (resolve, reject) => {
-					try {
-						return resolve(
-							(
-								await this.#http.post(`${host}/transactions`, {
-									transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
-										transaction.toBroadcast(),
-									),
-								})
-							).json(),
-						);
-					} catch (error) {
-						return reject(error.response.json());
-					}
-				}),
-			);
-		}
-
-		let response: Contracts.KeyValuePair = {};
-
-		const results: any = await Promise.allSettled(promises);
-
-		for (const result of results) {
-			if (result.status === "fulfilled") {
-				response = result.value;
-
-				break;
-			}
-		}
-
-		return this.handleBroadcastResponse(response);
-	}
-
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (await this.#http.get(`${this.host()}/${path}`, query?.searchParams)).json();
 	}
