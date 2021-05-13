@@ -160,6 +160,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	private async createAddress(data): Promise<ContactAddress> {
 		const instance: Coins.Coin = this.#profile.coins().get(data.coin, data.network);
 
+		// @TODO: get rid of this, the instance should already be synced by now
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();
 		}
