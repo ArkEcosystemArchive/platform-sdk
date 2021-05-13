@@ -1,7 +1,7 @@
+import { TransactionObj, TxBlockObj } from "@zilliqa-js/core";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
-import { TxBlockObj, TransactionObj } from "@zilliqa-js/core";
 
 import { Logger } from "./logger";
 

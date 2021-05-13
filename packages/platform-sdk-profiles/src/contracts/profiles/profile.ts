@@ -16,6 +16,7 @@ import { ITransactionAggregate } from "./aggregates/transaction-aggregate";
 import { IWalletAggregate } from "./aggregates/wallet-aggregate";
 import { IAuthenticator } from "./authenticator";
 import { IPortfolio } from "./portfolio";
+import { IProfileStatus } from "./profile.status";
 import { IPasswordManager } from "./services/password";
 
 /**
@@ -307,4 +308,11 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	hasCompletedIntroductoryTutorial(): boolean;
+
+	/**
+	 * Get the profile status service instance.
+	 *
+	 * @memberof IProfile
+	 */
+	status(): IProfileStatus;
 }
