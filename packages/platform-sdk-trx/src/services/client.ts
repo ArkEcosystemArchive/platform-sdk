@@ -128,7 +128,7 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const response = await this.#connection.trx.sendRawTransaction(transaction.toBroadcast());
+			const response = (await this.#client.post(`${this.getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())).json();
 
 			if (response.result) {
 				result.accepted.push(transaction.id());
