@@ -50,7 +50,7 @@ export interface ICoinService {
 	 * @return {Coins.Coin}
 	 * @memberof ICoinService
 	 */
-	set(coin: string, network: string, options?: object): void;
+	set(coin: string, network: string, options?: object): Coins.Coin;
 
 	/**
 	 * Check if the given coin and network exist.

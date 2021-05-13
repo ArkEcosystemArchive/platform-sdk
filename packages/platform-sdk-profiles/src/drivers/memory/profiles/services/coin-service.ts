@@ -56,18 +56,22 @@ export class CoinService implements ICoinService {
 	}
 
 	/** {@inheritDoc ICoinService.push} */
-	public set(coin: string, network: string, options: object = {}): void {
+	public set(coin: string, network: string, options: object = {}): Coins.Coin {
 		const cacheKey: string = `${coin}.${network}`;
 
 		if (this.#dataRepository.has(cacheKey)) {
-			return;
+			return this.#dataRepository.get(cacheKey)!;
 		}
 
-		this.#dataRepository.set(cacheKey, Coins.CoinFactory.make(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], {
+		const instance = Coins.CoinFactory.make(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], {
 			network,
 			httpClient: container.get(Identifiers.HttpClient),
 			...options,
-		}));
+		});
+
+		this.#dataRepository.set(cacheKey, instance);
+
+		return instance;
 	}
 
 	/** {@inheritDoc ICoinService.has} */

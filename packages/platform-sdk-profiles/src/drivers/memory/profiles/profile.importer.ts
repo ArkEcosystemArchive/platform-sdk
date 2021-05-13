@@ -153,17 +153,13 @@ export class ProfileImporter implements IProfileImporter {
 	 * @memberof ProfileImporter
 	 */
 	private gatherCoins(data: IProfileData): void {
-		const setCoin = (coin: string, network: string) => this.#profile.coins().set(
-			this.#profile.coinFactory().make(coin, network)
-		);
-
 		for (const { coin, network } of Object.values(data.wallets)) {
-			setCoin(coin, network);
+			this.#profile.coins().set(coin, network);
 		}
 
 		for (const contact of Object.values(data.contacts) as any) {
 			for (const { coin, network } of (Object.values(contact.addresses) as { coin: string, network: string }[])) {
-				setCoin(coin, network);
+				this.#profile.coins().set(coin, network);
 			}
 		}
 	}

@@ -12,8 +12,8 @@ export class WalletMutator implements IWalletMutator {
 	}
 
 	/** {@inheritDoc IWalletMutator.coin} */
-	public async coin(coin: Coins.Coin, options: { sync: boolean } = { sync: true }): Promise<void> {
-		this.#wallet.getAttributes().set("coin", coin);
+	public async coin(coin: string, network: string, options: { sync: boolean } = { sync: true }): Promise<void> {
+		this.#wallet.getAttributes().set("coin", this.#wallet.profile().coins().set(coin, network));
 
 		/**
 		 * If we fail to construct the coin it means we are having networking
@@ -21,11 +21,11 @@ export class WalletMutator implements IWalletMutator {
 		 * bad error handling inside the coin package which needs fixing asap.
 		 */
 		try {
-			if (coin.hasBeenSynchronized()) {
+			if (this.#wallet.getAttributes().get<Coins.Coin>("coin").hasBeenSynchronized()) {
 				this.#wallet.markAsFullyRestored();
 			} else {
 				if (options.sync) {
-					await coin.__construct();
+					await this.#wallet.getAttributes().get<Coins.Coin>("coin").__construct();
 
 					this.#wallet.markAsFullyRestored();
 				} else {
