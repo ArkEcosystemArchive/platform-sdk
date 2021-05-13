@@ -50,6 +50,17 @@ describe("ClientService", function () {
 			const result = await subject.wallet("TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ");
 
 			expect(result).toBeInstanceOf(WalletData);
+			expect(result.balance()).toMatchInlineSnapshot(`
+			Object {
+			  "available": BigNumber {},
+			  "fees": BigNumber {},
+			  "locked": BigNumber {},
+			  "tokens": Object {
+			    "0": BigNumber {},
+			  },
+			  "total": BigNumber {},
+			}
+		`);
 		});
 	});
 
