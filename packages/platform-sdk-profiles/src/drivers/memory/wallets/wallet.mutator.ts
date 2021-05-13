@@ -23,20 +23,16 @@ export class WalletMutator implements IWalletMutator {
 			 * issues or there is a bug in the coin package. This could also mean
 			 * bad error handling inside the coin package which needs fixing asap.
 			 */
-			try {
-				if (instance.hasBeenSynchronized()) {
+			if (instance.hasBeenSynchronized()) {
+				this.#wallet.markAsFullyRestored();
+			} else {
+				if (options.sync) {
+					await instance.__construct();
+
 					this.#wallet.markAsFullyRestored();
 				} else {
-					if (options.sync) {
-						await instance.__construct();
-
-						this.#wallet.markAsFullyRestored();
-					} else {
-						this.#wallet.markAsPartiallyRestored();
-					}
+					this.#wallet.markAsPartiallyRestored();
 				}
-			} catch {
-				this.#wallet.markAsPartiallyRestored();
 			}
 
 			emitProfileChanged(this.#wallet.profile());
