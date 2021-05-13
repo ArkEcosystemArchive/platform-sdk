@@ -156,8 +156,8 @@ export class ContactAddressRepository implements IContactAddressRepository {
 
 		return result;
 	}
-
 	private async createAddress(data): Promise<ContactAddress> {
+		// @TODO: we shouldn't construct a new coin here, should be an argument
 		const instance: Coins.Coin = new CoinFactory(this.#profile).make(data.coin, data.network, {}, true);
 
 		this.#profile.coins().set(

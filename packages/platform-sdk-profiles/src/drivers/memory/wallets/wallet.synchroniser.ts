@@ -18,6 +18,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 				this.#wallet
 					.profile()
 					.coins()
+					// @TODO: we shouldn't construct a new coin here
 					.set(new CoinFactory(this.#wallet.profile()).make(this.#wallet.coinId(), this.#wallet.networkId(), {}, true)),
 			);
 		}
