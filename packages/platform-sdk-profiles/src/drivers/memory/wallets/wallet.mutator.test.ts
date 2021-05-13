@@ -1,15 +1,17 @@
 import "jest-extended";
 import "reflect-metadata";
 
+import { encrypt } from "bip38";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
+import { decode } from "wif";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Wallet } from "./wallet";
-import { IProfile, IProfileRepository, IReadWriteWallet, ProfileSetting } from "../../../contracts";
+import { IProfile, IProfileRepository, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -78,15 +80,25 @@ beforeEach(async () => {
 
 	subject = new Wallet(uuidv4(), {}, profile);
 
-	await subject.mutator().coin(profile.coinFactory().make("ARK", "ark.devnet"));
+	await subject.mutator().coin("ARK", "ark.devnet");
 	await subject.mutator().identity(identity.mnemonic);
 });
 
 beforeAll(() => nock.disableNetConnect());
 
 describe("#setCoin", () => {
+	it("should mark the wallet as partially restored if the coin construction fails", async () => {
+		subject = new Wallet(uuidv4(), {}, profile);
+
+		expect(subject.hasBeenPartiallyRestored()).toBeFalse();
+
+		await subject.mutator().coin("FAKE", "fake.network");
+
+		expect(subject.hasBeenPartiallyRestored()).toBeTrue();
+	});
+
 	it("should use the default peer if no custom one is available", async () => {
-		await subject.mutator().coin(profile.coinFactory().make("ARK", "ark.devnet"));
+		await subject.mutator().coin("ARK", "ark.devnet");
 
 		expect(() => subject.coin().config().get("peer")).toThrow("unknown");
 	});
@@ -100,7 +112,7 @@ describe("#setCoin", () => {
 			isMultiSignature: false,
 		});
 
-		await subject.mutator().coin(profile.coinFactory().make("ARK", "ark.devnet"));
+		await subject.mutator().coin("ARK", "ark.devnet");
 
 		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
 	});
@@ -114,7 +126,7 @@ describe("#setCoin", () => {
 			isMultiSignature: true,
 		});
 
-		await subject.mutator().coin(profile.coinFactory().make("ARK", "ark.devnet"));
+		await subject.mutator().coin("ARK", "ark.devnet");
 
 		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
 	});
@@ -134,7 +146,7 @@ describe("#setCoin", () => {
 			isMultiSignature: true,
 		});
 
-		await subject.mutator().coin(profile.coinFactory().make("ARK", "ark.devnet"));
+		await subject.mutator().coin("ARK", "ark.devnet");
 
 		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
 		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
@@ -147,7 +159,7 @@ describe("#setCoin", () => {
 			isMultiSignature: false,
 		});
 
-		await subject.mutator().coin(profile.coinFactory().make("ARK", "ark.devnet"));
+		await subject.mutator().coin("ARK", "ark.devnet");
 
 		expect(subject.getRelays()).toBeArrayOfSize(1);
 	});
