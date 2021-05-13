@@ -52,7 +52,10 @@ export class TransactionService implements Contracts.TransactionService {
 		const publicKey = accountKey.to_public();
 
 		// Gather all **used** spend and change addresses of the account
-		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, Buffer.from(publicKey.as_bytes()).toString("hex"));
+		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
+			this.#config,
+			Buffer.from(publicKey.as_bytes()).toString("hex"),
+		);
 		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
 
 		// Now get utxos for those addresses
