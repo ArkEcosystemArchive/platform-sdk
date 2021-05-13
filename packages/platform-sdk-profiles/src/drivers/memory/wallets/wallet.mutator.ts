@@ -13,32 +13,36 @@ export class WalletMutator implements IWalletMutator {
 
 	/** {@inheritDoc IWalletMutator.coin} */
 	public async coin(coin: string, network: string, options: { sync: boolean } = { sync: true }): Promise<void> {
-		const instance = this.#wallet.profile().coins().set(coin, network);
-
-		this.#wallet.getAttributes().set("coin", instance);
-
-		/**
-		 * If we fail to construct the coin it means we are having networking
-		 * issues or there is a bug in the coin package. This could also mean
-		 * bad error handling inside the coin package which needs fixing asap.
-		 */
 		try {
-			if (instance.hasBeenSynchronized()) {
-				this.#wallet.markAsFullyRestored();
-			} else {
-				if (options.sync) {
-					await instance.__construct();
+			const instance = this.#wallet.profile().coins().set(coin, network);
 
+			this.#wallet.getAttributes().set("coin", instance);
+
+			/**
+			 * If we fail to construct the coin it means we are having networking
+			 * issues or there is a bug in the coin package. This could also mean
+			 * bad error handling inside the coin package which needs fixing asap.
+			 */
+			try {
+				if (instance.hasBeenSynchronized()) {
 					this.#wallet.markAsFullyRestored();
 				} else {
-					this.#wallet.markAsPartiallyRestored();
+					if (options.sync) {
+						await instance.__construct();
+
+						this.#wallet.markAsFullyRestored();
+					} else {
+						this.#wallet.markAsPartiallyRestored();
+					}
 				}
+			} catch {
+				this.#wallet.markAsPartiallyRestored();
 			}
+
+			emitProfileChanged(this.#wallet.profile());
 		} catch {
 			this.#wallet.markAsPartiallyRestored();
 		}
-
-		emitProfileChanged(this.#wallet.profile());
 	}
 
 	/** {@inheritDoc IWalletMutator.identity} */
