@@ -1,6 +1,5 @@
-import retry from "p-retry";
 import { BN } from "@zilliqa-js/zilliqa";
-import { TransactionObj } from "@zilliqa-js/core";
+import retry from "p-retry";
 
 import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
 
@@ -36,6 +35,7 @@ export const subscribe = async (flags: { network: string; host: string; database
 				logger.info("Drained Queue...");
 			}
 
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises
 			queue.add(() =>
 				retry(
 					async () => {

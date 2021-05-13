@@ -1,8 +1,8 @@
 import PQueue from "p-queue";
 
-import { Logger } from "./logger";
-import { Database } from "./database";
 import { Client } from "./client";
+import { Database } from "./database";
+import { Logger } from "./logger";
 
 /**
  * Creates a new database instance.
