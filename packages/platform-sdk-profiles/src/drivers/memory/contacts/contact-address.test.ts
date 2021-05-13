@@ -29,9 +29,8 @@ beforeEach(async () => {
 
 	const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-	const coin = profile.coinFactory().make("ARK", "ark.devnet");
+	const coin = profile.coins().push("ARK", "ark.devnet");
 	await coin.__construct();
-	profile.coins().set(coin);
 
 	subject = new ContactAddress(
 		{
@@ -76,27 +75,19 @@ it("should have an avatar", () => {
 	);
 });
 
-it("should determine if the wallet is a delegate", async () => {
-	await subject.syncIdentity();
-
+it("should determine if the wallet is a delegate", () => {
 	expect(subject.isDelegate()).toBeTrue();
 });
 
-it("should determine if the wallet has a multi signature", async () => {
-	await subject.syncIdentity();
-
+it("should determine if the wallet has a multi signature", () => {
 	expect(subject.isMultiSignature()).toBeFalse();
 });
 
-it("should determine if the wallet has a second signature", async () => {
-	await subject.syncIdentity();
-
+it("should determine if the wallet has a second signature", () => {
 	expect(subject.isSecondSignature()).toBeFalse();
 });
 
-it("should has synced with network", async () => {
-	await subject.syncIdentity();
-
+it("should has synced with network", () => {
 	expect(subject.hasSyncedWithNetwork()).toBeTrue();
 });
 
@@ -128,9 +119,7 @@ describe("when contact has not been synchronized yet", () => {
 			.persist();
 
 		const profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
-		const coin = profile.coinFactory().make("ARK", "ark.devnet");
-		await coin.__construct();
-		profile.coins().set(coin);
+		const coin = profile.coins().push("ARK", "ark.devnet");
 
 		subject = new ContactAddress(
 			{
