@@ -82,6 +82,6 @@ export class SettingRepository implements ISettingRepository {
 			return;
 		}
 
-		throw new Error(`The [${key}] is not a valid setting.`);
+		this.forget(key);
 	}
 }
