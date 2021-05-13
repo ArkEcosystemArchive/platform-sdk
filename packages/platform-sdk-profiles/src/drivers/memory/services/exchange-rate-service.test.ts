@@ -144,9 +144,7 @@ describe("ExchangeRateService", () => {
 	});
 
 	it("handle restore", async () => {
-		expect(async () => {
-			await subject.restore();
-		}).not.toThrow();
+		await expect(subject.restore()).toResolve();
 
 		expect(await container.get<StubStorage>(Identifiers.Storage).get("EXCHANGE_RATE_SERVICE")).toMatchObject({
 			DARK: { BTC: expect.anything() },
@@ -154,14 +152,10 @@ describe("ExchangeRateService", () => {
 
 		//@ts-ignore
 		await container.get<StubStorage>(Identifiers.Storage).set("EXCHANGE_RATE_SERVICE", null);
-		expect(async () => {
-			await subject.restore();
-		}).not.toThrow();
+		await expect(subject.restore()).toResolve();
 
 		//@ts-ignore
 		await container.get<StubStorage>(Identifiers.Storage).set("EXCHANGE_RATE_SERVICE", undefined);
-		expect(async () => {
-			await subject.restore();
-		}).not.toThrow();
+		await expect(subject.restore()).toResolve();
 	});
 });

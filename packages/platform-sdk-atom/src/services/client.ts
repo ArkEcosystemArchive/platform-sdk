@@ -99,7 +99,7 @@ export class ClientService implements Contracts.ClientService {
 		return new WalletData({
 			address: details.value.address,
 			publicKey: details.value.public_key.value,
-			balance: (Object.values(balance) as { denom }[]).find(({ denom }) => denom === "uatom"),
+			balance: Object.values(balance).find(({ denom }) => denom === "uatom"),
 			sequence: details.value.sequence,
 		});
 	}

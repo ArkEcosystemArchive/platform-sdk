@@ -4,9 +4,9 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/config";
+import { identity } from "../../test/fixtures/identity";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
-import { identity } from "../../test/fixtures/identity";
 
 const fixtures = `${__dirname}/../../test/fixtures/client`;
 

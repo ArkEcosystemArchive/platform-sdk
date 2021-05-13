@@ -18,7 +18,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		const tokens = {};
 
 		if (this.data.trc20) {
-			for (const trc20 of Object.values(this.data.trc20) as Record<string, string>[]) {
+			for (const trc20 of Object.values(this.data.trc20)) {
 				for (const [address, balance] of Object.entries(trc20)) {
 					tokens[address] = BigNumber.make(balance).times(1e2);
 				}

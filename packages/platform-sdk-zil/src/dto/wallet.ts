@@ -1,6 +1,5 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { convertQaToZil } from "../zilliqa";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public primaryKey(): string {

@@ -1,6 +1,6 @@
-import { TransactionDataCollection } from "@arkecosystem/platform-sdk/dist/coins";
 import "jest-extended";
 
+import { TransactionDataCollection } from "@arkecosystem/platform-sdk/dist/coins";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";

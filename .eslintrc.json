@@ -48,7 +48,7 @@
 		"import/no-cycle": "warn",
 		"import/no-deprecated": "error",
 		"import/no-duplicates": "error",
-		"import/no-dynamic-require": "warn",
+		"import/no-dynamic-require": "off",
 		"import/no-extraneous-dependencies": "error",
 		"import/no-mutable-exports": "error",
 		"import/no-namespace": "warn",
