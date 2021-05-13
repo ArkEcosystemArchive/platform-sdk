@@ -1,15 +1,12 @@
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
-import { useEnvironment, useLogger } from "../helpers";
+import { createProfile, useEnvironment, useLogger } from "../helpers";
 
 export default async () => {
 	const logger = useLogger();
 	const env: Environment = await useEnvironment();
 
 	// Open profile
-	const profile: Contracts.IProfile | undefined = env.profiles().findByName("my-profile-name");
-	if (!profile) {
-		throw Error("Profile doesn't exist");
-	}
+	const profile = await createProfile(env,  "ark-profile", "my-password");
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
