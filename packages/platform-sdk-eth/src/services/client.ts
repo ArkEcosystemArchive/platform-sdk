@@ -135,13 +135,6 @@ export class ClientService implements Contracts.ClientService {
 		return result;
 	}
 
-	public async broadcastSpread(
-		transactions: Contracts.SignedTransactionData[],
-		hosts: string[],
-	): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
-	}
-
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (await this.#http.get(`${this.#peer}/${path}`, query)).json();
 	}

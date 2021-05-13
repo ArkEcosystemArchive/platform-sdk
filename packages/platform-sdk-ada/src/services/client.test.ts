@@ -227,9 +227,5 @@ describe("ClientService", function () {
 		it("#syncing", async () => {
 			await expect(subject.syncing()).rejects.toThrow(/is not implemented./);
 		});
-
-		it("#broadcastSpread", async () => {
-			await expect(subject.broadcastSpread([], [])).rejects.toThrow(/is not implemented./);
-		});
 	});
 });
