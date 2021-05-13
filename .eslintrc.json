@@ -59,6 +59,7 @@
 		"import/no-useless-path-segments": "error",
 		"import/no-webpack-loader-syntax": "error",
 		"import/order": "warn",
+		"jest/no-conditional-expect": "off",
 		"no-async-promise-executor": "off",
 		"no-prototype-builtins": "off",
 		"prefer-const": [
