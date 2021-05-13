@@ -57,19 +57,18 @@ describe("ClientService", function () {
 			expect(result.items()).toBeArrayOfSize(5);
 			expect(result.items()[0]).toBeInstanceOf(TransactionData);
 		});
-		it("missing senderPublicKey", () => {
-			expect(
-				async () =>
-					await subject.transactions({
-						walletId:
-							"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
-					}),
+		it("missing senderPublicKey", async () => {
+			await expect(
+				subject.transactions({
+					walletId:
+						"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
+				}),
 			).rejects.toThrow(
 				"Method ClientService#transactions expects the argument [senderPublicKey] but it was not given",
 			);
 		});
-		it("missing query", () => {
-			expect(async () => await subject.transactions({})).rejects.toThrow(
+		it("missing query", async () => {
+			await expect(subject.transactions({})).rejects.toThrow(
 				"Method ClientService#transactions expects the argument [senderPublicKey] but it was not given",
 			);
 		});

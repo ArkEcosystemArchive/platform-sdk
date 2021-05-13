@@ -31,6 +31,6 @@ export class FeeService implements Contracts.FeeService {
 			htlcLock: fee,
 			htlcClaim: fee,
 			htlcRefund: fee,
-		}
+		};
 	}
 }

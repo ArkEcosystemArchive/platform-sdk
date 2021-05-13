@@ -78,7 +78,6 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-
 	wallet = new Wallet(uuidv4(), {}, profile);
 	subject = new WalletGate(wallet);
 

@@ -17,8 +17,8 @@ export class Keys implements Contracts.Keys {
 
 		return {
 			publicKey: publicKey.toString("hex"),
-			privateKey: privateKey!.toString("hex")
-		}
+			privateKey: privateKey!.toString("hex"),
+		};
 	}
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {

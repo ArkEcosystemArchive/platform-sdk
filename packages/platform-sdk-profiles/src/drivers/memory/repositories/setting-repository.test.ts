@@ -16,7 +16,10 @@ describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 	let key: string;
 
 	beforeEach(() => {
-		subject = new SettingRepository(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }), Object.values(type === "profile" ? ProfileSetting : WalletSetting));
+		subject = new SettingRepository(
+			new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }),
+			Object.values(type === "profile" ? ProfileSetting : WalletSetting),
+		);
 		subject.flush();
 
 		key = type === "profile" ? ProfileSetting.Locale : WalletSetting.Peer;

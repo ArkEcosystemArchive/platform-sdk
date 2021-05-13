@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Zilliqa, BN, Long, units, toBech32Address } from "@zilliqa-js/zilliqa";
+import { BN, Long, units, Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { SignedTransactionData } from "../dto";
 import { convertZilToQa, getZilliqa, getZilliqaVersion } from "../zilliqa";
