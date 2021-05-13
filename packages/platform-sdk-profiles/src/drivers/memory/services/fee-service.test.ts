@@ -1,7 +1,6 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { bootContainer } from "../../../../test/helpers";
@@ -12,7 +11,6 @@ import NodeFeesFixture from "../../../../test/fixtures/client/node-fees.json";
 import { Profile } from "../profiles/profile";
 
 let profile: Profile;
-let coin: Coins.Coin;
 
 beforeAll(() => {
 	bootContainer();
@@ -39,36 +37,33 @@ beforeAll(() => {
 
 beforeEach(async () => {
 	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-	coin = profile.coinFactory().make("ARK", "ark.devnet");
-	await coin.__construct();
-	profile.coins().set(coin);
+	profile.coins().push("ARK", "ark.devnet");
 
 	subject = new FeeService();
 });
 
 describe("FeeService", () => {
 	it("should sync fees", async () => {
-		expect(() => subject.all(coin)).toThrowError("have not been synchronized yet");
+		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		await subject.sync(coin);
-
-		expect(Object.keys(subject.all(coin))).toHaveLength(11);
+		await subject.sync(profile, "ARK", "ark.devnet");
+		expect(Object.keys(subject.all("ARK", "ark.devnet"))).toHaveLength(11);
 	});
 
 	it("should sync fees of all coins", async () => {
-		expect(() => subject.all(coin)).toThrowError("have not been synchronized yet");
+		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
 		await subject.syncAll(profile);
 
-		expect(Object.keys(subject.all(coin))).toHaveLength(11);
+		expect(Object.keys(subject.all("ARK", "ark.devnet"))).toHaveLength(11);
 	});
 
-	test("#findByType", async () => {
-		expect(() => subject.all(coin)).toThrowError("have not been synchronized yet");
+	it("#findByType", async () => {
+		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
 		await subject.syncAll(profile);
 
-		expect(subject.findByType(coin, "transfer")).toEqual({
+		expect(subject.findByType("ARK", "ark.devnet", "transfer")).toEqual({
 			avg: "71538139",
 			max: "663000000",
 			min: "357000",
