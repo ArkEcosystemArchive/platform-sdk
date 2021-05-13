@@ -81,7 +81,7 @@ beforeEach(async () => {
 	wallet = new Wallet(uuidv4(), {}, profile);
 	subject = new WalletGate(wallet);
 
-	await wallet.mutator().coin(profile.coinFactory().make("ARK", "ark.devnet"));
+	await wallet.mutator().coin("ARK", "ark.devnet");
 	await wallet.mutator().identity(identity.mnemonic);
 });
 
