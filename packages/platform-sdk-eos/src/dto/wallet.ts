@@ -19,7 +19,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 			total: BigNumber.make(this.data.net_weight),
 			available: BigNumber.make(this.data.net_weight),
 			fees: BigNumber.make(this.data.net_weight),
-		}
+		};
 	}
 
 	public nonce(): BigNumber {

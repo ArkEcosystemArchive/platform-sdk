@@ -76,10 +76,12 @@ export class ClientService implements Contracts.ClientService {
 			payload.only_to = true;
 		}
 
-		const response: any = (await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)).json();
+		const response: any = (
+			await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)
+		).json();
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response.data.filter(({ raw_data }) => raw_data.contract[0].type === 'TransferContract'),
+			response.data.filter(({ raw_data }) => raw_data.contract[0].type === "TransferContract"),
 			{
 				prev: undefined,
 				self: undefined,
@@ -128,7 +130,9 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const response = (await this.#client.post(`${this.getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())).json();
+			const response = (
+				await this.#client.post(`${this.getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
+			).json();
 
 			if (response.result) {
 				result.accepted.push(transaction.id());

@@ -14,7 +14,8 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 		if (options.resetCoin) {
 			this.#wallet.getAttributes().set(
 				"coin",
-				this.#wallet.profile()
+				this.#wallet
+					.profile()
 					.coins()
 					.push(this.#wallet.coinId(), this.#wallet.networkId(), {}, true),
 			);

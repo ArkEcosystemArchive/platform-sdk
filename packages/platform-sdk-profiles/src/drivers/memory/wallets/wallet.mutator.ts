@@ -24,17 +24,15 @@ export class WalletMutator implements IWalletMutator {
 			if (this.#profile.usesCustomPeer() && this.#profile.peers().has(coin, network)) {
 				this.#wallet.getAttributes().set(
 					"coin",
-					this.#profile
-						.coins()
-						.push(
-							coin,
-							network,
-							{
-								peer: this.#profile.peers().getRelay(coin, network)?.host,
-								peerMultiSignature: this.#profile.peers().getMultiSignature(coin, network)?.host,
-							},
-							true,
-						),
+					this.#profile.coins().push(
+						coin,
+						network,
+						{
+							peer: this.#profile.peers().getRelay(coin, network)?.host,
+							peerMultiSignature: this.#profile.peers().getMultiSignature(coin, network)?.host,
+						},
+						true,
+					),
 				);
 			} else {
 				this.#wallet.getAttributes().set("coin", this.#profile.coins().push(coin, network));
@@ -64,7 +62,12 @@ export class WalletMutator implements IWalletMutator {
 			.getAttributes()
 			.set(
 				"address",
-				await this.#wallet.getAttributes().get<Coins.Coin>("coin").identity().address().fromMnemonic(mnemonic, options),
+				await this.#wallet
+					.getAttributes()
+					.get<Coins.Coin>("coin")
+					.identity()
+					.address()
+					.fromMnemonic(mnemonic, options),
 			);
 
 		this.#wallet
