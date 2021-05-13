@@ -76,6 +76,8 @@ jobs:
               run: node common/scripts/install-run-rush.js install
             - name: Build
               run: node common/scripts/install-run-rush.js rebuild --verbose
+            - name: Test
+              run: cd examples && pnpm build
     ada:
         needs: [conflicts]
         runs-on: ubuntu-latest

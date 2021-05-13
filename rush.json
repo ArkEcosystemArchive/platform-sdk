@@ -274,12 +274,6 @@
 			"projectFolder": "packages/platform-sdk-zil-indexer",
 			"reviewCategory": "libraries",
 			"shouldPublish": true
-		},
-		{
-			"packageName": "@arkecosystem/platform-sdk-examples",
-			"projectFolder": "examples",
-			"reviewCategory": "tests",
-			"shouldPublish": false
 		}
 	]
 }
