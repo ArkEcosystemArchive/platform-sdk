@@ -1,7 +1,7 @@
 # ARK Platform SDK - Ethereum Indexer
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-eth-indexer/banner.png" />
+    <img src="https://raw.githubusercontent.com/ArkEcosystem/platform-sdk/master/packages/platform-sdk-zil-indexer/banner.png" />
 </p>
 
 > Lead Maintainer: [Brian Faust](https://github.com/faustbrian)
