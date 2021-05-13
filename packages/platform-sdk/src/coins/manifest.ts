@@ -1,13 +1,13 @@
 import { get } from "dot-prop";
 
 export class Manifest {
-	readonly #manifest: Record<string, any>;
+	readonly #manifest: object;
 
-	public constructor(manifest: Record<string, any>) {
+	public constructor(manifest: object) {
 		this.#manifest = manifest;
 	}
 
-	public all(): Record<string, any> {
+	public all(): object {
 		return this.#manifest;
 	}
 
