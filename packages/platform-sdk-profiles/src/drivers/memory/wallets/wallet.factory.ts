@@ -32,19 +32,20 @@ export class WalletFactory implements IWalletFactory {
 	/** {@inheritDoc IWalletFactory.generate} */
 	public async generate({
 		coin,
+		network,
 		locale,
 	}: IGenerateOptions): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
 		const mnemonic: string = BIP39.generate(locale);
 
-		return { mnemonic, wallet: await this.fromMnemonic({ mnemonic, coin }) };
+		return { mnemonic, wallet: await this.fromMnemonic({ mnemonic, coin, network }) };
 	}
 
 	/** {@inheritDoc IWalletFactory.fromMnemonic} */
-	public async fromMnemonic({ coin, mnemonic, bip = 39 }: IMnemonicOptions): Promise<IReadWriteWallet> {
+	public async fromMnemonic({ coin, network, mnemonic, bip = 39 }: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Mnemonic);
 
-		await wallet.mutator().coin(coin);
+		await wallet.mutator().coin(coin, network);
 
 		if (bip === 39 && wallet.network().usesExtendedPublicKey()) {
 			throw new Error(
@@ -99,33 +100,33 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromAddress} */
-	public async fromAddress({ coin, address }: IAddressOptions): Promise<IReadWriteWallet> {
+	public async fromAddress({ coin, network, address }: IAddressOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Address);
 
-		await wallet.mutator().coin(coin);
+		await wallet.mutator().coin(coin, network);
 		await wallet.mutator().address(address);
 
 		return wallet;
 	}
 
 	/** {@inheritDoc IWalletFactory.fromPublicKey} */
-	public async fromPublicKey({ coin, publicKey }: IPublicKeyOptions): Promise<IReadWriteWallet> {
+	public async fromPublicKey({ coin, network, publicKey }: IPublicKeyOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.PublicKey);
 
-		await wallet.mutator().coin(coin);
+		await wallet.mutator().coin(coin, network);
 		await wallet.mutator().address(await wallet.coin().identity().address().fromPublicKey(publicKey));
 
 		return wallet;
 	}
 
 	/** {@inheritDoc IWalletFactory.fromPrivateKey} */
-	public async fromPrivateKey({ coin, privateKey }: IPrivateKeyOptions): Promise<IReadWriteWallet> {
+	public async fromPrivateKey({ coin, network, privateKey }: IPrivateKeyOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.PrivateKey);
 
-		await wallet.mutator().coin(coin);
+		await wallet.mutator().coin(coin, network);
 		await wallet.mutator().address(await wallet.coin().identity().address().fromPrivateKey(privateKey));
 
 		return wallet;
@@ -134,12 +135,13 @@ export class WalletFactory implements IWalletFactory {
 	/** {@inheritDoc IWalletFactory.fromAddressWithLedgerPath} */
 	public async fromAddressWithLedgerPath({
 		coin,
+		network,
 		address,
 		path,
 	}: IAddressWithLedgerPathOptions): Promise<IReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address
 
-		const wallet: IReadWriteWallet = await this.fromAddress({ coin, address });
+		const wallet: IReadWriteWallet = await this.fromAddress({ coin, network, address });
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.AddressWithLedgerPath);
 
 		wallet.data().set(WalletData.LedgerPath, path);
@@ -150,10 +152,11 @@ export class WalletFactory implements IWalletFactory {
 	/** {@inheritDoc IWalletFactory.fromMnemonicWithEncryption} */
 	public async fromMnemonicWithEncryption({
 		coin,
+		network,
 		mnemonic,
 		password,
 	}: IMnemonicWithEncryptionOptions): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = await this.fromMnemonic({ coin, mnemonic });
+		const wallet: IReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicWithEncryption);
 
 		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
@@ -164,11 +167,11 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromWIF} */
-	public async fromWIF({ coin, wif }: IWifOptions): Promise<IReadWriteWallet> {
+	public async fromWIF({ coin, network, wif }: IWifOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIF);
 
-		await wallet.mutator().coin(coin);
+		await wallet.mutator().coin(coin, network);
 		await wallet.mutator().address(await wallet.coin().identity().address().fromWIF(wif));
 
 		return wallet;
@@ -177,13 +180,14 @@ export class WalletFactory implements IWalletFactory {
 	/** {@inheritDoc IWalletFactory.fromWIFWithEncryption} */
 	public async fromWIFWithEncryption({
 		coin,
+		network,
 		wif,
 		password,
 	}: IWifWithEncryptionOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIFWithEncryption);
 
-		await wallet.mutator().coin(coin);
+		await wallet.mutator().coin(coin, network);
 
 		const { compressed, privateKey } = decrypt(wif, password);
 
