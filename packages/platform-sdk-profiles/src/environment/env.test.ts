@@ -207,8 +207,6 @@ it("should create a profile with data and persist it when instructed to do so", 
 		SCREENSHOT_PROTECTION: true,
 		THEME: "light",
 		TIME_FORMAT: "h:mm A",
-		USE_CUSTOM_PEER: false,
-		USE_MULTI_PEER_BROADCAST: false,
 		USE_TEST_NETWORKS: false,
 	});
 });
@@ -243,8 +241,6 @@ it("should boot the environment from fixed data", async () => {
 		SCREENSHOT_PROTECTION: true,
 		THEME: "light",
 		TIME_FORMAT: "h:mm A",
-		USE_CUSTOM_PEER: false,
-		USE_MULTI_PEER_BROADCAST: false,
 		USE_TEST_NETWORKS: false,
 	});
 

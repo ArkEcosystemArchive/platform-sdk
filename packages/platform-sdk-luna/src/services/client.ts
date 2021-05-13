@@ -82,13 +82,6 @@ export class ClientService implements Contracts.ClientService {
 		return result;
 	}
 
-	public async broadcastSpread(
-		transactions: Contracts.SignedTransactionData[],
-		hosts: string[],
-	): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
-	}
-
 	private useClient(): LCDClient {
 		try {
 			return useClient(this.#config.get<string>("peer"), this.#config.get(Coins.ConfigKey.CryptoChainId));

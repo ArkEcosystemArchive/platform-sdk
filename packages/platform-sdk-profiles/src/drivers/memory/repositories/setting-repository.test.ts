@@ -88,11 +88,4 @@ describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 
 		expect(subject.has(key)).toBeFalse();
 	});
-
-	it("should throw if an invalid key is used", async () => {
-		expect(() => subject.get("invalid")).toThrowError("is not a valid setting");
-		expect(() => subject.set("invalid", "value")).toThrowError("is not a valid setting");
-		expect(() => subject.has("invalid")).toThrowError("is not a valid setting");
-		expect(() => subject.forget("invalid")).toThrowError("is not a valid setting");
-	});
 });
