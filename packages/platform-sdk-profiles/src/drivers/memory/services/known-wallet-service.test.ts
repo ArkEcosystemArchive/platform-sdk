@@ -54,9 +54,7 @@ beforeEach(async () => {
 		.persist();
 
 	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-	const coin = profile.coinFactory().make("ARK", "ark.devnet");
-	await coin.__construct();
-	profile.coins().set(coin);
+	await profile.coins().push("ARK", "ark.devnet").__construct();
 
 	subject = new KnownWalletService();
 
