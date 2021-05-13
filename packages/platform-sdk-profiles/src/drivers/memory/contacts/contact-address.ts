@@ -129,16 +129,9 @@ export class ContactAddress implements IContactAddress {
 
 		emitProfileChanged(this.#profile);
 	}
+
 	/** {@inheritDoc IContactAddress.syncIdentity} */
 	public async syncIdentity(): Promise<void> {
-		const currentWallet = this.#wallet;
-
-		try {
-			this.#wallet = await this.#coin.client().wallet(this.address());
-		} catch {
-			// @TODO: remove this in a refactor
-			/* istanbul ignore next */
-			this.#wallet = currentWallet;
-		}
+		this.#wallet = await this.#coin.client().wallet(this.address());
 	}
 }

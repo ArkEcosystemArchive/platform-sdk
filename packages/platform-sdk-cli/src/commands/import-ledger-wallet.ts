@@ -32,7 +32,7 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 	]);
 
 	const slip44 = network === "ark.mainnet" ? 111 : 1;
-	const instance = profile.coins().push(coin, network);
+	const instance = profile.coins().set(coin, network);
 	await instance.__construct();
 
 	await LedgerTransportNodeHID.create();

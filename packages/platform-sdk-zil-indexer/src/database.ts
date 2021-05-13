@@ -80,7 +80,7 @@ export class Database {
 	 * @param {hash: string, number: string} block
 	 * @memberof Database
 	 */
-	private storeBlock(block: {hash: string, number: string}): void {
+	private storeBlock(block: { hash: string; number: string }): void {
 		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`).run(block);
 	}
 

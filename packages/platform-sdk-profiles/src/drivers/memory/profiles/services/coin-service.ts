@@ -1,9 +1,9 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
-import { container } from "../../../../environment/container";
-import { Identifiers } from "../../../../environment/container.models";
 import { ICoinService, IDataRepository } from "../../../../contracts";
 import { injectable } from "inversify";
+import { container } from "../../../../environment/container";
+import { Identifiers } from "../../../../environment/container.models";
 
 @injectable()
 export class CoinService implements ICoinService {
@@ -56,9 +56,11 @@ export class CoinService implements ICoinService {
 	}
 
 	/** {@inheritDoc ICoinService.push} */
-	public push(coin: string, network: string, options: object = {}, useForce = false): Coins.Coin {
-		if (!useForce && this.has(coin, network)) {
-			return this.get(coin, network);
+	public set(coin: string, network: string, options: object = {}): Coins.Coin {
+		const cacheKey: string = `${coin}.${network}`;
+
+		if (this.#dataRepository.has(cacheKey)) {
+			return this.#dataRepository.get(cacheKey)!;
 		}
 
 		const instance = Coins.CoinFactory.make(container.get<Coins.CoinSpec>(Identifiers.Coins)[coin.toUpperCase()], {
@@ -67,9 +69,9 @@ export class CoinService implements ICoinService {
 			...options,
 		});
 
-		this.#dataRepository.set(`${coin}.${network}`, instance);
+		this.#dataRepository.set(cacheKey, instance);
 
-		return this.get(coin, network);
+		return instance;
 	}
 
 	/** {@inheritDoc ICoinService.has} */

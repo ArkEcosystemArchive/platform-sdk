@@ -41,7 +41,7 @@ export class DelegateService implements IDelegateService {
 
 	/** {@inheritDoc IDelegateService.sync} */
 	public async sync(profile: IProfile, coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = profile.coins().push(coin, network);
+		const instance: Coins.Coin = profile.coins().set(coin, network);
 
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();
