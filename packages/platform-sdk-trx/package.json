@@ -30,7 +30,8 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@ledgerhq/hw-app-trx": "^5.50.0",
-		"tronweb": "^3.2.6"
+		"tronweb": "^3.2.6",
+		"@tronscan/client": "~0.2.71"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",

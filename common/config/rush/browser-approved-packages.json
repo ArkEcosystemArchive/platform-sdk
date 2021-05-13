@@ -275,6 +275,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@tronscan/client",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@typescript-eslint/eslint-plugin",
       "allowedCategories": [ "libraries" ]
     },

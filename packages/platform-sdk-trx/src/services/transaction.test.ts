@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import nock from "nock";
+// import nock from "nock";
 
 import { identity } from "../../test/identity";
 import { createConfig } from "../../test/helpers";
@@ -10,13 +10,13 @@ let subject: TransactionService;
 
 beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
 
-beforeAll(() => nock.disableNetConnect());
+// beforeAll(() => nock.disableNetConnect());
 
 describe("TransactionService", function () {
-	test.skip("#transfer", async () => {
-		nock("https://api.shasta.trongrid.io")
-			.post("/wallet/createtransaction")
-			.reply(200, require(`${__dirname}/../../test/fixtures/crypto/transfer.json`));
+	test("#transfer", async () => {
+		// nock("https://api.shasta.trongrid.io")
+		// 	.post("/wallet/createtransaction")
+		// 	.reply(200, require(`${__dirname}/../../test/fixtures/crypto/transfer.json`));
 
 		const result = await subject.transfer({
 			from: identity.address,
