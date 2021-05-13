@@ -1,5 +1,3 @@
-import { Coins } from "@arkecosystem/platform-sdk";
-
 import { IReadWriteWallet } from "./wallet";
 
 type BIP = 39 | 44 | 49 | 84;
@@ -10,7 +8,8 @@ type BIP = 39 | 44 | 49 | 84;
  * @interface IGenerateOptions
  */
 export interface IGenerateOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	locale?: string;
 }
 
@@ -20,7 +19,8 @@ export interface IGenerateOptions {
  * @interface IMnemonicOptions
  */
 export interface IMnemonicOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	mnemonic: string;
 	bip?: BIP;
 }
@@ -31,7 +31,8 @@ export interface IMnemonicOptions {
  * @interface IAddressOptions
  */
 export interface IAddressOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	address: string;
 }
 
@@ -41,7 +42,8 @@ export interface IAddressOptions {
  * @interface IPublicKeyOptions
  */
 export interface IPublicKeyOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	publicKey: string;
 }
 
@@ -51,7 +53,8 @@ export interface IPublicKeyOptions {
  * @interface IPrivateKeyOptions
  */
 export interface IPrivateKeyOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	privateKey: string;
 }
 
@@ -61,7 +64,8 @@ export interface IPrivateKeyOptions {
  * @interface IAddressWithLedgerPathOptions
  */
 export interface IAddressWithLedgerPathOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	address: string;
 	path: string;
 }
@@ -72,7 +76,8 @@ export interface IAddressWithLedgerPathOptions {
  * @interface IMnemonicWithEncryptionOptions
  */
 export interface IMnemonicWithEncryptionOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	mnemonic: string;
 	password: string;
 }
@@ -83,7 +88,8 @@ export interface IMnemonicWithEncryptionOptions {
  * @interface IWifOptions
  */
 export interface IWifOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	wif: string;
 }
 
@@ -93,7 +99,8 @@ export interface IWifOptions {
  * @interface IWifWithEncryptionOptions
  */
 export interface IWifWithEncryptionOptions {
-	coin: Coins.Coin;
+	coin: string;
+	network: string;
 	wif: string;
 	password: string;
 }
