@@ -259,7 +259,7 @@ export interface IProfile {
 	 * @return {IPasswordManager}
 	 * @memberof IProfile
 	 */
-	 password(): IPasswordManager;
+	password(): IPasswordManager;
 
 	/**
 	 * Determine if the profile uses a password.

@@ -76,10 +76,12 @@ export class ClientService implements Contracts.ClientService {
 			payload.only_to = true;
 		}
 
-		const response: any = (await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)).json();
+		const response: any = (
+			await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)
+		).json();
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response.data.filter(({ raw_data }) => raw_data.contract[0].type === 'TransferContract'),
+			response.data.filter(({ raw_data }) => raw_data.contract[0].type === "TransferContract"),
 			{
 				prev: undefined,
 				self: undefined,
@@ -91,9 +93,9 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const result = await this.#connection.trx.getAccount(id);
+		const { data } = (await this.#client.get(`${this.getHost()}/v1/accounts/${id}`)).json();
 
-		return new WalletData(result);
+		return new WalletData(data[0]);
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -128,7 +130,9 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const response = await this.#connection.trx.sendRawTransaction(transaction.toBroadcast());
+			const response = (
+				await this.#client.post(`${this.getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
+			).json();
 
 			if (response.result) {
 				result.accepted.push(transaction.id());
@@ -157,5 +161,13 @@ export class ClientService implements Contracts.ClientService {
 		hosts: string[],
 	): Promise<Contracts.BroadcastResponse> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	}
+
+	private getHost(): string {
+		try {
+			return this.#config.get<string>("peer");
+		} catch {
+			return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
+		}
 	}
 }

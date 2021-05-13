@@ -1,24 +1,37 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
+import { Address } from "./identity/address";
+import { PrivateKey } from "./identity/private-key";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
+	readonly #address: Address;
+	readonly #privateKey: PrivateKey;
 
-	private constructor(peer: string) {
+	private constructor({ config, peer }) {
+		this.#config = config;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
+		this.#address = new Address(config);
+		this.#privateKey = new PrivateKey(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		try {
-			return new TransactionService(config.get<string>("peer"));
+			return new TransactionService({
+				config,
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+			return new TransactionService({
+				config,
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			});
 		}
 	}
 
@@ -37,14 +50,17 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
-				input.data.amount,
-				input.from,
+				BigNumber.make(input.data.amount).times(1e6).toString(),
+				await this.#address.fromMnemonic(input.sign.mnemonic),
 				1,
 			);
 
-			const response = await this.#connection.trx.sign(transaction, BIP39.normalize(input.sign.mnemonic));
+			const response = await this.#connection.trx.sign(
+				transaction,
+				await this.#privateKey.fromMnemonic(input.sign.mnemonic),
+			);
 
-			return new SignedTransactionData(response.txId, response, response);
+			return new SignedTransactionData(response.txID, response, response);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

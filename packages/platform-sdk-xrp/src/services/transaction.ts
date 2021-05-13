@@ -7,9 +7,11 @@ import { SignedTransactionData } from "../dto";
 import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
+	readonly #config: Coins.Config;
 	readonly #connection: RippleAPI;
 
-	private constructor(connection: RippleAPI) {
+	private constructor({ config, connection }: { config: Coins.Config; connection: RippleAPI }) {
+		this.#config = config;
 		this.#connection = connection;
 	}
 
@@ -25,7 +27,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		await connection.connect();
 
-		return new TransactionService(connection);
+		return new TransactionService({ config, connection });
 	}
 
 	public async __destruct(): Promise<void> {
@@ -41,7 +43,7 @@ export class TransactionService implements Contracts.TransactionService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const sender: string = await new IdentityService().address().fromMnemonic(input.sign.mnemonic);
+			const sender: string = await new IdentityService(this.#config).address().fromMnemonic(input.sign.mnemonic);
 
 			const prepared = await this.#connection.preparePayment(
 				sender,

@@ -98,7 +98,6 @@ beforeAll(async () => {
 beforeEach(async () => {
 	profile = new Profile({ id: "profile-id", name: "name", avatar: "avatar", data: "" });
 
-
 	profile.settings().set(ProfileSetting.Name, "John Doe");
 	profile.settings().set(ProfileSetting.ExchangeCurrency, "BTC");
 	profile.settings().set(ProfileSetting.MarketProvider, "cryptocompare");

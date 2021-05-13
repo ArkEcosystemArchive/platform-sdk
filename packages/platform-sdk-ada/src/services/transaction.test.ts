@@ -48,14 +48,14 @@ describe("TransactionService", () => {
 			expect(result).toBeInstanceOf(SignedTransactionData);
 			expect(result.id()).toBe("e2e75b04c4b1dc4d4b3db14166fb02cb26f5b9ed3c49b1e1c8379a21502dc77c");
 		});
-		it("public key not matching mnemonic", () => {
+		it("public key not matching mnemonic", async () => {
 			nock(/.+/)
 				.post("/")
 				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/transactions-page-1.json`))
 				.post("/")
 				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/transactions-page-2.json`));
 
-			expect(async () =>
+			await expect(
 				subject.transfer({
 					from:
 						"98abc2190ee1c207d6e210d3db1a09d33e62978e31140d7f1b0ba945f67707e489a20787ade9e802837741df511c773163372530e2cdaf1f8b0d37f360c4c31c",
@@ -71,8 +71,8 @@ describe("TransactionService", () => {
 				}),
 			).rejects.toThrow("Public key doesn't match the given mnemonic");
 		});
-		it("no mnemonic", () => {
-			expect(async () =>
+		it("no mnemonic", async () => {
+			await expect(
 				subject.transfer({
 					from:
 						"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",

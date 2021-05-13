@@ -15,7 +15,7 @@
 		"plugin:import/warnings",
 		"plugin:jest/recommended",
 		"plugin:prettier/recommended",
-		"prettier/@typescript-eslint"
+		"prettier"
 	],
 	"rules": {
 		"@typescript-eslint/ban-ts-comment": "off",
@@ -48,7 +48,7 @@
 		"import/no-cycle": "warn",
 		"import/no-deprecated": "error",
 		"import/no-duplicates": "error",
-		"import/no-dynamic-require": "warn",
+		"import/no-dynamic-require": "off",
 		"import/no-extraneous-dependencies": "error",
 		"import/no-mutable-exports": "error",
 		"import/no-namespace": "warn",
@@ -59,6 +59,7 @@
 		"import/no-useless-path-segments": "error",
 		"import/no-webpack-loader-syntax": "error",
 		"import/order": "warn",
+		"jest/no-conditional-expect": "off",
 		"no-async-promise-executor": "off",
 		"no-prototype-builtins": "off",
 		"prefer-const": [

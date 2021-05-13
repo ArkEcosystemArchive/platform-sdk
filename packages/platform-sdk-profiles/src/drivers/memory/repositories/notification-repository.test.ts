@@ -40,7 +40,9 @@ beforeAll(() => {
 	bootContainer();
 });
 
-beforeEach(() => (subject = new NotificationRepository(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }))));
+beforeEach(
+	() => (subject = new NotificationRepository(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }))),
+);
 
 test("#all", () => {
 	expect(subject.keys()).toHaveLength(0);

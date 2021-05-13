@@ -1,8 +1,8 @@
 import PQueue from "p-queue";
 import Web3 from "web3";
 
-import { Logger } from "./logger";
 import { Database } from "./database";
+import { Logger } from "./logger";
 
 /**
  * Creates a new database instance.

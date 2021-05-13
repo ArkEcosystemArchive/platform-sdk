@@ -529,7 +529,9 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	private restore(): void {
-		const balance: Contracts.WalletBalance | undefined = this.data().get<Contracts.WalletBalance>(WalletData.Balance);
+		const balance: Contracts.WalletBalance | undefined = this.data().get<Contracts.WalletBalance>(
+			WalletData.Balance,
+		);
 
 		/* istanbul ignore next */
 		this.data().set(WalletData.Balance, {
