@@ -81,6 +81,7 @@ export class ProfileRepository implements IProfileRepository {
 
 		new ProfileInitialiser(result).initialise(name);
 		result.getAttributes().set("data", new ProfileExporter(result).export());
+		result.status().markAsRestored();
 
 		return result;
 	}
