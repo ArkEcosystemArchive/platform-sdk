@@ -44,12 +44,23 @@ describe("ClientService", function () {
 	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://api.shasta.trongrid.io")
-				.post("/walletsolidity/getaccount")
+				.get("/v1/accounts/TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("TTSFjEG3Lu9WkHdp4JrWYhbGP6K1REqnGQ");
 
 			expect(result).toBeInstanceOf(WalletData);
+			expect(result.balance()).toMatchInlineSnapshot(`
+			Object {
+			  "available": BigNumber {},
+			  "fees": BigNumber {},
+			  "locked": BigNumber {},
+			  "tokens": Object {
+			    "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7": BigNumber {},
+			  },
+			  "total": BigNumber {},
+			}
+		`);
 		});
 	});
 

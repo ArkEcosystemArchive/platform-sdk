@@ -1,19 +1,24 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
-import TronWeb, { utils } from "tronweb";
+import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
+import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
+import { Address } from "./identity/address";
 import { PrivateKey } from "./identity/private-key";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
+	readonly #address: Address;
+	readonly #privateKey: PrivateKey;
 
 	private constructor({ config, peer }) {
 		this.#config = config;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
+		this.#address = new Address(config);
+		this.#privateKey = new PrivateKey(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
@@ -38,8 +43,26 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (!input.sign.mnemonic) {
-			throw new Error("No mnemonic provided.");
+		try {
+			if (!input.sign.mnemonic) {
+				throw new Error("No mnemonic provided.");
+			}
+
+			const transaction = await this.#connection.transactionBuilder.sendTrx(
+				input.data.to,
+				BigNumber.make(input.data.amount).times(1e6).toString(),
+				await this.#address.fromMnemonic(input.sign.mnemonic),
+				1,
+			);
+
+			const response = await this.#connection.trx.sign(
+				transaction,
+				await this.#privateKey.fromMnemonic(input.sign.mnemonic),
+			);
+
+			return new SignedTransactionData(response.txID, response, response);
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
 		}
 
 		const transaction = await this.#connection.transactionBuilder.sendTrx(

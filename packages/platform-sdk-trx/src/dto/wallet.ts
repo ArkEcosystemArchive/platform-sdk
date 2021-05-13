@@ -15,10 +15,24 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): Contracts.WalletBalance {
+		const tokens = {};
+
+		if (this.data.trc20) {
+			for(const trc20 of (Object.values(this.data.trc20) as Record<string, string>[])) {
+				for(const [address, balance] of Object.entries(trc20)) {
+					tokens[address] = BigNumber.make(balance).times(1e2);
+				}
+			}
+		}
+
+		const available = BigNumber.make(this.data.balance).times(1e2);
+
 		return {
-			total: BigNumber.make(this.data.balance).times(1e2),
-			available: BigNumber.make(this.data.balance).times(1e2),
-			fees: BigNumber.make(this.data.balance).times(1e2),
+			total: available,
+			available: available,
+			fees: available,
+			locked: BigNumber.make(this.data.frozen.frozen_balance).times(1e2),
+			tokens,
 		}
 	}
 
