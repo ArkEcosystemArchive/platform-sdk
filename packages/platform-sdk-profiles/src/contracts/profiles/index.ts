@@ -7,4 +7,5 @@ export * from "./migrator";
 export * from "./portfolio";
 export * from "./profile.enum";
 export * from "./profile.factory";
+export * from "./profile.status";
 export * from "./profile";
