@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
