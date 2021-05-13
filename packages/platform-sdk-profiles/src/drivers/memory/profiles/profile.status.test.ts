@@ -20,7 +20,7 @@ it("should mark the profile as restored", async () => {
 	expect(profile.status().isRestored()).toBeTrue();
 });
 
-it("should reset profile status to default values", async () => {
+it("should reset the status of the profile to the default values", async () => {
 	profile.status().markAsRestored();
 	expect(profile.status().isRestored()).toBeTrue();
 	profile.status().reset();
