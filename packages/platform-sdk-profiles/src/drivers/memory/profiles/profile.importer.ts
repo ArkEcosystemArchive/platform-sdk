@@ -158,7 +158,7 @@ export class ProfileImporter implements IProfileImporter {
 		}
 
 		for (const contact of Object.values(data.contacts) as any) {
-			for (const { coin, network } of (Object.values(contact.addresses) as { coin: string, network: string }[])) {
+			for (const { coin, network } of Object.values(contact.addresses) as { coin: string; network: string }[]) {
 				this.#profile.coins().set(coin, network);
 			}
 		}

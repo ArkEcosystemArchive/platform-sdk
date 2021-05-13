@@ -140,7 +140,29 @@ describe("#restore", () => {
 	it("should restore a profile with wallets and contacts", async () => {
 		const withWallets = {
 			id: "uuid",
-			contacts: {"448042c3-a405-4895-970e-a33c6e907905":{"id":"448042c3-a405-4895-970e-a33c6e907905","name":"John","starred":false,"addresses":[{"id":"3a7a9e03-c10b-4135-88e9-92e586d53e69","coin":"ARK","network":"ark.devnet","name":"Jane","address":"test"},{"id":"dfc3a16d-47b8-47f2-9b6f-fe4b8365a64a","coin":"ARK","network":"ark.mainnet","name":"Jane","address":"test"}]}},
+			contacts: {
+				"448042c3-a405-4895-970e-a33c6e907905": {
+					id: "448042c3-a405-4895-970e-a33c6e907905",
+					name: "John",
+					starred: false,
+					addresses: [
+						{
+							id: "3a7a9e03-c10b-4135-88e9-92e586d53e69",
+							coin: "ARK",
+							network: "ark.devnet",
+							name: "Jane",
+							address: "test",
+						},
+						{
+							id: "dfc3a16d-47b8-47f2-9b6f-fe4b8365a64a",
+							coin: "ARK",
+							network: "ark.mainnet",
+							name: "Jane",
+							address: "test",
+						},
+					],
+				},
+			},
 			data: { key: "value" },
 			notifications: {},
 			peers: {},
