@@ -14,7 +14,7 @@ beforeEach(async () => {
 	profile = new Profile({ id: "id", name: "name", avatar: "avatar", data: Base64.encode("{}") });
 });
 
-it("should mark as restored", async () => {
+it("should mark the profile as restored", async () => {
 	expect(profile.status().isRestored()).toBeFalse();
 	profile.status().markAsRestored();
 	expect(profile.status().isRestored()).toBeTrue();
