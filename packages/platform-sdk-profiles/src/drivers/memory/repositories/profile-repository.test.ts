@@ -268,8 +268,6 @@ describe("ProfileRepository", () => {
 		subject.flush();
 
 		const profile = subject.create("John");
-		await subject.restore(profile);
-
 		await expect(subject.restore(profile)).toResolve();
 	});
 
