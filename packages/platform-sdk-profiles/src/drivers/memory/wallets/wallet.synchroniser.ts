@@ -12,7 +12,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 
 	/** {@inheritDoc IWalletSynchroniser.coin} */
 	public async coin(): Promise<void> {
-		await this.#wallet.mutator().coin(this.#wallet.coin());
+		await this.#wallet.mutator().coin(this.#wallet.coinId(), this.#wallet.networkId());
 	}
 
 	/** {@inheritDoc IWalletSynchroniser.identity} */

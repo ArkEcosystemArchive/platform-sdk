@@ -12,12 +12,8 @@ export class CoinFactory implements ICoinFactory {
 		this.#profile = profile;
 	}
 
-	public make(coin: string, network: string): Coins.Coin {
-		return this.createDriver(coin, network);
-	}
-
-	private createDriver(coin: string, network: string, options: object = {}, useForce = false): Coins.Coin {
-		if (!useForce && this.#profile.coins().has(coin, network)) {
+	public make(coin: string, network: string, options: object = {}): Coins.Coin {
+		if (this.#profile.coins().has(coin, network)) {
 			return this.#profile.coins().get(coin, network);
 		}
 
