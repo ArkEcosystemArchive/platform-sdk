@@ -279,22 +279,6 @@ export interface IProfile {
 	usesPassword(): boolean;
 
 	/**
-	 * Determine if the profile uses custom peers.
-	 *
-	 * @return {boolean}
-	 * @memberof IProfile
-	 */
-	usesCustomPeer(): boolean;
-
-	/**
-	 * Determine if the profile uses multi peer broadcasting.
-	 *
-	 * @return {boolean}
-	 * @memberof IProfile
-	 */
-	usesMultiPeerBroadcasting(): boolean;
-
-	/**
 	 * Synchronise the profile.
 	 *
 	 * @return {Promise<void>}

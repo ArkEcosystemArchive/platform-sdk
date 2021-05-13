@@ -12,19 +12,7 @@ export class CoinFactory implements ICoinFactory {
 		this.#profile = profile;
 	}
 
-	public make(coin: string, network: string, options: object = {}, useForce = false): Coins.Coin {
-		if (this.#profile.usesCustomPeer() && this.#profile.peers().has(coin, network)) {
-			return this.createDriver(
-				coin,
-				network,
-				{
-					peer: this.#profile.peers().getRelay(coin, network)?.host,
-					peerMultiSignature: this.#profile.peers().getMultiSignature(coin, network)?.host,
-				},
-				true,
-			);
-		}
-
+	public make(coin: string, network: string): Coins.Coin {
 		return this.createDriver(coin, network);
 	}
 

@@ -173,15 +173,6 @@ it("should determine if the password uses a password", () => {
 	expect(subject.usesPassword()).toBeTrue();
 });
 
-test("#usesMultiPeerBroadcasting", async () => {
-	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
-
-	subject.settings().set(ProfileSetting.UseCustomPeer, true);
-	subject.settings().set(ProfileSetting.UseMultiPeerBroadcast, true);
-
-	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
-});
-
 test("#hasBeenPartiallyRestored", async () => {
 	const wallet: MockProxy<IReadWriteWallet> = mock<IReadWriteWallet>();
 	wallet.id.mockReturnValue("some-id");
