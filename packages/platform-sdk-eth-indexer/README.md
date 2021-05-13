@@ -14,7 +14,7 @@ npm install @arkecosystem/platform-sdk-eth-indexer
 
 ## Usage
 
-Documentation can be found [here](https://ark.dev/docs/platform-sdk/coins/ada).
+Documentation can be found [here](https://ark.dev/docs/platform-sdk).
 
 ## Security
 
