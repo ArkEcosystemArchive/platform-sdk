@@ -44,31 +44,27 @@ beforeEach(async () => {
 
 describe("CoinService", () => {
 	it("#push", () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set("ARK", "ark.devnet");
 		const coin = subject.get("ARK", "ark.devnet");
-		expect(coin.network().id()).toEqual("ark.devnet");
-
-		const useForce = false;
-		subject.push("ARK", "ark.devnet", {}, useForce);
 		expect(coin.network().id()).toEqual("ark.devnet");
 	});
 
 	it("#has", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set("ARK", "ark.devnet");
 
 		expect(subject.has("ARK", "ark.devnet")).toBeTrue();
 		expect(subject.has("UNKNOWN", "ark.devnet")).toBeFalse();
 	});
 
 	it("#get", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set("ARK", "ark.devnet");
 
 		expect(subject.get("ARK", "ark.devnet").network().id()).toEqual("ark.devnet");
 		expect(() => subject.get("ARK", "unknown")).toThrow(/does not exist/);
 	});
 
 	it("#values", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set("ARK", "ark.devnet");
 
 		const values = subject.values();
 		expect(values).toEqual([{ ark: { devnet: expect.anything() } }]);
@@ -77,13 +73,13 @@ describe("CoinService", () => {
 	});
 
 	it("#all", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set("ARK", "ark.devnet");
 
 		expect(Object.keys(subject.all())).toEqual(["ARK"]);
 	});
 
 	it("#entries", async () => {
-		subject.push("ARK", "ark.devnet");
+		subject.set("ARK", "ark.devnet");
 
 		expect(subject.entries()).toEqual([["ARK", ["ark.devnet"]]]);
 
