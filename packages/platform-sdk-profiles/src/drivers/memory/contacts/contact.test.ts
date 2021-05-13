@@ -8,43 +8,25 @@ import { Profile } from "../profiles/profile";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Contact } from "./contact";
 
-let subject: Contact;
-
-beforeAll(() => {
-	bootContainer();
-
-	nock.disableNetConnect();
-});
-
-beforeEach(async () => {
-	nock.cleanAll();
-
-	nock(/.+/)
-		.get("/api/node/configuration")
-		.reply(200, require("../../../../test/fixtures/client/configuration.json"))
-		.get("/api/peers")
-		.reply(200, require("../../../../test/fixtures/client/peers.json"))
-		.get("/api/node/configuration/crypto")
-		.reply(200, require("../../../../test/fixtures/client/cryptoConfiguration.json"))
-		.get("/api/node/syncing")
-		.reply(200, require("../../../../test/fixtures/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
-		.persist();
-
-	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-	const coin = profile.coinFactory().make("ARK", "ark.devnet");
-	await coin.__construct();
-	profile.coins().set(coin);
-
-	subject = new Contact({
-		id: "uuid",
-		name: "John Doe",
-		starred: true,
-	}, profile);
-});
+beforeAll(() => bootContainer());
 
 describe("contact", () => {
+	let subject: Contact;
+
+	beforeEach(async () => {
+		const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+		profile.coins().push("ARK", "ark.devnet");
+
+		subject = new Contact(
+			{
+				id: "uuid",
+				name: "John Doe",
+				starred: true,
+			},
+			profile,
+		);
+	});
+
 	it("should have an id", () => {
 		expect(subject.id()).toBe("uuid");
 	});
@@ -92,6 +74,22 @@ describe("contact", () => {
 	});
 
 	it("should be able to restore addresses", async () => {
+		nock.disableNetConnect();
+		nock.cleanAll();
+
+		nock(/.+/)
+			.get("/api/node/configuration")
+			.reply(200, require("../../../../test/fixtures/client/configuration.json"))
+			.get("/api/peers")
+			.reply(200, require("../../../../test/fixtures/client/peers.json"))
+			.get("/api/node/configuration/crypto")
+			.reply(200, require("../../../../test/fixtures/client/cryptoConfiguration.json"))
+			.get("/api/node/syncing")
+			.reply(200, require("../../../../test/fixtures/client/syncing.json"))
+			.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+			.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+			.persist();
+
 		await subject.restore([
 			{
 				id: "uuid",
