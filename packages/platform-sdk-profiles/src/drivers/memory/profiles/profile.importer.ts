@@ -145,6 +145,13 @@ export class ProfileImporter implements IProfileImporter {
 		return value as IProfileData;
 	}
 
+	/**
+	 * Gather all known coins through wallets and contacts.
+	 *
+	 * @private
+	 * @param {IProfileData} data
+	 * @memberof ProfileImporter
+	 */
 	private gatherCoins(data: IProfileData): void {
 		const setCoin = (coin: string, network: string) => this.#profile.coins().set(
 			this.#profile.coinFactory().make(coin, network)
