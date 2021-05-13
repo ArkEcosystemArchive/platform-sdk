@@ -1,4 +1,3 @@
-import { Coins } from "@arkecosystem/platform-sdk";
 import { sortBy, sortByDesc } from "@arkecosystem/utils";
 import retry from "p-retry";
 
@@ -241,10 +240,7 @@ export class WalletRepository implements IWalletRepository {
 
 			wallet.settings().fill(settings);
 
-			await wallet.mutator().coin(
-				this.#profile.coinFactory().make(coin, network),
-				{ sync: false },
-			);
+			await wallet.mutator().coin(coin!, network, { sync: false });
 
 			await wallet.mutator().address(address, { syncIdentity: false, validate: false });
 
@@ -286,12 +282,7 @@ export class WalletRepository implements IWalletRepository {
 
 		if (previousWallet.hasBeenPartiallyRestored()) {
 			try {
-				await this.syncWalletWithNetwork({
-					address,
-					coin: this.#profile.coinFactory().make(coin, network),
-					networkConfig,
-					wallet: previousWallet,
-				});
+				await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet: previousWallet });
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully
@@ -303,17 +294,19 @@ export class WalletRepository implements IWalletRepository {
 	private async syncWalletWithNetwork({
 		address,
 		coin,
+		network,
 		networkConfig,
 		wallet,
 	}: {
 		wallet: IReadWriteWallet;
-		coin: Coins.Coin;
+		coin: string;
+		network: string;
 		address: string;
 		networkConfig: any;
 	}): Promise<void> {
 		await retry(
 			async () => {
-				await wallet.mutator().coin(coin);
+				await wallet.mutator().coin(coin, network);
 
 				await wallet.mutator().address(address);
 
