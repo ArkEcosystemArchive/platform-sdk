@@ -5,15 +5,15 @@ export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
 	public sender(): string {
-		return this.data.raw_data.contract[0].parameter.value.owner_address;
+		return this.signedData.raw_data.contract[0].parameter.value.owner_address;
 	}
 
 	public recipient(): string {
-		return this.data.raw_data.contract[0].parameter.value.to_address;
+		return this.signedData.raw_data.contract[0].parameter.value.to_address;
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.raw_data.contract[0].parameter.value.amount);
+		return BigNumber.make(this.signedData.raw_data.contract[0].parameter.value.amount);
 	}
 
 	public fee(): BigNumber {
