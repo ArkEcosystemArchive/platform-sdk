@@ -3,7 +3,8 @@
 const {
 	createProfileWithWallets,
 	openProfile,
-	transfer,
+	transferAda,
+	transferArk,
 	transferTrx,
 } = require("../dist");
 
@@ -17,8 +18,12 @@ if (input[0] === "open-profile") {
 	(async () => openProfile())();
 }
 
-if (input[0] === "transfer") {
-	(async () => transfer())();
+if (input[0] === "transfer-ada") {
+	(async () => transferAda())();
+}
+
+if (input[0] === "transfer-ark") {
+	(async () => transferArk())();
 }
 
 if (input[0] === "transfer-trx") {
