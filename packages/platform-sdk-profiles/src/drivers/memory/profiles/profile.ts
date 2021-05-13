@@ -355,18 +355,6 @@ export class Profile implements IProfile {
 		return this.#attributes.hasStrict("password");
 	}
 
-	/** {@inheritDoc IProfile.usesCustomPeer} */
-	public usesCustomPeer(): boolean {
-		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
-	}
-
-	/** {@inheritDoc IProfile.usesMultiPeerBroadcasting} */
-	public usesMultiPeerBroadcasting(): boolean {
-		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
-
-		return this.usesCustomPeer() && usesMultiPeerBroadcasting;
-	}
-
 	/** {@inheritDoc IProfile.hasBeenPartiallyRestored} */
 	public hasBeenPartiallyRestored(): boolean {
 		return (

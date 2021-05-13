@@ -26,7 +26,7 @@ import { IProfile } from "../profiles";
  */
 export interface IWalletData {
 	id: string;
-	coin: string | undefined;
+	coin: string;
 	network: string;
 	networkConfig: {
 		crypto: {

@@ -14,11 +14,7 @@ import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
  * }} flags
  * @returns {Promise<void>}
  */
-export const subscribe = async (flags: {
-	network: string;
-	host: string;
-	database: string;
-}): Promise<void> => {
+export const subscribe = async (flags: { network: string; host: string; database: string }): Promise<void> => {
 	const logger = useLogger();
 	const queue = useQueue();
 	const database = useDatabase(flags, logger);

@@ -28,14 +28,21 @@ export class SettingRepository implements ISettingRepository {
 
 	/** {@inheritDoc ISettingRepository.get} */
 	public get<T>(key: string, defaultValue?: T): T | undefined {
-		this.assertValidKey(key);
+		/* istanbul ignore next */
+		if (this.isUnknownKey(key)) {
+			/* istanbul ignore next */
+			return;
+		}
 
 		return this.#data.get(key, defaultValue);
 	}
 
 	/** {@inheritDoc ISettingRepository.set} */
 	public set(key: string, value: string | number | boolean | object): void {
-		this.assertValidKey(key);
+		if (this.isUnknownKey(key)) {
+			/* istanbul ignore next */
+			return;
+		}
 
 		this.#data.set(key, value);
 
@@ -51,7 +58,11 @@ export class SettingRepository implements ISettingRepository {
 
 	/** {@inheritDoc ISettingRepository.has} */
 	public has(key: string): boolean {
-		this.assertValidKey(key);
+		/* istanbul ignore next */
+		if (this.isUnknownKey(key)) {
+			/* istanbul ignore next */
+			return false;
+		}
 
 		return this.#data.has(key);
 	}
@@ -63,7 +74,11 @@ export class SettingRepository implements ISettingRepository {
 
 	/** {@inheritDoc ISettingRepository.forget} */
 	public forget(key: string): void {
-		this.assertValidKey(key);
+		/* istanbul ignore next */
+		if (this.isUnknownKey(key)) {
+			/* istanbul ignore next */
+			return;
+		}
 
 		this.#data.forget(key);
 
@@ -77,11 +92,18 @@ export class SettingRepository implements ISettingRepository {
 		emitProfileChanged(this.#profile);
 	}
 
-	private assertValidKey(key: string): void {
+	private isUnknownKey(key: string): boolean {
+		/* istanbul ignore next */
 		if (this.#allowedKeys.includes(key)) {
-			return;
+			return false;
 		}
 
-		throw new Error(`The [${key}] is not a valid setting.`);
+		/* istanbul ignore next */
+		if (this.#data.has(key)) {
+			/* istanbul ignore next */
+			this.#data.forget(key);
+		}
+
+		return true;
 	}
 }

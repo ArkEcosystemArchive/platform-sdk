@@ -8,11 +8,10 @@ export interface IWalletSynchroniser {
 	/**
 	 * Synchronise the coin.
 	 *
-	 * @param {{ resetCoin: boolean; }} [options]
 	 * @return {Promise<void>}
 	 * @memberof IReadWriteWallet
 	 */
-	coin(options?: { resetCoin: boolean }): Promise<void>;
+	coin(): Promise<void>;
 
 	/**
 	 * Synchronise the identity.

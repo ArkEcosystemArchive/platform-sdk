@@ -1106,11 +1106,6 @@ it("should broadcast transaction", async () => {
 	await subject.broadcast(id);
 	expect(subject.broadcasted()).toContainKey(id);
 	expect(subject.transaction(id)).toBeDefined();
-
-	// usesMultiPeerBroadcasting
-	const walletMultiPeerMock = jest.spyOn(profile, "usesMultiPeerBroadcasting").mockReturnValue(true);
-	await expect(subject.broadcast(id)).toReject();
-	walletMultiPeerMock.mockRestore();
 });
 
 it("should broadcast a transfer and confirm it", async () => {
