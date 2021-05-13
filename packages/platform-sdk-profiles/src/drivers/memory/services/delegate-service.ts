@@ -42,14 +42,14 @@ export class DelegateService implements IDelegateService {
 	/** {@inheritDoc IDelegateService.sync} */
 	public async sync(coin: Coins.Coin): Promise<void> {
 		// TODO injection here based on coin config would be awesome
-		const syncer: IDelegateSyncer = instanceCanFastSync
-			? new ParallelDelegateSyncer(instance.client())
-			: new SerialDelegateSyncer(instance.client());
+		const syncer: IDelegateSyncer = coin.network().allows(Coins.FeatureFlag.InternalFastDelegateSync)
+			? new ParallelDelegateSyncer(coin.client())
+			: new SerialDelegateSyncer(coin.client());
 
 		let result: Contracts.WalletData[] = await syncer.sync();
 
 		this.#dataRepository.set(
-			`${coin}.${network}.delegates`,
+			`${coin.uuid()}.delegates`,
 			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
 		);
 	}
