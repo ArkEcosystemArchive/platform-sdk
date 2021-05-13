@@ -14,9 +14,8 @@ export default async () => {
 
 	// Create read-write wallet #1
 	const mnemonic1: string = "submit teach debate stool guilt pen problem inquiry horn tissue cradle ankle member quarter conduct obvious device ivory top wink globe tool rate tonight";
-	const wallet1 = await profile.walletFactory().fromMnemonic({
-		mnemonic: mnemonic1,
-		bip: 44,
+	const wallet1 = await profile.walletFactory().fromAddress({
+		address: "addr_test1qq254lk4kl4zpfmr7wsz6qapn7qywks2f6spdhlsx2f7azdu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsq7n2ck",
 		coin: "ADA",
 		network: "ada.testnet"
 	});
@@ -35,16 +34,16 @@ export default async () => {
 	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
 	logger.log("Wallet 2", wallet2.address(), "balance", wallet2.balance().toHuman(2));
 
-
+	// Transfer
 	const transactionId = await wallet1
 		.transaction()
 		.signTransfer({
-			from: wallet1.address(),
+			from: wallet1.address(), // TODO required by interface, but not really used
 			sign: {
 				mnemonic: mnemonic1
 			},
 			data: {
-				amount: "100000000",
+				amount: "1100000",
 				to: address2
 			}
 		});
