@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../test/identity";
