@@ -32,6 +32,8 @@ export class ProfileImporter implements IProfileImporter {
 		await this.#profile.wallets().fill(data.wallets);
 
 		this.#profile.contacts().fill(data.contacts);
+
+		// @TODO: gather all coins here from wallets and contact addresses
 	}
 
 	/**
