@@ -30,14 +30,17 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const account: string = query.address || query.addresses![0];
+		const parameters: Record<string, string | number> = {
+			action: "account_history",
+			account,
+			count: query.limit || 15,
+		};
 
-		const { history, previous } = (
-			await this.#client.get(this.getHost(), {
-				action: "account_history",
-				account,
-				count: query.limit || 15,
-			})
-		).json();
+		if (query.cursor) {
+			parameters.head = query.cursor;
+		}
+
+		const { history, previous } = (await this.#client.get(this.getHost(), parameters)).json();
 
 		return Helpers.createTransactionDataCollectionWithType(
 			Object.values(history).map((transaction: any) => {
@@ -46,9 +49,9 @@ export class ClientService implements Contracts.ClientService {
 				return transaction;
 			}),
 			{
-				prev: previous,
+				prev: undefined,
 				self: undefined,
-				next: undefined,
+				next: previous,
 				last: undefined,
 			},
 			TransactionDTO,
