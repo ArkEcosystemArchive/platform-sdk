@@ -2,15 +2,15 @@ import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/helpers";
-import { IdentityService } from ".";
+import { WIF } from "./wif";
 
-let subject: IdentityService;
+let subject: WIF;
 
-beforeEach(async () => (subject = await IdentityService.__construct(createConfig())));
+beforeEach(async () => (subject = new WIF(createConfig())));
 
 describe("WIF", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result: any = await subject.wif().fromMnemonic(identity.mnemonic);
+		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toBe(identity.wif);
 	});
