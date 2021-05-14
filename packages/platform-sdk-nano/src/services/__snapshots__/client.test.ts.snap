@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClientService #wallet should succeed 1`] = `
+Object {
+  "address": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
+  "balance": Object {
+    "available": BigNumber {},
+    "fees": BigNumber {},
+    "locked": BigNumber {},
+  },
+  "isDelegate": false,
+  "isMultiSignature": false,
+  "isResignedDelegate": false,
+  "isSecondSignature": false,
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
