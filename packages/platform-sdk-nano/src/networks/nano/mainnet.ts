@@ -5,7 +5,7 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "Nano",
-	explorer: "TODO",
+	explorer: "https://nanocrawler.cc",
 	currency: {
 		ticker: "NANO",
 		symbol: "NANO",
