@@ -9,14 +9,14 @@ let subject: TransactionData;
 beforeAll(() => nock.disableNetConnect());
 
 describe("transaction", function () {
-	describe("blockId", function() {
+	describe("blockId", function () {
 		it("should parse blockId correctly", function () {
 			subject = new TransactionData(require(`${__dirname}/../../test/fixtures/client/transactions.json`).data[1]);
 			expect(subject.blockId()).toBeString();
 			expect(subject.blockId()).toBe("14742837");
 		});
 	});
-	describe("memo", function() {
+	describe("memo", function () {
 		it("should parse memo correctly", function () {
 			subject = new TransactionData(require(`${__dirname}/../../test/fixtures/client/transactions.json`).data[1]);
 			expect(subject.memo()).toBe("Mariano");
