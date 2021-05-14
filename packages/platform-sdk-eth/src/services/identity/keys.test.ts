@@ -10,7 +10,7 @@ beforeEach(async () => (subject = new Keys(createConfig())));
 
 describe("Keys", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result: any = await subject.fromMnemonic(identity.mnemonic);
+		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toEqual({
 			privateKey: identity.privateKey,
@@ -19,7 +19,7 @@ describe("Keys", () => {
 	});
 
 	it("should generate an output from a privateKey", async () => {
-		const result: any = await subject.fromPrivateKey(identity.privateKey);
+		const result = await subject.fromPrivateKey(identity.privateKey);
 
 		expect(result).toEqual({
 			privateKey: identity.privateKey,
