@@ -7,7 +7,7 @@ let subject: PrivateKey;
 
 beforeEach(async () => (subject = new PrivateKey()));
 
-describe("#privateKey", () => {
+describe("PrivateKey", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 

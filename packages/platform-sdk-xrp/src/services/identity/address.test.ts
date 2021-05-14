@@ -8,7 +8,7 @@ let subject: IdentityService;
 
 beforeEach(async () => (subject = await IdentityService.__construct(createConfig())));
 
-describe("#address", () => {
+describe("Address", () => {
 	it("should generate an output from a publicKey", async () => {
 		const result = await subject.address().fromPublicKey(identity.publicKey);
 

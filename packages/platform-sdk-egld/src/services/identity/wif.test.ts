@@ -8,7 +8,7 @@ let subject: IdentityService;
 
 beforeEach(async () => (subject = await IdentityService.__construct(createConfig())));
 
-describe("#wif", () => {
+describe("WIF", () => {
 	it("should fail to generate an output from a mnemonic", async () => {
 		await expect(subject.wif().fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
 	});

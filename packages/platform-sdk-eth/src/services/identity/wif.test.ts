@@ -7,7 +7,7 @@ let subject: WIF;
 
 beforeEach(async () => (subject = new WIF()));
 
-describe("#wif", () => {
+describe("WIF", () => {
 	it("should generate an output from a mnemonic", async () => {
 		await expect(subject.fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
 	});

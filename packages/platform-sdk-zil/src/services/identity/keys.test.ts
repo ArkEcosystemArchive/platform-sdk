@@ -9,7 +9,7 @@ let subject: Keys;
 
 beforeEach(async () => (subject = new Keys(getZilliqa(createConfig()).wallet)));
 
-describe("#keys", () => {
+describe("Keys", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 

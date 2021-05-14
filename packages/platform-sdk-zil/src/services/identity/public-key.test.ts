@@ -9,7 +9,7 @@ let subject: PublicKey;
 
 beforeEach(async () => (subject = new PublicKey(getZilliqa(createConfig()).wallet)));
 
-describe("#publicKey", () => {
+describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result: any = await subject.fromMnemonic(identity.mnemonic);
 

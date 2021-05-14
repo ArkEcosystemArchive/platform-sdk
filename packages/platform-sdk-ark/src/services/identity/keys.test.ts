@@ -8,7 +8,7 @@ let subject: IdentityService;
 
 beforeEach(async () => (subject = await IdentityService.__construct(createConfigWithNetwork())));
 
-describe("#keys", () => {
+describe("Keys", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.keys().fromMnemonic(identity.mnemonic);
 

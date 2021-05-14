@@ -8,7 +8,7 @@ let subject: Keys;
 
 beforeEach(async () => (subject = new Keys(createConfig())));
 
-describe("#keys", () => {
+describe("Keys", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result: any = await subject.fromMnemonic(identity.mnemonic);
 
