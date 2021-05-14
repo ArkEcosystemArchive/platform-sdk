@@ -2,21 +2,21 @@ import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/helpers";
-import { IdentityService } from ".";
+import { PublicKey } from "./public-key";
 
-let subject: IdentityService;
+let subject: PublicKey;
 
-beforeEach(async () => (subject = await IdentityService.__construct(createConfig())));
+beforeEach(async () => (subject = new PublicKey(createConfig())));
 
 describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result: any = await subject.publicKey().fromMnemonic(identity.mnemonic);
+		const result: any = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toBe(identity.publicKey);
 	});
 
 	it("should generate an output from a wif", async () => {
-		const result: any = await subject.publicKey().fromWIF(identity.wif);
+		const result: any = await subject.fromWIF(identity.wif);
 
 		expect(result).toBe(identity.publicKey);
 	});
