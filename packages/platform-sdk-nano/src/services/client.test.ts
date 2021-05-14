@@ -31,7 +31,7 @@ describe("ClientService", function () {
 		const transaction = result.items()[0];
 
 		expect(transaction.id()).toBe("85D0745BCE0390DDAE8B8CEA31139BEBD2F2041BB689F5518B65431337EC6532");
-		expect(transaction.blockId()).toBe("39936");
+		expect(transaction.blockId()).toBe("85D0745BCE0390DDAE8B8CEA31139BEBD2F2041BB689F5518B65431337EC6532");
 		expect(transaction.timestamp()!.toISOString()).toBe("2021-05-14T04:59:40.000Z");
 		expect(transaction.sender()).toBe("nano_37cyeqb7fwafs499i9k94sthkse1iq3k59efaknb5rpdbysgq8sb9fq46qd8");
 		expect(transaction.recipient()).toBe("nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3");

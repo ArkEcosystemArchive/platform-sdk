@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { tools } from "nanocurrency-web";
+import * as ed25519 from "noble-ed25519";
 
 import { IdentityService } from "./identity";
 
@@ -31,7 +31,7 @@ export class MessageService implements Contracts.MessageService {
 				throw new Error("Failed to retrieve the keys for the signatory wallet.");
 			}
 
-			const { publicKey, privateKey } = keys;
+			const { privateKey } = keys;
 
 			if (privateKey === undefined) {
 				throw new Error("Failed to retrieve the private key for the signatory wallet.");
@@ -39,8 +39,8 @@ export class MessageService implements Contracts.MessageService {
 
 			return {
 				message: input.message,
-				signatory: publicKey,
-				signature: tools.sign(privateKey, input.message),
+				signatory: await ed25519.getPublicKey(privateKey),
+				signature: await ed25519.sign(Buffer.from(input.message, "utf8").toString("hex"), privateKey),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -49,7 +49,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		try {
-			return true;
+			return ed25519.verify(input.signature, Buffer.from(input.message, "utf8").toString("hex"), input.signatory);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

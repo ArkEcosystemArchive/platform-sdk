@@ -15,8 +15,6 @@ describe("MessageService", () => {
 			mnemonic: identity.mnemonic,
 		});
 
-		console.log(result);
-
 		await expect(subject.verify(result)).resolves.toBeTrue();
 	});
 });
