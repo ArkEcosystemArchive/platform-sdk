@@ -51,12 +51,11 @@ export class TransactionService implements Contracts.TransactionService {
 		const accountKey: Bip32PrivateKey = deriveAccountKey(deriveRootKey(input.sign.mnemonic), 0);
 		const publicKey = accountKey.to_public();
 
-		if (Buffer.from(publicKey.as_bytes()).toString("hex") !== input.from) {
-			throw Error("Public key doesn't match the given mnemonic");
-		}
-
 		// Gather all **used** spend and change addresses of the account
-		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, input.from);
+		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
+			this.#config,
+			Buffer.from(publicKey.as_bytes()).toString("hex"),
+		);
 		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
 
 		// Now get utxos for those addresses
@@ -127,7 +126,7 @@ export class TransactionService implements Contracts.TransactionService {
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
-				sender: input.from,
+				sender: input.from, // TODO This doesn't make sense in Cardano, because there can be any many senders (all addresses from the same sender)
 				recipient: input.data.to,
 				amount: input.data.amount,
 				fee: txBody.fee().to_str(),

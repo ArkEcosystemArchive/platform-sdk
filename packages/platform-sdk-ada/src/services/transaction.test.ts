@@ -48,29 +48,6 @@ describe("TransactionService", () => {
 			expect(result).toBeInstanceOf(SignedTransactionData);
 			expect(result.id()).toBe("e2e75b04c4b1dc4d4b3db14166fb02cb26f5b9ed3c49b1e1c8379a21502dc77c");
 		});
-		it("public key not matching mnemonic", async () => {
-			nock(/.+/)
-				.post("/")
-				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/transactions-page-1.json`))
-				.post("/")
-				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/transactions-page-2.json`));
-
-			await expect(
-				subject.transfer({
-					from:
-						"98abc2190ee1c207d6e210d3db1a09d33e62978e31140d7f1b0ba945f67707e489a20787ade9e802837741df511c773163372530e2cdaf1f8b0d37f360c4c31c",
-					sign: {
-						mnemonic:
-							"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
-					},
-					data: {
-						amount: "1000000",
-						to:
-							"addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
-					},
-				}),
-			).rejects.toThrow("Public key doesn't match the given mnemonic");
-		});
 		it("no mnemonic", async () => {
 			await expect(
 				subject.transfer({
