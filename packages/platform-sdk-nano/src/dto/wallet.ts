@@ -15,12 +15,12 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public balance(): Contracts.WalletBalance {
-		const available: BigNumber = BigNumber.make(this.data.balance).divide(1e30);
+		const available: BigNumber = BigNumber.make(this.data.balance).divide(1e30).times(1e8);
 
 		return {
 			available,
 			fees: available,
-			locked: BigNumber.make(this.data.pending).divide(1e30),
+			locked: BigNumber.make(this.data.pending).divide(1e30).times(1e8),
 		};
 	}
 
