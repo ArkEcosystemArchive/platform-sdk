@@ -6,9 +6,7 @@ import { Address } from "./address";
 
 let subject: Address;
 
-beforeEach(async () => {
-	subject = new Address(createConfig());
-});
+beforeEach(async () => (subject = new Address(createConfig())));
 
 describe("Address", () => {
 	describe("#fromMnemonic", () => {

@@ -9,7 +9,7 @@ beforeEach(async () => (subject = new Address(createConfig())));
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result: any = await subject.fromMnemonic(identity.mnemonic);
+		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toBe(identity.address);
 	});
@@ -21,13 +21,13 @@ describe("Address", () => {
 	});
 
 	it("should generate an output from a publicKey", async () => {
-		const result: any = await subject.fromPublicKey(identity.publicKey);
+		const result = await subject.fromPublicKey(identity.publicKey);
 
 		expect(result).toBe(identity.address);
 	});
 
 	it("should generate an output from a privateKey", async () => {
-		const result: any = await subject.fromPrivateKey(identity.privateKey);
+		const result = await subject.fromPrivateKey(identity.privateKey);
 
 		expect(result).toBe(identity.address);
 	});
