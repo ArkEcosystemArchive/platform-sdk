@@ -18,7 +18,7 @@ describe("ClientService", function () {
 	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://proxy.nanos.cc/")
-				.get('/proxy')
+				.get("/proxy")
 				.query(true)
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
