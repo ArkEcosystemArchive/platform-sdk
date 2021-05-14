@@ -30,7 +30,9 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return {
 			available,
 			fees: available,
-			locked: BigNumber.make(this.data.frozen.frozen_balance).times(1e2),
+			locked: this.data.frozen?.frozen_balance
+				? BigNumber.make(this.data.frozen?.frozen_balance).times(1e2)
+				: BigNumber.ZERO,
 			tokens,
 		};
 	}
