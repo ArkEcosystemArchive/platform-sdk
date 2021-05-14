@@ -27,8 +27,10 @@ describe("Address", () => {
 	});
 
 	it("should generate an output from a multiSignature", async () => {
-		const result = await subject
-			.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys);
+		const result = await subject.fromMultiSignature(
+			identity.multiSignature.min,
+			identity.multiSignature.publicKeys,
+		);
 
 		expect(result).toBe("36NUkt6FWUi3LAWBqWRdDmdTWbt91Yvfu7");
 	});
