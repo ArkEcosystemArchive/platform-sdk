@@ -17,7 +17,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	public balance(): Contracts.WalletBalance {
 		return {
 			available: BigNumber.make(this.data.balance.available?.quantity),
-			fees: BigNumber.make(this.data.balance.available?.quantity),
+			fees: BigNumber.make(this.data.balance.reward?.quantity),
 		};
 	}
 

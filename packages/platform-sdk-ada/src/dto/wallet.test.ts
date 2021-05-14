@@ -16,7 +16,7 @@ describe("WalletData", function () {
 
 	it("#balance", () => {
 		expect(subject.balance().available.toString()).toEqual("2000000000");
-		expect(subject.balance().fees.toString()).toEqual("2000000000");
+		expect(subject.balance().fees.toString()).toEqual("0");
 	});
 
 	it("#entities", () => {
