@@ -40,7 +40,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public memo(): string | undefined {
-		return this.data.data;
+		return undefined;
 	}
 
 	public asset(): Record<string, unknown> {
