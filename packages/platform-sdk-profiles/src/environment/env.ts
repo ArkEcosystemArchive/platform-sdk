@@ -23,7 +23,7 @@ export class Environment {
 	public constructor(options: EnvironmentOptions) {
 		this.configureDriver(options);
 
-		this.registerListeners();
+		this.registerListeners(options);
 	}
 
 	/**
@@ -253,7 +253,9 @@ export class Environment {
 	 * @private
 	 * @memberof Environment
 	 */
-	private registerListeners(): void {
-		emitter().on(Events.EnvironmentChanged, () => this.persist());
+	private registerListeners(options: EnvironmentOptions): void {
+		if (options.shouldPersistOnChange) {
+			emitter().on(Events.EnvironmentChanged, () => this.persist());
+		}
 	}
 }
