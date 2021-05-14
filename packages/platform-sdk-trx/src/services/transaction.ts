@@ -48,12 +48,15 @@ export class TransactionService implements Contracts.TransactionService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const transaction = await this.#connection.transactionBuilder.sendTrx(
+			let transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
 				BigNumber.make(input.data.amount).times(1e6).toString(),
 				await this.#address.fromMnemonic(input.sign.mnemonic),
 				1,
 			);
+			if (input.data.memo) {
+				transaction = await this.#connection.transactionBuilder.addUpdateData(transaction, input.data.memo, 'utf8')
+			}
 
 			const response = await this.#connection.trx.sign(
 				transaction,
