@@ -20,7 +20,6 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		// consistent for future use by other packages that use it.
 
 		return {
-			total: BigNumber.make(this.data.balance / 1e1),
 			available: BigNumber.make(this.data.balance / 1e1),
 			fees: BigNumber.make(this.data.balance / 1e1),
 		};
