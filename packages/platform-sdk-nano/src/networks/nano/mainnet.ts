@@ -5,7 +5,7 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "Nano",
-	explorer: "TODO",
+	explorer: "https://nanocrawler.cc",
 	currency: {
 		ticker: "NANO",
 		symbol: "NANO",
@@ -15,7 +15,7 @@ const network: Coins.NetworkManifest = {
 		expirationType: "height",
 	},
 	networking: {
-		hosts: [],
+		hosts: ["https://proxy.nanos.cc/proxy"],
 	},
 	governance: {
 		voting: {

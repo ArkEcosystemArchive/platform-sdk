@@ -4,15 +4,15 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return "TODO";
+		return this.data.hash;
 	}
 
 	public blockId(): string | undefined {
-		return undefined;
+		return this.data.hash;
 	}
 
 	public timestamp(): DateTime {
-		return DateTime.make();
+		return DateTime.fromUnix(this.data.local_timestamp);
 	}
 
 	public confirmations(): BigNumber {
@@ -20,11 +20,19 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return "TODO";
+		if (this.isSent()) {
+			return this.data._origin;
+		}
+
+		return this.data.account;
 	}
 
 	public recipient(): string {
-		return "TODO";
+		if (this.isReceived()) {
+			return this.data._origin;
+		}
+
+		return this.data.account;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -40,11 +48,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.ZERO;
+		return BigNumber.make(this.data.amount).divide(1e30).times(1e8);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee);
+		return BigNumber.ZERO;
 	}
 
 	public asset(): Record<string, unknown> {
@@ -52,21 +60,19 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSent(): boolean {
-		// @TODO: Need to find a way to determine this
-		return false;
+		return this.data.type === "send";
 	}
 
 	public isReceived(): boolean {
-		// @TODO: Need to find a way to determine this
-		return false;
+		return this.data.type === "receive";
 	}
 
 	public isTransfer(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSecondSignature(): boolean {

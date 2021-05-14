@@ -52,6 +52,10 @@ export class MemoryDriver implements Driver {
 			try {
 				const profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).findById(id);
 
+				if (!profile.status().isRestored()) {
+					return;
+				}
+
 				if (profile.usesPassword() && profile.password().exists()) {
 					profile.getAttributes().set("data", new ProfileExporter(profile).export(profile.password().get()));
 				}

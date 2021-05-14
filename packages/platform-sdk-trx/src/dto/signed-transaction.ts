@@ -25,6 +25,6 @@ export class SignedTransactionData
 	}
 
 	public isMultiSignatureRegistration(): boolean {
-		throw false;
+		return false;
 	}
 }

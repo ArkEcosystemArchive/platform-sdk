@@ -7,7 +7,6 @@ import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: RippleAPI;
-	readonly #dataUrl: string = "https://data.ripple.com/v2";
 
 	readonly #broadcastErrors: Record<string, string> = {
 		tecCLAIM: "ERR_CLAIM",

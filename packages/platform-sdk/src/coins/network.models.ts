@@ -1,17 +1,8 @@
 import { KeyValuePair } from "../contracts";
 
 export type CoinTransactionTypes =
-	| "bridgechain-registration"
-	| "bridgechain-resignation"
-	| "bridgechain-update"
-	| "business-registration"
-	| "business-resignation"
-	| "business-update"
 	| "delegate-registration"
 	| "delegate-resignation"
-	| "entity-registration"
-	| "entity-resignation"
-	| "entity-update"
 	| "htlc-claim"
 	| "htlc-lock"
 	| "htlc-refund"
@@ -56,18 +47,22 @@ export interface NetworkFeatureFlags {
 			mnemonic?: boolean;
 			multiSignature?: boolean;
 			wif?: boolean;
+			secret?: boolean;
 		};
 		privateKey?: {
 			mnemonic?: boolean;
 			wif?: boolean;
+			secret?: boolean;
 		};
 		wif?: {
 			mnemonic?: boolean;
+			secret?: boolean;
 		};
 		keyPair?: {
 			mnemonic?: boolean;
 			privateKey?: boolean;
 			wif?: boolean;
+			secret?: boolean;
 		};
 	};
 	Ledger?: {
@@ -134,6 +129,7 @@ export interface NetworkFeatureFlags {
 		bip44?: boolean;
 		bip49?: boolean;
 		bip84?: boolean;
+		secret?: boolean;
 	};
 	Internal?: {
 		fastDelegateSync?: boolean;

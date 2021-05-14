@@ -9,7 +9,6 @@ import { ProfileExporter } from "../profiles/profile.exporter";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileDumper } from "../profiles/profile.dumper";
 import { ProfileInitialiser } from "../profiles/profile.initialiser";
-import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class ProfileRepository implements IProfileRepository {
@@ -81,6 +80,8 @@ export class ProfileRepository implements IProfileRepository {
 		this.push(result);
 
 		new ProfileInitialiser(result).initialise(name);
+		result.getAttributes().set("data", new ProfileExporter(result).export());
+		result.status().markAsRestored();
 
 		return result;
 	}

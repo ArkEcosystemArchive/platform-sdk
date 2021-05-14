@@ -26,7 +26,6 @@ Object {
   "balance": Object {
     "available": BigNumber {},
     "fees": BigNumber {},
-    "total": BigNumber {},
   },
   "isDelegate": false,
   "isMultiSignature": false,
@@ -46,7 +45,6 @@ Object {
   "balance": Object {
     "available": BigNumber {},
     "fees": BigNumber {},
-    "total": BigNumber {},
   },
   "isDelegate": false,
   "isMultiSignature": false,

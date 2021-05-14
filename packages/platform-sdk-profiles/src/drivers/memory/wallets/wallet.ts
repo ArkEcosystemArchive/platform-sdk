@@ -535,10 +535,8 @@ export class Wallet implements IReadWriteWallet {
 
 		/* istanbul ignore next */
 		this.data().set(WalletData.Balance, {
-			total: BigNumber.make(balance?.total || 0),
 			available: BigNumber.make(balance?.available || 0),
 			fees: BigNumber.make(balance?.fees || 0),
-			locked: BigNumber.make(balance?.locked || 0),
 		});
 
 		this.data().set(

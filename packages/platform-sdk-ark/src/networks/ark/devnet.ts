@@ -119,12 +119,6 @@ const network: Coins.NetworkManifest = {
 		},
 	},
 	transactionTypes: [
-		"bridgechain-registration",
-		"bridgechain-resignation",
-		"bridgechain-update",
-		"business-registration",
-		"business-resignation",
-		"business-update",
 		"delegate-registration",
 		"delegate-resignation",
 		"htlc-claim",
