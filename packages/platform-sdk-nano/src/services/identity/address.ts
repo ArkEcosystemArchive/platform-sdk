@@ -1,11 +1,11 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { tools } from "nanocurrency-web";
 
-import { deriveAccountKey } from "./helpers";
+import { deriveAccount } from "./helpers";
 
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return deriveAccountKey(mnemonic, options?.bip44?.account || 0).address;
+		return deriveAccount(mnemonic, options?.bip44?.account || 0).address;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

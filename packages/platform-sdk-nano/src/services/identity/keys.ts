@@ -1,10 +1,10 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { deriveAccountKey } from "./helpers";
+import { deriveAccount } from "./helpers";
 
 export class Keys implements Contracts.Keys {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
 		try {
-			const { publicKey, privateKey } = deriveAccountKey(mnemonic, options?.bip44?.account || 0);
+			const { publicKey, privateKey } = deriveAccount(mnemonic, options?.bip44?.account || 0);
 
 			return { publicKey, privateKey };
 		} catch (error) {

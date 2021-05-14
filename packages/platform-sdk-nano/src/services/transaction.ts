@@ -3,16 +3,20 @@ import { computeWork } from "nanocurrency";
 import { block } from "nanocurrency-web";
 
 import { SignedTransactionData } from "../dto";
+import { deriveAccount } from "./identity/helpers";
+import { getPeerFromConfig } from "./peer-host";
+import { NanoClient } from "./rpc";
 
 export class TransactionService implements Contracts.TransactionService {
-	readonly #config: Coins.Config;
+	readonly #client: NanoClient;
 
-	public constructor(config: Coins.Config) {
-		this.#config = config;
+	public constructor(client: NanoClient) {
+		this.#client = client;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
+		const client = new NanoClient(getPeerFromConfig(config));
+		return new TransactionService(client);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -23,23 +27,28 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		// @TODO: derive from mnemonic
-		const privateKey = "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3";
+		if (!input.sign.mnemonic) {
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "sign.mnemonic");
+		}
+
+		const { address, privateKey } = deriveAccount(input.sign.mnemonic);
+		const { balance, representative, frontier } = await this.#client.accountInfo(address)
+
 		const data = {
 			// Current balance from wallet info
-			walletBalanceRaw: "5618869000000000000000000000000",
+			walletBalanceRaw: balance,
 			// Your wallet address
 			fromAddress: input.from,
 			// The address to send to
 			toAddress: input.data.to,
 			// From wallet info
-			representativeAddress: "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+			representativeAddress: representative,
 			// Previous block, from wallet info
-			frontier: "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
+			frontier,
 			// The amount to send in RAW
 			amountRaw: input.data.amount,
 			// Generate work on server-side or with a DPOW service
-			work: (await computeWork("previousBlock"))!,
+			work: (await computeWork(frontier))!,
 		};
 
 		return new SignedTransactionData(block.send(data, privateKey).signature, data, data);
