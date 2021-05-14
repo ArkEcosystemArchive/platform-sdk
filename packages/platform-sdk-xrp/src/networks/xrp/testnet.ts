@@ -40,9 +40,23 @@ const network: Coins.NetworkManifest = {
 			address: {
 				mnemonic: true,
 				publicKey: true,
+				secret: true,
+			},
+			publicKey: {
+				mnemonic: true,
+				secret: true,
+			},
+			privateKey: {
+				mnemonic: true,
+				secret: true,
+			},
+			wif: {
+				mnemonic: true,
+				secret: true,
 			},
 			keyPair: {
 				mnemonic: true,
+				secret: true,
 			},
 		},
 		Link: {
