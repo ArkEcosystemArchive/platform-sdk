@@ -627,6 +627,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "noble-ed25519",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "nock",
       "allowedCategories": [ "libraries" ]
     },

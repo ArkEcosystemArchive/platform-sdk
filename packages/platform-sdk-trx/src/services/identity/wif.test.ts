@@ -6,9 +6,7 @@ import { WIF } from "./wif";
 
 let subject: WIF;
 
-beforeEach(async () => {
-	subject = new WIF(createConfig());
-});
+beforeEach(async () => (subject = new WIF(createConfig())));
 
 describe("WIF", () => {
 	describe("#fromMnemonic", () => {

@@ -7,13 +7,13 @@ import { schema } from "../src/schema";
 export const createConfig = (options?: object) => {
 	const config = new Coins.Config(
 		{
-			...(options || { network: "ada.testnet" }),
+			...(options || { network: "nano.mainnet" }),
 			...{ httpClient: new Request() },
 		},
 		schema,
 	);
 
-	config.set(Coins.ConfigKey.Network, manifest.networks["ada.testnet"]);
+	config.set(Coins.ConfigKey.Network, manifest.networks["nano.mainnet"]);
 
 	return config;
 };

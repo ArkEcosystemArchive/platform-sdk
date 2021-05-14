@@ -1,5 +1,5 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { waitReady } from "@polkadot/wasm-crypto";
+import { cryptoWaitReady } from "@polkadot/util-crypto";
 
 import { Address } from "./address";
 import { AddressList } from "./address-list";
@@ -16,7 +16,7 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		await waitReady();
+		await cryptoWaitReady();
 
 		return new IdentityService(config);
 	}

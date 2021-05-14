@@ -6,9 +6,7 @@ import { PublicKey } from "./public-key";
 
 let subject: PublicKey;
 
-beforeEach(async () => {
-	subject = new PublicKey(createConfig());
-});
+beforeEach(async () => (subject = new PublicKey(createConfig())));
 
 describe("PublicKey", () => {
 	describe("#fromMnemonic", () => {

@@ -6,9 +6,7 @@ import { Keys } from "./keys";
 
 let subject: Keys;
 
-beforeEach(async () => {
-	subject = new Keys(createConfig());
-});
+beforeEach(async () => (subject = new Keys(createConfig())));
 
 describe("Keys", () => {
 	describe("#fromMnemonic", () => {

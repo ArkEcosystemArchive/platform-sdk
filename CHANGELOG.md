@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.0.22 - 2021-05-14
+
+### Added
+
+- **[NANO]** Implement `MessageService` (9701fa5d, b531783e, @faustbrian)
+
+## 7.0.21 - 2021-05-14
+
+### Fixed
+
+- **[NANO]** Treat `previous` as `next` (7ab82935, @faustbrian)
+
+## 7.0.20 - 2021-05-14
+
+### Fixed
+
+- **[NANO]** Generate explorer links (a8d93434, @faustbrian)
+
+## 7.0.19 - 2021-05-14
+
+### Added
+
+- **[NANO]** Implement `ClientService#wallet` (51f4c3d2, @faustbrian)
+- **[NANO]** Implement `ClientService#transactions` (cf8bd44c, @faustbrian)
+- **[NANO]** Implement `FeeService#all` (b7a6afdd, @faustbrian)
+
 ## 7.0.16 - 2021-05-14
 
 ### Added

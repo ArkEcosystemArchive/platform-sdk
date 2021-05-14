@@ -6,9 +6,7 @@ import { PrivateKey } from "./private-key";
 
 let subject: PrivateKey;
 
-beforeEach(async () => {
-	subject = new PrivateKey(createConfig());
-});
+beforeEach(async () => (subject = new PrivateKey(createConfig())));
 
 describe("PrivateKey", () => {
 	describe("#fromMnemonic", () => {
