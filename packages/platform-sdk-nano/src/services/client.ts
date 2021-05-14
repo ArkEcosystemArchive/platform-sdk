@@ -1,10 +1,15 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+
+import { WalletData } from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
+	readonly #client: Contracts.HttpClient;
 
 	private constructor(config) {
 		this.#config = config;
+		this.#client = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -27,7 +32,14 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		const { balance } = (
+			await this.#client.get(this.getHost(), {
+				action: 'account_info',
+				account: id,
+			})
+		).json();
+
+		return new WalletData({ id, balance });
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -74,5 +86,9 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		return result;
+	}
+
+	private getHost(): string {
+		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
 	}
 }
