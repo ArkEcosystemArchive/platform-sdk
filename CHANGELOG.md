@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.0.20 - 2021-05-14
+
+### Fixed
+
+- **[NANO]** Generate explorer links (a8d93434, @faustbrian)
+
 ## 7.0.19 - 2021-05-14
 
 ### Added
