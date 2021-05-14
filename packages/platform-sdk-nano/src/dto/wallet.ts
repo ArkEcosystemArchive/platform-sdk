@@ -20,6 +20,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return {
 			available,
 			fees: available,
+			locked: BigNumber.make(this.data.pending).divide(1e30),
 		};
 	}
 

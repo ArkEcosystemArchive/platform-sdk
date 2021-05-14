@@ -32,14 +32,14 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { balance } = (
+		const { balance, pending } = (
 			await this.#client.get(this.getHost(), {
 				action: 'account_info',
 				account: id,
 			})
 		).json();
 
-		return new WalletData({ id, balance });
+		return new WalletData({ id, balance, pending });
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {

@@ -6,6 +6,7 @@ Object {
   "balance": Object {
     "available": BigNumber {},
     "fees": BigNumber {},
+    "locked": BigNumber {},
   },
   "isDelegate": false,
   "isMultiSignature": false,
