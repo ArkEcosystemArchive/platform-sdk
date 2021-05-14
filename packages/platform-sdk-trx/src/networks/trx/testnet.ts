@@ -5,7 +5,7 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Testnet",
 	coin: "TRON",
-	explorer: "https://shasta.tronscan.org/#/",
+	explorer: "https://shasta.tronscan.org/#",
 	currency: {
 		ticker: "TRX",
 		symbol: "TRX",
