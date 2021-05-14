@@ -5,7 +5,6 @@ import { KeyValuePair } from "../types";
 import { Entity } from "./entity";
 
 export interface WalletBalance {
-	total: BigNumber;
 	available: BigNumber;
 	fees: BigNumber;
 	locked?: BigNumber;

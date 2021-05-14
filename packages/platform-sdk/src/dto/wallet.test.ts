@@ -108,7 +108,6 @@ class Wallet extends AbstractWalletData {
 
 	public balance(): WalletBalance {
 		return {
-			total: BigNumber.ZERO,
 			available: BigNumber.ZERO,
 			fees: BigNumber.ZERO,
 		};
