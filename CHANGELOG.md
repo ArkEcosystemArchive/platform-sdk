@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.0.16 - 2021-05-14
+
+### Added
+
+- **[PROFILES]** Implement profile status service (a8eb7720, @goga-m)
+
+### Changed
+
+- **[PROFILES]** Gather all coins while restoring a profile (884b062f, @faustbrian)
+- **[SDK]** Remove spread-out broadcasting (9ac9d4aa, @faustbrian)
+- **[PROFILES]** Save changes only for restored profiles (6b00c7cf, @goga-m)
+- **[SDK]** Remove total balance (b91bf7cb, @faustbrian)
+
+### Fixed
+
+- **[ADA]** Correct balances (9af2b70f, @marianogoldman)
+
 ## 7.0.10 - 2021-05-13
 
 ### Added
