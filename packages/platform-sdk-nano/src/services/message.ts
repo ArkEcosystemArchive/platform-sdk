@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { tools } from "nanocurrency-web"
+import { tools } from "nanocurrency-web";
 
 import { IdentityService } from "./identity";
 
