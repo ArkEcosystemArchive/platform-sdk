@@ -5,7 +5,7 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "TRON",
-	explorer: "https://tronscan.org/#/",
+	explorer: "https://tronscan.org/#",
 	currency: {
 		ticker: "TRX",
 		symbol: "TRX",

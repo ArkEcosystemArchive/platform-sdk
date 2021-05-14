@@ -4,6 +4,13 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { KeyValuePair } from "../types";
 import { Entity } from "./entity";
 
+export interface WalletBalance {
+	available: BigNumber;
+	fees: BigNumber;
+	locked?: BigNumber;
+	tokens?: Record<string, BigNumber>;
+}
+
 export interface WalletMultiSignature {
 	min: number;
 	publicKeys: string[];
@@ -18,7 +25,7 @@ export interface WalletData {
 
 	publicKey(): string | undefined;
 
-	balance(): BigNumber;
+	balance(): WalletBalance;
 
 	nonce(): BigNumber;
 

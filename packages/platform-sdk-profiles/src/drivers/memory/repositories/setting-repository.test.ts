@@ -16,7 +16,10 @@ describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 	let key: string;
 
 	beforeEach(() => {
-		subject = new SettingRepository(new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }), Object.values(type === "profile" ? ProfileSetting : WalletSetting));
+		subject = new SettingRepository(
+			new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" }),
+			Object.values(type === "profile" ? ProfileSetting : WalletSetting),
+		);
 		subject.flush();
 
 		key = type === "profile" ? ProfileSetting.Locale : WalletSetting.Peer;
@@ -84,12 +87,5 @@ describe.each([["profile", "wallet"]])("SettingRepository(%s)", (type) => {
 		subject.flush();
 
 		expect(subject.has(key)).toBeFalse();
-	});
-
-	it("should throw if an invalid key is used", async () => {
-		expect(() => subject.get("invalid")).toThrowError("is not a valid setting");
-		expect(() => subject.set("invalid", "value")).toThrowError("is not a valid setting");
-		expect(() => subject.has("invalid")).toThrowError("is not a valid setting");
-		expect(() => subject.forget("invalid")).toThrowError("is not a valid setting");
 	});
 });

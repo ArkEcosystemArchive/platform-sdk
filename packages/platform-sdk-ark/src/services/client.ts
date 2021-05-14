@@ -12,7 +12,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>("httpClient");
+		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#network = config.get<string>("network.id");
 	}
 
@@ -117,47 +117,6 @@ export class ClientService implements Contracts.ClientService {
 			});
 		} catch (error) {
 			response = error.response.json();
-		}
-
-		return this.handleBroadcastResponse(response);
-	}
-
-	public async broadcastSpread(
-		transactions: Contracts.SignedTransactionData[],
-		hosts: string[],
-	): Promise<Contracts.BroadcastResponse> {
-		const promises: any[] = [];
-
-		for (const host of hosts) {
-			promises.push(
-				new Promise(async (resolve, reject) => {
-					try {
-						return resolve(
-							(
-								await this.#http.post(`${host}/transactions`, {
-									transactions: transactions.map((transaction: Contracts.SignedTransactionData) =>
-										transaction.toBroadcast(),
-									),
-								})
-							).json(),
-						);
-					} catch (error) {
-						return reject(error.response.json());
-					}
-				}),
-			);
-		}
-
-		let response: Contracts.KeyValuePair = {};
-
-		const results: any = await Promise.allSettled(promises);
-
-		for (const result of results) {
-			if (result.status === "fulfilled") {
-				response = result.value;
-
-				break;
-			}
 		}
 
 		return this.handleBroadcastResponse(response);

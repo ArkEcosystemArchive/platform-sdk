@@ -7,35 +7,41 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public address(): string {
-		return "TODO";
+		return this.data.id;
 	}
 
 	public publicKey(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "publicKey");
+		return undefined;
 	}
 
-	public balance(): BigNumber {
-		return BigNumber.ZERO;
+	public balance(): Contracts.WalletBalance {
+		const available: BigNumber = BigNumber.make(this.data.balance).divide(1e30).times(1e8);
+
+		return {
+			available,
+			fees: available,
+			locked: BigNumber.make(this.data.pending).divide(1e30).times(1e8),
+		};
 	}
 
 	public nonce(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "nonce");
+		return BigNumber.ZERO;
 	}
 
 	public secondPublicKey(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "secondPublicKey");
+		return undefined;
 	}
 
 	public username(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "username");
+		return undefined;
 	}
 
 	public rank(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "rank");
+		return undefined;
 	}
 
 	public votes(): BigNumber | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
+		return undefined;
 	}
 
 	public entities(): Contracts.Entity[] {
@@ -47,18 +53,18 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public isDelegate(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isDelegate");
+		return false;
 	}
 
 	public isResignedDelegate(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isResignedDelegate");
+		return false;
 	}
 
 	public isMultiSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+		return false;
 	}
 
 	public isSecondSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isSecondSignature");
+		return false;
 	}
 }

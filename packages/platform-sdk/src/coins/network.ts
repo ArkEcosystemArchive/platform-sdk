@@ -1,6 +1,6 @@
 import { get } from "dot-prop";
 
-import { NetworkManifest, ExpirationType, CoinManifest } from "./network.models";
+import { CoinManifest, ExpirationType, NetworkManifest } from "./network.models";
 
 export class Network {
 	/**
@@ -24,9 +24,9 @@ export class Network {
 	 * @param {NetworkManifest} network
 	 * @memberof Network
 	 */
-	public constructor(coin: CoinManifest, network: string) {
+	public constructor(coin: CoinManifest, network: NetworkManifest) {
 		this.#coin = coin;
-		this.#network = coin.networks[network];
+		this.#network = network;
 	}
 
 	/**

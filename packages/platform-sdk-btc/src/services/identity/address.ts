@@ -1,6 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import Bitcoin from "bitcore-lib";
-import BIP84 from "bip84";
 
 import { bip44, bip49, bip84 } from "./utils";
 
@@ -13,20 +12,21 @@ export class Address implements Contracts.Address {
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
+			if (options?.bip44) {
+				return (await bip44(mnemonic, this.#network.name))!;
+			}
+
 			if (options?.bip49) {
 				return (await bip49(mnemonic, this.#network.name))!;
 			}
 
-			if (options?.bip84) {
-				return bip84(mnemonic, options);
-			}
-
-			return (await bip44(mnemonic, this.#network.name))!;
+			return bip84(mnemonic, options || {});
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
+	// @TODO: support for bip44/49/84
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
 		try {
 			const address = new Bitcoin.Address(publicKeys, min);
@@ -41,6 +41,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
+	// @TODO: support for bip44/49/84
 	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			const address = Bitcoin.Address.fromPublicKey(new Bitcoin.PublicKey(publicKey), this.#network);
@@ -55,6 +56,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
+	// @TODO: support for bip44/49/84
 	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
 			const address = new Bitcoin.PrivateKey(privateKey).toAddress(this.#network);
@@ -69,6 +71,7 @@ export class Address implements Contracts.Address {
 		}
 	}
 
+	// @TODO: support for bip44/49/84
 	public async fromWIF(wif: string): Promise<string> {
 		try {
 			const address = Bitcoin.PrivateKey.fromWIF(wif).toAddress(this.#network);
@@ -81,6 +84,10 @@ export class Address implements Contracts.Address {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
+	}
+
+	public async fromSecret(secret: string): Promise<string> {
+		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 
 	public async validate(address: string): Promise<boolean> {

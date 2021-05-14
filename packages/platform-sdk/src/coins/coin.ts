@@ -16,8 +16,8 @@ import { Config, ConfigKey } from "./config";
 import { CoinServices, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 import { Network } from "./network";
-import { NetworkRepository } from "./network-repository";
 import { NetworkManifest } from "./network.models";
+import { NetworkRepository } from "./network-repository";
 
 export class Coin {
 	readonly #networks: NetworkRepository;
@@ -42,8 +42,7 @@ export class Coin {
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#specification = specification;
-		// @TODO: merge the base and restored manifests
-		this.#network = new Network(specification.manifest, config.get<NetworkManifest>(ConfigKey.Network).id);
+		this.#network = this.createNetwork(specification, config);
 	}
 
 	public async __construct(): Promise<void> {
@@ -176,5 +175,14 @@ export class Coin {
 
 	public hasBeenSynchronized(): boolean {
 		return this.#services !== undefined;
+	}
+
+	private createNetwork(specification: CoinSpec, config: Config): Network {
+		const network = config.get<NetworkManifest>(ConfigKey.Network);
+
+		return new Network(specification.manifest, {
+			...specification.manifest.networks[network.id],
+			...config.get<NetworkManifest>(ConfigKey.Network),
+		});
 	}
 }

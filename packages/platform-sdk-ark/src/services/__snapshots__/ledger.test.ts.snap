@@ -23,7 +23,10 @@ Object {
 exports[`scan should return scanned wallet 2`] = `
 Object {
   "address": "DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ",
-  "balance": BigNumber {},
+  "balance": Object {
+    "available": BigNumber {},
+    "fees": BigNumber {},
+  },
   "isDelegate": false,
   "isMultiSignature": false,
   "isResignedDelegate": false,
@@ -39,7 +42,10 @@ Object {
 exports[`scan should return scanned wallet 3`] = `
 Object {
   "address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
-  "balance": BigNumber {},
+  "balance": Object {
+    "available": BigNumber {},
+    "fees": BigNumber {},
+  },
   "isDelegate": false,
   "isMultiSignature": false,
   "isResignedDelegate": false,

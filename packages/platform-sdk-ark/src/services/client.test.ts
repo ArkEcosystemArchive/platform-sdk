@@ -206,33 +206,4 @@ describe("ClientService", function () {
 			});
 		});
 	});
-
-	describe("#broadcastSpread", () => {
-		it("should broadcast to multiple peers and pass once", async () => {
-			jest.setTimeout(30000);
-
-			nock("https://a.com")
-				.post("/api/transactions")
-				.reply(422, require(`${__dirname}/../../test/fixtures/client/broadcast-failed.json`));
-
-			nock("https://b.com")
-				.post("/api/transactions")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-passed.json`));
-
-			nock("https://c.com")
-				.post("/api/transactions")
-				.reply(422, require(`${__dirname}/../../test/fixtures/client/broadcast-failed.json`));
-
-			const result = await subject.broadcastSpread(
-				[],
-				["https://a.com/api", "https://b.com/api", "https://c.com/api"],
-			);
-
-			expect(result).toEqual({
-				accepted: ["e4311204acf8a86ba833e494f5292475c6e9e0913fc455a12601b4b6b55818d8"],
-				rejected: [],
-				errors: {},
-			});
-		});
-	});
 });

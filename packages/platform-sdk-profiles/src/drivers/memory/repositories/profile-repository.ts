@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 import { injectable } from "inversify";
-import { IProfileRepository, IProfileExportOptions, IProfile, IProfileInput } from "../../../contracts";
+import { IProfileRepository, IProfileExportOptions, IProfile, IProfileInput, ProfileData } from "../../../contracts";
 
 import { Profile } from "../profiles/profile";
 import { ProfileFactory } from "../profiles/profile.factory";
-import { DataRepository } from "../../../repositories/data-repository";
+import { DataRepository } from "../../../repositories";
 import { ProfileExporter } from "../profiles/profile.exporter";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileDumper } from "../profiles/profile.dumper";
@@ -80,6 +80,8 @@ export class ProfileRepository implements IProfileRepository {
 		this.push(result);
 
 		new ProfileInitialiser(result).initialise(name);
+		result.getAttributes().set("data", new ProfileExporter(result).export());
+		result.status().markAsRestored();
 
 		return result;
 	}
@@ -105,7 +107,8 @@ export class ProfileRepository implements IProfileRepository {
 
 	/** {@inheritDoc IProfileRepository.restore} */
 	public async restore(profile: IProfile, password?: string): Promise<void> {
-		new ProfileImporter(profile).import(password);
+		await new ProfileImporter(profile).import(password);
+		profile.status().markAsRestored();
 	}
 
 	/** {@inheritDoc IProfileRepository.dump} */

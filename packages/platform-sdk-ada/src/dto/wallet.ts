@@ -14,8 +14,11 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		throw new Exceptions.NotImplemented(this.constructor.name, "publicKey");
 	}
 
-	public balance(): BigNumber {
-		return BigNumber.make(this.data.balance);
+	public balance(): Contracts.WalletBalance {
+		return {
+			available: BigNumber.make(this.data.balance.available?.quantity),
+			fees: BigNumber.make(this.data.balance.available?.quantity),
+		};
 	}
 
 	public nonce(): BigNumber {
@@ -47,18 +50,18 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public isDelegate(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isDelegate");
+		return false;
 	}
 
 	public isResignedDelegate(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isResignedDelegate");
+		return false;
 	}
 
 	public isMultiSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isMultiSignature");
+		return false;
 	}
 
 	public isSecondSignature(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, "isSecondSignature");
+		return false;
 	}
 }

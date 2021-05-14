@@ -1,30 +1,30 @@
-import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "id");
+		return this.data.txID;
 	}
 
 	public blockId(): string | undefined {
-		return undefined;
+		return this.data.blockNumber;
 	}
 
 	public timestamp(): DateTime | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "timestamp");
+		return DateTime.make(this.data.raw_data.timestamp);
 	}
 
 	public confirmations(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "confirmations");
+		return BigNumber.ZERO;
 	}
 
 	public sender(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "sender");
+		return this.data.raw_data.contract[0].parameter.value.owner_address;
 	}
 
 	public recipient(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "recipient");
+		return this.data.raw_data.contract[0].parameter.value.to_address;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -32,15 +32,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "amount");
+		return BigNumber.make(this.data.raw_data.contract[0].parameter.value.amount).times(100);
 	}
 
 	public fee(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "fee");
+		return BigNumber.make(this.data.ret[0].fee);
 	}
 
 	public memo(): string | undefined {
-		return undefined;
+		return this.data.data;
 	}
 
 	public asset(): Record<string, unknown> {
@@ -56,19 +56,19 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return false;
+		return this.data.ret[0].contractRet === "SUCCESS";
 	}
 
 	public isSent(): boolean {
-		return false;
+		return this.getMeta("address") === this.sender();
 	}
 
 	public isReceived(): boolean {
-		return false;
+		return this.getMeta("address") === this.recipient();
 	}
 
 	public isTransfer(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSecondSignature(): boolean {

@@ -37,7 +37,6 @@ beforeEach(() => {
 
 	profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).create("John Doe");
 	subject = new ProfileDumper(profile);
-
 });
 
 describe("#dump", () => {

@@ -6,7 +6,10 @@ import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
+	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
+	readonly #peer: string;
+	readonly #client: Contracts.HttpClient;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -23,17 +26,26 @@ export class ClientService implements Contracts.ClientService {
 		OTHER_ERROR: "ERR_OTHER_ERROR",
 	};
 
-	private constructor(peer: string) {
+	private constructor({ config, peer }) {
+		this.#config = config;
+		this.#peer = peer;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
+		this.#client = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		try {
-			return new ClientService(config.get<string>("peer"));
+			return new ClientService({
+				config,
+				peer: config.get<string>("peer"),
+			});
 		} catch {
-			return new ClientService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+			return new ClientService({
+				config,
+				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			});
 		}
 	}
 
@@ -51,13 +63,39 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const address: string = query.senderId || query.recipientId || query.address || query.addresses![0];
+		const payload: Record<string, boolean | number> = {
+			limit: query.limit || 15,
+		};
+
+		if (query.senderId) {
+			payload.only_from = true;
+		}
+
+		if (query.recipientId) {
+			payload.only_to = true;
+		}
+
+		const response: any = (
+			await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)
+		).json();
+
+		return Helpers.createTransactionDataCollectionWithType(
+			response.data.filter(({ raw_data }) => raw_data.contract[0].type === "TransferContract"),
+			{
+				prev: undefined,
+				self: undefined,
+				next: response.meta.fingerprint,
+				last: undefined,
+			},
+			TransactionDTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const result = await this.#connection.trx.getAccount(id);
+		const { data } = (await this.#client.get(`${this.getHost()}/v1/accounts/${id}`)).json();
 
-		return new WalletData(result);
+		return new WalletData(data[0]);
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -92,7 +130,9 @@ export class ClientService implements Contracts.ClientService {
 		};
 
 		for (const transaction of transactions) {
-			const response = await this.#connection.trx.sendRawTransaction(transaction.toBroadcast());
+			const response = (
+				await this.#client.post(`${this.getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
+			).json();
 
 			if (response.result) {
 				result.accepted.push(transaction.id());
@@ -116,10 +156,11 @@ export class ClientService implements Contracts.ClientService {
 		return result;
 	}
 
-	public async broadcastSpread(
-		transactions: Contracts.SignedTransactionData[],
-		hosts: string[],
-	): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	private getHost(): string {
+		try {
+			return this.#config.get<string>("peer");
+		} catch {
+			return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
+		}
 	}
 }

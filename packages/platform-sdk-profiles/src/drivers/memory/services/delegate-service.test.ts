@@ -74,9 +74,7 @@ describe("DelegateService", () => {
 	it("should sync the delegates when network does not support FastDelegateSync", async () => {
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 
-		jest
-			.spyOn(profile.coins().push("ARK", "ark.devnet").network(), "allows")
-			.mockReturnValue(false);
+		jest.spyOn(profile.coins().set("ARK", "ark.devnet").network(), "allows").mockReturnValue(false);
 
 		await subject.sync(profile, "ARK", "ark.devnet");
 

@@ -15,13 +15,16 @@ describe("contact", () => {
 
 	beforeEach(async () => {
 		const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
-		profile.coins().push("ARK", "ark.devnet");
+		profile.coins().set("ARK", "ark.devnet");
 
-		subject = new Contact({
-			id: "uuid",
-			name: "John Doe",
-			starred: true,
-		}, profile);
+		subject = new Contact(
+			{
+				id: "uuid",
+				name: "John Doe",
+				starred: true,
+			},
+			profile,
+		);
 	});
 
 	it("should have an id", () => {

@@ -21,16 +21,17 @@ import {
 	IAuthenticator,
 	IWalletFactory,
 	ProfileData,
+	IProfileStatus,
 } from "../../../contracts";
 
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
-import { DataRepository } from "../../../repositories/data-repository";
+import { DataRepository } from "../../../repositories";
 import { NotificationRepository } from "../repositories/notification-repository";
 import { PeerRepository } from "../repositories/peer-repository";
 import { SettingRepository } from "../repositories/setting-repository";
 import { WalletRepository } from "../repositories/wallet-repository";
-import { Avatar } from "../../../helpers/avatar";
+import { Avatar } from "../../../helpers";
 import { CountAggregate } from "./aggregates/count-aggregate";
 import { RegistrationAggregate } from "./aggregates/registration-aggregate";
 import { TransactionAggregate } from "./aggregates/transaction-aggregate";
@@ -43,6 +44,8 @@ import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileInitialiser } from "./profile.initialiser";
 import { IPasswordManager } from "../../../contracts/profiles/services/password";
 import { PasswordManager } from "./services/password";
+import { emitProfileChanged } from "../helpers";
+import { ProfileStatus } from "./profile.status";
 
 export class Profile implements IProfile {
 	/**
@@ -173,6 +176,14 @@ export class Profile implements IProfile {
 	 */
 	readonly #attributes: AttributeBag<IProfileInput>;
 
+	/**
+	 * The status service.
+	 *
+	 * @type {IProfileStatus}
+	 * @memberof Profile
+	 */
+	readonly #status: IProfileStatus;
+
 	public constructor(data: IProfileInput) {
 		this.#attributes = new AttributeBag<IProfileInput>(data);
 		this.#coinService = new CoinService(new DataRepository());
@@ -190,6 +201,7 @@ export class Profile implements IProfile {
 		this.#walletAggregate = new WalletAggregate(this);
 		this.#authenticator = new Authenticator(this);
 		this.#password = new PasswordManager();
+		this.#status = new ProfileStatus();
 	}
 
 	/** {@inheritDoc IProfile.id} */
@@ -333,21 +345,14 @@ export class Profile implements IProfile {
 		return this.#password;
 	}
 
+	/** {@inheritDoc IProfile.status} */
+	public status(): IProfileStatus {
+		return this.#status;
+	}
+
 	/** {@inheritDoc IProfile.usesPassword} */
 	public usesPassword(): boolean {
 		return this.#attributes.hasStrict("password");
-	}
-
-	/** {@inheritDoc IProfile.usesCustomPeer} */
-	public usesCustomPeer(): boolean {
-		return this.settings().get(ProfileSetting.UseCustomPeer) === true;
-	}
-
-	/** {@inheritDoc IProfile.usesMultiPeerBroadcasting} */
-	public usesMultiPeerBroadcasting(): boolean {
-		const usesMultiPeerBroadcasting: boolean = this.settings().get(ProfileSetting.UseMultiPeerBroadcast) === true;
-
-		return this.usesCustomPeer() && usesMultiPeerBroadcasting;
 	}
 
 	/** {@inheritDoc IProfile.hasBeenPartiallyRestored} */
@@ -370,8 +375,15 @@ export class Profile implements IProfile {
 		await this.contacts().restore();
 	}
 
-	/** {@inheritDoc IProfile.hasCompletedTutorial} */
-	public hasCompletedTutorial(): boolean {
-		return this.#dataRepository.has(ProfileData.HasCompletedTutorial);
+	/** {@inheritDoc IProfile.markIntroductoryTutorialAsComplete} */
+	public markIntroductoryTutorialAsComplete(): void {
+		this.data().set(ProfileData.HasCompletedIntroductoryTutorial, true);
+
+		emitProfileChanged(this);
+	}
+
+	/** {@inheritDoc IProfile.hasCompletedIntroductoryTutorial} */
+	public hasCompletedIntroductoryTutorial(): boolean {
+		return this.data().has(ProfileData.HasCompletedIntroductoryTutorial);
 	}
 }

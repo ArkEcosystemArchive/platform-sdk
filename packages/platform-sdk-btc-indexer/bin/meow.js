@@ -9,11 +9,6 @@ module.exports = meow(
 `,
 	{
 		flags: {
-			coin: {
-				type: "string",
-				alias: "c",
-				default: "btc",
-			},
 			network: {
 				type: "string",
 				alias: "c",
@@ -24,6 +19,10 @@ module.exports = meow(
 			},
 			database: {
 				type: "string",
+			},
+			batchSize: {
+				type: "number",
+				default: 50,
 			},
 		},
 	},

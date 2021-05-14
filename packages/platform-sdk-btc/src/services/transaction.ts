@@ -21,12 +21,12 @@ export class TransactionService implements Contracts.TransactionService {
 		let unspent: UnspentAggregator;
 		try {
 			unspent = new UnspentAggregator({
-				http: config.get<Contracts.HttpClient>("httpClient"),
+				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 				peer: config.get<string>("peer"),
 			});
 		} catch {
 			unspent = new UnspentAggregator({
-				http: config.get<Contracts.HttpClient>("httpClient"),
+				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 			});
 		}

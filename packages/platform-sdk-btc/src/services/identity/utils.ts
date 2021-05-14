@@ -21,7 +21,7 @@ export const bip49 = async (mnemonic: string, network: string) =>
 
 export const bip84 = async (mnemonic: string, options: Contracts.IdentityOptions) => {
 	const root = new BIP84.fromSeed(mnemonic);
-	const rootAccount = new BIP84.fromZPrv(root.deriveAccount(options.bip44?.account || 0));
+	const rootAccount = new BIP84.fromZPrv(root.deriveAccount(options.bip84?.account || 0));
 
-	return rootAccount.getAddress(options.bip44?.addressIndex || 0);
+	return rootAccount.getAddress(options.bip84?.addressIndex || 0);
 };

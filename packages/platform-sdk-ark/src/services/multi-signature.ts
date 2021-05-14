@@ -28,7 +28,7 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	 */
 	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>("httpClient");
+		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	/** @inheritdoc */
@@ -163,7 +163,9 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 			return this.#config.get<string>("peerMultiSignature");
 		}
 
-		return Arr.randomElement(this.#config.get<Coins.NetworkManifest>("network").networking?.hostsMultiSignature || []);
+		return Arr.randomElement(
+			this.#config.get<Coins.NetworkManifest>("network").networking?.hostsMultiSignature || [],
+		);
 	}
 
 	/**

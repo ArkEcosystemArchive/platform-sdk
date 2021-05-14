@@ -295,6 +295,18 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@zilliqa-js/account",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@zilliqa-js/core",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@zilliqa-js/zilliqa",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@zondax/ledger-polkadot",
       "allowedCategories": [ "libraries" ]
     },
@@ -620,6 +632,10 @@
     },
     {
       "name": "nanomatch",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "noble-ed25519",
       "allowedCategories": [ "libraries" ]
     },
     {

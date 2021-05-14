@@ -13,6 +13,7 @@ import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { importByMnemonic } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
+import { PluginRegistry } from "../drivers/memory/plugins";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { ProfileImporter } from "../drivers/memory/profiles/profile.importer";
 import { ProfileSerialiser } from "../drivers/memory/profiles/profile.serialiser";
@@ -24,7 +25,6 @@ import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
 import { MemoryStorage } from "./storage/memory";
-import { PluginRegistry } from "../drivers/memory/plugins";
 
 let subject: Environment;
 
@@ -192,11 +192,6 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toMatchInlineSnapshot(`
 		Object {
-		  "ARK": Object {
-		    "ark": Object {
-		      "devnet": Object {},
-		    },
-		  },
 		  "key": "value",
 		}
 	`);
@@ -212,8 +207,6 @@ it("should create a profile with data and persist it when instructed to do so", 
 		SCREENSHOT_PROTECTION: true,
 		THEME: "light",
 		TIME_FORMAT: "h:mm A",
-		USE_CUSTOM_PEER: false,
-		USE_MULTI_PEER_BROADCAST: false,
 		USE_TEST_NETWORKS: false,
 	});
 });
@@ -233,11 +226,6 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toMatchInlineSnapshot(`
 		Object {
-		  "ARK": Object {
-		    "ark": Object {
-		      "devnet": Coin {},
-		    },
-		  },
 		  "key": "value",
 		}
 	`);
@@ -253,8 +241,6 @@ it("should boot the environment from fixed data", async () => {
 		SCREENSHOT_PROTECTION: true,
 		THEME: "light",
 		TIME_FORMAT: "h:mm A",
-		USE_CUSTOM_PEER: false,
-		USE_MULTI_PEER_BROADCAST: false,
 		USE_TEST_NETWORKS: false,
 	});
 

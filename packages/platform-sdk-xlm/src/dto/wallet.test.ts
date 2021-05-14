@@ -24,7 +24,7 @@ describe("WalletData", function () {
 	});
 
 	it("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make("17491629"));
+		expect(subject.balance().available).toEqual(BigNumber.make("17491629"));
 	});
 
 	it("#entities", () => {
@@ -56,18 +56,18 @@ describe("WalletData", function () {
 	});
 
 	it("#isMultiSignature", () => {
-		expect(() => subject.isMultiSignature()).toThrow(/not implemented/);
+		expect(subject.isMultiSignature()).toBeFalse();
 	});
 
 	it("#isDelegate", () => {
-		expect(() => subject.isDelegate()).toThrow(/not implemented/);
+		expect(subject.isDelegate()).toBeFalse();
 	});
 
 	it("#isSecondSignature", () => {
-		expect(() => subject.isSecondSignature()).toThrow(/not implemented/);
+		expect(subject.isSecondSignature()).toBeFalse();
 	});
 
 	it("#isResignedDelegate", () => {
-		expect(() => subject.isResignedDelegate()).toThrow(/not implemented/);
+		expect(subject.isResignedDelegate()).toBeFalse();
 	});
 });

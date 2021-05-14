@@ -112,7 +112,7 @@ it("should flush all data", () => {
 
 	subject.flush();
 
-	expect(subject.settings().keys()).toHaveLength(14);
+	expect(subject.settings().keys()).toHaveLength(12);
 });
 
 it("should fail to flush all data if the name is missing", () => {
@@ -128,7 +128,7 @@ it("should flush settings", () => {
 
 	subject.flushSettings();
 
-	expect(subject.settings().keys()).toHaveLength(14);
+	expect(subject.settings().keys()).toHaveLength(12);
 });
 
 it("should fail to flush settings if the name is missing", () => {
@@ -136,7 +136,9 @@ it("should fail to flush settings if the name is missing", () => {
 
 	expect(subject.settings().keys()).toHaveLength(0);
 
-	expect(() => subject.flushSettings()).toThrowError("The name of the profile could not be found. This looks like a bug.");
+	expect(() => subject.flushSettings()).toThrowError(
+		"The name of the profile could not be found. This looks like a bug.",
+	);
 });
 
 it("should have a a wallet factory", () => {
@@ -171,15 +173,6 @@ it("should determine if the password uses a password", () => {
 	expect(subject.usesPassword()).toBeTrue();
 });
 
-test("#usesMultiPeerBroadcasting", async () => {
-	expect(subject.usesMultiPeerBroadcasting()).toBeFalse();
-
-	subject.settings().set(ProfileSetting.UseCustomPeer, true);
-	subject.settings().set(ProfileSetting.UseMultiPeerBroadcast, true);
-
-	expect(subject.usesMultiPeerBroadcasting()).toBeTrue();
-});
-
 test("#hasBeenPartiallyRestored", async () => {
 	const wallet: MockProxy<IReadWriteWallet> = mock<IReadWriteWallet>();
 	wallet.id.mockReturnValue("some-id");
@@ -188,12 +181,20 @@ test("#hasBeenPartiallyRestored", async () => {
 	expect(subject.hasBeenPartiallyRestored()).toBeTrue();
 });
 
-it("should determine if the tutorial has been completed", () => {
-	expect(subject.hasCompletedTutorial()).toBeFalse();
+it("should mark the introductory tutorial as completed", () => {
+	expect(subject.hasCompletedIntroductoryTutorial()).toBeFalse();
 
-	subject.data().set(ProfileData.HasCompletedTutorial, true);
+	subject.markIntroductoryTutorialAsComplete();
 
-	expect(subject.hasCompletedTutorial()).toBeTrue();
+	expect(subject.hasCompletedIntroductoryTutorial()).toBeTrue();
+});
+
+it("should determine if the introductory tutorial has been completed", () => {
+	expect(subject.hasCompletedIntroductoryTutorial()).toBeFalse();
+
+	subject.data().set(ProfileData.HasCompletedIntroductoryTutorial, true);
+
+	expect(subject.hasCompletedIntroductoryTutorial()).toBeTrue();
 });
 
 // it("should fail to encrypt a profile if the password is invalid", () => {

@@ -16,7 +16,9 @@ describe("TransactionService", () => {
 		it("should verify", async () => {
 			nock("https://stargate.cosmos.network")
 				.get("/auth/accounts/cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`))
+				.get("/bank/balances/cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap")
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet-balance.json`));
 
 			const result: any = await subject.transfer({
 				from: "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",

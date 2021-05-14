@@ -131,13 +131,13 @@ it("should have a converted balance if it is a live wallet", async () => {
 	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
 	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
 
-	wallet.data().set(WalletData.Balance, 5e8);
+	wallet.data().set(WalletData.Balance, { available: 1e8, fees: 1e8 });
 
 	expect(wallet.convertedBalance()).toBeInstanceOf(BigNumber);
 	expect(wallet.convertedBalance().toNumber()).toBe(0);
 
 	await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
-	expect(wallet.convertedBalance().toNumber()).toBe(0.0002524);
+	expect(wallet.convertedBalance().toNumber()).toBe(0.00005048);
 
 	live.mockRestore();
 	test.mockRestore();
@@ -390,7 +390,10 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.networkConfig.crypto.slip44).toBe(slip44);
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toEqual({
-			BALANCE: "55827093444556",
+			BALANCE: {
+				available: BigNumber.make("55827093444556"),
+				fees: BigNumber.make("55827093444556"),
+			},
 			BROADCASTED_TRANSACTIONS: {},
 			LEDGER_PATH: "1",
 			SEQUENCE: "111932",
@@ -414,7 +417,9 @@ it("should have a primary key", () => {
 it("should throw if the primary key is accessed before the wallet has been synchronized", () => {
 	subject = new Wallet(uuidv4(), {}, profile);
 
-	expect(() => subject.primaryKey()).toThrow("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+	expect(() => subject.primaryKey()).toThrow(
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+	);
 });
 
 it("should have an underlying `WalletData` instance", () => {
@@ -424,7 +429,9 @@ it("should have an underlying `WalletData` instance", () => {
 it("should throw if the underlying `WalletData` instance is accessed before the wallet has been synchronized", () => {
 	subject = new Wallet(uuidv4(), {}, profile);
 
-	expect(() => subject.toData().primaryKey()).toThrow("This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.");
+	expect(() => subject.toData().primaryKey()).toThrow(
+		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
+	);
 });
 
 it("should return whether it can vote or not", () => {

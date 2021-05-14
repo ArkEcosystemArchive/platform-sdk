@@ -11,14 +11,13 @@ import { IDelegateSyncer, ParallelDelegateSyncer, SerialDelegateSyncer } from ".
 export class DelegateService implements IDelegateService {
 	readonly #dataRepository: IDataRepository = new DataRepository();
 
-
 	/** {@inheritDoc IDelegateService.all} */
 	public all(coin: string, network: string): IReadOnlyWallet[] {
 		const result: any[] | undefined = this.#dataRepository.get(`${coin}.${network}.delegates`);
 
 		if (result === undefined) {
 			throw new Error(
-				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`
+				`The delegates for [${coin}.${network}] have not been synchronized yet. Please call [syncDelegates] before using this method.`,
 			);
 		}
 
@@ -42,7 +41,7 @@ export class DelegateService implements IDelegateService {
 
 	/** {@inheritDoc IDelegateService.sync} */
 	public async sync(profile: IProfile, coin: string, network: string): Promise<void> {
-		const instance: Coins.Coin = profile.coins().push(coin, network);
+		const instance: Coins.Coin = profile.coins().set(coin, network);
 
 		if (!instance.hasBeenSynchronized()) {
 			await instance.__construct();
@@ -51,13 +50,15 @@ export class DelegateService implements IDelegateService {
 		const instanceCanFastSync: boolean = instance.network().allows(Coins.FeatureFlag.InternalFastDelegateSync);
 
 		// TODO injection here based on coin config would be awesome
-		const syncer: IDelegateSyncer = instanceCanFastSync ? new ParallelDelegateSyncer(instance.client()) : new SerialDelegateSyncer(instance.client());
+		const syncer: IDelegateSyncer = instanceCanFastSync
+			? new ParallelDelegateSyncer(instance.client())
+			: new SerialDelegateSyncer(instance.client());
 
 		let result: Contracts.WalletData[] = await syncer.sync();
 
 		this.#dataRepository.set(
 			`${coin}.${network}.delegates`,
-			result.map((delegate: Contracts.WalletData) => delegate.toObject())
+			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
 		);
 	}
 
@@ -92,7 +93,7 @@ export class DelegateService implements IDelegateService {
 						rank: delegate.rank(),
 						explorerLink: wallet.link().wallet(delegate.address()),
 						isDelegate: delegate.isDelegate(),
-						isResignedDelegate: delegate.isResignedDelegate()
+						isResignedDelegate: delegate.isResignedDelegate(),
 					});
 				} catch {
 					return undefined;
@@ -119,7 +120,7 @@ export class DelegateService implements IDelegateService {
 			rank: (delegate.rank as unknown) as number,
 			explorerLink: "",
 			isDelegate: delegate.isDelegate,
-			isResignedDelegate: delegate.isResignedDelegate
+			isResignedDelegate: delegate.isResignedDelegate,
 		});
 	}
 }

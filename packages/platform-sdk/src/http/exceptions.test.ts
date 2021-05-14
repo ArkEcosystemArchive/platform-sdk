@@ -1,4 +1,4 @@
-import { RequestException } from "./exceptions";
+import { BadResponseException, RequestException } from "./exceptions";
 import { Response } from "./response";
 
 test("RequestException", () => {
@@ -24,4 +24,8 @@ test("RequestException with Error", () => {
 			new Error("Broken"),
 		).message,
 	).toBe("HTTP request returned status code 200: Broken");
+});
+
+test("BadResponseException", () => {
+	expect(new BadResponseException("ERR_FAILED").message).toBe("Bad Response: ERR_FAILED");
 });

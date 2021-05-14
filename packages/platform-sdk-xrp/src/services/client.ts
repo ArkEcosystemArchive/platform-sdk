@@ -7,7 +7,6 @@ import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #connection: RippleAPI;
-	readonly #dataUrl: string = "https://data.ripple.com/v2";
 
 	readonly #broadcastErrors: Record<string, string> = {
 		tecCLAIM: "ERR_CLAIM",
@@ -162,10 +161,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const transactions = await this.#connection.getTransactions(query.address!, {
+		const transactions = await this.#connection.getTransactions(query.address || query.addresses![0], {
 			earliestFirst: true,
 			types: ["payment"],
-			limit: query.limit || 100,
+			limit: query.limit || 15,
 			// includeRawTransactions: true,
 		});
 
@@ -250,12 +249,5 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		return result;
-	}
-
-	public async broadcastSpread(
-		transactions: Contracts.SignedTransactionData[],
-		hosts: string[],
-	): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
 	}
 }

@@ -18,11 +18,7 @@ export enum ProfileSetting {
 	Password = "PASSWORD",
 	PluginProvider = "PLUGIN_PROVIDER",
 	ScreenshotProtection = "SCREENSHOT_PROTECTION",
-	UseCustomPeer = "USE_CUSTOM_PEER",
 	ErrorReporting = "ERROR_REPORTING",
-	// @TODO: rename to UseMultiPeerBroadcasting
-	UseMultiPeerBroadcast = "USE_MULTI_PEER_BROADCAST",
-
 	// UI
 	DashboardConfiguration = "DASHBOARD_CONFIGURATION",
 	DashboardTransactionHistory = "DASHBOARD_TRANSACTION_HISTORY",
@@ -44,5 +40,5 @@ export enum ProfileSetting {
  */
 export enum ProfileData {
 	LatestMigration = "LATEST_MIGRATION",
-	HasCompletedTutorial = "HAS_COMPLETED_TUTORIAL",
+	HasCompletedIntroductoryTutorial = "HAS_COMPLETED_INTRODUCTORY_TUTORIAL",
 }

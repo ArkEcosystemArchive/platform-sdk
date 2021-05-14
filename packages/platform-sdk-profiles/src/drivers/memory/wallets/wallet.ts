@@ -141,13 +141,13 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.balance} */
 	public balance(): BigNumber {
-		const value: string | undefined = this.data().get(WalletData.Balance);
+		const value: Contracts.WalletBalance | undefined = this.data().get(WalletData.Balance);
 
 		if (value === undefined) {
 			return BigNumber.ZERO;
 		}
 
-		return BigNumber.make(value);
+		return BigNumber.make(value.available);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.convertedBalance} */
@@ -529,10 +529,15 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	private restore(): void {
-		this.data().set(
+		const balance: Contracts.WalletBalance | undefined = this.data().get<Contracts.WalletBalance>(
 			WalletData.Balance,
-			BigNumber.make(this.data().get<string>(WalletData.Balance) || BigNumber.ZERO),
 		);
+
+		/* istanbul ignore next */
+		this.data().set(WalletData.Balance, {
+			available: BigNumber.make(balance?.available || 0),
+			fees: BigNumber.make(balance?.fees || 0),
+		});
 
 		this.data().set(
 			WalletData.Sequence,

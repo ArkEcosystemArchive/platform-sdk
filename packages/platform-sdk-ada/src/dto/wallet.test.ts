@@ -1,7 +1,5 @@
 import "jest-extended";
 
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
-
 import Fixture from "../../test/fixtures/client/wallet.json";
 import { WalletData } from "./wallet";
 
@@ -17,7 +15,8 @@ describe("WalletData", function () {
 	});
 
 	it("#balance", () => {
-		expect(subject.balance()).toEqual(BigNumber.make(2000000000));
+		expect(subject.balance().available.toString()).toEqual("2000000000");
+		expect(subject.balance().fees.toString()).toEqual("2000000000");
 	});
 
 	it("#entities", () => {
@@ -49,18 +48,18 @@ describe("WalletData", function () {
 	});
 
 	it("#isMultiSignature", () => {
-		expect(() => subject.isMultiSignature()).toThrow(/not implemented/);
+		expect(subject.isMultiSignature()).toBeFalse();
 	});
 
 	it("#isDelegate", () => {
-		expect(() => subject.isDelegate()).toThrow(/not implemented/);
+		expect(subject.isDelegate()).toBeFalse();
 	});
 
 	it("#isSecondSignature", () => {
-		expect(() => subject.isSecondSignature()).toThrow(/not implemented/);
+		expect(subject.isSecondSignature()).toBeFalse();
 	});
 
 	it("#isResignedDelegate", () => {
-		expect(() => subject.isResignedDelegate()).toThrow(/not implemented/);
+		expect(subject.isResignedDelegate()).toBeFalse();
 	});
 });

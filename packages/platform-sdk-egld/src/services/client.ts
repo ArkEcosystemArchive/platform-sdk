@@ -10,7 +10,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>("httpClient");
+		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -103,13 +103,6 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		return result;
-	}
-
-	public async broadcastSpread(
-		transactions: Contracts.SignedTransactionData[],
-		hosts: string[],
-	): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
 	}
 
 	private async get(path: string): Promise<Contracts.KeyValuePair> {

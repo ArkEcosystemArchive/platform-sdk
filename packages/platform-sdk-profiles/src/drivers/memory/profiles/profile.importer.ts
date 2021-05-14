@@ -32,6 +32,8 @@ export class ProfileImporter implements IProfileImporter {
 		await this.#profile.wallets().fill(data.wallets);
 
 		this.#profile.contacts().fill(data.contacts);
+
+		this.gatherCoins(data);
 	}
 
 	/**
@@ -49,6 +51,10 @@ export class ProfileImporter implements IProfileImporter {
 		try {
 			if (typeof password === "string") {
 				data = new ProfileEncrypter(this.#profile).decrypt(password);
+
+				// For password-protected profiles, make sure password is available during active profile's session.
+				// Will be accessed from env emitter to auto-save profile's changed data.
+				this.#profile.password().set(password);
 			} else {
 				data = JSON.parse(Base64.decode(this.#profile.getAttributes().get<string>("data")));
 			}
@@ -137,5 +143,24 @@ export class ProfileImporter implements IProfileImporter {
 		}
 
 		return value as IProfileData;
+	}
+
+	/**
+	 * Gather all known coins through wallets and contacts.
+	 *
+	 * @private
+	 * @param {IProfileData} data
+	 * @memberof ProfileImporter
+	 */
+	private gatherCoins(data: IProfileData): void {
+		for (const { coin, network } of Object.values(data.wallets)) {
+			this.#profile.coins().set(coin, network);
+		}
+
+		for (const contact of Object.values(data.contacts) as any) {
+			for (const { coin, network } of Object.values(contact.addresses) as { coin: string; network: string }[]) {
+				this.#profile.coins().set(coin, network);
+			}
+		}
 	}
 }

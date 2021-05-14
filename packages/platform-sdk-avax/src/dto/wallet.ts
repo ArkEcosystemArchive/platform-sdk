@@ -14,11 +14,15 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return undefined;
 	}
 
-	public balance(): BigNumber {
+	public balance(): Contracts.WalletBalance {
 		// AVAX uses 1e9 instead of the conventional 1e8 so
 		// we divide by 1e1 which will normalise it to 1e8 to be
-		// consistent for future use by other packages that do
-		return BigNumber.make(this.data.balance / 1e1);
+		// consistent for future use by other packages that use it.
+
+		return {
+			available: BigNumber.make(this.data.balance / 1e1),
+			fees: BigNumber.make(this.data.balance / 1e1),
+		};
 	}
 
 	public nonce(): BigNumber {

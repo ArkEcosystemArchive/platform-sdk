@@ -2,8 +2,8 @@ import "jest-extended";
 
 import nock from "nock";
 
-import { testWallet } from "../../test/fixtures/wallet";
 import { createConfig } from "../../test/helpers";
+import { identity } from "../../test/identity";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
@@ -13,24 +13,24 @@ beforeEach(async () => (subject = await TransactionService.__construct(createCon
 beforeAll(() => nock.disableNetConnect());
 
 describe("TransactionService", function () {
-	describe("#transfer", () => {
-		it("should succeed", async () => {
-			nock("https://api.shasta.trongrid.io")
-				.post("/wallet/createtransaction")
-				.reply(200, require(`${__dirname}/../../test/fixtures/crypto/transfer.json`));
+	test("#transfer", async () => {
+		nock("https://api.shasta.trongrid.io")
+			.post("/wallet/createtransaction")
+			.reply(200, require(`${__dirname}/../../test/fixtures/crypto/transfer.json`))
+			.post("/wallet/broadcasttransaction")
+			.reply(200, { result: true, txid: "920048e37005eb84299fe99ae666dcfe220a5befa587eec9c36c9e75dc37f821" });
 
-			const result = await subject.transfer({
-				from: testWallet.address,
-				sign: {
-					mnemonic: testWallet.privateKey,
-				},
-				data: {
-					to: "TY689z7Q2NpZYBxGfXbYR4PmS2WXyTNrir",
-					amount: "1",
-				},
-			});
-
-			expect(result).toBeObject();
+		const result = await subject.transfer({
+			from: identity.address,
+			sign: {
+				mnemonic: identity.mnemonic,
+			},
+			data: {
+				to: "TEre3kN6JdPzqCNpiZT8JWM4kt8iGrg1Rm",
+				amount: "1",
+			},
 		});
+
+		expect(result).toBeObject();
 	});
 });

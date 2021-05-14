@@ -7,12 +7,10 @@
 import { BigNumber } from "@arkecosystem/utils";
 
 export interface Flags {
-	coin: string;
 	network: string;
 	host: string;
-	username: string;
-	password: string;
 	database: string;
+	batchSize: number;
 }
 
 export interface VOut {

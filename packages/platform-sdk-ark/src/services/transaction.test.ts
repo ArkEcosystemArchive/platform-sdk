@@ -100,6 +100,27 @@ describe("Core", () => {
 
 			expect(result.id()).toBe("b2822f8bbaaff112f4fbdc949cd204e457d6a10be52444704820178ef71bddf0");
 		});
+
+		it("should sign using network estimated expiration", async () => {
+			nock("http://127.0.0.1")
+				.get("/api/blockchain")
+				.reply(200, require("../../test/fixtures/client/blockchain.json"))
+				.get("/api/node/configuration")
+				.reply(200, require("../../test/fixtures/client/configuration.json"));
+
+			const result = await subject.transfer({
+				nonce: "1",
+				from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				sign: {
+					mnemonic: "this is a top secret passphrase",
+				},
+				data: {
+					amount: "1",
+					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+				},
+			});
+			expect(result.toObject().data.expiration).toBe(6795392);
+		});
 	});
 
 	describe("#secondSignature", () => {

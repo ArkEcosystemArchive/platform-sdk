@@ -1,4 +1,4 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { decrypt, encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
@@ -41,29 +41,23 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromMnemonic} */
-	public async fromMnemonic({
-		coin,
-		network,
-		mnemonic,
-		useBIP39 = true,
-		useBIP44 = false,
-	}: IMnemonicOptions): Promise<IReadWriteWallet> {
+	public async fromMnemonic({ coin, network, mnemonic, bip = 39 }: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Mnemonic);
 
 		await wallet.mutator().coin(coin, network);
 
-		if (useBIP39 && wallet.network().usesExtendedPublicKey()) {
+		if (bip === 39 && wallet.network().usesExtendedPublicKey()) {
 			throw new Error(
 				"The configured network uses extended public keys for derivation. Please pass in BIP44 arguments.",
 			);
 		}
 
-		if (useBIP39 && this.allowsDeriveWithBIP39(wallet)) {
+		if (bip === 39 && this.allowsDeriveWithBIP39(wallet)) {
 			await wallet.mutator().identity(mnemonic);
 		}
 
-		if (useBIP44 && this.allowsDeriveWithBIP44(wallet)) {
+		if (bip === 44 && this.allowsDeriveWithBIP44(wallet)) {
 			const publicKey: string = await wallet
 				.coin()
 				.identity()
@@ -88,6 +82,18 @@ export class WalletFactory implements IWalletFactory {
 				// @TODO: the address index should be configurable
 				await wallet.mutator().identity(mnemonic, { bip44: { account: 0, addressIndex: 0 } });
 			}
+		}
+
+		/* istanbul ignore next */
+		if (bip === 49 && this.allowsDeriveWithBIP49(wallet)) {
+			/* istanbul ignore next */
+			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#49");
+		}
+
+		/* istanbul ignore next */
+		if (bip === 84 && this.allowsDeriveWithBIP84(wallet)) {
+			/* istanbul ignore next */
+			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#84");
 		}
 
 		return wallet;
@@ -200,5 +206,17 @@ export class WalletFactory implements IWalletFactory {
 
 	private allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
 		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP44);
+	}
+
+	/* istanbul ignore next */
+	private allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
+		/* istanbul ignore next */
+		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP49);
+	}
+
+	/* istanbul ignore next */
+	private allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
+		/* istanbul ignore next */
+		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP84);
 	}
 }

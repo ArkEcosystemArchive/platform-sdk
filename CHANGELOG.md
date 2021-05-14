@@ -5,57 +5,74 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 6.0.12 - 2021-05-06
-
-### Changed
-
-- **[PROFILES]** Use symbols as container binding keys (fc40c40b, @faustbrian)
-- **[PROFILES]** Use constructor injection for profile (af88ae36, @faustbrian)
-- **[SDK]** Expose parent coin through network (70eaafa1, @faustbrian)
-
-## 6.0.9 - 2021-05-04
-
-### Changed
-
-- **[PROFILES]** Bind password manager to profile instance (92df8c4d, @faustbrian)
-
-## 6.0.8 - 2021-05-03
+## 7.0.22 - 2021-05-14
 
 ### Added
 
-- **[PROFILES]** Implement `IProfileRepository#tap` (2056a696, @faustbrian)
-- **[PROFILES]** Implement `IProfile#hasCompletedTutorial` (5d996bfd, @w3ea)
+- **[NANO]** Implement `MessageService` (9701fa5d, b531783e, @faustbrian)
 
-### Changed
+## 7.0.21 - 2021-05-14
 
-- **[PROFILES]** Remove duplicate name type check (417fd34b, @w3ea)
+### Fixed
 
-## 6.0.5 - 2021-04-30
+- **[NANO]** Treat `previous` as `next` (7ab82935, @faustbrian)
 
-### Added
+## 7.0.20 - 2021-05-14
 
-- **[ARK-MUSIG]** Initial implementation (cf56c978, @faustbrian)
+### Fixed
 
-### Changed
+- **[NANO]** Generate explorer links (a8d93434, @faustbrian)
 
-- **[PROFILES]** Store import method on wallet (f590fe84, @faustbrian)
-- **[SDK]** Only require account index for BIP44 arguments (a3732e86, @faustbrian)
-- **[PROFILES]** Implement extended public key import from mnemonics (0284fca7, @faustbrian)
-
-## 6.0.1 - 2021-04-29
-
-### Changed
-
-- **[NEO]** Update host lists (a0baa643, @faustbrian)
-
-## 6.0.0 - 2021-04-28
+## 7.0.19 - 2021-05-14
 
 ### Added
 
-- **[PROFILES]** **[BREAKING]** Save environment on change (a38ad46f, @faustbrian)
+- **[NANO]** Implement `ClientService#wallet` (51f4c3d2, @faustbrian)
+- **[NANO]** Implement `ClientService#transactions` (cf8bd44c, @faustbrian)
+- **[NANO]** Implement `FeeService#all` (b7a6afdd, @faustbrian)
+
+## 7.0.16 - 2021-05-14
+
+### Added
+
+- **[PROFILES]** Implement profile status service (a8eb7720, @goga-m)
 
 ### Changed
 
-- **[NEO]** **[BREAKING]** Only validate address length (41298729, @faustbrian)
-- **[SDK]** **[BREAKING]** Treat magistrate as a generic transaction (918ea403, @faustbrian)
-- **[SDK]** **[BREAKING]** Remove magistrate remnants (1efc4197, @faustbrian)
+- **[PROFILES]** Gather all coins while restoring a profile (884b062f, @faustbrian)
+- **[SDK]** Remove spread-out broadcasting (9ac9d4aa, @faustbrian)
+- **[PROFILES]** Save changes only for restored profiles (6b00c7cf, @goga-m)
+- **[SDK]** Remove total balance (b91bf7cb, @faustbrian)
+
+### Fixed
+
+- **[ADA]** Correct balances (9af2b70f, @marianogoldman)
+
+## 7.0.10 - 2021-05-13
+
+### Added
+
+- **[TRX]** Return default values for all fees (ba4ada1b, @faustbrian)
+- **[TRX]** Implement wallet derivation (3de1dbcf, @faustbrian)
+- **[ZIL-INDEXER]** Initial implementation (f0e1be43, @axeldelamarre)
+
+### Fixed
+
+- **[TRX]** Derive private key for transaction signing (5230ca75, @faustbrian)
+- **[TRX]** Take frozen and TRC20 balances into account (3e31b3b7, @faustbrian)
+- **[TRX]** Resolve signing and broadcasting failures (5b7af7d9, @faustbrian)
+- **[TRX]** Map correct signed transaction data (38d83804, @faustbrian)
+
+## 7.0.0 - 2021-05-12
+
+### Added
+
+- **[SDK]** Implement `PeerService#validate` (b900d198, @faustbrian)
+
+### Changed
+
+- **[SDK]** **[BREAKING]** Add support for multi-balance wallets (aca833b2, @faustbrian)
+
+### Fixed
+
+- **[TRX]** Fix transaction amount representation (4aaad8f5, @marianogoldman)

@@ -16,6 +16,7 @@ import { ITransactionAggregate } from "./aggregates/transaction-aggregate";
 import { IWalletAggregate } from "./aggregates/wallet-aggregate";
 import { IAuthenticator } from "./authenticator";
 import { IPortfolio } from "./portfolio";
+import { IProfileStatus } from "./profile.status";
 import { IPasswordManager } from "./services/password";
 
 /**
@@ -259,7 +260,7 @@ export interface IProfile {
 	 * @return {IPasswordManager}
 	 * @memberof IProfile
 	 */
-	 password(): IPasswordManager;
+	password(): IPasswordManager;
 
 	/**
 	 * Determine if the profile uses a password.
@@ -268,22 +269,6 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	usesPassword(): boolean;
-
-	/**
-	 * Determine if the profile uses custom peers.
-	 *
-	 * @return {boolean}
-	 * @memberof IProfile
-	 */
-	usesCustomPeer(): boolean;
-
-	/**
-	 * Determine if the profile uses multi peer broadcasting.
-	 *
-	 * @return {boolean}
-	 * @memberof IProfile
-	 */
-	usesMultiPeerBroadcasting(): boolean;
 
 	/**
 	 * Synchronise the profile.
@@ -310,10 +295,24 @@ export interface IProfile {
 	getAttributes(): AttributeBag<IProfileInput>;
 
 	/**
-	 * Determine if the tutorial has been completed.
+	 * Mark the introductory tutorial as completed.
+	 *
+	 * @memberof IProfile
+	 */
+	markIntroductoryTutorialAsComplete(): void;
+
+	/**
+	 * Determine if the introductory tutorial has been completed.
 	 *
 	 * @return {boolean}
 	 * @memberof IProfile
 	 */
-	hasCompletedTutorial(): boolean;
+	hasCompletedIntroductoryTutorial(): boolean;
+
+	/**
+	 * Get the profile status service instance.
+	 *
+	 * @memberof IProfile
+	 */
+	status(): IProfileStatus;
 }

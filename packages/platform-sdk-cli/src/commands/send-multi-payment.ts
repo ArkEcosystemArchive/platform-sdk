@@ -11,6 +11,7 @@ export const sendMultiPayment = async (wallet: Contracts.IReadWriteWallet): Prom
 
 	const payments: { amount: string; to: string }[] = [];
 
+	// eslint-disable-next-line no-constant-condition
 	while (true) {
 		const { amount, to, addMore } = await prompts([
 			{

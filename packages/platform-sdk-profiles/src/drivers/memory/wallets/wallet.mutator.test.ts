@@ -78,7 +78,6 @@ beforeEach(async () => {
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
 
-
 	subject = new Wallet(uuidv4(), {}, profile);
 
 	await subject.mutator().coin("ARK", "ark.devnet");
@@ -104,55 +103,6 @@ describe("#setCoin", () => {
 		expect(() => subject.coin().config().get("peer")).toThrow("unknown");
 	});
 
-	it("should use the custom relay peer if is available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
-
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "Relay",
-			host: "https://relay.com/api",
-			isMultiSignature: false,
-		});
-
-		await subject.mutator().coin("ARK", "ark.devnet");
-
-		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
-	});
-
-	it("should use the custom musig peer if is available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
-
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "MuSig",
-			host: "https://musig.com/api",
-			isMultiSignature: true,
-		});
-
-		await subject.mutator().coin("ARK", "ark.devnet");
-
-		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
-	});
-
-	it("should use the custom relay and musig peers if they are available", async () => {
-		profile.settings().set(ProfileSetting.UseCustomPeer, true);
-
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "Relay",
-			host: "https://relay.com/api",
-			isMultiSignature: false,
-		});
-
-		profile.peers().create("ARK", "ark.devnet", {
-			name: "MuSig",
-			host: "https://musig.com/api",
-			isMultiSignature: true,
-		});
-
-		await subject.mutator().coin("ARK", "ark.devnet");
-
-		expect(subject.coin().config().get("peer")).toBe("https://relay.com/api");
-		expect(subject.coin().config().get("peerMultiSignature")).toBe("https://musig.com/api");
-	});
-
 	it("should return relays", async () => {
 		profile.peers().create("ARK", "ark.devnet", {
 			name: "Relay",
@@ -166,7 +116,7 @@ describe("#setCoin", () => {
 	});
 
 	it("should mutate extendedPublicKey", async () => {
-		await subject.mutator().extendedPublicKey("pubKey", { syncIdentity: false , validate: true });
+		await subject.mutator().extendedPublicKey("pubKey", { syncIdentity: false, validate: true });
 
 		expect(subject.publicKey()).toBe("pubKey");
 		expect(subject.address()).toBe("pubKey");

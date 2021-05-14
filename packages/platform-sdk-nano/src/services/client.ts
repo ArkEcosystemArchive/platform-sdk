@@ -1,10 +1,16 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+
+import { WalletData } from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
+	readonly #client: Contracts.HttpClient;
 
 	private constructor(config) {
 		this.#config = config;
+		this.#client = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -23,11 +29,44 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const account: string = query.address || query.addresses![0];
+		const parameters: Record<string, string | number> = {
+			action: "account_history",
+			account,
+			count: query.limit || 15,
+		};
+
+		if (query.cursor) {
+			parameters.head = query.cursor;
+		}
+
+		const { history, previous } = (await this.#client.get(this.getHost(), parameters)).json();
+
+		return Helpers.createTransactionDataCollectionWithType(
+			Object.values(history).map((transaction: any) => {
+				transaction._origin = account;
+
+				return transaction;
+			}),
+			{
+				prev: undefined,
+				self: undefined,
+				next: previous,
+				last: undefined,
+			},
+			TransactionDTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallet");
+		const { balance, pending } = (
+			await this.#client.get(this.getHost(), {
+				action: "account_info",
+				account: id,
+			})
+		).json();
+
+		return new WalletData({ id, balance, pending });
 	}
 
 	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
@@ -76,10 +115,7 @@ export class ClientService implements Contracts.ClientService {
 		return result;
 	}
 
-	public async broadcastSpread(
-		transactions: Contracts.SignedTransactionData[],
-		hosts: string[],
-	): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "broadcastSpread");
+	private getHost(): string {
+		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
 	}
 }

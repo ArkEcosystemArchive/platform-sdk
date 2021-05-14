@@ -28,7 +28,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const { crypto, peer, status }: any = config.get(Coins.ConfigKey.NetworkConfiguration);
 
 		return new TransactionService({
-			http: config.get<Contracts.HttpClient>("httpClient"),
+			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 			peer,
 			identity: await IdentityService.__construct(config),
 			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
@@ -49,10 +49,6 @@ export class TransactionService implements Contracts.TransactionService {
 
 			if (data.memo) {
 				transaction.vendorField(data.memo);
-			}
-
-			if (data.expiration) {
-				transaction.expiration(data.expiration);
 			}
 		});
 	}
@@ -268,6 +264,19 @@ export class TransactionService implements Contracts.TransactionService {
 
 			if (input.fee) {
 				transaction.fee(input.fee);
+			}
+
+			if (input.data && input.data.expiration) {
+				transaction.expiration(input.data.expiration);
+			} else {
+				try {
+					const estimatedExpiration = await this.estimateExpiration();
+					if (estimatedExpiration) {
+						transaction.expiration(parseInt(estimatedExpiration));
+					}
+				} catch {
+					// If we fail to estimate the expiration we'll still continue.
+				}
 			}
 
 			if (callback) {
