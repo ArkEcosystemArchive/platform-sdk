@@ -1,12 +1,6 @@
 {
 	"id": "ark.devnet",
 	"transactionTypes": [
-		"bridgechain-registration",
-		"bridgechain-resignation",
-		"bridgechain-update",
-		"business-registration",
-		"business-resignation",
-		"business-update",
 		"delegate-registration",
 		"delegate-resignation",
 		"htlc-claim",
@@ -36,8 +30,12 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://dwallets.ark.io"],
-		"hostsMultiSignature": ["https://dmusig1.ark.io"]
+		"hosts": [
+			"https://dwallets.ark.io"
+		],
+		"hostsMultiSignature": [
+			"https://dmusig1.ark.io"
+		]
 	},
 	"governance": {
 		"voting": {
@@ -137,12 +135,6 @@
 	"default": {
 		"id": "ark.devnet",
 		"transactionTypes": [
-			"bridgechain-registration",
-			"bridgechain-resignation",
-			"bridgechain-update",
-			"business-registration",
-			"business-resignation",
-			"business-update",
 			"delegate-registration",
 			"delegate-resignation",
 			"htlc-claim",
@@ -172,8 +164,12 @@
 			}
 		},
 		"networking": {
-			"hosts": ["https://dwallets.ark.io"],
-			"hostsMultiSignature": ["https://dmusig1.ark.io"]
+			"hosts": [
+				"https://dwallets.ark.io"
+			],
+			"hostsMultiSignature": [
+				"https://dmusig1.ark.io"
+			]
 		},
 		"governance": {
 			"voting": {
