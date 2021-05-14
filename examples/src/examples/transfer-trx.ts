@@ -44,7 +44,8 @@ export default async () => {
 			},
 			data: {
 				amount: "2",
-				to: address2
+				to: address2,
+				memo: "This is a nice memo"
 			}
 		});
 	logger.log("signedTransactionData", transactionId);
