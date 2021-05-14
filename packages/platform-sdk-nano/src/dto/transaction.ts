@@ -8,7 +8,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public blockId(): string | undefined {
-		return this.data.height;
+		return this.data.hash;
 	}
 
 	public timestamp(): DateTime {
