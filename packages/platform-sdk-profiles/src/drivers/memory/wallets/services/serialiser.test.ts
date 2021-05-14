@@ -113,7 +113,6 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toEqual({
 			BALANCE: {
-				total: BigNumber.make("55827093444556"),
 				available: BigNumber.make("55827093444556"),
 				fees: BigNumber.make("55827093444556"),
 			},
@@ -130,5 +129,19 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		});
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
+	});
+
+	it("should turn into an object with initial state for partially restored wallet", () => {
+		subject.coin().config().set("network.crypto.slip44", slip44);
+		subject.data().set("key", "value");
+
+		subject.data().set(WalletData.LedgerPath, "1");
+		subject.data().set(WalletFlag.Starred, true);
+		const partiallyRestoredMock = jest.spyOn(subject, "hasBeenPartiallyRestored").mockReturnValue(true);
+
+		const actual: any = subject.toObject();
+
+		expect(actual).toEqual({});
+		partiallyRestoredMock.mockRestore();
 	});
 });

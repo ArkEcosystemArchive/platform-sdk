@@ -5,13 +5,14 @@ import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
-import { IProfileRepository } from "../../../contracts";
+import { IProfileRepository, ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
 import { ProfileImporter } from "../profiles/profile.importer";
 import { ProfileSerialiser } from "../profiles/profile.serialiser";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
+import * as helpers from "../helpers";
 
 let subject: IProfileRepository;
 
@@ -188,6 +189,7 @@ describe("ProfileRepository", () => {
 
 	it("should dump profiles without a password", async () => {
 		const john = subject.create("John");
+
 		await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
 
 		const repositoryDump = subject.toObject();
@@ -201,6 +203,7 @@ describe("ProfileRepository", () => {
 
 	it("should dump profiles with a password", async () => {
 		const jane = subject.create("Jane");
+
 		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
 
 		jane.password().set("password");
@@ -264,7 +267,6 @@ describe("ProfileRepository", () => {
 		subject.flush();
 
 		const profile = subject.create("John");
-
 		await expect(subject.restore(profile)).toResolve();
 	});
 
@@ -278,9 +280,50 @@ describe("ProfileRepository", () => {
 		subject.flush();
 
 		const profile = subject.create("John");
-		expect(profile.status().isRestored()).toBeFalse();
+
 		await subject.restore(profile);
 
 		expect(profile.status().isRestored()).toBeTrue();
+	});
+
+	it("should not save profile data if profile is not restored", async () => {
+		subject.flush();
+
+		const profile = subject.create("John");
+		profile.status().reset();
+
+		const profileAttibuteSetMock = jest.spyOn(profile.getAttributes(), "set").mockImplementation(() => {
+			return true;
+		});
+
+		expect(profile.status().isRestored()).toBeFalse();
+		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
+
+		await subject.restore(profile);
+
+		expect(profile.status().isRestored()).toBeTrue();
+		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
+	});
+
+	it("should emit profile change and save data only when profile is restored", async () => {
+		subject.flush();
+
+		const profile = subject.create("John");
+		profile.status().reset();
+
+		const profileAttibuteSetMock = jest.spyOn(profile.getAttributes(), "set").mockImplementation(() => {
+			return true;
+		});
+
+		expect(profile.status().isRestored()).toBeFalse();
+		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
+
+		await subject.restore(profile);
+
+		expect(profile.status().isRestored()).toBeTrue();
+		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
+
+		profile.settings().set(ProfileSetting.Name, "Test");
+		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(1);
 	});
 });
