@@ -2,15 +2,16 @@ import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
 import { createConfigWithNetwork } from "../../../test/helpers";
+import { Keys } from "./keys";
 import { IdentityService } from ".";
 
-let subject: IdentityService;
+let subject: Keys;
 
-beforeEach(async () => (subject = await IdentityService.__construct(createConfigWithNetwork())));
+beforeEach(async () => (subject = (await IdentityService.__construct(createConfigWithNetwork())).keys()));
 
 describe("Keys", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result = await subject.keys().fromMnemonic(identity.mnemonic);
+		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toEqual({
 			privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
@@ -19,7 +20,7 @@ describe("Keys", () => {
 	});
 
 	it("should generate an output from a wif", async () => {
-		const result = await subject.keys().fromWIF(identity.wif);
+		const result = await subject.fromWIF(identity.wif);
 
 		expect(result).toEqual({
 			privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
