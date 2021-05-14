@@ -1,3 +1,4 @@
+import { cryptoWaitReady } from "@polkadot/util-crypto";
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
@@ -6,7 +7,11 @@ import { Address } from "./address";
 
 let subject: Address;
 
-beforeEach(async () => (subject = new Address(createConfig())));
+beforeEach(async () => {
+	await cryptoWaitReady();
+
+	subject = new Address(createConfig());
+});
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
