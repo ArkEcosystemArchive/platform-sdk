@@ -10,7 +10,7 @@ beforeEach(async () => (subject = new PrivateKey(createConfig())));
 
 describe("PrivateKey", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result: any = await subject.fromMnemonic(identity.mnemonic);
+		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toBe(identity.privateKey);
 	});

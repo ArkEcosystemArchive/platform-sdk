@@ -1,16 +1,15 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { createConfig } from "../../../test/helpers";
-import { IdentityService } from ".";
+import { PrivateKey } from "./private-key";
 
-let subject: IdentityService;
+let subject: PrivateKey;
 
-beforeEach(async () => (subject = await IdentityService.__construct(createConfig())));
+beforeEach(async () => (subject = new PrivateKey()));
 
 describe("PrivateKey", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result = await subject.privateKey().fromMnemonic(identity.mnemonic);
+		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toBe(identity.privateKey);
 	});
