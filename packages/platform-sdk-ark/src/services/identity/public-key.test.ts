@@ -17,8 +17,10 @@ describe("PublicKey", () => {
 	});
 
 	it("should generate an output from a multiSignature", async () => {
-		const result = await subject
-			.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys);
+		const result = await subject.fromMultiSignature(
+			identity.multiSignature.min,
+			identity.multiSignature.publicKeys,
+		);
 
 		expect(result).toBe("0279f05076556da7173610a7676399c3620276ebbf8c67552ad3b1f26ec7627794");
 	});
