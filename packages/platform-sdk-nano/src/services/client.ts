@@ -1,7 +1,8 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
+import * as TransactionDTO from "../dto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -28,7 +29,30 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const account: string = query.address || query.addresses![0];
+
+		const { history, previous } = (
+			await this.#client.get(this.getHost(), {
+				action: "account_history",
+				account,
+				count: query.limit || 15,
+			})
+		).json();
+
+		return Helpers.createTransactionDataCollectionWithType(
+			Object.values(history).map((transaction: any) => {
+				transaction._origin = account;
+
+				return transaction;
+			}),
+			{
+				prev: previous,
+				self: undefined,
+				next: undefined,
+				last: undefined,
+			},
+			TransactionDTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
