@@ -10,13 +10,12 @@ import { NanoClient } from "./rpc";
 export class TransactionService implements Contracts.TransactionService {
 	readonly #client: NanoClient;
 
-	public constructor(client: NanoClient) {
-		this.#client = client;
+	public constructor(config: Coins.Config) {
+		this.#client = new NanoClient(getPeerFromConfig(config));
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		const client = new NanoClient(getPeerFromConfig(config));
-		return new TransactionService(client);
+		return new TransactionService(config);
 	}
 
 	public async __destruct(): Promise<void> {
