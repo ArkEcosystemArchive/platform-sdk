@@ -55,7 +55,11 @@ export class TransactionService implements Contracts.TransactionService {
 				1,
 			);
 			if (input.data.memo) {
-				transaction = await this.#connection.transactionBuilder.addUpdateData(transaction, input.data.memo, 'utf8')
+				transaction = await this.#connection.transactionBuilder.addUpdateData(
+					transaction,
+					input.data.memo,
+					"utf8",
+				);
 			}
 
 			const response = await this.#connection.trx.sign(

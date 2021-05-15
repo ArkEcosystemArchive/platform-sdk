@@ -55,6 +55,7 @@
 			"energy_fee": 0,
 			"energy_usage_total": 0,
 			"raw_data": {
+				"data": "4d617269616e6f",
 				"contract": [
 					{
 						"parameter": {
