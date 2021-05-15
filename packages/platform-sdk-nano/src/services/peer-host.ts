@@ -8,4 +8,3 @@ export const getPeerFromConfig = (config: Coins.Config): string => {
 		return Arr.randomElement(config.get<string[]>("network.networking.hosts"));
 	}
 };
-
