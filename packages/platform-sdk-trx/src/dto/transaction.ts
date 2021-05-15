@@ -8,7 +8,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public blockId(): string | undefined {
-		return this.data.blockNumber;
+		return `${this.data.blockNumber}`;
 	}
 
 	public timestamp(): DateTime | undefined {
@@ -40,7 +40,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public memo(): string | undefined {
-		return this.data.data || undefined;
+		return Buffer.from(this.data.raw_data.data || "", "hex").toString() || undefined;
 	}
 
 	public asset(): Record<string, unknown> {
