@@ -1,5 +1,5 @@
-import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Request } from "@arkecosystem/platform-sdk-http-got";
 
 export class NanoClient {
 	readonly #http: Contracts.HttpClient;
@@ -8,11 +8,14 @@ export class NanoClient {
 		this.#http = new Request().baseUrl(host);
 	}
 
-	public async accountBalance(account: string): Promise<{balance: string; pending: string}> {
+	public async accountBalance(account: string): Promise<{ balance: string; pending: string }> {
 		return this.post("account_balance", { account });
 	}
 
-	public async accountInfo(account: string, representative = true): Promise<{
+	public async accountInfo(
+		account: string,
+		representative = true,
+	): Promise<{
 		balance: string;
 		frontier: string;
 		representative: string;
@@ -28,5 +31,5 @@ export class NanoClient {
 		}
 
 		return result as T;
-	} 
+	}
 }
