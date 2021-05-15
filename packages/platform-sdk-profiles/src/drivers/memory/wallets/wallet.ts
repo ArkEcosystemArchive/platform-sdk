@@ -143,11 +143,7 @@ export class Wallet implements IReadWriteWallet {
 	public balance(): BigNumber {
 		const value: Contracts.WalletBalance | undefined = this.data().get(WalletData.Balance);
 
-		if (value === undefined) {
-			return BigNumber.ZERO;
-		}
-
-		return BigNumber.make(value.available);
+		return BigNumber.make(value?.available || 0);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.convertedBalance} */
