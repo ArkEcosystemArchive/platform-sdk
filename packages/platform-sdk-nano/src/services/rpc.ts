@@ -22,9 +22,11 @@ export class NanoClient {
 
 	private async post<T = Record<string, any>>(action: string, params: Record<string, unknown>): Promise<T> {
 		const result = (await this.#http.post("/", { action, ...params })).json();
+
 		if (result.error) {
 			throw new Exceptions.Exception(`RPC error: ${JSON.stringify(result.error)}`);
 		}
+
 		return result as T;
 	} 
 }
