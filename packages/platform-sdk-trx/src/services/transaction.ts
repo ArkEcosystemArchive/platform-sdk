@@ -54,6 +54,7 @@ export class TransactionService implements Contracts.TransactionService {
 				await this.#address.fromMnemonic(input.sign.mnemonic),
 				1,
 			);
+
 			if (input.data.memo) {
 				transaction = await this.#connection.transactionBuilder.addUpdateData(
 					transaction,
