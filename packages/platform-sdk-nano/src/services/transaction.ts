@@ -35,19 +35,12 @@ export class TransactionService implements Contracts.TransactionService {
 		const { balance, representative, frontier } = await this.#client.accountInfo(address)
 
 		const data = {
-			// Current balance from wallet info
 			walletBalanceRaw: balance,
-			// Your wallet address
-			fromAddress: input.from,
-			// The address to send to
+			fromAddress: address,
 			toAddress: input.data.to,
-			// From wallet info
 			representativeAddress: representative,
-			// Previous block, from wallet info
 			frontier,
-			// The amount to send in RAW
 			amountRaw: input.data.amount,
-			// Generate work on server-side or with a DPOW service
 			work: (await computeWork(frontier))!,
 		};
 
