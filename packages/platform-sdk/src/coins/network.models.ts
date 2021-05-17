@@ -1,5 +1,7 @@
 import { KeyValuePair } from "../contracts";
 
+export type FeeType = "static" | "dynamic" | "gas" | "free";
+
 export type CoinTransactionTypes =
 	| "delegate-registration"
 	| "delegate-resignation"
@@ -122,7 +124,6 @@ export interface NetworkFeatureFlags {
 		dynamicFees?: boolean;
 		memo?: boolean;
 		utxo?: boolean;
-		zeroFees?: boolean;
 	};
 	Derivation?: {
 		bip39?: boolean;
@@ -145,6 +146,10 @@ export interface NetworkManifest {
 	currency: {
 		ticker: string;
 		symbol: string;
+	};
+	fees: {
+		type: FeeType,
+		ticker: string,
 	};
 	crypto: {
 		networkId?: string;

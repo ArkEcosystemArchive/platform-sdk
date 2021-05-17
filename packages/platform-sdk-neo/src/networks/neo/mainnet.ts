@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "NEO",
 		symbol: "NEO",
 	},
+	fees: {
+		type: "zero",
+		ticker: "GAS",
+	},
 	crypto: {
 		slip44: 888,
 		signingMethods: {
@@ -87,9 +91,6 @@ const network: Coins.NetworkManifest = {
 		},
 		Transaction: {
 			transfer: true,
-		},
-		Miscellaneous: {
-			zeroFees: true,
 		},
 		Derivation: {
 			bip39: true,
