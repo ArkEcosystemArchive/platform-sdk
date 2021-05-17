@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "TLOS",
 		symbol: "TLOS",
 	},
+	fees: {
+		type: "free",
+		ticker: "TLOS",
+	},
 	crypto: {
 		networkId: "e17615decaecd202a365f4c029f206eee98511979de8a5756317e2469f2289e3",
 		slip44: 194,

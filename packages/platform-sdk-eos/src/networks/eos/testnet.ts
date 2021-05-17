@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "EOS",
 		symbol: "EOS",
 	},
+	fees: {
+		type: "free",
+		ticker: "EOS",
+	},
 	crypto: {
 		networkId: "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
 		slip44: 194,

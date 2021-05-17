@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "XLM",
 		symbol: "XLM",
 	},
+	fees: {
+		type: "static",
+		ticker: "XLM",
+	},
 	crypto: {
 		slip44: 148,
 		signingMethods: {

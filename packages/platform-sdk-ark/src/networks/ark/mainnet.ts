@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "ARK",
 		symbol: "Ѧ",
 	},
+	fees: {
+		type: "dynamic",
+		ticker: "ARK",
+	},
 	crypto: {
 		slip44: 111,
 		signingMethods: {

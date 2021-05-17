@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Http } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Http } from "@arkecosystem/platform-sdk";
 
 export class PeerService implements Contracts.PeerService {
 	readonly #config: Coins.Config;
@@ -13,14 +13,6 @@ export class PeerService implements Contracts.PeerService {
 
 	public async __destruct(): Promise<void> {
 		//
-	}
-
-	public getSeeds(): string[] {
-		return this.#config.get<Coins.NetworkManifest>("network").networking.hosts;
-	}
-
-	public async search(opts: any = {}): Promise<Contracts.PeerResponse[]> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "search");
 	}
 
 	public async validate(url: string): Promise<boolean> {

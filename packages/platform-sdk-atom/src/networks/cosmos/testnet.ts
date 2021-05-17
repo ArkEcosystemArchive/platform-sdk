@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "MUON",
 		symbol: "MUON",
 	},
+	fees: {
+		type: "static",
+		ticker: "MUON",
+	},
 	crypto: {
 		networkId: "gaia-13007",
 		slip44: 118,

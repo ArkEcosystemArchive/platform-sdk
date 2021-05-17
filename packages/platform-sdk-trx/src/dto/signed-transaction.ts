@@ -13,7 +13,7 @@ export class SignedTransactionData
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.raw_data.contract[0].parameter.value.amount);
+		return BigNumber.make(this.signedData.raw_data.contract[0].parameter.value.amount).times(1e8);
 	}
 
 	public fee(): BigNumber {

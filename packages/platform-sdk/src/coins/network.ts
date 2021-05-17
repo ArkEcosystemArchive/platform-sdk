@@ -153,6 +153,56 @@ export class Network {
 	}
 
 	/**
+	 * Determines if the network charges static fees.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public chargesStaticFees(): boolean {
+		return get(this.#network, "fees.type") === "static";
+	}
+
+	/**
+	 * Determines if the network charges dynamic fees.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public chargesDynamicFees(): boolean {
+		return get(this.#network, "fees.type") === "dynamic";
+	}
+
+	/**
+	 * Determines if the network charges gas fees.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public chargesGasFees(): boolean {
+		return get(this.#network, "fees.type") === "gas";
+	}
+
+	/**
+	 * Determines if the network charges weight fees.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public chargesWeightFees(): boolean {
+		return get(this.#network, "fees.type") === "weight";
+	}
+
+	/**
+	 * Determines if the network charges zero fees.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public chargesZeroFees(): boolean {
+		return get(this.#network, "fees.type") === "free";
+	}
+
+	/**
 	 * Return the object representation of the network.
 	 */
 	public toObject(): NetworkManifest {

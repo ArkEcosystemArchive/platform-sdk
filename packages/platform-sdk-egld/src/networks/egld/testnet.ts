@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "XeGLD",
 		symbol: "XeGLD",
 	},
+	fees: {
+		type: "gas",
+		ticker: "XeGLD",
+	},
 	crypto: {
 		slip44: 508,
 		expirationType: "height",
