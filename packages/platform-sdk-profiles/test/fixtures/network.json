@@ -21,6 +21,10 @@
 		"ticker": "DARK",
 		"symbol": "DѦ"
 	},
+	"fees": {
+		"type": "dynamic",
+		"ticker": "DARK"
+	},
 	"crypto": {
 		"expirationType": "height",
 		"slip44": 1,
@@ -30,8 +34,12 @@
 		}
 	},
 	"networking": {
-		"hosts": ["https://dwallets.ark.io"],
-		"hostsMultiSignature": ["https://dmusig1.ark.io"]
+		"hosts": [
+			"https://dwallets.ark.io"
+		],
+		"hostsMultiSignature": [
+			"https://dmusig1.ark.io"
+		]
 	},
 	"governance": {
 		"voting": {
@@ -160,8 +168,12 @@
 			}
 		},
 		"networking": {
-			"hosts": ["https://dwallets.ark.io"],
-			"hostsMultiSignature": ["https://dmusig1.ark.io"]
+			"hosts": [
+				"https://dwallets.ark.io"
+			],
+			"hostsMultiSignature": [
+				"https://dmusig1.ark.io"
+			]
 		},
 		"governance": {
 			"voting": {
