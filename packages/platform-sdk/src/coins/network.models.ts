@@ -148,8 +148,8 @@ export interface NetworkManifest {
 		symbol: string;
 	};
 	fees: {
-		type: FeeType,
-		ticker: string,
+		type: FeeType;
+		ticker: string;
 	};
 	crypto: {
 		networkId?: string;
