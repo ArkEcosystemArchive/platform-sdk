@@ -113,8 +113,8 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toEqual({
 			BALANCE: {
-				available: BigNumber.make("55827093444556"),
-				fees: BigNumber.make("55827093444556"),
+				available: "55827093444556",
+				fees: "55827093444556",
 			},
 			BROADCASTED_TRANSACTIONS: {},
 			LEDGER_PATH: "1",
