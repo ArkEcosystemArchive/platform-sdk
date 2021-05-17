@@ -56,7 +56,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			let transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
-				BigNumber.make(input.data.amount).times(1e6).toString(),
+				BigNumber.make(input.data.amount).divide(1e8).times(1e6).toString(),
 				senderAddress,
 				1,
 			);
