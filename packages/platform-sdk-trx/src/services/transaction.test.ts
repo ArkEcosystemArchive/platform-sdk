@@ -32,5 +32,6 @@ describe("TransactionService", function () {
 		});
 
 		expect(result).toBeObject();
+		expect(result.amount().divide(1e6).toString()).toBe(`${1e8}`);
 	});
 });
