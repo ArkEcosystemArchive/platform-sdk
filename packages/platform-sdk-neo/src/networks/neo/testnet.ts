@@ -11,7 +11,7 @@ const network: Coins.NetworkManifest = {
 		symbol: "NEO",
 	},
 	fees: {
-		type: "zero",
+		type: "free",
 		ticker: "GAS",
 	},
 	crypto: {

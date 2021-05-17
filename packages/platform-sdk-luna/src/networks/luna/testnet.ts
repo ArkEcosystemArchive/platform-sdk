@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "SOJU",
 		symbol: "SOJU",
 	},
+	fees: {
+		type: "dynamic",
+		ticker: "SOJU",
+	},
 	crypto: {
 		slip44: 330,
 		expirationType: "height",

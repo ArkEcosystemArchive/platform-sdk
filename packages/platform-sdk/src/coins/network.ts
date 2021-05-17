@@ -183,6 +183,16 @@ export class Network {
 	}
 
 	/**
+	 * Determines if the network charges weight fees.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public chargesWeightFees(): boolean {
+		return get(this.#network, "fees.type") === "weight";
+	}
+
+	/**
 	 * Determines if the network charges zero fees.
 	 *
 	 * @return {*}  {boolean}

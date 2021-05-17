@@ -11,7 +11,7 @@ const network: Coins.NetworkManifest = {
 		symbol: "NANO",
 	},
 	fees: {
-		type: "zero",
+		type: "free",
 		ticker: "NANO",
 	},
 	crypto: {

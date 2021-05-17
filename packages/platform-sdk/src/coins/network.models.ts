@@ -1,6 +1,6 @@
 import { KeyValuePair } from "../contracts";
 
-export type FeeType = "static" | "dynamic" | "gas" | "free";
+export type FeeType = "static" | "dynamic" | "gas" | "free" | "weight";
 
 export type CoinTransactionTypes =
 	| "delegate-registration"

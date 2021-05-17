@@ -11,7 +11,7 @@ const network: Coins.NetworkManifest = {
 		symbol: "TRX",
 	},
 	fees: {
-		type: "zero",
+		type: "free",
 		ticker: "TRX",
 	},
 	crypto: {

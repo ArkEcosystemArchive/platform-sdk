@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "ATOM",
 		symbol: "ATOM",
 	},
+	fees: {
+		type: "static",
+		ticker: "ATOM",
+	},
 	crypto: {
 		networkId: "cosmoshub-3",
 		slip44: 118,

@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "LUNA",
 		symbol: "LUNA",
 	},
+	fees: {
+		type: "dynamic",
+		ticker: "LUNA",
+	},
 	crypto: {
 		slip44: 330,
 		expirationType: "height",
