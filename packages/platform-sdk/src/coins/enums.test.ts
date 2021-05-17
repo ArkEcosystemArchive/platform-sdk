@@ -50,6 +50,7 @@ test("FeatureFlag", () => {
 		  "MiscellaneousDynamicFees": "Miscellaneous.dynamicFees",
 		  "MiscellaneousMemo": "Miscellaneous.memo",
 		  "MiscellaneousUTXO": "Miscellaneous.utxo",
+		  "MiscellaneousZeroFees": "Miscellaneous.zeroFees",
 		  "PeerSearch": "Peer.search",
 		  "TransactionDelegateRegistration": "Transaction.delegateRegistration",
 		  "TransactionDelegateResignation": "Transaction.delegateResignation",
@@ -62,7 +63,6 @@ test("FeatureFlag", () => {
 		  "TransactionSecondSignature": "Transaction.secondSignature",
 		  "TransactionTransfer": "Transaction.transfer",
 		  "TransactionVote": "Transaction.vote",
-		  "miscellaneousZeroFees": "Miscellaneous.zeroFees",
 		}
 	`);
 });
