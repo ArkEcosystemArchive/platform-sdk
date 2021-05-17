@@ -106,7 +106,6 @@ const network: Coins.NetworkManifest = {
 			htlcRefund: false,
 		},
 		Miscellaneous: {
-			customPeer: true,
 			dynamicFees: true,
 			memo: true,
 		},
