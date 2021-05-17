@@ -155,6 +155,10 @@
 			"ticker": "DARK",
 			"symbol": "DѦ"
 		},
+		"fees": {
+			"type": "dynamic",
+			"ticker": "DARK"
+		},
 		"crypto": {
 			"expirationType": "height",
 			"slip44": 1,
