@@ -43,6 +43,10 @@ const network: Coins.NetworkManifest = {
 			transaction: true,
 			wallet: true,
 		},
+		Message: {
+			sign: true,
+			verify: true,
+		},
 		Transaction: {
 			transfer: true,
 		},
