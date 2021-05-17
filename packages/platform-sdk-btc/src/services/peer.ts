@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Http } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Http } from "@arkecosystem/platform-sdk";
 
 export class PeerService implements Contracts.PeerService {
 	readonly #config: Coins.Config;
