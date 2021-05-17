@@ -29,9 +29,11 @@ const network: Coins.NetworkManifest = {
 		Identity: {
 			address: {
 				mnemonic: true,
+				publicKey: true,
 			},
 			publicKey: {
 				mnemonic: true,
+				secret: true,
 			},
 			privateKey: {
 				mnemonic: true,
@@ -48,6 +50,9 @@ const network: Coins.NetworkManifest = {
 		Message: {
 			sign: true,
 			verify: true,
+		},
+		Transaction: {
+			transfer: true,
 		},
 		Derivation: {
 			bip39: true,

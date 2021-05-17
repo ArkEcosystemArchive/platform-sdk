@@ -1,4 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import * as nanocurrency from "nanocurrency";
 import { deriveAccount } from "./helpers";
 
 export class PublicKey implements Contracts.PublicKey {
@@ -15,6 +16,6 @@ export class PublicKey implements Contracts.PublicKey {
 	}
 
 	public async fromSecret(secret: string): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
+		return nanocurrency.derivePublicKey(secret);
 	}
 }

@@ -1,4 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import * as nanocurrency from "nanocurrency";
 import { tools } from "nanocurrency-web";
 
 import { deriveAccount } from "./helpers";
@@ -13,7 +14,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPublicKey");
+		return nanocurrency.deriveAddress(publicKey);
 	}
 
 	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
