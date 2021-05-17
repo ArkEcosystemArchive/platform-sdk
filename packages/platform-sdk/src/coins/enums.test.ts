@@ -62,6 +62,7 @@ test("FeatureFlag", () => {
 		  "TransactionSecondSignature": "Transaction.secondSignature",
 		  "TransactionTransfer": "Transaction.transfer",
 		  "TransactionVote": "Transaction.vote",
+		  "miscellaneousZeroFees": "Miscellaneous.zeroFees",
 		}
 	`);
 });
