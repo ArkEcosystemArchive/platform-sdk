@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "ETH",
 		symbol: "Ξ",
 	},
+	fees: {
+		type: "gas",
+		ticker: "ETH",
+	},
 	crypto: {
 		networkId: "1",
 		slip44: 60,

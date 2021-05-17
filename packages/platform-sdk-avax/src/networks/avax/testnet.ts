@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "FUJI",
 		symbol: "FUJI",
 	},
+	fees: {
+		type: "static",
+		ticker: "FUJI",
+	},
 	crypto: {
 		networkId: "5",
 		blockchainId: "2JVSBoinj9C2J33VntvzYtVJNZdN2NKiwwKjcumHUWEb5DbBrm",

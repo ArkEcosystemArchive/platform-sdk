@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "ADA",
 		symbol: "ADA",
 	},
+	fees: {
+		type: "static",
+		ticker: "ADA",
+	},
 	crypto: {
 		networkId: "1",
 		slip44: 1815,

@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "TRX",
 		symbol: "TRX",
 	},
+	fees: {
+		type: "free",
+		ticker: "TRX",
+	},
 	crypto: {
 		slip44: 195,
 		signingMethods: {
@@ -41,9 +45,6 @@ const network: Coins.NetworkManifest = {
 		},
 		Transaction: {
 			transfer: true,
-		},
-		Miscellaneous: {
-			zeroFees: true,
 		},
 		Derivation: {
 			bip39: true,

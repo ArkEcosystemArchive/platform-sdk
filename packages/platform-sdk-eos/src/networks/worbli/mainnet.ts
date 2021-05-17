@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "WBI",
 		symbol: "WBI",
 	},
+	fees: {
+		type: "free",
+		ticker: "WBI",
+	},
 	crypto: {
 		networkId: "73647cde120091e0a4b85bced2f3cfdb3041e266cbbe95cee59b73235a1b3b6f",
 		slip44: 194,

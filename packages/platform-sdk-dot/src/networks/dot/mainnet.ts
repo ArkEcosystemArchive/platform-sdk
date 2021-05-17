@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "DOT",
 		symbol: "DOT",
 	},
+	fees: {
+		type: "weight",
+		ticker: "DOT",
+	},
 	crypto: {
 		networkId: "0",
 		expirationType: "height",

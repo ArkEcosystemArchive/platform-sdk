@@ -43,7 +43,6 @@ export enum FeatureFlag {
 	MiscellaneousDynamicFees = "Miscellaneous.dynamicFees",
 	MiscellaneousMemo = "Miscellaneous.memo",
 	MiscellaneousUTXO = "Miscellaneous.utxo",
-	MiscellaneousZeroFees = "Miscellaneous.zeroFees",
 	PeerSearch = "Peer.search",
 	TransactionDelegateRegistration = "Transaction.delegateRegistration",
 	TransactionDelegateResignation = "Transaction.delegateResignation",

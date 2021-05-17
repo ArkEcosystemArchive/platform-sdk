@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "XRP",
 		symbol: "XRP",
 	},
+	fees: {
+		type: "free",
+		ticker: "xrp",
+	},
 	crypto: {
 		slip44: 144,
 		signingMethods: {
