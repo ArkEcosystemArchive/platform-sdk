@@ -4,6 +4,13 @@ import dot from "dot-prop";
 
 import { IReadWriteWallet, IWalletData, WalletData, WalletFlag } from "../../../../contracts";
 
+type SerializedBalance = {
+	available: string,
+	fees: string,
+	locked?: string,
+	tokens?: Record<string, string>,
+};
+
 export class WalletSerialiser {
 	readonly #wallet: IReadWriteWallet;
 
@@ -23,10 +30,22 @@ export class WalletSerialiser {
 
 		const balance = this.#wallet.data().get<Contracts.WalletBalance>(WalletData.Balance);
 
-		const serializedBalance = {
+		const serializedBalance: SerializedBalance = {
 			available: BigNumber.make(balance?.available || 0).toString(),
 			fees: BigNumber.make(balance?.fees || 0).toString(),
 		};
+
+		if (balance?.locked) {
+			serializedBalance.locked = balance.locked.toString();
+		}
+
+		if (balance?.tokens) {
+			serializedBalance.tokens = {};
+
+			for (const [key, value] of Object.entries(balance.tokens)) {
+				serializedBalance.tokens[key] = value.toString();
+			}
+		}
 
 		return {
 			id: this.#wallet.id(),
