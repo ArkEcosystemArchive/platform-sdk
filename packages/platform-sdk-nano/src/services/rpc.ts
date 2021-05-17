@@ -1,5 +1,6 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { SignedBlock } from "nanocurrency-web/dist/lib/block-signer";
 
 export class NanoClient {
 	readonly #http: Contracts.HttpClient;
@@ -48,6 +49,13 @@ export class NanoClient {
 		previous: string;
 	}> {
 		return this.post("account_history", { account, count, ...options });
+	}
+
+	public async process(
+		subtype: "send" | "receive" | "open" | "change" | "epoch",
+		block: SignedBlock,
+	): Promise<{ hash: string }> {
+		return this.post("process", { json_block: "true", subtype, block });
 	}
 
 	private async post<T = Record<string, any>>(action: string, params: Record<string, unknown>): Promise<T> {

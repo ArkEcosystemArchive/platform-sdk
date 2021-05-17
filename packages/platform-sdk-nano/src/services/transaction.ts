@@ -43,7 +43,8 @@ export class TransactionService implements Contracts.TransactionService {
 			work: (await computeWork(frontier))!,
 		};
 
-		return new SignedTransactionData(block.send(data, privateKey).signature, data, data);
+		const broadcastData = block.send(data, privateKey);
+		return new SignedTransactionData(broadcastData.signature, data, broadcastData);
 	}
 
 	public async secondSignature(

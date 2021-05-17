@@ -89,7 +89,7 @@ export class ClientService implements Contracts.ClientService {
 
 		for (const transaction of transactions) {
 			try {
-				//
+				const hash = await this.#client.process("send", transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
