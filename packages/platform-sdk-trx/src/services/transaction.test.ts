@@ -27,7 +27,7 @@ describe("TransactionService", function () {
 			},
 			data: {
 				to: "TEre3kN6JdPzqCNpiZT8JWM4kt8iGrg1Rm",
-				amount: "1",
+				amount: `${1e8}`,
 			},
 		});
 
