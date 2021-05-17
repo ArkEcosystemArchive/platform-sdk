@@ -19,9 +19,5 @@ export interface PeerResponse {
 export interface PeerService {
 	__destruct(): Promise<void>;
 
-	getSeeds(): string[];
-
-	search(opts: any): Promise<PeerResponse[]>;
-
 	validate(url: string): Promise<boolean>;
 }
