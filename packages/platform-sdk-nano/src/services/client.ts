@@ -2,8 +2,8 @@ import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sd
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { NanoClient } from "./rpc";
 import { getPeerFromConfig } from "./peer-host";
+import { NanoClient } from "./rpc";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #client: NanoClient;
@@ -30,7 +30,9 @@ export class ClientService implements Contracts.ClientService {
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const account: string = query.address || query.addresses![0];
 		const count = (query.limit || 15).toString();
-		const { history, previous } = await this.#client.accountHistory(account, count, { head: query.cursor || undefined});
+		const { history, previous } = await this.#client.accountHistory(account, count, {
+			head: query.cursor || undefined,
+		});
 
 		return Helpers.createTransactionDataCollectionWithType(
 			Object.values(history).map((transaction: any) => {

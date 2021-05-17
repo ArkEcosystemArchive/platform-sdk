@@ -14,7 +14,7 @@ export class NanoClient {
 
 	public async accountInfo(
 		account: string,
-		options?: { representative?: boolean, pending?: boolean },
+		options?: { representative?: boolean; pending?: boolean },
 	): Promise<{
 		frontier: string;
 		open_block: string;
@@ -37,12 +37,18 @@ export class NanoClient {
 		options?: { head?: string | number },
 	): Promise<{
 		account: string;
-		history: Array<{type: string; account: string; amount: string; local_timestamp: string; height: string; hash: string }>;
+		history: Array<{
+			type: string;
+			account: string;
+			amount: string;
+			local_timestamp: string;
+			height: string;
+			hash: string;
+		}>;
 		previous: string;
 	}> {
 		return this.post("account_history", { account, count, ...options });
 	}
-
 
 	private async post<T = Record<string, any>>(action: string, params: Record<string, unknown>): Promise<T> {
 		const result = (await this.#http.post("/", { action, ...params })).json();
