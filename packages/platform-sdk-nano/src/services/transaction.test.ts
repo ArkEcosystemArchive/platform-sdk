@@ -20,7 +20,7 @@ describe("TransactionService", () => {
 		it("should sign transaction", async () => {
 			nock("https://proxy.nanos.cc/")
 				.post("/proxy/")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
+				.reply(200, require(`${__dirname}/../../test/fixtures/client/account-info.json`));
 
 			const result = await subject.transfer({
 				from: identity.address,
