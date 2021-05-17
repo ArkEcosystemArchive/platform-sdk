@@ -119,10 +119,11 @@ export interface NetworkFeatureFlags {
 		htlcRefundWithLedgerX?: boolean;
 	};
 	Miscellaneous?: {
+		customPeer?: boolean;
+		dynamicFees?: boolean;
 		memo?: boolean;
 		utxo?: boolean;
-		dynamicFees?: boolean;
-		customPeer?: boolean;
+		zeroFees?: boolean;
 	};
 	Derivation?: {
 		bip39?: boolean;

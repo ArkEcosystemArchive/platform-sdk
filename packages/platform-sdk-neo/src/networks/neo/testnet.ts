@@ -75,6 +75,9 @@ const network: Coins.NetworkManifest = {
 		Transaction: {
 			transfer: true,
 		},
+		Miscellaneous: {
+			zeroFees: true,
+		},
 		Derivation: {
 			bip39: true,
 			bip44: true,
