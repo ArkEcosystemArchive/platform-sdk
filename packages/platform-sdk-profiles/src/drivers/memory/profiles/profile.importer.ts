@@ -17,7 +17,7 @@ export class ProfileImporter implements IProfileImporter {
 
 	/** {@inheritDoc IProfileImporter.import} */
 	public async import(password?: string): Promise<void> {
-		const data: IProfileData | undefined = await this.validate(await this.unpack(password));
+		const data: IProfileData | undefined = await this.#validator.validate(await this.unpack(password));
 
 		this.#profile.peers().fill(data.peers);
 
@@ -67,18 +67,6 @@ export class ProfileImporter implements IProfileImporter {
 		}
 
 		return data;
-	}
-
-	/**
-	 * Validate the profile data after decoding and/or decrypting it.
-	 *
-	 * @private
-	 * @param {string} [password]
-	 * @return {Promise<IProfileData>}
-	 * @memberof Profile
-	 */
-	private async validate(data: IProfileData): Promise<IProfileData> {
-		return this.#validator.validate(data);
 	}
 
 	/**
