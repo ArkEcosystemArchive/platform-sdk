@@ -15,14 +15,6 @@ export class PeerService implements Contracts.PeerService {
 		//
 	}
 
-	public getSeeds(): string[] {
-		return this.#config.get<Coins.NetworkManifest>("network").networking.hosts;
-	}
-
-	public async search(opts: any = {}): Promise<Contracts.PeerResponse[]> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "search");
-	}
-
 	public async validate(url: string): Promise<boolean> {
 		const response = await this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient).get(url);
 

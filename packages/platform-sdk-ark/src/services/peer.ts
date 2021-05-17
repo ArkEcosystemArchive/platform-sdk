@@ -21,45 +21,11 @@ export class PeerService implements Contracts.PeerService {
 
 		const peer: string = getPeerFromConfig(config);
 
-		let seeds: string[] = [];
-
-		try {
-			if (peer && isUrl(peer)) {
-				const response = (await httpClient.get(`${peer}/peers`)).json();
-
-				for (const seed of response.data) {
-					let port = 4003;
-
-					if (seed.ports) {
-						const apiPort: number | undefined = seed.ports["@arkecosystem/core-api"];
-
-						if (apiPort && apiPort >= 1 && apiPort <= 65535) {
-							port = apiPort;
-						}
-					}
-
-					seeds.push(`http://${seed.ip}:${port}`);
-				}
-			} else {
-				seeds = config.get<string[]>("network.networking.hosts");
-			}
-		} catch {
-			throw new Error("Failed to discovery any peers.");
-		}
-
-		if (!seeds.length) {
-			throw new Error("No seeds found");
-		}
-
 		return new PeerService({ config, httpClient, seeds });
 	}
 
 	public async __destruct(): Promise<void> {
 		//
-	}
-
-	public getSeeds(): string[] {
-		return this.#seeds;
 	}
 
 	public async search(options: Contracts.KeyValuePair = {}): Promise<Contracts.PeerResponse[]> {

@@ -14,52 +14,6 @@ beforeEach(() => {
 });
 
 describe("PeerService", () => {
-	describe("#new", () => {
-		describe("host", () => {
-			it("should fetch peers", async () => {
-				nock("http://127.0.0.1").get("/api/peers").reply(200, {
-					data: dummyPeersWalletApi,
-				});
-
-				const peerService: PeerService = await PeerService.__construct(
-					createConfig({
-						peer: "http://127.0.0.1/api",
-					}),
-				);
-
-				expect(peerService.getSeeds()).toEqual(dummyPeersWalletApi.map((peer) => `http://${peer.ip}:4103`));
-			});
-
-			it("should fetch peers and fallback to public api port", async () => {
-				nock("http://127.0.0.1").get("/api/peers").reply(200, {
-					data: dummyPeersPublicApi,
-				});
-
-				const peerService: PeerService = await PeerService.__construct(
-					createConfig({
-						peer: "http://127.0.0.1/api",
-					}),
-				);
-
-				expect(peerService.getSeeds()).toEqual(dummyPeersPublicApi.map((peer) => `http://${peer.ip}:4103`));
-			});
-
-			it("should fail if the seed list is empty", async () => {
-				nock("http://127.0.0.1").get("/api/peers").reply(200, {
-					data: [],
-				});
-
-				await expect(
-					PeerService.__construct(
-						createConfig({
-							peer: "http://127.0.0.1/api",
-						}),
-					),
-				).rejects.toThrowError(new Error("No seeds found"));
-			});
-		});
-	});
-
 	describe("#search", () => {
 		let peerService: PeerService;
 		beforeEach(async () => {
