@@ -31,7 +31,7 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		const { address, privateKey } = deriveAccount(input.sign.mnemonic);
-		const { balance, representative, frontier } = await this.#client.accountInfo(address);
+		const { balance, representative, frontier } = await this.#client.accountInfo(address, { representative: true });
 
 		const data = {
 			walletBalanceRaw: balance,

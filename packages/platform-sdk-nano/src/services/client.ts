@@ -1,16 +1,15 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
+import { NanoClient } from "./rpc";
+import { getPeerFromConfig } from "./peer-host";
 
 export class ClientService implements Contracts.ClientService {
-	readonly #config: Coins.Config;
-	readonly #client: Contracts.HttpClient;
+	readonly #client: NanoClient;
 
-	private constructor(config) {
-		this.#config = config;
-		this.#client = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+	private constructor(config: Coins.Config) {
+		this.#client = new NanoClient(getPeerFromConfig(config));
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -30,17 +29,8 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const account: string = query.address || query.addresses![0];
-		const parameters: Record<string, string | number> = {
-			action: "account_history",
-			account,
-			count: query.limit || 15,
-		};
-
-		if (query.cursor) {
-			parameters.head = query.cursor;
-		}
-
-		const { history, previous } = (await this.#client.get(this.getHost(), parameters)).json();
+		const count = (query.limit || 15).toString();
+		const { history, previous } = await this.#client.accountHistory(account, count, { head: query.cursor || undefined});
 
 		return Helpers.createTransactionDataCollectionWithType(
 			Object.values(history).map((transaction: any) => {
@@ -59,12 +49,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { balance, pending } = (
-			await this.#client.get(this.getHost(), {
-				action: "account_info",
-				account: id,
-			})
-		).json();
+		const { balance, pending } = await this.#client.accountInfo(id, { pending: true });
 
 		return new WalletData({ id, balance, pending });
 	}
@@ -113,9 +98,5 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		return result;
-	}
-
-	private getHost(): string {
-		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
 	}
 }

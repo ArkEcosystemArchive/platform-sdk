@@ -15,7 +15,7 @@ const network: Coins.NetworkManifest = {
 		expirationType: "height",
 	},
 	networking: {
-		hosts: ["https://proxy.nanos.cc/proxy"],
+		hosts: [],
 	},
 	governance: {
 		voting: {

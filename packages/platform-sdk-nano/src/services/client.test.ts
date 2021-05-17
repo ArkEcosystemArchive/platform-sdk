@@ -18,8 +18,7 @@ beforeAll(() => nock.disableNetConnect());
 describe("ClientService", function () {
 	test("#transactions", async () => {
 		nock("https://proxy.nanos.cc/")
-			.get("/proxy")
-			.query(true)
+			.post("/proxy/")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
 		const result = await subject.transactions({
@@ -40,8 +39,7 @@ describe("ClientService", function () {
 
 	test("#wallet", async () => {
 		nock("https://proxy.nanos.cc/")
-			.get("/proxy")
-			.query(true)
+			.post("/proxy/")
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 		const result = await subject.wallet("nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3");
