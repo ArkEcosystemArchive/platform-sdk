@@ -112,6 +112,10 @@ test("#all", () => {
 		        "vote": true,
 		      },
 		    },
+		    "fees": Object {
+		      "ticker": "DARK",
+		      "type": "dynamic",
+		    },
 		    "governance": Object {
 		      "voting": Object {
 		        "delegateCount": 51,
@@ -248,6 +252,10 @@ test("#all", () => {
 		        "vote": true,
 		      },
 		    },
+		    "fees": Object {
+		      "ticker": "ARK",
+		      "type": "dynamic",
+		    },
 		    "governance": Object {
 		      "voting": Object {
 		        "delegateCount": 51,
@@ -383,6 +391,10 @@ test("#all", () => {
 		        "transfer": true,
 		        "vote": true,
 		      },
+		    },
+		    "fees": Object {
+		      "ticker": "BIND",
+		      "type": "dynamic",
 		    },
 		    "governance": Object {
 		      "voting": Object {

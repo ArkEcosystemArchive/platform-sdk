@@ -48,12 +48,19 @@ export class TransactionService implements Contracts.TransactionService {
 				throw new Error("No mnemonic provided.");
 			}
 
+			const senderAddress: string = await this.#address.fromMnemonic(input.sign.mnemonic);
+
+			if (senderAddress === input.data.to) {
+				throw new Exceptions.InvalidRecipientException("Cannot transfer TRX to the same account.");
+			}
+
 			let transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
-				BigNumber.make(input.data.amount).times(1e6).toString(),
-				await this.#address.fromMnemonic(input.sign.mnemonic),
+				BigNumber.make(input.data.amount).divide(1e8).times(1e6).toString(),
+				senderAddress,
 				1,
 			);
+
 			if (input.data.memo) {
 				transaction = await this.#connection.transactionBuilder.addUpdateData(
 					transaction,

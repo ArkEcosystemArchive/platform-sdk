@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "AVAX",
 		symbol: "AVAX",
 	},
+	fees: {
+		type: "static",
+		ticker: "AVAX",
+	},
 	crypto: {
 		networkId: "1",
 		blockchainId: "2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM",

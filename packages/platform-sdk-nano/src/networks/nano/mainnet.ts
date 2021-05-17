@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "NANO",
 		symbol: "NANO",
 	},
+	fees: {
+		type: "free",
+		ticker: "NANO",
+	},
 	crypto: {
 		slip44: 165,
 		expirationType: "height",
@@ -49,9 +53,6 @@ const network: Coins.NetworkManifest = {
 		Message: {
 			sign: true,
 			verify: true,
-		},
-		Miscellaneous: {
-			zeroFees: true,
 		},
 		Derivation: {
 			bip39: true,

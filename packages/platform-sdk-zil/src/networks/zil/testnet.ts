@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "ZIL",
 		symbol: "ZIL",
 	},
+	fees: {
+		type: "gas",
+		ticker: "ZIL",
+	},
 	crypto: {
 		slip44: 313,
 		expirationType: "height",

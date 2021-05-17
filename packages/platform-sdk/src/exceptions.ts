@@ -63,3 +63,7 @@ export class BadStateException extends Exception {
 		super(`Method [${method}] has entered a bad state: ${error}`);
 	}
 }
+
+export class InvalidRecipientException extends Exception {
+	//
+}
