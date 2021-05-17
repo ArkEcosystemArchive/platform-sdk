@@ -1,8 +1,9 @@
 import "jest-extended";
+
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
 import { identity } from "../../test/fixtures/identity";
+import { createConfig } from "../../test/helpers";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { TransactionService } from "./transaction";
 
