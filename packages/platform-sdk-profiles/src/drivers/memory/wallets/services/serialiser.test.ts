@@ -90,6 +90,16 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		subject.coin().config().set("network.crypto.slip44", slip44);
 		subject.data().set("key", "value");
 
+		subject.data().set(WalletData.Balance, {
+			available: BigNumber.make(1),
+			fees: BigNumber.make(2),
+			locked: BigNumber.make(3),
+			tokens: {
+				ARK: BigNumber.make(4),
+				BTC: BigNumber.make(5),
+				ETH: BigNumber.make(6),
+			},
+		});
 		subject.data().set(WalletData.LedgerPath, "1");
 		subject.data().set(WalletFlag.Starred, true);
 
@@ -113,8 +123,14 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toEqual({
 			BALANCE: {
-				available: "55827093444556",
-				fees: "55827093444556",
+				available: "1",
+				fees: "2",
+				locked: "3",
+				tokens: {
+					ARK: "4",
+					BTC: "5",
+					ETH: "6",
+				},
 			},
 			BROADCASTED_TRANSACTIONS: {},
 			LEDGER_PATH: "1",
