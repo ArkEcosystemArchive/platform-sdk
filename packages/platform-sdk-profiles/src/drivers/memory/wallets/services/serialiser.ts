@@ -5,10 +5,10 @@ import dot from "dot-prop";
 import { IReadWriteWallet, IWalletData, WalletData, WalletFlag } from "../../../../contracts";
 
 type SerializedBalance = {
-	available: string,
-	fees: string,
-	locked?: string,
-	tokens?: Record<string, string>,
+	available: string;
+	fees: string;
+	locked?: string;
+	tokens?: Record<string, string>;
 };
 
 export class WalletSerialiser {

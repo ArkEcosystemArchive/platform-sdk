@@ -39,11 +39,12 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			if (!input.sign.mnemonic) {
+			if (input.signatory.signingKey() === undefined) {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const sender: string = await new IdentityService(this.#config).address().fromMnemonic(input.sign.mnemonic);
+			// @TODO: use signatory identifier here
+			const sender: string = await new IdentityService(this.#config).address().fromMnemonic(input.signatory.signingKey());
 
 			const prepared = await this.#connection.preparePayment(
 				sender,
@@ -68,7 +69,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const { id, signedTransaction } = this.#connection.sign(
 				prepared.txJSON,
-				BIP39.normalize(input.sign.mnemonic),
+				input.signatory.signingKey(),
 			);
 
 			return new SignedTransactionData(id, signedTransaction, signedTransaction);

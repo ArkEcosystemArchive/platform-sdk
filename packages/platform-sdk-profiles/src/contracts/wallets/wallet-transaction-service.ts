@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Signatories } from "@arkecosystem/platform-sdk";
 
 type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
 
@@ -36,11 +36,11 @@ export interface ITransactionService {
 	 * Sign the transaction for the given ID with the given mnemonic.
 	 *
 	 * @param {string} id
-	 * @param {string} mnemonic
+	 * @param {Signatories.Signatory} signatory
 	 * @return {Promise<void>}
 	 * @memberof ITransactionService
 	 */
-	addSignature(id: string, mnemonic: string): Promise<void>;
+	addSignature(id: string, signatory: Signatories.Signatory): Promise<void>;
 
 	/**
 	 * Sign a Transfer transaction.

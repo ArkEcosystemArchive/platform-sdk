@@ -13,13 +13,15 @@ export class MessageService implements Contracts.MessageService {
 	private constructor(identityService: IdentityService, peer: string) {
 		this.#identityService = identityService;
 		this.#connection = new TronWeb({
-			fullHost: peer
+			fullHost: peer,
 		});
 	}
 
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
-		return new MessageService(await IdentityService.__construct(config),
-			Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+		return new MessageService(
+			await IdentityService.__construct(config),
+			Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+		);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -32,7 +34,9 @@ export class MessageService implements Contracts.MessageService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			let keys: Contracts.KeyPair = await this.#identityService.keys().fromMnemonic(BIP39.normalize(input.mnemonic));
+			let keys: Contracts.KeyPair = await this.#identityService
+				.keys()
+				.fromMnemonic(BIP39.normalize(input.mnemonic));
 			let address = await this.#identityService.address().fromMnemonic(BIP39.normalize(input.mnemonic));
 
 			if (keys.privateKey === undefined) {
@@ -45,7 +49,7 @@ export class MessageService implements Contracts.MessageService {
 			return {
 				message: input.message,
 				signatory: address,
-				signature: signature
+				signature: signature,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

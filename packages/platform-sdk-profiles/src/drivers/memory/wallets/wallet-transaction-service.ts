@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Signatories } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 import { IReadWriteWallet, ITransactionService, WalletData } from "../../../contracts";
 
@@ -62,14 +62,13 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.addSignature} */
-	public async addSignature(id: string, mnemonic: string): Promise<void> {
+	public async addSignature(id: string, signatory: Signatories.Signatory): Promise<void> {
 		this.assertHasValidIdentifier(id);
 
 		const transaction = await this.#wallet.coin().multiSignature().findById(id);
 
-		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(transaction, {
-			sign: { mnemonic },
-		});
+		// @TODO: we need to use the SignatoryFactory here or expect a A
+		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(transaction, { signatory });
 
 		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());
 	}

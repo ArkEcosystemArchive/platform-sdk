@@ -46,6 +46,12 @@ export class CryptoException extends Exception {
 	}
 }
 
+export class ForbiddenMethodCallException extends Exception {
+	public constructor(klass: string, method: string) {
+		super(`Method ${klass}#${method} cannot be called.`);
+	}
+}
+
 export class BadMethodDependencyException extends Exception {
 	public constructor(klass: string, method: string, dependency: string) {
 		super(`Method ${klass}#${method} depends on ${klass}#${dependency} being called first.`);

@@ -45,13 +45,19 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			if (!input.sign.mnemonic) {
+			if (input.signatory.signingKey() === undefined) {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const { publicKey, privateKey } = input.sign.privateKey
-				? await this.#identity.keys().fromPrivateKey(input.sign.privateKey)
-				: await this.#identity.keys().fromMnemonic(input.sign.mnemonic);
+			let keyPair;
+
+			if (input.signatory.actsWithPrivateKey()) {
+				keyPair = await this.#identity.keys().fromPrivateKey(input.signatory.signingKey());
+			} else {
+				keyPair = await this.#identity.keys().fromMnemonic(input.signatory.signingKey());
+			}
+
+			const { publicKey, privateKey } = keyPair;
 
 			const account = await this.#client.loadAccount(publicKey);
 

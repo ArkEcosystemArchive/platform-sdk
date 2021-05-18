@@ -29,13 +29,13 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (input.sign.mnemonic === undefined) {
+		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
 		}
 
 		const transaction = new Transaction();
 		transaction.recentBlockhash = (await this.#client.getRecentBlockhash()).blockhash;
-		transaction.feePayer = new PublicKey(input.from);
+		transaction.feePayer = new PublicKey(input.signatory.identifier());
 
 		transaction.add(
 			SystemProgram.transfer({
@@ -45,12 +45,12 @@ export class TransactionService implements Contracts.TransactionService {
 			}),
 		);
 
-		const signedTransaction = this.sign(transaction, derivePrivateKey(input.sign.mnemonic, 0, 0, this.#slip44));
+		const signedTransaction = this.sign(transaction, derivePrivateKey(input.signatory.signingKey(), 0, 0, this.#slip44));
 
 		return new SignedTransactionData(
 			uuidv4(),
 			{
-				from: input.from,
+				from: input.signatory.identifier(),
 				to: input.data.to,
 				amount: input.data.amount,
 			},

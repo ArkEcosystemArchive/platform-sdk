@@ -40,11 +40,11 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			if (!input.sign.mnemonic) {
+			if (input.signatory.signingKey() === undefined) {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const { client, signatureProvider } = this.getClient(input.sign.mnemonic);
+			const { client, signatureProvider } = this.getClient(input.signatory.signingKey());
 
 			const transfer = await client.transact(
 				{
@@ -54,12 +54,12 @@ export class TransactionService implements Contracts.TransactionService {
 							name: "transfer",
 							authorization: [
 								{
-									actor: input.from,
+									actor: input.signatory.identifier(),
 									permission: "active",
 								},
 							],
 							data: {
-								from: input.from,
+								from: input.signatory.identifier(),
 								to: input.data.to,
 								quantity: "0.0001 TNT", // todo: use network specific token
 								memo: input.data.memo,

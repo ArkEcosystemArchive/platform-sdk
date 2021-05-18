@@ -44,11 +44,11 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			if (!input.sign.mnemonic) {
+			if (input.signatory.signingKey() === undefined) {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const senderAddress: string = await this.#address.fromMnemonic(input.sign.mnemonic);
+			const senderAddress: string = await this.#address.fromMnemonic(input.signatory.signingKey());
 
 			if (senderAddress === input.data.to) {
 				throw new Exceptions.InvalidRecipientException("Cannot transfer TRX to the same account.");
@@ -71,7 +71,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const response = await this.#connection.trx.sign(
 				transaction,
-				await this.#privateKey.fromMnemonic(input.sign.mnemonic),
+				await this.#privateKey.fromMnemonic(input.signatory.signingKey()),
 			);
 
 			return new SignedTransactionData(response.txID, response, response);

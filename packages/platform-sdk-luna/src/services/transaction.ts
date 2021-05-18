@@ -28,11 +28,12 @@ export class TransactionService implements Contracts.TransactionService {
 		const transaction = await this.useClient()
 			.wallet(
 				new MnemonicKey({
-					mnemonic: input.sign.mnemonic,
+					mnemonic: input.signatory.signingKey(),
 				}),
 			)
 			.createAndSignTx({
-				msgs: [new MsgSend(input.from, input.data.to, { uluna: input.data.amount })],
+				// @TODO: split up identifier and identifiers
+				msgs: [new MsgSend(input.signatory.identifier(), input.data.to, { uluna: input.data.amount })],
 				memo: input.data.memo,
 			});
 

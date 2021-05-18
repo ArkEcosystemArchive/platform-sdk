@@ -190,12 +190,12 @@ export class TransactionService implements Contracts.TransactionService {
 
 		let keys: Contracts.KeyPair | undefined;
 
-		if (input.sign.mnemonic) {
-			keys = await this.#identity.keys().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
+		if (input.signatory.actsWithMnemonic()) {
+			keys = await this.#identity.keys().fromMnemonic(input.signatory.signingKey());
 		}
 
-		if (input.sign.wif) {
-			keys = await this.#identity.keys().fromWIF(input.sign.wif);
+		if (input.signatory.actsWithWif()) {
+			keys = await this.#identity.keys().fromWIF(input.signatory.signingKey());
 		}
 
 		if (!keys) {
@@ -235,19 +235,20 @@ export class TransactionService implements Contracts.TransactionService {
 		try {
 			let address: string | undefined;
 
-			if (input.sign.mnemonic) {
-				address = await this.#identity.address().fromMnemonic(BIP39.normalize(input.sign.mnemonic));
+			if (input.signatory.actsWithMnemonic()) {
+				address = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
 			}
 
-			if (input.sign.wif) {
-				address = await this.#identity.address().fromWIF(input.sign.wif);
+			if (input.signatory.actsWithWif()) {
+				address = await this.#identity.address().fromWIF(input.signatory.signingKey());
 			}
 
 			const transaction = Transactions.BuilderFactory[type]().version(2);
 
-			if (input.sign.senderPublicKey) {
-				address = await this.#identity.address().fromPublicKey(input.sign.senderPublicKey);
-				transaction.senderPublicKey(input.sign.senderPublicKey);
+			if (input.signatory.actsWithSenderPublicKey()) {
+				address = await this.#identity.address().fromPublicKey(input.signatory.signingKey());
+
+				transaction.senderPublicKey(input.signatory.signingKey());
 			}
 
 			if (input.nonce) {
@@ -296,49 +297,51 @@ export class TransactionService implements Contracts.TransactionService {
 				return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
 			}
 
-			if (input.sign.multiSignature) {
+			if (input.signatory.actsWithMultiSignature()) {
 				return this.handleMultiSignature(transaction, input);
 			}
 
-			if (Array.isArray(input.sign.mnemonics)) {
+			if (input.signatory.actsWithMultiMnemonic() && Array.isArray(input.signatory.signingKeys())) {
+				const signingKeys: string[] = input.signatory.signingKeys();
+
 				const senderPublicKeys: string[] = await Promise.all(
-					input.sign.mnemonics.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
+					signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
 				);
 
 				transaction.senderPublicKey(
-					await this.#identity.publicKey().fromMultiSignature(input.sign.mnemonics.length, senderPublicKeys),
+					await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys),
 				);
 
-				for (let i = 0; i < input.sign.mnemonics.length; i++) {
-					transaction.multiSign(BIP39.normalize(input.sign.mnemonics[i]), i);
+				for (let i = 0; i < signingKeys.length; i++) {
+					transaction.multiSign(BIP39.normalize(signingKeys[i]), i);
 				}
-			} else if (input.sign.signature) {
-				transaction.data.signature = input.sign.signature;
+			} else if (input.signatory.actsWithSignature()) {
+				transaction.data.signature = input.signatory.signingKey();
 			} else {
 				if (!address) {
 					throw new Error("Failed to retrieve the address for the signatory wallet.");
 				}
 
-				if (input.from !== address) {
+				if (input.signatory.identifier() !== address) {
 					throw new Error(
-						`Signatory should be [${input.from}] but is [${address}]. Please ensure that the expected and actual signatory match.`,
+						`Signatory should be [${input.signatory.identifier()}] but is [${address}]. Please ensure that the expected and actual signatory match.`,
 					);
 				}
 
-				if (input.sign.mnemonic) {
-					transaction.sign(BIP39.normalize(input.sign.mnemonic));
+				if (input.signatory.actsWithMnemonic()) {
+					transaction.sign(input.signatory.signingKey());
 				}
 
-				if (input.sign.secondMnemonic) {
-					transaction.secondSign(BIP39.normalize(input.sign.secondMnemonic));
+				if (input.signatory.actsWithSecondaryMnemonic()) {
+					transaction.secondSign(input.signatory.confirmKey());
 				}
 
-				if (input.sign.wif) {
-					transaction.signWithWif(input.sign.wif);
+				if (input.signatory.actsWithWif()) {
+					transaction.signWithWif(input.signatory.signingKey());
 				}
 
-				if (input.sign.secondWif) {
-					transaction.secondSignWithWif(input.sign.secondWif);
+				if (input.signatory.actsWithSecondaryWif()) {
+					transaction.secondSignWithWif(input.signatory.confirmKey());
 				}
 			}
 
@@ -351,7 +354,8 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
-		const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.sign.multiSignature);
+		// @TODO: use correct type, maybe split methods to signingKey/signingKeys/signingPair
+		const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.signatory.signingKeys() as any);
 
 		return new SignedTransactionData(
 			transactionWithSignature.id!,
