@@ -54,6 +54,8 @@ describe("#restore", () => {
 	it("should restore a profile with a password", async () => {
 		profile.auth().setPassword("password");
 
+		repository.persist(profile);
+
 		const profileCopy: IProfile = new Profile(dumper.dump());
 
 		await importByMnemonic(profileCopy, identity.mnemonic, "ARK", "ark.devnet");
@@ -122,6 +124,8 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if no password was provided", async () => {
 		profile.auth().setPassword("password");
+
+		repository.persist(profile);
 
 		const profileCopy: IProfile = new Profile(dumper.dump());
 

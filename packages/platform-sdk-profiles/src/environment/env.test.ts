@@ -166,7 +166,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.settings().set("ADVANCED_MODE", "value");
 
 	// Encode all data
-	// profile.save();
+	subject.profiles().persist(profile);
 
 	// Create a Global DataEntry
 	subject.data().set("key", "value");
@@ -371,12 +371,15 @@ it("should persist the env and restore it", async () => {
 
 	const john = subject.profiles().create("John");
 	await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
+	subject.profiles().persist(john);
 
 	const jane = subject.profiles().create("Jane");
 	jane.auth().setPassword("password");
+	subject.profiles().persist(jane);
 
 	const jack = subject.profiles().create("Jack");
 	jack.auth().setPassword("password");
+	subject.profiles().persist(jack);
 
 	await subject.persist();
 

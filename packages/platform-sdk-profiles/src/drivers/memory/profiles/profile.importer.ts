@@ -20,7 +20,7 @@ export class ProfileImporter implements IProfileImporter {
 
 	/** {@inheritDoc IProfileImporter.import} */
 	public async import(password?: string): Promise<void> {
-		let data: IProfileData | undefined = await this.unpack(password);
+		let data: IProfileData | undefined = this.unpack(password);
 
 		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
 			await new Migrator(this.#profile).migrate(
@@ -56,15 +56,15 @@ export class ProfileImporter implements IProfileImporter {
 	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
-	private async unpack(password?: string): Promise<IProfileData> {
+	private unpack(password?: string): IProfileData {
 		let data: IProfileData | undefined;
 		let errorReason = "";
 
 		try {
 			if (typeof password === "string") {
-				data = new ProfileEncrypter(this.#profile).decrypt(password);
-
 				this.#profile.password().set(password);
+
+				data = new ProfileEncrypter(this.#profile).decrypt(password);
 			} else {
 				data = JSON.parse(Base64.decode(this.#profile.getAttributes().get<string>("data")));
 			}
