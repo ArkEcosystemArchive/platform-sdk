@@ -28,11 +28,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const account: string = query.address || query.addresses![0];
+		const account = query.address || query.addresses![0];
 		const count = (query.limit || 15).toString();
-		const { history, previous } = await this.#client.accountHistory(account, count, {
-			head: query.cursor || undefined,
-		});
+		const options = { head: query.cursor || undefined };
+		const { history, previous } = await this.#client.accountHistory(account, count, options);
 
 		return Helpers.createTransactionDataCollectionWithType(
 			Object.values(history).map((transaction: any) => {
