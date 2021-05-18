@@ -18,8 +18,7 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
-		const publicKey = nanocurrency.derivePublicKey(privateKey);
-		return nanocurrency.deriveAddress(publicKey);
+		return nanocurrency.deriveAddress(nanocurrency.derivePublicKey(privateKey));
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
