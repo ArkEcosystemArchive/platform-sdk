@@ -1,18 +1,9 @@
 import Joi from "joi";
 import { IProfileData, IProfile } from "../../../contracts";
 
-import { Migrator } from "./migrator";
-import { Identifiers } from "../../../environment/container.models";
-import { container } from "../../../environment/container";
 import { IProfileValidator } from "../../../contracts/profiles/profile.validator";
 
 export class ProfileValidator implements IProfileValidator {
-	readonly #profile: IProfile;
-
-	public constructor(profile: IProfile) {
-		this.#profile = profile;
-	}
-
 	/**
 	 * Validate the profile data.
 	 *
@@ -20,14 +11,7 @@ export class ProfileValidator implements IProfileValidator {
 	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
-	public async validate(data: IProfileData): Promise<IProfileData> {
-		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
-			await new Migrator(this.#profile).migrate(
-				container.get(Identifiers.MigrationSchemas),
-				container.get(Identifiers.MigrationVersion),
-			);
-		}
-
+	public validate(data: IProfileData): IProfileData {
 		const { error, value } = Joi.object({
 			id: Joi.string().required(),
 			contacts: Joi.object().pattern(

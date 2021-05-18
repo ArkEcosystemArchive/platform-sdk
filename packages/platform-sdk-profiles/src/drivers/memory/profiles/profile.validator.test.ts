@@ -42,7 +42,7 @@ beforeEach(() => {
 
 	profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).create("John Doe");
 	subject = new ProfileImporter(profile);
-	validator = new ProfileValidator(profile);
+	validator = new ProfileValidator();
 	dumper = new ProfileDumper(profile);
 });
 
@@ -92,12 +92,9 @@ describe("#validate", () => {
 			data: Base64.encode(JSON.stringify(validProfileData)),
 		});
 
-		validator = new ProfileValidator(profile);
+		validator = new ProfileValidator();
 
-		const data = await validator.validate(validProfileData);
-		expect(data.settings).toEqual(validProfileData.settings);
-
-		//@ts-ignore
+		expect(validator.validate(validProfileData).settings).toEqual(validProfileData.settings);
 	});
 
 	it("should fail to validate", async () => {
@@ -120,10 +117,10 @@ describe("#validate", () => {
 			data: Base64.encode(JSON.stringify(corruptedProfileData)),
 		});
 
-		validator = new ProfileValidator(profile);
+		validator = new ProfileValidator();
 
 		//@ts-ignore
-		await expect(validator.validate(corruptedProfileData)).rejects.toThrow();
+		expect(() => validator.validate(corruptedProfileData)).toThrow();
 	});
 
 	it("should apply migrations if any are set", async () => {

@@ -8,29 +8,13 @@ import { usedAddressesForAccount } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
-	readonly #peer: string;
 
-	private constructor({ config, http, peer }) {
+	private constructor(config) {
 		this.#config = config;
-		this.#http = http;
-		this.#peer = peer;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		try {
-			return new ClientService({
-				config,
-				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-				peer: config.get<string>("peer"),
-			});
-		} catch {
-			return new ClientService({
-				config,
-				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-			});
-		}
+		return new ClientService(config);
 	}
 
 	public async __destruct(): Promise<void> {

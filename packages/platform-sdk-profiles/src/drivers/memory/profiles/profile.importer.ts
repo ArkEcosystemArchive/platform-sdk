@@ -5,6 +5,9 @@ import { ProfileEncrypter } from "./profile.encrypter";
 import { IProfileImporter } from "../../../contracts/profiles/profile.importer";
 import { IProfileValidator } from "../../../contracts/profiles/profile.validator";
 import { ProfileValidator } from "./profile.validator";
+import { container } from "../../../environment/container";
+import { Identifiers } from "../../../environment/container.models";
+import { Migrator } from "./migrator";
 
 export class ProfileImporter implements IProfileImporter {
 	readonly #profile: IProfile;
@@ -12,12 +15,21 @@ export class ProfileImporter implements IProfileImporter {
 
 	public constructor(profile: IProfile) {
 		this.#profile = profile;
-		this.#validator = new ProfileValidator(profile);
+		this.#validator = new ProfileValidator();
 	}
 
 	/** {@inheritDoc IProfileImporter.import} */
 	public async import(password?: string): Promise<void> {
-		const data: IProfileData | undefined = await this.#validator.validate(await this.unpack(password));
+		let data: IProfileData | undefined = await this.unpack(password);
+
+		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
+			await new Migrator(this.#profile).migrate(
+				container.get(Identifiers.MigrationSchemas),
+				container.get(Identifiers.MigrationVersion),
+			);
+		}
+
+		data = this.#validator.validate(data);
 
 		this.#profile.peers().fill(data.peers);
 
