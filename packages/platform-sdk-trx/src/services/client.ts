@@ -36,17 +36,10 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		try {
-			return new ClientService({
-				config,
-				peer: config.get<string>("peer"),
-			});
-		} catch {
-			return new ClientService({
-				config,
-				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-			});
-		}
+		return new ClientService({
+			config,
+			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+		});
 	}
 
 	public async __destruct(): Promise<void> {
@@ -157,10 +150,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private getHost(): string {
-		try {
-			return this.#config.get<string>("peer");
-		} catch {
-			return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
-		}
+		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
 	}
 }
