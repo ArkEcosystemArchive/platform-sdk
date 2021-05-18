@@ -206,8 +206,8 @@ describe("ProfileRepository", () => {
 
 		await importByMnemonic(jane, identity.mnemonic, "ARK", "ark.devnet");
 
-		jane.password().set("password");
 		jane.auth().setPassword("password");
+		await new Promise((resolve) => setTimeout(() => resolve(""), 50));
 
 		const repositoryDump = subject.toObject();
 
@@ -324,6 +324,7 @@ describe("ProfileRepository", () => {
 		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
 
 		profile.settings().set(ProfileSetting.Name, "Test");
+		await new Promise((resolve) => setTimeout(() => resolve(""), 50));
 		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(1);
 	});
 });
