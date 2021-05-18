@@ -24,11 +24,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		try {
-			return new TransactionService(config.get<string>("peer"));
-		} catch {
-			return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
-		}
+		return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
 	}
 
 	public async __destruct(): Promise<void> {
