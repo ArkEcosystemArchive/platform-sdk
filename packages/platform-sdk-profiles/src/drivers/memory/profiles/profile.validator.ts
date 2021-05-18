@@ -4,12 +4,6 @@ import { IProfileData, IProfile } from "../../../contracts";
 import { IProfileValidator } from "../../../contracts/profiles/profile.validator";
 
 export class ProfileValidator implements IProfileValidator {
-	readonly #profile: IProfile;
-
-	public constructor(profile: IProfile) {
-		this.#profile = profile;
-	}
-
 	/**
 	 * Validate the profile data.
 	 *

@@ -15,7 +15,7 @@ export class ProfileImporter implements IProfileImporter {
 
 	public constructor(profile: IProfile) {
 		this.#profile = profile;
-		this.#validator = new ProfileValidator(profile);
+		this.#validator = new ProfileValidator();
 	}
 
 	/** {@inheritDoc IProfileImporter.import} */
