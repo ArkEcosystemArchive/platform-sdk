@@ -33,23 +33,23 @@ export default async () => {
 	// Display profile and wallet balances
 	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
 	logger.log("Wallet 2", wallet2.address(), "balance", wallet2.balance().toHuman(2));
-	//
-	// // Transfer from wallet1 to wallet2
-	// const transactionId = await wallet1
-	// 	.transaction()
-	// 	.signTransfer({
-	// 		from: wallet1.address(),
-	// 		sign: {
-	// 			mnemonic: mnemonic1
-	// 		},
-	// 		data: {
-	// 			amount: "200000000", // 2 TRX
-	// 			to: address2,
-	// 			memo: "This is a nice memo"
-	// 		}
-	// 	});
-	// logger.log("signedTransactionData", transactionId);
-	//
-	// await wallet1.transaction().broadcast(transactionId);
-	// await pollTransactionStatus(transactionId, wallet1);
+
+	// Transfer from wallet1 to wallet2
+	const transactionId = await wallet1
+		.transaction()
+		.signTransfer({
+			from: wallet1.address(),
+			sign: {
+				mnemonic: mnemonic1
+			},
+			data: {
+				amount: "200000000",
+				to: address2,
+				memo: "This is a nice memo"
+			}
+		});
+	logger.log("signedTransactionData", transactionId);
+
+	await wallet1.transaction().broadcast(transactionId);
+	await pollTransactionStatus(transactionId, wallet1);
 };
