@@ -40,7 +40,6 @@ export enum FeatureFlag {
 	LinkWallet = "Link.wallet",
 	MessageSign = "Message.sign",
 	MessageVerify = "Message.verify",
-	MiscellaneousCustomPeer = "Miscellaneous.customPeer",
 	MiscellaneousDynamicFees = "Miscellaneous.dynamicFees",
 	MiscellaneousMemo = "Miscellaneous.memo",
 	MiscellaneousUTXO = "Miscellaneous.utxo",

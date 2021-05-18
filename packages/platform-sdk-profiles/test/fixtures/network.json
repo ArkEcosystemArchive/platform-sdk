@@ -21,6 +21,10 @@
 		"ticker": "DARK",
 		"symbol": "DѦ"
 	},
+	"fees": {
+		"type": "dynamic",
+		"ticker": "DARK"
+	},
 	"crypto": {
 		"expirationType": "height",
 		"slip44": 1,
@@ -151,6 +155,10 @@
 			"ticker": "DARK",
 			"symbol": "DѦ"
 		},
+		"fees": {
+			"type": "dynamic",
+			"ticker": "DARK"
+		},
 		"crypto": {
 			"expirationType": "height",
 			"slip44": 1,
@@ -254,7 +262,6 @@
 				"htlcRefund": true
 			},
 			"Miscellaneous": {
-				"customPeer": true,
 				"dynamicFees": true,
 				"memo": true
 			}

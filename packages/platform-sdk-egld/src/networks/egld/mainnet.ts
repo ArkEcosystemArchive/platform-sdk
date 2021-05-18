@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "EGLD",
 		symbol: "EGLD",
 	},
+	fees: {
+		type: "gas",
+		ticker: "EGLD",
+	},
 	crypto: {
 		slip44: 508,
 		expirationType: "height",

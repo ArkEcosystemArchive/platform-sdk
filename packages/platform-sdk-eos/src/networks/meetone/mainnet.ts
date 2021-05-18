@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "MEETONE",
 		symbol: "MEETONE",
 	},
+	fees: {
+		type: "free",
+		ticker: "MEETONE",
+	},
 	crypto: {
 		networkId: "cfe6486a83bad4962f232d48003b1824ab5665c36778141034d75e57b956e422",
 		slip44: 194,

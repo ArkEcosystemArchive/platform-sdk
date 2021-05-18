@@ -1,5 +1,7 @@
 import { KeyValuePair } from "../contracts";
 
+export type FeeType = "static" | "dynamic" | "gas" | "free" | "weight";
+
 export type CoinTransactionTypes =
 	| "delegate-registration"
 	| "delegate-resignation"
@@ -119,10 +121,9 @@ export interface NetworkFeatureFlags {
 		htlcRefundWithLedgerX?: boolean;
 	};
 	Miscellaneous?: {
+		dynamicFees?: boolean;
 		memo?: boolean;
 		utxo?: boolean;
-		dynamicFees?: boolean;
-		customPeer?: boolean;
 	};
 	Derivation?: {
 		bip39?: boolean;
@@ -145,6 +146,10 @@ export interface NetworkManifest {
 	currency: {
 		ticker: string;
 		symbol: string;
+	};
+	fees: {
+		type: FeeType;
+		ticker: string;
 	};
 	crypto: {
 		networkId?: string;

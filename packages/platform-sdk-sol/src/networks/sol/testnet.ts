@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "SOL",
 		symbol: "SOL",
 	},
+	fees: {
+		type: "dynamic",
+		ticker: "SOL",
+	},
 	crypto: {
 		slip44: 501,
 		expirationType: "height",

@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "DARK",
 		symbol: "DѦ",
 	},
+	fees: {
+		type: "dynamic",
+		ticker: "DARK",
+	},
 	crypto: {
 		slip44: 1,
 		signingMethods: {
@@ -106,7 +110,6 @@ const network: Coins.NetworkManifest = {
 			htlcRefund: true,
 		},
 		Miscellaneous: {
-			customPeer: true,
 			dynamicFees: true,
 			memo: true,
 		},

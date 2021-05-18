@@ -92,7 +92,6 @@ test("#all", () => {
 		        "verify": true,
 		      },
 		      "Miscellaneous": Object {
-		        "customPeer": true,
 		        "dynamicFees": true,
 		        "memo": true,
 		      },
@@ -112,6 +111,10 @@ test("#all", () => {
 		        "transfer": true,
 		        "vote": true,
 		      },
+		    },
+		    "fees": Object {
+		      "ticker": "DARK",
+		      "type": "dynamic",
 		    },
 		    "governance": Object {
 		      "voting": Object {
@@ -229,7 +232,6 @@ test("#all", () => {
 		        "verify": true,
 		      },
 		      "Miscellaneous": Object {
-		        "customPeer": true,
 		        "dynamicFees": true,
 		        "memo": true,
 		      },
@@ -249,6 +251,10 @@ test("#all", () => {
 		        "transfer": true,
 		        "vote": true,
 		      },
+		    },
+		    "fees": Object {
+		      "ticker": "ARK",
+		      "type": "dynamic",
 		    },
 		    "governance": Object {
 		      "voting": Object {
@@ -366,7 +372,6 @@ test("#all", () => {
 		        "verify": true,
 		      },
 		      "Miscellaneous": Object {
-		        "customPeer": true,
 		        "dynamicFees": true,
 		        "memo": true,
 		      },
@@ -386,6 +391,10 @@ test("#all", () => {
 		        "transfer": true,
 		        "vote": true,
 		      },
+		    },
+		    "fees": Object {
+		      "ticker": "BIND",
+		      "type": "dynamic",
 		    },
 		    "governance": Object {
 		      "voting": Object {

@@ -43,7 +43,7 @@ export default async () => {
 				mnemonic: mnemonic1
 			},
 			data: {
-				amount: "2",
+				amount: "200000000", // 2 TRX
 				to: address2,
 				memo: "This is a nice memo"
 			}

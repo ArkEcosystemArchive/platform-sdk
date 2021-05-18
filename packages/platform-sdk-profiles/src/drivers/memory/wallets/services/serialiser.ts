@@ -1,7 +1,15 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import dot from "dot-prop";
 
 import { IReadWriteWallet, IWalletData, WalletData, WalletFlag } from "../../../../contracts";
+
+type SerializedBalance = {
+	available: string,
+	fees: string,
+	locked?: string,
+	tokens?: Record<string, string>,
+};
 
 export class WalletSerialiser {
 	readonly #wallet: IReadWriteWallet;
@@ -38,7 +46,7 @@ export class WalletSerialiser {
 			address: this.#wallet.address(),
 			publicKey: this.#wallet.publicKey(),
 			data: {
-				[WalletData.Balance]: this.#wallet.data().get<string>(WalletData.Balance),
+				[WalletData.Balance]: this.serializeBalance(),
 				[WalletData.BroadcastedTransactions]: this.#wallet.data().get(WalletData.BroadcastedTransactions, []),
 				[WalletData.Sequence]: this.#wallet.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.#wallet.data().get(WalletData.SignedTransactions, []),
@@ -57,5 +65,28 @@ export class WalletSerialiser {
 			},
 			settings: this.#wallet.settings().all(),
 		};
+	}
+
+	private serializeBalance(): SerializedBalance {
+		const balance = this.#wallet.data().get<Contracts.WalletBalance>(WalletData.Balance);
+
+		const serializedBalance: SerializedBalance = {
+			available: BigNumber.make(balance?.available || 0).toString(),
+			fees: BigNumber.make(balance?.fees || 0).toString(),
+		};
+
+		if (balance?.locked) {
+			serializedBalance.locked = balance.locked.toString();
+		}
+
+		if (balance?.tokens) {
+			serializedBalance.tokens = {};
+
+			for (const [key, value] of Object.entries(balance.tokens)) {
+				serializedBalance.tokens[key] = value.toString();
+			}
+		}
+
+		return serializedBalance;
 	}
 }

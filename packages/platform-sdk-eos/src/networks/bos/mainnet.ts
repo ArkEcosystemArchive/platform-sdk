@@ -10,6 +10,10 @@ const network: Coins.NetworkManifest = {
 		ticker: "BOS",
 		symbol: "BOS",
 	},
+	fees: {
+		type: "free",
+		ticker: "BOS",
+	},
 	crypto: {
 		networkId: "d5a3d18fbb3c084e3b1f3fa98c21014b5f3db536cc15d08f9f6479517c6a3d86",
 		slip44: 194,
