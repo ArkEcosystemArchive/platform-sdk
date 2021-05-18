@@ -18,7 +18,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		let unspent: UnspentAggregator = new UnspentAggregator({
+		const unspent: UnspentAggregator = new UnspentAggregator({
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 		});

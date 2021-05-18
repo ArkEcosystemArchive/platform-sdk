@@ -16,7 +16,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		let connection: RippleAPI = new RippleAPI({
+		const connection: RippleAPI = new RippleAPI({
 			server: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
 		});
 
