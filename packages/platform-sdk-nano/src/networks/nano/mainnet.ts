@@ -30,6 +30,11 @@ const network: Coins.NetworkManifest = {
 		},
 	},
 	featureFlags: {
+		Client: {
+			transaction: true,
+			wallet: true,
+			broadcast: true,
+		},
 		Identity: {
 			address: {
 				mnemonic: true,
