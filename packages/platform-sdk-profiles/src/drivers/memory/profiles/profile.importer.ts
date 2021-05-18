@@ -64,8 +64,6 @@ export class ProfileImporter implements IProfileImporter {
 			if (typeof password === "string") {
 				data = new ProfileEncrypter(this.#profile).decrypt(password);
 
-				// For password-protected profiles, make sure password is available during active profile's session.
-				// Will be accessed from env emitter to auto-save profile's changed data.
 				this.#profile.password().set(password);
 			} else {
 				data = JSON.parse(Base64.decode(this.#profile.getAttributes().get<string>("data")));
