@@ -31,14 +31,18 @@ export class WalletSerialiser {
 		const balance = this.#wallet.data().get<Contracts.WalletBalance>(WalletData.Balance);
 
 		const serializedBalance: SerializedBalance = {
+			/* istanbul ignore next */
 			available: BigNumber.make(balance?.available || 0).toString(),
+			/* istanbul ignore next */
 			fees: BigNumber.make(balance?.fees || 0).toString(),
 		};
 
+		/* istanbul ignore next */
 		if (balance?.locked) {
 			serializedBalance.locked = balance.locked.toString();
 		}
 
+		/* istanbul ignore next */
 		if (balance?.tokens) {
 			serializedBalance.tokens = {};
 
