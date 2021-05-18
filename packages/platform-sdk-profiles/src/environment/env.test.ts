@@ -411,7 +411,8 @@ it("should auto persist on changes", async () => {
 	const profile = subject.profiles().create("John Doe");
 	profile.auth().setPassword("password");
 
-	expect(mockPersist).toHaveBeenCalled();
+	await new Promise((resolve) => setTimeout(() => resolve(""), 50));
+	await expect(mockPersist).toHaveBeenCalled();
 });
 
 it("should not persist on changes", async () => {
@@ -429,5 +430,30 @@ it("should not persist on changes", async () => {
 	const profile = subject.profiles().create("John Doe");
 	profile.auth().setPassword("password");
 
+	await new Promise((resolve) => setTimeout(() => resolve(""), 50));
 	expect(mockPersist).not.toHaveBeenCalled();
+});
+
+it("should not save profile nor persist env on changes if profile is corrupted", async () => {
+	await makeSubject();
+
+	const mockPersist = jest.spyOn(subject, "persist");
+	const profile = subject.profiles().create("John Doe");
+	//@ts-ignore
+	const mockCorruptedData = jest.spyOn(profile.data(), "all").mockImplementation(() => "");
+	//@ts-ignore
+	const mockCorruptedSettings = jest.spyOn(profile.settings(), "all").mockImplementation(jest.fn());
+	const mockSetAttributes = jest.spyOn(profile.getAttributes(), "set").mockImplementation(jest.fn());
+
+	profile.auth().setPassword("password");
+
+	await new Promise((resolve) => setTimeout(() => resolve(""), 50));
+	await expect(mockSetAttributes).toHaveBeenCalledWith("password", expect.any(String));
+	await expect(mockSetAttributes).not.toHaveBeenCalledWith("data", expect.anything());
+	await expect(mockPersist).not.toHaveBeenCalled();
+
+	mockCorruptedData.mockRestore();
+	mockPersist.mockRestore();
+	mockCorruptedSettings.mockRestore();
+	mockSetAttributes.mockRestore();
 });
