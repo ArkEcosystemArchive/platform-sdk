@@ -1,10 +1,10 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { IdentityService } from "./identity";
-import TronWeb from "tronweb";
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { Base58 } from "@arkecosystem/platform-sdk-crypto";
 import { Buffer } from "buffer";
+import TronWeb from "tronweb";
+
+import { IdentityService } from "./identity";
 
 export class MessageService implements Contracts.MessageService {
 	readonly #identityService: IdentityService;
@@ -34,10 +34,10 @@ export class MessageService implements Contracts.MessageService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			let keys: Contracts.KeyPair = await this.#identityService
+			const keys: Contracts.KeyPair = await this.#identityService
 				.keys()
 				.fromMnemonic(BIP39.normalize(input.mnemonic));
-			let address = await this.#identityService.address().fromMnemonic(BIP39.normalize(input.mnemonic));
+			const address = await this.#identityService.address().fromMnemonic(BIP39.normalize(input.mnemonic));
 
 			if (keys.privateKey === undefined) {
 				throw new Error("Failed to retrieve the private key for the signatory wallet.");

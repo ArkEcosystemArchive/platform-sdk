@@ -1,7 +1,7 @@
 import "jest-extended";
 
-import { identity } from "../../test/identity";
 import { createConfig } from "../../test/helpers";
+import { identity } from "../../test/identity";
 import { MessageService } from "./message";
 
 let subject: MessageService;
