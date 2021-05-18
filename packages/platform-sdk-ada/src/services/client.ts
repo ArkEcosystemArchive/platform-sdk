@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import * as TransactionDTO from "../dto";
 import { TransactionData, WalletData } from "../dto";
