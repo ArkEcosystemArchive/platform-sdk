@@ -12,7 +12,6 @@ export class ProfileValidator implements IProfileValidator {
 	public constructor(profile: IProfile) {
 		this.#profile = profile;
 	}
-
 	/**
 	 * Validate the profile data.
 	 *

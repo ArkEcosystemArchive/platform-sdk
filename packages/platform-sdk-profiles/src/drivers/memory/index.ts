@@ -15,6 +15,8 @@ import { PluginRegistry } from "./plugins";
 import { emitter } from "./helpers";
 import { ProfileExporter } from "./profiles/profile.exporter";
 import { StorageFactory } from "../../environment/storage/factory";
+import { ProfileValidator } from "./profiles/profile.validator";
+import { ProfileSerialiser } from "./profiles/profile.serialiser";
 
 export class MemoryDriver implements Driver {
 	/**
@@ -48,13 +50,16 @@ export class MemoryDriver implements Driver {
 	}
 
 	private registerListeners(container: Container): void {
-		emitter().on(Events.ProfileChanged, ({ id }) => {
+		emitter().on(Events.ProfileChanged, async ({ id }) => {
 			try {
-				const profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).findById(id);
+				const profiles = container.get<IProfileRepository>(Identifiers.ProfileRepository);
+				const profile = profiles.findById(id);
 
 				if (!profile.status().isRestored()) {
 					return;
 				}
+
+				await new ProfileValidator(profile).validate(new ProfileSerialiser(profile).toJSON());
 
 				if (profile.usesPassword() && profile.password().exists()) {
 					profile.getAttributes().set("data", new ProfileExporter(profile).export(profile.password().get()));
