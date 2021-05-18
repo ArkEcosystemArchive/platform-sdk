@@ -110,6 +110,7 @@ describe.each([
 		available: Number.NaN,
 		fees: Number.NaN,
 	}],
+	[111, undefined],
 ])("%s", (slip44, balance) => {
 	it("should turn into an object", () => {
 		subject.coin().config().set("network.crypto.slip44", slip44);
