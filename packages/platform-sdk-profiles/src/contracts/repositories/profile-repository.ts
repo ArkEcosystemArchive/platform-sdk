@@ -136,7 +136,7 @@ export interface IProfileRepository {
 	 * @param {IProfile} profile
 	 * @memberof IProfile
 	 */
-	 persist(profile: IProfile): void;
+	persist(profile: IProfile): void;
 
 	/**
 	 * Determine if a profile for the given ID exists.

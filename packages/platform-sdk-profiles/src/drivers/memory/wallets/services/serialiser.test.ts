@@ -86,30 +86,39 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 describe.each([
-	[123, {
-		available: Number.NaN,
-		fees: Number.NaN,
-		locked: BigNumber.make(3),
-		tokens: {
-			ARK: BigNumber.make(4),
-			BTC: BigNumber.make(5),
-			ETH: BigNumber.make(6),
+	[
+		123,
+		{
+			available: Number.NaN,
+			fees: Number.NaN,
+			locked: BigNumber.make(3),
+			tokens: {
+				ARK: BigNumber.make(4),
+				BTC: BigNumber.make(5),
+				ETH: BigNumber.make(6),
+			},
 		},
-	}],
-	[456, {
-		available: BigNumber.make(1),
-		fees: BigNumber.make(2),
-		locked: BigNumber.make(3),
-		tokens: {
-			ARK: BigNumber.make(4),
-			BTC: BigNumber.make(5),
-			ETH: BigNumber.make(6),
+	],
+	[
+		456,
+		{
+			available: BigNumber.make(1),
+			fees: BigNumber.make(2),
+			locked: BigNumber.make(3),
+			tokens: {
+				ARK: BigNumber.make(4),
+				BTC: BigNumber.make(5),
+				ETH: BigNumber.make(6),
+			},
 		},
-	}],
-	[789, {
-		available: Number.NaN,
-		fees: Number.NaN,
-	}],
+	],
+	[
+		789,
+		{
+			available: Number.NaN,
+			fees: Number.NaN,
+		},
+	],
 	[111, undefined],
 ])("%s", (slip44, balance) => {
 	it("should turn into an object", () => {

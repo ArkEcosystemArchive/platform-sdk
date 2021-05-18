@@ -13,7 +13,7 @@ import {
 } from "../contracts";
 import { DriverFactory } from "../drivers/driver.factory";
 import { container } from "./container";
-import { Events, Identifiers } from "./container.models";
+import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 
 export class Environment {
