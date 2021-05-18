@@ -5,9 +5,9 @@ import { PrivateKeySignatory } from "./private-key";
 import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
 import { SenderPublicKeySignatory } from "./sender-public-key";
+import { Signatory } from "./signatory";
 import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
-import { Signatory } from "./signatory";
 
 export {
 	Signatory,

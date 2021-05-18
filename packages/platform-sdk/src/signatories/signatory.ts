@@ -9,7 +9,8 @@ import { SenderPublicKeySignatory } from "./sender-public-key";
 import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
 
-type SignatoryType = MnemonicSignatory
+type SignatoryType =
+	| MnemonicSignatory
 	| MultiMnemonicSignatory
 	| SecondaryMnemonicSignatory
 	| WIFSignatory
