@@ -17,7 +17,6 @@ export interface EnvironmentOptions {
 	httpClient: Contracts.HttpClient;
 	driver?: string | Driver;
 	migrations?: Record<string, any>;
-	shouldPersistOnChange?: boolean;
 }
 
 export interface Storage {

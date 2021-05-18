@@ -13,10 +13,12 @@ import { ProfileDumper } from "./profile.dumper";
 import { ProfileSerialiser } from "./profile.serialiser";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
+import { ProfileRepository } from "../repositories/profile-repository";
 
 let subject: ProfileImporter;
 let dumper: ProfileDumper;
 let serialiser: ProfileSerialiser;
+let repository: ProfileRepository;
 let profile: IProfile;
 
 beforeAll(() => {
@@ -45,6 +47,7 @@ beforeEach(() => {
 	subject = new ProfileImporter(profile);
 	dumper = new ProfileDumper(profile);
 	serialiser = new ProfileSerialiser(profile);
+	repository = new ProfileRepository();
 });
 
 describe("#restore", () => {

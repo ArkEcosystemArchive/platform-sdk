@@ -33,7 +33,6 @@ const makeSubject = async (): Promise<void> => {
 		coins: { ARK, BTC, ETH },
 		httpClient: new Request(),
 		storage: new StubStorage(),
-		shouldPersistOnChange: true,
 	});
 	await subject.verify();
 	await subject.boot();
@@ -402,32 +401,4 @@ it("should persist the env and restore it", async () => {
 	expect(new ProfileSerialiser(restoredJohn).toJSON()).toEqual(new ProfileSerialiser(john).toJSON());
 	expect(new ProfileSerialiser(restoredJane).toJSON()).toEqual(new ProfileSerialiser(jane).toJSON());
 	expect(new ProfileSerialiser(restoredJack).toJSON()).toEqual(new ProfileSerialiser(jack).toJSON());
-});
-
-it("should auto persist on changes", async () => {
-	await makeSubject();
-
-	const mockPersist = jest.spyOn(subject, "persist");
-	const profile = subject.profiles().create("John Doe");
-	profile.auth().setPassword("password");
-
-	expect(mockPersist).toHaveBeenCalled();
-});
-
-it("should not persist on changes", async () => {
-	subject = new Environment({
-		coins: { ARK, BTC, ETH },
-		httpClient: new Request(),
-		storage: new StubStorage(),
-		shouldPersistOnChange: false,
-	});
-	await subject.verify();
-	await subject.boot();
-	await subject.persist();
-
-	const mockPersist = jest.spyOn(subject, "persist");
-	const profile = subject.profiles().create("John Doe");
-	profile.auth().setPassword("password");
-
-	expect(mockPersist).not.toHaveBeenCalled();
 });
