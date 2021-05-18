@@ -354,10 +354,9 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
-		// @TODO: use correct type, maybe split methods to signingKey/signingKeys/signingPair
 		const transactionWithSignature = this.#multiSignatureSigner.sign(
 			transaction,
-			input.signatory.signingKeys() as any,
+			input.signatory.signingKeys(),
 		);
 
 		return new SignedTransactionData(
