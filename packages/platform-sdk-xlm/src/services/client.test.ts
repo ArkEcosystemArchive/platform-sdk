@@ -150,16 +150,9 @@ describe("ClientService", function () {
 				}),
 			]);
 
-			const fakeId =
-				"AAAAAA9yI2GpXBGeyxcmlQjTXj1WTUyMbWepr30XQXybeP2yAAAAZAADEzQAAAAFAAAAAQAAAAAAAAAAAAAAAF66HwoAAAAAAAAAAQAAAAAAAAABAAAAAHVeJ/ac1LQ3rtwfQEBOWtCKLSzZTnBD5iQ6Q/dhveHPAAAAAAAAWvMQekAAAAAAAAAAAAGbeP2yAAAAQBiWYaTm27ZWFOCYpIljljVEK24tVewGm2YtcsUVWGgeZ5VrtXzI5dYizy4/T1T/R1nKb4TItHxj+4th0/9NmQw=";
-
-			expect(result).toEqual({
-				accepted: [],
-				rejected: [fakeId],
-				errors: {
-					[fakeId]: ["ERR_INSUFFICIENT_FUNDS"],
-				},
-			});
+			expect(result.accepted).toMatchObject([]);
+			expect(result.rejected[0]).toBeString();
+			expect(result.errors[result.rejected[0]]).toMatchObject(["ERR_INSUFFICIENT_FUNDS"]);
 		});
 	});
 });
