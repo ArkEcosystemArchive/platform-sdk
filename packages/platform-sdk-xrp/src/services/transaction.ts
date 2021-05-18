@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
@@ -44,7 +43,9 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			// @TODO: use signatory identifier here
-			const sender: string = await new IdentityService(this.#config).address().fromMnemonic(input.signatory.signingKey());
+			const sender: string = await new IdentityService(this.#config)
+				.address()
+				.fromMnemonic(input.signatory.signingKey());
 
 			const prepared = await this.#connection.preparePayment(
 				sender,
@@ -67,10 +68,7 @@ export class TransactionService implements Contracts.TransactionService {
 				{ maxLedgerVersionOffset: 5 },
 			);
 
-			const { id, signedTransaction } = this.#connection.sign(
-				prepared.txJSON,
-				input.signatory.signingKey(),
-			);
+			const { id, signedTransaction } = this.#connection.sign(prepared.txJSON, input.signatory.signingKey());
 
 			return new SignedTransactionData(id, signedTransaction, signedTransaction);
 		} catch (error) {

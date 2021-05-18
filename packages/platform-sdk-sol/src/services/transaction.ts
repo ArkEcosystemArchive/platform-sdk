@@ -45,7 +45,10 @@ export class TransactionService implements Contracts.TransactionService {
 			}),
 		);
 
-		const signedTransaction = this.sign(transaction, derivePrivateKey(input.signatory.signingKey(), 0, 0, this.#slip44));
+		const signedTransaction = this.sign(
+			transaction,
+			derivePrivateKey(input.signatory.signingKey(), 0, 0, this.#slip44),
+		);
 
 		return new SignedTransactionData(
 			uuidv4(),
