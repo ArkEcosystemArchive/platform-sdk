@@ -9,16 +9,12 @@ import { usedAddressesForAccount } from "./helpers";
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
 
-	private constructor({ config }) {
+	private constructor(config) {
 		this.#config = config;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService({
-			config,
-			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-		});
+		return new ClientService(config);
 	}
 
 	public async __destruct(): Promise<void> {
