@@ -386,25 +386,4 @@ export class Profile implements IProfile {
 	public hasCompletedIntroductoryTutorial(): boolean {
 		return this.data().has(ProfileData.HasCompletedIntroductoryTutorial);
 	}
-
-	// @TODO: move out
-	public persist(): void {
-		try {
-			if (!this.status().isRestored()) {
-				return;
-			}
-
-			if (this.usesPassword() && this.password().exists()) {
-				this.getAttributes().set("data", new ProfileExporter(this).export(this.password().get()));
-			}
-
-			if (!this.usesPassword()) {
-				this.getAttributes().set("data", new ProfileExporter(this).export());
-			}
-		} catch (error) {
-			if (process.env.NODE_ENV !== "test") {
-				console.error(`[FATAL] Failed to encode or encrypt the profile. Reason: ${error.message}`);
-			}
-		}
-	}
 }

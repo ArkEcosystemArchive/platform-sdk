@@ -131,6 +131,14 @@ export interface IProfileRepository {
 	dump(profile: IProfile): IProfileInput;
 
 	/**
+	 * Persist the profile data.
+	 *
+	 * @param {IProfile} profile
+	 * @memberof IProfile
+	 */
+	 persist(profile: IProfile): void;
+
+	/**
 	 * Determine if a profile for the given ID exists.
 	 *
 	 * @param {string} id
