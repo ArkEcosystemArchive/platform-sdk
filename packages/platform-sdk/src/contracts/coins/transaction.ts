@@ -138,4 +138,4 @@ export interface EntityUpdateInput extends TransactionInput {
 
 export type TransactionInputs = Record<string, any> & {
 	signatory: Signatory;
-}
+};

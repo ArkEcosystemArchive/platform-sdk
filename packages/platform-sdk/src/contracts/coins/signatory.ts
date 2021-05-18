@@ -14,31 +14,25 @@ import {
 export interface SignatoryService {
 	__destruct(): Promise<void>;
 
-	mnemonic(
-		mnemonic: string,
-		options?: IdentityOptions,
-	): Promise<MnemonicSignatory>;
+	mnemonic(mnemonic: string, options?: IdentityOptions): Promise<MnemonicSignatory>;
 
 	secondaryMnemonic(
 		primary: string,
 		secondary: string,
 		options?: IdentityOptions,
-	): Promise<SecondaryMnemonicSignatory>
+	): Promise<SecondaryMnemonicSignatory>;
 
 	multiMnemonic(mnemonics: string[]): Promise<MultiMnemonicSignatory>;
 
-	wif(primary: string): Promise<WIFSignatory> ;
+	wif(primary: string): Promise<WIFSignatory>;
 
 	secondaryWif(primary: string, secondary: string): Promise<SecondaryWIFSignatory>;
 
-	privateKey(
-		privateKey: string,
-		options?: IdentityOptions,
-	): Promise<PrivateKeySignatory> ;
+	privateKey(privateKey: string, options?: IdentityOptions): Promise<PrivateKeySignatory>;
 
-	signature(signature: string): Promise<SignatureSignatory> ;
+	signature(signature: string): Promise<SignatureSignatory>;
 
-	senderPublicKey(publicKey: string): Promise<SenderPublicKeySignatory> ;
+	senderPublicKey(publicKey: string): Promise<SenderPublicKeySignatory>;
 
-	multiSignature(min: number, publicKeys: string[]): Promise<MultiSignatureSignatory> ;
+	multiSignature(min: number, publicKeys: string[]): Promise<MultiSignatureSignatory>;
 }
