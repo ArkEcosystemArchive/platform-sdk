@@ -233,6 +233,15 @@ export class Profile implements IProfile {
 		return Avatar.make(this.name());
 	}
 
+	/** {@inheritDoc IProfile.theme} */
+	public theme(): string {
+		if (this.settings().missing(ProfileSetting.Theme)) {
+			return this.#attributes.get<string>("theme");
+		}
+
+		return this.settings().get<string>(ProfileSetting.Theme)!;
+	}
+
 	/** {@inheritDoc IProfile.balance} */
 	public balance(): BigNumber {
 		return this.walletAggregate().balance();
