@@ -4,7 +4,6 @@ import { INotification, INotificationRepository, IProfile } from "../../../contr
 import { injectable } from "inversify";
 
 import { DataRepository } from "../../../repositories/data-repository";
-import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class NotificationRepository implements INotificationRepository {
@@ -57,7 +56,7 @@ export class NotificationRepository implements INotificationRepository {
 
 		this.#data.set(id, { id, ...value });
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 
 		return this.get(id);
 	}
@@ -78,14 +77,14 @@ export class NotificationRepository implements INotificationRepository {
 
 		this.#data.forget(key);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc INotificationRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc INotificationRepository.count} */
@@ -111,6 +110,6 @@ export class NotificationRepository implements INotificationRepository {
 	public markAsRead(key: string): void {
 		this.get(key).read_at = +Date.now();
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 }

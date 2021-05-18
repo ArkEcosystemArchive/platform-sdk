@@ -44,8 +44,8 @@ import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileInitialiser } from "./profile.initialiser";
 import { IPasswordManager } from "../../../contracts/profiles/services/password";
 import { PasswordManager } from "./services/password";
-import { emitProfileChanged } from "../helpers";
 import { ProfileStatus } from "./profile.status";
+import { ProfileExporter } from "./profile.exporter";
 
 export class Profile implements IProfile {
 	/**
@@ -379,11 +379,32 @@ export class Profile implements IProfile {
 	public markIntroductoryTutorialAsComplete(): void {
 		this.data().set(ProfileData.HasCompletedIntroductoryTutorial, true);
 
-		emitProfileChanged(this);
+		this.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IProfile.hasCompletedIntroductoryTutorial} */
 	public hasCompletedIntroductoryTutorial(): boolean {
 		return this.data().has(ProfileData.HasCompletedIntroductoryTutorial);
+	}
+
+	// @TODO: move out
+	public persist(): void {
+		try {
+			if (!this.status().isRestored()) {
+				return;
+			}
+
+			if (this.usesPassword() && this.password().exists()) {
+				this.getAttributes().set("data", new ProfileExporter(this).export(this.password().get()));
+			}
+
+			if (!this.usesPassword()) {
+				this.getAttributes().set("data", new ProfileExporter(this).export());
+			}
+		} catch (error) {
+			if (process.env.NODE_ENV !== "test") {
+				console.error(`[FATAL] Failed to encode or encrypt the profile. Reason: ${error.message}`);
+			}
+		}
 	}
 }

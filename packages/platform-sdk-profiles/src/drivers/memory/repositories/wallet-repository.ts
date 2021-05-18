@@ -13,7 +13,6 @@ import {
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
-import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class WalletRepository implements IWalletRepository {
@@ -119,7 +118,7 @@ export class WalletRepository implements IWalletRepository {
 
 		this.#data.set(wallet.id(), wallet);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 
 		return wallet;
 	}
@@ -146,7 +145,7 @@ export class WalletRepository implements IWalletRepository {
 
 		this.#data.set(id, result);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IWalletRepository.has} */
@@ -158,14 +157,14 @@ export class WalletRepository implements IWalletRepository {
 	public forget(id: string): void {
 		this.#data.forget(id);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IWalletRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IWalletRepository.count} */

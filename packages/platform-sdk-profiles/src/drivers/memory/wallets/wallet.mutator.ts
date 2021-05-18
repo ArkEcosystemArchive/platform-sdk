@@ -2,7 +2,6 @@ import { Avatar } from "../../../helpers/avatar";
 import { IProfile, IReadWriteWallet, WalletSetting } from "../../../contracts";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { emitProfileChanged } from "../helpers";
 
 export class WalletMutator implements IWalletMutator {
 	readonly #wallet: IReadWriteWallet;
@@ -35,7 +34,7 @@ export class WalletMutator implements IWalletMutator {
 				}
 			}
 
-			emitProfileChanged(this.#wallet.profile());
+			this.#wallet.profile().status().markAsDirty();
 		} catch {
 			this.#wallet.markAsPartiallyRestored();
 		}
