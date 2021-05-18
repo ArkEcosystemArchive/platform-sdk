@@ -2,15 +2,19 @@ import { Coins, Contracts, Signatories } from "@arkecosystem/platform-sdk";
 
 import { IdentityService } from "./identity";
 
-export class SignatoryFactory implements Contracts.SignatoryFactory {
+export class SignatoryService implements Contracts.SignatoryService {
 	readonly #identity: IdentityService;
 
 	private constructor(identityService: IdentityService) {
 		this.#identity = identityService;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<SignatoryFactory> {
-		return new SignatoryFactory(await IdentityService.__construct(config));
+	public static async __construct(config: Coins.Config): Promise<SignatoryService> {
+		return new SignatoryService(await IdentityService.__construct(config));
+	}
+
+	public async __destruct(): Promise<void> {
+		//
 	}
 
 	public async mnemonic(

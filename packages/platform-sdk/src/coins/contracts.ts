@@ -10,6 +10,7 @@ import {
 	MessageService,
 	MultiSignatureService,
 	PeerService,
+	SignatoryService,
 	TransactionService,
 } from "../contracts/coins";
 import { CoinManifest } from "./network.models";
@@ -38,5 +39,6 @@ export interface CoinServices {
 	message: MessageService;
 	multiSignature: MultiSignatureService;
 	peer: PeerService;
+	signatory: SignatoryService;
 	transaction: TransactionService;
 }

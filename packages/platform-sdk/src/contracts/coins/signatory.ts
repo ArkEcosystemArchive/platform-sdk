@@ -11,7 +11,9 @@ import {
 	WIFSignatory,
 } from "../../signatories";
 
-export interface SignatoryFactory {
+export interface SignatoryService {
+	__destruct(): Promise<void>;
+
 	mnemonic(
 		mnemonic: string,
 		options?: IdentityOptions,

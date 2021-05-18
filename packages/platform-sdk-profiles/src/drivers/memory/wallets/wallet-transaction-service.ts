@@ -67,7 +67,6 @@ export class TransactionService implements ITransactionService {
 
 		const transaction = await this.#wallet.coin().multiSignature().findById(id);
 
-		// @TODO: we need to use the SignatoryFactory here or expect a A
 		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(transaction, { signatory });
 
 		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());
