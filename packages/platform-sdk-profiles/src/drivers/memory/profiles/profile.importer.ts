@@ -29,7 +29,7 @@ export class ProfileImporter implements IProfileImporter {
 			);
 		}
 
-		data = await this.#validator.validate(data);
+		data = this.#validator.validate(data);
 
 		this.#profile.peers().fill(data.peers);
 
