@@ -59,10 +59,4 @@ export const convertQaToZil = (qa: string): string => units.fromQa(new BN(qa), u
 
 export const convertZilToQa = (zil: string | number): string => units.toQa(zil, units.Units.Zil).toString();
 
-const getHost = (config: Coins.Config): string => {
-	try {
-		return config.get<string>("peer");
-	} catch {
-		return Arr.randomElement(config.get<string[]>("network.networking.hosts"));
-	}
-};
+const getHost = (config: Coins.Config): string => Arr.randomElement(config.get<string[]>("network.networking.hosts"));

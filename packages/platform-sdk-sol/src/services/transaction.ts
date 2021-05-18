@@ -146,10 +146,6 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private host(): string {
-		try {
-			return this.#config.get<string>("peer");
-		} catch {
-			return `${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`;
-		}
+		return `${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`;
 	}
 }

@@ -114,10 +114,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private host(): string {
-		try {
-			return this.#config.get<string>("peer");
-		} catch {
-			return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
-		}
+		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
 	}
 }

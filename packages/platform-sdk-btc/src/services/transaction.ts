@@ -18,18 +18,10 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		let unspent: UnspentAggregator;
-		try {
-			unspent = new UnspentAggregator({
-				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-				peer: config.get<string>("peer"),
-			});
-		} catch {
-			unspent = new UnspentAggregator({
-				http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-				peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-			});
-		}
+		let unspent: UnspentAggregator = new UnspentAggregator({
+			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
+			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+		});
 
 		return new TransactionService({
 			identity: await IdentityService.__construct(config),

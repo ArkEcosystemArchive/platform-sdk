@@ -83,13 +83,9 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private useClient(): LCDClient {
-		try {
-			return useClient(this.#config.get<string>("peer"), this.#config.get(Coins.ConfigKey.CryptoChainId));
-		} catch {
-			return useClient(
-				`${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`,
-				this.#config.get(Coins.ConfigKey.CryptoChainId),
-			);
-		}
+		return useClient(
+			`${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`,
+			this.#config.get(Coins.ConfigKey.CryptoChainId),
+		);
 	}
 }

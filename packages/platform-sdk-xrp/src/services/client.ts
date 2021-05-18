@@ -133,14 +133,9 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		let connection: RippleAPI;
-		try {
-			connection = new RippleAPI({ server: config.get<string>("peer") });
-		} catch {
-			connection = new RippleAPI({
-				server: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
-			});
-		}
+		let connection: RippleAPI = new RippleAPI({
+			server: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+		});
 
 		await connection.connect();
 
