@@ -236,7 +236,7 @@ export class Profile implements IProfile {
 	/** {@inheritDoc IProfile.theme} */
 	public theme(): string {
 		if (this.settings().missing(ProfileSetting.Theme)) {
-			return this.#attributes.get<string>("theme");
+			return this.#attributes.get<string>("theme") || "light";
 		}
 
 		return this.settings().get<string>(ProfileSetting.Theme)!;
