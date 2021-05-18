@@ -85,11 +85,38 @@ beforeEach(async () => {
 
 beforeAll(() => nock.disableNetConnect());
 
-describe.each([123, 456, 789])("%s", (slip44) => {
+describe.each([
+	[123, {
+		available: Number.NaN,
+		fees: Number.NaN,
+		locked: BigNumber.make(3),
+		tokens: {
+			ARK: BigNumber.make(4),
+			BTC: BigNumber.make(5),
+			ETH: BigNumber.make(6),
+		},
+	}],
+	[456, {
+		available: BigNumber.make(1),
+		fees: BigNumber.make(2),
+		locked: BigNumber.make(3),
+		tokens: {
+			ARK: BigNumber.make(4),
+			BTC: BigNumber.make(5),
+			ETH: BigNumber.make(6),
+		},
+	}],
+	[789, {
+		available: Number.NaN,
+		fees: Number.NaN,
+	}],
+	[111, undefined],
+])("%s", (slip44, balance) => {
 	it("should turn into an object", () => {
 		subject.coin().config().set("network.crypto.slip44", slip44);
 		subject.data().set("key", "value");
 
+		subject.data().set(WalletData.Balance, balance);
 		subject.data().set(WalletData.LedgerPath, "1");
 		subject.data().set(WalletFlag.Starred, true);
 
@@ -111,22 +138,7 @@ describe.each([123, 456, 789])("%s", (slip44) => {
 		expect(actual.network).toBe("ark.devnet");
 		expect(actual.networkConfig.crypto.slip44).toBe(slip44);
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
-		expect(actual.data).toEqual({
-			BALANCE: {
-				available: BigNumber.make("55827093444556"),
-				fees: BigNumber.make("55827093444556"),
-			},
-			BROADCASTED_TRANSACTIONS: {},
-			LEDGER_PATH: "1",
-			SEQUENCE: "111932",
-			SIGNED_TRANSACTIONS: {},
-			STARRED: true,
-			VOTES: [],
-			VOTES_USED: 0,
-			VOTES_AVAILABLE: 0,
-			WAITING_FOR_OTHER_SIGNATURES_TRANSACTIONS: {},
-			WAITING_FOR_OUR_SIGNATURE_TRANSACTIONS: {},
-		});
+		expect(actual.data).toMatchSnapshot();
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();
 	});
