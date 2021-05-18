@@ -3,7 +3,7 @@ import { deriveAccount } from "./helpers";
 
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return deriveAccount(mnemonic, options?.bip44?.account || 0).publicKey;
+		return deriveAccount(mnemonic, options?.bip44?.account).publicKey;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

@@ -5,7 +5,7 @@ import { deriveAccount } from "./helpers";
 
 export class Address implements Contracts.Address {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return deriveAccount(mnemonic, options?.bip44?.account || 0).address;
+		return deriveAccount(mnemonic, options?.bip44?.account).address;
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {

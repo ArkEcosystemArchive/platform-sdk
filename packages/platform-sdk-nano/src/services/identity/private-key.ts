@@ -3,7 +3,7 @@ import { deriveAccount } from "./helpers";
 
 export class PrivateKey implements Contracts.PrivateKey {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return deriveAccount(mnemonic, options?.bip44?.account || 0).privateKey;
+		return deriveAccount(mnemonic, options?.bip44?.account).privateKey;
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
