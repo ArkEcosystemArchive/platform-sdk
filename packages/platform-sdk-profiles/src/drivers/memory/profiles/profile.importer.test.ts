@@ -119,6 +119,7 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if no password was provided", async () => {
 		profile.auth().setPassword("password");
+		await new Promise((resolve) => setTimeout(() => resolve(""), 50));
 
 		const profileCopy: IProfile = new Profile(dumper.dump());
 
@@ -129,6 +130,7 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if an invalid password was provided", async () => {
 		profile.auth().setPassword("password");
+		await new Promise((resolve) => setTimeout(() => resolve(""), 50));
 
 		const profileCopy: IProfile = new Profile(dumper.dump());
 
