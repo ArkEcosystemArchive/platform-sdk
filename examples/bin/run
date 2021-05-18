@@ -6,6 +6,7 @@ const {
 	transferAda,
 	transferArk,
 	transferTrx,
+	transferXlm,
 } = require("../dist");
 
 const { input } = require("./meow");
@@ -28,4 +29,8 @@ if (input[0] === "transfer-ark") {
 
 if (input[0] === "transfer-trx") {
 	(async () => transferTrx())();
+}
+
+if (input[0] === "transfer-xlm") {
+	(async () => transferXlm())();
 }

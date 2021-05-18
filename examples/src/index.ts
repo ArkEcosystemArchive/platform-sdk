@@ -3,6 +3,7 @@ import openProfile from "./examples/open-existing-profile";
 import transferArk from "./examples/transfer-ark";
 import transferAda from "./examples/transfer-ada";
 import transferTrx from "./examples/transfer-trx";
+import transferXlm from "./examples/transfer-xlm";
 
 export {
 	createProfileWithWallets,
@@ -10,4 +11,5 @@ export {
 	transferArk,
 	transferAda,
 	transferTrx,
+	transferXlm,
 }
