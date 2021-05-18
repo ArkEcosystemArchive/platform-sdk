@@ -34,6 +34,7 @@ const network: Coins.NetworkManifest = {
 			address: {
 				mnemonic: true,
 				publicKey: true,
+				privateKey: true,
 			},
 			publicKey: {
 				mnemonic: true,

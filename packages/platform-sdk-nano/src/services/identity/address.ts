@@ -18,7 +18,8 @@ export class Address implements Contracts.Address {
 	}
 
 	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
+		const publicKey = nanocurrency.derivePublicKey(privateKey);
+		return nanocurrency.deriveAddress(publicKey);
 	}
 
 	public async fromWIF(wif: string): Promise<string> {
