@@ -2,6 +2,7 @@ import "jest-extended";
 import { createConfig } from "./helpers";
 import { ClientService } from "../src/services";
 import { TransactionService } from "../src/services/transaction";
+import { Signatories } from "@arkecosystem/platform-sdk";
 
 let subject: TransactionService;
 
@@ -160,10 +161,9 @@ it.skip(`can send a transfer`, async function () {
 	const amount: string = "1200000";
 
 	const tx = await subject.transfer({
-		from,
-		sign: {
-			mnemonic,
-		},
+		signatory: new Signatories.Signatory(
+			new Signatories.MnemonicSignatory(mnemonic, from),
+		),
 		data: {
 			amount,
 			to,

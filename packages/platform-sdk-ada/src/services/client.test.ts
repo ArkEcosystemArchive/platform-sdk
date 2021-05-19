@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { DTO } from "@arkecosystem/platform-sdk";
+import { DTO, Signatories } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
@@ -151,12 +151,9 @@ describe("ClientService", function () {
 			const txService = await TransactionService.__construct(createConfig());
 
 			const transfer = await txService.transfer({
-				from:
-					"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
-				sign: {
-					mnemonic:
-						"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory("excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress", "aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304"),
+				),
 				data: {
 					amount: "1000000",
 					to:
