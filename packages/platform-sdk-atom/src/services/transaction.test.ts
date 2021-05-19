@@ -1,3 +1,4 @@
+import { Signatories } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
 import nock from "nock";
@@ -21,10 +22,9 @@ describe("TransactionService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet-balance.json`));
 
 			const result: any = await subject.transfer({
-				from: "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
-				sign: {
-					mnemonic: "this is a top secret passphrase",
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory("this is a top secret passphrase", "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap"),
+				),
 				data: {
 					amount: "1",
 					to: "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
