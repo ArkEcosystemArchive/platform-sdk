@@ -161,9 +161,7 @@ it.skip(`can send a transfer`, async function () {
 	const amount: string = "1200000";
 
 	const tx = await subject.transfer({
-		signatory: new Signatories.Signatory(
-			new Signatories.MnemonicSignatory(mnemonic, from),
-		),
+		signatory: new Signatories.Signatory(new Signatories.MnemonicSignatory(mnemonic, from)),
 		data: {
 			amount,
 			to,

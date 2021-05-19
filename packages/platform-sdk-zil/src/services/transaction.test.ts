@@ -1,5 +1,6 @@
-import { Signatories } from "@arkecosystem/platform-sdk";
 import "jest-extended";
+
+import { Signatories } from "@arkecosystem/platform-sdk";
 
 import { createConfig } from "../../test/config";
 import { identity } from "../../test/fixtures/identity";
