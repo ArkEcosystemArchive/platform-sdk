@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
+const {
+	createProfileWithWallets,
+	openProfile,
+	transferAda,
+	transferArk,
+	transferTrx,
+	transferXlm
+} = require("../dist");
+
 const examples = {
 	"create-profile": createProfileWithWallets,
 	"open-profile": openProfile,
@@ -7,9 +16,9 @@ const examples = {
 	"transfer-ark": transferArk,
 	"transfer-trx": transferTrx,
 	"transfer-xlm": transferXlm,
-} = require("../dist");
+};
 
 const { input } = require("./meow");
 
-(async () => examples[input[0]])();
+examples[input[0]]();
 

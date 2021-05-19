@@ -43,9 +43,8 @@ export default async () => {
 				new Signatories.MnemonicSignatory(mnemonic1, wallet1.address()),
 			),
 			data: {
-				amount: "200000000",
+				amount: "2",
 				to: address2,
-				memo: "This is a nice memo"
 			}
 		});
 	logger.log("signedTransactionData", transactionId);
