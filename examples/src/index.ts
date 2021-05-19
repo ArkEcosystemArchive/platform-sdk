@@ -4,6 +4,7 @@ import transferArk from "./examples/transfer-ark";
 import transferAda from "./examples/transfer-ada";
 import transferTrx from "./examples/transfer-trx";
 import transferXlm from "./examples/transfer-xlm";
+import signMessageXlm from "./examples/sign-message-xlm";
 
 export {
 	createProfileWithWallets,
@@ -12,4 +13,5 @@ export {
 	transferAda,
 	transferTrx,
 	transferXlm,
+	signMessageXlm,
 }

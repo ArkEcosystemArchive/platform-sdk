@@ -6,7 +6,8 @@ const {
 	transferAda,
 	transferArk,
 	transferTrx,
-	transferXlm
+	transferXlm,
+	signMessageXlm,
 } = require("../dist");
 
 const examples = {
@@ -16,6 +17,7 @@ const examples = {
 	"transfer-ark": transferArk,
 	"transfer-trx": transferTrx,
 	"transfer-xlm": transferXlm,
+	"sign-message-xlm": signMessageXlm,
 };
 
 const { input } = require("./meow");
