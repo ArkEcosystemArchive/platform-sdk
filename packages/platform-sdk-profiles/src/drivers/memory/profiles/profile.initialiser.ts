@@ -1,6 +1,5 @@
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { IProfileInitialiser } from "../../../contracts/profiles/profile.initialiser";
-import { emitProfileChanged } from "../helpers";
 
 export class ProfileInitialiser implements IProfileInitialiser {
 	readonly #profile: IProfile;
@@ -38,6 +37,6 @@ export class ProfileInitialiser implements IProfileInitialiser {
 		this.#profile.settings().set(ProfileSetting.TimeFormat, "h:mm A");
 		this.#profile.settings().set(ProfileSetting.UseTestNetworks, false);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 }

@@ -35,6 +35,7 @@
 		"ripple-lib": "^1.9.4"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
 		"@types/eslint": "^7.2.10",
 		"@types/eslint-plugin-prettier": "^3.1.0",
@@ -44,7 +45,6 @@
 		"@types/node": "^14.14.43",
 		"@types/prettier": "^2.2.3",
 		"@types/rimraf": "^3.0.0",
-		"@types/ws": "7.4.0",
 		"@typescript-eslint/eslint-plugin": "^4.22.0",
 		"@typescript-eslint/parser": "^4.22.0",
 		"cross-env": "^7.0.3",
@@ -67,8 +67,7 @@
 		"ripple-binary-codec": "^1.0.2",
 		"ts-jest": "^26.5.5",
 		"typescript": "4.2.4",
-		"typescript-language-server": "^0.5.1",
-		"ws": "^7.4.5"
+		"typescript-language-server": "^0.5.1"
 	},
 	"engines": {
 		"node": ">=12.x"

@@ -29,7 +29,7 @@ export class TransactionService implements Contracts.TransactionService {
 			// Current balance from wallet info
 			walletBalanceRaw: "5618869000000000000000000000000",
 			// Your wallet address
-			fromAddress: input.from,
+			fromAddress: input.signatory.identifier(),
 			// The address to send to
 			toAddress: input.data.to,
 			// From wallet info

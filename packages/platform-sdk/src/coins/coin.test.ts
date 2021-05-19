@@ -33,6 +33,8 @@ const services = {
 	// @ts-ignore
 	peer: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
+	signatory: { __construct: jest.fn(), __destruct: jest.fn() },
+	// @ts-ignore
 	transaction: { __construct: jest.fn(), __destruct: jest.fn() },
 };
 
@@ -62,6 +64,7 @@ beforeEach(async () => {
 					services.message.__construct();
 					services.multiSignature.__construct();
 					services.peer.__construct();
+					services.signatory.__construct();
 					services.transaction.__construct();
 
 					return {
@@ -75,6 +78,7 @@ beforeEach(async () => {
 						message: services.message,
 						multiSignature: services.multiSignature,
 						peer: services.peer,
+						signatory: services.signatory,
 						transaction: services.transaction,
 					};
 				},
@@ -96,6 +100,7 @@ test("#construct", async () => {
 	expect(services.message.__construct).toHaveBeenCalledTimes(1);
 	expect(services.multiSignature.__construct).toHaveBeenCalledTimes(1);
 	expect(services.peer.__construct).toHaveBeenCalledTimes(1);
+	expect(services.signatory.__construct).toHaveBeenCalledTimes(1);
 	expect(services.transaction.__construct).toHaveBeenCalledTimes(1);
 });
 
@@ -113,6 +118,7 @@ test("#destruct", async () => {
 	expect(services.message.__destruct).toHaveBeenCalledTimes(1);
 	expect(services.multiSignature.__destruct).toHaveBeenCalledTimes(1);
 	expect(services.peer.__destruct).toHaveBeenCalledTimes(1);
+	expect(services.signatory.__destruct).toHaveBeenCalledTimes(1);
 	expect(services.transaction.__destruct).toHaveBeenCalledTimes(1);
 });
 
@@ -234,6 +240,16 @@ test("#peer", async () => {
 
 test("#peer with throw", async () => {
 	expect(() => subject.peer()).toThrow();
+});
+
+test("#signatory", async () => {
+	await subject.__construct();
+
+	expect(subject.signatory()).toBeObject();
+});
+
+test("#signatory with throw", async () => {
+	expect(() => subject.signatory()).toThrow();
 });
 
 test("#transaction", async () => {

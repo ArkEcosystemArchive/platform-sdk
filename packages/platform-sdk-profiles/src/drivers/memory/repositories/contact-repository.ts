@@ -5,7 +5,6 @@ import { IContact, IContactAddress, IContactAddressInput, IContactRepository, IP
 import { Contact } from "../contacts/contact";
 import { pqueue } from "../../../helpers/queue";
 import { DataRepository } from "../../../repositories/data-repository";
-import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class ContactRepository implements IContactRepository {
@@ -58,7 +57,7 @@ export class ContactRepository implements IContactRepository {
 
 		this.#data.set(id, result);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 
 		return result;
 	}
@@ -100,7 +99,7 @@ export class ContactRepository implements IContactRepository {
 
 		this.#data.set(id, result);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactRepository.forget} */
@@ -109,14 +108,14 @@ export class ContactRepository implements IContactRepository {
 
 		this.#data.forget(id);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactRepository.count} */

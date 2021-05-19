@@ -117,6 +117,22 @@ export class ProfileRepository implements IProfileRepository {
 		return new ProfileDumper(profile).dump();
 	}
 
+	/** {@inheritDoc IProfileRepository.persist} */
+	public persist(profile: IProfile): void {
+		/* istanbul ignore next */
+		if (!profile.status().isRestored()) {
+			return;
+		}
+
+		if (profile.usesPassword() && profile.password().exists()) {
+			profile.getAttributes().set("data", new ProfileExporter(profile).export(profile.password().get()));
+		}
+
+		if (!profile.usesPassword()) {
+			profile.getAttributes().set("data", new ProfileExporter(profile).export());
+		}
+	}
+
 	/** {@inheritDoc IProfileRepository.has} */
 	public has(id: string): boolean {
 		return this.#data.has(id);

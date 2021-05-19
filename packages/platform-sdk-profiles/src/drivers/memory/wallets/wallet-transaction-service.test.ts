@@ -10,6 +10,8 @@ import { Profile } from "../profiles/profile";
 import { Wallet } from "./wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
+import { Signatories } from "@arkecosystem/platform-sdk";
+import { MnemonicSignatory } from "@arkecosystem/platform-sdk/dist/signatories";
 
 let profile: IProfile;
 let wallet: IReadWriteWallet;
@@ -107,21 +109,25 @@ describe("signatures", () => {
 
 		const id = await subject.signMultiSignature({
 			nonce: "1",
-			from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+			signatory: new Signatories.Signatory(
+				new Signatories.MultiMnemonicSignatory(
+					["this is a top secret passphrase 2"],
+					["D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"],
+				),
+			),
 			data: {
 				publicKeys: ["02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910"],
 				min: 1,
 				senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-			},
-			sign: {
-				mnemonics: ["this is a top secret passphrase 2"],
 			},
 		});
 
 		await subject.sync();
 		await subject.addSignature(
 			"a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
-			"this is a top secret passphrase 1",
+			new Signatories.Signatory(
+				new MnemonicSignatory("this is a top secret passphrase 1", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+			),
 		);
 
 		expect(subject.transaction(id)).toBeDefined();
@@ -129,10 +135,12 @@ describe("signatures", () => {
 
 	it("should sign transfer", async () => {
 		const input = {
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				amount: "1",
 				to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -177,10 +185,12 @@ describe("signatures", () => {
 	it("should sign second signature", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				mnemonic: "this is a top secret second mnemonic",
 			},
@@ -231,10 +241,12 @@ describe("signatures", () => {
 	it("should sign delegate registration", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				username: "johndoe",
 			},
@@ -285,10 +297,12 @@ describe("signatures", () => {
 	it("should sign vote", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				votes: ["03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec"],
 				unvotes: [],
@@ -340,7 +354,13 @@ describe("signatures", () => {
 	it("should sign multi signature registration", async () => {
 		const input = {
 			nonce: "1",
-			from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+			signatory: new Signatories.Signatory(
+				new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
+					"this is a top secret passphrase 1",
+					"this is a top secret passphrase 2",
+					"this is a top secret passphrase 3",
+				]),
+			),
 			data: {
 				publicKeys: [
 					"039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
@@ -349,14 +369,6 @@ describe("signatures", () => {
 				],
 				min: 2,
 				senderPublicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-			},
-			sign: {
-				mnemonics: [
-					"this is a top secret passphrase 1",
-					"this is a top secret passphrase 2",
-					"this is a top secret passphrase 3",
-				],
-				mnemonic: "this is a top secret passphrase 1",
 			},
 		};
 		const id = await subject.signMultiSignature(input);
@@ -424,10 +436,12 @@ describe("signatures", () => {
 	it("should sign ipfs", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				hash: "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w",
 			},
@@ -474,10 +488,12 @@ describe("signatures", () => {
 	it("should sign multi payment", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				payments: [
 					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
@@ -554,10 +570,12 @@ describe("signatures", () => {
 	it("should sign delegate resignation", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 		};
 		const id = await subject.signDelegateResignation(input);
 
@@ -595,10 +613,12 @@ describe("signatures", () => {
 	it("should sign htlc lock", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				amount: "1",
 				to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
@@ -665,10 +685,12 @@ describe("signatures", () => {
 	it("should sign htlc claim", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
 				unlockSecret: "c27f1ce845d8c29eebc9006be932b604fd06755521b1a8b0be4204c65377151a",
@@ -722,10 +744,12 @@ describe("signatures", () => {
 	it("should sign htlc refund", async () => {
 		const input = {
 			nonce: "1",
-			from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			sign: {
-				mnemonic: "this is a top secret passphrase",
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(
+					"this is a top secret passphrase",
+					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				),
+			),
 			data: {
 				lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
 			},
@@ -778,10 +802,9 @@ it("#transaction lifecycle", async () => {
 	const realHash = "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50";
 
 	const input = {
-		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		sign: {
-			mnemonic: "this is a top secret passphrase",
-		},
+		signatory: new Signatories.Signatory(
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+		),
 		data: {
 			amount: "1",
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -839,10 +862,9 @@ it("#transaction lifecycle", async () => {
 
 it("#pending", async () => {
 	const input = {
-		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		sign: {
-			mnemonic: "this is a top secret passphrase",
-		},
+		signatory: new Signatories.Signatory(
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+		),
 		data: {
 			amount: "1",
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -899,10 +921,9 @@ it("should fail retrieving public key if wallet is lacking a public key", async 
 
 it("#dump", async () => {
 	const input = {
-		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		sign: {
-			mnemonic: "this is a top secret passphrase",
-		},
+		signatory: new Signatories.Signatory(
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+		),
 		data: {
 			amount: "1",
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -921,10 +942,9 @@ it("#dump", async () => {
 
 it("#restore", async () => {
 	const input = {
-		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		sign: {
-			mnemonic: "this is a top secret passphrase",
-		},
+		signatory: new Signatories.Signatory(
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+		),
 		data: {
 			amount: "1",
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -967,7 +987,12 @@ it("sign a multisig transaction awaiting other signatures", async () => {
 
 	const id = await subject.signMultiSignature({
 		nonce: "1",
-		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+		signatory: new Signatories.Signatory(
+			new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
+				"this is a top secret passphrase 1",
+				"this is a top secret passphrase 2",
+			]),
+		),
 		data: {
 			publicKeys: [
 				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
@@ -975,10 +1000,6 @@ it("sign a multisig transaction awaiting other signatures", async () => {
 			],
 			min: 2,
 			senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-		},
-		sign: {
-			mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
-			mnemonic: "this is a top secret passphrase 1",
 		},
 	});
 
@@ -1091,10 +1112,9 @@ it("should broadcast transaction", async () => {
 		.reply(200, { data: { confirmations: 1 } });
 
 	const input = {
-		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		sign: {
-			mnemonic: "this is a top secret passphrase",
-		},
+		signatory: new Signatories.Signatory(
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+		),
 		data: {
 			amount: "1",
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -1124,10 +1144,9 @@ it("should broadcast a transfer and confirm it", async () => {
 		.reply(200, { data: { confirmations: 51 } });
 
 	const input = {
-		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		sign: {
-			mnemonic: "this is a top secret passphrase",
-		},
+		signatory: new Signatories.Signatory(
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+		),
 		data: {
 			amount: "1",
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
@@ -1171,23 +1190,24 @@ it("should broadcast multisignature transaction", async () => {
 
 	const id = await subject.signMultiSignature({
 		nonce: "1",
-		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+		signatory: new Signatories.Signatory(
+			new Signatories.MultiSignatureSignatory(
+				{
+					publicKeys: [
+						"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+						"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+					],
+					min: 2,
+				},
+				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			),
+		),
 		data: {
 			publicKeys: [
 				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
 				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 			],
 			min: 2,
-		},
-		sign: {
-			senderPublicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-			multiSignature: {
-				publicKeys: [
-					"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
-					"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-				],
-				min: 2,
-			},
 		},
 	});
 
@@ -1237,7 +1257,12 @@ it("should broadcast multisignature registration", async () => {
 
 	const id = await subject.signMultiSignature({
 		nonce: "1",
-		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+		signatory: new Signatories.Signatory(
+			new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
+				"this is a top secret passphrase 1",
+				"this is a top secret passphrase 2",
+			]),
+		),
 		data: {
 			publicKeys: [
 				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
@@ -1245,10 +1270,6 @@ it("should broadcast multisignature registration", async () => {
 			],
 			min: 2,
 			senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-		},
-		sign: {
-			mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
-			mnemonic: "this is a top secret passphrase 1",
 		},
 	});
 
@@ -1277,10 +1298,9 @@ it("#confirm", async () => {
 		.reply(200, { data: { confirmations: 1 } });
 
 	const input = {
-		from: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-		sign: {
-			mnemonic: "this is a top secret passphrase",
-		},
+		signatory: new Signatories.Signatory(
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+		),
 		data: {
 			amount: "1",
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",

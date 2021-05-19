@@ -34,12 +34,12 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			if (!input.sign.mnemonic) {
+			if (input.signatory.signingKey() === undefined) {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const senderAddress: string = await this.#identity.address().fromMnemonic(input.sign.mnemonic);
-			const keyPair = await this.#identity.keys().fromMnemonic(input.sign.mnemonic);
+			const senderAddress: string = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
+			const keyPair = await this.#identity.keys().fromMnemonic(input.signatory.signingKey());
 
 			const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
 

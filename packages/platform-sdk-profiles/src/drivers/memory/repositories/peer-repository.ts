@@ -2,7 +2,6 @@ import { injectable } from "inversify";
 
 import { IPeer, IPeerRepository, IProfile } from "../../../contracts";
 import { DataRepository } from "../../../repositories/data-repository";
-import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class PeerRepository implements IPeerRepository {
@@ -55,7 +54,7 @@ export class PeerRepository implements IPeerRepository {
 
 		this.#data.set(key, value);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IPeerRepository.has} */
@@ -73,7 +72,7 @@ export class PeerRepository implements IPeerRepository {
 
 		this.#data.set(`${coin}.${network}.${index}`, peer);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IPeerRepository.forget} */
@@ -92,7 +91,7 @@ export class PeerRepository implements IPeerRepository {
 			this.#data.forget(`${coin}.${network}`);
 		}
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IPeerRepository.toObject} */

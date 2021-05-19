@@ -4,7 +4,6 @@ import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
 import { Avatar } from "../../../helpers/avatar";
 import { IContactAddress, IContactAddressData, IKnownWalletService, IProfile } from "../../../contracts";
-import { emitProfileChanged } from "../helpers";
 
 export class ContactAddress implements IContactAddress {
 	readonly #coin: Coins.Coin;
@@ -120,14 +119,14 @@ export class ContactAddress implements IContactAddress {
 	public setName(value: string): void {
 		this.#data.name = value;
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactAddress.setAddress} */
 	public setAddress(name: string): void {
 		this.#data.address = name;
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactAddress.syncIdentity} */
