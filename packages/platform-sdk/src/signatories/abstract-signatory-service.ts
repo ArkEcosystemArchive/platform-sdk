@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { IdentityOptions, IdentityService, SignatoryService } from "../contracts";
 import { MnemonicSignatory, MultiMnemonicSignatory, MultiSignatureSignatory, PrivateKeySignatory, SecondaryMnemonicSignatory, SecondaryWIFSignatory, SenderPublicKeySignatory, SignatureSignatory, WIFSignatory } from ".";
 
