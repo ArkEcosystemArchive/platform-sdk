@@ -1,10 +1,10 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 import { broadcastErrors } from "./client.helpers";
-import { UUID } from "@arkecosystem/platform-sdk-crypto";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -29,9 +29,9 @@ export class ClientService implements Contracts.ClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const transaction = await this.post("tx", [
 			{
-				"transaction": id,
-				"binary": false
-			}
+				transaction: id,
+				binary: false,
+			},
 		]);
 
 		return Helpers.createTransactionDataWithType(transaction, TransactionDTO);
@@ -42,7 +42,7 @@ export class ClientService implements Contracts.ClientService {
 			{
 				account: query.address || query.addresses![0],
 				limit: query.limit || 15,
-			}
+			},
 		]);
 
 		return Helpers.createTransactionDataCollectionWithType(
@@ -59,13 +59,15 @@ export class ClientService implements Contracts.ClientService {
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(
-			(await this.post("account_info", [
-				{
-					"account": id,
-					"strict": true,
-					"ledger_index": "current"
-				}
-			])).account_data,
+			(
+				await this.post("account_info", [
+					{
+						account: id,
+						strict: true,
+						ledger_index: "current",
+					},
+				])
+			).account_data,
 		);
 	}
 
@@ -103,8 +105,8 @@ export class ClientService implements Contracts.ClientService {
 		for (const transaction of transactions) {
 			const { engine_result, tx_json } = await this.post("submit", [
 				{
-					"tx_blob": transaction.toBroadcast(),
-				}
+					tx_blob: transaction.toBroadcast(),
+				},
 			]);
 
 			const transactionId: string = tx_json.hash;
