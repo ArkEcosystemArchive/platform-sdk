@@ -159,7 +159,7 @@ export class TransactionService implements Contracts.TransactionService {
 				struct.passphrase = BIP39.normalize(input.signatory.signingKey());
 			}
 
-			if (input.signatory.confirmKey()) {
+			if (input.signatory.actsWithSecondaryMnemonic()) {
 				struct.secondPassphrase = BIP39.normalize(input.signatory.confirmKey());
 			}
 
