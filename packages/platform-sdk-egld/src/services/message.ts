@@ -17,8 +17,7 @@ export class MessageService implements Contracts.MessageService {
 		}
 
 		try {
-			const mnemonic: Mnemonic = Mnemonic.fromString(input.mnemonic);
-			const privateKey = mnemonic.deriveKey(0).hex();
+			const privateKey = Mnemonic.fromString(input.mnemonic).deriveKey(0).hex();
 
 			return {
 				message: input.message,
