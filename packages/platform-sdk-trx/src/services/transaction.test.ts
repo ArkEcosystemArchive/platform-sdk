@@ -1,3 +1,4 @@
+import { Signatories } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
 import nock from "nock";
@@ -21,10 +22,9 @@ describe("TransactionService", function () {
 			.reply(200, { result: true, txid: "920048e37005eb84299fe99ae666dcfe220a5befa587eec9c36c9e75dc37f821" });
 
 		const result = await subject.transfer({
-			from: identity.address,
-			sign: {
-				mnemonic: identity.mnemonic,
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+			),
 			data: {
 				to: "TEre3kN6JdPzqCNpiZT8JWM4kt8iGrg1Rm",
 				amount: `${1e8}`,
