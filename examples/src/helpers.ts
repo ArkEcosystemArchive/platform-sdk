@@ -56,7 +56,10 @@ export async function createProfile(env: Environment, name: string, password: st
 		await env.profiles().forget(findByName.id());
 	}
 	const profile: Contracts.IProfile = env.profiles().create(name);
+
 	profile.auth().setPassword(password);
+	env.profiles().persist(profile);
+
 	await env.persist();
 	return profile;
 }
