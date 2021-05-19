@@ -126,10 +126,7 @@ describe("signatures", () => {
 		await subject.addSignature(
 			"a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
 			new Signatories.Signatory(
-				new MnemonicSignatory(
-					"this is a top secret passphrase 1",
-					"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-				)
+				new MnemonicSignatory("this is a top secret passphrase 1", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
 			),
 		);
 
@@ -808,10 +805,7 @@ it("#transaction lifecycle", async () => {
 
 	const input = {
 		signatory: new Signatories.Signatory(
-			new Signatories.MnemonicSignatory(
-				"this is a top secret passphrase",
-				"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			),
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
 		),
 		data: {
 			amount: "1",
@@ -871,10 +865,7 @@ it("#transaction lifecycle", async () => {
 it("#pending", async () => {
 	const input = {
 		signatory: new Signatories.Signatory(
-			new Signatories.MnemonicSignatory(
-				"this is a top secret passphrase",
-				"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			),
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
 		),
 		data: {
 			amount: "1",
@@ -933,10 +924,7 @@ it("should fail retrieving public key if wallet is lacking a public key", async 
 it("#dump", async () => {
 	const input = {
 		signatory: new Signatories.Signatory(
-			new Signatories.MnemonicSignatory(
-				"this is a top secret passphrase",
-				"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			),
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
 		),
 		data: {
 			amount: "1",
@@ -957,10 +945,7 @@ it("#dump", async () => {
 it("#restore", async () => {
 	const input = {
 		signatory: new Signatories.Signatory(
-			new Signatories.MnemonicSignatory(
-				"this is a top secret passphrase",
-				"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			),
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
 		),
 		data: {
 			amount: "1",
@@ -1130,10 +1115,7 @@ it("should broadcast transaction", async () => {
 
 	const input = {
 		signatory: new Signatories.Signatory(
-			new Signatories.MnemonicSignatory(
-				"this is a top secret passphrase",
-				"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			),
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
 		),
 		data: {
 			amount: "1",
@@ -1165,10 +1147,7 @@ it("should broadcast a transfer and confirm it", async () => {
 
 	const input = {
 		signatory: new Signatories.Signatory(
-			new Signatories.MnemonicSignatory(
-				"this is a top secret passphrase",
-				"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			),
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
 		),
 		data: {
 			amount: "1",
@@ -1332,10 +1311,7 @@ it("#confirm", async () => {
 
 	const input = {
 		signatory: new Signatories.Signatory(
-			new Signatories.MnemonicSignatory(
-				"this is a top secret passphrase",
-				"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-			),
+			new Signatories.MnemonicSignatory("this is a top secret passphrase", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
 		),
 		data: {
 			amount: "1",

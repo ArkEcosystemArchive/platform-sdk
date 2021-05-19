@@ -1,11 +1,11 @@
 import "jest-extended";
 
 import { Transactions } from "@arkecosystem/crypto";
+import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
 import { TransactionService } from "./transaction";
-import { Signatories } from "@arkecosystem/platform-sdk";
 
 let subject: TransactionService;
 

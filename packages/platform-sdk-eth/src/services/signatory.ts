@@ -72,7 +72,10 @@ export class SignatoryService implements Contracts.SignatoryService {
 		return new Signatories.SignatureSignatory(signature, senderPublicKey);
 	}
 
-	public async senderPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<Signatories.SenderPublicKeySignatory> {
+	public async senderPublicKey(
+		publicKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Signatories.SenderPublicKeySignatory> {
 		return new Signatories.SenderPublicKeySignatory(
 			publicKey,
 			await this.#identity.address().fromPublicKey(publicKey, options),
