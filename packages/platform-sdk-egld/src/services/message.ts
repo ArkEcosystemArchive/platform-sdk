@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Mnemonic, UserSecretKey, UserSigner, ISignable, Address } from "@elrondnetwork/erdjs/out";
+import { Address, ISignable, Mnemonic, UserSecretKey, UserSigner } from "@elrondnetwork/erdjs/out";
 import { Signature } from "@elrondnetwork/erdjs/out/signature";
 
 export class MessageService implements Contracts.MessageService {
@@ -26,7 +26,7 @@ export class MessageService implements Contracts.MessageService {
 			message: input.message,
 			signatory: secretKey.generatePublicKey().hex(),
 			signature: message.getSignature(),
-		}
+		};
 	}
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
@@ -37,7 +37,7 @@ export class MessageService implements Contracts.MessageService {
 class SignableMessage implements ISignable {
 	#signature: string | undefined;
 
-	constructor(public message: string) {};
+	constructor(public message: string) {}
 
 	public serializeForSigning(signedBy: Address): Buffer {
 		return Buffer.from(this.message);
