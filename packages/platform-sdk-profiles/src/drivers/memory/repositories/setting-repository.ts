@@ -2,7 +2,6 @@ import { injectable } from "inversify";
 
 import { IProfile, ISettingRepository } from "../../../contracts";
 import { DataRepository } from "../../../repositories";
-import { emitProfileChanged } from "../helpers";
 
 @injectable()
 export class SettingRepository implements ISettingRepository {
@@ -46,7 +45,7 @@ export class SettingRepository implements ISettingRepository {
 
 		this.#data.set(key, value);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc ISettingRepository.fill} */
@@ -82,14 +81,14 @@ export class SettingRepository implements ISettingRepository {
 
 		this.#data.forget(key);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc ISettingRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	private isUnknownKey(key: string): boolean {

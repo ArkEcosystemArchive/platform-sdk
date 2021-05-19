@@ -13,10 +13,12 @@ import { ProfileDumper } from "./profile.dumper";
 import { ProfileSerialiser } from "./profile.serialiser";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
+import { ProfileRepository } from "../repositories/profile-repository";
 
 let subject: ProfileImporter;
 let dumper: ProfileDumper;
 let serialiser: ProfileSerialiser;
+let repository: ProfileRepository;
 let profile: IProfile;
 
 beforeAll(() => {
@@ -45,11 +47,14 @@ beforeEach(() => {
 	subject = new ProfileImporter(profile);
 	dumper = new ProfileDumper(profile);
 	serialiser = new ProfileSerialiser(profile);
+	repository = new ProfileRepository();
 });
 
 describe("#restore", () => {
 	it("should restore a profile with a password", async () => {
 		profile.auth().setPassword("password");
+
+		repository.persist(profile);
 
 		const profileCopy: IProfile = new Profile(dumper.dump());
 
@@ -119,6 +124,8 @@ describe("#restore", () => {
 
 	it("should fail to restore a profile with a password if no password was provided", async () => {
 		profile.auth().setPassword("password");
+
+		repository.persist(profile);
 
 		const profileCopy: IProfile = new Profile(dumper.dump());
 

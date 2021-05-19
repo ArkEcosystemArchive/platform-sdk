@@ -5,7 +5,7 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Testnet",
 	coin: "Stellar",
-	explorer: "https://testnet.steexp.com/",
+	explorer: "https://testnet.steexp.com",
 	currency: {
 		ticker: "XLM",
 		symbol: "XLM",

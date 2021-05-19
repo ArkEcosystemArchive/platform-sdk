@@ -46,6 +46,7 @@ export interface IProfileInput {
 	id: string;
 	name: string;
 	avatar?: string;
+	theme?: string;
 	password?: string;
 	data: string;
 }
@@ -103,6 +104,14 @@ export interface IProfile {
 	 * @memberof IProfile
 	 */
 	avatar(): string;
+
+	/**
+	 * Get the theme.
+	 *
+	 * @return {string}
+	 * @memberof IProfile
+	 */
+	theme(): string;
 
 	/**
 	 * Get the balance.

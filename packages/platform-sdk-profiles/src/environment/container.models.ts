@@ -4,7 +4,6 @@ export const Identifiers = {
 	ContactRepository: Symbol("ContactRepository"),
 	DataRepository: Symbol("DataRepository"),
 	DelegateService: Symbol("DelegateService"),
-	EventEmitter: Symbol("EventEmitter"),
 	ExchangeRateService: Symbol("ExchangeRateService"),
 	FeeService: Symbol("FeeService"),
 	HttpClient: Symbol("HttpClient"),

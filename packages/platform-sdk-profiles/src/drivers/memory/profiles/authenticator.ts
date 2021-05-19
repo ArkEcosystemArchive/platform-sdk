@@ -1,7 +1,6 @@
 import { Bcrypt } from "@arkecosystem/platform-sdk-crypto";
 
 import { IAuthenticator, IProfile, ProfileSetting } from "../../../contracts";
-import { emitProfileChanged } from "../helpers";
 
 export class Authenticator implements IAuthenticator {
 	readonly #profile: IProfile;
@@ -25,7 +24,7 @@ export class Authenticator implements IAuthenticator {
 		// during the lifetime of this profile session.
 		this.#profile.password().set(password);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IAuthenticator.verifyPassword} */

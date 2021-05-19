@@ -5,8 +5,8 @@ export interface IProfileValidator {
 	 * Validate the profile data
 	 *
 	 * @param {IProfileData} [data]
-	 * @return {Promise<IProfileData>}
+	 * @return {IProfileData}
 	 * @memberof Profile
 	 */
-	validate(data: IProfileData): Promise<IProfileData>;
+	validate(data: IProfileData): IProfileData;
 }

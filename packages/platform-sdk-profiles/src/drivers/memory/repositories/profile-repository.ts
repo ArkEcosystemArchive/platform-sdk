@@ -108,12 +108,28 @@ export class ProfileRepository implements IProfileRepository {
 	/** {@inheritDoc IProfileRepository.restore} */
 	public async restore(profile: IProfile, password?: string): Promise<void> {
 		await new ProfileImporter(profile).import(password);
+
 		profile.status().markAsRestored();
 	}
 
 	/** {@inheritDoc IProfileRepository.dump} */
 	public dump(profile: IProfile): IProfileInput {
 		return new ProfileDumper(profile).dump();
+	}
+
+	/** {@inheritDoc IProfileRepository.persist} */
+	public persist(profile: IProfile): void {
+		if (!profile.status().isRestored()) {
+			return;
+		}
+
+		if (profile.usesPassword() && profile.password().exists()) {
+			profile.getAttributes().set("data", new ProfileExporter(profile).export(profile.password().get()));
+		}
+
+		if (!profile.usesPassword()) {
+			profile.getAttributes().set("data", new ProfileExporter(profile).export());
+		}
 	}
 
 	/** {@inheritDoc IProfileRepository.has} */
