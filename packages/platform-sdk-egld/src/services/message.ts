@@ -1,6 +1,6 @@
-import { getPublicKey, sign, verify } from "noble-ed25519";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Mnemonic } from "@elrondnetwork/erdjs/out";
+import { getPublicKey, sign, verify } from "noble-ed25519";
 
 export class MessageService implements Contracts.MessageService {
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
@@ -23,7 +23,7 @@ export class MessageService implements Contracts.MessageService {
 				message: input.message,
 				signatory: await getPublicKey(privateKey),
 				signature: await sign(Buffer.from(input.message, "utf8").toString("hex"), privateKey),
-			}
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
