@@ -37,16 +37,11 @@ export class TransactionService implements Contracts.TransactionService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			// @TODO: use signatory identifier here
-			const sender: string = await new IdentityService(this.#config)
-				.address()
-				.fromMnemonic(input.signatory.signingKey());
-
 			const prepared = await this.#connection.preparePayment(
-				sender,
+				sender: input.signatory.identifier(),
 				{
 					source: {
-						address: sender,
+						address: input.signatory.identifier(),
 						maxAmount: {
 							value: `${input.data.amount}`,
 							currency: "XRP",
