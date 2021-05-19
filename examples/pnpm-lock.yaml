@@ -29,6 +29,7 @@ specifiers:
   typescript: 4.2.4
 
 dependencies:
+  '@arkecosystem/platform-sdk': link:../packages/platform-sdk
   '@arkecosystem/platform-sdk-ada': link:../packages/platform-sdk-ada
   '@arkecosystem/platform-sdk-ark': link:../packages/platform-sdk-ark
   '@arkecosystem/platform-sdk-atom': link:../packages/platform-sdk-atom
