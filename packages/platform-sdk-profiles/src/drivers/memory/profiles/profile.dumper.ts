@@ -20,6 +20,7 @@ export class ProfileDumper implements IProfileDumper {
 			id: this.#profile.id(),
 			name: this.#profile.name(),
 			avatar: this.#profile.avatar(),
+			theme: this.#profile.theme(),
 			password: this.#profile.getAttributes().get<string>("password"),
 			data: this.#profile.getAttributes().get<string>("data"),
 		};
