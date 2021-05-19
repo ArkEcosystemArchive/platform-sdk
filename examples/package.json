@@ -15,7 +15,8 @@
 		"build:watch": "tsc -w"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk-ada": "file:../packages/platform-sdk-ada",
+	    "@arkecosystem/platform-sdk": "file:../packages/platform-sdk",
+	    "@arkecosystem/platform-sdk-ada": "file:../packages/platform-sdk-ada",
 		"@arkecosystem/platform-sdk-ark": "file:../packages/platform-sdk-ark",
 		"@arkecosystem/platform-sdk-atom": "file:../packages/platform-sdk-atom",
 		"@arkecosystem/platform-sdk-avax": "file:../packages/platform-sdk-avax",
@@ -38,10 +39,10 @@
 		"meow": "^9.0.0"
 	},
 	"devDependencies": {
-		"@types/node": "^14.14.43",
+		"@types/node": "^14.17.0",
 		"cross-env": "^7.0.3",
 		"got": "^11.8.2",
-		"ts-jest": "^26.5.5",
+		"ts-jest": "^26.5.6",
 		"typescript": "4.2.4"
 	},
 	"engines": {
