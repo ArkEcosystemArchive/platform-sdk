@@ -1,39 +1,15 @@
 #!/usr/bin/env node
 
-const {
-	createProfileWithWallets,
-	openProfile,
-	transferAda,
-	transferArk,
-	transferTrx,
-	transferXlm
+const examples = {
+	"create-profile": createProfileWithWallets,
+	"open-profile": openProfile,
+	"transfer-ada": transferAda,
+	"transfer-ark": transferArk,
+	"transfer-trx": transferTrx,
+	"transfer-xlm": transferXlm,
 } = require("../dist");
 
 const { input } = require("./meow");
 
-(async () => {
-	if (input[0] === "create-profile") {
-		return createProfileWithWallets;
-	}
-
-	if (input[0] === "open-profile") {
-		return openProfile;
-	}
-
-	if (input[0] === "transfer-ada") {
-		return transferAda;
-	}
-
-	if (input[0] === "transfer-ark") {
-		return transferArk;
-	}
-
-	if (input[0] === "transfer-trx") {
-		return transferTrx;
-	}
-
-	if (input[0] === "transfer-xlm") {
-		return transferXlm;
-	}
-})();
+(async () => examples[input[0]])();
 
