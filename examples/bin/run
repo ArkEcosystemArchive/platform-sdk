@@ -6,31 +6,34 @@ const {
 	transferAda,
 	transferArk,
 	transferTrx,
-	transferXlm,
+	transferXlm
 } = require("../dist");
 
 const { input } = require("./meow");
 
-if (input[0] === "create-profile") {
-	(async () => createProfileWithWallets())();
-}
+(async () => {
+	if (input[0] === "create-profile") {
+		return createProfileWithWallets;
+	}
 
-if (input[0] === "open-profile") {
-	(async () => openProfile())();
-}
+	if (input[0] === "open-profile") {
+		return openProfile;
+	}
 
-if (input[0] === "transfer-ada") {
-	(async () => transferAda())();
-}
+	if (input[0] === "transfer-ada") {
+		return transferAda;
+	}
 
-if (input[0] === "transfer-ark") {
-	(async () => transferArk())();
-}
+	if (input[0] === "transfer-ark") {
+		return transferArk;
+	}
 
-if (input[0] === "transfer-trx") {
-	(async () => transferTrx())();
-}
+	if (input[0] === "transfer-trx") {
+		return transferTrx;
+	}
 
-if (input[0] === "transfer-xlm") {
-	(async () => transferXlm())();
-}
+	if (input[0] === "transfer-xlm") {
+		return transferXlm;
+	}
+})();
+
