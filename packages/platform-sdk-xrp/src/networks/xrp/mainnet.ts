@@ -23,7 +23,7 @@ const network: Coins.NetworkManifest = {
 		expirationType: "height",
 	},
 	networking: {
-		hosts: ["wss://s2.ripple.com/"],
+		hosts: ["https://s2.ripple.com:51234/"],
 	},
 	governance: {
 		voting: {
