@@ -1,5 +1,6 @@
-import { Signatories } from "@arkecosystem/platform-sdk";
 import "jest-extended";
+
+import { Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
@@ -16,10 +17,7 @@ describe("TransactionService", () => {
 
 			const result: any = await service.transfer({
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						identity.mnemonic,
-						"15957226662510576840L",
-					),
+					new Signatories.MnemonicSignatory(identity.mnemonic, "15957226662510576840L"),
 				),
 				data: {
 					amount: "1",
@@ -54,10 +52,7 @@ describe("TransactionService", () => {
 		it("should verify", async () => {
 			const result: any = await subject.delegateRegistration({
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						identity.mnemonic,
-						"15957226662510576840L",
-					),
+					new Signatories.MnemonicSignatory(identity.mnemonic, "15957226662510576840L"),
 				),
 				data: {
 					username: "johndoe",
@@ -72,10 +67,7 @@ describe("TransactionService", () => {
 		it("should verify", async () => {
 			const result: any = await subject.vote({
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						identity.mnemonic,
-						"15957226662510576840L",
-					),
+					new Signatories.MnemonicSignatory(identity.mnemonic, "15957226662510576840L"),
 				),
 				data: {
 					votes: ["9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f"],
@@ -91,10 +83,7 @@ describe("TransactionService", () => {
 		it("should verify", async () => {
 			const result: any = await subject.multiSignature({
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						identity.mnemonic,
-						"15957226662510576840L",
-					),
+					new Signatories.MnemonicSignatory(identity.mnemonic, "15957226662510576840L"),
 				),
 				data: {
 					publicKeys: [
