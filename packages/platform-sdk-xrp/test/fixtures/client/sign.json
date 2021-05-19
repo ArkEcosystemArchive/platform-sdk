@@ -1,0 +1,20 @@
+{
+	"method": "sign",
+	"params": [
+		{
+			"offline": false,
+			"secret": "s████████████████████████████",
+			"tx_json": {
+				"Account": "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn",
+				"Amount": {
+					"currency": "USD",
+					"issuer": "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn",
+					"value": "1"
+				},
+				"Destination": "ra5nK24KXen9AHvsdFTKHSANinZseWnPcX",
+				"TransactionType": "Payment"
+			},
+			"fee_mult_max": 1000
+		}
+	]
+}

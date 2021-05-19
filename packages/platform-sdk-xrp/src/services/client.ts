@@ -129,16 +129,12 @@ export class ClientService implements Contracts.ClientService {
 
 	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.post(this.host(), {
+			await this.#http.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hosts")), {
 				jsonrpc: "2.0",
 				id: UUID.random(),
 				method,
 				params,
 			})
 		).json().result;
-	}
-
-	private host(): string {
-		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
 	}
 }
