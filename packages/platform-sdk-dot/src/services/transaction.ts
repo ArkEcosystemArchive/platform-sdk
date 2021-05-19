@@ -29,11 +29,11 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (input.sign.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.sign.mnemonic");
+		if (input.signatory.signingKey() === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.signatory");
 		}
 
-		const keypair = this.#keyring.addFromMnemonic(input.sign.mnemonic);
+		const keypair = this.#keyring.addFromMnemonic(input.signatory.signingKey());
 		const transaction = await this.#client.tx.balances
 			.transfer(input.data.to, input.data.amount)
 			.signAsync(keypair);

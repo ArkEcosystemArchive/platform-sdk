@@ -1,10 +1,8 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
 import { SignedTransactionData } from "../dto";
-import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
@@ -34,17 +32,15 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			if (!input.sign.mnemonic) {
+			if (input.signatory.signingKey() === undefined) {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const sender: string = await new IdentityService(this.#config).address().fromMnemonic(input.sign.mnemonic);
-
 			const prepared = await this.#connection.preparePayment(
-				sender,
+				input.signatory.identifier(),
 				{
 					source: {
-						address: sender,
+						address: input.signatory.identifier(),
 						maxAmount: {
 							value: `${input.data.amount}`,
 							currency: "XRP",
@@ -61,10 +57,7 @@ export class TransactionService implements Contracts.TransactionService {
 				{ maxLedgerVersionOffset: 5 },
 			);
 
-			const { id, signedTransaction } = this.#connection.sign(
-				prepared.txJSON,
-				BIP39.normalize(input.sign.mnemonic),
-			);
+			const { id, signedTransaction } = this.#connection.sign(prepared.txJSON, input.signatory.signingKey());
 
 			return new SignedTransactionData(id, signedTransaction, signedTransaction);
 		} catch (error) {

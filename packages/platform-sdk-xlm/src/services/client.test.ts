@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { Signatories } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
@@ -106,10 +107,9 @@ describe("ClientService", function () {
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
-					from: identity.address,
-					sign: {
-						mnemonic: identity.mnemonic,
-					},
+					signatory: new Signatories.Signatory(
+						new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+					),
 					data: {
 						amount: "10000000",
 						to: identity.address,
@@ -139,10 +139,9 @@ describe("ClientService", function () {
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
-					from: identity.address,
-					sign: {
-						mnemonic: identity.mnemonic,
-					},
+					signatory: new Signatories.Signatory(
+						new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+					),
 					data: {
 						amount: "10000000",
 						to: identity.address,
