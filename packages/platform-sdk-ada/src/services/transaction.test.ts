@@ -1,6 +1,6 @@
-import { Signatories } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
+import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
@@ -34,7 +34,10 @@ describe("TransactionService", () => {
 
 			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory("excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress", "aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304"),
+					new Signatories.MnemonicSignatory(
+						"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
+						"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
+					),
 				),
 				data: {
 					amount: "1000000",

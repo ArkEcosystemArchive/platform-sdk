@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { Signatories } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
@@ -9,7 +10,6 @@ import { createConfig } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 import { TransactionService } from "./transaction";
-import { Signatories } from "@arkecosystem/platform-sdk";
 
 let subject: ClientService;
 
