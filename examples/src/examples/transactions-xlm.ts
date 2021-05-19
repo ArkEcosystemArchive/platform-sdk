@@ -30,7 +30,7 @@ export default async () => {
 		.client()
 		.transactions({address: wallet1.address()});
 
-	logger.log(`Found ${transactions.items.length}`)
+	logger.log(`Found ${transactions.items().length}`)
 	for (const transaction of transactions.items()) {
 		logger.log([
 			transaction.id(),

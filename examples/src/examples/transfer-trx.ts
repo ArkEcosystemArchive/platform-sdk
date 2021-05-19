@@ -1,4 +1,4 @@
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { Coins, Signatories } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import { createProfile, pollTransactionStatus, useEnvironment, useLogger } from "../helpers";
 
@@ -52,4 +52,20 @@ export default async () => {
 
 	await wallet1.transaction().broadcast(transactionId);
 	await pollTransactionStatus(transactionId, wallet1);
+
+	// Show transactions
+	const transactions: Coins.TransactionDataCollection = await wallet1
+		.client()
+		.transactions({address: wallet1.address()});
+
+	logger.log(`Found ${transactions.items().length}`)
+	for (const transaction of transactions.items()) {
+		logger.log([
+			transaction.id(),
+			transaction.sender(),
+			transaction.recipient(),
+			transaction.amount().toHuman(),
+			transaction.fee().toHuman(),
+		]);
+	}
 };
