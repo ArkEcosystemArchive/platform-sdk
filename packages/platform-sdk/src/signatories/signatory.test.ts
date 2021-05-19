@@ -358,7 +358,7 @@ describe("MultiSignatureSignatory", () => {
 	test("#identifier", () => {
 		const subject = new Signatory(new MultiSignatureSignatory({ min: 5, publicKeys: ["identifier"] }));
 
-		expect(() => subject.confirmKey()).toThrow(/cannot be called/);
+		expect(() => subject.identifier()).toThrow(/cannot be called/);
 	});
 
 	test("#identifiers", () => {
@@ -366,4 +366,58 @@ describe("MultiSignatureSignatory", () => {
 
 		expect(() => subject.identifiers()).toThrow(/cannot be called/);
 	});
+});
+
+test("#actsWithMnemonic", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithMnemonic()).toBeBoolean();
+});
+
+test("#actsWithMultiMnemonic", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithMultiMnemonic()).toBeBoolean();
+});
+
+test("#actsWithSecondaryMnemonic", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithSecondaryMnemonic()).toBeBoolean();
+});
+
+test("#actsWithWif", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithWif()).toBeBoolean();
+});
+
+test("#actsWithSecondaryWif", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithSecondaryWif()).toBeBoolean();
+});
+
+test("#actsWithPrivateKey", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithPrivateKey()).toBeBoolean();
+});
+
+test("#actsWithSignature", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithSignature()).toBeBoolean();
+});
+
+test("#actsWithSenderPublicKey", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithSenderPublicKey()).toBeBoolean();
+});
+
+test("#actsWithMultiSignature", () => {
+	const subject = new Signatory(undefined);
+
+	expect(subject.actsWithMultiSignature()).toBeBoolean();
 });
