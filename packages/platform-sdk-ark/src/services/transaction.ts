@@ -246,9 +246,15 @@ export class TransactionService implements Contracts.TransactionService {
 			const transaction = Transactions.BuilderFactory[type]().version(2);
 
 			if (input.signatory.actsWithSenderPublicKey()) {
-				address = await this.#identity.address().fromPublicKey(input.signatory.signingKey());
+				address = input.signatory.identifier();
 
 				transaction.senderPublicKey(input.signatory.signingKey());
+			}
+
+			if (input.signatory.actsWithSignature()) {
+				address = await this.#identity.address().fromPublicKey(input.signatory.identifier());
+
+				transaction.senderPublicKey(input.signatory.identifier());
 			}
 
 			if (input.nonce) {
@@ -318,16 +324,6 @@ export class TransactionService implements Contracts.TransactionService {
 			} else if (input.signatory.actsWithSignature()) {
 				transaction.data.signature = input.signatory.signingKey();
 			} else {
-				if (!address) {
-					throw new Error("Failed to retrieve the address for the signatory wallet.");
-				}
-
-				if (input.signatory.identifier() !== address) {
-					throw new Error(
-						`Signatory should be [${input.signatory.identifier()}] but is [${address}]. Please ensure that the expected and actual signatory match.`,
-					);
-				}
-
 				if (input.signatory.actsWithMnemonic()) {
 					transaction.sign(input.signatory.signingKey());
 				}

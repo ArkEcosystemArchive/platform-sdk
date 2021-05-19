@@ -68,12 +68,15 @@ export class SignatoryService implements Contracts.SignatoryService {
 		);
 	}
 
-	public async signature(signature: string): Promise<Signatories.SignatureSignatory> {
-		return new Signatories.SignatureSignatory(signature);
+	public async signature(signature: string, senderPublicKey: string): Promise<Signatories.SignatureSignatory> {
+		return new Signatories.SignatureSignatory(signature, senderPublicKey);
 	}
 
-	public async senderPublicKey(publicKey: string): Promise<Signatories.SenderPublicKeySignatory> {
-		return new Signatories.SenderPublicKeySignatory(publicKey);
+	public async senderPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<Signatories.SenderPublicKeySignatory> {
+		return new Signatories.SenderPublicKeySignatory(
+			publicKey,
+			await this.#identity.address().fromPublicKey(publicKey, options),
+		);
 	}
 
 	public async multiSignature(min: number, publicKeys: string[]): Promise<Signatories.MultiSignatureSignatory> {

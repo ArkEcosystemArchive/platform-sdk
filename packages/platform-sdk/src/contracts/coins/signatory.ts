@@ -30,9 +30,9 @@ export interface SignatoryService {
 
 	privateKey(privateKey: string, options?: IdentityOptions): Promise<PrivateKeySignatory>;
 
-	signature(signature: string): Promise<SignatureSignatory>;
+	signature(signature: string, senderPublicKey: string): Promise<SignatureSignatory>;
 
-	senderPublicKey(publicKey: string): Promise<SenderPublicKeySignatory>;
+	senderPublicKey(publicKey: string, options?: IdentityOptions): Promise<SenderPublicKeySignatory>;
 
 	multiSignature(min: number, publicKeys: string[]): Promise<MultiSignatureSignatory>;
 }
