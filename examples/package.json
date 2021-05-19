@@ -15,8 +15,8 @@
 		"build:watch": "tsc -w"
 	},
 	"dependencies": {
-	    "@arkecosystem/platform-sdk": "file:../packages/platform-sdk",
-	    "@arkecosystem/platform-sdk-ada": "file:../packages/platform-sdk-ada",
+		"@arkecosystem/platform-sdk": "file:../packages/platform-sdk",
+		"@arkecosystem/platform-sdk-ada": "file:../packages/platform-sdk-ada",
 		"@arkecosystem/platform-sdk-ark": "file:../packages/platform-sdk-ark",
 		"@arkecosystem/platform-sdk-atom": "file:../packages/platform-sdk-atom",
 		"@arkecosystem/platform-sdk-avax": "file:../packages/platform-sdk-avax",
