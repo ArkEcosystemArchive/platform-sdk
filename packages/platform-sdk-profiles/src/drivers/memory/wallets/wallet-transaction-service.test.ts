@@ -354,89 +354,86 @@ describe("signatures", () => {
 	`);
 	});
 
-	// it("should sign multi signature registration", async () => {
-	// 	const input = {
-	// 		nonce: "1",
-	// 		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
-	// 		data: {
-	// 			publicKeys: [
-	// 				"039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-	// 				"028d3611c4f32feca3e6713992ae9387e18a0e01954046511878fe078703324dc0",
-	// 				"021d3932ab673230486d0f956d05b9e88791ee298d9af2d6df7d9ed5bb861c92dd",
-	// 			],
-	// 			min: 2,
-	// 			senderPublicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-	// 		},
-	// 		sign: {
-	// 			mnemonics: [
-	// 				"this is a top secret passphrase 1",
-	// 				"this is a top secret passphrase 2",
-	// 				"this is a top secret passphrase 3",
-	// 			],
-	// 			mnemonic: "this is a top secret passphrase 1",
-	// 		},
-	// 	};
-	// 	const id = await subject.signMultiSignature(input);
+	it("should sign multi signature registration", async () => {
+		const input = {
+			nonce: "1",
+			signatory: new Signatories.Signatory(
+				new Signatories.PrivateMultiSignatureSignatory(
+					"this is a top secret passphrase 1",
+					["this is a top secret passphrase 1", "this is a top secret passphrase 2", "this is a top secret passphrase 3"]
+				)
+			),
+			data: {
+				publicKeys: [
+					"039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+					"028d3611c4f32feca3e6713992ae9387e18a0e01954046511878fe078703324dc0",
+					"021d3932ab673230486d0f956d05b9e88791ee298d9af2d6df7d9ed5bb861c92dd",
+				],
+				min: 2,
+				senderPublicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+			},
+		};
+		const id = await subject.signMultiSignature(input);
 
-	// 	expect(id).toBeString();
-	// 	expect(subject.waitingForOtherSignatures()).toContainKey(id);
-	// 	expect(subject.waitingForOtherSignatures()[id]).toMatchInlineSnapshot(`
-	// 	SignedTransactionData {
-	// 	  "broadcastData": Object {
-	// 	    "amount": "0",
-	// 	    "asset": Object {
-	// 	      "multiSignature": Object {
-	// 	        "min": 2,
-	// 	        "publicKeys": Array [
-	// 	          "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-	// 	          "028d3611c4f32feca3e6713992ae9387e18a0e01954046511878fe078703324dc0",
-	// 	          "021d3932ab673230486d0f956d05b9e88791ee298d9af2d6df7d9ed5bb861c92dd",
-	// 	        ],
-	// 	      },
-	// 	    },
-	// 	    "fee": "2000000000",
-	// 	    "id": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
-	// 	    "network": 30,
-	// 	    "nonce": "1",
-	// 	    "senderPublicKey": "022952bc0ab373a15153b8b6cee2513e298eb7f3ffe6bc50fc850fd24e8ab6c66a",
-	// 	    "signatures": Array [
-	// 	      "0094a23e085467a5cb3b4f5eb9e9bb7c214e8c87b55129ea5131d3490dd5b3ea94f65c70228aca7051d78b5ebe001041bb8e1575fd64af318d672e21a1e7d4201f",
-	// 	      "01111c10bd76401519239ff52144206f76b76097a96d55a3926a13160e44997be4c0dbb470e7b357f1c1bd8d37cbbc05cffa561b5cc42c759e9b1678004610731e",
-	// 	      "025a12958e36f166eabb55aac3ed1087a7c8899b19adf3183ee3e228ac9eed9445c2cf33e5f33d41cba19785c4ca1930991bd6d52f760c4b9bcc61c868b1c62aad",
-	// 	    ],
-	// 	    "type": 4,
-	// 	    "version": 2,
-	// 	  },
-	// 	  "identifier": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
-	// 	  "signedData": Object {
-	// 	    "amount": "0",
-	// 	    "asset": Object {
-	// 	      "multiSignature": Object {
-	// 	        "min": 2,
-	// 	        "publicKeys": Array [
-	// 	          "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-	// 	          "028d3611c4f32feca3e6713992ae9387e18a0e01954046511878fe078703324dc0",
-	// 	          "021d3932ab673230486d0f956d05b9e88791ee298d9af2d6df7d9ed5bb861c92dd",
-	// 	        ],
-	// 	      },
-	// 	    },
-	// 	    "fee": "2000000000",
-	// 	    "id": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
-	// 	    "network": 30,
-	// 	    "nonce": "1",
-	// 	    "senderPublicKey": "022952bc0ab373a15153b8b6cee2513e298eb7f3ffe6bc50fc850fd24e8ab6c66a",
-	// 	    "signatures": Array [
-	// 	      "0094a23e085467a5cb3b4f5eb9e9bb7c214e8c87b55129ea5131d3490dd5b3ea94f65c70228aca7051d78b5ebe001041bb8e1575fd64af318d672e21a1e7d4201f",
-	// 	      "01111c10bd76401519239ff52144206f76b76097a96d55a3926a13160e44997be4c0dbb470e7b357f1c1bd8d37cbbc05cffa561b5cc42c759e9b1678004610731e",
-	// 	      "025a12958e36f166eabb55aac3ed1087a7c8899b19adf3183ee3e228ac9eed9445c2cf33e5f33d41cba19785c4ca1930991bd6d52f760c4b9bcc61c868b1c62aad",
-	// 	    ],
-	// 	    "type": 4,
-	// 	    "version": 2,
-	// 	  },
-	// 	}
-	// `);
-	// 	expect(subject.canBeSigned(id)).toBeFalse();
-	// });
+		expect(id).toBeString();
+		expect(subject.waitingForOtherSignatures()).toContainKey(id);
+		expect(subject.waitingForOtherSignatures()[id]).toMatchInlineSnapshot(`
+		SignedTransactionData {
+		  "broadcastData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "multiSignature": Object {
+		        "min": 2,
+		        "publicKeys": Array [
+		          "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+		          "028d3611c4f32feca3e6713992ae9387e18a0e01954046511878fe078703324dc0",
+		          "021d3932ab673230486d0f956d05b9e88791ee298d9af2d6df7d9ed5bb861c92dd",
+		        ],
+		      },
+		    },
+		    "fee": "2000000000",
+		    "id": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "022952bc0ab373a15153b8b6cee2513e298eb7f3ffe6bc50fc850fd24e8ab6c66a",
+		    "signatures": Array [
+		      "0094a23e085467a5cb3b4f5eb9e9bb7c214e8c87b55129ea5131d3490dd5b3ea94f65c70228aca7051d78b5ebe001041bb8e1575fd64af318d672e21a1e7d4201f",
+		      "01111c10bd76401519239ff52144206f76b76097a96d55a3926a13160e44997be4c0dbb470e7b357f1c1bd8d37cbbc05cffa561b5cc42c759e9b1678004610731e",
+		      "025a12958e36f166eabb55aac3ed1087a7c8899b19adf3183ee3e228ac9eed9445c2cf33e5f33d41cba19785c4ca1930991bd6d52f760c4b9bcc61c868b1c62aad",
+		    ],
+		    "type": 4,
+		    "version": 2,
+		  },
+		  "identifier": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
+		  "signedData": Object {
+		    "amount": "0",
+		    "asset": Object {
+		      "multiSignature": Object {
+		        "min": 2,
+		        "publicKeys": Array [
+		          "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+		          "028d3611c4f32feca3e6713992ae9387e18a0e01954046511878fe078703324dc0",
+		          "021d3932ab673230486d0f956d05b9e88791ee298d9af2d6df7d9ed5bb861c92dd",
+		        ],
+		      },
+		    },
+		    "fee": "2000000000",
+		    "id": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
+		    "network": 30,
+		    "nonce": "1",
+		    "senderPublicKey": "022952bc0ab373a15153b8b6cee2513e298eb7f3ffe6bc50fc850fd24e8ab6c66a",
+		    "signatures": Array [
+		      "0094a23e085467a5cb3b4f5eb9e9bb7c214e8c87b55129ea5131d3490dd5b3ea94f65c70228aca7051d78b5ebe001041bb8e1575fd64af318d672e21a1e7d4201f",
+		      "01111c10bd76401519239ff52144206f76b76097a96d55a3926a13160e44997be4c0dbb470e7b357f1c1bd8d37cbbc05cffa561b5cc42c759e9b1678004610731e",
+		      "025a12958e36f166eabb55aac3ed1087a7c8899b19adf3183ee3e228ac9eed9445c2cf33e5f33d41cba19785c4ca1930991bd6d52f760c4b9bcc61c868b1c62aad",
+		    ],
+		    "type": 4,
+		    "version": 2,
+		  },
+		}
+	`);
+		expect(subject.canBeSigned(id)).toBeFalse();
+	});
 
 	it("should sign ipfs", async () => {
 		const input = {
@@ -986,72 +983,72 @@ it("#restore", async () => {
 	expect(wallet.data().get(WalletData.SignedTransactions)).toContainKey(id);
 });
 
-// @TODO: signing with all signatures at once is not really a real-world use-case
-// it("sign a multisig transaction awaiting other signatures", async () => {
-// 	nock(/.+/)
-// 		.get("/transactions")
-// 		.query({
-// 			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-// 			state: "pending",
-// 		})
-// 		.reply(200, [require("../../../../test/fixtures/client/musig-transaction.json")])
-// 		.get("/transactions")
-// 		.query({
-// 			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-// 			state: "ready",
-// 		})
-// 		.reply(200, { data: [] })
-// 		.persist();
+it("sign a multisig transaction awaiting other signatures", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, [require("../../../../test/fixtures/client/musig-transaction.json")])
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, { data: [] })
+		.persist();
 
-// 	const id = await subject.signMultiSignature({
-// 		nonce: "1",
-// 		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
-// 		data: {
-// 			publicKeys: [
-// 				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
-// 				"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-// 			],
-// 			min: 2,
-// 			senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-// 		},
-// 		sign: {
-// 			mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
-// 			mnemonic: "this is a top secret passphrase 1",
-// 		},
-// 	});
+	const id = await subject.signMultiSignature({
+		nonce: "1",
+        signatory: new Signatories.Signatory(
+            new Signatories.PrivateMultiSignatureSignatory(
+                "this is a top secret passphrase 1",
+                ["this is a top secret passphrase 1", "this is a top secret passphrase 2"]
+            )
+        ),
+		data: {
+			publicKeys: [
+				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+				"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+			],
+			min: 2,
+			senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+		},
+	});
 
-// 	expect(subject.transaction(id)).toBeDefined();
-// 	expect(subject.pending()).toContainKey(id);
-// 	expect(subject.waitingForOtherSignatures()).toContainKey(id);
-// 	expect(
-// 		subject.isAwaitingSignatureByPublicKey(
-// 			id,
-// 			"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-// 		),
-// 	).toBeFalse();
-// });
+	expect(subject.transaction(id)).toBeDefined();
+	expect(subject.pending()).toContainKey(id);
+	expect(subject.waitingForOtherSignatures()).toContainKey(id);
+	expect(
+		subject.isAwaitingSignatureByPublicKey(
+			id,
+			"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+		),
+	).toBeFalse();
+});
 
-// it("should sync multisig transaction awaiting our signature", async () => {
-// 	nock(/.+/)
-// 		.get("/transactions")
-// 		.query({
-// 			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-// 			state: "pending",
-// 		})
-// 		.reply(200, [require("../../../../test/fixtures/client/multisig-transaction-awaiting-our.json")])
-// 		.get("/transactions")
-// 		.query({
-// 			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-// 			state: "ready",
-// 		})
-// 		.reply(200, [])
-// 		.persist();
+it("should sync multisig transaction awaiting our signature", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, [require("../../../../test/fixtures/client/multisig-transaction-awaiting-our.json")])
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, [])
+		.persist();
 
-// 	const id = "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d";
+	const id = "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d";
 
-// 	await subject.sync();
-// 	expect(subject.waitingForOurSignature()).toContainKey(id);
-// });
+	await subject.sync();
+	expect(subject.waitingForOurSignature()).toContainKey(id);
+});
 
 it("should await singature by public ip", async () => {
 	nock(/.+/)
@@ -1220,7 +1217,7 @@ it("should broadcast multisignature transaction", async () => {
 					"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 				],
 				min: 2,
-			}),
+			}, "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192"),
 		),
 		data: {
 			publicKeys: [
@@ -1229,17 +1226,6 @@ it("should broadcast multisignature transaction", async () => {
 			],
 			min: 2,
 		},
-		// @TODO: we need to allow setting of a senderPublicKey when using MultiSignatureSignatory
-		// sign: {
-		// 	senderPublicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-		// 	multiSignature: {
-		// 		publicKeys: [
-		// 			"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
-		// 			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-		// 		],
-		// 		min: 2,
-		// 	},
-		// },
 	});
 
 	const mockedFalseMultisignatureRegistration = jest
@@ -1260,60 +1246,58 @@ it("should broadcast multisignature transaction", async () => {
 	mockedFalseMultisignature.mockRestore();
 });
 
-// @TODO: signing with all signatures at once is not really a real-world use-case
-// maybe we need a PrivateMultiSignatureSignatory to indicate that a single person
-// owns all of the passphrases / private keys
-// it("should broadcast multisignature registration", async () => {
-// 	nock(/.+/)
-// 		.get("/transactions")
-// 		.query({
-// 			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-// 			state: "pending",
-// 		})
-// 		.reply(200, require("../../../../test/fixtures/client/musig-transaction.json"))
-// 		.get("/transactions")
-// 		.query({
-// 			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-// 			state: "ready",
-// 		})
-// 		.reply(200, { data: [] })
-// 		.post("/transaction")
-// 		.reply(201, {
-// 			data: {
-// 				accept: ["5d7b213905c3bf62bc233b7f1e211566b1fd7aecad668ed91bb8202b3f35d890"],
-// 				broadcast: [],
-// 				excess: [],
-// 				invalid: [],
-// 			},
-// 			errors: {},
-// 		})
-// 		.persist();
+it("should broadcast multisignature registration", async () => {
+	nock(/.+/)
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "pending",
+		})
+		.reply(200, require("../../../../test/fixtures/client/musig-transaction.json"))
+		.get("/transactions")
+		.query({
+			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			state: "ready",
+		})
+		.reply(200, { data: [] })
+		.post("/transaction")
+		.reply(201, {
+			data: {
+				accept: ["5d7b213905c3bf62bc233b7f1e211566b1fd7aecad668ed91bb8202b3f35d890"],
+				broadcast: [],
+				excess: [],
+				invalid: [],
+			},
+			errors: {},
+		})
+		.persist();
 
-// 	const id = await subject.signMultiSignature({
-// 		nonce: "1",
-// 		from: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
-// 		data: {
-// 			publicKeys: [
-// 				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
-// 				"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-// 			],
-// 			min: 2,
-// 			senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
-// 		},
-// 		sign: {
-// 			mnemonics: ["this is a top secret passphrase 1", "this is a top secret passphrase 2"],
-// 			mnemonic: "this is a top secret passphrase 1",
-// 		},
-// 	});
+	const id = await subject.signMultiSignature({
+		nonce: "1",
+        signatory: new Signatories.Signatory(
+            new Signatories.PrivateMultiSignatureSignatory(
+                "this is a top secret passphrase 1",
+                ["this is a top secret passphrase 1", "this is a top secret passphrase 2"]
+            )
+        ),
+		data: {
+			publicKeys: [
+				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+				"0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+			],
+			min: 2,
+			senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+		},
+	});
 
-// 	expect(subject.transaction(id)).toBeDefined();
-// 	expect(subject.pending()).toContainKey(id);
-// 	expect(subject.transaction(id).isMultiSignature()).toBeFalse();
-// 	expect(subject.transaction(id).isMultiSignatureRegistration()).toBeTrue();
+	expect(subject.transaction(id)).toBeDefined();
+	expect(subject.pending()).toContainKey(id);
+	expect(subject.transaction(id).isMultiSignature()).toBeFalse();
+	expect(subject.transaction(id).isMultiSignatureRegistration()).toBeTrue();
 
-// 	await subject.broadcast(id);
-// 	expect(subject.waitingForOtherSignatures()).toContainKey(id);
-// });
+	await subject.broadcast(id);
+	expect(subject.waitingForOtherSignatures()).toContainKey(id);
+});
 
 it("#confirm", async () => {
 	nock(/.+/)

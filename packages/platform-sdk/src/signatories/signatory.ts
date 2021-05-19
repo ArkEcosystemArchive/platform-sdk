@@ -1,3 +1,4 @@
+import { PrivateMultiSignatureSignatory } from ".";
 import { ForbiddenMethodCallException } from "../exceptions";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
@@ -18,12 +19,13 @@ type SignatoryType =
 	| PrivateKeySignatory
 	| SignatureSignatory
 	| SenderPublicKeySignatory
+	| PrivateMultiSignatureSignatory
 	| MultiSignatureSignatory;
 
 export class Signatory {
 	readonly #signatory: SignatoryType;
 
-	public constructor(signatory) {
+	public constructor(signatory: SignatoryType) {
 		this.#signatory = signatory;
 	}
 
@@ -41,6 +43,10 @@ export class Signatory {
 
 	public signingKeys(): string[] {
 		if (this.#signatory instanceof MultiMnemonicSignatory) {
+			return this.#signatory.signingKeys();
+		}
+
+		if (this.#signatory instanceof PrivateMultiSignatureSignatory) {
 			return this.#signatory.signingKeys();
 		}
 
@@ -73,6 +79,10 @@ export class Signatory {
 		}
 
 		if (this.#signatory instanceof MultiSignatureSignatory) {
+			throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
+		}
+
+		if (this.#signatory instanceof PrivateMultiSignatureSignatory) {
 			throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
 		}
 
@@ -121,5 +131,9 @@ export class Signatory {
 
 	public actsWithMultiSignature(): boolean {
 		return this.#signatory instanceof MultiSignatureSignatory;
+	}
+
+	public actsWithPrivateMultiSignature(): boolean {
+		return this.#signatory instanceof PrivateMultiSignatureSignatory;
 	}
 }

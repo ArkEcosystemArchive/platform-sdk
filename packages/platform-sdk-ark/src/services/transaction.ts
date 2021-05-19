@@ -235,7 +235,7 @@ export class TransactionService implements Contracts.TransactionService {
 		try {
 			let address: string | undefined;
 
-			if (input.signatory.actsWithMnemonic()) {
+			if (input.signatory.actsWithMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
 				address = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
 			}
 
@@ -307,7 +307,9 @@ export class TransactionService implements Contracts.TransactionService {
 				return this.handleMultiSignature(transaction, input);
 			}
 
-			if (input.signatory.actsWithMultiMnemonic() && Array.isArray(input.signatory.signingKeys())) {
+			const actsWithMultiMnemonic = input.signatory.actsWithMultiMnemonic() || input.signatory.actsWithPrivateMultiSignature();
+
+			if (actsWithMultiMnemonic && Array.isArray(input.signatory.signingKeys())) {
 				const signingKeys: string[] = input.signatory.signingKeys();
 
 				const senderPublicKeys: string[] = await Promise.all(

@@ -5,12 +5,18 @@ export interface MultiSignature {
 
 export class MultiSignatureSignatory {
 	readonly #signature: MultiSignature;
+	readonly #identifier: string | undefined;
 
-	public constructor(signature: MultiSignature) {
+	public constructor(signature: MultiSignature, identifier?: string) {
 		this.#signature = signature;
+		this.#identifier = identifier;
 	}
 
 	public signingList(): MultiSignature {
 		return this.#signature;
+	}
+
+	public identifier(): string | undefined {
+		return this.#identifier;
 	}
 }
