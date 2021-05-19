@@ -1,9 +1,9 @@
-import { PrivateMultiSignatureSignatory } from ".";
 import { ForbiddenMethodCallException } from "../exceptions";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
 import { MultiSignature, MultiSignatureSignatory } from "./multi-signature";
 import { PrivateKeySignatory } from "./private-key";
+import { PrivateMultiSignatureSignatory } from "./private-multi-signature";
 import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
 import { SenderPublicKeySignatory } from "./sender-public-key";
@@ -78,15 +78,11 @@ export class Signatory {
 			throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
 		}
 
-		if (this.#signatory instanceof MultiSignatureSignatory) {
-			throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
-		}
-
 		if (this.#signatory instanceof PrivateMultiSignatureSignatory) {
 			throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
 		}
 
-		return this.#signatory.identifier();
+		return this.#signatory.identifier()!;
 	}
 
 	public identifiers(): string[] {

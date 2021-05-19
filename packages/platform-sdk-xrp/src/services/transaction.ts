@@ -3,7 +3,6 @@ import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
 import { SignedTransactionData } from "../dto";
-import { IdentityService } from "./identity";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #config: Coins.Config;
@@ -38,7 +37,7 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			const prepared = await this.#connection.preparePayment(
-				sender: input.signatory.identifier(),
+				input.signatory.identifier(),
 				{
 					source: {
 						address: input.signatory.identifier(),

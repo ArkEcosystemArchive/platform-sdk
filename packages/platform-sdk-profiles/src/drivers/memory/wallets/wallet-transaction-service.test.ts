@@ -355,10 +355,11 @@ describe("signatures", () => {
 		const input = {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
-				new Signatories.PrivateMultiSignatureSignatory(
+				new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
 					"this is a top secret passphrase 1",
-					["this is a top secret passphrase 1", "this is a top secret passphrase 2", "this is a top secret passphrase 3"]
-				)
+					"this is a top secret passphrase 2",
+					"this is a top secret passphrase 3",
+				]),
 			),
 			data: {
 				publicKeys: [
@@ -986,12 +987,12 @@ it("sign a multisig transaction awaiting other signatures", async () => {
 
 	const id = await subject.signMultiSignature({
 		nonce: "1",
-        signatory: new Signatories.Signatory(
-            new Signatories.PrivateMultiSignatureSignatory(
-                "this is a top secret passphrase 1",
-                ["this is a top secret passphrase 1", "this is a top secret passphrase 2"]
-            )
-        ),
+		signatory: new Signatories.Signatory(
+			new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
+				"this is a top secret passphrase 1",
+				"this is a top secret passphrase 2",
+			]),
+		),
 		data: {
 			publicKeys: [
 				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
@@ -1190,13 +1191,16 @@ it("should broadcast multisignature transaction", async () => {
 	const id = await subject.signMultiSignature({
 		nonce: "1",
 		signatory: new Signatories.Signatory(
-			new Signatories.MultiSignatureSignatory({
-				publicKeys: [
-					"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
-					"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-				],
-				min: 2,
-			}, "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192"),
+			new Signatories.MultiSignatureSignatory(
+				{
+					publicKeys: [
+						"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
+						"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+					],
+					min: 2,
+				},
+				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			),
 		),
 		data: {
 			publicKeys: [
@@ -1253,12 +1257,12 @@ it("should broadcast multisignature registration", async () => {
 
 	const id = await subject.signMultiSignature({
 		nonce: "1",
-        signatory: new Signatories.Signatory(
-            new Signatories.PrivateMultiSignatureSignatory(
-                "this is a top secret passphrase 1",
-                ["this is a top secret passphrase 1", "this is a top secret passphrase 2"]
-            )
-        ),
+		signatory: new Signatories.Signatory(
+			new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
+				"this is a top secret passphrase 1",
+				"this is a top secret passphrase 2",
+			]),
+		),
 		data: {
 			publicKeys: [
 				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",

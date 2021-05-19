@@ -307,7 +307,8 @@ export class TransactionService implements Contracts.TransactionService {
 				return this.handleMultiSignature(transaction, input);
 			}
 
-			const actsWithMultiMnemonic = input.signatory.actsWithMultiMnemonic() || input.signatory.actsWithPrivateMultiSignature();
+			const actsWithMultiMnemonic =
+				input.signatory.actsWithMultiMnemonic() || input.signatory.actsWithPrivateMultiSignature();
 
 			if (actsWithMultiMnemonic && Array.isArray(input.signatory.signingKeys())) {
 				const signingKeys: string[] = input.signatory.signingKeys();
