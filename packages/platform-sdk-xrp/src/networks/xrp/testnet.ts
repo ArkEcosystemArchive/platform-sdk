@@ -23,7 +23,7 @@ const network: Coins.NetworkManifest = {
 		expirationType: "height",
 	},
 	networking: {
-		hosts: ["wss://s.altnet.rippletest.net/"],
+		hosts: ["https://s.altnet.rippletest.net:51234/"],
 	},
 	governance: {
 		voting: {
