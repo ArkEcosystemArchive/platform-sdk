@@ -9,6 +9,7 @@ import { createConfig } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 import { TransactionService } from "./transaction";
+import { Signatories } from "@arkecosystem/platform-sdk";
 
 let subject: ClientService;
 
@@ -106,10 +107,9 @@ describe("ClientService", function () {
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
-					from: identity.address,
-					sign: {
-						mnemonic: identity.mnemonic,
-					},
+					signatory: new Signatories.Signatory(
+						new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+					),
 					data: {
 						amount: "10000000",
 						to: identity.address,
@@ -139,10 +139,9 @@ describe("ClientService", function () {
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
-					from: identity.address,
-					sign: {
-						mnemonic: identity.mnemonic,
-					},
+					signatory: new Signatories.Signatory(
+						new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+					),
 					data: {
 						amount: "10000000",
 						to: identity.address,
