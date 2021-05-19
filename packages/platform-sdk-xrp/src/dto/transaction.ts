@@ -33,9 +33,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		const satoshi: string = new BN(this.data.Amount.value).times(1e8).toFixed();
+		if (typeof this.data.Amount === "string") {
+			return BigNumber.make(this.data.Amount).times(1e8);
+		}
 
-		return BigNumber.make(satoshi);
+		return BigNumber.make(this.data.Amount.value).times(1e8);
 	}
 
 	public fee(): BigNumber {

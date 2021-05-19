@@ -38,28 +38,23 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
+		const { transactions } = await this.post("account_tx", [
+			{
+				account: query.address || query.addresses![0],
+				limit: query.limit || 15,
+			}
+		]);
 
-		// // @ts-ignore
-		// const transactions = await this.#connection.getTransactions(query.address || query.addresses![0], {
-		// 	earliestFirst: true,
-		// 	types: ["payment"],
-		// 	limit: query.limit || 15,
-		// 	// includeRawTransactions: true,
-		// });
-
-		// return Helpers.createTransactionDataCollectionWithType(
-		// 	transactions
-		// 		// @ts-ignore
-		// 		.filter((transaction) => transaction.specification.source.maxAmount.currency === "XRP"),
-		// 	{
-		// 		prev: undefined,
-		// 		self: undefined,
-		// 		next: undefined,
-		// 		last: undefined,
-		// 	},
-		// 	TransactionDTO,
-		// );
+		return Helpers.createTransactionDataCollectionWithType(
+			transactions.map(({ tx }) => tx),
+			{
+				prev: undefined,
+				self: undefined,
+				next: undefined,
+				last: undefined,
+			},
+			TransactionDTO,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -99,56 +94,48 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
-		// const result: Contracts.BroadcastResponse = {
-		// 	accepted: [],
-		// 	rejected: [],
-		// 	errors: {},
-		// };
+		const result: Contracts.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
 
-		// for (const transaction of transactions) {
-		// 	try {
-		// 		// @ts-ignore
-		// 		const { engine_result, tx_json } = await this.#connection.submit(transaction.toBroadcast());
+		for (const transaction of transactions) {
+			const { engine_result, tx_json } = await this.post("submit", [
+				{
+					"tx_blob": transaction.toBroadcast(),
+				}
+			]);
 
-		// 		const transactionId: string = tx_json.hash;
+			const transactionId: string = tx_json.hash;
 
-		// 		transaction.setAttributes({ identifier: transactionId });
+			transaction.setAttributes({ identifier: transactionId });
 
-		// 		if (engine_result === "tesSUCCESS") {
-		// 			result.accepted.push(transactionId);
-		// 		}
-		// 	} catch (error) {
-		// 		const transactionId: string = transaction.id(); // todo: get the transaction ID
+			if (engine_result === "tesSUCCESS") {
+				result.accepted.push(transactionId);
+			} else {
+				result.rejected.push(transactionId);
 
-		// 		const { engine_result } = error.data;
+				if (!Array.isArray(result.errors[transactionId])) {
+					result.errors[transactionId] = [];
+				}
 
-		// 		if (engine_result !== "tesSUCCESS") {
-		// 			result.rejected.push(transactionId);
+				result.errors[transactionId].push(broadcastErrors[engine_result]);
+			}
+		}
 
-		// 			if (!Array.isArray(result.errors[transactionId])) {
-		// 				result.errors[transactionId] = [];
-		// 			}
-
-		// 			result.errors[transactionId].push(broadcastErrors[engine_result]);
-		// 		}
-		// 	}
-		// }
-
-		// return result;
+		return result;
 	}
 
 	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.post(this.host(), {
-			jsonrpc: "2.0",
-			id: UUID.random(),
-			method,
-			params,
-		});
-
-		console.log(response.body())
-
-		return response.json().result;
+		return (
+			await this.#http.post(this.host(), {
+				jsonrpc: "2.0",
+				id: UUID.random(),
+				method,
+				params,
+			})
+		).json().result;
 	}
 
 	private host(): string {
