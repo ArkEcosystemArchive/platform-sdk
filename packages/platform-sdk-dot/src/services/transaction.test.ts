@@ -1,3 +1,4 @@
+import { Signatories } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
@@ -17,10 +18,9 @@ describe("Core", () => {
 	describe("#transfer", () => {
 		it("should verify", async () => {
 			const result = await subject.transfer({
-				from: identity.address,
-				sign: {
-					mnemonic: identity.mnemonic,
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+				),
 				data: {
 					amount: "12345",
 					to: identity.address,
