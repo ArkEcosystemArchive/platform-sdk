@@ -1,3 +1,4 @@
+import { AbstractSignatoryService } from "./abstract-signatory-service";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
 import { MultiSignatureSignatory } from "./multi-signature";
@@ -11,15 +12,16 @@ import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
 
 export {
-	Signatory,
+	AbstractSignatoryService,
 	MnemonicSignatory,
 	MultiMnemonicSignatory,
-	SecondaryMnemonicSignatory,
-	WIFSignatory,
-	SecondaryWIFSignatory,
+	MultiSignatureSignatory,
 	PrivateKeySignatory,
 	PrivateMultiSignatureSignatory,
-	SignatureSignatory,
+	SecondaryMnemonicSignatory,
+	SecondaryWIFSignatory,
 	SenderPublicKeySignatory,
-	MultiSignatureSignatory,
+	Signatory,
+	SignatureSignatory,
+	WIFSignatory,
 };
