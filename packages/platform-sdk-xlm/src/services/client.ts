@@ -106,18 +106,16 @@ export class ClientService implements Contracts.ClientService {
 				result.accepted.push(id);
 			} catch (err) {
 				const { extras } = err.response.data;
-				const transactionId: string = extras.envelope_xdr; // todo: get the transaction ID
+				result.rejected.push(transaction.id());
 
-				result.rejected.push(transactionId);
-
-				if (!Array.isArray(result.errors[transactionId])) {
-					result.errors[transactionId] = [];
+				if (!Array.isArray(result.errors[transaction.id()])) {
+					result.errors[transaction.id()] = [];
 				}
 
 				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
 					for (const operation of extras.result_codes.operations) {
 						if (operation.includes(key)) {
-							result.errors[transactionId].push(value);
+							result.errors[transaction.id()].push(value);
 						}
 					}
 				}
