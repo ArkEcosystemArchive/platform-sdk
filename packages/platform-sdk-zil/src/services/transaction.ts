@@ -41,15 +41,16 @@ export class TransactionService implements Contracts.TransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "nonce");
 		}
 
-		if (!input.sign.mnemonic) {
+		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "sign.mnemonic");
 		}
 
-		const address = this.#zilliqa.wallet.addByMnemonic(input.sign.mnemonic);
+		const address = this.#zilliqa.wallet.addByMnemonic(input.signatory.signingKey());
 		const { publicKey, bech32Address } = this.#zilliqa.wallet.accounts[address];
-		if (bech32Address !== input.from) {
+
+		if (bech32Address !== input.signatory.identifier()) {
 			throw new Exceptions.Exception(
-				`Sender address (${input.from}) must match signer address (${bech32Address})`,
+				`Sender address (${input.signatory.identifier()}) must match signer address (${bech32Address})`,
 			);
 		}
 

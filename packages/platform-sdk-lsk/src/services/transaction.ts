@@ -155,12 +155,12 @@ export class TransactionService implements Contracts.TransactionService {
 
 			// todo: support multisignature
 
-			if (input.sign.mnemonic) {
-				struct.passphrase = BIP39.normalize(input.sign.mnemonic);
+			if (input.signatory.signingKey()) {
+				struct.passphrase = BIP39.normalize(input.signatory.signingKey());
 			}
 
-			if (input.sign.secondMnemonic) {
-				struct.secondPassphrase = BIP39.normalize(input.sign.secondMnemonic);
+			if (input.signatory.actsWithSecondaryMnemonic()) {
+				struct.secondPassphrase = BIP39.normalize(input.signatory.confirmKey());
 			}
 
 			const signedTransaction = {

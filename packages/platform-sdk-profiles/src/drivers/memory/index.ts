@@ -1,5 +1,3 @@
-import EventEmitter from "eventemitter3";
-
 import { Container } from "../../environment/container";
 import { Events, Identifiers } from "../../environment/container.models";
 import { EnvironmentOptions } from "../../environment/env.models";
@@ -12,7 +10,6 @@ import { FeeService } from "./services/fee-service";
 import { KnownWalletService } from "./services/known-wallet-service";
 import { WalletService } from "./services/wallet-service";
 import { PluginRegistry } from "./plugins";
-import { emitter } from "./helpers";
 import { ProfileExporter } from "./profiles/profile.exporter";
 import { StorageFactory } from "../../environment/storage/factory";
 
@@ -33,7 +30,6 @@ export class MemoryDriver implements Driver {
 
 		container.constant(Identifiers.HttpClient, options.httpClient);
 		container.constant(Identifiers.Coins, options.coins);
-		container.constant(Identifiers.EventEmitter, new EventEmitter());
 
 		container.singleton(Identifiers.AppData, DataRepository);
 		container.singleton(Identifiers.DelegateService, DelegateService);
@@ -43,33 +39,5 @@ export class MemoryDriver implements Driver {
 		container.singleton(Identifiers.PluginRegistry, PluginRegistry);
 		container.singleton(Identifiers.ProfileRepository, ProfileRepository);
 		container.singleton(Identifiers.WalletService, WalletService);
-
-		this.registerListeners(container);
-	}
-
-	private registerListeners(container: Container): void {
-		emitter().on(Events.ProfileChanged, ({ id }) => {
-			try {
-				const profile = container.get<IProfileRepository>(Identifiers.ProfileRepository).findById(id);
-
-				if (!profile.status().isRestored()) {
-					return;
-				}
-
-				if (profile.usesPassword() && profile.password().exists()) {
-					profile.getAttributes().set("data", new ProfileExporter(profile).export(profile.password().get()));
-				}
-
-				if (!profile.usesPassword()) {
-					profile.getAttributes().set("data", new ProfileExporter(profile).export());
-				}
-
-				emitter().emit(Events.EnvironmentChanged);
-			} catch (error) {
-				if (process.env.NODE_ENV !== "test") {
-					console.error(`[FATAL] Failed to encode or encrypt the profile. Reason: ${error.message}`);
-				}
-			}
-		});
 	}
 }

@@ -4,7 +4,6 @@ import { ContactAddress } from "../contacts/contact-address";
 import { injectable } from "inversify";
 
 import { DataRepository } from "../../../repositories/data-repository";
-import { emitProfileChanged } from "../helpers";
 import { Coins } from "@arkecosystem/platform-sdk";
 
 @injectable()
@@ -50,7 +49,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 
 		this.#data.set(id, address);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 
 		return address;
 	}
@@ -105,7 +104,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 
 		this.#data.set(id, address);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactAddressRepository.forget} */
@@ -114,14 +113,14 @@ export class ContactAddressRepository implements IContactAddressRepository {
 
 		this.#data.forget(id);
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactAddressRepository.flush} */
 	public flush(): void {
 		this.#data.flush();
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactAddressRepository.count} */

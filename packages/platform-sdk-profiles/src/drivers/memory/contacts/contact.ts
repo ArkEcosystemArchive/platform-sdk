@@ -2,7 +2,6 @@ import { IContact, IContactAddressInput, IContactAddressRepository, IContactData
 import { pqueue } from "../../../helpers/queue";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Avatar } from "../../../helpers/avatar";
-import { emitProfileChanged } from "../helpers";
 
 export class Contact implements IContact {
 	readonly #profile: IProfile;
@@ -51,14 +50,14 @@ export class Contact implements IContact {
 	public toggleStarred(): void {
 		this.#starred = !this.isStarred();
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContact.setAvatar} */
 	public setAvatar(value: string): void {
 		this.#avatar = value;
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContact.setName} */
@@ -74,7 +73,7 @@ export class Contact implements IContact {
 
 		await pqueue(addresses.map((address: IContactAddressInput) => () => this.#addresses.create(address)));
 
-		emitProfileChanged(this.#profile);
+		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContact.avatar} */

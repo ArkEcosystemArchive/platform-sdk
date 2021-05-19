@@ -12,9 +12,8 @@ import {
 	IWalletService,
 } from "../contracts";
 import { DriverFactory } from "../drivers/driver.factory";
-import { emitter } from "../drivers/memory/helpers";
 import { container } from "./container";
-import { Events, Identifiers } from "./container.models";
+import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 
 export class Environment {
@@ -22,8 +21,6 @@ export class Environment {
 
 	public constructor(options: EnvironmentOptions) {
 		this.configureDriver(options);
-
-		this.registerListeners(options);
 	}
 
 	/**
@@ -245,17 +242,5 @@ export class Environment {
 	 */
 	private configureDriver(options: EnvironmentOptions): void {
 		return DriverFactory.make("memory", container, options);
-	}
-
-	/**
-	 * Persist the environment when it has changed.
-	 *
-	 * @private
-	 * @memberof Environment
-	 */
-	private registerListeners(options: EnvironmentOptions): void {
-		if (options.shouldPersistOnChange) {
-			emitter().on(Events.EnvironmentChanged, () => this.persist());
-		}
 	}
 }

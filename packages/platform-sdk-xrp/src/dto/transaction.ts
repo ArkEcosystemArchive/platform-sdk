@@ -5,7 +5,7 @@ import BN from "bignumber.js";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
-		return this.data.id;
+		return this.data.hash;
 	}
 
 	public blockId(): string | undefined {
@@ -13,11 +13,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime | undefined {
-		if (!this.data.outcome.timestamp) {
-			return undefined;
-		}
-
-		return DateTime.make(this.data.outcome.timestamp);
+		return DateTime.make(this.data.date);
 	}
 
 	public confirmations(): BigNumber {
@@ -25,11 +21,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		return this.data.specification.source.address;
+		return this.data.Account;
 	}
 
 	public recipient(): string {
-		return this.data.specification.destination.address;
+		return this.data.Destination;
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {
@@ -37,13 +33,15 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		const satoshi: string = new BN(this.data.specification.source.maxAmount.value).times(1e8).toFixed();
+		if (typeof this.data.Amount === "string") {
+			return BigNumber.make(this.data.Amount).times(1e8);
+		}
 
-		return BigNumber.make(satoshi);
+		return BigNumber.make(this.data.Amount.value).times(1e8);
 	}
 
 	public fee(): BigNumber {
-		const satoshi: string = new BN(this.data.outcome.fee).times(1e8).toFixed();
+		const satoshi: string = new BN(this.data.Fee).times(1e8).toFixed();
 
 		return BigNumber.make(satoshi);
 	}
@@ -65,7 +63,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isConfirmed(): boolean {
-		return true;
+		return this.data.validated;
 	}
 
 	public isSent(): boolean {
@@ -77,7 +75,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isTransfer(): boolean {
-		return false;
+		return this.data.TransactionType === "Payment";
 	}
 
 	public isSecondSignature(): boolean {
