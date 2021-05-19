@@ -1,4 +1,5 @@
-import { Environment } from "@arkecosystem/platform-sdk-profiles";
+import { Coins } from "@arkecosystem/platform-sdk";
+import { Environment} from "@arkecosystem/platform-sdk-profiles";
 import { createProfile, useEnvironment, useLogger } from "../helpers";
 
 export default async () => {
@@ -25,7 +26,18 @@ export default async () => {
 	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
 
 	// Show transactions
-	const transactions = await wallet1
-		.transactions();
-	logger.log("transactions", transactions);
+	const transactions: Coins.TransactionDataCollection = await wallet1
+		.client()
+		.transactions({address: wallet1.address()});
+
+	console.log(`Found ${transactions.items.length}`)
+	for (const transaction of transactions.items()) {
+		logger.log([
+			transaction.id(),
+			transaction.sender(),
+			transaction.recipient(),
+			transaction.amount().toHuman(),
+			transaction.fee().toHuman(),
+		]);
+	}
 };
