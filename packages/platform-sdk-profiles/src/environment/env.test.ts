@@ -33,7 +33,6 @@ const makeSubject = async (): Promise<void> => {
 		coins: { ARK, BTC, ETH },
 		httpClient: new Request(),
 		storage: new StubStorage(),
-		shouldPersistOnChange: true,
 	});
 	await subject.verify();
 	await subject.boot();
@@ -167,7 +166,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.settings().set("ADVANCED_MODE", "value");
 
 	// Encode all data
-	// profile.save();
+	subject.profiles().persist(profile);
 
 	// Create a Global DataEntry
 	subject.data().set("key", "value");
@@ -372,12 +371,15 @@ it("should persist the env and restore it", async () => {
 
 	const john = subject.profiles().create("John");
 	await importByMnemonic(john, identity.mnemonic, "ARK", "ark.devnet");
+	subject.profiles().persist(john);
 
 	const jane = subject.profiles().create("Jane");
 	jane.auth().setPassword("password");
+	subject.profiles().persist(jane);
 
 	const jack = subject.profiles().create("Jack");
 	jack.auth().setPassword("password");
+	subject.profiles().persist(jack);
 
 	await subject.persist();
 
@@ -402,32 +404,4 @@ it("should persist the env and restore it", async () => {
 	expect(new ProfileSerialiser(restoredJohn).toJSON()).toEqual(new ProfileSerialiser(john).toJSON());
 	expect(new ProfileSerialiser(restoredJane).toJSON()).toEqual(new ProfileSerialiser(jane).toJSON());
 	expect(new ProfileSerialiser(restoredJack).toJSON()).toEqual(new ProfileSerialiser(jack).toJSON());
-});
-
-it("should auto persist on changes", async () => {
-	await makeSubject();
-
-	const mockPersist = jest.spyOn(subject, "persist");
-	const profile = subject.profiles().create("John Doe");
-	profile.auth().setPassword("password");
-
-	expect(mockPersist).toHaveBeenCalled();
-});
-
-it("should not persist on changes", async () => {
-	subject = new Environment({
-		coins: { ARK, BTC, ETH },
-		httpClient: new Request(),
-		storage: new StubStorage(),
-		shouldPersistOnChange: false,
-	});
-	await subject.verify();
-	await subject.boot();
-	await subject.persist();
-
-	const mockPersist = jest.spyOn(subject, "persist");
-	const profile = subject.profiles().create("John Doe");
-	profile.auth().setPassword("password");
-
-	expect(mockPersist).not.toHaveBeenCalled();
 });

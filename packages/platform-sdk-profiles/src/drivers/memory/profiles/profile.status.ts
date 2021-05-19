@@ -2,9 +2,21 @@ import { IProfileStatus } from "../../../contracts";
 
 export class ProfileStatus implements IProfileStatus {
 	#isRestored: boolean;
+	#isDirty: boolean;
 
 	public constructor() {
 		this.#isRestored = false;
+		this.#isDirty = false;
+	}
+
+	/** {@inheritDoc IAuthenticator.markAsDirty} */
+	public markAsDirty(): void {
+		this.#isDirty = true;
+	}
+
+	/** {@inheritDoc IAuthenticator.isDirty} */
+	public isDirty(): boolean {
+		return this.#isDirty;
 	}
 
 	/** {@inheritDoc IAuthenticator.markAsRestored} */

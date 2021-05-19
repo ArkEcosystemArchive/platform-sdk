@@ -6,7 +6,22 @@
  */
 export interface IProfileStatus {
 	/**
-	 * Mark profile as restored
+	 * Mark profile as dirty.
+	 *
+	 * @memberof IProfileStatus
+	 */
+	markAsDirty(): void;
+
+	/**
+	 * Determine if the active profile is dirty.
+	 *
+	 * @return {boolean}
+	 * @memberof IProfileStatus
+	 */
+	isDirty(): boolean;
+
+	/**
+	 * Mark profile as restored.
 	 *
 	 * @memberof IProfileStatus
 	 */

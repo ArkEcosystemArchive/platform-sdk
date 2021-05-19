@@ -44,8 +44,8 @@ import { AttributeBag } from "../../../helpers/attribute-bag";
 import { ProfileInitialiser } from "./profile.initialiser";
 import { IPasswordManager } from "../../../contracts/profiles/services/password";
 import { PasswordManager } from "./services/password";
-import { emitProfileChanged } from "../helpers";
 import { ProfileStatus } from "./profile.status";
+import { ProfileExporter } from "./profile.exporter";
 
 export class Profile implements IProfile {
 	/**
@@ -388,7 +388,7 @@ export class Profile implements IProfile {
 	public markIntroductoryTutorialAsComplete(): void {
 		this.data().set(ProfileData.HasCompletedIntroductoryTutorial, true);
 
-		emitProfileChanged(this);
+		this.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IProfile.hasCompletedIntroductoryTutorial} */
