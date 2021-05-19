@@ -1,3 +1,4 @@
+import { Signatories } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
 import { createConfig } from "../../test/config";
@@ -15,10 +16,9 @@ describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it("should sign transaction", async () => {
 			const result = await subject.transfer({
-				from: identity.bech32Address,
-				sign: {
-					mnemonic: identity.mnemonic,
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory(identity.mnemonic, identity.bech32Address),
+				),
 				data: {
 					amount: "420.69",
 					to: identity.bech32Address,
