@@ -56,9 +56,9 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const { id, signedTransaction } = await this.post("sign", [
 				{
-					"tx_json": prepared.txJSON,
+					tx_json: prepared.txJSON,
 					secret: input.signatory.signingKey(),
-				}
+				},
 			]);
 
 			return new SignedTransactionData(id, signedTransaction, signedTransaction);
@@ -149,12 +149,16 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
-		console.log((await this.#http.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hosts")), {
-			jsonrpc: "2.0",
-			id: UUID.random(),
-			method,
-			params,
-		})).body())
+		console.log(
+			(
+				await this.#http.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hosts")), {
+					jsonrpc: "2.0",
+					id: UUID.random(),
+					method,
+					params,
+				})
+			).body(),
+		);
 		return (
 			await this.#http.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hosts")), {
 				jsonrpc: "2.0",
