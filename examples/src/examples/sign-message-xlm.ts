@@ -1,3 +1,4 @@
+import { Signatories } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import { createProfile, useEnvironment, useLogger } from "../helpers";
 
@@ -26,7 +27,14 @@ export default async () => {
 		.message()
 		.sign({
 			message: "Message to sign",
-			mnemonic: mnemonic1,
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory({
+					signingKey: mnemonic1,
+					address: wallet1.address(),
+					publicKey: "publicKey",
+					privateKey: "privateKey",
+				}),
+			),
 		});
 	logger.log("signedMessage", signedMessage);
 

@@ -51,7 +51,7 @@ describe("ClientService", function () {
 	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock("https://horizon-testnet.stellar.org")
-				.get("/accounts/GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO/transactions")
+				.get("/accounts/GAHXEI3BVFOBDHWLC4TJKCGTLY6VMTKMRRWWPKNPPULUC7E3PD63ENKO/payments")
 				.query(true)
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 

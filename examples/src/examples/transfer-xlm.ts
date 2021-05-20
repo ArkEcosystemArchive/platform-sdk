@@ -40,7 +40,12 @@ export default async () => {
 		.transaction()
 		.signTransfer({
 			signatory: new Signatories.Signatory(
-				new Signatories.MnemonicSignatory(mnemonic1, wallet1.address()),
+				new Signatories.MnemonicSignatory({
+					signingKey: mnemonic1,
+					address: wallet1.address(),
+					publicKey: "publicKey",
+					privateKey: "privateKey",
+				}),
 			),
 			data: {
 				amount: "2",
