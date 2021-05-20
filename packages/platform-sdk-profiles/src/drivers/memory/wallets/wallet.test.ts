@@ -99,7 +99,7 @@ it("should have a coin", () => {
 });
 
 it("should have a network", () => {
-	expect(subject.network().toObject()).toEqual(require("../../../../test/fixtures/network.json").default);
+	expect(subject.network().toObject()).toMatchSnapshot();
 });
 
 it("should have an address", () => {
