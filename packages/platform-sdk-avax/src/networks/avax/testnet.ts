@@ -81,11 +81,11 @@ const network: Coins.NetworkManifest = {
 	},
 	transactionTypes: ["transfer", "vote"],
     importMethods: [
+        "bip38",
         "bip39",
         "bip44",
         "bip49",
         "bip84",
-        "bip38",
         "privateKey",
         "secret",
         "wif",

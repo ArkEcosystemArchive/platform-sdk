@@ -62,11 +62,11 @@ const network: Coins.NetworkManifest = {
 	},
 	transactionTypes: [],
     importMethods: [
+        "bip38",
         "bip39",
         "bip44",
         "bip49",
         "bip84",
-        "bip38",
         "privateKey",
         "secret",
         "wif",
