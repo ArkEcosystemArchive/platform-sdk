@@ -1,4 +1,4 @@
-import { BigNumber } from "@arkecosystem/utils";
+import { BigNumber, has } from "@arkecosystem/utils";
 import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
@@ -154,13 +154,26 @@ export class Database {
 		const hashes: string[] = vIns.map((u: VIn) => u.txid);
 		let voutsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
-			const read = this.#database
-				.prepare(
-					`SELECT output_hash, output_idx, amount
-					 FROM transaction_parts
-					 WHERE output_hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
-				)
-				.all(hashes);
+			// const read = this.#database
+			// 	.prepare(
+			// 		`SELECT output_hash, output_idx, amount
+			// 		 FROM transaction_parts
+			// 		 WHERE output_hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
+			// 	)
+			// 	.all(hashes);
+
+			const read = await this.#prisma.transaction_parts.findMany({
+				where: {
+					output_hash: {
+						in: hashes,
+					},
+				},
+				select: {
+					output_hash: true,
+					output_idx: true,
+					amount: true,
+				},
+			});
 
 			if (read) {
 				const byHashAndIdx = (readElements) =>
@@ -205,7 +218,16 @@ export class Database {
 				amount: vout.amount,
 				address: JSON.stringify(vout.addresses),
 			});
+			await this.#prisma.transaction_parts.create({
+				data: {
+					output_hash: transaction.txid,
+					output_idx: vout.idx,
+					amount: vout.amount.toString(),
+					address: JSON.stringify(vout.addresses),
+				},
+			});
 		}
+
 
 		const updateStatement = this.#database.prepare(`UPDATE transaction_parts
 								SET input_hash = :input_hash,
