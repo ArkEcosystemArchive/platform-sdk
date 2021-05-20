@@ -15,10 +15,9 @@ describe("MessageService", () => {
 		const result: any = await subject.sign({
 			message: "Hello World",
 			signatory: new Signatories.Signatory(
-				new Signatories.MnemonicSignatory({
-					signingKey: identity.mnemonic,
+				new Signatories.PrivateKeySignatory({
+					signingKey: identity.privateKey,
 					address: identity.address,
-					publicKey: identity.publicKey,
 					privateKey: identity.privateKey,
 				}),
 			),

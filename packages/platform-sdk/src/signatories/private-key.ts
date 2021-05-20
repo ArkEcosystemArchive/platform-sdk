@@ -1,20 +1,16 @@
 export class PrivateKeySignatory {
 	readonly #signingKey: string;
 	readonly #address: string;
-	readonly #privateKey: string;
 
 	public constructor({
 		signingKey,
 		address,
-		privateKey,
 	}: {
 		signingKey: string;
 		address: string;
-		privateKey: string;
 	}) {
 		this.#signingKey = signingKey;
 		this.#address = address;
-		this.#privateKey = privateKey;
 	}
 
 	public signingKey(): string {
@@ -25,7 +21,7 @@ export class PrivateKeySignatory {
 		return this.#address;
 	}
 
-	public privateKey(): string | undefined {
-		return this.#privateKey;
+	public privateKey(): string {
+		return this.#signingKey;
 	}
 }

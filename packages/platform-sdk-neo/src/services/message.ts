@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import Neon, { wallet } from "@cityofzion/neon-js";
 
 export class MessageService implements Contracts.MessageService {
@@ -13,10 +12,10 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const mnemonic: string = BIP39.normalize(input.signatory.signingKey());
-			const signature = Neon.sign.message(input.message, mnemonic);
+			const account = new wallet.Account(input.signatory.signingKey());
+			const signature = Neon.sign.message(input.message, account.privateKey);
 
-			return { message: input.message, signatory: new wallet.Account(mnemonic).publicKey, signature };
+			return { message: input.message, signatory: account.publicKey, signature };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

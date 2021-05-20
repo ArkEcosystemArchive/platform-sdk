@@ -91,7 +91,6 @@ export class AbstractSignatoryService implements SignatoryService {
 			new PrivateKeySignatory({
 				signingKey: privateKey,
 				address: await this.#identity.address().fromPrivateKey(privateKey, options),
-				privateKey,
 			}),
 		);
 	}
