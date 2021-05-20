@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model blocks {
+  hash   String	@id
+  height Int	@unique
+}
+
+model errors {
+  id   Int    @id @default(autoincrement())
+  title String
+  hash String
+  body String
+}
+
+model transactions {
+  hash              String             @id
+  time              Int
+  amount            Int
+  fee				Int
+  transaction_parts transaction_parts[]
+}
+
+model transaction_parts {
+  output_hash  String
+  output_idx   Int
+  input_hash   String?
+  input_idx    Int?
+  amount       Int
+  address      Json?
+  transactions transactions @relation(fields: [output_hash], references: [hash])
+
+  @@id([output_hash, output_idx])
+  @@unique([input_hash, input_idx], name: "transaction_input_hash_index")
+  @@unique([output_hash, output_idx], name: "transaction_output_hash_index")
+}
