@@ -81,6 +81,16 @@ const network: Coins.NetworkManifest = {
 		keyDeposit: 2000000,
 	},
 	transactionTypes: ["transfer"],
+    importMethods: [
+        "bip39",
+        "bip44",
+        "bip49",
+        "bip84",
+        "bip38",
+        "privateKey",
+        "secret",
+        "wif",
+    ],
 };
 
 export default network;
