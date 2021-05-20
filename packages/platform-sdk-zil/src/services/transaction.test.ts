@@ -18,7 +18,12 @@ describe("TransactionService", () => {
 		it("should sign transaction", async () => {
 			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(identity.mnemonic, identity.bech32Address),
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: identity.bech32Address,
+						publicKey: identity.publicKey,
+						privateKey: identity.privateKey,
+					}),
 				),
 				data: {
 					amount: "420.69",

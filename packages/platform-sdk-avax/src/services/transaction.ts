@@ -61,7 +61,7 @@ export class TransactionService implements Contracts.TransactionService {
 				// @ts-ignore - feross/buffer should behave the same as nodejs/buffer
 				Hash.sha256(signedTx.toBuffer()).toString("hex"),
 				{
-					sender: input.signatory.identifier(),
+					sender: input.signatory.address(),
 					recipient: input.data.to,
 					amount: input.data.amount,
 					fee: BigNumber.make(0.001).times(1e8),
@@ -120,8 +120,8 @@ export class TransactionService implements Contracts.TransactionService {
 			return new SignedTransactionData(
 				uuidv4(),
 				{
-					sender: input.signatory.identifier(),
-					recipient: input.signatory.identifier(),
+					sender: input.signatory.address(),
+					recipient: input.signatory.address(),
 					amount: 0,
 					fee: 0,
 				},

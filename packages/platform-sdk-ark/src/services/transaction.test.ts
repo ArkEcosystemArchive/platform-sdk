@@ -33,10 +33,12 @@ describe("Core", () => {
 			const result = await subject.transfer({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					amount: "1",
@@ -51,10 +53,12 @@ describe("Core", () => {
 			const result = await subject.transfer({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.SignatureSignatory(
-						"678f44d24bf1bd08198467102c835bc6973fcfee064fef9ab578b350e8656acabf91d20c83d8745c2d76e3c898ebbabed84aba8786386e13d35e507f991239d6",
-						"039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-					),
+					new Signatories.SignatureSignatory({
+						signingKey:
+							"678f44d24bf1bd08198467102c835bc6973fcfee064fef9ab578b350e8656acabf91d20c83d8745c2d76e3c898ebbabed84aba8786386e13d35e507f991239d6",
+						address: "address",
+						publicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+					}),
 				),
 				data: {
 					amount: "1",
@@ -70,10 +74,11 @@ describe("Core", () => {
 				{
 					nonce: "1",
 					signatory: new Signatories.Signatory(
-						new Signatories.SenderPublicKeySignatory(
-							"039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-							"DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
-						),
+						new Signatories.SenderPublicKeySignatory({
+							signingKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
+							address: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
+							publicKey: "publicKey",
+						}),
 					),
 					data: {
 						amount: "1",
@@ -93,10 +98,12 @@ describe("Core", () => {
 			const result = await subject.transfer({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					amount: "1",
@@ -118,10 +125,12 @@ describe("Core", () => {
 			const result = await subject.transfer({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					amount: "1",
@@ -137,10 +146,12 @@ describe("Core", () => {
 			const result = await subject.secondSignature({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					mnemonic: "this is a top secret second mnemonic",
@@ -156,10 +167,12 @@ describe("Core", () => {
 			const result = await subject.delegateRegistration({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					username: "johndoe",
@@ -175,10 +188,12 @@ describe("Core", () => {
 			const result = await subject.vote({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					votes: ["03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec"],
@@ -195,10 +210,12 @@ describe("Core", () => {
 			const result = await subject.ipfs({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: { hash: "QmR45FmbVVrixReBwJkhEKde2qwHYaQzGxu4ZoDeswuF9w" },
 			});
@@ -212,10 +229,12 @@ describe("Core", () => {
 			const result = await subject.multiPayment({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					payments: [
@@ -235,10 +254,12 @@ describe("Core", () => {
 			const result = await subject.delegateResignation({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 			});
 
@@ -251,10 +272,12 @@ describe("Core", () => {
 			const result = await subject.htlcLock({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					amount: "1",
@@ -276,10 +299,12 @@ describe("Core", () => {
 			const result = await subject.htlcClaim({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",
@@ -296,10 +321,12 @@ describe("Core", () => {
 			const result = await subject.htlcRefund({
 				nonce: "1",
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(
-						"this is a top secret passphrase",
-						"D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-					),
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
 				),
 				data: {
 					lockTransactionId: "943c220691e711c39c79d437ce185748a0018940e1a4144293af9d05627d2eb4",

@@ -1,5 +1,7 @@
 import "jest-extended";
 
+import { Signatories } from "@arkecosystem/platform-sdk";
+
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
 import { MessageService } from "./message";
@@ -12,7 +14,12 @@ describe("MessageService", () => {
 	it("should sign and verify a message", async () => {
 		const result: any = await subject.sign({
 			message: "Hello World",
-			mnemonic: identity.privateKey,
+			signatory: new Signatories.Signatory(
+				new Signatories.PrivateKeySignatory({
+					signingKey: identity.privateKey,
+					address: identity.address,
+				}),
+			),
 		});
 
 		await expect(subject.verify(result)).resolves.toBeTrue();

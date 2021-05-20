@@ -2,6 +2,32 @@
 
 Because there are many breaking changes an upgrade is not that easy. There are many edge cases this guide does not cover. We accept PRs to improve this guide.
 
+## From v7 to v8
+
+### Profile Persistence
+
+As of [a6371bff](https://github.com/ArkEcosystem/platform-sdk/commit/a6371bff) profiles are no longer automatically persisted to give the client more control over when persistence occurs. Calling `env.profiles().persist(profile)` will take care of persistence. This should be called before calling `env.persist()`.
+
+### Transaction Signing
+
+As of [816a5f99](https://github.com/ArkEcosystem/platform-sdk/commit/816a5f99) transactions are no longer signed with plain string values but instead expect a `Signatory` instance to guarantee consistent behaviour across all coins. Below snippets can be used to create signatories for the available signing methods.
+
+```ts
+wallet.coin().signatory().mnemonic(mnemonic: string, options?: IdentityOptions);
+wallet.coin().signatory().secondaryMnemonic(primary: string, secondary: string, options?: IdentityOptions);
+wallet.coin().signatory().multiMnemonic(mnemonics: string[]);
+wallet.coin().signatory().wif(primary: string);
+wallet.coin().signatory().secondaryWif(primary: string, secondary: string);
+wallet.coin().signatory().privateKey(privateKey: string, options?: IdentityOptions);
+wallet.coin().signatory().signature(signature: string, senderPublicKey: string);
+wallet.coin().signatory().senderPublicKey(publicKey: string, options?: IdentityOptions);
+wallet.coin().signatory().multiSignature(min: number, publicKeys: string[]);
+```
+
+### Message Signing
+
+As of [222d0f6e](https://github.com/ArkEcosystem/platform-sdk/commit/222d0f6e) messages are no longer signed with plain string values but instead expect a `Signatory` instance to guarantee consistent behaviour across all coins. The same snippets as for transaction signing apply.
+
 ## From v1 to v2
 
 ### Use explicit-restoring for profiles instead of auto-restoring (e5e4b90e)
@@ -24,7 +50,7 @@ We recommend to take a look at [this](https://github.com/ArkEcosystem/platform-s
 
 ##### Password
 
-To ensure that we can encrypt the password protected profile of a user when they are signed out or the application crashes we need to _temporarily_ store the users password after they enter it. You can take a look at [this password helper](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/src/helpers/password.ts) to see how the password needs to be stored. The password should be stored when the user successfully decrypted their profile and be forgotten when the application is closed or they are signed out of their profile on purpose or through a timeout.
+To ensure that we can encrypt the password protected profile of a user when they are signed out or the application crashes we need to _temporarily_ store the users password after they enter it. You can take a look at [this password service](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/src/drivers/memory/profiles/services/password.ts) to see how the password needs to be stored. The password should be stored when the user successfully decrypted their profile and be forgotten when the application is closed or they are signed out of their profile on purpose or through a timeout.
 
 If you are already in production and don't want to reset the password of the profiles you will need to perform a bit more complex migration where you have to ask the user for their password if they are using one and then manually encrypt and encode the profile. That is why we recommend to temporarily unset the profile passwords and show the user a message that explains which profiles have been affected.
 
