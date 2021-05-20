@@ -8,22 +8,22 @@ datasource db {
 }
 
 model blocks {
-  hash   String	@id
-  height Int	@unique
+  hash   String @id
+  height Int    @unique
 }
 
 model errors {
-  id   Int    @id @default(autoincrement())
+  id    Int    @id @default(autoincrement())
   title String
-  hash String
-  body String
+  hash  String
+  body  String
 }
 
 model transactions {
-  hash              String             @id
+  hash              String              @id
   time              Int
-  amount            Int
-  fee				Int
+  amount            BigInt
+  fee               BigInt
   transaction_parts transaction_parts[]
 }
 

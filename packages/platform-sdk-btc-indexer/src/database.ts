@@ -6,6 +6,7 @@ import { ensureFileSync } from "fs-extra";
 import { Logger } from "./logger";
 import { getAmount, getFees, getVIns, getVOuts } from "./tx-parsing-helpers";
 import { Flags, VIn, VOut } from "./types";
+import { PrismaClient } from '@prisma/client'
 
 /**
  * Implements a database storage with SQLite.
@@ -21,6 +22,8 @@ export class Database {
 	 * @memberof Database
 	 */
 	readonly #database: sqlite3.Database;
+
+	readonly #prisma: PrismaClient;
 
 	/**
 	 * The logger instance.
@@ -44,6 +47,9 @@ export class Database {
 		ensureFileSync(databaseFile);
 
 		logger.debug(`Using [${databaseFile}] as database`);
+
+
+		this.#prisma = new PrismaClient()
 
 		this.#database = sqlite3(databaseFile);
 		this.#logger = logger;
@@ -115,7 +121,7 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	private storeBlock(block): void {
+	private async storeBlock(block): Promise<void> {
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO blocks (hash, height)
@@ -125,6 +131,13 @@ export class Database {
 				hash: block.hash,
 				height: block.height,
 			});
+
+		await this.#prisma.blocks.create({
+			data: {
+				hash: block.hash,
+				height: block.height,
+			},
+		})
 	}
 
 	/**
@@ -134,7 +147,7 @@ export class Database {
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private storeTransaction(transaction): void {
+	private async storeTransaction(transaction): Promise<void> {
 		const amount: BigNumber = getAmount(transaction);
 		const vouts: VOut[] = getVOuts(transaction);
 		const vIns = getVIns(transaction);
@@ -172,6 +185,14 @@ export class Database {
 				time: transaction.time,
 				amount: amount.toString(),
 				fee: fee.toString(),
+			});
+			await this.#prisma.transactions.create({
+				data: {
+					hash: transaction.txid,
+					time: transaction.time,
+					amount: amount.toString(),
+					fee: fee.toString(),
+				},
 			});
 
 		const statement = this.#database
