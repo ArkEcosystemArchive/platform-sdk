@@ -17,6 +17,12 @@ export type CoinTransactionTypes =
 
 export type ExpirationType = "height" | "timestamp";
 
+export interface SignatureMethods {
+	default: boolean;
+	ledgerS?: boolean;
+	ledgerX?: boolean;
+}
+
 export interface NetworkFeatureFlags {
 	Client?: {
 		transaction?: boolean;
@@ -86,39 +92,17 @@ export interface NetworkFeatureFlags {
 		search?: boolean;
 	};
 	Transaction?: {
-		transfer?: boolean;
-		transferWithLedgerS?: boolean;
-		transferWithLedgerX?: boolean;
-		secondSignature?: boolean;
-		secondSignatureWithLedgerS?: boolean;
-		secondSignatureWithLedgerX?: boolean;
-		delegateRegistration?: boolean;
-		delegateRegistrationWithLedgerS?: boolean;
-		delegateRegistrationWithLedgerX?: boolean;
-		vote?: boolean;
-		voteWithLedgerS?: boolean;
-		voteWithLedgerX?: boolean;
-		multiSignature?: boolean;
-		multiSignatureWithLedgerS?: boolean;
-		multiSignatureWithLedgerX?: boolean;
-		ipfs?: boolean;
-		ipfsWithLedgerS?: boolean;
-		ipfsWithLedgerX?: boolean;
-		multiPayment?: boolean;
-		multiPaymentWithLedgerS?: boolean;
-		multiPaymentWithLedgerX?: boolean;
-		delegateResignation?: boolean;
-		delegateResignationWithLedgerS?: boolean;
-		delegateResignationWithLedgerX?: boolean;
-		htlcLock?: boolean;
-		htlcLockWithLedgerS?: boolean;
-		htlcLockWithLedgerX?: boolean;
-		htlcClaim?: boolean;
-		htlcClaimWithLedgerS?: boolean;
-		htlcClaimWithLedgerX?: boolean;
-		htlcRefund?: boolean;
-		htlcRefundWithLedgerS?: boolean;
-		htlcRefundWithLedgerX?: boolean;
+		transfer?: SignatureMethods;
+		secondSignature?: SignatureMethods;
+		delegateRegistration?: SignatureMethods;
+		vote?: SignatureMethods;
+		multiSignature?: SignatureMethods;
+		ipfs?: SignatureMethods;
+		multiPayment?: SignatureMethods;
+		delegateResignation?: SignatureMethods;
+		htlcLock?: SignatureMethods;
+		htlcClaim?: SignatureMethods;
+		htlcRefund?: SignatureMethods;
 	};
 	Miscellaneous?: {
 		dynamicFees?: boolean;

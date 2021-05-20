@@ -74,7 +74,7 @@ const network: Coins.NetworkManifest = {
 			verify: true,
 		},
 		Transaction: {
-			transfer: true,
+			transfer: { default: true },
 		},
 		Miscellaneous: {
 			utxo: true,
