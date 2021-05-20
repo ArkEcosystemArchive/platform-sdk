@@ -211,7 +211,7 @@ export class Database {
 	private migrate(): void {
 		this.#database.exec(`
 			PRAGMA journal_mode = WAL;
-			PRAGMA foreign_keys = ON;
+			PRAGMA foreign_keys = OFF;
 
 
 			CREATE TABLE IF NOT EXISTS blocks(
