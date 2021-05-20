@@ -232,7 +232,7 @@ export class TransactionService implements Contracts.TransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		applyCryptoConfiguration(this.#configCrypto);
 
-		try {
+		// try {
 			let address: string | undefined;
 
 			if (input.signatory.actsWithMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
@@ -260,9 +260,9 @@ export class TransactionService implements Contracts.TransactionService {
 			if (input.nonce) {
 				transaction.nonce(input.nonce);
 			} else {
-				const body: any = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
+				const { data } = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
 
-				transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());
+				transaction.nonce(BigNumber.make(data.nonce).plus(1).toFixed());
 			}
 
 			if (input.data && input.data.amount) {
@@ -278,6 +278,7 @@ export class TransactionService implements Contracts.TransactionService {
 			} else {
 				try {
 					const estimatedExpiration = await this.estimateExpiration();
+
 					if (estimatedExpiration) {
 						transaction.expiration(parseInt(estimatedExpiration));
 					}
@@ -347,9 +348,9 @@ export class TransactionService implements Contracts.TransactionService {
 			const signedTransaction = transaction.build().toJson();
 
 			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction);
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
-		}
+		// } catch (error) {
+		// 	throw new Exceptions.CryptoException(error);
+		// }
 	}
 
 	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {

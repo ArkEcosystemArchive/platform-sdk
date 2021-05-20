@@ -1,6 +1,7 @@
 import { ForbiddenMethodCallException } from "../exceptions";
 import { AbstractDoubleSignatory } from "./abstract-double-signatory";
 import { AbstractSignatory } from "./abstract-signatory";
+import { AbstractValueSignatory } from "./abstract-value-signatory";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
 import { MultiSignature, MultiSignatureSignatory } from "./multi-signature";
@@ -104,6 +105,14 @@ export class Signatory {
 			return this.#signatory.address();
 		}
 
+		if (this.#signatory instanceof AbstractValueSignatory) {
+			return this.#signatory.address();
+		}
+
+		if (this.#signatory instanceof PrivateKeySignatory) {
+			return this.#signatory.address();
+		}
+
 		throw new ForbiddenMethodCallException(this.constructor.name, "address");
 	}
 
@@ -114,6 +123,10 @@ export class Signatory {
 		}
 
 		if (this.#signatory instanceof AbstractDoubleSignatory) {
+			return this.#signatory.publicKey();
+		}
+
+		if (this.#signatory instanceof AbstractValueSignatory) {
 			return this.#signatory.publicKey();
 		}
 
