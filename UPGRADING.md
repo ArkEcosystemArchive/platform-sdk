@@ -24,6 +24,10 @@ wallet.coin().signatory().senderPublicKey(publicKey: string, options?: IdentityO
 wallet.coin().signatory().multiSignature(min: number, publicKeys: string[]);
 ```
 
+### Message Signing
+
+As of [222d0f6e](https://github.com/ArkEcosystem/platform-sdk/commit/222d0f6e) messages are no longer signed with plain string values but instead expect a `Signatory` instance to guarantee consistent behaviour across all coins. The same snippets as for transaction signing apply.
+
 ## From v1 to v2
 
 ### Use explicit-restoring for profiles instead of auto-restoring (e5e4b90e)
