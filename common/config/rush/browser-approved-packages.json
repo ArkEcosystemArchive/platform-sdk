@@ -251,6 +251,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@prisma/client",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@ptkdev/logger",
       "allowedCategories": [ "libraries" ]
     },
