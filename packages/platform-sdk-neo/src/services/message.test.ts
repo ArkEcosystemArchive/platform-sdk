@@ -18,7 +18,6 @@ describe("MessageService", () => {
 				new Signatories.PrivateKeySignatory({
 					signingKey: identity.privateKey,
 					address: identity.address,
-					privateKey: identity.privateKey,
 				}),
 			),
 		});
