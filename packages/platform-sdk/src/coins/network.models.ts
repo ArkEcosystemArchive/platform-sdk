@@ -51,33 +51,33 @@ export interface NetworkFeatureFlags {
 	};
 	Identity?: {
 		address?: {
-			mnemonic?: DerivationMethodBehaviour;
-			multiSignature?: DerivationMethodBehaviour;
-			publicKey?: DerivationMethodBehaviour;
-			privateKey?: DerivationMethodBehaviour;
-			wif?: DerivationMethodBehaviour;
-			secret?: DerivationMethodBehaviour;
+			mnemonic?: boolean;
+			multiSignature?: boolean;
+			publicKey?: boolean;
+			privateKey?: boolean;
+			wif?: boolean;
+			secret?: boolean;
 			validate?: boolean;
 		};
 		publicKey?: {
-			mnemonic?: DerivationMethodBehaviour;
-			multiSignature?: DerivationMethodBehaviour;
-			wif?: DerivationMethodBehaviour;
+			mnemonic?: boolean;
+			multiSignature?: boolean;
+			wif?: boolean;
 			secret?: boolean;
 		};
 		privateKey?: {
-			mnemonic?: DerivationMethodBehaviour;
-			wif?: DerivationMethodBehaviour;
+			mnemonic?: boolean;
+			wif?: boolean;
 			secret?: boolean;
 		};
 		wif?: {
-			mnemonic?: DerivationMethodBehaviour;
+			mnemonic?: boolean;
 			secret?: boolean;
 		};
 		keyPair?: {
-			mnemonic?: DerivationMethodBehaviour;
-			privateKey?: DerivationMethodBehaviour;
-			wif?: DerivationMethodBehaviour;
+			mnemonic?: boolean;
+			privateKey?: boolean;
+			wif?: boolean;
 			secret?: boolean;
 		};
 	};
@@ -139,7 +139,13 @@ export interface NetworkFeatureFlags {
 		memo?: boolean;
 		utxo?: boolean;
 	};
-	Derivation?: DerivationMethods;
+	Derivation?: {
+		bip39?: boolean;
+		bip44?: boolean;
+		bip49?: boolean;
+		bip84?: boolean;
+		secret?: boolean;
+	};
 	Internal?: {
 		fastDelegateSync?: boolean;
 	};
