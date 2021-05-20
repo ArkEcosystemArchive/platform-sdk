@@ -99,17 +99,39 @@ test("#all", () => {
 		        "search": true,
 		      },
 		      "Transaction": Object {
-		        "delegateRegistration": true,
-		        "delegateResignation": true,
-		        "htlcClaim": true,
-		        "htlcLock": true,
-		        "htlcRefund": true,
-		        "ipfs": true,
-		        "multiPayment": true,
-		        "multiSignature": true,
-		        "secondSignature": true,
-		        "transfer": true,
-		        "vote": true,
+		        "delegateRegistration": Object {
+		          "default": true,
+		        },
+		        "delegateResignation": Object {
+		          "default": true,
+		        },
+		        "htlcClaim": Object {
+		          "default": true,
+		        },
+		        "htlcLock": Object {
+		          "default": true,
+		        },
+		        "htlcRefund": Object {
+		          "default": true,
+		        },
+		        "ipfs": Object {
+		          "default": true,
+		        },
+		        "multiPayment": Object {
+		          "default": true,
+		        },
+		        "multiSignature": Object {
+		          "default": true,
+		        },
+		        "secondSignature": Object {
+		          "default": true,
+		        },
+		        "transfer": Object {
+		          "default": true,
+		        },
+		        "vote": Object {
+		          "default": true,
+		        },
 		      },
 		    },
 		    "fees": Object {
@@ -239,17 +261,46 @@ test("#all", () => {
 		        "search": true,
 		      },
 		      "Transaction": Object {
-		        "delegateRegistration": true,
-		        "delegateResignation": true,
-		        "htlcClaim": false,
-		        "htlcLock": false,
-		        "htlcRefund": false,
-		        "ipfs": true,
-		        "multiPayment": true,
-		        "multiSignature": true,
-		        "secondSignature": true,
-		        "transfer": true,
-		        "vote": true,
+		        "delegateRegistration": Object {
+		          "default": true,
+		          "ledgerS": true,
+		          "ledgerX": true,
+		        },
+		        "delegateResignation": Object {
+		          "default": true,
+		          "ledgerS": true,
+		          "ledgerX": true,
+		        },
+		        "ipfs": Object {
+		          "default": true,
+		          "ledgerS": true,
+		          "ledgerX": true,
+		        },
+		        "multiPayment": Object {
+		          "default": true,
+		          "ledgerS": true,
+		          "ledgerX": true,
+		        },
+		        "multiSignature": Object {
+		          "default": true,
+		          "ledgerS": true,
+		          "ledgerX": true,
+		        },
+		        "secondSignature": Object {
+		          "default": true,
+		          "ledgerS": true,
+		          "ledgerX": true,
+		        },
+		        "transfer": Object {
+		          "default": true,
+		          "ledgerS": true,
+		          "ledgerX": true,
+		        },
+		        "vote": Object {
+		          "default": true,
+		          "ledgerS": true,
+		          "ledgerX": true,
+		        },
 		      },
 		    },
 		    "fees": Object {
@@ -379,17 +430,30 @@ test("#all", () => {
 		        "search": true,
 		      },
 		      "Transaction": Object {
-		        "delegateRegistration": true,
-		        "delegateResignation": true,
-		        "htlcClaim": false,
-		        "htlcLock": false,
-		        "htlcRefund": false,
-		        "ipfs": true,
-		        "multiPayment": true,
-		        "multiSignature": true,
-		        "secondSignature": true,
-		        "transfer": true,
-		        "vote": true,
+		        "delegateRegistration": Object {
+		          "default": true,
+		        },
+		        "delegateResignation": Object {
+		          "default": true,
+		        },
+		        "ipfs": Object {
+		          "default": true,
+		        },
+		        "multiPayment": Object {
+		          "default": true,
+		        },
+		        "multiSignature": Object {
+		          "default": true,
+		        },
+		        "secondSignature": Object {
+		          "default": true,
+		        },
+		        "transfer": Object {
+		          "default": true,
+		        },
+		        "vote": Object {
+		          "default": true,
+		        },
 		      },
 		    },
 		    "fees": Object {
