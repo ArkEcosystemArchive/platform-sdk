@@ -1,33 +1,33 @@
-import { Coins, Signatories } from "@arkecosystem/platform-sdk";
+import { Signatories } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, pollTransactionStatus, useEnvironment, useLogger } from "../helpers";
+import { pollTransactionStatus, createProfile, useEnvironment, useLogger } from "../helpers";
 
 export default async () => {
 	const logger = useLogger();
 	const env: Environment = await useEnvironment();
 
 	// Create profile
-	const profile = await createProfile(env,  "tron-profile", "my-password");
+	const profile = await createProfile(env,  "stellar-profile", "my-password");
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
 	await profile.sync();
 
 	// Create read-write wallet 1
-	const mnemonic1: string = "cabin fold parrot grunt tide exact spoon regular wait mercy very fame";
+	const mnemonic1: string = "stand adapt injury old donate champion sword slice exhibit mimic chair body";
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
-		coin: "TRX",
-		network: "trx.testnet"
+		coin: "XLM",
+		network: "xlm.testnet"
 	});
 	profile.wallets().push(wallet1);
 
 	// Create read-only wallet 2
-	const address2: string = "TXaMbkVYxQySwumStDujGt5b9nkJwKDsSA";
+	const address2: string = "GDZSWDF4LPORPAHBEXV3GR7AFPQ5K2ZGA5TNFU6TJCHLCLTUKYHZ2676";
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: address2,
-		coin: "TRX",
-		network: "trx.testnet"
+		coin: "XLM",
+		network: "xlm.testnet"
 	});
 	profile.wallets().push(wallet2);
 
@@ -43,29 +43,12 @@ export default async () => {
 				new Signatories.MnemonicSignatory(mnemonic1, wallet1.address()),
 			),
 			data: {
-				amount: "200000000", // 2 TRX
+				amount: "2",
 				to: address2,
-				memo: "This is a nice memo"
 			}
 		});
 	logger.log("signedTransactionData", transactionId);
 
 	await wallet1.transaction().broadcast(transactionId);
 	await pollTransactionStatus(transactionId, wallet1);
-
-	// Show transactions
-	const transactions: Coins.TransactionDataCollection = await wallet1
-		.client()
-		.transactions({address: wallet1.address()});
-
-	logger.log(`Found ${transactions.items().length}`)
-	for (const transaction of transactions.items()) {
-		logger.log([
-			transaction.id(),
-			transaction.sender(),
-			transaction.recipient(),
-			transaction.amount().toHuman(),
-			transaction.fee().toHuman(),
-		]);
-	}
 };
