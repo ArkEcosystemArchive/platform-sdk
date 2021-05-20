@@ -50,7 +50,7 @@ We recommend to take a look at [this](https://github.com/ArkEcosystem/platform-s
 
 ##### Password
 
-To ensure that we can encrypt the password protected profile of a user when they are signed out or the application crashes we need to _temporarily_ store the users password after they enter it. You can take a look at [this password helper](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/src/helpers/password.ts) to see how the password needs to be stored. The password should be stored when the user successfully decrypted their profile and be forgotten when the application is closed or they are signed out of their profile on purpose or through a timeout.
+To ensure that we can encrypt the password protected profile of a user when they are signed out or the application crashes we need to _temporarily_ store the users password after they enter it. You can take a look at [this password service](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/src/drivers/memory/profiles/services/password.ts) to see how the password needs to be stored. The password should be stored when the user successfully decrypted their profile and be forgotten when the application is closed or they are signed out of their profile on purpose or through a timeout.
 
 If you are already in production and don't want to reset the password of the profiles you will need to perform a bit more complex migration where you have to ask the user for their password if they are using one and then manually encrypt and encode the profile. That is why we recommend to temporarily unset the profile passwords and show the user a message that explains which profiles have been affected.
 
