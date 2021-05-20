@@ -143,6 +143,10 @@ export class Signatory {
 			return this.#signatory.privateKey();
 		}
 
+		if (this.#signatory instanceof PrivateKeySignatory) {
+			return this.#signatory.privateKey();
+		}
+
 		throw new ForbiddenMethodCallException(this.constructor.name, "privateKey");
 	}
 
