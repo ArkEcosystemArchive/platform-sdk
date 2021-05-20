@@ -1,6 +1,6 @@
 import { Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
@@ -233,121 +233,121 @@ export class TransactionService implements Contracts.TransactionService {
 		applyCryptoConfiguration(this.#configCrypto);
 
 		// try {
-			let address: string | undefined;
+		let address: string | undefined;
 
-			if (input.signatory.actsWithMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
-				address = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
+		if (input.signatory.actsWithMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
+			address = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
+		}
+
+		if (input.signatory.actsWithWif()) {
+			address = await this.#identity.address().fromWIF(input.signatory.signingKey());
+		}
+
+		const transaction = Transactions.BuilderFactory[type]().version(2);
+
+		if (input.signatory.actsWithSenderPublicKey()) {
+			address = input.signatory.address();
+
+			transaction.senderPublicKey(input.signatory.signingKey());
+		}
+
+		if (input.signatory.actsWithSignature()) {
+			address = await this.#identity.address().fromPublicKey(input.signatory.publicKey());
+
+			transaction.senderPublicKey(input.signatory.publicKey());
+		}
+
+		if (input.nonce) {
+			transaction.nonce(input.nonce);
+		} else {
+			const { data } = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
+
+			transaction.nonce(BigNumber.make(data.nonce).plus(1).toFixed());
+		}
+
+		if (input.data && input.data.amount) {
+			transaction.amount(input.data.amount);
+		}
+
+		if (input.fee) {
+			transaction.fee(input.fee);
+		}
+
+		if (input.data && input.data.expiration) {
+			transaction.expiration(input.data.expiration);
+		} else {
+			try {
+				const estimatedExpiration = await this.estimateExpiration();
+
+				if (estimatedExpiration) {
+					transaction.expiration(parseInt(estimatedExpiration));
+				}
+			} catch {
+				// If we fail to estimate the expiration we'll still continue.
+			}
+		}
+
+		if (callback) {
+			callback({ transaction, data: input.data });
+		}
+
+		if (options && options.unsignedJson === true) {
+			return transaction.toJson();
+		}
+
+		if (options && options.unsignedBytes === true) {
+			const signedTransaction = Transactions.Serializer.getBytes(transaction.data, {
+				excludeSignature: true,
+				excludeSecondSignature: true,
+			}).toString("hex");
+
+			return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
+		}
+
+		if (input.signatory.actsWithMultiSignature()) {
+			return this.handleMultiSignature(transaction, input);
+		}
+
+		const actsWithMultiMnemonic =
+			input.signatory.actsWithMultiMnemonic() || input.signatory.actsWithPrivateMultiSignature();
+
+		if (actsWithMultiMnemonic && Array.isArray(input.signatory.signingKeys())) {
+			const signingKeys: string[] = input.signatory.signingKeys();
+
+			const senderPublicKeys: string[] = await Promise.all(
+				signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
+			);
+
+			transaction.senderPublicKey(
+				await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys),
+			);
+
+			for (let i = 0; i < signingKeys.length; i++) {
+				transaction.multiSign(BIP39.normalize(signingKeys[i]), i);
+			}
+		} else if (input.signatory.actsWithSignature()) {
+			transaction.data.signature = input.signatory.signingKey();
+		} else {
+			if (input.signatory.actsWithMnemonic()) {
+				transaction.sign(input.signatory.signingKey());
+			}
+
+			if (input.signatory.actsWithSecondaryMnemonic()) {
+				transaction.secondSign(input.signatory.confirmKey());
 			}
 
 			if (input.signatory.actsWithWif()) {
-				address = await this.#identity.address().fromWIF(input.signatory.signingKey());
+				transaction.signWithWif(input.signatory.signingKey());
 			}
 
-			const transaction = Transactions.BuilderFactory[type]().version(2);
-
-			if (input.signatory.actsWithSenderPublicKey()) {
-				address = input.signatory.address();
-
-				transaction.senderPublicKey(input.signatory.signingKey());
+			if (input.signatory.actsWithSecondaryWif()) {
+				transaction.secondSignWithWif(input.signatory.confirmKey());
 			}
+		}
 
-			if (input.signatory.actsWithSignature()) {
-				address = await this.#identity.address().fromPublicKey(input.signatory.publicKey());
+		const signedTransaction = transaction.build().toJson();
 
-				transaction.senderPublicKey(input.signatory.publicKey());
-			}
-
-			if (input.nonce) {
-				transaction.nonce(input.nonce);
-			} else {
-				const { data } = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
-
-				transaction.nonce(BigNumber.make(data.nonce).plus(1).toFixed());
-			}
-
-			if (input.data && input.data.amount) {
-				transaction.amount(input.data.amount);
-			}
-
-			if (input.fee) {
-				transaction.fee(input.fee);
-			}
-
-			if (input.data && input.data.expiration) {
-				transaction.expiration(input.data.expiration);
-			} else {
-				try {
-					const estimatedExpiration = await this.estimateExpiration();
-
-					if (estimatedExpiration) {
-						transaction.expiration(parseInt(estimatedExpiration));
-					}
-				} catch {
-					// If we fail to estimate the expiration we'll still continue.
-				}
-			}
-
-			if (callback) {
-				callback({ transaction, data: input.data });
-			}
-
-			if (options && options.unsignedJson === true) {
-				return transaction.toJson();
-			}
-
-			if (options && options.unsignedBytes === true) {
-				const signedTransaction = Transactions.Serializer.getBytes(transaction.data, {
-					excludeSignature: true,
-					excludeSecondSignature: true,
-				}).toString("hex");
-
-				return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
-			}
-
-			if (input.signatory.actsWithMultiSignature()) {
-				return this.handleMultiSignature(transaction, input);
-			}
-
-			const actsWithMultiMnemonic =
-				input.signatory.actsWithMultiMnemonic() || input.signatory.actsWithPrivateMultiSignature();
-
-			if (actsWithMultiMnemonic && Array.isArray(input.signatory.signingKeys())) {
-				const signingKeys: string[] = input.signatory.signingKeys();
-
-				const senderPublicKeys: string[] = await Promise.all(
-					signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
-				);
-
-				transaction.senderPublicKey(
-					await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys),
-				);
-
-				for (let i = 0; i < signingKeys.length; i++) {
-					transaction.multiSign(BIP39.normalize(signingKeys[i]), i);
-				}
-			} else if (input.signatory.actsWithSignature()) {
-				transaction.data.signature = input.signatory.signingKey();
-			} else {
-				if (input.signatory.actsWithMnemonic()) {
-					transaction.sign(input.signatory.signingKey());
-				}
-
-				if (input.signatory.actsWithSecondaryMnemonic()) {
-					transaction.secondSign(input.signatory.confirmKey());
-				}
-
-				if (input.signatory.actsWithWif()) {
-					transaction.signWithWif(input.signatory.signingKey());
-				}
-
-				if (input.signatory.actsWithSecondaryWif()) {
-					transaction.secondSignWithWif(input.signatory.confirmKey());
-				}
-			}
-
-			const signedTransaction = transaction.build().toJson();
-
-			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction);
+		return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction);
 		// } catch (error) {
 		// 	throw new Exceptions.CryptoException(error);
 		// }
