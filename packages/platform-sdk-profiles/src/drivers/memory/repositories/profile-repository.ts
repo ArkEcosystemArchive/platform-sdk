@@ -80,8 +80,10 @@ export class ProfileRepository implements IProfileRepository {
 		this.push(result);
 
 		new ProfileInitialiser(result).initialise(name);
-		this.persist(result);
+
 		result.status().markAsRestored();
+
+		this.persist(result);
 
 		return result;
 	}
