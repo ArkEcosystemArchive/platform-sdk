@@ -29,8 +29,8 @@
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
-		"@zilliqa-js/zilliqa": "^2.2.1",
-		"@zilliqa-js/account": "^2.2.1"
+		"@zilliqa-js/account": "^2.2.1",
+		"@zilliqa-js/zilliqa": "^2.2.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
