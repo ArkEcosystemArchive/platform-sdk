@@ -17,6 +17,8 @@ export type CoinTransactionTypes =
 
 export type ExpirationType = "height" | "timestamp";
 
+export interface DerivationMethodBehaviour { sign?: boolean; import?: boolean; }
+
 export interface NetworkFeatureFlags {
 	Client?: {
 		transaction?: boolean;
@@ -37,33 +39,33 @@ export interface NetworkFeatureFlags {
 	};
 	Identity?: {
 		address?: {
-			mnemonic?: boolean;
-			multiSignature?: boolean;
-			publicKey?: boolean;
-			privateKey?: boolean;
-			wif?: boolean;
-			secret?: boolean;
+			mnemonic?: DerivationMethodBehaviour;
+			multiSignature?: DerivationMethodBehaviour;
+			publicKey?: DerivationMethodBehaviour;
+			privateKey?: DerivationMethodBehaviour;
+			wif?: DerivationMethodBehaviour;
+			secret?: DerivationMethodBehaviour;
 			validate?: boolean;
 		};
 		publicKey?: {
-			mnemonic?: boolean;
-			multiSignature?: boolean;
-			wif?: boolean;
+			mnemonic?: DerivationMethodBehaviour;
+			multiSignature?: DerivationMethodBehaviour;
+			wif?: DerivationMethodBehaviour;
 			secret?: boolean;
 		};
 		privateKey?: {
-			mnemonic?: boolean;
-			wif?: boolean;
+			mnemonic?: DerivationMethodBehaviour;
+			wif?: DerivationMethodBehaviour;
 			secret?: boolean;
 		};
 		wif?: {
-			mnemonic?: boolean;
+			mnemonic?: DerivationMethodBehaviour;
 			secret?: boolean;
 		};
 		keyPair?: {
-			mnemonic?: boolean;
-			privateKey?: boolean;
-			wif?: boolean;
+			mnemonic?: DerivationMethodBehaviour;
+			privateKey?: DerivationMethodBehaviour;
+			wif?: DerivationMethodBehaviour;
 			secret?: boolean;
 		};
 	};
