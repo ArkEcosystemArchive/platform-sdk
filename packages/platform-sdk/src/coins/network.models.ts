@@ -17,6 +17,7 @@ export type CoinTransactionTypes =
 
 export type ExpirationType = "height" | "timestamp";
 
+export type DerivationMethod = ["bip39", "bip44", "bip49", "bip84"];
 export interface DerivationMethodBehaviour { sign?: boolean; import?: boolean; }
 
 export interface NetworkFeatureFlags {
