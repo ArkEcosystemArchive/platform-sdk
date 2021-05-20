@@ -1,12 +1,11 @@
 import { BigNumber, has } from "@arkecosystem/utils";
-import sqlite3 from "better-sqlite3";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Logger } from "./logger";
 import { getAmount, getFees, getVIns, getVOuts } from "./tx-parsing-helpers";
 import { Flags, VIn, VOut } from "./types";
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
 /**
  * Implements a database storage with SQLite.
@@ -15,13 +14,6 @@ import { PrismaClient } from '@prisma/client'
  * @class Database
  */
 export class Database {
-	/**
-	 * The database instance.
-	 *
-	 * @type {sqlite3.Database}
-	 * @memberof Database
-	 */
-	readonly #database: sqlite3.Database;
 
 	readonly #prisma: PrismaClient;
 
@@ -48,13 +40,11 @@ export class Database {
 
 		logger.debug(`Using [${databaseFile}] as database`);
 
+		this.#prisma = new PrismaClient({
+			log: ["query", "info", `warn`, `error`]
+		});
 
-		this.#prisma = new PrismaClient()
-
-		this.#database = sqlite3(databaseFile);
 		this.#logger = logger;
-
-		this.migrate();
 	}
 
 	/**
@@ -63,14 +53,18 @@ export class Database {
 	 * @returns {number}
 	 * @memberof Database
 	 */
-	public lastBlockNumber(): number {
-		const lastBlock = this.#database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
+	public async lastBlockNumber(): Promise<number> {
+		const lastBlockHeight = await this.#prisma.block.aggregate({
+			_max: {
+				height: true
+			}
+		});
 
-		if (lastBlock === undefined) {
+		if (lastBlockHeight === undefined) {
 			return 1;
 		}
 
-		return lastBlock.height;
+		return lastBlockHeight["_max"]?.height as number || 1;
 	}
 
 	/**
@@ -81,37 +75,15 @@ export class Database {
 	 */
 	public storeBlockWithTransactions(block: any): void {
 		this.#logger.info(
-			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
+			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`
 		);
 
-		this.#database.transaction((block) => {
-			this.storeBlock(block);
-
-			if (block.tx) {
-				for (const transaction of block.tx) {
-					this.#logger.info(`Storing transaction [${transaction.txid}]`);
-
-					this.storeTransaction(transaction);
-				}
-			}
-		})(block);
-	}
-
-	/**
-	 * Stores an error with all of its details.
-	 *
-	 * @param {string} type
-	 * @param {string} hash
-	 * @param {string} body
-	 * @memberof Database
-	 */
-	public storeError(type: string, hash: string, body: string): void {
-		this.#database
-			.prepare(
-				`INSERT INTO errors (type, hash, body)
-								VALUES (:type, :hash, :body)`,
-			)
-			.run({ type, hash, body });
+		const storeBlock = this.storeBlock(block);
+		const storeTransactions = (block.tx || []).flatMap(tx => this.storeTransaction(tx));
+		this.#prisma.$transaction([
+			storeBlock,
+			...storeTransactions
+		]);
 	}
 
 	/**
@@ -121,23 +93,13 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	private async storeBlock(block): Promise<void> {
-		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO blocks (hash, height)
-														VALUES (:hash, :height)`,
-			)
-			.run({
-				hash: block.hash,
-				height: block.height,
-			});
-
-		await this.#prisma.blocks.create({
+	private storeBlock(block): any {
+		return this.#prisma.block.create({
 			data: {
 				hash: block.hash,
-				height: block.height,
-			},
-		})
+				height: block.height
+			}
+		});
 	}
 
 	/**
@@ -147,32 +109,26 @@ export class Database {
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private async storeTransaction(transaction): Promise<void> {
+	private storeTransaction(transaction): any[] {
+		const updateQueries: any[] = [];
+
 		const amount: BigNumber = getAmount(transaction);
 		const vouts: VOut[] = getVOuts(transaction);
 		const vIns = getVIns(transaction);
 		const hashes: string[] = vIns.map((u: VIn) => u.txid);
 		let voutsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
-			// const read = this.#database
-			// 	.prepare(
-			// 		`SELECT output_hash, output_idx, amount
-			// 		 FROM transaction_parts
-			// 		 WHERE output_hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
-			// 	)
-			// 	.all(hashes);
-
-			const read = await this.#prisma.transaction_parts.findMany({
+			const read = this.#prisma.transactionPart.findMany({
 				where: {
 					output_hash: {
-						in: hashes,
-					},
+						in: hashes
+					}
 				},
 				select: {
 					output_hash: true,
 					output_idx: true,
-					amount: true,
-				},
+					amount: true
+				}
 			});
 
 			if (read) {
@@ -187,112 +143,47 @@ export class Database {
 		}
 
 		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
-
-		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee)
-				 VALUES (:hash, :time, :amount, :fee)`,
-			)
-			.run({
-				hash: transaction.txid,
-				time: transaction.time,
-				amount: amount.toString(),
-				fee: fee.toString(),
-			});
-			await this.#prisma.transactions.create({
+		updateQueries.push(
+			this.#prisma.transaction.create({
 				data: {
 					hash: transaction.txid,
 					time: transaction.time,
 					amount: amount.toString(),
-					fee: fee.toString(),
-				},
-			});
+					fee: fee.toString()
+				}
+			})
+		);
 
-		const statement = this.#database
-			.prepare(`INSERT OR IGNORE INTO transaction_parts (output_hash, output_idx, amount, address)
-								VALUES (:output_hash, :output_idx, :amount, :address)`);
 		for (const vout of vouts) {
-			statement.run({
-				output_hash: transaction.txid,
-				output_idx: vout.idx,
-				amount: vout.amount,
-				address: JSON.stringify(vout.addresses),
-			});
-			await this.#prisma.transaction_parts.create({
-				data: {
-					output_hash: transaction.txid,
-					output_idx: vout.idx,
-					amount: vout.amount.toString(),
-					address: JSON.stringify(vout.addresses),
-				},
-			});
+			updateQueries.push(
+				this.#prisma.transactionPart.create({
+					data: {
+						output_hash: transaction.txid,
+						output_idx: vout.idx,
+						amount: vout.amount.toString(),
+						address: JSON.stringify(vout.addresses)
+					}
+				})
+			);
 		}
 
-
-		const updateStatement = this.#database.prepare(`UPDATE transaction_parts
-								SET input_hash = :input_hash,
-										input_idx  = :input_idx
-								WHERE output_hash = :output_hash
-									AND output_idx = :output_idx`);
 		for (let i = 0; i < vIns.length; i++) {
 			const vIn = vIns[i];
-			updateStatement.run({
-				input_hash: transaction.txid,
-				input_idx: i,
-				output_hash: vIn.txid,
-				output_idx: vIn.vout,
-			});
+			updateQueries.push(
+				this.#prisma.transactionPart.update({
+					where: {
+						output_hash_output_idx: {
+							output_hash: vIn.txid,
+							output_idx: vIn.vout
+						},
+					},
+					data: {
+						input_hash: transaction.txid,
+						input_idx: i
+					}
+				})
+			);
 		}
-	}
-
-	/**
-	 * Migrates the database to prepare it for use.
-	 *
-	 * @private
-	 * @memberof Database
-	 */
-	private migrate(): void {
-		this.#database.exec(`
-			PRAGMA journal_mode = WAL;
-			PRAGMA foreign_keys = ON;
-
-
-			CREATE TABLE IF NOT EXISTS blocks(
-				hash     VARCHAR(64)   PRIMARY KEY,
-				height   INTEGER       NOT NULL
-			);
-			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
-			CREATE UNIQUE INDEX IF NOT EXISTS blocks_height ON blocks (height);
-
-			CREATE TABLE IF NOT EXISTS transactions(
-				hash     VARCHAR(64)   PRIMARY KEY,
-				time     INTEGER       NOT NULL,
-				amount   INTEGER       NOT NULL,
-				fee      INTEGER       NOT NULL
-			);
-			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
-
-
-			CREATE TABLE IF NOT EXISTS transaction_parts(
-				output_hash       VARCHAR(64)   NOT NULL,
-				output_idx        INTEGER       NOT NULL,
-				input_hash        VARCHAR(64),
-				input_idx         INTEGER,
-				amount            INTEGER       NOT NULL,
-				address           VARCHAR(64),
-				PRIMARY KEY (output_hash, output_idx),
-				FOREIGN KEY (output_hash) REFERENCES transactions(hash)
-			);
-			CREATE UNIQUE INDEX IF NOT EXISTS transaction_output_hash_index ON transaction_parts (output_hash, output_idx);
-			CREATE UNIQUE INDEX IF NOT EXISTS transaction_input_hash_index ON transaction_parts (input_hash, input_idx);
-
-
-			CREATE TABLE IF NOT EXISTS errors(
-				id     INTEGER       PRIMARY KEY AUTOINCREMENT,
-				type   VARCHAR(64)   NOT NULL,
-				hash   VARCHAR(64)   NOT NULL,
-				body   TEXT          NOT NULL
-			);
-		`);
+		return updateQueries;
 	}
 }

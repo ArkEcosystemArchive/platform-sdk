@@ -24,7 +24,7 @@ export const getFees = (transaction, vouts): BigNumber => {
 		return BigNumber.ZERO;
 	}
 
-	const outputAmount = getAmount(transaction);
+	const outputAmount: BigNumber = getAmount(transaction);
 	const inputAmount: BigNumber = transaction.vin
 		.filter((vin) => vin.txid !== undefined && vin.vout !== undefined)
 		.reduce((c: BigNumber, vin) => c.plus(vouts[vin.txid + vin.vout]), BigNumber.ZERO);

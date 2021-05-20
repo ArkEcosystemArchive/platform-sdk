@@ -7,36 +7,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model blocks {
+model Block {
   hash   String @id
   height Int    @unique
 }
 
-model errors {
-  id    Int    @id @default(autoincrement())
-  title String
-  hash  String
-  body  String
-}
-
-model transactions {
+model Transaction {
   hash              String              @id
   time              Int
   amount            String
   fee               String
-  transaction_parts transaction_parts[]
+  transaction_parts TransactionPart[]
 }
 
-model transaction_parts {
+model TransactionPart {
   output_hash  String
   output_idx   Int
   input_hash   String?
   input_idx    Int?
   amount       String
   address      Json?
-  transactions transactions @relation(fields: [output_hash], references: [hash])
-
+  transaction Transaction @relation(fields: [output_hash], references: [hash])
   @@id([output_hash, output_idx])
   @@unique([input_hash, input_idx], name: "transaction_input_hash_index")
-  @@unique([output_hash, output_idx], name: "transaction_output_hash_index")
 }
