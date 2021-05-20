@@ -17,23 +17,19 @@ export type CoinTransactionTypes =
 
 export type ExpirationType = "height" | "timestamp";
 
-export interface DerivationMethodBehaviour {
-	import: boolean;
-	readOnly: boolean;
-	sign: boolean;
-}
+export type DerivationMethod = Partial<[
+	"bip39",
+	"bip44",
+	"bip49",
+	"bip84",
+]>;
 
-export interface DerivationMethods {
-	address: DerivationMethodBehaviour;
-	bip38: DerivationMethodBehaviour;
-	bip39: DerivationMethodBehaviour;
-	bip44: DerivationMethodBehaviour;
-	bip49: DerivationMethodBehaviour;
-	bip84: DerivationMethodBehaviour;
-	privateKey: DerivationMethodBehaviour;
-	secret: DerivationMethodBehaviour;
-	wif: DerivationMethodBehaviour;
-}
+export type ImportMethod = DerivationMethod & Partial<[
+	"bip38",
+	"privateKey",
+	"secret",
+	"wif",
+]>;
 
 export interface NetworkFeatureFlags {
 	Client?: {
@@ -195,6 +191,7 @@ export interface NetworkManifest {
 	featureFlags: NetworkFeatureFlags;
 	// @TODO: we could replace this with kebabCase(Object.keys(FeatureFlags.Transaction))
 	transactionTypes: CoinTransactionTypes[];
+	importMethods: ImportMethod;
 	knownWallets?: string;
 	meta?: KeyValuePair;
 }
