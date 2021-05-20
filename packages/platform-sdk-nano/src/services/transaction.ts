@@ -27,7 +27,11 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory.signingKey");
+			throw new Exceptions.MissingArgument(
+				this.constructor.name,
+				this.transfer.name,
+				"input.signatory.signingKey",
+			);
 		}
 
 		const { address, privateKey } = deriveAccount(input.signatory.signingKey());
