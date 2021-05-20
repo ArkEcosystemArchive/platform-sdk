@@ -246,23 +246,23 @@ export class TransactionService implements Contracts.TransactionService {
 			const transaction = Transactions.BuilderFactory[type]().version(2);
 
 			if (input.signatory.actsWithSenderPublicKey()) {
-				address = input.signatory.identifier();
+				address = input.signatory.address();
 
 				transaction.senderPublicKey(input.signatory.signingKey());
 			}
 
 			if (input.signatory.actsWithSignature()) {
-				address = await this.#identity.address().fromPublicKey(input.signatory.identifier());
+				address = await this.#identity.address().fromPublicKey(input.signatory.publicKey());
 
-				transaction.senderPublicKey(input.signatory.identifier());
+				transaction.senderPublicKey(input.signatory.publicKey());
 			}
 
 			if (input.nonce) {
 				transaction.nonce(input.nonce);
 			} else {
-				const body: any = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
+				const { data } = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
 
-				transaction.nonce(BigNumber.make(body.data.nonce).plus(1).toFixed());
+				transaction.nonce(BigNumber.make(data.nonce).plus(1).toFixed());
 			}
 
 			if (input.data && input.data.amount) {
@@ -278,6 +278,7 @@ export class TransactionService implements Contracts.TransactionService {
 			} else {
 				try {
 					const estimatedExpiration = await this.estimateExpiration();
+
 					if (estimatedExpiration) {
 						transaction.expiration(parseInt(estimatedExpiration));
 					}

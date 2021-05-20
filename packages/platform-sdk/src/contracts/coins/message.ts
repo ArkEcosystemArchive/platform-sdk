@@ -1,3 +1,5 @@
+import { Signatory } from "../../signatories/signatory";
+
 export interface MessageService {
 	__destruct(): Promise<void>;
 
@@ -15,6 +17,5 @@ export interface SignedMessage {
 
 export interface MessageInput {
 	message: string;
-	mnemonic?: string;
-	wif?: string;
+	signatory: Signatory;
 }

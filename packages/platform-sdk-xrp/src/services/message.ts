@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39, Buffoon } from "@arkecosystem/platform-sdk-crypto";
+import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService implements Contracts.MessageService {
@@ -12,12 +12,8 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		if (input.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "sign", "mnemonic");
-		}
-
 		try {
-			const { publicKey, privateKey } = deriveKeypair(BIP39.normalize(input.mnemonic));
+			const { publicKey, privateKey } = deriveKeypair(input.signatory.signingKey());
 
 			return {
 				message: input.message,

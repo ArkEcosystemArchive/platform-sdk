@@ -1,5 +1,5 @@
-import { AbstractSignatory } from "./abstract-signatory";
+import { AbstractValueSignatory } from "./abstract-value-signatory";
 
-export class SenderPublicKeySignatory extends AbstractSignatory {
+export class SenderPublicKeySignatory extends AbstractValueSignatory {
 	//
 }

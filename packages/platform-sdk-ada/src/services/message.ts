@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Ed25519Signature, PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { deriveRootKey } from "./identity/shelley";
@@ -14,12 +13,8 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		if (input.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "sign", "mnemonic");
-		}
-
 		try {
-			const privateKey = deriveRootKey(BIP39.normalize(input.mnemonic));
+			const privateKey = deriveRootKey(input.signatory.signingKey());
 
 			return {
 				message: input.message,

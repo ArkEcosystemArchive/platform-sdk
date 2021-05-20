@@ -3,8 +3,8 @@ import "jest-extended";
 import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
+import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
-import { identity } from "../../test/identity";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
@@ -23,7 +23,12 @@ describe("TransactionService", function () {
 
 		const result = await subject.transfer({
 			signatory: new Signatories.Signatory(
-				new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+				new Signatories.MnemonicSignatory({
+					signingKey: identity.mnemonic,
+					address: identity.address,
+					publicKey: identity.publicKey,
+					privateKey: identity.privateKey,
+				}),
 			),
 			data: {
 				to: "TEre3kN6JdPzqCNpiZT8JWM4kt8iGrg1Rm",
