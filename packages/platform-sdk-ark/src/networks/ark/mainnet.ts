@@ -114,22 +114,8 @@ const network: Coins.NetworkManifest = {
 			memo: true,
 		},
 		Derivation: {
-			bip38: {
-				import: true,
-				sign: true,
-			},
-			bip39: {
-				import: true,
-				sign: true,
-			},
-			bip44: {
-				import: true,
-				sign: true,
-			},
-			wif: {
-				import: true,
-				sign: true,
-			},
+			bip39: true,
+			bip44: true,
 		},
 		Internal: {
 			fastDelegateSync: true,
