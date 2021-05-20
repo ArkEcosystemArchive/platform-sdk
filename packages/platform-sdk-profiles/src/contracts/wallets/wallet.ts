@@ -429,6 +429,14 @@ export interface IReadWriteWallet {
 	peer(): Contracts.PeerService;
 
 	/**
+	 * Get the signatory service instance.
+	 *
+	 * @return {Contracts.SignatoryService}
+	 * @memberof IReadWriteWallet
+	 */
+	signatory(): Contracts.SignatoryService;
+
+	/**
 	 * Get the transaction service instance.
 	 *
 	 * @return {ITransactionService}
