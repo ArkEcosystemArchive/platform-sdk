@@ -90,6 +90,10 @@ export class Environment {
 	public async persist(): Promise<void> {
 		const storage: Storage = container.get<Storage>(Identifiers.Storage);
 
+		for (const profile of this.profiles().values()) {
+			this.profiles().persist(profile);
+		}
+
 		await storage.set("profiles", this.profiles().toObject());
 
 		await storage.set("data", this.data().all());

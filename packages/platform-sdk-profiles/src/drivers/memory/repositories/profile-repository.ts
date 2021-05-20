@@ -80,7 +80,7 @@ export class ProfileRepository implements IProfileRepository {
 		this.push(result);
 
 		new ProfileInitialiser(result).initialise(name);
-		result.getAttributes().set("data", new ProfileExporter(result).export());
+		this.persist(result);
 		result.status().markAsRestored();
 
 		return result;
