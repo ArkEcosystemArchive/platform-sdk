@@ -16,7 +16,12 @@ describe("Core", () => {
 		it.skip("should verify", async () => {
 			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: identity.address,
+						publicKey: identity.publicKey,
+						privateKey: identity.privateKey,
+					}),
 				),
 				data: {
 					amount: "1",

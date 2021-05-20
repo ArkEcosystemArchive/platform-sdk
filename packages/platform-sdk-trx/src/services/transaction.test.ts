@@ -23,7 +23,12 @@ describe("TransactionService", function () {
 
 		const result = await subject.transfer({
 			signatory: new Signatories.Signatory(
-				new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+				new Signatories.MnemonicSignatory({
+					signingKey: identity.mnemonic,
+					address: identity.address,
+					publicKey: identity.publicKey,
+					privateKey: identity.privateKey,
+				}),
 			),
 			data: {
 				to: "TEre3kN6JdPzqCNpiZT8JWM4kt8iGrg1Rm",

@@ -25,7 +25,12 @@ describe("TransactionService", () => {
 
 			const result: any = await subject.transfer({
 				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory(identity.mnemonic, identity.address),
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: identity.address,
+						publicKey: identity.publicKey,
+						privateKey: identity.privateKey,
+					}),
 				),
 				data: {
 					amount: "10000000",
