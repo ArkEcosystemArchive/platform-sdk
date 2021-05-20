@@ -6,11 +6,7 @@ export interface SignatoryService {
 
 	mnemonic(mnemonic: string, options?: IdentityOptions): Promise<Signatory>;
 
-	secondaryMnemonic(
-		primary: string,
-		secondary: string,
-		options?: IdentityOptions,
-	): Promise<Signatory>;
+	secondaryMnemonic(primary: string, secondary: string, options?: IdentityOptions): Promise<Signatory>;
 
 	multiMnemonic(mnemonics: string[]): Promise<Signatory>;
 
