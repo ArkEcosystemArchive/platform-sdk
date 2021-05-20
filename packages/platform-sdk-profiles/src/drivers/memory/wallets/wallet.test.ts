@@ -203,6 +203,10 @@ it("should have a peer service", () => {
 	expect(subject.peer()).toBeObject();
 });
 
+it("should have a signatory service", () => {
+	expect(subject.signatory()).toBeObject();
+});
+
 it("should have a list of supported transaction types", () => {
 	expect(subject.transactionTypes()).toBeArray();
 });
