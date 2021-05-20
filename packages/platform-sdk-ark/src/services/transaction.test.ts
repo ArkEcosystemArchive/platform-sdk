@@ -54,7 +54,8 @@ describe("Core", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.SignatureSignatory({
-						signingKey: "678f44d24bf1bd08198467102c835bc6973fcfee064fef9ab578b350e8656acabf91d20c83d8745c2d76e3c898ebbabed84aba8786386e13d35e507f991239d6",
+						signingKey:
+							"678f44d24bf1bd08198467102c835bc6973fcfee064fef9ab578b350e8656acabf91d20c83d8745c2d76e3c898ebbabed84aba8786386e13d35e507f991239d6",
 						address: "address",
 						publicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
 					}),
