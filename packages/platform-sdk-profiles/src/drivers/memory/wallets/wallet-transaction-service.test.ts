@@ -126,7 +126,12 @@ describe("signatures", () => {
 		await subject.addSignature(
 			"a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
 			new Signatories.Signatory(
-				new MnemonicSignatory("this is a top secret passphrase 1", "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"),
+				new MnemonicSignatory({
+					signingKey: "this is a top secret passphrase",
+					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					publicKey: "publicKey",
+					privateKey: "privateKey",
+				}),
 			),
 		);
 
