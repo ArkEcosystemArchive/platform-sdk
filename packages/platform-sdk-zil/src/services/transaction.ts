@@ -42,7 +42,7 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		if (input.signatory.signingKey() === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "sign.mnemonic");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory.signingKey");
 		}
 
 		const address = this.#zilliqa.wallet.addByMnemonic(input.signatory.signingKey());

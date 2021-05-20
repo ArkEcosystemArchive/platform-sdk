@@ -61,7 +61,7 @@ const network: Coins.NetworkManifest = {
 			verify: true,
 		},
 		Transaction: {
-			transfer: true,
+			transfer: { default: true },
 		},
 		Derivation: {
 			bip39: true,

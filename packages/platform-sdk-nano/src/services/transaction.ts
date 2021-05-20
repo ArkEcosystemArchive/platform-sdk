@@ -26,16 +26,15 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (!input.sign.mnemonic) {
-			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "sign.mnemonic");
+		if (input.signatory.signingKey() === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory.signingKey");
 		}
 
-		const { address, privateKey } = deriveAccount(input.sign.mnemonic);
+		const { address, privateKey } = deriveAccount(input.signatory.signingKey());
 		const { balance, representative, frontier } = await this.#client.accountInfo(address, { representative: true });
 
 		const data = {
 			walletBalanceRaw: balance,
-			fromAddress: address,
 			fromAddress: input.signatory.address(),
 			toAddress: input.data.to,
 			representativeAddress: representative,
