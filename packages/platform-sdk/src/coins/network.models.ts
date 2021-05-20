@@ -17,8 +17,23 @@ export type CoinTransactionTypes =
 
 export type ExpirationType = "height" | "timestamp";
 
-export type DerivationMethod = ["bip39", "bip44", "bip49", "bip84"];
-export interface DerivationMethodBehaviour { sign?: boolean; import?: boolean; }
+export interface DerivationMethodBehaviour {
+	import: boolean;
+	readOnly: boolean;
+	sign: boolean;
+}
+
+export interface DerivationMethods {
+	address: DerivationMethodBehaviour;
+	bip38: DerivationMethodBehaviour;
+	bip39: DerivationMethodBehaviour;
+	bip44: DerivationMethodBehaviour;
+	bip49: DerivationMethodBehaviour;
+	bip84: DerivationMethodBehaviour;
+	privateKey: DerivationMethodBehaviour;
+	secret: DerivationMethodBehaviour;
+	wif: DerivationMethodBehaviour;
+}
 
 export interface NetworkFeatureFlags {
 	Client?: {
@@ -128,13 +143,7 @@ export interface NetworkFeatureFlags {
 		memo?: boolean;
 		utxo?: boolean;
 	};
-	Derivation?: {
-		bip39?: boolean;
-		bip44?: boolean;
-		bip49?: boolean;
-		bip84?: boolean;
-		secret?: boolean;
-	};
+	Derivation?: DerivationMethods;
 	Internal?: {
 		fastDelegateSync?: boolean;
 	};
