@@ -7,7 +7,7 @@ export default async () => {
 	const env: Environment = await useEnvironment();
 
 	// Create profile
-	const profile = await createProfile(env,  "ark-profile", "my-password");
+	const profile = await createProfile(env, "ark-profile", "my-password");
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
@@ -35,18 +35,12 @@ export default async () => {
 	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
 	logger.log("Wallet 2", wallet2.address(), "balance", wallet2.balance().toHuman(2));
 
-
+	// Transfer from wallet1 to wallet2
+	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
 	const transactionId = await wallet1
 		.transaction()
 		.signTransfer({
-			signatory: new Signatories.Signatory(
-				new Signatories.MnemonicSignatory({
-					signingKey: mnemonic1,
-					address: wallet1.address(),
-					publicKey: "publicKey",
-					privateKey: "privateKey",
-				}),
-			),
+			signatory,
 			data: {
 				amount: "100000000",
 				to: address2

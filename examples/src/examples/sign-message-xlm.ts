@@ -23,18 +23,12 @@ export default async () => {
 	profile.wallets().push(wallet1);
 
 	// Sign a message
+	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
 	const signedMessage = await wallet1
 		.message()
 		.sign({
 			message: "Message to sign",
-			signatory: new Signatories.Signatory(
-				new Signatories.MnemonicSignatory({
-					signingKey: mnemonic1,
-					address: wallet1.address(),
-					publicKey: "publicKey",
-					privateKey: "privateKey",
-				}),
-			),
+			signatory,
 		});
 	logger.log("signedMessage", signedMessage);
 
