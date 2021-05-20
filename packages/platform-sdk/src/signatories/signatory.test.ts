@@ -14,100 +14,118 @@ import { WIFSignatory } from "./wif";
 
 describe("MnemonicSignatory", () => {
 	test("#signingKey", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.signingKey()).toMatchInlineSnapshot(`"signingKey"`);
 	});
 
 	test("#signingKeys", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.signingKeys()).toThrow(/cannot be called/);
 	});
 
 	test("#signingList", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.signingList()).toThrow(/cannot be called/);
 	});
 
 	test("#confirmKey", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.confirmKey()).toThrow(/cannot be called/);
 	});
 
 	test("#identifier", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.identifier()).toThrow(/cannot be called/);
 	});
 
 	test("#identifiers", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.identifiers()).toThrow(/cannot be called/);
 	});
 
 	test("#address", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.address()).toMatchInlineSnapshot(`"address"`);
 	});
 
 	test("#publicKey", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.publicKey()).toMatchInlineSnapshot(`"publicKey"`);
 	});
 
 	test("#privateKey", () => {
-		const subject = new Signatory(new MnemonicSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new MnemonicSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.privateKey()).toMatchInlineSnapshot(`"privateKey"`);
 	});
@@ -179,109 +197,127 @@ describe("MultiMnemonicSignatory", () => {
 
 describe("SecondaryMnemonicSignatory", () => {
 	test("#signingKey", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.signingKey()).toMatchInlineSnapshot(`"signingKey"`);
 	});
 
 	test("#signingKeys", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.signingKeys()).toThrow(/cannot be called/);
 	});
 
 	test("#signingList", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.signingList()).toThrow(/cannot be called/);
 	});
 
 	test("#confirmKey", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.confirmKey()).toMatchInlineSnapshot(`"confirmKey"`);
 	});
 
 	test("#identifier", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.identifier()).toThrow(/cannot be called/);
 	});
 
 	test("#identifiers", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.identifiers()).toThrow(/cannot be called/);
 	});
 
 	test("#address", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.address()).toMatchInlineSnapshot(`"address"`);
 	});
 
 	test("#publicKey", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.publicKey()).toMatchInlineSnapshot(`"publicKey"`);
 	});
 
 	test("#privateKey", () => {
-		const subject = new Signatory(new SecondaryMnemonicSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryMnemonicSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.privateKey()).toMatchInlineSnapshot(`"privateKey"`);
 	});
@@ -289,100 +325,118 @@ describe("SecondaryMnemonicSignatory", () => {
 
 describe("WIFSignatory", () => {
 	test("#signingKey", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.signingKey()).toMatchInlineSnapshot(`"signingKey"`);
 	});
 
 	test("#signingKeys", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.signingKeys()).toThrow(/cannot be called/);
 	});
 
 	test("#signingList", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.signingList()).toThrow(/cannot be called/);
 	});
 
 	test("#confirmKey", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.confirmKey()).toThrow(/cannot be called/);
 	});
 
 	test("#identifier", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.identifier()).toThrow(/cannot be called/);
 	});
 
 	test("#identifiers", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.identifiers()).toThrow(/cannot be called/);
 	});
 
 	test("#address", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.address()).toMatchInlineSnapshot(`"address"`);
 	});
 
 	test("#publicKey", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.publicKey()).toMatchInlineSnapshot(`"publicKey"`);
 	});
 
 	test("#privateKey", () => {
-		const subject = new Signatory(new WIFSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new WIFSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.privateKey()).toMatchInlineSnapshot(`"privateKey"`);
 	});
@@ -390,109 +444,127 @@ describe("WIFSignatory", () => {
 
 describe("SecondaryWIFSignatory", () => {
 	test("#signingKey", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.signingKey()).toMatchInlineSnapshot(`"signingKey"`);
 	});
 
 	test("#signingKeys", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.signingKeys()).toThrow(/cannot be called/);
 	});
 
 	test("#signingList", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.signingList()).toThrow(/cannot be called/);
 	});
 
 	test("#confirmKey", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.confirmKey()).toMatchInlineSnapshot(`"confirmKey"`);
 	});
 
 	test("#identifier", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.identifier()).toThrow(/cannot be called/);
 	});
 
 	test("#identifiers", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(() => subject.identifiers()).toThrow(/cannot be called/);
 	});
 
 	test("#address", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.address()).toMatchInlineSnapshot(`"address"`);
 	});
 
 	test("#publicKey", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.publicKey()).toMatchInlineSnapshot(`"publicKey"`);
 	});
 
 	test("#privateKey", () => {
-		const subject = new Signatory(new SecondaryWIFSignatory({
-			signingKey: "signingKey",
-			confirmKey: "confirmKey",
-			address: "address",
-			publicKey: "publicKey",
-			privateKey: "privateKey",
-		}));
+		const subject = new Signatory(
+			new SecondaryWIFSignatory({
+				signingKey: "signingKey",
+				confirmKey: "confirmKey",
+				address: "address",
+				publicKey: "publicKey",
+				privateKey: "privateKey",
+			}),
+		);
 
 		expect(subject.privateKey()).toMatchInlineSnapshot(`"privateKey"`);
 	});
@@ -500,82 +572,100 @@ describe("SecondaryWIFSignatory", () => {
 
 describe("PrivateKeySignatory", () => {
 	test("#signingKey", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(subject.signingKey()).toMatchInlineSnapshot(`"signingKey"`);
 	});
 
 	test("#signingKeys", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(() => subject.signingKeys()).toThrow(/cannot be called/);
 	});
 
 	test("#signingList", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(() => subject.signingList()).toThrow(/cannot be called/);
 	});
 
 	test("#confirmKey", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(() => subject.confirmKey()).toThrow(/cannot be called/);
 	});
 
 	test("#identifier", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(() => subject.identifier()).toThrow(/cannot be called/);
 	});
 
 	test("#identifiers", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(() => subject.identifiers()).toThrow(/cannot be called/);
 	});
 
 	test("#address", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(subject.address()).toMatchInlineSnapshot(`"address"`);
 	});
 
 	test("#publicKey", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(() => subject.publicKey()).toThrow(/cannot be called/);
 	});
 
 	test("#privateKey", () => {
-		const subject = new Signatory(new PrivateKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-		}));
+		const subject = new Signatory(
+			new PrivateKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+			}),
+		);
 
 		expect(subject.privateKey()).toMatchInlineSnapshot(`"signingKey"`);
 	});
@@ -583,91 +673,109 @@ describe("PrivateKeySignatory", () => {
 
 describe("SignatureSignatory", () => {
 	test("#signingKey", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(subject.signingKey()).toMatchInlineSnapshot(`"signingKey"`);
 	});
 
 	test("#signingKeys", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.signingKeys()).toThrow(/cannot be called/);
 	});
 
 	test("#signingList", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.signingList()).toThrow(/cannot be called/);
 	});
 
 	test("#confirmKey", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.confirmKey()).toThrow(/cannot be called/);
 	});
 
 	test("#identifier", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.identifier()).toThrow(/cannot be called/);
 	});
 
 	test("#identifiers", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.identifiers()).toThrow(/cannot be called/);
 	});
 
 	test("#address", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(subject.address()).toMatchInlineSnapshot(`"address"`);
 	});
 
 	test("#publicKey", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(subject.publicKey()).toMatchInlineSnapshot(`"publicKey"`);
 	});
 
 	test("#privateKey", () => {
-		const subject = new Signatory(new SignatureSignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SignatureSignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.privateKey()).toThrow(/cannot be called/);
 	});
@@ -675,91 +783,109 @@ describe("SignatureSignatory", () => {
 
 describe("SenderPublicKeySignatory", () => {
 	test("#signingKey", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(subject.signingKey()).toMatchInlineSnapshot(`"signingKey"`);
 	});
 
 	test("#signingKeys", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.signingKeys()).toThrow(/cannot be called/);
 	});
 
 	test("#signingList", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.signingList()).toThrow(/cannot be called/);
 	});
 
 	test("#confirmKey", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.confirmKey()).toThrow(/cannot be called/);
 	});
 
 	test("#identifier", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.identifier()).toThrow(/cannot be called/);
 	});
 
 	test("#identifiers", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.identifiers()).toThrow(/cannot be called/);
 	});
 
 	test("#address", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(subject.address()).toMatchInlineSnapshot(`"address"`);
 	});
 
 	test("#publicKey", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(subject.publicKey()).toMatchInlineSnapshot(`"publicKey"`);
 	});
 
 	test("#privateKey", () => {
-		const subject = new Signatory(new SenderPublicKeySignatory({
-			signingKey: "signingKey",
-			address: "address",
-			publicKey: "publicKey",
-		}));
+		const subject = new Signatory(
+			new SenderPublicKeySignatory({
+				signingKey: "signingKey",
+				address: "address",
+				publicKey: "publicKey",
+			}),
+		);
 
 		expect(() => subject.privateKey()).toThrow(/cannot be called/);
 	});
