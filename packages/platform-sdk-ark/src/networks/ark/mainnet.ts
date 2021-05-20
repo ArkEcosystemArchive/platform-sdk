@@ -134,16 +134,7 @@ const network: Coins.NetworkManifest = {
 		"transfer",
 		"vote",
 	],
-    importMethods: [
-        "bip38",
-        "bip39",
-        "bip44",
-        "bip49",
-        "bip84",
-        "privateKey",
-        "secret",
-        "wif",
-    ],
+	importMethods: ["bip38", "bip39", "bip44", "bip49", "bip84", "privateKey", "secret", "wif"],
 	knownWallets: "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json",
 };
 
