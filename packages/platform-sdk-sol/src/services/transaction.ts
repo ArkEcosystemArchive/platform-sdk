@@ -35,7 +35,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		const transaction = new Transaction();
 		transaction.recentBlockhash = (await this.#client.getRecentBlockhash()).blockhash;
-		transaction.feePayer = new PublicKey(input.signatory.identifier());
+		transaction.feePayer = new PublicKey(input.signatory.publicKey());
 
 		transaction.add(
 			SystemProgram.transfer({
@@ -53,7 +53,7 @@ export class TransactionService implements Contracts.TransactionService {
 		return new SignedTransactionData(
 			uuidv4(),
 			{
-				from: input.signatory.identifier(),
+				from: input.signatory.address(),
 				to: input.data.to,
 				amount: input.data.amount,
 			},

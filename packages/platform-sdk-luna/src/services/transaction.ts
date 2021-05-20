@@ -32,7 +32,7 @@ export class TransactionService implements Contracts.TransactionService {
 				}),
 			)
 			.createAndSignTx({
-				msgs: [new MsgSend(input.signatory.identifier(), input.data.to, { uluna: input.data.amount })],
+				msgs: [new MsgSend(input.signatory.address(), input.data.to, { uluna: input.data.amount })],
 				memo: input.data.memo,
 			});
 

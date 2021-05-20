@@ -1,6 +1,7 @@
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Contracts } from "@arkecosystem/platform-sdk-profiles";
 import prompts from "prompts";
+import { Signatories } from "../../../platform-sdk-ark/node_modules/@arkecosystem/platform-sdk/dist";
 
 import { renderLogo, useLogger } from "../helpers";
 
@@ -30,5 +31,8 @@ export const signMessage = async (wallet: Contracts.IReadWriteWallet): Promise<v
 		return;
 	}
 
-	useLogger().info(JSON.stringify(await wallet.message().sign({ message, mnemonic })));
+	useLogger().info(JSON.stringify(await wallet.message().sign({
+		message,
+		signatory: await wallet.coin().signatory().mnemonic(mnemonic),
+	})));
 };

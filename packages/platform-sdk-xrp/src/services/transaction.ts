@@ -34,10 +34,10 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			const prepared = await this.#ripple.preparePayment(
-				input.signatory.identifier(),
+				input.signatory.address(),
 				{
 					source: {
-						address: input.signatory.identifier(),
+						address: input.signatory.address(),
 						maxAmount: {
 							value: `${input.data.amount}`,
 							currency: "XRP",

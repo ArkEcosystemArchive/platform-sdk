@@ -48,9 +48,9 @@ export class TransactionService implements Contracts.TransactionService {
 		const address = this.#zilliqa.wallet.addByMnemonic(input.signatory.signingKey());
 		const { publicKey, bech32Address } = this.#zilliqa.wallet.accounts[address];
 
-		if (bech32Address !== input.signatory.identifier()) {
+		if (bech32Address !== input.signatory.address()) {
 			throw new Exceptions.Exception(
-				`Sender address (${input.signatory.identifier()}) must match signer address (${bech32Address})`,
+				`Sender address (${input.signatory.address()}) must match signer address (${bech32Address})`,
 			);
 		}
 

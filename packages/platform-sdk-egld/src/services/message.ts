@@ -12,12 +12,8 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		if (!input.mnemonic) {
-			throw new Exceptions.MissingArgument(MessageService.name, this.sign.name, "input.mnemonic");
-		}
-
 		try {
-			const privateKey = Mnemonic.fromString(input.mnemonic).deriveKey(0).hex();
+			const privateKey = Mnemonic.fromString(input.signatory.signingKey()).deriveKey(0).hex();
 
 			return {
 				message: input.message,

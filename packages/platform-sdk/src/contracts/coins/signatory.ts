@@ -1,38 +1,28 @@
 import { IdentityOptions } from "./identity";
-import {
-	MnemonicSignatory,
-	MultiMnemonicSignatory,
-	MultiSignatureSignatory,
-	PrivateKeySignatory,
-	SecondaryMnemonicSignatory,
-	SecondaryWIFSignatory,
-	SenderPublicKeySignatory,
-	SignatureSignatory,
-	WIFSignatory,
-} from "../../signatories";
+import { Signatory } from "../../signatories";
 
 export interface SignatoryService {
 	__destruct(): Promise<void>;
 
-	mnemonic(mnemonic: string, options?: IdentityOptions): Promise<MnemonicSignatory>;
+	mnemonic(mnemonic: string, options?: IdentityOptions): Promise<Signatory>;
 
 	secondaryMnemonic(
 		primary: string,
 		secondary: string,
 		options?: IdentityOptions,
-	): Promise<SecondaryMnemonicSignatory>;
+	): Promise<Signatory>;
 
-	multiMnemonic(mnemonics: string[]): Promise<MultiMnemonicSignatory>;
+	multiMnemonic(mnemonics: string[]): Promise<Signatory>;
 
-	wif(primary: string): Promise<WIFSignatory>;
+	wif(primary: string): Promise<Signatory>;
 
-	secondaryWif(primary: string, secondary: string): Promise<SecondaryWIFSignatory>;
+	secondaryWif(primary: string, secondary: string): Promise<Signatory>;
 
-	privateKey(privateKey: string, options?: IdentityOptions): Promise<PrivateKeySignatory>;
+	privateKey(privateKey: string, options?: IdentityOptions): Promise<Signatory>;
 
-	signature(signature: string, senderPublicKey: string): Promise<SignatureSignatory>;
+	signature(signature: string, senderPublicKey: string): Promise<Signatory>;
 
-	senderPublicKey(publicKey: string, options?: IdentityOptions): Promise<SenderPublicKeySignatory>;
+	senderPublicKey(publicKey: string, options?: IdentityOptions): Promise<Signatory>;
 
-	multiSignature(min: number, publicKeys: string[]): Promise<MultiSignatureSignatory>;
+	multiSignature(min: number, publicKeys: string[]): Promise<Signatory>;
 }

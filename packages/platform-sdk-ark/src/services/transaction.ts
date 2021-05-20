@@ -246,15 +246,15 @@ export class TransactionService implements Contracts.TransactionService {
 			const transaction = Transactions.BuilderFactory[type]().version(2);
 
 			if (input.signatory.actsWithSenderPublicKey()) {
-				address = input.signatory.identifier();
+				address = input.signatory.address();
 
 				transaction.senderPublicKey(input.signatory.signingKey());
 			}
 
 			if (input.signatory.actsWithSignature()) {
-				address = await this.#identity.address().fromPublicKey(input.signatory.identifier());
+				address = await this.#identity.address().fromPublicKey(input.signatory.publicKey());
 
-				transaction.senderPublicKey(input.signatory.identifier());
+				transaction.senderPublicKey(input.signatory.publicKey());
 			}
 
 			if (input.nonce) {

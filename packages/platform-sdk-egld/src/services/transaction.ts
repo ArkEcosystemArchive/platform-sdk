@@ -52,7 +52,7 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		const unsignedTransaction = {
-			sender: input.signatory.identifier(),
+			sender: input.signatory.address(),
 			receiver: input.data.to,
 			value: Balance.egld(input.data.amount),
 			gasPrice: (input.fee as unknown) as number,

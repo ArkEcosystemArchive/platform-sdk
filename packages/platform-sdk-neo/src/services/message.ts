@@ -12,12 +12,8 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		if (input.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "sign", "mnemonic");
-		}
-
 		try {
-			const mnemonic: string = BIP39.normalize(input.mnemonic);
+			const mnemonic: string = BIP39.normalize(input.signatory.signingKey());
 			const signature = Neon.sign.message(input.message, mnemonic);
 
 			return { message: input.message, signatory: new wallet.Account(mnemonic).publicKey, signature };

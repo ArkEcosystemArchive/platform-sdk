@@ -123,7 +123,7 @@ export class TransactionService implements Contracts.TransactionService {
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
 				// @TODO This doesn't make sense in Cardano, because there can be any many senders (all addresses from the same sender)
-				sender: input.signatory.identifier(),
+				sender: input.signatory.publicKey(),
 				recipient: input.data.to,
 				amount: input.data.amount,
 				fee: txBody.fee().to_str(),

@@ -1,4 +1,6 @@
 import { ForbiddenMethodCallException } from "../exceptions";
+import { AbstractDoubleSignatory } from "./abstract-double-signatory";
+import { AbstractSignatory } from "./abstract-signatory";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
 import { MultiSignature, MultiSignatureSignatory } from "./multi-signature";
@@ -30,6 +32,7 @@ export class Signatory {
 	}
 
 	public signingKey(): string {
+		// @TODO: deduplicate this
 		if (this.#signatory instanceof MultiMnemonicSignatory) {
 			throw new ForbiddenMethodCallException(this.constructor.name, "signingKey");
 		}
@@ -42,6 +45,7 @@ export class Signatory {
 	}
 
 	public signingKeys(): string[] {
+		// @TODO: deduplicate this
 		if (this.#signatory instanceof MultiMnemonicSignatory) {
 			return this.#signatory.signingKeys();
 		}
@@ -62,6 +66,7 @@ export class Signatory {
 	}
 
 	public confirmKey(): string {
+		// @TODO: deduplicate this
 		if (this.#signatory instanceof SecondaryMnemonicSignatory) {
 			return this.#signatory.confirmKey();
 		}
@@ -74,15 +79,11 @@ export class Signatory {
 	}
 
 	public identifier(): string {
-		if (this.#signatory instanceof MultiMnemonicSignatory) {
-			throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
+		if (this.#signatory instanceof MultiSignatureSignatory) {
+			return this.#signatory.identifier()!;
 		}
 
-		if (this.#signatory instanceof PrivateMultiSignatureSignatory) {
-			throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
-		}
-
-		return this.#signatory.identifier()!;
+		throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
 	}
 
 	public identifiers(): string[] {
@@ -91,6 +92,45 @@ export class Signatory {
 		}
 
 		return this.#signatory.identifiers();
+	}
+
+	public address(): string {
+		// @TODO: deduplicate this
+		if (this.#signatory instanceof AbstractSignatory) {
+			return this.#signatory.address();
+		}
+
+		if (this.#signatory instanceof AbstractDoubleSignatory) {
+			return this.#signatory.address();
+		}
+
+		throw new ForbiddenMethodCallException(this.constructor.name, "address");
+	}
+
+	public publicKey(): string {
+		// @TODO: deduplicate this
+		if (this.#signatory instanceof AbstractSignatory) {
+			return this.#signatory.publicKey();
+		}
+
+		if (this.#signatory instanceof AbstractDoubleSignatory) {
+			return this.#signatory.publicKey();
+		}
+
+		throw new ForbiddenMethodCallException(this.constructor.name, "publicKey");
+	}
+
+	public privateKey(): string {
+		// @TODO: deduplicate this
+		if (this.#signatory instanceof AbstractSignatory) {
+			return this.#signatory.privateKey();
+		}
+
+		if (this.#signatory instanceof AbstractDoubleSignatory) {
+			return this.#signatory.privateKey();
+		}
+
+		throw new ForbiddenMethodCallException(this.constructor.name, "privateKey");
 	}
 
 	public actsWithMnemonic(): boolean {
