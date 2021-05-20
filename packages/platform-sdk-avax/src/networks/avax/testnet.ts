@@ -68,8 +68,8 @@ const network: Coins.NetworkManifest = {
 			verify: true,
 		},
 		Transaction: {
-			transfer: true,
-			vote: true,
+			transfer: { default: true },
+			vote: { default: true },
 		},
 		Miscellaneous: {
 			utxo: true,

@@ -85,11 +85,11 @@ const network: Coins.NetworkManifest = {
 			verify: true,
 		},
 		Transaction: {
-			transfer: true,
-			secondSignature: true,
-			delegateRegistration: true,
-			vote: true,
-			multiSignature: true,
+			transfer: { default: true },
+			secondSignature: { default: true },
+			delegateRegistration: { default: true },
+			vote: { default: true },
+			multiSignature: { default: true },
 		},
 		Derivation: {
 			bip39: true,
