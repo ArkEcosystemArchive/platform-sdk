@@ -27,10 +27,6 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (input.sign.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
-		}
-
 		const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit } = this.#config.get<Contracts.KeyValuePair>(
 			"network.meta",
 		);
@@ -48,7 +44,7 @@ export class TransactionService implements Contracts.TransactionService {
 		);
 
 		// Get a `Bip32PrivateKey` instance according to `CIP1852` and turn it into a `PrivateKey` instance
-		const accountKey: Bip32PrivateKey = deriveAccountKey(deriveRootKey(input.sign.mnemonic), 0);
+		const accountKey: Bip32PrivateKey = deriveAccountKey(deriveRootKey(input.signatory.signingKey()), 0);
 		const publicKey = accountKey.to_public();
 
 		// Gather all **used** spend and change addresses of the account
@@ -126,7 +122,8 @@ export class TransactionService implements Contracts.TransactionService {
 		return new SignedTransactionData(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
-				sender: input.from, // TODO This doesn't make sense in Cardano, because there can be any many senders (all addresses from the same sender)
+				// @TODO This doesn't make sense in Cardano, because there can be any many senders (all addresses from the same sender)
+				sender: input.signatory.publicKey(),
 				recipient: input.data.to,
 				amount: input.data.amount,
 				fee: txBody.fee().to_str(),

@@ -40,7 +40,6 @@ import { WalletImportFormat } from "./services/wif";
 import { IWalletImportFormat } from "../../../contracts/wallets/services/wif";
 import { MultiSignature } from "./services/multi-signature";
 import { IMultiSignature } from "../../../contracts/wallets/services/multi-signature";
-import { emitProfileChanged } from "../helpers";
 
 export class Wallet implements IReadWriteWallet {
 	readonly #profile: IProfile;
@@ -340,7 +339,7 @@ export class Wallet implements IReadWriteWallet {
 	public toggleStarred(): void {
 		this.data().set(WalletFlag.Starred, !this.isStarred());
 
-		emitProfileChanged(this.profile());
+		this.profile().status().markAsDirty();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.coinId} */
@@ -396,6 +395,11 @@ export class Wallet implements IReadWriteWallet {
 	/** {@inheritDoc IReadWriteWallet.peer} */
 	public peer(): Contracts.PeerService {
 		return this.#attributes.get<Coins.Coin>("coin").peer();
+	}
+
+	/** {@inheritDoc IReadWriteWallet.signatory} */
+	public signatory(): Contracts.SignatoryService {
+		return this.#attributes.get<Coins.Coin>("coin").signatory();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.transaction} */

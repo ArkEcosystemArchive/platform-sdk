@@ -1,5 +1,7 @@
 import "jest-extended";
 
+import { Signatories } from "@arkecosystem/platform-sdk";
+
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
 import { TransactionService } from "./transaction";
@@ -14,10 +16,14 @@ describe("TransactionService", () => {
 			const service = await TransactionService.__construct(createConfig({ network }));
 
 			const result: any = await service.transfer({
-				from: "15957226662510576840L",
-				sign: {
-					mnemonic: identity.mnemonic,
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: "15957226662510576840L",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
+				),
 				data: {
 					amount: "1",
 					to: identity.address,
@@ -31,11 +37,15 @@ describe("TransactionService", () => {
 	describe("#secondSignature", () => {
 		it("should verify", async () => {
 			const result: any = await subject.secondSignature({
-				from: "15957226662510576840L",
-				sign: {
-					mnemonic: identity.mnemonic,
-					secondMnemonic: identity.mnemonic,
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.SecondaryMnemonicSignatory({
+						signingKey: identity.mnemonic,
+						confirmKey: identity.mnemonic,
+						address: "15957226662510576840L",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
+				),
 				data: {
 					mnemonic: identity.mnemonic,
 				},
@@ -48,10 +58,14 @@ describe("TransactionService", () => {
 	describe("#delegateRegistration", () => {
 		it("should verify", async () => {
 			const result: any = await subject.delegateRegistration({
-				from: "15957226662510576840L",
-				sign: {
-					mnemonic: identity.mnemonic,
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: "15957226662510576840L",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
+				),
 				data: {
 					username: "johndoe",
 				},
@@ -64,10 +78,14 @@ describe("TransactionService", () => {
 	describe("#vote", () => {
 		it("should verify", async () => {
 			const result: any = await subject.vote({
-				from: "15957226662510576840L",
-				sign: {
-					mnemonic: identity.mnemonic,
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: "15957226662510576840L",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
+				),
 				data: {
 					votes: ["9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f"],
 					unvotes: [],
@@ -81,8 +99,14 @@ describe("TransactionService", () => {
 	describe("#multiSignature", () => {
 		it("should verify", async () => {
 			const result: any = await subject.multiSignature({
-				from: "15957226662510576840L",
-				sign: { mnemonic: identity.mnemonic },
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: "15957226662510576840L",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
+				),
 				data: {
 					publicKeys: [
 						"9d3058175acab969f41ad9b86f7a2926c74258670fe56b37c429c01fca9f2f0f",

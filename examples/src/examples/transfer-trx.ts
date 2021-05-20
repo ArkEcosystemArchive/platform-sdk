@@ -1,5 +1,6 @@
+import { Coins, Signatories } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
-import { pollTransactionStatus, createProfile, useEnvironment, useLogger } from "../helpers";
+import { createProfile, pollTransactionStatus, useEnvironment, useLogger } from "../helpers";
 
 export default async () => {
 	const logger = useLogger();
@@ -38,10 +39,9 @@ export default async () => {
 	const transactionId = await wallet1
 		.transaction()
 		.signTransfer({
-			from: wallet1.address(),
-			sign: {
-				mnemonic: mnemonic1
-			},
+			signatory: new Signatories.Signatory(
+				new Signatories.MnemonicSignatory(mnemonic1, wallet1.address()),
+			),
 			data: {
 				amount: "200000000", // 2 TRX
 				to: address2,
@@ -52,4 +52,20 @@ export default async () => {
 
 	await wallet1.transaction().broadcast(transactionId);
 	await pollTransactionStatus(transactionId, wallet1);
+
+	// Show transactions
+	const transactions: Coins.TransactionDataCollection = await wallet1
+		.client()
+		.transactions({address: wallet1.address()});
+
+	logger.log(`Found ${transactions.items().length}`)
+	for (const transaction of transactions.items()) {
+		logger.log([
+			transaction.id(),
+			transaction.sender(),
+			transaction.recipient(),
+			transaction.amount().toHuman(),
+			transaction.fee().toHuman(),
+		]);
+	}
 };

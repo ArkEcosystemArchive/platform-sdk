@@ -38,16 +38,16 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			if (!input.sign.mnemonic) {
+			if (input.signatory.signingKey() === undefined) {
 				throw new Error("No mnemonic provided.");
 			}
 
 			// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of mnemonic
-			const mnemonic: string = BIP39.normalize(input.sign.mnemonic);
+			const mnemonic: string = BIP39.normalize(input.signatory.signingKey());
 
 			// 1. Derive the sender address
 			const senderAddress: string = await this.#identity.address().fromWIF(mnemonic);
-			// ({ wif: input.sign.mnemonic });
+			// ({ wif: input.signatory.signingKey() });
 
 			// 2. Aggregate the unspent transactions
 			const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);

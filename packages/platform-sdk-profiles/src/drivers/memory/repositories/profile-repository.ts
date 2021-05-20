@@ -80,8 +80,10 @@ export class ProfileRepository implements IProfileRepository {
 		this.push(result);
 
 		new ProfileInitialiser(result).initialise(name);
-		result.getAttributes().set("data", new ProfileExporter(result).export());
+
 		result.status().markAsRestored();
+
+		this.persist(result);
 
 		return result;
 	}
@@ -115,6 +117,22 @@ export class ProfileRepository implements IProfileRepository {
 	/** {@inheritDoc IProfileRepository.dump} */
 	public dump(profile: IProfile): IProfileInput {
 		return new ProfileDumper(profile).dump();
+	}
+
+	/** {@inheritDoc IProfileRepository.persist} */
+	public persist(profile: IProfile): void {
+		/* istanbul ignore next */
+		if (!profile.status().isRestored()) {
+			return;
+		}
+
+		if (profile.usesPassword() && profile.password().exists()) {
+			profile.getAttributes().set("data", new ProfileExporter(profile).export(profile.password().get()));
+		}
+
+		if (!profile.usesPassword()) {
+			profile.getAttributes().set("data", new ProfileExporter(profile).export());
+		}
 	}
 
 	/** {@inheritDoc IProfileRepository.has} */

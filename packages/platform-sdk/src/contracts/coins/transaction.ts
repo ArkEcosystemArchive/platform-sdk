@@ -1,3 +1,4 @@
+import { Signatory } from "../../signatories";
 import { RawTransactionData, SignedTransactionData } from "./data";
 
 export interface TransactionService {
@@ -31,21 +32,7 @@ export interface TransactionInput {
 	fee?: string;
 	feeLimit?: string;
 	nonce?: string;
-	from: string;
-	sign: {
-		mnemonic?: string;
-		mnemonics?: string[];
-		secondMnemonic?: string;
-		wif?: string;
-		secondWif?: string;
-		privateKey?: string;
-		multiSignature?: {
-			min: number;
-			publicKeys: string[];
-		};
-		senderPublicKey?: string;
-		signature?: string;
-	};
+	signatory: Signatory;
 	contract?: {
 		address: string;
 	};
@@ -149,4 +136,6 @@ export interface EntityUpdateInput extends TransactionInput {
 	};
 }
 
-export type TransactionInputs = Record<string, any>;
+export type TransactionInputs = Record<string, any> & {
+	signatory: Signatory;
+};

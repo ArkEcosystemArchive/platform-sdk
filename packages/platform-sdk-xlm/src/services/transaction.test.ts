@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
@@ -23,10 +24,14 @@ describe("TransactionService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
 			const result: any = await subject.transfer({
-				from: identity.address,
-				sign: {
-					mnemonic: identity.mnemonic,
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: identity.address,
+						publicKey: identity.publicKey,
+						privateKey: identity.privateKey,
+					}),
+				),
 				data: {
 					amount: "10000000",
 					to: identity.address,

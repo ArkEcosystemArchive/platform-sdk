@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
@@ -32,12 +33,16 @@ describe("TransactionService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/transaction/expiration.json`));
 
 			const result = await subject.transfer({
-				from:
-					"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
-				sign: {
-					mnemonic:
-						"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
-				},
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory({
+						signingKey:
+							"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
+						address:
+							"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
+				),
 				data: {
 					amount: "1000000",
 					to:
@@ -47,24 +52,6 @@ describe("TransactionService", () => {
 
 			expect(result).toBeInstanceOf(SignedTransactionData);
 			expect(result.id()).toBe("e2e75b04c4b1dc4d4b3db14166fb02cb26f5b9ed3c49b1e1c8379a21502dc77c");
-		});
-		it("no mnemonic", async () => {
-			await expect(
-				subject.transfer({
-					from:
-						"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
-					sign: {
-						mnemonic: undefined,
-					},
-					data: {
-						amount: "1000000",
-						to:
-							"addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
-					},
-				}),
-			).rejects.toThrow(
-				"Method TransactionService#transfer expects the argument [sign.mnemonic] but it was not given",
-			);
 		});
 	});
 });

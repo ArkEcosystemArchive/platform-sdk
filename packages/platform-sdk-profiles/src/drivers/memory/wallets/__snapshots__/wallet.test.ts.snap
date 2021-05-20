@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should have a network 1`] = `
+Object {
+  "coin": "ARK",
+  "crypto": Object {
+    "expirationType": "height",
+    "signingMethods": Object {
+      "mnemonic": true,
+      "wif": true,
+    },
+    "slip44": 1,
+  },
+  "currency": Object {
+    "symbol": "DѦ",
+    "ticker": "DARK",
+  },
+  "explorer": "https://dexplorer.ark.io/",
+  "featureFlags": Object {
+    "Client": Object {
+      "broadcast": true,
+      "configuration": true,
+      "delegate": true,
+      "delegates": true,
+      "fees": true,
+      "syncing": true,
+      "transaction": true,
+      "transactions": true,
+      "voters": true,
+      "votes": true,
+      "wallet": true,
+      "wallets": true,
+    },
+    "Derivation": Object {
+      "bip39": true,
+      "bip44": true,
+    },
+    "Fee": Object {
+      "all": true,
+    },
+    "Identity": Object {
+      "address": Object {
+        "mnemonic": true,
+        "multiSignature": true,
+        "privateKey": true,
+        "publicKey": true,
+        "wif": true,
+      },
+      "keyPair": Object {
+        "mnemonic": true,
+        "privateKey": false,
+        "wif": true,
+      },
+      "privateKey": Object {
+        "mnemonic": true,
+        "wif": true,
+      },
+      "publicKey": Object {
+        "mnemonic": true,
+        "multiSignature": true,
+        "wif": true,
+      },
+      "wif": Object {
+        "mnemonic": true,
+      },
+    },
+    "Internal": Object {
+      "fastDelegateSync": true,
+    },
+    "Ledger": Object {
+      "getPublicKey": true,
+      "getVersion": true,
+      "signMessage": true,
+      "signTransaction": true,
+    },
+    "Link": Object {
+      "block": true,
+      "transaction": true,
+      "wallet": true,
+    },
+    "Message": Object {
+      "sign": true,
+      "verify": true,
+    },
+    "Miscellaneous": Object {
+      "dynamicFees": true,
+      "memo": true,
+    },
+    "Peer": Object {
+      "search": true,
+    },
+    "Transaction": Object {
+      "delegateRegistration": Object {
+        "default": true,
+      },
+      "delegateResignation": Object {
+        "default": true,
+      },
+      "htlcClaim": Object {
+        "default": true,
+      },
+      "htlcLock": Object {
+        "default": true,
+      },
+      "htlcRefund": Object {
+        "default": true,
+      },
+      "ipfs": Object {
+        "default": true,
+      },
+      "multiPayment": Object {
+        "default": true,
+      },
+      "multiSignature": Object {
+        "default": true,
+      },
+      "secondSignature": Object {
+        "default": true,
+      },
+      "transfer": Object {
+        "default": true,
+      },
+      "vote": Object {
+        "default": true,
+      },
+    },
+  },
+  "fees": Object {
+    "ticker": "DARK",
+    "type": "dynamic",
+  },
+  "governance": Object {
+    "voting": Object {
+      "delegateCount": 51,
+      "enabled": true,
+      "maximumPerTransaction": 1,
+      "maximumPerWallet": 1,
+    },
+  },
+  "id": "ark.devnet",
+  "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",
+  "name": "Devnet",
+  "networking": Object {
+    "hosts": Array [
+      "https://dwallets.ark.io",
+    ],
+    "hostsMultiSignature": Array [
+      "https://dmusig1.ark.io",
+    ],
+  },
+  "transactionTypes": Array [
+    "delegate-registration",
+    "delegate-resignation",
+    "htlc-claim",
+    "htlc-lock",
+    "htlc-refund",
+    "ipfs",
+    "multi-payment",
+    "multi-signature",
+    "second-signature",
+    "transfer",
+    "vote",
+  ],
+  "type": "test",
+}
+`;

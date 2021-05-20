@@ -1,5 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39, Buffoon } from "@arkecosystem/platform-sdk-crypto";
+import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 
@@ -13,12 +13,8 @@ export class MessageService implements Contracts.MessageService {
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
-		if (input.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "sign", "mnemonic");
-		}
-
 		try {
-			const privateKey: string = StellarHDWallet.fromMnemonic(BIP39.normalize(input.mnemonic)).getSecret(0);
+			const privateKey: string = StellarHDWallet.fromMnemonic(input.signatory.signingKey()).getSecret(0);
 			const source = Stellar.Keypair.fromSecret(privateKey);
 
 			return {

@@ -99,7 +99,7 @@ it("should have a coin", () => {
 });
 
 it("should have a network", () => {
-	expect(subject.network().toObject()).toEqual(require("../../../../test/fixtures/network.json").default);
+	expect(subject.network().toObject()).toMatchSnapshot();
 });
 
 it("should have an address", () => {
@@ -201,6 +201,10 @@ it("should have a message service", () => {
 
 it("should have a peer service", () => {
 	expect(subject.peer()).toBeObject();
+});
+
+it("should have a signatory service", () => {
+	expect(subject.signatory()).toBeObject();
 });
 
 it("should have a list of supported transaction types", () => {

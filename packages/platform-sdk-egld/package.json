@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-egld",
-	"version": "7.0.39",
+	"version": "8.0.4",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -31,7 +31,8 @@
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@elrondnetwork/elrond-core-js": "^2.1.0",
 		"@elrondnetwork/erdjs": "^4.1.0",
-		"bech32": "^2.0.0"
+		"bech32": "^2.0.0",
+		"noble-ed25519": "~1.2.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",

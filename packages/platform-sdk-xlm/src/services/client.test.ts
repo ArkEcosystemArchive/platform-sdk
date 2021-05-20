@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { Signatories } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
@@ -106,10 +107,14 @@ describe("ClientService", function () {
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
-					from: identity.address,
-					sign: {
-						mnemonic: identity.mnemonic,
-					},
+					signatory: new Signatories.Signatory(
+						new Signatories.MnemonicSignatory({
+							signingKey: identity.mnemonic,
+							address: identity.address,
+							publicKey: identity.publicKey,
+							privateKey: identity.privateKey,
+						}),
+					),
 					data: {
 						amount: "10000000",
 						to: identity.address,
@@ -139,10 +144,14 @@ describe("ClientService", function () {
 
 			const result = await subject.broadcast([
 				await transactionService.transfer({
-					from: identity.address,
-					sign: {
-						mnemonic: identity.mnemonic,
-					},
+					signatory: new Signatories.Signatory(
+						new Signatories.MnemonicSignatory({
+							signingKey: identity.mnemonic,
+							address: identity.address,
+							publicKey: identity.publicKey,
+							privateKey: identity.privateKey,
+						}),
+					),
 					data: {
 						amount: "10000000",
 						to: identity.address,
@@ -150,16 +159,9 @@ describe("ClientService", function () {
 				}),
 			]);
 
-			const fakeId =
-				"AAAAAA9yI2GpXBGeyxcmlQjTXj1WTUyMbWepr30XQXybeP2yAAAAZAADEzQAAAAFAAAAAQAAAAAAAAAAAAAAAF66HwoAAAAAAAAAAQAAAAAAAAABAAAAAHVeJ/ac1LQ3rtwfQEBOWtCKLSzZTnBD5iQ6Q/dhveHPAAAAAAAAWvMQekAAAAAAAAAAAAGbeP2yAAAAQBiWYaTm27ZWFOCYpIljljVEK24tVewGm2YtcsUVWGgeZ5VrtXzI5dYizy4/T1T/R1nKb4TItHxj+4th0/9NmQw=";
-
-			expect(result).toEqual({
-				accepted: [],
-				rejected: [fakeId],
-				errors: {
-					[fakeId]: ["ERR_INSUFFICIENT_FUNDS"],
-				},
-			});
+			expect(result.accepted).toMatchObject([]);
+			expect(result.rejected[0]).toBeString();
+			expect(result.errors[result.rejected[0]]).toMatchObject(["ERR_INSUFFICIENT_FUNDS"]);
 		});
 	});
 });

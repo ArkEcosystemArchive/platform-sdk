@@ -30,5 +30,12 @@ export const signMessage = async (wallet: Contracts.IReadWriteWallet): Promise<v
 		return;
 	}
 
-	useLogger().info(JSON.stringify(await wallet.message().sign({ message, mnemonic })));
+	useLogger().info(
+		JSON.stringify(
+			await wallet.message().sign({
+				message,
+				signatory: await wallet.coin().signatory().mnemonic(mnemonic),
+			}),
+		),
+	);
 };

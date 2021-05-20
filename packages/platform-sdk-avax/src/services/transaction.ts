@@ -34,13 +34,13 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (input.sign.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.sign.mnemonic");
+		if (input.signatory.signingKey() === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.signatory");
 		}
 
 		try {
 			const keyPair = this.#keychain.importKey(
-				keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey(),
+				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#xchain.getUTXOs(keyPair.getAddressString());
@@ -61,7 +61,7 @@ export class TransactionService implements Contracts.TransactionService {
 				// @ts-ignore - feross/buffer should behave the same as nodejs/buffer
 				Hash.sha256(signedTx.toBuffer()).toString("hex"),
 				{
-					sender: input.from,
+					sender: input.signatory.address(),
 					recipient: input.data.to,
 					amount: input.data.amount,
 					fee: BigNumber.make(0.001).times(1e8),
@@ -91,13 +91,13 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.VoteInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (input.sign.mnemonic === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.sign.mnemonic");
+		if (input.signatory.signingKey() === undefined) {
+			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.signatory");
 		}
 
 		try {
 			const keyPair = this.#keychain.importKey(
-				keyPairFromMnemonic(this.#config, input.sign.mnemonic).getPrivateKey(),
+				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#pchain.getUTXOs(keyPair.getAddressString());
@@ -120,8 +120,8 @@ export class TransactionService implements Contracts.TransactionService {
 			return new SignedTransactionData(
 				uuidv4(),
 				{
-					sender: input.from,
-					recipient: input.from,
+					sender: input.signatory.address(),
+					recipient: input.signatory.address(),
 					amount: 0,
 					fee: 0,
 				},

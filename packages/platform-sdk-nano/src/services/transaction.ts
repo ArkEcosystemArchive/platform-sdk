@@ -36,6 +36,7 @@ export class TransactionService implements Contracts.TransactionService {
 		const data = {
 			walletBalanceRaw: balance,
 			fromAddress: address,
+			fromAddress: input.signatory.address(),
 			toAddress: input.data.to,
 			representativeAddress: representative,
 			frontier,

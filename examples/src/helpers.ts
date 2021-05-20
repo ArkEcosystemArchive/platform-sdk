@@ -8,7 +8,7 @@ import { AVAX } from "@arkecosystem/platform-sdk-avax";
 import { DOT } from "@arkecosystem/platform-sdk-dot";
 import { EGLD } from "@arkecosystem/platform-sdk-egld";
 import { TRX } from "@arkecosystem/platform-sdk-trx";
-// import { XLM } from "@arkecosystem/platform-sdk-xlm";
+import { XLM } from "@arkecosystem/platform-sdk-xlm";
 // import { XRP } from "@arkecosystem/platform-sdk-xrp";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 // import { EOS } from "@arkecosystem/platform-sdk-eos";
@@ -37,7 +37,7 @@ export const useEnvironment = async (): Promise<Environment> => {
 			// NEO,
 			SOL,
 			TRX,
-			// XLM,
+			XLM,
 			// XRP,
 		},
 		storage: new ConfStorage(),
@@ -56,7 +56,10 @@ export async function createProfile(env: Environment, name: string, password: st
 		await env.profiles().forget(findByName.id());
 	}
 	const profile: Contracts.IProfile = env.profiles().create(name);
+
 	profile.auth().setPassword(password);
+	await env.profiles().persist(profile);
+
 	await env.persist();
 	return profile;
 }

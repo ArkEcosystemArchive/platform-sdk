@@ -35,7 +35,7 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		if (input.sign.mnemonic === undefined) {
+		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
 		}
 
@@ -52,7 +52,7 @@ export class TransactionService implements Contracts.TransactionService {
 		}
 
 		const unsignedTransaction = {
-			sender: input.from,
+			sender: input.signatory.address(),
 			receiver: input.data.to,
 			value: Balance.egld(input.data.amount),
 			gasPrice: (input.fee as unknown) as number,
@@ -60,11 +60,11 @@ export class TransactionService implements Contracts.TransactionService {
 			data: input.data.memo,
 		};
 
-		const mnemonic: Mnemonic = Mnemonic.fromString(input.sign.mnemonic);
+		const mnemonic: Mnemonic = Mnemonic.fromString(input.signatory.signingKey());
 		const secretKey: UserSecretKey = mnemonic.deriveKey(0); // TODO probably need to consider account index for all bip44 wallets
 		const signer: UserSigner = new UserSigner(secretKey);
 
-		const tx: Transaction = new Transaction({
+		const transaction: Transaction = new Transaction({
 			receiver: Address.fromString(input.data.to),
 			value: Balance.egld(input.data.amount),
 			gasPrice: new GasPrice((input.fee as unknown) as number),
@@ -72,9 +72,9 @@ export class TransactionService implements Contracts.TransactionService {
 			data: new TransactionPayload(input.data.memo),
 			nonce: new Nonce(parseInt(input.nonce)),
 		});
-		await signer.sign(tx);
+		await signer.sign(transaction);
 
-		return new SignedTransactionData(tx.getSignature().hex(), unsignedTransaction, tx);
+		return new SignedTransactionData(transaction.getSignature().hex(), unsignedTransaction, transaction);
 	}
 
 	public async secondSignature(

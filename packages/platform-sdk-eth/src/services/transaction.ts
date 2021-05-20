@@ -38,9 +38,15 @@ export class TransactionService implements Contracts.TransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			const senderAddress: string = await this.#identity.address().fromMnemonic(input.sign.mnemonic);
-			const privateKey: string =
-				input.sign.privateKey || (await this.#identity.privateKey().fromMnemonic(input.sign.mnemonic));
+			const senderAddress: string = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
+
+			let privateKey: string;
+
+			if (input.signatory.actsWithPrivateKey()) {
+				privateKey = input.signatory.signingKey();
+			} else {
+				privateKey = await this.#identity.privateKey().fromMnemonic(input.signatory.signingKey());
+			}
 
 			const { nonce } = await this.get(`wallets/${senderAddress}`);
 

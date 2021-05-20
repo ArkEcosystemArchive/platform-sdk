@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { getPublicKey, sign, verify } from "noble-ed25519";
 
 import { IdentityService } from "./identity";
@@ -21,17 +20,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			let keys: Contracts.KeyPair | undefined;
-
-			if (input.mnemonic) {
-				keys = await this.#identityService.keys().fromMnemonic(BIP39.normalize(input.mnemonic));
-			}
-
-			if (!keys) {
-				throw new Error("Failed to retrieve the keys for the signatory wallet.");
-			}
-
-			const { privateKey } = keys;
+			const { privateKey } = await this.#identityService.keys().fromMnemonic(input.signatory.signingKey());
 
 			if (privateKey === undefined) {
 				throw new Error("Failed to retrieve the private key for the signatory wallet.");

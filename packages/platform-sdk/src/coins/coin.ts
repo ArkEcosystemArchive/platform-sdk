@@ -9,6 +9,7 @@ import {
 	MessageService,
 	MultiSignatureService,
 	PeerService,
+	SignatoryService,
 	TransactionService,
 } from "../contracts/coins";
 import { BadMethodDependencyException } from "../exceptions";
@@ -65,6 +66,7 @@ export class Coin {
 			this.#services!.message.__destruct(),
 			this.#services!.multiSignature.__destruct(),
 			this.#services!.peer.__destruct(),
+			this.#services!.signatory.__destruct(),
 			this.#services!.transaction.__destruct(),
 		]);
 	}
@@ -163,6 +165,14 @@ export class Coin {
 		}
 
 		return this.#services!.peer;
+	}
+
+	public signatory(): SignatoryService {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "signatory", "__construct");
+		}
+
+		return this.#services!.signatory;
 	}
 
 	public transaction(): TransactionService {

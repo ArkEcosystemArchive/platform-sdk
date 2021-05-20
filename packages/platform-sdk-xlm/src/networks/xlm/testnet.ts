@@ -5,7 +5,7 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Testnet",
 	coin: "Stellar",
-	explorer: "https://testnet.steexp.com/",
+	explorer: "https://testnet.steexp.com",
 	currency: {
 		ticker: "XLM",
 		symbol: "XLM",
@@ -64,7 +64,7 @@ const network: Coins.NetworkManifest = {
 			verify: true,
 		},
 		Transaction: {
-			transfer: true,
+			transfer: { default: true },
 		},
 		Derivation: {
 			bip39: true,

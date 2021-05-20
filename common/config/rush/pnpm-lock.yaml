@@ -1384,6 +1384,7 @@ importers:
       '@elrondnetwork/elrond-core-js': 2.1.0
       '@elrondnetwork/erdjs': 4.1.0
       bech32: 2.0.0
+      noble-ed25519: 1.2.1
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@types/eslint': 7.2.10
@@ -1443,6 +1444,7 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
+      noble-ed25519: ~1.2.1
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
@@ -3136,6 +3138,7 @@ importers:
       ripple-keypairs: 1.0.3
       ripple-lib: 1.9.4
     devDependencies:
+      '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@ledgerhq/hw-transport-mocker': 5.50.0
       '@types/eslint': 7.2.10
       '@types/eslint-plugin-prettier': 3.1.0
@@ -3145,7 +3148,6 @@ importers:
       '@types/node': 14.14.43
       '@types/prettier': 2.2.3
       '@types/rimraf': 3.0.0
-      '@types/ws': 7.4.0
       '@typescript-eslint/eslint-plugin': 4.22.0_e3b52a83531895e7febd6ecd5ba813eb
       '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.2.4
       cross-env: 7.0.3
@@ -3169,10 +3171,10 @@ importers:
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.2.4
       typescript: 4.2.4
       typescript-language-server: 0.5.1
-      ws: 7.4.5
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-xrp': ^5.50.0
@@ -3185,7 +3187,6 @@ importers:
       '@types/node': ^14.14.43
       '@types/prettier': ^2.2.3
       '@types/rimraf': ^3.0.0
-      '@types/ws': 7.4.0
       '@typescript-eslint/eslint-plugin': ^4.22.0
       '@typescript-eslint/parser': ^4.22.0
       bignumber.js: ^9.0.1
@@ -3212,7 +3213,6 @@ importers:
       ts-jest: ^26.5.5
       typescript: 4.2.4
       typescript-language-server: ^0.5.1
-      ws: ^7.4.5
   ../../packages/platform-sdk-zil:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
@@ -6023,6 +6023,7 @@ packages:
   /@types/ws/7.4.0:
     dependencies:
       '@types/node': 14.14.43
+    dev: false
     resolution:
       integrity: sha512-Y29uQ3Uy+58bZrFLhX36hcI3Np37nqWE7ky5tjiDoy1GDZnIwVxS0CgF+s+1bXMzjKBFy+fqaRfb708iNzdinw==
   /@types/yargs-parser/20.2.0:

@@ -3,7 +3,6 @@ import { decode } from "wif";
 
 import { IReadWriteWallet, WalletData } from "../../../../contracts";
 import { IWalletImportFormat } from "../../../../contracts/wallets/services/wif";
-import { emitProfileChanged } from "../../helpers";
 
 export class WalletImportFormat implements IWalletImportFormat {
 	readonly #wallet: IReadWriteWallet;
@@ -33,7 +32,7 @@ export class WalletImportFormat implements IWalletImportFormat {
 
 		this.#wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
-		emitProfileChanged(this.#wallet.profile());
+		this.#wallet.profile().status().markAsDirty();
 	}
 
 	/** {@inheritDoc IWalletImportFormat.exists} */

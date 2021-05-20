@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Buffer } from "buffer";
 import TronWeb from "tronweb";
@@ -30,14 +29,10 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			if (!input.mnemonic) {
-				throw new Error("No mnemonic provided.");
-			}
-
 			const keys: Contracts.KeyPair = await this.#identityService
 				.keys()
-				.fromMnemonic(BIP39.normalize(input.mnemonic));
-			const address = await this.#identityService.address().fromMnemonic(BIP39.normalize(input.mnemonic));
+				.fromMnemonic(input.signatory.signingKey());
+			const address = await this.#identityService.address().fromMnemonic(input.signatory.signingKey());
 
 			if (keys.privateKey === undefined) {
 				throw new Error("Failed to retrieve the private key for the signatory wallet.");
