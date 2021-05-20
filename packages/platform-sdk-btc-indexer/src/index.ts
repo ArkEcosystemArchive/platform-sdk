@@ -21,7 +21,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	// copy of the blockchain to avoid holes in the historical data of users.
 	const [localHeight, remoteHeight] = [database.lastBlockNumber(), await client.height()];
 
-	for (let i = localHeight; i <= localHeight+100; i += step) {
+	for (let i = localHeight; i <= remoteHeight; i += step) {
 		const batch: Promise<Record<string, any>>[] = [];
 		for (let j = i; j < i + step; j++) {
 			batch.push(client.blockWithTransactions(j));
