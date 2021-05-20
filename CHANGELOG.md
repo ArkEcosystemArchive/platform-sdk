@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.0.2 - 2021-05-20
+
+### Changed
+
+- **[PROFILES]** Expose `SignatoryService` (f78d64c2, @faustbrian)
+- **[BREAKING]** **[PROFILES]** Use `Signatory` for `MessageService` (222d0f6e, @faustbrian)
+
 ## 8.0.0 - 2021-05-20
 
 ### Added
