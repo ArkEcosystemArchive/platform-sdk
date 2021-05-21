@@ -4,7 +4,7 @@ import StellarHDWallet from "stellar-hd-wallet";
 export class PublicKey implements Contracts.PublicKey {
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
 		try {
-			return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(0);
+			return StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(options?.bip44?.account || 0);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

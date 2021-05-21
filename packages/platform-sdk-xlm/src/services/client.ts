@@ -48,7 +48,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const { records, next, prev } = await this.#client.transactions().forAccount(query.address).call();
+		const { records, next, prev } = await this.#client.payments().forAccount(query.address).call();
 
 		return Helpers.createTransactionDataCollectionWithType(
 			records.filter((transaction) => transaction.type === "payment"),
