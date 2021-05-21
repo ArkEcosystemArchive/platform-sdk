@@ -36,7 +36,7 @@ const network: Coins.NetworkManifest = {
 				type: "dynamic",
 				ticker: "BIND",
 			},
-		}
+		},
 	},
 	importMethods,
 	featureFlags,

@@ -1,8 +1,6 @@
 import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 
-/** @inheritdoc */
 export class MultiSignatureService implements Contracts.MultiSignatureService {
 	/**
 	 * The configuration of the current instance.
