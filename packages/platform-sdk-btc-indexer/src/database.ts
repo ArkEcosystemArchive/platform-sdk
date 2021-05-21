@@ -1,11 +1,11 @@
 import { BigNumber } from "@arkecosystem/utils";
+import { PrismaClient } from "@prisma/client";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Logger } from "./logger";
 import { getAmount, getFees, getVIns, getVOuts } from "./tx-parsing-helpers";
 import { Flags, VIn, VOut } from "./types";
-import { PrismaClient } from "@prisma/client";
 
 /**
  * Implements a database storage with SQLite.
@@ -14,7 +14,6 @@ import { PrismaClient } from "@prisma/client";
  * @class Database
  */
 export class Database {
-
 	readonly #prisma: PrismaClient;
 
 	/**
@@ -41,7 +40,7 @@ export class Database {
 		logger.debug(`Using [${databaseFile}] as database`);
 
 		this.#prisma = new PrismaClient({
-			log: ["query", "info", `warn`, `error`]
+			log: ["query", "info", `warn`, `error`],
 		});
 
 		this.#logger = logger;
@@ -56,15 +55,15 @@ export class Database {
 	public async lastBlockNumber(): Promise<number> {
 		const lastBlockHeight = await this.#prisma.block.aggregate({
 			_max: {
-				height: true
-			}
+				height: true,
+			},
 		});
 
 		if (lastBlockHeight === undefined) {
 			return 1;
 		}
 
-		return lastBlockHeight["_max"]?.height as number || 1;
+		return (lastBlockHeight["_max"]?.height as number) || 1;
 	}
 
 	/**
@@ -75,15 +74,13 @@ export class Database {
 	 */
 	public async storeBlockWithTransactions(block: any): Promise<void> {
 		this.#logger.info(
-			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`
+			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
 		);
 
-		const transactions = [
-			this.storeBlock(block),
-		];
+		const transactions = [this.storeBlock(block)];
 
-		for (const tx of (block.tx || [])) {
-			for (const transaction of (await this.storeTransaction(tx))) {
+		for (const tx of block.tx || []) {
+			for (const transaction of await this.storeTransaction(tx)) {
 				transactions.push(transaction);
 			}
 		}
@@ -102,8 +99,8 @@ export class Database {
 		return this.#prisma.block.create({
 			data: {
 				hash: block.hash,
-				height: block.height
-			}
+				height: block.height,
+			},
 		});
 	}
 
@@ -124,14 +121,14 @@ export class Database {
 			const read = await this.#prisma.transactionPart.findMany({
 				where: {
 					output_hash: {
-						in: hashes
-					}
+						in: hashes,
+					},
 				},
 				select: {
 					output_hash: true,
 					output_idx: true,
-					amount: true
-				}
+					amount: true,
+				},
 			});
 
 			if (read) {
@@ -152,14 +149,14 @@ export class Database {
 				where: {
 					output_hash_output_idx: {
 						output_hash: vIn.txid,
-						output_idx: vIn.vout
-					}
+						output_idx: vIn.vout,
+					},
 				},
 				data: {
 					input_hash: transaction.txid,
-					input_idx: i
-				}
-			})
+					input_idx: i,
+				},
+			}),
 		);
 
 		return [
@@ -170,13 +167,13 @@ export class Database {
 					amount: amount.toString(),
 					fee: fee.toString(),
 					transaction_parts: {
-						create: vouts.map(vout => ({
+						create: vouts.map((vout) => ({
 							output_idx: vout.idx,
 							amount: vout.amount.toString(),
 							address: JSON.stringify(vout.addresses),
-						}))
-					}
-				}
+						})),
+					},
+				},
 			}),
 			...updates,
 		];
