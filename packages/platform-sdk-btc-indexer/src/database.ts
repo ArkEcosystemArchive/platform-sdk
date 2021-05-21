@@ -78,10 +78,7 @@ export class Database {
 		);
 
 		const blockForCreation = await this.storeBlock(block);
-		const blockWithUtxos = [
-			blockForCreation.create,
-			...blockForCreation.utxoUpdates
-		];
+		const blockWithUtxos = [blockForCreation.create, ...blockForCreation.utxoUpdates];
 		this.#prisma.$transaction(blockWithUtxos);
 	}
 
@@ -95,7 +92,7 @@ export class Database {
 	private async storeBlock(block): Promise<any> {
 		const transactions: any[] = [];
 		const utxoUpdates: any[] = [];
-		for (const tx of (block.tx || [])) {
+		for (const tx of block.tx || []) {
 			const storeTransaction = await this.storeTransaction(tx);
 			transactions.push(storeTransaction.create);
 			utxoUpdates.push(...storeTransaction.utxoUpdates);
@@ -108,8 +105,8 @@ export class Database {
 					// @ts-ignore
 					transactions: {
 						create: transactions,
-					}
-				}
+					},
+				},
 			}),
 			utxoUpdates,
 		};
@@ -172,18 +169,18 @@ export class Database {
 
 		return {
 			create: {
-					hash: transaction.txid,
-					time: transaction.time,
-					amount: amount.toString(),
-					fee: fee.toString(),
-					transaction_parts: {
-						create: vouts.map((vout) => ({
-							output_idx: vout.idx,
-							amount: vout.amount.toString(),
-							address: JSON.stringify(vout.addresses),
-						})),
-					},
+				hash: transaction.txid,
+				time: transaction.time,
+				amount: amount.toString(),
+				fee: fee.toString(),
+				transaction_parts: {
+					create: vouts.map((vout) => ({
+						output_idx: vout.idx,
+						amount: vout.amount.toString(),
+						address: JSON.stringify(vout.addresses),
+					})),
 				},
+			},
 			utxoUpdates,
 		};
 	}
