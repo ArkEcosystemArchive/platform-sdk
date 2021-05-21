@@ -1,6 +1,7 @@
 import { get } from "dot-prop";
 
-import { CoinManifest, ExpirationType, NetworkManifest } from "./network.models";
+import { filterHostsByType } from "../helpers";
+import { CoinManifest, ExpirationType, NetworkHost, NetworkManifest } from "./network.models";
 
 export class Network {
 	/**
@@ -60,8 +61,8 @@ export class Network {
 	/**
 	 * Get the explorer URL of the coin that is used.
 	 */
-	public explorer(): string {
-		return this.#network.explorer;
+	public explorer(): NetworkHost {
+		return filterHostsByType(this.#network.hosts, "explorer")[0];
 	}
 
 	/**
@@ -96,7 +97,7 @@ export class Network {
 	 * Get the expiration method type.
 	 */
 	public expirationType(): ExpirationType {
-		return this.#network.crypto.expirationType;
+		return this.#network.transactions.expirationType;
 	}
 
 	/**
@@ -131,7 +132,7 @@ export class Network {
 	 * Determine if the network uses an extended public key for derivation.
 	 */
 	public usesExtendedPublicKey(): boolean {
-		return get(this.#network, "crypto.derivation.extendedPublicKey") === true;
+		return get(this.#network, "meta.extendedPublicKey") === true;
 	}
 
 	/**
@@ -200,6 +201,16 @@ export class Network {
 	 */
 	public chargesZeroFees(): boolean {
 		return get(this.#network, "fees.type") === "free";
+	}
+
+	/**
+	 * Get the meta data that is specific to this network.
+	 *
+	 * @return {*}  {T}
+	 * @memberof Network
+	 */
+	public meta<T>(): T {
+		return this.#network.meta as T;
 	}
 
 	/**

@@ -1,4 +1,5 @@
-import { TransactionDataCollection } from "./coins";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+import { NetworkHost, NetworkHostType, TransactionDataCollection } from "./coins";
 import { MetaPagination, TransactionDataType } from "./contracts";
 
 export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
@@ -64,3 +65,9 @@ export const createTransactionDataCollectionWithType = (
 		transactions.map((transaction) => createTransactionDataWithType(transaction, classes)),
 		meta,
 	);
+
+export const filterHostsByType = (hosts: NetworkHost[], type: NetworkHostType): NetworkHost[] =>
+	hosts.filter((host: NetworkHost) => host.type === type);
+
+export const randomHostByType = (hosts: NetworkHost[], type: NetworkHostType): NetworkHost =>
+	Arr.randomElement(filterHostsByType(hosts, type));

@@ -42,16 +42,11 @@ export class Config {
 }
 
 export enum ConfigKey {
-	Bech32 = "network.crypto.bech32",
-	CryptoAssetId = "network.crypto.assetId",
-	CryptoBlockchainId = "network.crypto.blockchainId",
-	CryptoNetworkId = "network.crypto.networkId",
-	CryptoChainId = "network.crypto.chainId",
+	Bech32 = "network.constants.bech32",
 	CurrencyTicker = "network.currency.ticker",
 	HttpClient = "httpClient",
 	KnownWallets = "network.knownWallets",
 	Network = "network",
-	NetworkConfiguration = "networkConfiguration", // This is currently only used by ARK. This would ideally be stored in a package internal cache, not the config.
 	NetworkId = "network.id",
-	Slip44 = "network.crypto.slip44",
+	Slip44 = "network.constants.slip44",
 }

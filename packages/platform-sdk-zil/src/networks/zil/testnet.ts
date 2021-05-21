@@ -5,7 +5,16 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Testnet",
 	coin: "Zilliqa",
-	explorer: "https://viewblock.io/zilliqa?network=testnet",
+	hosts: [
+		{
+			type: "full",
+			host: { url: "https://dev-api.zilliqa.com" },
+		},
+		{
+			type: "explorer",
+			host: { url: "https://viewblock.io/zilliqa", query: { network: "testnet" } },
+		},
+	],
 	currency: {
 		ticker: "ZIL",
 		symbol: "ZIL",
@@ -17,9 +26,6 @@ const network: Coins.NetworkManifest = {
 	crypto: {
 		slip44: 313,
 		expirationType: "height",
-	},
-	networking: {
-		hosts: ["https://dev-api.zilliqa.com"],
 	},
 	featureFlags: {
 		Client: {

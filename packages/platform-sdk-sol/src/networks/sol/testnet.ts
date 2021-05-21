@@ -5,7 +5,16 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Testnet",
 	coin: "Solana",
-	explorer: "https://explorer.solana.com/?cluster=testnet",
+	hosts: [
+		{
+			type: "full",
+			host: { url: "https://testnet.solana.com" },
+		},
+		{
+			type: "explorer",
+			host: { url: "https://explorer.solana.com/", query: { cluster: "testnet" } },
+		},
+	],
 	currency: {
 		ticker: "SOL",
 		symbol: "SOL",
@@ -17,9 +26,6 @@ const network: Coins.NetworkManifest = {
 	crypto: {
 		slip44: 501,
 		expirationType: "height",
-	},
-	networking: {
-		hosts: ["https://testnet.solana.com"],
 	},
 	governance: {
 		voting: {

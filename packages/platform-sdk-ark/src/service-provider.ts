@@ -17,7 +17,7 @@ import { TransactionService } from "./services/transaction";
 
 export class ServiceProvider {
 	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
-		config.set(Coins.ConfigKey.NetworkConfiguration, await ServiceProvider.retrieveNetworkConfiguration(config));
+		config.set("NETWORK_CONFIGURATION", await ServiceProvider.retrieveNetworkConfiguration(config));
 
 		const multiSignature = await MultiSignatureService.__construct(config);
 

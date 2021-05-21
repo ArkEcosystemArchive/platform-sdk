@@ -1,5 +1,5 @@
 import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 
 /** @inheritdoc */
@@ -163,9 +163,7 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 			return this.#config.get<string>("peerMultiSignature");
 		}
 
-		return Arr.randomElement(
-			this.#config.get<Coins.NetworkManifest>("network").networking?.hostsMultiSignature || [],
-		);
+		return Helpers.randomHostByType(this.#config.get<Coins.NetworkManifest>("network").hosts, "explorer").host.url;
 	}
 
 	/**

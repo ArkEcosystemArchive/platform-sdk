@@ -1,136 +1,41 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "ark.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "ARK",
-	explorer: "https://explorer.ark.io/",
 	currency: {
 		ticker: "ARK",
 		symbol: "Ѧ",
 	},
-	fees: {
-		type: "dynamic",
-		ticker: "ARK",
-	},
-	crypto: {
+	constants: {
 		slip44: 111,
-		signingMethods: {
-			mnemonic: true,
-			wif: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://wallets.ark.io"],
-		hostsMultiSignature: ["https://musig1.ark.io"],
-	},
-	governance: {
-		voting: {
-			enabled: true,
-			delegateCount: 51,
-			maximumPerWallet: 1,
-			maximumPerTransaction: 1,
+	hosts: [
+		{
+			type: "full",
+			host: { url: "https://wallets.ark.io" },
 		},
-	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			transactions: true,
-			wallet: true,
-			wallets: true,
-			delegate: true,
-			delegates: true,
-			votes: true,
-			voters: true,
-			configuration: true,
-			fees: true,
-			syncing: true,
-			broadcast: true,
+		{
+			type: "musig",
+			host: { url: "https://musig1.ark.io" },
 		},
-		Fee: {
-			all: true,
+		{
+			type: "explorer",
+			host: { url: "https://explorer.ark.io/" },
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				multiSignature: true,
-				publicKey: true,
-				privateKey: true,
-				wif: true,
-			},
-			publicKey: {
-				mnemonic: true,
-				multiSignature: true,
-				wif: true,
-			},
-			privateKey: {
-				mnemonic: true,
-				wif: true,
-			},
-			wif: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				privateKey: false,
-				wif: true,
-			},
-		},
-		Ledger: {
-			getVersion: true,
-			getPublicKey: true,
-			signTransaction: true,
-			signMessage: true,
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Peer: {
-			search: true,
-		},
-		Transaction: {
-			transfer: { default: true, ledgerS: true, ledgerX: true },
-			secondSignature: { default: true, ledgerS: true, ledgerX: true },
-			delegateRegistration: { default: true, ledgerS: true, ledgerX: true },
-			vote: { default: true, ledgerS: true, ledgerX: true },
-			multiSignature: { default: true, ledgerS: true, ledgerX: true },
-			ipfs: { default: true, ledgerS: true, ledgerX: true },
-			multiPayment: { default: true, ledgerS: true, ledgerX: true },
-			delegateResignation: { default: true, ledgerS: true, ledgerX: true },
-		},
-		Miscellaneous: {
-			dynamicFees: true,
-			memo: true,
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-		Internal: {
-			fastDelegateSync: true,
-		},
-	},
-	transactionTypes: [
-		"delegate-registration",
-		"delegate-resignation",
-		"htlc-claim",
-		"htlc-lock",
-		"htlc-refund",
-		"ipfs",
-		"multi-payment",
-		"multi-signature",
-		"second-signature",
-		"transfer",
-		"vote",
 	],
+	governance: {
+		delegateCount: 51,
+		votesPerWallet: 1,
+		votesPerTransaction: 1,
+	},
+	transactions,
+	importMethods,
+	featureFlags,
 	knownWallets: "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json",
 };
 
