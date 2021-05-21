@@ -1,4 +1,4 @@
-import { BigNumber, has } from "@arkecosystem/utils";
+import { BigNumber } from "@arkecosystem/utils";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
@@ -73,7 +73,7 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	public storeBlockWithTransactions(block: any): void {
+	public async storeBlockWithTransactions(block: any): Promise<void> {
 		this.#logger.info(
 			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`
 		);
@@ -82,7 +82,7 @@ export class Database {
 		const storeTransactions = (block.tx || []).flatMap(tx => this.storeTransaction(tx));
 		this.#prisma.$transaction([
 			storeBlock,
-			...storeTransactions
+			...storeTransactions,
 		]);
 	}
 
@@ -109,16 +109,14 @@ export class Database {
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private storeTransaction(transaction): any[] {
-		const updateQueries: any[] = [];
-
+	private async storeTransaction(transaction): Promise<object> {
 		const amount: BigNumber = getAmount(transaction);
 		const vouts: VOut[] = getVOuts(transaction);
 		const vIns = getVIns(transaction);
 		const hashes: string[] = vIns.map((u: VIn) => u.txid);
 		let voutsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
-			const read = this.#prisma.transactionPart.findMany({
+			const read = await this.#prisma.transactionPart.findMany({
 				where: {
 					output_hash: {
 						in: hashes
@@ -143,47 +141,39 @@ export class Database {
 		}
 
 		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
-		updateQueries.push(
+
+		const updates = vIns.map((vIn, i) =>
+			this.#prisma.transactionPart.update({
+				where: {
+					output_hash_output_idx: {
+						output_hash: vIn.txid,
+						output_idx: vIn.vout
+					}
+				},
+				data: {
+					input_hash: transaction.txid,
+					input_idx: i
+				}
+			})
+		);
+
+		return [
 			this.#prisma.transaction.create({
 				data: {
 					hash: transaction.txid,
 					time: transaction.time,
 					amount: amount.toString(),
-					fee: fee.toString()
+					fee: fee.toString(),
+					transaction_parts: {
+						create: vouts.map(vout => ({
+							output_idx: vout.idx,
+							amount: vout.amount.toString(),
+							address: JSON.stringify(vout.addresses),
+						}))
+					}
 				}
-			})
-		);
-
-		for (const vout of vouts) {
-			updateQueries.push(
-				this.#prisma.transactionPart.create({
-					data: {
-						output_hash: transaction.txid,
-						output_idx: vout.idx,
-						amount: vout.amount.toString(),
-						address: JSON.stringify(vout.addresses)
-					}
-				})
-			);
-		}
-
-		for (let i = 0; i < vIns.length; i++) {
-			const vIn = vIns[i];
-			updateQueries.push(
-				this.#prisma.transactionPart.update({
-					where: {
-						output_hash_output_idx: {
-							output_hash: vIn.txid,
-							output_idx: vIn.vout
-						},
-					},
-					data: {
-						input_hash: transaction.txid,
-						input_idx: i
-					}
-				})
-			);
-		}
-		return updateQueries;
+			}),
+			...updates,
+		];
 	}
 }
