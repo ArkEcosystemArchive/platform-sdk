@@ -78,12 +78,17 @@ export class Database {
 			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`
 		);
 
-		const storeBlock = this.storeBlock(block);
-		const storeTransactions = (block.tx || []).flatMap(tx => this.storeTransaction(tx));
-		this.#prisma.$transaction([
-			storeBlock,
-			...storeTransactions,
-		]);
+		const transactions = [
+			this.storeBlock(block),
+		];
+
+		for (const tx of (block.tx || [])) {
+			for (const transaction of (await this.storeTransaction(tx))) {
+				transactions.push(transaction);
+			}
+		}
+
+		this.#prisma.$transaction(transactions);
 	}
 
 	/**
@@ -109,7 +114,7 @@ export class Database {
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private async storeTransaction(transaction): Promise<object> {
+	private async storeTransaction(transaction): Promise<any[]> {
 		const amount: BigNumber = getAmount(transaction);
 		const vouts: VOut[] = getVOuts(transaction);
 		const vIns = getVIns(transaction);
