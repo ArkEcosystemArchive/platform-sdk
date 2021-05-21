@@ -1,6 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
-import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
 
 export class MessageService implements Contracts.MessageService {
