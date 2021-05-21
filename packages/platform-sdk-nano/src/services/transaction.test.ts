@@ -1,8 +1,7 @@
 import "jest-extended";
 
-import nock from "nock";
-
 import { Signatories } from "@arkecosystem/platform-sdk";
+import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
