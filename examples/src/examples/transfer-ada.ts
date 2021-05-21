@@ -35,16 +35,12 @@ export default async () => {
 	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
 	logger.log("Wallet 2", wallet2.address(), "balance", wallet2.balance().toHuman(2));
 
-	// Transfer
+	// Transfer from wallet1 to wallet2
+	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
 	const transactionId = await wallet1
 		.transaction()
 		.signTransfer({
-			signatory: new Signatories.Signatory(
-				new Signatories.MnemonicSignatory(
-					mnemonic1,
-					wallet1.address(),
-				),
-			),
+			signatory,
 			data: {
 				amount: "1100000",
 				to: address2
