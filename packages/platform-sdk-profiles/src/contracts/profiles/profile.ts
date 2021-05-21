@@ -319,6 +319,21 @@ export interface IProfile {
 	hasCompletedIntroductoryTutorial(): boolean;
 
 	/**
+	 * Mark the "Manual Installation" disclaimer as accepted.
+	 *
+	 * @memberof IProfile
+	 */
+	markManualInstallationDisclaimerAsAccepted(): void;
+
+	/**
+	 * Determine if the "Manual Installation" disclaimer has been accepted.
+	 *
+	 * @return {boolean}
+	 * @memberof IProfile
+	 */
+	hasAcceptedManualInstallationDisclaimer(): boolean;
+
+	/**
 	 * Get the profile status service instance.
 	 *
 	 * @memberof IProfile
