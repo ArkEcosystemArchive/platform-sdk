@@ -14,12 +14,11 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const privateKey: string = StellarHDWallet.fromMnemonic(input.signatory.signingKey()).getSecret(0);
-			const source = Stellar.Keypair.fromSecret(privateKey);
+			const source = Stellar.Keypair.fromSecret(input.signatory.privateKey());
 
 			return {
 				message: input.message,
-				signatory: source.publicKey(),
+				signatory: input.signatory.publicKey(),
 				signature: source.sign(Buffoon.fromUTF8(input.message)).toString("hex"),
 			};
 		} catch (error) {
