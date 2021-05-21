@@ -1,3 +1,4 @@
+import { Signatories } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import { createProfile, useEnvironment, useLogger } from "../helpers";
 
@@ -22,11 +23,12 @@ export default async () => {
 	profile.wallets().push(wallet1);
 
 	// Sign a message
+	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
 	const signedMessage = await wallet1
 		.message()
 		.sign({
 			message: "Message to sign",
-			mnemonic: mnemonic1,
+			signatory,
 		});
 	logger.log("signedMessage", signedMessage);
 

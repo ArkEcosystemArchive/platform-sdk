@@ -9,8 +9,8 @@ export class Keys implements Contracts.Keys {
 			const source = StellarHDWallet.fromMnemonic(BIP39.normalize(mnemonic));
 
 			return {
-				publicKey: source.getPublicKey(0),
-				privateKey: source.getSecret(0),
+				publicKey: source.getPublicKey(options?.bip44?.account || 0),
+				privateKey: source.getSecret(options?.bip44?.account || 0),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
