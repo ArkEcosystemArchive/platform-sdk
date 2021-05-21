@@ -77,15 +77,12 @@ export class Database {
 			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
 		);
 
-		const transactions = [this.storeBlock(block)];
-
-		for (const tx of block.tx || []) {
-			for (const transaction of await this.storeTransaction(tx)) {
-				transactions.push(transaction);
-			}
-		}
-
-		this.#prisma.$transaction(transactions);
+		const blockForCreation = await this.storeBlock(block);
+		const blockWithUtxos = [
+			blockForCreation.create,
+			...blockForCreation.utxoUpdates
+		];
+		this.#prisma.$transaction(blockWithUtxos);
 	}
 
 	/**
@@ -95,13 +92,27 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	private storeBlock(block): any {
-		return this.#prisma.block.create({
-			data: {
-				hash: block.hash,
-				height: block.height,
-			},
-		});
+	private async storeBlock(block): Promise<any> {
+		const transactions: any[] = [];
+		const utxoUpdates: any[] = [];
+		for (const tx of (block.tx || [])) {
+			const storeTransaction = await this.storeTransaction(tx);
+			transactions.push(storeTransaction.create);
+			utxoUpdates.push(...storeTransaction.utxoUpdates);
+		}
+		return {
+			create: this.#prisma.block.create({
+				data: {
+					hash: block.hash,
+					height: block.height,
+					// @ts-ignore
+					transactions: {
+						create: transactions,
+					}
+				}
+			}),
+			utxoUpdates,
+		};
 	}
 
 	/**
@@ -111,7 +122,7 @@ export class Database {
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private async storeTransaction(transaction): Promise<any[]> {
+	private async storeTransaction(transaction): Promise<any> {
 		const amount: BigNumber = getAmount(transaction);
 		const vouts: VOut[] = getVOuts(transaction);
 		const vIns = getVIns(transaction);
@@ -144,7 +155,7 @@ export class Database {
 
 		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
 
-		const updates = vIns.map((vIn, i) =>
+		const utxoUpdates = vIns.map((vIn, i) =>
 			this.#prisma.transactionPart.update({
 				where: {
 					output_hash_output_idx: {
@@ -159,9 +170,8 @@ export class Database {
 			}),
 		);
 
-		return [
-			this.#prisma.transaction.create({
-				data: {
+		return {
+			create: {
 					hash: transaction.txid,
 					time: transaction.time,
 					amount: amount.toString(),
@@ -174,8 +184,7 @@ export class Database {
 						})),
 					},
 				},
-			}),
-			...updates,
-		];
+			utxoUpdates,
+		};
 	}
 }

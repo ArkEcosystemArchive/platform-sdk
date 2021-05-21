@@ -8,16 +8,19 @@ datasource db {
 }
 
 model Block {
-  hash   String @id
-  height Int    @unique
+  height		Int    			@id
+  hash			String			@unique
+  transactions	Transaction[]
 }
 
 model Transaction {
-  hash              String              @id
-  time              Int
-  amount            String
-  fee               String
-  transaction_parts TransactionPart[]
+  hash				String				@id
+  block				Block				@relation(fields: blockId, references: height)
+  blockId			Int
+  time				Int
+  amount			String
+  fee				String
+  transaction_parts	TransactionPart[]
 }
 
 model TransactionPart {
