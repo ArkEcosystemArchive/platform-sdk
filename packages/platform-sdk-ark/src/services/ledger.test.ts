@@ -10,7 +10,7 @@ import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
 	const config = createConfig(undefined, {
-		networkConfiguration: {
+		NETWORK_CONFIGURATION: {
 			crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
 			status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
 		},
@@ -33,7 +33,7 @@ describe("constructor", () => {
 					},
 				},
 				{
-					networkConfiguration: {
+					NETWORK_CONFIGURATION: {
 						crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
 						status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
 					},

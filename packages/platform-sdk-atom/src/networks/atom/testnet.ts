@@ -3,7 +3,7 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import { transactions, importMethods, featureFlags } from "../shared";
 
 const network: Coins.NetworkManifest = {
-	id: "cosmos.testnet",
+	id: "atom.testnet",
 	type: "test",
 	name: "Testnet",
 	coin: "Cosmos",
