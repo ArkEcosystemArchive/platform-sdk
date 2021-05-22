@@ -49,13 +49,13 @@ export class ProfileValidator implements IProfileValidator {
 					coin: Joi.string().required(),
 					network: Joi.string().required(),
 					networkConfig: Joi.object({
-						crypto: Joi.object({
+						constants: Joi.object({
 							slip44: Joi.number().integer().required(),
 						}).required(),
-						networking: Joi.object({
-							hosts: Joi.array().items(Joi.string()).required(),
-							hostsMultiSignature: Joi.array().items(Joi.string()),
-							hostsArchival: Joi.array().items(Joi.string()),
+						hosts: Joi.array().items({
+							type: Joi.string().required(),
+							host: Joi.string().required(),
+							query: Joi.object(),
 						}).required(),
 					}),
 					address: Joi.string().required(),

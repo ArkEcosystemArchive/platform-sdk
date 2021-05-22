@@ -143,7 +143,13 @@ export class Network {
 	public allows(feature: string): boolean {
 		const [root, ...child] = feature.split(".");
 
-		return get<string[]>(this.#network.featureFlags, root)!.includes(child.join("."));
+		const features = get<string[]>(this.#network.featureFlags, root);
+
+		if (Array.isArray(features)) {
+			return features.includes(child.join("."));
+		}
+
+		return false;
 	}
 
 	/**
