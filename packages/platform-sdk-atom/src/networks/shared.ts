@@ -2,9 +2,7 @@ import { Coins } from "@arkecosystem/platform-sdk";
 
 export const transactions: Coins.NetworkManifestTransactions = {
 	expirationType: "height",
-	types: [
-		"transfer",
-	],
+	types: ["transfer"],
 	fees: {
 		type: "static",
 		ticker: "ATOM",
@@ -28,13 +26,7 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 };
 
 export const featureFlags: Coins.NetworkManifestFeatureFlags = {
-	Client: [
-		"transaction",
-		"transactions",
-		"wallet",
-		"syncing",
-		"broadcast",
-	],
+	Client: ["transaction", "transactions", "wallet", "syncing", "broadcast"],
 	Fee: ["all"],
 	Identity: [
 		"address.mnemonic.bip44",
@@ -46,7 +38,5 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
 	Peer: ["validate"],
-	Transaction: [
-		"transfer",
-	],
+	Transaction: ["transfer"],
 };

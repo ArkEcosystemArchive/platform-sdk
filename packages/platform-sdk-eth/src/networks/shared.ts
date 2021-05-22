@@ -101,7 +101,6 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 	],
 };
 
-
 // featureFlags: {
 // 	Identity: {
 // 		address: {

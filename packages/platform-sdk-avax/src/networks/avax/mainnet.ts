@@ -36,7 +36,7 @@ const network: Coins.NetworkManifest = {
 		networkId: "1",
 		blockchainId: "2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM",
 		assetId: "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
-	}
+	},
 };
 
 export default network;

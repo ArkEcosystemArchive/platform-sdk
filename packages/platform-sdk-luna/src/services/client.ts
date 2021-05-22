@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import { LCDClient } from "@terra-money/terra.js";
 
 import { useClient } from "./helpers";

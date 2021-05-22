@@ -31,7 +31,7 @@ const network: Coins.NetworkManifest = {
 	meta: {
 		// @TODO
 		networkId: "cosmoshub-3",
-	}
+	},
 };
 
 export default network;
