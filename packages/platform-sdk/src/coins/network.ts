@@ -1,7 +1,7 @@
 import { get } from "dot-prop";
 
 import { randomHost } from "../helpers";
-import { CoinManifest, ExpirationType, NetworkHost, NetworkManifest } from "./network.models";
+import { CoinManifest, ExpirationType, NetworkManifest } from "./network.models";
 
 export class Network {
 	/**
@@ -141,7 +141,7 @@ export class Network {
 	 * @param feature
 	 */
 	public allows(feature: string): boolean {
-        const [root, ...child] = feature.split(".");
+		const [root, ...child] = feature.split(".");
 
 		return get<string[]>(this.#network.featureFlags, root)!.includes(child.join("."));
 	}
