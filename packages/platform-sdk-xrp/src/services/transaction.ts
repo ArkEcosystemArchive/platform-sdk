@@ -1,6 +1,5 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
 
 import { SignedTransactionData } from "../dto";

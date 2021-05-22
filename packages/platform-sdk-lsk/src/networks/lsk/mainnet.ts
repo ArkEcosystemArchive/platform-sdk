@@ -95,7 +95,7 @@ const network: Coins.NetworkManifest = {
 	meta: {
 		// @TODO
 		networkId: "ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511",
-	}
+	},
 };
 
 export default network;

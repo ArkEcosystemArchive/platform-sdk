@@ -39,7 +39,7 @@ const network: Coins.NetworkManifest = {
 	meta: {
 		// @TODO
 		networkId: "gaia-13007",
-	}
+	},
 };
 
 export default network;

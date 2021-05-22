@@ -30,7 +30,7 @@ const network: Coins.NetworkManifest = {
 	meta: {
 		// @TODO
 		networkId: "5",
-	}
+	},
 };
 
 export default network;

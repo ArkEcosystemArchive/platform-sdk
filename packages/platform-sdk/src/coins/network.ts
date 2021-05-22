@@ -1,6 +1,6 @@
 import { get } from "dot-prop";
 
-import { filterHosts, randomHost } from "../helpers";
+import { randomHost } from "../helpers";
 import { CoinManifest, ExpirationType, NetworkHost, NetworkManifest } from "./network.models";
 
 export class Network {

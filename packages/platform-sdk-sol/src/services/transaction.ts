@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Account, Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { v4 as uuidv4 } from "uuid";
 

@@ -31,11 +31,7 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 };
 
 export const featureFlags: Coins.NetworkManifestFeatureFlags = {
-	Client: [
-		"transactions",
-		"wallet",
-		"broadcast",
-	],
+	Client: ["transactions", "wallet", "broadcast"],
 	Fee: ["all"],
 	Identity: [
 		"address.mnemonic.bip44",
@@ -48,7 +44,5 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
 	Peer: ["validate"],
-	Transaction: [
-		"transfer",
-	],
+	Transaction: ["transfer"],
 };

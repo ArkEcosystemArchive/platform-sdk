@@ -27,9 +27,14 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit, networkId } = this.#config.get<Contracts.KeyValuePair>(
-			"network.meta",
-		);
+		const {
+			minFeeA,
+			minFeeB,
+			minUTxOValue,
+			poolDeposit,
+			keyDeposit,
+			networkId,
+		} = this.#config.get<Contracts.KeyValuePair>("network.meta");
 
 		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
