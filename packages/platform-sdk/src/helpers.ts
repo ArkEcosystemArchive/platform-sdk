@@ -74,7 +74,7 @@ export const randomHost = (hosts: NetworkHost[], type: NetworkHostType): Network
 
 // DRY helpers for coin implementations
 export const filterHostsFromConfig = (config: Config, type: NetworkHostType): NetworkHost[] =>
-	filterHosts(config.get<NetworkHost[]>("network.networking.hosts"), type);
+	filterHosts(config.get<NetworkHost[]>("network.hosts"), type);
 
 export const randomHostFromConfig = (config: Config, type: NetworkHostType): NetworkHost =>
-	randomHost(config.get<NetworkHost[]>("network.networking.hosts"), type);
+	randomHost(config.get<NetworkHost[]>("network.hosts"), type);

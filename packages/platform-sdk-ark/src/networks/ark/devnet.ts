@@ -33,7 +33,15 @@ const network: Coins.NetworkManifest = {
 		votesPerWallet: 1,
 		votesPerTransaction: 1,
 	},
-	transactions,
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "dynamic",
+				ticker: "DARK",
+			},
+		},
+	},
 	importMethods,
 	featureFlags,
 	knownWallets: "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",

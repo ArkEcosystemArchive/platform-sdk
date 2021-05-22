@@ -25,7 +25,7 @@ export const createConfig = (options?: object, meta = {}) => {
 
 export const createConfigWithNetwork = () =>
 	createConfig(undefined, {
-		networkConfiguration: {
+		NETWORK_CONFIGURATION: {
 			crypto: require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data,
 			status: require(`${__dirname}/fixtures/client/syncing.json`).data,
 		},

@@ -11,483 +11,460 @@ test("#all", () => {
 	expect(subject.all()).toMatchInlineSnapshot(`
 		Object {
 		  "ark.devnet": Object {
-		    "coin": "ARK",
-		    "crypto": Object {
-		      "expirationType": "height",
-		      "signingMethods": Object {
-		        "mnemonic": true,
-		        "wif": true,
-		      },
+		    "coin": "DARK",
+		    "constants": Object {
 		      "slip44": 1,
 		    },
 		    "currency": Object {
 		      "symbol": "DѦ",
 		      "ticker": "DARK",
 		    },
-		    "explorer": "https://dexplorer.ark.io/",
 		    "featureFlags": Object {
-		      "Client": Object {
-		        "broadcast": true,
-		        "configuration": true,
-		        "delegate": true,
-		        "delegates": true,
-		        "fees": true,
-		        "syncing": true,
-		        "transaction": true,
-		        "transactions": true,
-		        "voters": true,
-		        "votes": true,
-		        "wallet": true,
-		        "wallets": true,
-		      },
-		      "Derivation": Object {
-		        "bip39": true,
-		        "bip44": true,
-		      },
-		      "Fee": Object {
-		        "all": true,
-		      },
-		      "Identity": Object {
-		        "address": Object {
-		          "mnemonic": true,
-		          "multiSignature": true,
-		          "privateKey": true,
-		          "publicKey": true,
-		          "wif": true,
-		        },
-		        "keyPair": Object {
-		          "mnemonic": true,
-		          "privateKey": false,
-		          "wif": true,
-		        },
-		        "privateKey": Object {
-		          "mnemonic": true,
-		          "wif": true,
-		        },
-		        "publicKey": Object {
-		          "mnemonic": true,
-		          "multiSignature": true,
-		          "wif": true,
-		        },
-		        "wif": Object {
-		          "mnemonic": true,
-		        },
-		      },
-		      "Internal": Object {
-		        "fastDelegateSync": true,
-		      },
-		      "Ledger": Object {
-		        "getPublicKey": true,
-		        "getVersion": true,
-		        "signMessage": true,
-		        "signTransaction": true,
-		      },
-		      "Link": Object {
-		        "block": true,
-		        "transaction": true,
-		        "wallet": true,
-		      },
-		      "Message": Object {
-		        "sign": true,
-		        "verify": true,
-		      },
-		      "Miscellaneous": Object {
-		        "dynamicFees": true,
-		        "memo": true,
-		      },
-		      "Peer": Object {
-		        "search": true,
-		      },
-		      "Transaction": Object {
-		        "delegateRegistration": Object {
-		          "default": true,
-		        },
-		        "delegateResignation": Object {
-		          "default": true,
-		        },
-		        "htlcClaim": Object {
-		          "default": true,
-		        },
-		        "htlcLock": Object {
-		          "default": true,
-		        },
-		        "htlcRefund": Object {
-		          "default": true,
-		        },
-		        "ipfs": Object {
-		          "default": true,
-		        },
-		        "multiPayment": Object {
-		          "default": true,
-		        },
-		        "multiSignature": Object {
-		          "default": true,
-		        },
-		        "secondSignature": Object {
-		          "default": true,
-		        },
-		        "transfer": Object {
-		          "default": true,
-		        },
-		        "vote": Object {
-		          "default": true,
-		        },
-		      },
-		    },
-		    "fees": Object {
-		      "ticker": "DARK",
-		      "type": "dynamic",
+		      "Client": Array [
+		        "transaction",
+		        "transactions",
+		        "wallet",
+		        "wallets",
+		        "delegate",
+		        "delegates",
+		        "votes",
+		        "voters",
+		        "configuration",
+		        "fees",
+		        "syncing",
+		        "broadcast",
+		      ],
+		      "Fee": Array [
+		        "all",
+		      ],
+		      "Identity": Array [
+		        "address.mnemonic.bip39",
+		        "address.multiSignature",
+		        "address.privateKey",
+		        "address.publicKey",
+		        "address.validate",
+		        "address.wif",
+		        "keyPair.mnemonic.bip39",
+		        "keyPair.privateKey",
+		        "keyPair.wif",
+		        "privateKey.mnemonic.bip39",
+		        "privateKey.wif",
+		        "publicKey.mnemonic.bip39",
+		        "publicKey.multiSignature",
+		        "publicKey.wif",
+		        "wif.mnemonic.bip39",
+		      ],
+		      "Ledger": Array [
+		        "getVersion",
+		        "getPublicKey",
+		        "signTransaction",
+		        "signMessage",
+		      ],
+		      "Link": Array [
+		        "block",
+		        "transaction",
+		        "wallet",
+		      ],
+		      "Message": Array [
+		        "sign",
+		        "verify",
+		      ],
+		      "Peer": Array [
+		        "validate",
+		      ],
+		      "Transaction": Array [
+		        "delegateRegistration",
+		        "delegateResignation",
+		        "ipfs.ledgerS",
+		        "ipfs.ledgerX",
+		        "ipfs.musig",
+		        "ipfs",
+		        "multiPayment.ledgerS",
+		        "multiPayment.ledgerX",
+		        "multiPayment.musig",
+		        "multiPayment",
+		        "multiSignature.ledgerS",
+		        "multiSignature.ledgerX",
+		        "multiSignature.musig",
+		        "multiSignature",
+		        "secondSignature",
+		        "transfer.ledgerS",
+		        "transfer.ledgerX",
+		        "transfer.musig",
+		        "transfer",
+		        "vote.ledgerS",
+		        "vote.ledgerX",
+		        "vote.musig",
+		        "vote",
+		      ],
 		    },
 		    "governance": Object {
-		      "voting": Object {
-		        "delegateCount": 51,
-		        "enabled": true,
-		        "maximumPerTransaction": 1,
-		        "maximumPerWallet": 1,
+		      "delegateCount": 51,
+		      "votesPerTransaction": 1,
+		      "votesPerWallet": 1,
+		    },
+		    "hosts": Array [
+		      Object {
+		        "host": "https://dwallets.ark.io",
+		        "type": "full",
+		      },
+		      Object {
+		        "host": "https://dmusig1.ark.io",
+		        "type": "musig",
+		      },
+		      Object {
+		        "host": "https://dexplorer.ark.io/",
+		        "type": "explorer",
+		      },
+		    ],
+		    "id": "ark.devnet",
+		    "importMethods": Object {
+		      "address": Object {
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		        ],
+		      },
+		      "bip39": Object {
+		        "default": true,
+		        "permissions": Array [
+		          "read",
+		          "write",
+		        ],
+		      },
+		      "publicKey": Object {
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		        ],
 		      },
 		    },
-		    "id": "ark.devnet",
 		    "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",
 		    "name": "Devnet",
-		    "networking": Object {
-		      "hosts": Array [
-		        "https://dwallets.ark.io",
-		      ],
-		      "hostsMultiSignature": Array [
-		        "https://dmusig1.ark.io",
+		    "transactions": Object {
+		      "expirationType": "height",
+		      "fees": Object {
+		        "ticker": "DARK",
+		        "type": "dynamic",
+		      },
+		      "memo": true,
+		      "types": Array [
+		        "delegate-registration",
+		        "delegate-resignation",
+		        "htlc-claim",
+		        "htlc-lock",
+		        "htlc-refund",
+		        "ipfs",
+		        "multi-payment",
+		        "multi-signature",
+		        "second-signature",
+		        "transfer",
+		        "vote",
 		      ],
 		    },
-		    "transactionTypes": Array [
-		      "delegate-registration",
-		      "delegate-resignation",
-		      "htlc-claim",
-		      "htlc-lock",
-		      "htlc-refund",
-		      "ipfs",
-		      "multi-payment",
-		      "multi-signature",
-		      "second-signature",
-		      "transfer",
-		      "vote",
-		    ],
 		    "type": "test",
 		  },
 		  "ark.mainnet": Object {
 		    "coin": "ARK",
-		    "crypto": Object {
-		      "expirationType": "height",
-		      "signingMethods": Object {
-		        "mnemonic": true,
-		        "wif": true,
-		      },
+		    "constants": Object {
 		      "slip44": 111,
 		    },
 		    "currency": Object {
 		      "symbol": "Ѧ",
 		      "ticker": "ARK",
 		    },
-		    "explorer": "https://explorer.ark.io/",
 		    "featureFlags": Object {
-		      "Client": Object {
-		        "broadcast": true,
-		        "configuration": true,
-		        "delegate": true,
-		        "delegates": true,
-		        "fees": true,
-		        "syncing": true,
-		        "transaction": true,
-		        "transactions": true,
-		        "voters": true,
-		        "votes": true,
-		        "wallet": true,
-		        "wallets": true,
-		      },
-		      "Derivation": Object {
-		        "bip39": true,
-		        "bip44": true,
-		      },
-		      "Fee": Object {
-		        "all": true,
-		      },
-		      "Identity": Object {
-		        "address": Object {
-		          "mnemonic": true,
-		          "multiSignature": true,
-		          "privateKey": true,
-		          "publicKey": true,
-		          "wif": true,
-		        },
-		        "keyPair": Object {
-		          "mnemonic": true,
-		          "privateKey": false,
-		          "wif": true,
-		        },
-		        "privateKey": Object {
-		          "mnemonic": true,
-		          "wif": true,
-		        },
-		        "publicKey": Object {
-		          "mnemonic": true,
-		          "multiSignature": true,
-		          "wif": true,
-		        },
-		        "wif": Object {
-		          "mnemonic": true,
-		        },
-		      },
-		      "Internal": Object {
-		        "fastDelegateSync": true,
-		      },
-		      "Ledger": Object {
-		        "getPublicKey": true,
-		        "getVersion": true,
-		        "signMessage": true,
-		        "signTransaction": true,
-		      },
-		      "Link": Object {
-		        "block": true,
-		        "transaction": true,
-		        "wallet": true,
-		      },
-		      "Message": Object {
-		        "sign": true,
-		        "verify": true,
-		      },
-		      "Miscellaneous": Object {
-		        "dynamicFees": true,
-		        "memo": true,
-		      },
-		      "Peer": Object {
-		        "search": true,
-		      },
-		      "Transaction": Object {
-		        "delegateRegistration": Object {
-		          "default": true,
-		          "ledgerS": true,
-		          "ledgerX": true,
-		        },
-		        "delegateResignation": Object {
-		          "default": true,
-		          "ledgerS": true,
-		          "ledgerX": true,
-		        },
-		        "ipfs": Object {
-		          "default": true,
-		          "ledgerS": true,
-		          "ledgerX": true,
-		        },
-		        "multiPayment": Object {
-		          "default": true,
-		          "ledgerS": true,
-		          "ledgerX": true,
-		        },
-		        "multiSignature": Object {
-		          "default": true,
-		          "ledgerS": true,
-		          "ledgerX": true,
-		        },
-		        "secondSignature": Object {
-		          "default": true,
-		          "ledgerS": true,
-		          "ledgerX": true,
-		        },
-		        "transfer": Object {
-		          "default": true,
-		          "ledgerS": true,
-		          "ledgerX": true,
-		        },
-		        "vote": Object {
-		          "default": true,
-		          "ledgerS": true,
-		          "ledgerX": true,
-		        },
-		      },
-		    },
-		    "fees": Object {
-		      "ticker": "ARK",
-		      "type": "dynamic",
+		      "Client": Array [
+		        "transaction",
+		        "transactions",
+		        "wallet",
+		        "wallets",
+		        "delegate",
+		        "delegates",
+		        "votes",
+		        "voters",
+		        "configuration",
+		        "fees",
+		        "syncing",
+		        "broadcast",
+		      ],
+		      "Fee": Array [
+		        "all",
+		      ],
+		      "Identity": Array [
+		        "address.mnemonic.bip39",
+		        "address.multiSignature",
+		        "address.privateKey",
+		        "address.publicKey",
+		        "address.validate",
+		        "address.wif",
+		        "keyPair.mnemonic.bip39",
+		        "keyPair.privateKey",
+		        "keyPair.wif",
+		        "privateKey.mnemonic.bip39",
+		        "privateKey.wif",
+		        "publicKey.mnemonic.bip39",
+		        "publicKey.multiSignature",
+		        "publicKey.wif",
+		        "wif.mnemonic.bip39",
+		      ],
+		      "Ledger": Array [
+		        "getVersion",
+		        "getPublicKey",
+		        "signTransaction",
+		        "signMessage",
+		      ],
+		      "Link": Array [
+		        "block",
+		        "transaction",
+		        "wallet",
+		      ],
+		      "Message": Array [
+		        "sign",
+		        "verify",
+		      ],
+		      "Peer": Array [
+		        "validate",
+		      ],
+		      "Transaction": Array [
+		        "delegateRegistration",
+		        "delegateResignation",
+		        "ipfs.ledgerS",
+		        "ipfs.ledgerX",
+		        "ipfs.musig",
+		        "ipfs",
+		        "multiPayment.ledgerS",
+		        "multiPayment.ledgerX",
+		        "multiPayment.musig",
+		        "multiPayment",
+		        "multiSignature.ledgerS",
+		        "multiSignature.ledgerX",
+		        "multiSignature.musig",
+		        "multiSignature",
+		        "secondSignature",
+		        "transfer.ledgerS",
+		        "transfer.ledgerX",
+		        "transfer.musig",
+		        "transfer",
+		        "vote.ledgerS",
+		        "vote.ledgerX",
+		        "vote.musig",
+		        "vote",
+		      ],
 		    },
 		    "governance": Object {
-		      "voting": Object {
-		        "delegateCount": 51,
-		        "enabled": true,
-		        "maximumPerTransaction": 1,
-		        "maximumPerWallet": 1,
+		      "delegateCount": 51,
+		      "votesPerTransaction": 1,
+		      "votesPerWallet": 1,
+		    },
+		    "hosts": Array [
+		      Object {
+		        "host": "https://wallets.ark.io",
+		        "type": "full",
+		      },
+		      Object {
+		        "host": "https://musig1.ark.io",
+		        "type": "musig",
+		      },
+		      Object {
+		        "host": "https://explorer.ark.io/",
+		        "type": "explorer",
+		      },
+		    ],
+		    "id": "ark.mainnet",
+		    "importMethods": Object {
+		      "address": Object {
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		        ],
+		      },
+		      "bip39": Object {
+		        "default": true,
+		        "permissions": Array [
+		          "read",
+		          "write",
+		        ],
+		      },
+		      "publicKey": Object {
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		        ],
 		      },
 		    },
-		    "id": "ark.mainnet",
 		    "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json",
 		    "name": "Mainnet",
-		    "networking": Object {
-		      "hosts": Array [
-		        "https://wallets.ark.io",
-		      ],
-		      "hostsMultiSignature": Array [
-		        "https://musig1.ark.io",
+		    "transactions": Object {
+		      "expirationType": "height",
+		      "fees": Object {
+		        "ticker": "ARK",
+		        "type": "dynamic",
+		      },
+		      "memo": true,
+		      "types": Array [
+		        "delegate-registration",
+		        "delegate-resignation",
+		        "htlc-claim",
+		        "htlc-lock",
+		        "htlc-refund",
+		        "ipfs",
+		        "multi-payment",
+		        "multi-signature",
+		        "second-signature",
+		        "transfer",
+		        "vote",
 		      ],
 		    },
-		    "transactionTypes": Array [
-		      "delegate-registration",
-		      "delegate-resignation",
-		      "htlc-claim",
-		      "htlc-lock",
-		      "htlc-refund",
-		      "ipfs",
-		      "multi-payment",
-		      "multi-signature",
-		      "second-signature",
-		      "transfer",
-		      "vote",
-		    ],
 		    "type": "live",
 		  },
 		  "compendia.mainnet": Object {
 		    "coin": "Compendia",
-		    "crypto": Object {
-		      "expirationType": "height",
-		      "signingMethods": Object {
-		        "mnemonic": true,
-		        "wif": true,
-		      },
+		    "constants": Object {
 		      "slip44": 543,
 		    },
 		    "currency": Object {
 		      "symbol": "ß",
 		      "ticker": "BIND",
 		    },
-		    "explorer": "https://bindscan.io/",
 		    "featureFlags": Object {
-		      "Client": Object {
-		        "broadcast": true,
-		        "configuration": true,
-		        "delegate": true,
-		        "delegates": true,
-		        "fees": true,
-		        "syncing": true,
-		        "transaction": true,
-		        "transactions": true,
-		        "voters": true,
-		        "votes": true,
-		        "wallet": true,
-		        "wallets": true,
-		      },
-		      "Derivation": Object {
-		        "bip39": true,
-		        "bip44": true,
-		      },
-		      "Fee": Object {
-		        "all": true,
-		      },
-		      "Identity": Object {
-		        "address": Object {
-		          "mnemonic": true,
-		          "multiSignature": true,
-		          "privateKey": true,
-		          "publicKey": true,
-		          "wif": true,
-		        },
-		        "keyPair": Object {
-		          "mnemonic": true,
-		          "privateKey": false,
-		          "wif": true,
-		        },
-		        "privateKey": Object {
-		          "mnemonic": true,
-		          "wif": true,
-		        },
-		        "publicKey": Object {
-		          "mnemonic": true,
-		          "multiSignature": true,
-		          "wif": true,
-		        },
-		        "wif": Object {
-		          "mnemonic": true,
-		        },
-		      },
-		      "Internal": Object {
-		        "fastDelegateSync": true,
-		      },
-		      "Ledger": Object {
-		        "getPublicKey": true,
-		        "getVersion": true,
-		        "signMessage": true,
-		        "signTransaction": true,
-		      },
-		      "Link": Object {
-		        "block": true,
-		        "transaction": true,
-		        "wallet": true,
-		      },
-		      "Message": Object {
-		        "sign": true,
-		        "verify": true,
-		      },
-		      "Miscellaneous": Object {
-		        "dynamicFees": true,
-		        "memo": true,
-		      },
-		      "Peer": Object {
-		        "search": true,
-		      },
-		      "Transaction": Object {
-		        "delegateRegistration": Object {
-		          "default": true,
-		        },
-		        "delegateResignation": Object {
-		          "default": true,
-		        },
-		        "ipfs": Object {
-		          "default": true,
-		        },
-		        "multiPayment": Object {
-		          "default": true,
-		        },
-		        "multiSignature": Object {
-		          "default": true,
-		        },
-		        "secondSignature": Object {
-		          "default": true,
-		        },
-		        "transfer": Object {
-		          "default": true,
-		        },
-		        "vote": Object {
-		          "default": true,
-		        },
-		      },
-		    },
-		    "fees": Object {
-		      "ticker": "BIND",
-		      "type": "dynamic",
-		    },
-		    "governance": Object {
-		      "voting": Object {
-		        "delegateCount": 47,
-		        "enabled": true,
-		        "maximumPerTransaction": 1,
-		        "maximumPerWallet": 1,
-		      },
-		    },
-		    "id": "compendia.mainnet",
-		    "name": "Mainnet",
-		    "networking": Object {
-		      "hosts": Array [
-		        "https://apis.compendia.org",
+		      "Client": Array [
+		        "transaction",
+		        "transactions",
+		        "wallet",
+		        "wallets",
+		        "delegate",
+		        "delegates",
+		        "votes",
+		        "voters",
+		        "configuration",
+		        "fees",
+		        "syncing",
+		        "broadcast",
+		      ],
+		      "Fee": Array [
+		        "all",
+		      ],
+		      "Identity": Array [
+		        "address.mnemonic.bip39",
+		        "address.multiSignature",
+		        "address.privateKey",
+		        "address.publicKey",
+		        "address.validate",
+		        "address.wif",
+		        "keyPair.mnemonic.bip39",
+		        "keyPair.privateKey",
+		        "keyPair.wif",
+		        "privateKey.mnemonic.bip39",
+		        "privateKey.wif",
+		        "publicKey.mnemonic.bip39",
+		        "publicKey.multiSignature",
+		        "publicKey.wif",
+		        "wif.mnemonic.bip39",
+		      ],
+		      "Ledger": Array [
+		        "getVersion",
+		        "getPublicKey",
+		        "signTransaction",
+		        "signMessage",
+		      ],
+		      "Link": Array [
+		        "block",
+		        "transaction",
+		        "wallet",
+		      ],
+		      "Message": Array [
+		        "sign",
+		        "verify",
+		      ],
+		      "Peer": Array [
+		        "validate",
+		      ],
+		      "Transaction": Array [
+		        "delegateRegistration",
+		        "delegateResignation",
+		        "ipfs.ledgerS",
+		        "ipfs.ledgerX",
+		        "ipfs.musig",
+		        "ipfs",
+		        "multiPayment.ledgerS",
+		        "multiPayment.ledgerX",
+		        "multiPayment.musig",
+		        "multiPayment",
+		        "multiSignature.ledgerS",
+		        "multiSignature.ledgerX",
+		        "multiSignature.musig",
+		        "multiSignature",
+		        "secondSignature",
+		        "transfer.ledgerS",
+		        "transfer.ledgerX",
+		        "transfer.musig",
+		        "transfer",
+		        "vote.ledgerS",
+		        "vote.ledgerX",
+		        "vote.musig",
+		        "vote",
 		      ],
 		    },
-		    "transactionTypes": Array [
-		      "delegate-registration",
-		      "delegate-resignation",
-		      "htlc-claim",
-		      "htlc-lock",
-		      "htlc-refund",
-		      "ipfs",
-		      "multi-payment",
-		      "multi-signature",
-		      "second-signature",
-		      "transfer",
-		      "vote",
+		    "governance": Object {
+		      "delegateCount": 47,
+		      "votesPerTransaction": 1,
+		      "votesPerWallet": 1,
+		    },
+		    "hosts": Array [
+		      Object {
+		        "host": "https://apis.compendia.org",
+		        "type": "full",
+		      },
+		      Object {
+		        "host": "https://bindscan.io/",
+		        "type": "explorer",
+		      },
 		    ],
+		    "id": "compendia.mainnet",
+		    "importMethods": Object {
+		      "address": Object {
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		        ],
+		      },
+		      "bip39": Object {
+		        "default": true,
+		        "permissions": Array [
+		          "read",
+		          "write",
+		        ],
+		      },
+		      "publicKey": Object {
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		        ],
+		      },
+		    },
+		    "name": "Mainnet",
+		    "transactions": Object {
+		      "expirationType": "height",
+		      "fees": Object {
+		        "ticker": "BIND",
+		        "type": "dynamic",
+		      },
+		      "memo": true,
+		      "types": Array [
+		        "delegate-registration",
+		        "delegate-resignation",
+		        "htlc-claim",
+		        "htlc-lock",
+		        "htlc-refund",
+		        "ipfs",
+		        "multi-payment",
+		        "multi-signature",
+		        "second-signature",
+		        "transfer",
+		        "vote",
+		      ],
+		    },
 		    "type": "live",
 		  },
 		}

@@ -27,6 +27,9 @@ const network: Coins.NetworkManifest = {
 	transactions,
 	importMethods,
 	featureFlags,
+	meta: {
+		networkId: "1",
+	},
 };
 
 export default network;

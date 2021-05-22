@@ -61,8 +61,8 @@ export class Network {
 	/**
 	 * Get the explorer URL of the coin that is used.
 	 */
-	public explorer(): NetworkHost {
-		return randomHost(this.#network.hosts, "explorer");
+	public explorer(): string {
+		return randomHost(this.#network.hosts, "explorer").host;
 	}
 
 	/**
@@ -104,28 +104,28 @@ export class Network {
 	 * Determine if voting is supported on this network.
 	 */
 	public allowsVoting(): boolean {
-		return get(this.#network, "governance.voting.enabled", false);
+		return get(this.#network, "governance") !== undefined;
 	}
 
 	/**
 	 * Get the number of delegates that forge blocks.
 	 */
 	public delegateCount(): number {
-		return get(this.#network, "governance.voting.delegateCount", 0);
+		return get(this.#network, "governance.delegateCount", 0);
 	}
 
 	/**
 	 * Get the maximum number of votes per wallet.
 	 */
 	public maximumVotesPerWallet(): number {
-		return get(this.#network, "governance.voting.maximumPerWallet", 0);
+		return get(this.#network, "governance.votesPerWallet", 0);
 	}
 
 	/**
 	 * Get the maximum number of votes per transaction.
 	 */
 	public maximumVotesPerTransaction(): number {
-		return get(this.#network, "governance.voting.maximumPerTransaction", 0);
+		return get(this.#network, "governance.votesPerTransaction", 0);
 	}
 
 	/**
@@ -141,7 +141,9 @@ export class Network {
 	 * @param feature
 	 */
 	public allows(feature: string): boolean {
-		return get(this.#network.featureFlags, feature) === true;
+        const [root, ...child] = feature.split(".");
+
+		return get<string[]>(this.#network.featureFlags, root)!.includes(child.join("."));
 	}
 
 	/**

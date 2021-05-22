@@ -70,7 +70,6 @@ test("ConfigKey", () => {
 		  "HttpClient": "httpClient",
 		  "KnownWallets": "network.knownWallets",
 		  "Network": "network",
-		  "NetworkConfiguration": "networkConfiguration",
 		  "NetworkId": "network.id",
 		  "Slip44": "network.constants.slip44",
 		}
