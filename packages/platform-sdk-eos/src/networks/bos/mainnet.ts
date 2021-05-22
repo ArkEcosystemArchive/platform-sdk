@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "bos.mainnet",
 	type: "live",
@@ -14,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		type: "free",
 		ticker: "BOS",
 	},
-	crypto: {
+	constants: {
 		networkId: "d5a3d18fbb3c084e3b1f3fa98c21014b5f3db536cc15d08f9f6479517c6a3d86",
 		slip44: 194,
 		bech32: "BOS",
@@ -25,14 +27,6 @@ const network: Coins.NetworkManifest = {
 	},
 	networking: {
 		hosts: ["https://api.boscore.io"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {
@@ -61,7 +55,9 @@ const network: Coins.NetworkManifest = {
 			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

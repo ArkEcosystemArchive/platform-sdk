@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "wax.mainnet",
 	type: "live",
@@ -14,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		type: "free",
 		ticker: "WAX",
 	},
-	crypto: {
+	constants: {
 		networkId: "1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4",
 		slip44: 194,
 		bech32: "WAX",
@@ -25,14 +27,6 @@ const network: Coins.NetworkManifest = {
 	},
 	networking: {
 		hosts: ["https://wax.eosphere.io"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {
@@ -61,7 +55,9 @@ const network: Coins.NetworkManifest = {
 			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

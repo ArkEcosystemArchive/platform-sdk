@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "zil.mainnet",
 	type: "live",
@@ -14,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		type: "gas",
 		ticker: "ZIL",
 	},
-	crypto: {
+	constants: {
 		slip44: 313,
 		expirationType: "height",
 	},
@@ -58,7 +60,9 @@ const network: Coins.NetworkManifest = {
 			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

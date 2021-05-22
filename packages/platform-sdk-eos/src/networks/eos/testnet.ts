@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "eos.testnet",
 	type: "test",
@@ -14,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		type: "free",
 		ticker: "EOS",
 	},
-	crypto: {
+	constants: {
 		networkId: "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
 		slip44: 194,
 		bech32: "EOS",
@@ -25,14 +27,6 @@ const network: Coins.NetworkManifest = {
 	},
 	networking: {
 		hosts: ["https://api.testnet.eos.io"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {
@@ -61,7 +55,9 @@ const network: Coins.NetworkManifest = {
 			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

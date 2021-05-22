@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "nano.mainnet",
 	type: "live",
@@ -14,20 +16,12 @@ const network: Coins.NetworkManifest = {
 		type: "free",
 		ticker: "NANO",
 	},
-	crypto: {
+	constants: {
 		slip44: 165,
 		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://proxy.nanos.cc/proxy"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Identity: {

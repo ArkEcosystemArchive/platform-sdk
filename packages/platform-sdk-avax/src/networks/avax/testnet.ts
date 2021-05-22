@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "avax.testnet",
 	type: "live",
@@ -14,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		type: "static",
 		ticker: "FUJI",
 	},
-	crypto: {
+	constants: {
 		networkId: "5",
 		blockchainId: "2JVSBoinj9C2J33VntvzYtVJNZdN2NKiwwKjcumHUWEb5DbBrm",
 		assetId: "U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK",
@@ -27,14 +29,6 @@ const network: Coins.NetworkManifest = {
 	networking: {
 		hosts: ["https://api.avax-test.network:443"],
 		hostsArchival: ["https://api.avax-test.network:8080"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {

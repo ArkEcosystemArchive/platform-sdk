@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "sol.mainnet",
 	type: "live",
@@ -14,20 +16,12 @@ const network: Coins.NetworkManifest = {
 		type: "dynamic",
 		ticker: "SOL",
 	},
-	crypto: {
+	constants: {
 		slip44: 501,
 		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://api.mainnet-beta.solana.com"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {
@@ -64,7 +58,9 @@ const network: Coins.NetworkManifest = {
 			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

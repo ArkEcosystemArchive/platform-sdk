@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "meetone.mainnet",
 	type: "live",
@@ -14,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		type: "free",
 		ticker: "MEETONE",
 	},
-	crypto: {
+	constants: {
 		networkId: "cfe6486a83bad4962f232d48003b1824ab5665c36778141034d75e57b956e422",
 		slip44: 194,
 		bech32: "MEETONE",
@@ -25,14 +27,6 @@ const network: Coins.NetworkManifest = {
 	},
 	networking: {
 		hosts: ["https://fullnode.meet.one"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {
@@ -56,7 +50,9 @@ const network: Coins.NetworkManifest = {
 			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

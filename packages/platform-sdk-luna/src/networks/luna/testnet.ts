@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "luna.testnet",
 	type: "test",
@@ -14,20 +16,12 @@ const network: Coins.NetworkManifest = {
 		type: "dynamic",
 		ticker: "SOJU",
 	},
-	crypto: {
+	constants: {
 		slip44: 330,
 		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://soju-lcd.terra.dev"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {
@@ -59,7 +53,9 @@ const network: Coins.NetworkManifest = {
 			bip39: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

@@ -34,7 +34,7 @@ export class WalletSerialiser {
 			network: this.#wallet.networkId(),
 			// We only persist a few settings to prefer defaults from the SDK.
 			networkConfig: {
-				crypto: {
+				constants: {
 					slip44: network.crypto.slip44,
 				},
 				networking: {

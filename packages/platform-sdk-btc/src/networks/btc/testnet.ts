@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "btc.testnet",
 	type: "test",
@@ -14,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		type: "dynamic",
 		ticker: "BTC",
 	},
-	crypto: {
+	constants: {
 		slip44: 0,
 		signingMethods: {
 			mnemonic: true,
@@ -24,14 +26,6 @@ const network: Coins.NetworkManifest = {
 	},
 	networking: {
 		hosts: ["https://coins.com/api/btc"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {
@@ -86,7 +80,9 @@ const network: Coins.NetworkManifest = {
 			bip84: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

@@ -1,86 +1,37 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { constants, transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "ada.testnet",
 	type: "test",
 	name: "Testnet",
 	coin: "Cardano",
-	explorer: "https://shelleyexplorer.cardano.org/",
 	currency: {
 		ticker: "ADA",
 		symbol: "ADA",
 	},
-	fees: {
-		type: "static",
-		ticker: "ADA",
-	},
-	crypto: {
-		networkId: "0",
-		slip44: 1815,
-		expirationType: "height",
-		derivation: {
-			extendedPublicKey: true,
+	constants,
+	hosts: [
+		{
+			type: "full",
+			host: { url: "http://51.75.183.27:3100" },
 		},
-	},
-	networking: {
-		hosts: ["http://51.75.183.27:3100"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
+		{
+			type: "explorer",
+			host: { url: "https://shelleyexplorer.cardano.org/" },
 		},
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				publicKey: true,
-				validate: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-			},
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Miscellaneous: {
-			utxo: true,
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
+	],
 	meta: {
 		minFeeA: 44,
 		minFeeB: 155381,
 		minUTxOValue: 1000000,
 		poolDeposit: 500000000,
 		keyDeposit: 2000000,
+		// @TODO
+		networkId: "0",
+		extendedPublicKey: true,
 	},
-	transactionTypes: ["transfer"],
 };
 
 export default network;

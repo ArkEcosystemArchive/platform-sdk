@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "lsk.mainnet",
 	type: "live",
@@ -14,12 +16,9 @@ const network: Coins.NetworkManifest = {
 		type: "static",
 		ticker: "LSK",
 	},
-	crypto: {
+	constants: {
 		networkId: "ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511",
 		slip44: 134,
-		signingMethods: {
-			mnemonic: true,
-		},
 		expirationType: "height",
 	},
 	networking: {

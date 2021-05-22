@@ -29,7 +29,7 @@ export interface IWalletData {
 	coin: string;
 	network: string;
 	networkConfig: {
-		crypto: {
+		constants: {
 			slip44?: number;
 		};
 		networking: {

@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "ksm.mainnet",
 	type: "live",
@@ -14,20 +16,12 @@ const network: Coins.NetworkManifest = {
 		type: "weight",
 		ticker: "DOT",
 	},
-	crypto: {
+	constants: {
 		networkId: "2",
 		expirationType: "height",
 	},
 	networking: {
 		hosts: ["https://kusama-rpc.polkadot.io/"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Identity: {
@@ -67,7 +61,9 @@ const network: Coins.NetworkManifest = {
 			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

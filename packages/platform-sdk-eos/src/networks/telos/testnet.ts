@@ -1,5 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "telos.testnet",
 	type: "test",
@@ -14,7 +16,7 @@ const network: Coins.NetworkManifest = {
 		type: "free",
 		ticker: "TLOS",
 	},
-	crypto: {
+	constants: {
 		networkId: "e17615decaecd202a365f4c029f206eee98511979de8a5756317e2469f2289e3",
 		slip44: 194,
 		bech32: "TLOS",
@@ -30,14 +32,6 @@ const network: Coins.NetworkManifest = {
 			"https://testnet.telos.caleos.io",
 			"https://api-test.telosfoundation.io",
 		],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
 	},
 	featureFlags: {
 		Client: {
@@ -66,7 +60,9 @@ const network: Coins.NetworkManifest = {
 			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

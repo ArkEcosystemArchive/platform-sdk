@@ -169,7 +169,7 @@ export type LinkMethods = LinkMethod[];
 export type MessageMethod = "sign" | "verify";
 export type MessageMethods = MessageMethod[];
 
-export type PeerMethod = "search";
+export type PeerMethod = "validate";
 export type PeerMethods = PeerMethod[];
 
 export type TransactionMethod =
