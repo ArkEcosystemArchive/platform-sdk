@@ -28,7 +28,7 @@ const network: Coins.NetworkManifest = {
 	importMethods,
 	featureFlags,
 	meta: {
-		networkId: "1",
+		networkId: "0",
 	},
 };
 
