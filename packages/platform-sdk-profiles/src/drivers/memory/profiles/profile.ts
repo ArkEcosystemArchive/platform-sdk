@@ -395,4 +395,16 @@ export class Profile implements IProfile {
 	public hasCompletedIntroductoryTutorial(): boolean {
 		return this.data().has(ProfileData.HasCompletedIntroductoryTutorial);
 	}
+
+	/** {@inheritDoc IProfile.markManualInstallationDisclaimerAsAccepted} */
+	public markManualInstallationDisclaimerAsAccepted(): void {
+		this.data().set(ProfileData.HasAcceptedManualInstallationDisclaimer, true);
+
+		this.status().markAsDirty();
+	}
+
+	/** {@inheritDoc IProfile.hasAcceptedManualInstallationDisclaimer} */
+	public hasAcceptedManualInstallationDisclaimer(): boolean {
+		return this.data().has(ProfileData.HasAcceptedManualInstallationDisclaimer);
+	}
 }
