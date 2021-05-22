@@ -47,7 +47,8 @@ export class DelegateService implements IDelegateService {
 			await instance.__construct();
 		}
 
-		const instanceCanFastSync: boolean = instance.network().allows(Coins.FeatureFlag.InternalFastDelegateSync);
+		// @TODO: expose this again
+		const instanceCanFastSync: boolean = false; // instance.network().allows(Coins.FeatureFlag.InternalFastDelegateSync);
 
 		// TODO injection here based on coin config would be awesome
 		const syncer: IDelegateSyncer = instanceCanFastSync
