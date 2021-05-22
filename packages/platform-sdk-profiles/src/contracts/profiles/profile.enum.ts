@@ -23,7 +23,6 @@ export enum ProfileSetting {
 	DashboardConfiguration = "DASHBOARD_CONFIGURATION",
 	DashboardTransactionHistory = "DASHBOARD_TRANSACTION_HISTORY",
 	DateFormat = "DATE_FORMAT",
-	DoNotShowAdvancedModeDisclaimer = "DO_NOT_SHOW_ADVANCED_MODE_DISCLAIMER",
 	DoNotShowFeeWarning = "DO_NOT_SHOW_FEE_WARNING",
 	Locale = "LOCALE",
 	NewsFilters = "NEWS_FILTERS",
@@ -41,4 +40,5 @@ export enum ProfileSetting {
 export enum ProfileData {
 	LatestMigration = "LATEST_MIGRATION",
 	HasCompletedIntroductoryTutorial = "HAS_COMPLETED_INTRODUCTORY_TUTORIAL",
+	HasAcceptedManualInstallationDisclaimer = "HAS_ACCEPTED_MANUAL_INSTALLATION_DISCLAIMER",
 }
