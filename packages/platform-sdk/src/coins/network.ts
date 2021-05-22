@@ -206,16 +206,6 @@ export class Network {
 	}
 
 	/**
-	 * Get the meta data that is specific to this network.
-	 *
-	 * @return {*}  {T}
-	 * @memberof Network
-	 */
-	public meta<T>(): T {
-		return this.#network.meta as T;
-	}
-
-	/**
 	 * Return the object representation of the network.
 	 */
 	public toObject(): NetworkManifest {
