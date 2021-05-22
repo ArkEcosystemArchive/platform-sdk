@@ -9,7 +9,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public constructor(config: Coins.Config) {
 		this.#keyring = new Keyring({ type: "sr25519" });
-		this.#keyring.setSS58Format(config.get(Coins.ConfigKey.CryptoNetworkId));
+		this.#keyring.setSS58Format(config.get("network.meta.networkId"));
 	}
 
 	public static async __construct(config: Coins.Config): Promise<MessageService> {

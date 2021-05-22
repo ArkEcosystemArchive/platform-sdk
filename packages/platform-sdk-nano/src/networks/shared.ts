@@ -16,8 +16,8 @@ export const transactions: Coins.NetworkManifestTransactions = {
 		"vote",
 	],
 	fees: {
-		type: "dynamic",
-		ticker: "ARK",
+		type: "free",
+		ticker: "NANO",
 	},
 	memo: true,
 };
@@ -100,3 +100,37 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 		"vote",
 	],
 };
+
+
+// featureFlags: {
+// 	Identity: {
+// 		address: {
+// 			mnemonic: true,
+// 			publicKey: true,
+// 			privateKey: true,
+// 		},
+// 		publicKey: {
+// 			mnemonic: true,
+// 		},
+// 		privateKey: {
+// 			mnemonic: true,
+// 		},
+// 		keyPair: {
+// 			mnemonic: true,
+// 		},
+// 	},
+// 	Link: {
+// 		block: true,
+// 		transaction: true,
+// 		wallet: true,
+// 	},
+// 	Message: {
+// 		sign: true,
+// 		verify: true,
+// 	},
+// 	Derivation: {
+// 		bip39: true,
+// 		bip44: true,
+// 	},
+// },
+// transactionTypes: [],

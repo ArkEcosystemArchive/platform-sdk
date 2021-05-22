@@ -12,6 +12,7 @@ export class ProfileValidator implements IProfileValidator {
 	 * @memberof Profile
 	 */
 	public validate(data: IProfileData): IProfileData {
+		// @TODO: adjust schemas for manifest changes
 		const { error, value } = Joi.object({
 			id: Joi.string().required(),
 			contacts: Joi.object().pattern(

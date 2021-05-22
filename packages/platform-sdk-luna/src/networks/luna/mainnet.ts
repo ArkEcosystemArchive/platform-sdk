@@ -7,53 +7,23 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "Luna",
-	explorer: "TODO",
 	currency: {
 		ticker: "LUNA",
 		symbol: "LUNA",
 	},
-	fees: {
-		type: "dynamic",
-		ticker: "LUNA",
-	},
 	constants: {
 		slip44: 330,
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://luna-lcd.terra.dev/"],
-	},
-	featureFlags: {
-		Client: {
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://luna-lcd.terra.dev/",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				privateKey: true,
-			},
+		{
+			type: "explorer",
+			host: "@TODO",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-		},
-	},
+	],
 	transactions,
 	importMethods,
 	featureFlags,

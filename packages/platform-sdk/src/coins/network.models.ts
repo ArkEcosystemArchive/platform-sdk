@@ -23,7 +23,8 @@ export type CoinTransactionTypes =
 
 export interface NetworkHost {
 	type: NetworkHostType;
-	host: { url: string; query?: Record<string, string> };
+	host: string;
+	query?: Record<string, string>;
 }
 
 export interface ImportMethod {
@@ -66,6 +67,11 @@ export interface NetworkManifestImportMethods {
 	wif?: ImportMethod;
 }
 
+export interface NetworkManifestConstants {
+	slip44: number;
+	bech32?: string;
+}
+
 export interface NetworkManifest {
 	id: string;
 	type: string;
@@ -76,10 +82,7 @@ export interface NetworkManifest {
 		symbol: string;
 	};
 	hosts: NetworkHost[];
-	constants: {
-		slip44: number;
-		bech32?: string;
-	};
+	constants: NetworkManifestConstants;
 	governance?: {
 		delegateCount: number;
 		votesPerWallet: number;
@@ -89,9 +92,8 @@ export interface NetworkManifest {
 	importMethods: NetworkManifestImportMethods;
 	knownWallets?: string;
 	featureFlags: NetworkManifestFeatureFlags;
-	meta?: unknown;
+	meta?: Record<string, any>;
 	// @TODO: move to `meta`
-	// extendedPublicKey: boolean;
 	// fastDelegateSync?: boolean;
 }
 

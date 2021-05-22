@@ -1,6 +1,6 @@
 import { get } from "dot-prop";
 
-import { filterHostsByType } from "../helpers";
+import { filterHosts, randomHost } from "../helpers";
 import { CoinManifest, ExpirationType, NetworkHost, NetworkManifest } from "./network.models";
 
 export class Network {
@@ -62,7 +62,7 @@ export class Network {
 	 * Get the explorer URL of the coin that is used.
 	 */
 	public explorer(): NetworkHost {
-		return filterHostsByType(this.#network.hosts, "explorer")[0];
+		return randomHost(this.#network.hosts, "explorer");
 	}
 
 	/**

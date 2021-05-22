@@ -7,73 +7,23 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "XRP",
-	explorer: "https://livenet.xrpl.org/",
 	currency: {
 		ticker: "XRP",
 		symbol: "XRP",
 	},
-	fees: {
-		type: "free",
-		ticker: "xrp",
-	},
 	constants: {
 		slip44: 144,
-		signingMethods: {
-			mnemonic: true,
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://s2.ripple.com:51234/"],
-	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			transactions: true,
-			wallet: true,
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://s2.ripple.com:51234/",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				publicKey: true,
-				secret: true,
-			},
-			publicKey: {
-				mnemonic: true,
-				secret: true,
-			},
-			privateKey: {
-				mnemonic: true,
-				secret: true,
-			},
-			wif: {
-				mnemonic: true,
-				secret: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				secret: true,
-			},
+		{
+			type: "explorer",
+			host: "https://livenet.xrpl.org/",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
+	],
 	transactions,
 	importMethods,
 	featureFlags,

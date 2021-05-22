@@ -7,57 +7,39 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "EOS",
-	explorer: "https://eos.bloks.io/",
 	currency: {
 		ticker: "EOS",
 		symbol: "EOS",
 	},
-	fees: {
-		type: "free",
-		ticker: "EOS",
-	},
 	constants: {
-		networkId: "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
 		slip44: 194,
 		bech32: "EOS",
-		signingMethods: {
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://eos.greymass.com", "https://api.eosn.io", "https://mainnet.genereos.io"],
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://eos.greymass.com",
 		},
-		Identity: {
-			publicKey: {
-				mnemonic: true,
-			},
+		{
+			type: "full",
+			host: "https://api.eosn.io",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
+		{
+			type: "full",
+			host: "https://mainnet.genereos.io",
 		},
-		Message: {
-			sign: true,
-			verify: true,
+		{
+			type: "explorer",
+			host: "https://eos.bloks.io/",
 		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
+	],
 	transactions,
 	importMethods,
 	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
+	}
 };
 
 export default network;

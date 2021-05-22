@@ -122,7 +122,7 @@ describe.each([
 	[111, undefined],
 ])("%s", (slip44, balance) => {
 	it("should turn into an object", () => {
-		subject.coin().config().set("network.crypto.slip44", slip44);
+		subject.coin().config().set("network.constants.slip44", slip44);
 		subject.data().set("key", "value");
 
 		subject.data().set(WalletData.Balance, balance);
@@ -153,7 +153,7 @@ describe.each([
 	});
 
 	it("should turn into an object with initial state for partially restored wallet", () => {
-		subject.coin().config().set("network.crypto.slip44", slip44);
+		subject.coin().config().set("network.constants.slip44", slip44);
 		subject.data().set("key", "value");
 
 		subject.data().set(WalletData.LedgerPath, "1");

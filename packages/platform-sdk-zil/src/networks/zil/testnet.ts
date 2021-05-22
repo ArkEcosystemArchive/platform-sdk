@@ -10,11 +10,12 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: { url: "https://dev-api.zilliqa.com" },
+			host: "https://dev-api.zilliqa.com",
 		},
 		{
 			type: "explorer",
-			host: { url: "https://viewblock.io/zilliqa", query: { network: "testnet" } },
+			host: "https://viewblock.io/zilliqa",
+			query: { network: "testnet" },
 		},
 	],
 	currency: {

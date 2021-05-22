@@ -15,7 +15,7 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "explorer",
-			host: { url: "https://explorer.cardano.org/" },
+			host: "https://explorer.cardano.org/",
 		},
 	],
 	transactions,

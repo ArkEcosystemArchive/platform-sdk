@@ -7,48 +7,23 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "TRON",
-	explorer: "https://tronscan.org/#",
 	currency: {
 		ticker: "TRX",
 		symbol: "TRX",
 	},
-	fees: {
-		type: "free",
-		ticker: "TRX",
-	},
 	constants: {
 		slip44: 195,
-		signingMethods: {
-			mnemonic: true,
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://api.trongrid.io"],
-	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			wallet: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://api.trongrid.io",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
+		{
+			type: "explorer",
+			host: "https://tronscan.org/#",
 		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
+	],
 	transactions,
 	importMethods,
 	featureFlags,

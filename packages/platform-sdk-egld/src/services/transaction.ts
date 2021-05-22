@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import {
 	Address,
@@ -24,7 +24,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+		return new TransactionService(Helpers.randomHostFromConfig(config, "full").host);
 	}
 
 	public async __destruct(): Promise<void> {

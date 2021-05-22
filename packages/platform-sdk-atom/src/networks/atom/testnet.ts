@@ -18,11 +18,11 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: { url: "https://stargate.cosmos.network" },
+			host: "https://stargate.cosmos.network",
 		},
 		{
 			type: "explorer",
-			host: { url: "https://gaia.stake.id/" },
+			host: "https://gaia.stake.id/",
 		},
 	],
 	transactions: {

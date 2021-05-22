@@ -7,57 +7,30 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "Ethereum",
-	explorer: "https://etherscan.io/",
 	currency: {
 		ticker: "ETH",
 		symbol: "Ξ",
 	},
-	fees: {
-		type: "gas",
-		ticker: "ETH",
-	},
 	constants: {
-		networkId: "1",
 		slip44: 60,
-		signingMethods: {
-			mnemonic: true,
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://platform.ark.io/api/eth"],
-	},
-	featureFlags: {
-		Identity: {
-			address: {
-				publicKey: true,
-				privateKey: true,
-			},
-			keyPair: {
-				privateKey: true,
-			},
+	hosts: [
+		{
+			type: "full",
+			host: "https://platform.ark.io/api/eth",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
+		{
+			type: "explorer",
+			host: "https://etherscan.io/",
 		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
+	],
 	transactions,
 	importMethods,
 	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "1",
+	}
 };
 
 export default network;

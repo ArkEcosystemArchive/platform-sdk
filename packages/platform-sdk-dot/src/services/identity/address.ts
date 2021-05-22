@@ -8,7 +8,7 @@ export class Address implements Contracts.Address {
 
 	public constructor(config: Coins.Config) {
 		this.#keyring = new Keyring({ type: "sr25519" });
-		this.#keyring.setSS58Format(config.get(Coins.ConfigKey.CryptoNetworkId));
+		this.#keyring.setSS58Format(config.get("network.meta.networkId"));
 	}
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {

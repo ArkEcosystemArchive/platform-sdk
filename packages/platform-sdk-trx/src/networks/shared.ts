@@ -16,8 +16,8 @@ export const transactions: Coins.NetworkManifestTransactions = {
 		"vote",
 	],
 	fees: {
-		type: "dynamic",
-		ticker: "ARK",
+		type: "free",
+		ticker: "TRX",
 	},
 	memo: true,
 };
@@ -100,3 +100,26 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 		"vote",
 	],
 };
+
+// featureFlags: {
+// 	Client: {
+// 		transaction: true,
+// 		wallet: true,
+// 	},
+// 	Link: {
+// 		block: true,
+// 		transaction: true,
+// 		wallet: true,
+// 	},
+// 	Message: {
+// 		sign: true,
+// 		verify: true,
+// 	},
+// 	Transaction: {
+// 		transfer: { default: true },
+// 	},
+// 	Derivation: {
+// 		bip39: true,
+// 		bip44: true,
+// 	},
+// },

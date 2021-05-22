@@ -16,8 +16,8 @@ export const transactions: Coins.NetworkManifestTransactions = {
 		"vote",
 	],
 	fees: {
-		type: "dynamic",
-		ticker: "ARK",
+		type: "free",
+		ticker: "XRP",
 	},
 	memo: true,
 };
@@ -100,3 +100,51 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 		"vote",
 	],
 };
+
+// featureFlags: {
+// 	Client: {
+// 		transaction: true,
+// 		transactions: true,
+// 		wallet: true,
+// 		broadcast: true,
+// 	},
+// 	Identity: {
+// 		address: {
+// 			mnemonic: true,
+// 			publicKey: true,
+// 			secret: true,
+// 		},
+// 		publicKey: {
+// 			mnemonic: true,
+// 			secret: true,
+// 		},
+// 		privateKey: {
+// 			mnemonic: true,
+// 			secret: true,
+// 		},
+// 		wif: {
+// 			mnemonic: true,
+// 			secret: true,
+// 		},
+// 		keyPair: {
+// 			mnemonic: true,
+// 			secret: true,
+// 		},
+// 	},
+// 	Link: {
+// 		block: true,
+// 		transaction: true,
+// 		wallet: true,
+// 	},
+// 	Message: {
+// 		sign: true,
+// 		verify: true,
+// 	},
+// 	Transaction: {
+// 		transfer: { default: true },
+// 	},
+// 	Derivation: {
+// 		bip39: true,
+// 		bip44: true,
+// 	},
+// },

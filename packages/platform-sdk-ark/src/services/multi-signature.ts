@@ -161,7 +161,7 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 			return this.#config.get<string>("peerMultiSignature");
 		}
 
-		return Helpers.randomHostByType(this.#config.get<Coins.NetworkManifest>("network").hosts, "explorer").host.url;
+		return Helpers.randomHost(this.#config.get<Coins.NetworkManifest>("network").hosts, "explorer").host;
 	}
 
 	/**

@@ -16,8 +16,8 @@ export const transactions: Coins.NetworkManifestTransactions = {
 		"vote",
 	],
 	fees: {
-		type: "dynamic",
-		ticker: "ARK",
+		type: "static",
+		ticker: "LSK",
 	},
 	memo: true,
 };
@@ -100,3 +100,52 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 		"vote",
 	],
 };
+
+
+// featureFlags: {
+// 	Client: {
+// 		transaction: true,
+// 		transactions: true,
+// 		wallet: true,
+// 		wallets: true,
+// 		delegate: true,
+// 		delegates: true,
+// 		broadcast: true,
+// 	},
+// 	Identity: {
+// 		address: {
+// 			mnemonic: true,
+// 			publicKey: true,
+// 		},
+// 		publicKey: {
+// 			mnemonic: true,
+// 		},
+// 		privateKey: {
+// 			mnemonic: true,
+// 		},
+// 		keyPair: {
+// 			mnemonic: true,
+// 		},
+// 	},
+// 	Link: {
+// 		block: true,
+// 		transaction: true,
+// 		wallet: true,
+// 	},
+// 	Message: {
+// 		sign: true,
+// 		verify: true,
+// 	},
+// 	Transaction: {
+// 		transfer: { default: true },
+// 		secondSignature: { default: true },
+// 		delegateRegistration: { default: true },
+// 		vote: { default: true },
+// 		multiSignature: { default: true },
+// 	},
+// 	Derivation: {
+// 		bip39: true,
+// 		bip44: true,
+// 	},
+// },
+// transactionTypes: ["delegate-registration", "multi-signature", "second-signature", "transfer", "vote"],

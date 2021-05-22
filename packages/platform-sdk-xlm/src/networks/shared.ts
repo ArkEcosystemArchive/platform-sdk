@@ -100,3 +100,43 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 		"vote",
 	],
 };
+
+// featureFlags: {
+// 	Client: {
+// 		transaction: true,
+// 		transactions: true,
+// 		wallet: true,
+// 		broadcast: true,
+// 	},
+// 	Identity: {
+// 		address: {
+// 			mnemonic: true,
+// 		},
+// 		publicKey: {
+// 			mnemonic: true,
+// 		},
+// 		privateKey: {
+// 			mnemonic: true,
+// 		},
+// 		keyPair: {
+// 			mnemonic: true,
+// 			privateKey: true,
+// 		},
+// 	},
+// 	Link: {
+// 		block: true,
+// 		transaction: true,
+// 		wallet: true,
+// 	},
+// 	Message: {
+// 		sign: true,
+// 		verify: true,
+// 	},
+// 	Transaction: {
+// 		transfer: { default: true },
+// 	},
+// 	Derivation: {
+// 		bip39: true,
+// 		bip44: true,
+// 	},
+// },

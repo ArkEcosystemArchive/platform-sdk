@@ -5,7 +5,7 @@ export class FeeService implements Contracts.FeeService {
 	readonly #network;
 
 	private constructor(network: Coins.NetworkManifest) {
-		this.#network = network.crypto.networkId;
+		this.#network = network.meta.networkId;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<FeeService> {

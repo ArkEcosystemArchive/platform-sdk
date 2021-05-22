@@ -1,5 +1,4 @@
-import { Coins } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Helpers } from "@arkecosystem/platform-sdk";
 
 export const getPeerFromConfig = (config: Coins.Config): string =>
-	`${Arr.randomElement(config.get<string[]>("network.networking.hosts"))}/api`;
+	`${Helpers.randomHostFromConfig(config, "full").host}/api`;

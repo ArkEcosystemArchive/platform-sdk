@@ -7,53 +7,32 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Testnet",
 	coin: "Luna",
-	explorer: "TODO",
 	currency: {
 		ticker: "SOJU",
 		symbol: "SOJU",
 	},
-	fees: {
-		type: "dynamic",
-		ticker: "SOJU",
-	},
 	constants: {
 		slip44: 330,
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://soju-lcd.terra.dev"],
-	},
-	featureFlags: {
-		Client: {
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://soju-lcd.terra.dev",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-			},
+		{
+			type: "explorer",
+			host: "@TODO",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
+	],
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "dynamic",
+				ticker: "SOJU",
+			},
 		},
 	},
-	transactions,
 	importMethods,
 	featureFlags,
 };

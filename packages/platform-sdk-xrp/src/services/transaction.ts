@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { RippleAPI } from "ripple-lib";
@@ -149,18 +149,8 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
-		console.log(
-			(
-				await this.#http.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hosts")), {
-					jsonrpc: "2.0",
-					id: UUID.random(),
-					method,
-					params,
-				})
-			).body(),
-		);
 		return (
-			await this.#http.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hosts")), {
+			await this.#http.post(Helpers.randomHostFromConfig(this.#config, "full").host, {
 				jsonrpc: "2.0",
 				id: UUID.random(),
 				method,

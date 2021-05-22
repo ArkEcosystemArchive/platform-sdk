@@ -1,6 +1,5 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Helpers } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Avalanche, BinTools, Buffer } from "avalanche";
 import { AVMAPI, KeyPair } from "avalanche/dist/apis/avm";
 import { InfoAPI } from "avalanche/dist/apis/info";
@@ -10,15 +9,15 @@ import urlParseLax from "url-parse-lax";
 
 export const useAvalanche = (config: Coins.Config): Avalanche => {
 	const { hostname: host, port, protocol } = urlParseLax(
-		Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+		Helpers.randomHostFromConfig(config, "full").host,
 	);
 
 	return new Avalanche(
 		host,
 		port,
 		protocol.replace(":", ""),
-		parseInt(config.get(Coins.ConfigKey.CryptoNetworkId)),
-		config.get(Coins.ConfigKey.CryptoBlockchainId),
+		parseInt(config.get("network.meta.networkId")),
+		config.get("network.meta.blockchainId"),
 	);
 };
 

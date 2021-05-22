@@ -34,14 +34,8 @@ export class WalletSerialiser {
 			network: this.#wallet.networkId(),
 			// We only persist a few settings to prefer defaults from the SDK.
 			networkConfig: {
-				constants: {
-					slip44: network.crypto.slip44,
-				},
-				networking: {
-					hosts: network.networking.hosts,
-					hostsMultiSignature: dot.get(network, "networking.hostsMultiSignature", []),
-					hostsArchival: dot.get(network, "networking.hostsArchival", []),
-				},
+				constants: network.constants,
+				hosts: network.hosts,
 			},
 			address: this.#wallet.address(),
 			publicKey: this.#wallet.publicKey(),

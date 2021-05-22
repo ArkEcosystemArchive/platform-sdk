@@ -17,11 +17,11 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: { url: "https://apis.compendia.org" },
+			host: "https://apis.compendia.org",
 		},
 		{
 			type: "explorer",
-			host: { url: "https://bindscan.io/" },
+			host: "https://bindscan.io/",
 		},
 	],
 	governance: {

@@ -18,11 +18,11 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: { url: "https://node.atomscan.com" },
+			host: "https://node.atomscan.com",
 		},
 		{
 			type: "explorer",
-			host: { url: "https://stake.id/" },
+			host: "https://stake.id/",
 		},
 	],
 	transactions,

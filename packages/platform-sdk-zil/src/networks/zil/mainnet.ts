@@ -17,11 +17,11 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: { url: "https://api.zilliqa.com" },
+			host: "https://api.zilliqa.com",
 		},
 		{
 			type: "explorer",
-			host: { url: "https://viewblock.io/zilliqa" },
+			host: "https://viewblock.io/zilliqa",
 		},
 	],
 	transactions,

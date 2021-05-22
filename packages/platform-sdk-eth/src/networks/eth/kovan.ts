@@ -7,57 +7,30 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Kovan",
 	coin: "Ethereum",
-	explorer: "https://kovan.etherscan.io/",
 	currency: {
 		ticker: "ETH",
 		symbol: "Ξ",
 	},
-	fees: {
-		type: "gas",
-		ticker: "ETH",
-	},
 	constants: {
-		networkId: "2",
 		slip44: 60,
-		signingMethods: {
-			mnemonic: true,
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://coins.com/api/eth"],
-	},
-	featureFlags: {
-		Identity: {
-			address: {
-				publicKey: true,
-				privateKey: true,
-			},
-			keyPair: {
-				privateKey: true,
-			},
+	hosts: [
+		{
+			type: "full",
+			host: "https://coins.com/api/eth",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
+		{
+			type: "explorer",
+			host: "https://kovan.etherscan.io/",
 		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
+	],
 	transactions,
 	importMethods,
 	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "2",
+	}
 };
 
 export default network;

@@ -10,59 +10,20 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: { url: "https://testnet.solana.com" },
+			host: "https://testnet.solana.com",
 		},
 		{
 			type: "explorer",
-			host: { url: "https://explorer.solana.com/", query: { cluster: "testnet" } },
+			host: "https://explorer.solana.com/",
+			query: { cluster: "testnet" },
 		},
 	],
 	currency: {
 		ticker: "SOL",
 		symbol: "SOL",
 	},
-	fees: {
-		type: "dynamic",
-		ticker: "SOL",
-	},
 	constants: {
 		slip44: 501,
-		expirationType: "height",
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-			broadcast: true,
-		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				publicKey: true,
-				privateKey: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				privateKey: true,
-			},
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
 	},
 	transactions,
 	importMethods,

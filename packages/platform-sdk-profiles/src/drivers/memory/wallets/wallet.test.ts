@@ -369,7 +369,7 @@ it("should return explorer link", () => {
 
 describe.each([123, 456, 789])("%s", (slip44) => {
 	it("should turn into an object", () => {
-		subject.coin().config().set("network.crypto.slip44", slip44);
+		subject.coin().config().set("network.constants.slip44", slip44);
 		subject.data().set("key", "value");
 
 		subject.data().set(WalletData.LedgerPath, "1");

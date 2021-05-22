@@ -7,60 +7,23 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "Polkadot",
-	explorer: "https://polkascan.io/polkadot",
 	currency: {
 		ticker: "DOT",
 		symbol: "DOT",
 	},
-	fees: {
-		type: "weight",
-		ticker: "DOT",
-	},
 	constants: {
-		networkId: "0",
-		expirationType: "height",
+		slip44: 354,
 	},
-	networking: {
-		hosts: ["https://rpc.polkadot.io/"],
-	},
-	featureFlags: {
-		Identity: {
-			address: {
-				mnemonic: true,
-				multiSignature: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-			},
+	hosts: [
+		{
+			type: "full",
+			host: "https://rpc.polkadot.io/",
 		},
-		Ledger: {
-			getVersion: true,
-			getPublicKey: true,
-			signTransaction: true,
+		{
+			type: "explorer",
+			host: "https://polkascan.io/polkadot",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
+	],
 	transactions,
 	importMethods,
 	featureFlags,

@@ -7,73 +7,30 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "Avalanche",
-	explorer: "https://explorer.avax.network/",
 	currency: {
 		ticker: "AVAX",
 		symbol: "AVAX",
 	},
-	fees: {
-		type: "static",
-		ticker: "AVAX",
-	},
 	constants: {
-		networkId: "1",
-		blockchainId: "2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM",
-		assetId: "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
 		slip44: 9000,
-		signingMethods: {
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://api.avax.network:443"],
-		hostsArchival: ["https://api.avax.network:8080"],
-	},
-	featureFlags: {
-		Client: {
-			transactions: true,
-			wallet: true,
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://api.avax.network:443",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				privateKey: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				privateKey: true,
-			},
+		{
+			type: "archival",
+			host: "https://api.avax.network:8080",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
+		{
+			type: "explorer",
+			host: "https://explorer.avax.network/",
 		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-			vote: { default: true },
-		},
-		Miscellaneous: {
-			utxo: true,
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
-	transactionTypes: ["transfer", "vote"],
+	],
+	transactions,
+	importMethods,
+	featureFlags,
 	meta: {
 		// @TODO
 		networkId: "1",

@@ -15,13 +15,16 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: { url: "http://51.75.183.27:3100" },
+			host: "http://51.75.183.27:3100",
 		},
 		{
 			type: "explorer",
-			host: { url: "https://shelleyexplorer.cardano.org/" },
+			host: "https://shelleyexplorer.cardano.org/",
 		},
 	],
+	transactions,
+	importMethods,
+	featureFlags,
 	meta: {
 		minFeeA: 44,
 		minFeeB: 155381,

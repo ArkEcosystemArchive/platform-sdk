@@ -7,79 +7,23 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Livenet",
 	coin: "Bitcoin",
-	explorer: "https://blockstream.info/",
 	currency: {
 		ticker: "BTC",
 		symbol: "Ƀ",
 	},
-	fees: {
-		type: "dynamic",
-		ticker: "BTC",
-	},
 	constants: {
 		slip44: 0,
-		signingMethods: {
-			mnemonic: true,
-			wif: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://coins.com/api/btc"],
-	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			wallet: true,
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://coins.com/api/btc",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				multiSignature: true,
-				publicKey: true,
-				privateKey: true,
-				wif: true,
-			},
-			publicKey: {
-				mnemonic: true,
-				wif: true,
-			},
-			privateKey: {
-				mnemonic: true,
-				wif: true,
-			},
-			wif: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				privateKey: true,
-				wif: true,
-			},
+		{
+			type: "explorer",
+			host: "https://blockstream.info/",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Miscellaneous: {
-			utxo: true,
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-			bip49: true,
-			bip84: true,
-		},
-	},
+	],
 	transactions,
 	importMethods,
 	featureFlags,

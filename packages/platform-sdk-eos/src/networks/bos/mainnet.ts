@@ -7,57 +7,39 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "BOSCore",
-	explorer: "https://bos.bloks.io/",
 	currency: {
 		ticker: "BOS",
 		symbol: "BOS",
 	},
-	fees: {
-		type: "free",
-		ticker: "BOS",
-	},
 	constants: {
-		networkId: "d5a3d18fbb3c084e3b1f3fa98c21014b5f3db536cc15d08f9f6479517c6a3d86",
 		slip44: 194,
 		bech32: "BOS",
-		signingMethods: {
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://api.boscore.io"],
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://api.boscore.io",
 		},
-		Identity: {
-			publicKey: {
-				mnemonic: true,
+		{
+			type: "explorer",
+			host: "https://bos.bloks.io/",
+		},
+	],
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "free",
+				ticker: "BOS",
 			},
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
 	},
-	transactions,
 	importMethods,
 	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "d5a3d18fbb3c084e3b1f3fa98c21014b5f3db536cc15d08f9f6479517c6a3d86",
+	}
 };
 
 export default network;

@@ -29,14 +29,8 @@ export interface IWalletData {
 	coin: string;
 	network: string;
 	networkConfig: {
-		constants: {
-			slip44?: number;
-		};
-		networking: {
-			hosts: string[];
-			hostsMultiSignature: string[];
-			hostsArchival: string[];
-		};
+		constants: Coins.NetworkManifestConstants;
+		hosts: Coins.NetworkHost[];
 	};
 	address: string;
 	publicKey: string | undefined;

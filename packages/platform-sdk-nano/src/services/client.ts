@@ -116,6 +116,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private getHost(): string {
-		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
+		return Helpers.randomHostFromConfig(this.#config, "full").host;
 	}
 }

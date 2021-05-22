@@ -7,57 +7,43 @@ const network: Coins.NetworkManifest = {
 	type: "live",
 	name: "Mainnet",
 	coin: "Worbli",
-	explorer: "https://worbli.bloks.io/",
 	currency: {
 		ticker: "WBI",
 		symbol: "WBI",
 	},
-	fees: {
-		type: "free",
-		ticker: "WBI",
-	},
 	constants: {
-		networkId: "73647cde120091e0a4b85bced2f3cfdb3041e266cbbe95cee59b73235a1b3b6f",
 		slip44: 194,
 		bech32: "WBI",
-		signingMethods: {
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://api.worbli.io",
 		},
-		Identity: {
-			publicKey: {
-				mnemonic: true,
+		{
+			type: "full",
+			host: "https://worbli-mainnet.eosblocksmith.io",
+		},
+		{
+			type: "explorer",
+			host: "https://worbli.bloks.io/",
+		},
+	],
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "free",
+				ticker: "WBI",
 			},
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
 	},
-	transactions,
 	importMethods,
 	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "73647cde120091e0a4b85bced2f3cfdb3041e266cbbe95cee59b73235a1b3b6f",
+	}
 };
 
 export default network;

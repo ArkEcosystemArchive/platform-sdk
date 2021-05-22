@@ -17,15 +17,15 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: { url: "https://wallets.ark.io" },
+			host: "https://wallets.ark.io",
 		},
 		{
 			type: "musig",
-			host: { url: "https://musig1.ark.io" },
+			host: "https://musig1.ark.io",
 		},
 		{
 			type: "explorer",
-			host: { url: "https://explorer.ark.io/" },
+			host: "https://explorer.ark.io/",
 		},
 	],
 	governance: {
