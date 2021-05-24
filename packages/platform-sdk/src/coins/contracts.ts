@@ -22,8 +22,6 @@ export interface CoinSpec {
 
 export interface CoinOptions {
 	network: string;
-	peer?: string;
-	peerMultiSignature?: string;
 	httpClient: HttpClient;
 }
 

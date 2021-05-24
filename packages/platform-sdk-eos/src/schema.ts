@@ -12,8 +12,6 @@ export const schema: any = ValidatorSchema.object({
 		"meetone.mainnet",
 		"bos.mainnet",
 	),
-	peer: ValidatorSchema.string().uri(),
-	peerMultiSignature: ValidatorSchema.string().uri(),
 	httpClient: ValidatorSchema.object(),
 	services: ValidatorSchema.object({
 		ledger: ValidatorSchema.object({
