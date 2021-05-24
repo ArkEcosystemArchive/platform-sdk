@@ -5,6 +5,7 @@ import {
 	createTransactionDataCollectionWithType,
 	createTransactionDataWithType,
 	filterHostsFromConfig,
+	pluckAddress,
 	randomHostFromConfig,
 } from "./helpers";
 
@@ -184,5 +185,27 @@ test("randomHostFromConfig", () => {
 	).toEqual({
 		type: "explorer",
 		host: "https://explorer.ark.io/",
+	});
+});
+
+describe("pluckAddress", () => {
+	test("senderId", () => {
+		expect(pluckAddress({ senderId: "senderId" })).toBe("senderId");
+	});
+
+	test("recipientId", () => {
+		expect(pluckAddress({ recipientId: "recipientId" })).toBe("recipientId");
+	});
+
+	test("address", () => {
+		expect(pluckAddress({ address: "address" })).toBe("address");
+	});
+
+	test("addresses", () => {
+		expect(pluckAddress({ addresses: ["addresses"] })).toBe("addresses");
+	});
+
+	test("addresses", () => {
+		expect(() => pluckAddress({ key: "value" })).toThrow("Failed to pluck any address.");
 	});
 });
