@@ -540,7 +540,7 @@ export interface IReadWriteWallet {
 	transactionIndex(): ITransactionIndex;
 
 	/**
-	 * Get the wallet transaction index instance.
+	 * Get the wallet import format instance.
 	 *
 	 * @return {IWalletImportFormat}
 	 * @memberof IReadWriteWallet
