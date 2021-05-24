@@ -55,7 +55,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const address: string = query.senderId || query.recipientId || query.address || query.addresses![0];
 		const payload: Record<string, boolean | number> = {
 			limit: query.limit || 15,
 		};
@@ -69,7 +68,7 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		const response: any = (
-			await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)
+			await this.#client.get(`${this.#peer}/v1/accounts/${Helpers.pluckAddress(query)}/transactions`, payload)
 		).json();
 
 		return Helpers.createTransactionDataCollectionWithType(
