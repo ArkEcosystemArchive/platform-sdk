@@ -392,11 +392,6 @@ export class Wallet implements IReadWriteWallet {
 		return this.#attributes.get<Coins.Coin>("coin").message();
 	}
 
-	/** {@inheritDoc IReadWriteWallet.peer} */
-	public peer(): Contracts.PeerService {
-		return this.#attributes.get<Coins.Coin>("coin").peer();
-	}
-
 	/** {@inheritDoc IReadWriteWallet.signatory} */
 	public signatory(): Contracts.SignatoryService {
 		return this.#attributes.get<Coins.Coin>("coin").signatory();
