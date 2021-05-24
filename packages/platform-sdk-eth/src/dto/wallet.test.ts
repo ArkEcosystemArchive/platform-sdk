@@ -1,3 +1,5 @@
+import "jest-extended";
+
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "./wallet";

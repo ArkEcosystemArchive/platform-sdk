@@ -30,13 +30,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const address: string | undefined = query.addresses ? query.addresses[0] : query.address;
-
-		if (address === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transactions", "address");
-		}
-
-		const { data } = await this.get(`address/${address}/transactions`);
+		const { data } = await this.get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
 		return Helpers.createTransactionDataCollectionWithType(
 			data.transactions,

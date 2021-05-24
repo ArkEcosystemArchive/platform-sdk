@@ -21,7 +21,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "@TODO",
+			host: "https://finder.terra.money/columbus-4/",
 		},
 	],
 	transactions: {

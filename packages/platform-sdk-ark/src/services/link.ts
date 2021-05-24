@@ -1,30 +1,11 @@
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
-import { URL } from "url";
+import { Coins, Helpers, Services } from "@arkecosystem/platform-sdk";
 
-export class LinkService implements Contracts.LinkService {
-	readonly #baseUrl: string;
-
-	private constructor({ host }: Coins.NetworkHost) {
-		this.#baseUrl = host;
-	}
-
+export class LinkService extends Services.AbstractLinkService {
 	public static async __construct(config: Coins.Config): Promise<LinkService> {
-		return new LinkService(Helpers.randomHostFromConfig(config, "explorer"));
-	}
-
-	public async __destruct(): Promise<void> {
-		//
-	}
-
-	public block(id: string): string {
-		return new URL(`block/${id}`, this.#baseUrl).toString();
-	}
-
-	public transaction(id: string): string {
-		return new URL(`transaction/${id}`, this.#baseUrl).toString();
-	}
-
-	public wallet(id: string): string {
-		return new URL(`wallets/${id}`, this.#baseUrl).toString();
+		return new LinkService(Helpers.randomHostFromConfig(config, "explorer"), {
+			block: (id: string) => `block/${id}`,
+			transaction: (id: string) => `transaction/${id}`,
+			wallet: (id: string) => `wallets/${id}`,
+		});
 	}
 }
