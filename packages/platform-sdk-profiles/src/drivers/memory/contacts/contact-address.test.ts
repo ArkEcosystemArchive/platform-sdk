@@ -37,7 +37,6 @@ beforeEach(async () => {
 			id: "uuid",
 			coin: "ARK",
 			network: "ark.devnet",
-			name: "John Doe",
 			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		},
 		coin,
@@ -59,10 +58,6 @@ it("should have a coin", () => {
 
 it("should have a network", () => {
 	expect(subject.network()).toBe("ark.devnet");
-});
-
-it("should have a name", () => {
-	expect(subject.name()).toBe("John Doe");
 });
 
 it("should have an address", () => {
@@ -96,7 +91,6 @@ it("should turn into an object", () => {
 		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		coin: "ARK",
 		id: "uuid",
-		name: "John Doe",
 		network: "ark.devnet",
 	});
 });
@@ -126,7 +120,6 @@ describe("when contact has not been synchronized yet", () => {
 				id: "uuid",
 				coin: "ARK",
 				network: "ark.devnet",
-				name: "John Doe",
 				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			},
 			coin,
@@ -167,11 +160,6 @@ it("should determine if the wallet is owned by an exchange", () => {
 
 it("should determine if the wallet is owned by a team", () => {
 	expect(subject.isOwnedByTeam()).toBeFalse();
-});
-
-it("should change the name", () => {
-	subject.setName("new name");
-	expect(subject.name()).toBe("new name");
 });
 
 it("should change the address", () => {
