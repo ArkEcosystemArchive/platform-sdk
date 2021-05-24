@@ -22,11 +22,12 @@ const generate = async (coin: string, network: string): Promise<IReadWriteWallet
 	return wallet;
 };
 
-const importByMnemonic = async (mnemonic: string, coin: string, network: string): Promise<IReadWriteWallet> => {
+const importByMnemonic = async (mnemonic: string, coin: string, network: string, bip): Promise<IReadWriteWallet> => {
 	const wallet = await factory.fromMnemonic({
 		coin,
 		network,
 		mnemonic,
+		bip,
 	});
 
 	subject.push(wallet);
@@ -62,7 +63,7 @@ beforeEach(async () => {
 	subject = new WalletRepository(profile);
 	factory = new WalletFactory(profile);
 
-	const wallet = await importByMnemonic(identity.mnemonic, "ARK", "ark.devnet");
+	const wallet = await importByMnemonic(identity.mnemonic, "ARK", "ark.devnet", 39);
 	subject.update(wallet.id(), { alias: "Alias" });
 });
 
@@ -81,7 +82,7 @@ test("#last", () => {
 });
 
 test("#allByCoin", async () => {
-	await importByMnemonic("another wallet", "ARK", "ark.devnet");
+	await importByMnemonic("another wallet", "ARK", "ark.devnet", 39);
 
 	expect(subject.allByCoin()).toBeObject();
 	expect(subject.allByCoin().DARK).toBeObject();
@@ -128,8 +129,8 @@ test("#findByAlias", async () => {
 test("#push", async () => {
 	subject.flush();
 
-	await expect(importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).toResolve();
-	await expect(importByMnemonic(identity.mnemonic, "ARK", "ark.devnet")).toReject();
+	await expect(importByMnemonic(identity.mnemonic, "ARK", "ark.devnet", 39)).toResolve();
+	await expect(importByMnemonic(identity.mnemonic, "ARK", "ark.devnet", 39)).toReject();
 });
 
 test("#update", async () => {
@@ -186,9 +187,9 @@ describe("#sortBy", () => {
 	beforeEach(async () => {
 		subject.flush();
 
-		walletARK = await importByMnemonic("a", "ARK", "ark.devnet");
-		walletBTC = await importByMnemonic("b", "BTC", "btc.testnet");
-		walletETH = await importByMnemonic("c", "ETH", "eth.mainnet");
+		walletARK = await importByMnemonic("a", "ARK", "ark.devnet", 39);
+		walletBTC = await importByMnemonic("b", "BTC", "btc.testnet", 44);
+		walletETH = await importByMnemonic("c", "ETH", "eth.mainnet", 44);
 	});
 
 	it("should sort by coin", async () => {

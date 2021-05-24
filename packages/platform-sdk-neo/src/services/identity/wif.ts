@@ -13,7 +13,7 @@ export class WIF implements Contracts.WIF {
 		try {
 			return deriveWallet(
 				mnemonic,
-				this.#config.get<number>("network.crypto.slip44"),
+				this.#config.get<number>("network.constants.slip44"),
 				options?.bip44?.account || 0,
 				options?.bip44?.change || 0,
 				options?.bip44?.addressIndex || 0,

@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import { uniq } from "@arkecosystem/utils";
 import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
@@ -37,7 +36,7 @@ export class ClientService implements Contracts.ClientService {
 		const unsignedTransaction = transaction.getUnsignedTx();
 		const baseTransaction = unsignedTransaction.getTransaction();
 
-		const assetId = cb58Decode(this.#config.get(Coins.ConfigKey.CryptoAssetId));
+		const assetId = cb58Decode(this.#config.get("network.meta.assetId"));
 
 		return new TransactionData({
 			id,
@@ -49,7 +48,7 @@ export class ClientService implements Contracts.ClientService {
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const { transactions } = await this.get("v2/transactions", {
-			chainID: this.#config.get(Coins.ConfigKey.CryptoBlockchainId),
+			chainID: this.#config.get("network.meta.blockchainId"),
 			limit: 100,
 			offset: query.cursor || 0,
 			address: query.address,
@@ -68,7 +67,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get(Coins.ConfigKey.CryptoAssetId));
+		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get("network.meta.assetId"));
 
 		return new WalletData({
 			address: id,
@@ -143,6 +142,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private host(): string {
-		return Arr.randomElement(this.#config.get<string[]>("network.networking.hostsArchival"));
+		return Helpers.randomHostFromConfig(this.#config, "archival").host;
 	}
 }

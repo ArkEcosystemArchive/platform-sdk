@@ -1,14 +1,15 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { URL } from "url";
 
 export class LinkService implements Contracts.LinkService {
 	readonly #baseUrl: string;
 
-	private constructor(network: Coins.NetworkManifest) {
-		this.#baseUrl = network.explorer;
+	private constructor({ host }: Coins.NetworkHost) {
+		this.#baseUrl = host;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<LinkService> {
-		return new LinkService(config.get<Coins.NetworkManifest>("network"));
+		return new LinkService(Helpers.randomHostFromConfig(config, "explorer"));
 	}
 
 	public async __destruct(): Promise<void> {
@@ -16,14 +17,14 @@ export class LinkService implements Contracts.LinkService {
 	}
 
 	public block(id: string): string {
-		return `${this.#baseUrl}block/${id}`;
+		return new URL(`block/${id}`, this.#baseUrl).toString();
 	}
 
 	public transaction(id: string): string {
-		return `${this.#baseUrl}transaction/${id}`;
+		return new URL(`transaction/${id}`, this.#baseUrl).toString();
 	}
 
 	public wallet(id: string): string {
-		return `${this.#baseUrl}wallets/${id}`;
+		return new URL(`wallets/${id}`, this.#baseUrl).toString();
 	}
 }

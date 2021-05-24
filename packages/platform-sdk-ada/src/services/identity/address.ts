@@ -16,7 +16,7 @@ export class Address implements Contracts.Address {
 			options?.bip44?.account || 0,
 			false,
 			options?.bip44?.addressIndex || 0,
-			this.#config.get(Coins.ConfigKey.CryptoNetworkId),
+			this.#config.get("network.meta.networkId"),
 		);
 	}
 
@@ -29,7 +29,7 @@ export class Address implements Contracts.Address {
 			Buffer.from(publicKey, "hex"),
 			false,
 			options?.bip44?.addressIndex || 0,
-			this.#config.get(Coins.ConfigKey.CryptoNetworkId),
+			this.#config.get("network.meta.networkId"),
 		);
 	}
 

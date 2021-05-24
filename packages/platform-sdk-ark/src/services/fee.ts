@@ -1,6 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-
-import { getPeerFromConfig } from "../helpers";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 
 export class FeeService implements Contracts.FeeService {
 	readonly #config: Coins.Config;
@@ -59,10 +57,8 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.host()}/${path}`, query)).json();
-	}
-
-	private host(): string {
-		return getPeerFromConfig(this.#config);
+		return (
+			await this.#http.get(`${Helpers.randomHostFromConfig(this.#config, "full").host}/${path}`, query)
+		).json();
 	}
 }

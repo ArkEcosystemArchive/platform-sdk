@@ -1,5 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Wallet, Account } from "@zilliqa-js/account";
 import { Zilliqa, bytes, units, BN } from "@zilliqa-js/zilliqa";
 
@@ -59,4 +58,4 @@ export const convertQaToZil = (qa: string): string => units.fromQa(new BN(qa), u
 
 export const convertZilToQa = (zil: string | number): string => units.toQa(zil, units.Units.Zil).toString();
 
-const getHost = (config: Coins.Config): string => Arr.randomElement(config.get<string[]>("network.networking.hosts"));
+const getHost = (config: Coins.Config): string => Helpers.randomHostFromConfig(config, "full").host;

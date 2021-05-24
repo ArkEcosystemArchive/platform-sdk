@@ -1,5 +1,5 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
@@ -24,7 +24,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			config,
-			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			peer: Helpers.randomHostFromConfig(config, "full").host,
 		});
 	}
 

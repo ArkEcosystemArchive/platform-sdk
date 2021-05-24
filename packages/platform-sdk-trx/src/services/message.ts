@@ -1,5 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Buffer } from "buffer";
 import TronWeb from "tronweb";
 
@@ -19,7 +18,7 @@ export class MessageService implements Contracts.MessageService {
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService(
 			await IdentityService.__construct(config),
-			Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			Helpers.randomHostFromConfig(config, "full").host,
 		);
 	}
 

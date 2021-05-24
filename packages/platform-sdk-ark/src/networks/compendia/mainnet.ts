@@ -1,135 +1,48 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "compendia.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "Compendia",
-	explorer: "https://bindscan.io/",
 	currency: {
 		ticker: "BIND",
 		symbol: "ß",
 	},
-	fees: {
-		type: "dynamic",
-		ticker: "BIND",
-	},
-	crypto: {
+	constants: {
 		slip44: 543,
-		signingMethods: {
-			mnemonic: true,
-			wif: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://apis.compendia.org"],
-	},
-	governance: {
-		voting: {
-			enabled: true,
-			delegateCount: 47,
-			maximumPerWallet: 1,
-			maximumPerTransaction: 1,
+	hosts: [
+		{
+			type: "full",
+			host: "https://apis.compendia.org",
 		},
-	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			transactions: true,
-			wallet: true,
-			wallets: true,
-			delegate: true,
-			delegates: true,
-			votes: true,
-			voters: true,
-			configuration: true,
-			fees: true,
-			syncing: true,
-			broadcast: true,
+		{
+			type: "explorer",
+			host: "https://bindscan.io",
 		},
-		Fee: {
-			all: true,
-		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				multiSignature: true,
-				publicKey: true,
-				privateKey: true,
-				wif: true,
-			},
-			publicKey: {
-				mnemonic: true,
-				multiSignature: true,
-				wif: true,
-			},
-			privateKey: {
-				mnemonic: true,
-				wif: true,
-			},
-			wif: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				privateKey: false,
-				wif: true,
-			},
-		},
-		Ledger: {
-			getVersion: true,
-			getPublicKey: true,
-			signTransaction: true,
-			signMessage: true,
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Peer: {
-			search: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-			secondSignature: { default: true },
-			delegateRegistration: { default: true },
-			vote: { default: true },
-			multiSignature: { default: true },
-			ipfs: { default: true },
-			multiPayment: { default: true },
-			delegateResignation: { default: true },
-		},
-		Miscellaneous: {
-			dynamicFees: true,
-			memo: true,
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-		Internal: {
-			fastDelegateSync: true,
-		},
-	},
-	transactionTypes: [
-		"delegate-registration",
-		"delegate-resignation",
-		"htlc-claim",
-		"htlc-lock",
-		"htlc-refund",
-		"ipfs",
-		"multi-payment",
-		"multi-signature",
-		"second-signature",
-		"transfer",
-		"vote",
 	],
+	governance: {
+		delegateCount: 47,
+		votesPerWallet: 1,
+		votesPerTransaction: 1,
+	},
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "dynamic",
+				ticker: "BIND",
+			},
+		},
+	},
+	importMethods,
+	featureFlags,
+	meta: {
+		fastDelegateSync: true,
+	},
 };
 
 export default network;

@@ -1,65 +1,40 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "egld.testnet",
 	type: "test",
 	name: "Testnet",
 	coin: "Elrond",
-	explorer: "https://testnet-explorer.elrond.com",
 	currency: {
 		ticker: "XeGLD",
 		symbol: "XeGLD",
 	},
-	fees: {
-		type: "gas",
-		ticker: "XeGLD",
-	},
-	crypto: {
+	constants: {
 		slip44: 508,
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://testnet-gateway.elrond.com"],
-	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			transactions: true,
-			wallet: true,
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://testnet-gateway.elrond.com",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
+		{
+			type: "explorer",
+			host: "https://testnet-explorer.elrond.com",
+		},
+	],
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "static",
+				ticker: "XeGLD",
 			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-			},
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
 		},
 	},
-	transactionTypes: ["transfer"],
+	importMethods,
+	featureFlags,
 };
 
 export default network;

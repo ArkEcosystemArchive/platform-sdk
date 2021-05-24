@@ -12,7 +12,7 @@ let subject: TransactionService;
 beforeEach(async () => {
 	subject = await TransactionService.__construct(
 		createConfig(undefined, {
-			networkConfiguration: {
+			NETWORK_CONFIGURATION: {
 				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
 				peer: "http://127.0.0.1/api",
 				status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,

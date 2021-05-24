@@ -122,7 +122,7 @@ describe.each([
 	[111, undefined],
 ])("%s", (slip44, balance) => {
 	it("should turn into an object", () => {
-		subject.coin().config().set("network.crypto.slip44", slip44);
+		subject.coin().config().set("network.constants.slip44", slip44);
 		subject.data().set("key", "value");
 
 		subject.data().set(WalletData.Balance, balance);
@@ -145,7 +145,7 @@ describe.each([
 		expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 		expect(actual.coin).toBe("ARK");
 		expect(actual.network).toBe("ark.devnet");
-		expect(actual.networkConfig.crypto.slip44).toBe(slip44);
+		expect(actual.networkConfig.constants.slip44).toBe(slip44);
 		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 		expect(actual.data).toMatchSnapshot();
 		expect(actual.settings).toBeObject();
@@ -153,7 +153,7 @@ describe.each([
 	});
 
 	it("should turn into an object with initial state for partially restored wallet", () => {
-		subject.coin().config().set("network.crypto.slip44", slip44);
+		subject.coin().config().set("network.constants.slip44", slip44);
 		subject.data().set("key", "value");
 
 		subject.data().set(WalletData.LedgerPath, "1");

@@ -49,7 +49,7 @@ export class TransactionService implements Contracts.TransactionService {
 				await this.#xchain.buildBaseTx(
 					utxos,
 					new BN(input.data.amount),
-					this.#config.get(Coins.ConfigKey.CryptoAssetId),
+					this.#config.get("network.meta.assetId"),
 					[input.data.to],
 					keyPairAddresses,
 					keyPairAddresses,

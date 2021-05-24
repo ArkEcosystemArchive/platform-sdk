@@ -65,18 +65,13 @@ test("#has", () => {
 test("ConfigKey", () => {
 	expect(ConfigKey).toMatchInlineSnapshot(`
 		Object {
-		  "Bech32": "network.crypto.bech32",
-		  "CryptoAssetId": "network.crypto.assetId",
-		  "CryptoBlockchainId": "network.crypto.blockchainId",
-		  "CryptoChainId": "network.crypto.chainId",
-		  "CryptoNetworkId": "network.crypto.networkId",
+		  "Bech32": "network.constants.bech32",
 		  "CurrencyTicker": "network.currency.ticker",
 		  "HttpClient": "httpClient",
 		  "KnownWallets": "network.knownWallets",
 		  "Network": "network",
-		  "NetworkConfiguration": "networkConfiguration",
 		  "NetworkId": "network.id",
-		  "Slip44": "network.crypto.slip44",
+		  "Slip44": "network.constants.slip44",
 		}
 	`);
 });
