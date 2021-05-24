@@ -28,7 +28,6 @@ export class ServiceProvider {
 			ledger,
 			link,
 			message,
-			peer,
 			signatory,
 			transaction,
 		] = await Promise.all<any>([
