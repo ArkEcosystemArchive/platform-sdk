@@ -6,7 +6,7 @@ const network: Coins.NetworkManifest = {
 	id: "ark.devnet",
 	type: "test",
 	name: "Devnet",
-	coin: "DARK",
+	coin: "ARK",
 	currency: {
 		ticker: "DARK",
 		symbol: "DѦ",
