@@ -11,7 +11,7 @@ test("#all", () => {
 	expect(subject.all()).toMatchInlineSnapshot(`
 		Object {
 		  "ark.devnet": Object {
-		    "coin": "DARK",
+		    "coin": "ARK",
 		    "constants": Object {
 		      "slip44": 1,
 		    },
