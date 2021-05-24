@@ -281,6 +281,18 @@ it("should have an string representation", () => {
 it("#allows", () => {
 	expect(subject.allows(FeatureFlag.ClientBroadcast)).toBeTrue();
 	expect(subject.allows(FeatureFlag.IdentityAddressMnemonicBip84)).toBeFalse();
+
+	expect(subject.allows(FeatureFlag.TransactionDelegateRegistration)).toBeTrue();
+	expect(subject.allows(FeatureFlag.TransactionDelegateResignation)).toBeTrue();
+	expect(subject.allows(FeatureFlag.TransactionHtlcLock)).toBeFalse();
+	expect(subject.allows(FeatureFlag.TransactionHtlcRefund)).toBeFalse();
+	expect(subject.allows(FeatureFlag.TransactionIpfs)).toBeTrue();
+	expect(subject.allows(FeatureFlag.TransactionMultiPayment)).toBeTrue();
+	expect(subject.allows(FeatureFlag.TransactionMultiSignature)).toBeTrue();
+	expect(subject.allows(FeatureFlag.TransactionSecondSignature)).toBeTrue();
+	expect(subject.allows(FeatureFlag.TransactionTransfer)).toBeTrue();
+	expect(subject.allows(FeatureFlag.TransactionVote)).toBeTrue();
+
 	expect(subject.allows("randomKey")).toBeFalse();
 });
 
