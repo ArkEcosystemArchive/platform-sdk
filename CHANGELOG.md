@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.1.0 - 2021-05-24
+
+### Changed
+
+- **[PROFILES]** Implement `IProfile#hasAcceptedManualInstallationDisclaimer` (469bb506, @dated)
+- **[SDK]** Streamline manifest structure (a1ae0eaf, @faustbrian)
+- **[SDK]** Remove `PeerService` (e0233d4f, @faustbrian)
+
+### Fixed
+
+- **[XLM]** Proper way to fetch payments (c67d71c4, @marianogoldman)
+- **[XLM]** Respect BIP44 account index option (32f63428, @faustbrian)
+
 ## 8.0.2 - 2021-05-20
 
 ### Changed
