@@ -97,4 +97,4 @@ export const pluckAddress = (query): string => {
 	}
 
 	throw new Error("Failed to pluck any address.");
-}
+};
