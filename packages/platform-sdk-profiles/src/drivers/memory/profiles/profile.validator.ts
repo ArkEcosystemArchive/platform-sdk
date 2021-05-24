@@ -51,12 +51,7 @@ export class ProfileValidator implements IProfileValidator {
 					networkConfig: Joi.object({
 						constants: Joi.object({
 							slip44: Joi.number().integer().required(),
-						}).required(),
-						hosts: Joi.array().items({
-							type: Joi.string().required(),
-							host: Joi.string().required(),
-							query: Joi.object(),
-						}).required(),
+						}),
 					}),
 					address: Joi.string().required(),
 					publicKey: Joi.string(),

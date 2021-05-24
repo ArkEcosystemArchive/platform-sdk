@@ -93,8 +93,6 @@ export interface NetworkManifest {
 	knownWallets?: string;
 	featureFlags: NetworkManifestFeatureFlags;
 	meta?: Record<string, any>;
-	// @TODO: move to `meta`
-	// fastDelegateSync?: boolean;
 }
 
 export interface CoinManifest {

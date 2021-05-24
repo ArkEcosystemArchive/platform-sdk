@@ -21,7 +21,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://bindscan.io/",
+			host: "https://bindscan.io",
 		},
 	],
 	governance: {
@@ -40,6 +40,9 @@ const network: Coins.NetworkManifest = {
 	},
 	importMethods,
 	featureFlags,
+	meta: {
+		fastDelegateSync: true,
+	},
 };
 
 export default network;

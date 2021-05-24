@@ -96,7 +96,7 @@ Object {
   },
   "hosts": Array [
     Object {
-      "host": "https://dwallets.ark.io",
+      "host": "https://dwallets.ark.io/api",
       "type": "full",
     },
     Object {
@@ -104,7 +104,7 @@ Object {
       "type": "musig",
     },
     Object {
-      "host": "https://dexplorer.ark.io/",
+      "host": "https://dexplorer.ark.io",
       "type": "explorer",
     },
   ],
@@ -131,6 +131,9 @@ Object {
     },
   },
   "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",
+  "meta": Object {
+    "fastDelegateSync": true,
+  },
   "name": "Devnet",
   "transactions": Object {
     "expirationType": "height",

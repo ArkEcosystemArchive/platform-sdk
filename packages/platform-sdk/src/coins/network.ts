@@ -212,6 +212,16 @@ export class Network {
 	}
 
 	/**
+	 * Returns the meta data of the network.
+	 *
+	 * @return {*}  {Record<string, any>}
+	 * @memberof Network
+	 */
+	public meta(): Record<string, any> {
+		return get(this.#network, "meta", {});
+	}
+
+	/**
 	 * Return the object representation of the network.
 	 */
 	public toObject(): NetworkManifest {

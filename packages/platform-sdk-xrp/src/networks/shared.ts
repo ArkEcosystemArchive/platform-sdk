@@ -2,24 +2,11 @@ import { Coins } from "@arkecosystem/platform-sdk";
 
 export const transactions: Coins.NetworkManifestTransactions = {
 	expirationType: "height",
-	types: [
-		"delegate-registration",
-		"delegate-resignation",
-		"htlc-claim",
-		"htlc-lock",
-		"htlc-refund",
-		"ipfs",
-		"multi-payment",
-		"multi-signature",
-		"second-signature",
-		"transfer",
-		"vote",
-	],
+	types: ["transfer"],
 	fees: {
 		type: "free",
 		ticker: "XRP",
 	},
-	memo: true,
 };
 
 export const importMethods: Coins.NetworkManifestImportMethods = {
@@ -27,7 +14,7 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 		default: false,
 		permissions: ["read"],
 	},
-	bip39: {
+	bip44: {
 		default: true,
 		permissions: ["read", "write"],
 	},
@@ -35,116 +22,31 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 		default: false,
 		permissions: ["read"],
 	},
+	secret: {
+		default: true,
+		permissions: ["read", "write"],
+	},
 };
 
 export const featureFlags: Coins.NetworkManifestFeatureFlags = {
-	Client: [
-		"transaction",
-		"transactions",
-		"wallet",
-		"wallets",
-		"delegate",
-		"delegates",
-		"votes",
-		"voters",
-		"configuration",
-		"fees",
-		"syncing",
-		"broadcast",
-	],
+	Client: ["transaction", "transactions", "wallet", "broadcast"],
 	Fee: ["all"],
 	Identity: [
-		"address.mnemonic.bip39",
-		"address.multiSignature",
-		"address.privateKey",
+		"address.mnemonic.bip44",
 		"address.publicKey",
+		"address.secret",
 		"address.validate",
-		"address.wif",
-		"keyPair.mnemonic.bip39",
-		"keyPair.privateKey",
-		"keyPair.wif",
-		"privateKey.mnemonic.bip39",
-		"privateKey.wif",
-		"publicKey.mnemonic.bip39",
-		"publicKey.multiSignature",
-		"publicKey.wif",
-		"wif.mnemonic.bip39",
+		"keyPair.mnemonic.bip44",
+		"keyPair.secret",
+		"privateKey.mnemonic.bip44",
+		"privateKey.secret",
+		"publicKey.mnemonic.bip44",
+		"publicKey.secret",
+		"wif.mnemonic.bip44",
+		"wif.secret",
 	],
-	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
 	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
 	Peer: ["validate"],
-	Transaction: [
-		"delegateRegistration",
-		"delegateResignation",
-		"ipfs.ledgerS",
-		"ipfs.ledgerX",
-		"ipfs.musig",
-		"ipfs",
-		"multiPayment.ledgerS",
-		"multiPayment.ledgerX",
-		"multiPayment.musig",
-		"multiPayment",
-		"multiSignature.ledgerS",
-		"multiSignature.ledgerX",
-		"multiSignature.musig",
-		"multiSignature",
-		"secondSignature",
-		"transfer.ledgerS",
-		"transfer.ledgerX",
-		"transfer.musig",
-		"transfer",
-		"vote.ledgerS",
-		"vote.ledgerX",
-		"vote.musig",
-		"vote",
-	],
+	Transaction: ["transfer"],
 };
-
-// featureFlags: {
-// 	Client: {
-// 		transaction: true,
-// 		transactions: true,
-// 		wallet: true,
-// 		broadcast: true,
-// 	},
-// 	Identity: {
-// 		address: {
-// 			mnemonic: true,
-// 			publicKey: true,
-// 			secret: true,
-// 		},
-// 		publicKey: {
-// 			mnemonic: true,
-// 			secret: true,
-// 		},
-// 		privateKey: {
-// 			mnemonic: true,
-// 			secret: true,
-// 		},
-// 		wif: {
-// 			mnemonic: true,
-// 			secret: true,
-// 		},
-// 		keyPair: {
-// 			mnemonic: true,
-// 			secret: true,
-// 		},
-// 	},
-// 	Link: {
-// 		block: true,
-// 		transaction: true,
-// 		wallet: true,
-// 	},
-// 	Message: {
-// 		sign: true,
-// 		verify: true,
-// 	},
-// 	Transaction: {
-// 		transfer: { default: true },
-// 	},
-// 	Derivation: {
-// 		bip39: true,
-// 		bip44: true,
-// 	},
-// },

@@ -17,7 +17,7 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: "https://wallets.ark.io",
+			host: "https://wallets.ark.io/api",
 		},
 		{
 			type: "musig",
@@ -25,7 +25,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://explorer.ark.io/",
+			host: "https://explorer.ark.io",
 		},
 	],
 	governance: {
@@ -37,6 +37,9 @@ const network: Coins.NetworkManifest = {
 	importMethods,
 	featureFlags,
 	knownWallets: "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json",
+	meta: {
+		fastDelegateSync: true,
+	},
 };
 
 export default network;

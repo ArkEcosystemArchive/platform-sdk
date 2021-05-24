@@ -35,7 +35,6 @@ export class WalletSerialiser {
 			// We only persist a few settings to prefer defaults from the SDK.
 			networkConfig: {
 				constants: network.constants,
-				hosts: network.hosts,
 			},
 			address: this.#wallet.address(),
 			publicKey: this.#wallet.publicKey(),

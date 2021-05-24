@@ -30,7 +30,6 @@ export interface IWalletData {
 	network: string;
 	networkConfig: {
 		constants: Coins.NetworkManifestConstants;
-		hosts: Coins.NetworkHost[];
 	};
 	address: string;
 	publicKey: string | undefined;
@@ -441,10 +440,10 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the supported transaction types.
 	 *
-	 * @return {Coins.CoinTransactionTypes}
+	 * @return {Coins.CoinTransactionTypes[]}
 	 * @memberof IReadWriteWallet
 	 */
-	transactionTypes(): Coins.CoinTransactionTypes;
+	transactionTypes(): Coins.CoinTransactionTypes[];
 
 	/**
 	 * Get the explorer link.

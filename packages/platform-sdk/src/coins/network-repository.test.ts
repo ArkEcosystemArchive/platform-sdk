@@ -105,7 +105,7 @@ test("#all", () => {
 		    },
 		    "hosts": Array [
 		      Object {
-		        "host": "https://dwallets.ark.io",
+		        "host": "https://dwallets.ark.io/api",
 		        "type": "full",
 		      },
 		      Object {
@@ -113,7 +113,7 @@ test("#all", () => {
 		        "type": "musig",
 		      },
 		      Object {
-		        "host": "https://dexplorer.ark.io/",
+		        "host": "https://dexplorer.ark.io",
 		        "type": "explorer",
 		      },
 		    ],
@@ -140,6 +140,9 @@ test("#all", () => {
 		      },
 		    },
 		    "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",
+		    "meta": Object {
+		      "fastDelegateSync": true,
+		    },
 		    "name": "Devnet",
 		    "transactions": Object {
 		      "expirationType": "height",
@@ -259,7 +262,7 @@ test("#all", () => {
 		    },
 		    "hosts": Array [
 		      Object {
-		        "host": "https://wallets.ark.io",
+		        "host": "https://wallets.ark.io/api",
 		        "type": "full",
 		      },
 		      Object {
@@ -267,7 +270,7 @@ test("#all", () => {
 		        "type": "musig",
 		      },
 		      Object {
-		        "host": "https://explorer.ark.io/",
+		        "host": "https://explorer.ark.io",
 		        "type": "explorer",
 		      },
 		    ],
@@ -294,6 +297,9 @@ test("#all", () => {
 		      },
 		    },
 		    "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json",
+		    "meta": Object {
+		      "fastDelegateSync": true,
+		    },
 		    "name": "Mainnet",
 		    "transactions": Object {
 		      "expirationType": "height",
@@ -417,7 +423,7 @@ test("#all", () => {
 		        "type": "full",
 		      },
 		      Object {
-		        "host": "https://bindscan.io/",
+		        "host": "https://bindscan.io",
 		        "type": "explorer",
 		      },
 		    ],
@@ -442,6 +448,9 @@ test("#all", () => {
 		          "read",
 		        ],
 		      },
+		    },
+		    "meta": Object {
+		      "fastDelegateSync": true,
 		    },
 		    "name": "Mainnet",
 		    "transactions": Object {

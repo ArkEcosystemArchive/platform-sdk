@@ -1,4 +1,5 @@
 import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { URL } from "url";
 
 export class LinkService implements Contracts.LinkService {
 	readonly #baseUrl: string;
@@ -16,14 +17,14 @@ export class LinkService implements Contracts.LinkService {
 	}
 
 	public block(id: string): string {
-		return `${this.#baseUrl}block/${id}`;
+		return new URL(`block/${id}`, this.#baseUrl).toString();
 	}
 
 	public transaction(id: string): string {
-		return `${this.#baseUrl}transaction/${id}`;
+		return new URL(`transaction/${id}`, this.#baseUrl).toString();
 	}
 
 	public wallet(id: string): string {
-		return `${this.#baseUrl}wallets/${id}`;
+		return new URL(`wallets/${id}`, this.#baseUrl).toString();
 	}
 }

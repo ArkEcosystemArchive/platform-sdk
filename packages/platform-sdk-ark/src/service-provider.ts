@@ -1,6 +1,5 @@
 import { Managers } from "@arkecosystem/crypto";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { getPeerFromConfig } from "./helpers";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 
 import { ClientService } from "./services/client";
 import { DataTransferObjectService } from "./services/data-transfer-object";
@@ -66,7 +65,7 @@ export class ServiceProvider {
 	private static async retrieveNetworkConfiguration(config: Coins.Config): Promise<{ crypto; peer; status }> {
 		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 
-		let peer: string = getPeerFromConfig(config);
+		let peer: string = Helpers.randomHostFromConfig(config, "full").host;
 
 		const [crypto, status]: any = await Promise.all([
 			http.get(`${peer}/node/configuration/crypto`),
