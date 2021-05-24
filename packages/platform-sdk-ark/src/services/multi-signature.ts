@@ -1,8 +1,6 @@
 import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 
-/** @inheritdoc */
 export class MultiSignatureService implements Contracts.MultiSignatureService {
 	/**
 	 * The configuration of the current instance.
@@ -159,13 +157,7 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	 * @memberof MultiSignatureService
 	 */
 	private getPeer(): string {
-		if (this.#config.has("peerMultiSignature")) {
-			return this.#config.get<string>("peerMultiSignature");
-		}
-
-		return Arr.randomElement(
-			this.#config.get<Coins.NetworkManifest>("network").networking?.hostsMultiSignature || [],
-		);
+		return Helpers.randomHost(this.#config.get<Coins.NetworkManifest>("network").hosts, "musig").host;
 	}
 
 	/**

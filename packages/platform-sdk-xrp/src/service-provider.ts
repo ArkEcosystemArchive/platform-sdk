@@ -9,7 +9,6 @@ import { LedgerService } from "./services/ledger";
 import { LinkService } from "./services/link";
 import { MessageService } from "./services/message";
 import { MultiSignatureService } from "./services/multi-signature";
-import { PeerService } from "./services/peer";
 import { SignatoryService } from "./services/signatory";
 import { TransactionService } from "./services/transaction";
 
@@ -25,7 +24,6 @@ export class ServiceProvider {
 			link,
 			message,
 			multiSignature,
-			peer,
 			signatory,
 			transaction,
 		] = await Promise.all<any>([
@@ -38,7 +36,6 @@ export class ServiceProvider {
 			LinkService.__construct(config),
 			MessageService.__construct(config),
 			MultiSignatureService.__construct(config),
-			PeerService.__construct(config),
 			SignatoryService.__construct(config),
 			TransactionService.__construct(config),
 		]);
@@ -53,7 +50,6 @@ export class ServiceProvider {
 			link,
 			message,
 			multiSignature,
-			peer,
 			signatory,
 			transaction,
 		};

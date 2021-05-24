@@ -1,14 +1,14 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 
 export class LinkService implements Contracts.LinkService {
 	readonly #baseUrl: string;
 
-	private constructor(network: Coins.NetworkManifest) {
-		this.#baseUrl = network.explorer;
+	private constructor({ host }: Coins.NetworkHost) {
+		this.#baseUrl = host;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<LinkService> {
-		return new LinkService(config.get<Coins.NetworkManifest>("network"));
+		return new LinkService(Helpers.randomHostFromConfig(config, "explorer"));
 	}
 
 	public async __destruct(): Promise<void> {

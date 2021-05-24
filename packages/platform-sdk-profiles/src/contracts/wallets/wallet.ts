@@ -29,14 +29,7 @@ export interface IWalletData {
 	coin: string;
 	network: string;
 	networkConfig: {
-		crypto: {
-			slip44?: number;
-		};
-		networking: {
-			hosts: string[];
-			hostsMultiSignature: string[];
-			hostsArchival: string[];
-		};
+		constants: Coins.NetworkManifestConstants;
 	};
 	address: string;
 	publicKey: string | undefined;
@@ -421,14 +414,6 @@ export interface IReadWriteWallet {
 	message(): Contracts.MessageService;
 
 	/**
-	 * Get the peer service instance.
-	 *
-	 * @return {Contracts.PeerService}
-	 * @memberof IReadWriteWallet
-	 */
-	peer(): Contracts.PeerService;
-
-	/**
 	 * Get the signatory service instance.
 	 *
 	 * @return {Contracts.SignatoryService}
@@ -447,10 +432,10 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the supported transaction types.
 	 *
-	 * @return {Coins.CoinTransactionTypes}
+	 * @return {Coins.CoinTransactionTypes[]}
 	 * @memberof IReadWriteWallet
 	 */
-	transactionTypes(): Coins.CoinTransactionTypes;
+	transactionTypes(): Coins.CoinTransactionTypes[];
 
 	/**
 	 * Get the explorer link.

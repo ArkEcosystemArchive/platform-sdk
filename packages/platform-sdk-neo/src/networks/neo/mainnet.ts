@@ -1,103 +1,100 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "neo.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "NEO",
-	explorer: "https://neotracker.io/",
 	currency: {
 		ticker: "NEO",
 		symbol: "NEO",
 	},
-	fees: {
-		type: "free",
-		ticker: "GAS",
-	},
-	crypto: {
+	constants: {
 		slip44: 888,
-		signingMethods: {
-			mnemonic: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: [
-			"https://seed1.switcheo.network:10331",
-			"https://seed3.switcheo.network:10331",
-			"http://seed1.ngd.network:10332",
-			"http://seed2.ngd.network:10332",
-			"http://seed3.ngd.network:10332",
-			"http://seed4.ngd.network:10332",
-			"http://seed5.ngd.network:10332",
-			"http://seed6.ngd.network:10332",
-			"http://seed7.ngd.network:10332",
-			"http://seed8.ngd.network:10332",
-			"http://seed9.ngd.network:10332",
-			"https://m2.neo.nash.io",
-			"https://m3.neo.nash.io",
-			"https://m4.neo.nash.io",
-			"https://m5.neo.nash.io",
-			"https://mainnet1.neo2.coz.io:443",
-			"https://mainnet2.neo2.coz.io:443",
-			"https://mainnet3.neo2.coz.io:443",
-		],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
+	hosts: [
+		{
+			type: "full",
+			host: "https://seed1.switcheo.network:10331",
 		},
-	},
-	featureFlags: {
-		Client: {
-			transactions: true,
-			broadcast: true,
+		{
+			type: "full",
+			host: "https://seed3.switcheo.network:10331",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				publicKey: true,
-				privateKey: true,
-				wif: true,
-			},
-			publicKey: {
-				mnemonic: true,
-				wif: true,
-			},
-			privateKey: {
-				mnemonic: true,
-				wif: true,
-			},
-			wif: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				privateKey: true,
-				wif: true,
-			},
+		{
+			type: "full",
+			host: "http://seed1.ngd.network:10332",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
+		{
+			type: "full",
+			host: "http://seed2.ngd.network:10332",
 		},
-		Message: {
-			sign: true,
-			verify: true,
+		{
+			type: "full",
+			host: "http://seed3.ngd.network:10332",
 		},
-		Transaction: {
-			transfer: { default: true },
+		{
+			type: "full",
+			host: "http://seed4.ngd.network:10332",
 		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
+		{
+			type: "full",
+			host: "http://seed5.ngd.network:10332",
 		},
-	},
-	transactionTypes: ["transfer"],
+		{
+			type: "full",
+			host: "http://seed6.ngd.network:10332",
+		},
+		{
+			type: "full",
+			host: "http://seed7.ngd.network:10332",
+		},
+		{
+			type: "full",
+			host: "http://seed8.ngd.network:10332",
+		},
+		{
+			type: "full",
+			host: "http://seed9.ngd.network:10332",
+		},
+		{
+			type: "full",
+			host: "https://m2.neo.nash.io",
+		},
+		{
+			type: "full",
+			host: "https://m3.neo.nash.io",
+		},
+		{
+			type: "full",
+			host: "https://m4.neo.nash.io",
+		},
+		{
+			type: "full",
+			host: "https://m5.neo.nash.io",
+		},
+		{
+			type: "full",
+			host: "https://mainnet1.neo2.coz.io:443",
+		},
+		{
+			type: "full",
+			host: "https://mainnet2.neo2.coz.io:443",
+		},
+		{
+			type: "full",
+			host: "https://mainnet3.neo2.coz.io:443",
+		},
+		{
+			type: "explorer",
+			host: "https://neotracker.io/",
+		},
+	],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

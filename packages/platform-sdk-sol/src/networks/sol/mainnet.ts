@@ -1,70 +1,32 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "sol.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "Solana",
-	explorer: "https://explorer.solana.com/",
 	currency: {
 		ticker: "SOL",
 		symbol: "SOL",
 	},
-	fees: {
-		type: "dynamic",
-		ticker: "SOL",
-	},
-	crypto: {
+	constants: {
 		slip44: 501,
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://api.mainnet-beta.solana.com"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
+	hosts: [
+		{
+			type: "full",
+			host: "https://api.mainnet-beta.solana.com",
 		},
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-			broadcast: true,
+		{
+			type: "explorer",
+			host: "https://explorer.solana.com/",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				publicKey: true,
-				privateKey: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-				privateKey: true,
-			},
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
-	transactionTypes: ["transfer"],
+	],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

@@ -201,22 +201,22 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	private allowsDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP39);
+		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip39);
 	}
 
 	private allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP44);
+		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip44);
 	}
 
 	/* istanbul ignore next */
 	private allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
-		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP49);
+		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip49);
 	}
 
 	/* istanbul ignore next */
 	private allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
-		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP84);
+		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip84);
 	}
 }

@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
@@ -38,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			config,
-			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			peer: Helpers.randomHostFromConfig(config, "full").host,
 		});
 	}
 
@@ -150,6 +149,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private getHost(): string {
-		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
+		return Helpers.randomHostFromConfig(this.#config, "full").host;
 	}
 }

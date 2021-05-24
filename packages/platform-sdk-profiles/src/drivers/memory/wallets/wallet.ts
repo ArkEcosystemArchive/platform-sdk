@@ -392,11 +392,6 @@ export class Wallet implements IReadWriteWallet {
 		return this.#attributes.get<Coins.Coin>("coin").message();
 	}
 
-	/** {@inheritDoc IReadWriteWallet.peer} */
-	public peer(): Contracts.PeerService {
-		return this.#attributes.get<Coins.Coin>("coin").peer();
-	}
-
 	/** {@inheritDoc IReadWriteWallet.signatory} */
 	public signatory(): Contracts.SignatoryService {
 		return this.#attributes.get<Coins.Coin>("coin").signatory();
@@ -408,8 +403,10 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.transactionTypes} */
-	public transactionTypes(): Coins.CoinTransactionTypes {
-		return this.coin().manifest().get<object>("networks")[this.networkId()].transactionTypes;
+	public transactionTypes(): Coins.CoinTransactionTypes[] {
+		const manifest: Coins.NetworkManifest = this.coin().manifest().get<object>("networks")[this.networkId()];
+
+		return manifest.transactions.types;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.gate} */

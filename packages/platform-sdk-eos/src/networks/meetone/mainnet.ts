@@ -1,62 +1,45 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "meetone.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "MEET.ONE",
-	explorer: "https://meetone.bloks.io/",
 	currency: {
 		ticker: "MEETONE",
 		symbol: "MEETONE",
 	},
-	fees: {
-		type: "free",
-		ticker: "MEETONE",
-	},
-	crypto: {
-		networkId: "cfe6486a83bad4962f232d48003b1824ab5665c36778141034d75e57b956e422",
+	constants: {
 		slip44: 194,
 		bech32: "MEETONE",
-		signingMethods: {
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://fullnode.meet.one"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
+	hosts: [
+		{
+			type: "full",
+			host: "https://fullnode.meet.one",
 		},
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-			broadcast: true,
+		{
+			type: "explorer",
+			host: "https://meetone.bloks.io/",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
+	],
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "free",
+				ticker: "MEETONE",
+			},
 		},
 	},
-	transactionTypes: ["transfer"],
+	importMethods,
+	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "cfe6486a83bad4962f232d48003b1824ab5665c36778141034d75e57b956e422",
+	},
 };
 
 export default network;

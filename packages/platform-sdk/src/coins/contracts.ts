@@ -9,7 +9,6 @@ import {
 	LinkService,
 	MessageService,
 	MultiSignatureService,
-	PeerService,
 	SignatoryService,
 	TransactionService,
 } from "../contracts/coins";
@@ -23,8 +22,6 @@ export interface CoinSpec {
 
 export interface CoinOptions {
 	network: string;
-	peer?: string;
-	peerMultiSignature?: string;
 	httpClient: HttpClient;
 }
 
@@ -38,7 +35,6 @@ export interface CoinServices {
 	link: LinkService;
 	message: MessageService;
 	multiSignature: MultiSignatureService;
-	peer: PeerService;
 	signatory: SignatoryService;
 	transaction: TransactionService;
 }

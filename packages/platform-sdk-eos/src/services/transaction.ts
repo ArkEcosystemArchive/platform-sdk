@@ -1,5 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { createHash } from "crypto";
 import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
@@ -19,8 +18,8 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			networkId: config.get<string>(Coins.ConfigKey.CryptoNetworkId),
-			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			networkId: config.get<string>("network.meta.networkId"),
+			peer: Helpers.randomHostFromConfig(config, "full").host,
 		});
 	}
 

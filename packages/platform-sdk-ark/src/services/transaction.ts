@@ -25,7 +25,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		const { crypto, peer, status }: any = config.get(Coins.ConfigKey.NetworkConfiguration);
+		const { crypto, peer, status }: any = config.get("NETWORK_CONFIGURATION");
 
 		return new TransactionService({
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),

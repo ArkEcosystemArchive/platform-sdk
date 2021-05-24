@@ -15,9 +15,3 @@ export interface PeerResponse {
 	height: number;
 	latency: number;
 }
-
-export interface PeerService {
-	__destruct(): Promise<void>;
-
-	validate(url: string): Promise<boolean>;
-}

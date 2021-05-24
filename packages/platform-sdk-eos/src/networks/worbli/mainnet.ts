@@ -1,67 +1,49 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "worbli.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "Worbli",
-	explorer: "https://worbli.bloks.io/",
 	currency: {
 		ticker: "WBI",
 		symbol: "WBI",
 	},
-	fees: {
-		type: "free",
-		ticker: "WBI",
-	},
-	crypto: {
-		networkId: "73647cde120091e0a4b85bced2f3cfdb3041e266cbbe95cee59b73235a1b3b6f",
+	constants: {
 		slip44: 194,
 		bech32: "WBI",
-		signingMethods: {
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://api.worbli.io", "https://worbli-mainnet.eosblocksmith.io"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
+	hosts: [
+		{
+			type: "full",
+			host: "https://api.worbli.io",
 		},
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-			broadcast: true,
+		{
+			type: "full",
+			host: "https://worbli-mainnet.eosblocksmith.io",
 		},
-		Identity: {
-			publicKey: {
-				mnemonic: true,
+		{
+			type: "explorer",
+			host: "https://worbli.bloks.io/",
+		},
+	],
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "free",
+				ticker: "WBI",
 			},
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
 	},
-	transactionTypes: ["transfer"],
+	importMethods,
+	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "73647cde120091e0a4b85bced2f3cfdb3041e266cbbe95cee59b73235a1b3b6f",
+	},
 };
 
 export default network;

@@ -1,7 +1,12 @@
 import "jest-extended";
 
 import { TransactionDataCollection } from "./coins";
-import { createTransactionDataCollectionWithType, createTransactionDataWithType } from "./helpers";
+import {
+	createTransactionDataCollectionWithType,
+	createTransactionDataWithType,
+	filterHostsFromConfig,
+	randomHostFromConfig,
+} from "./helpers";
 
 class TransactionData {
 	public isDelegateRegistration(): boolean {
@@ -120,4 +125,64 @@ test.each([
 			{ [dtoName]: dtoClass, TransactionData },
 		),
 	).toBeInstanceOf(TransactionDataCollection);
+});
+
+test("filterHostsFromConfig", () => {
+	// @ts-ignore
+	expect(
+		filterHostsFromConfig(
+			{
+				// @ts-ignore
+				get: () => [
+					{
+						type: "full",
+						host: "https://wallets.ark.io",
+					},
+					{
+						type: "musig",
+						host: "https://musig1.ark.io",
+					},
+					{
+						type: "explorer",
+						host: "https://explorer.ark.io/",
+					},
+				],
+			},
+			"explorer",
+		),
+	).toEqual([
+		{
+			type: "explorer",
+			host: "https://explorer.ark.io/",
+		},
+	]);
+});
+
+test("randomHostFromConfig", () => {
+	// @ts-ignore
+	expect(
+		randomHostFromConfig(
+			{
+				// @ts-ignore
+				get: () => [
+					{
+						type: "full",
+						host: "https://wallets.ark.io",
+					},
+					{
+						type: "musig",
+						host: "https://musig1.ark.io",
+					},
+					{
+						type: "explorer",
+						host: "https://explorer.ark.io/",
+					},
+				],
+			},
+			"explorer",
+		),
+	).toEqual({
+		type: "explorer",
+		host: "https://explorer.ark.io/",
+	});
 });

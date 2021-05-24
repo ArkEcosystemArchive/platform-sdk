@@ -7,7 +7,7 @@ export class Keys implements Contracts.Keys {
 	readonly #slip44: number;
 
 	public constructor(config: Coins.Config) {
-		this.#slip44 = config.get<number>("network.crypto.slip44");
+		this.#slip44 = config.get<number>("network.constants.slip44");
 	}
 
 	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
