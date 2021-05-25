@@ -1,3 +1,4 @@
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { RawTransactionData } from "../contracts";
@@ -30,6 +31,8 @@ export abstract class AbstractSignedTransactionData {
 
 	abstract fee(): BigNumber;
 
+	abstract timestamp(): DateTime;
+
 	public get<T = string>(key: string): T {
 		return this.signedData[key];
 	}
@@ -52,6 +55,7 @@ export abstract class AbstractSignedTransactionData {
 		recipient: string;
 		amount: string;
 		fee: string;
+		timestamp: string;
 		data: RawTransactionData;
 		broadcast: any;
 	} {
@@ -61,6 +65,7 @@ export abstract class AbstractSignedTransactionData {
 			recipient: this.recipient(),
 			amount: this.amount().toFixed(),
 			fee: this.fee().toFixed(),
+			timestamp: this.timestamp().toString(),
 			data: this.data(),
 			broadcast: this.toBroadcast(),
 		};
