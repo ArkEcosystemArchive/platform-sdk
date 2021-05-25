@@ -48,11 +48,6 @@ export interface IdentityService {
 	keys(): KeyPairService;
 }
 
-export interface KeyPair {
-	publicKey: string;
-	privateKey?: string;
-}
-
 export interface IdentityOptions {
 	bip39?: boolean;
 	bip44?: {
