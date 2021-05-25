@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { api, wallet } from "@cityofzion/neon-js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -26,7 +27,9 @@ export class TransactionService implements Contracts.TransactionService {
 				),
 			};
 
-			return new SignedTransactionData(uuidv4(), signedTransaction, JSON.stringify(signedTransaction));
+			const signedData = {...signedTransaction, timestamp: DateTime.make()};
+
+			return new SignedTransactionData(uuidv4(), signedData, JSON.stringify(signedTransaction));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

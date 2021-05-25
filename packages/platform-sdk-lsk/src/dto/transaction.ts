@@ -1,6 +1,7 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { normalizeTimestamp } from "./timestamps";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
@@ -12,8 +13,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public timestamp(): DateTime | undefined {
-		// TODO: use a genesis timestamp that matches the network
-		return DateTime.make("2016-05-24T17:00:00.000Z").addSeconds(this.data.timestamp);
+		return normalizeTimestamp(this.data.timestamp);
 	}
 
 	public confirmations(): BigNumber {

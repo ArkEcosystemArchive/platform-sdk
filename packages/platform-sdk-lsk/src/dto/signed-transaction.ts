@@ -1,6 +1,7 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { normalizeTimestamp } from "./timestamps";
 
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
@@ -22,7 +23,7 @@ export class SignedTransactionData
 	}
 
 	public timestamp(): DateTime {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.timestamp.name);
+		return normalizeTimestamp(this.signedData.timestamp);
 	}
 
 	public isMultiSignature(): boolean {
