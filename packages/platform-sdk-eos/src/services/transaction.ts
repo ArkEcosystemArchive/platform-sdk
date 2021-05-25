@@ -81,7 +81,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			return new SignedTransactionData(
 				createHash("sha256").update(transaction.serializedTransaction).digest("hex"),
-				{...transaction, timestamp: DateTime.make()},
+				{ ...transaction, timestamp: DateTime.make() },
 				transaction,
 			);
 		} catch (error) {
