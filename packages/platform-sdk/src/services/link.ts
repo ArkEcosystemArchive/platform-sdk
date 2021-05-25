@@ -1,22 +1,24 @@
 /* istanbul ignore file */
 
+import { formatString } from "@arkecosystem/utils";
 import { URL } from "url";
 
-import { NetworkHost } from "../coins";
+import { Config, NetworkHost } from "../coins";
 import { LinkService } from "../contracts/coins";
+import { randomHostFromConfig } from "../helpers";
 
 export interface LinkServiceSchema {
-	block: (id: string) => string;
-	transaction: (id: string) => string;
-	wallet: (id: string) => string;
+	block: string;
+	transaction: string;
+	wallet: string;
 }
 
 export abstract class AbstractLinkService implements LinkService {
 	readonly #host: NetworkHost;
 	readonly #schema: LinkServiceSchema;
 
-	public constructor(host: NetworkHost, schema: LinkServiceSchema) {
-		this.#host = host;
+	public constructor(config: Config, schema: LinkServiceSchema) {
+		this.#host = randomHostFromConfig(config, "explorer");
 		this.#schema = schema;
 	}
 
@@ -25,19 +27,19 @@ export abstract class AbstractLinkService implements LinkService {
 	}
 
 	public block(id: string): string {
-		return this.buildURL(this.#schema.block(id));
+		return this.buildURL(this.#schema.block, id);
 	}
 
 	public transaction(id: string): string {
-		return this.buildURL(this.#schema.transaction(id));
+		return this.buildURL(this.#schema.transaction, id);
 	}
 
 	public wallet(id: string): string {
-		return this.buildURL(this.#schema.wallet(id));
+		return this.buildURL(this.#schema.wallet, id);
 	}
 
-	private buildURL(schema: string): string {
-		const url: URL = new URL(schema, this.#host.host);
+	private buildURL(schema: string, id: string): string {
+		const url: URL = new URL(formatString(schema, id), this.#host.host);
 
 		if (this.#host.query) {
 			url.search = new URLSearchParams(this.#host.query).toString();
