@@ -52,6 +52,7 @@ export interface NetworkManifestFeatureFlags {
 	Message?: MessageMethods;
 	Peer?: PeerMethods;
 	Transaction?: TransactionMethods;
+	Miscellaneous?: MiscellaneousMethods;
 }
 
 export interface NetworkManifestImportMethods {
@@ -218,3 +219,6 @@ export type TransactionMethod =
 	| "vote.musig"
 	| "vote";
 export type TransactionMethods = TransactionMethod[];
+
+export declare type MiscellaneousMethod = "dynamicFees" | "memo" | "utxo";
+export declare type MiscellaneousMethods = MiscellaneousMethod[];
