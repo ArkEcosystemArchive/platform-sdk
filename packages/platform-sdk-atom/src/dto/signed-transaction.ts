@@ -22,7 +22,7 @@ export class SignedTransactionData
 	}
 
 	public timestamp(): DateTime {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.timestamp.name);
+		throw this.signedData.timestamp;
 	}
 
 	public isMultiSignature(): boolean {
