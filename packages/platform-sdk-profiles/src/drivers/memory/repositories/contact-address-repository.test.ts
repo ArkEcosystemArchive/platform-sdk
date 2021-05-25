@@ -9,6 +9,7 @@ import { ContactAddressRepository } from "./contact-address-repository";
 import { Profile } from "../profiles/profile";
 
 let subject: ContactAddressRepository;
+let profile: Profile;
 
 const stubData = {
 	coin: "ARK",
@@ -32,7 +33,7 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 	profile.coins().set("ARK", "ark.devnet");
 
 	subject = new ContactAddressRepository(profile);
@@ -106,6 +107,15 @@ test("#update address", async () => {
 	subject.update(address.id(), { address: "new address" });
 
 	expect(subject.findByAddress("new address")[0].address()).toEqual("new address");
+	expect(profile.status().isDirty()).toBeTrue();
+});
+
+test("#update without address", async () => {
+	const address = await subject.create(stubData);
+
+	subject.update(address.id(), {});
+
+	expect(subject.findByAddress("new address")).toEqual([]);
 });
 
 test("#forget", async () => {
