@@ -1,9 +1,9 @@
 import "jest-extended";
 
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "./signed-transaction";
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 let subject: SignedTransactionData;
 
@@ -45,5 +45,5 @@ describe("SignedTransactionData", function () {
 
 	test("#timestamp", () => {
 		expect(subject.timestamp()).toEqual(DateTime.make(0));
-	})
+	});
 });
