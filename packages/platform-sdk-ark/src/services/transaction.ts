@@ -2,6 +2,7 @@ import { Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
 
@@ -244,6 +245,8 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			const transaction = Transactions.BuilderFactory[type]().version(2);
+
+			transaction.timestamp(DateTime.make().toISOString());
 
 			if (input.signatory.actsWithSenderPublicKey()) {
 				address = input.signatory.address();
