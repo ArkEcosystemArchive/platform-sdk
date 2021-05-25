@@ -1,3 +1,29 @@
+export interface AddressDataTransferObject {
+	address: string;
+	path: string;
+}
+
+export interface PublicKeyDataTransferObject {
+	publicKey: string;
+	path: string;
+}
+
+export interface PrivateKeyDataTransferObject {
+	privateKey: string;
+	path: string;
+}
+
+export interface WIFDataTransferObject {
+	wif: string;
+	path: string;
+}
+
+export interface KeyPairDataTransferObject {
+	publicKey: string;
+	privateKey?: string;
+	path: string;
+}
+
 export interface AddressListEntry {
 	index: number;
 	spendAddress: string;
@@ -9,17 +35,17 @@ export interface AddressListEntry {
 export interface IdentityService {
 	__destruct(): Promise<void>;
 
-	address(): Address;
+	address(): AddressService;
 
-	addressList(): AddressList;
+	addressList(): AddressListService;
 
-	publicKey(): PublicKey;
+	publicKey(): PublicKeyService;
 
-	privateKey(): PrivateKey;
+	privateKey(): PrivateKeyService;
 
-	wif(): WIF;
+	wif(): WIFService;
 
-	keys(): Keys;
+	keys(): KeyPairService;
 }
 
 export interface KeyPair {
@@ -46,43 +72,43 @@ export interface IdentityOptions {
 	};
 }
 
-export interface Address {
-	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
-	fromMultiSignature(min: number, publicKeys: string[]): Promise<string>;
-	fromPublicKey(publicKey: string, options?: IdentityOptions): Promise<string>;
-	fromPrivateKey(privateKey: string, options?: IdentityOptions): Promise<string>;
-	fromWIF(wif: string): Promise<string>;
-	fromSecret(secret: string): Promise<string>;
+export interface AddressService {
+	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<AddressDataTransferObject>;
+	fromMultiSignature(min: number, publicKeys: string[]): Promise<AddressDataTransferObject>;
+	fromPublicKey(publicKey: string, options?: IdentityOptions): Promise<AddressDataTransferObject>;
+	fromPrivateKey(privateKey: string, options?: IdentityOptions): Promise<AddressDataTransferObject>;
+	fromWIF(wif: string): Promise<AddressDataTransferObject>;
+	fromSecret(secret: string): Promise<AddressDataTransferObject>;
 	validate(address: string): Promise<boolean>;
 }
 
-export interface AddressList {
+export interface AddressListService {
 	fromMnemonic(mnemonic: string, pageSize: number): Promise<AddressListEntry[]>;
 	fromPrivateKey(privateKey: string, pageSize: number): Promise<AddressListEntry[]>;
 }
 
-export interface PublicKey {
-	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
-	fromMultiSignature(min: number, publicKeys: string[]): Promise<string>;
-	fromWIF(wif: string): Promise<string>;
+export interface PublicKeyService {
+	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<PublicKeyDataTransferObject>;
+	fromMultiSignature(min: number, publicKeys: string[]): Promise<PublicKeyDataTransferObject>;
+	fromWIF(wif: string): Promise<PublicKeyDataTransferObject>;
 	fromSecret(secret: string): Promise<string>;
 }
 
-export interface PrivateKey {
-	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
-	fromWIF(wif: string): Promise<string>;
-	fromSecret(secret: string): Promise<string>;
+export interface PrivateKeyService {
+	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<PrivateKeyDataTransferObject>;
+	fromWIF(wif: string): Promise<PrivateKeyDataTransferObject>;
+	fromSecret(secret: string): Promise<PrivateKeyDataTransferObject>;
 }
 
-export interface WIF {
-	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<string>;
-	fromPrivateKey(privateKey: string): Promise<string>;
-	fromSecret(secret: string): Promise<string>;
+export interface WIFService {
+	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<WIFDataTransferObject>;
+	fromPrivateKey(privateKey: string): Promise<WIFDataTransferObject>;
+	fromSecret(secret: string): Promise<WIFDataTransferObject>;
 }
 
-export interface Keys {
-	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<KeyPair>;
-	fromPrivateKey(privateKey: string): Promise<KeyPair>;
-	fromWIF(wif: string): Promise<KeyPair>;
-	fromSecret(secret: string): Promise<KeyPair>;
+export interface KeyPairService {
+	fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<KeyPairDataTransferObject>;
+	fromPrivateKey(privateKey: string): Promise<KeyPairDataTransferObject>;
+	fromWIF(wif: string): Promise<KeyPairDataTransferObject>;
+	fromSecret(secret: string): Promise<KeyPairDataTransferObject>;
 }
