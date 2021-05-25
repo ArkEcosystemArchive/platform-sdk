@@ -2,7 +2,7 @@
 
 exports[`should have a network 1`] = `
 Object {
-  "coin": "DARK",
+  "coin": "ARK",
   "constants": Object {
     "slip44": 1,
   },
