@@ -1,6 +1,6 @@
 import { IdentityOptions } from "./shared"
 
-export interface AddressListDataTransferObject {
+export interface ExtendedAddressDataTransferObject {
 	index: number;
 	spendAddress: string;
 	changeAddress: string;
@@ -9,6 +9,6 @@ export interface AddressListDataTransferObject {
 }
 
 export interface AddressListService {
-	fromMnemonic(mnemonic: string, pageSize: number): Promise<AddressListDataTransferObject[]>;
-	fromPrivateKey(privateKey: string, pageSize: number): Promise<AddressListDataTransferObject[]>;
+	fromMnemonic(mnemonic: string, pageSize: number): Promise<ExtendedAddressDataTransferObject[]>;
+	fromPrivateKey(privateKey: string, pageSize: number): Promise<ExtendedAddressDataTransferObject[]>;
 }
