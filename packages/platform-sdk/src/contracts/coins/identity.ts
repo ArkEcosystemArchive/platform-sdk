@@ -1,27 +1,27 @@
 export interface AddressDataTransferObject {
-	address: string;
-	path: string;
+	address(): string;
+	path(): string;
 }
 
 export interface PublicKeyDataTransferObject {
-	publicKey: string;
-	path: string;
+	publicKey(): string;
+	path(): string;
 }
 
 export interface PrivateKeyDataTransferObject {
-	privateKey: string;
-	path: string;
+	privateKey(): string;
+	path(): string;
 }
 
 export interface WIFDataTransferObject {
-	wif: string;
-	path: string;
+	wif(): string;
+	path(): string;
 }
 
 export interface KeyPairDataTransferObject {
-	publicKey: string;
-	privateKey?: string;
-	path: string;
+	publicKey(): string;
+	privateKey(): string;
+	path(): string;
 }
 
 export interface AddressListEntry {
