@@ -23,7 +23,7 @@ export class SignedTransactionData
 	}
 
 	public timestamp(): DateTime {
-		throw DateTime.make(this.signedData.timestamp);
+		return this.signedData.timestamp ? DateTime.make(this.signedData.timestamp) : DateTime.make();
 	}
 
 	public isMultiSignature(): boolean {
