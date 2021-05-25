@@ -43,7 +43,7 @@ export class TransactionService implements Contracts.TransactionService {
 			work: (await computeWork("previousBlock"))!,
 		};
 
-		const signedData = {...data, timestamp: DateTime.make()};
+		const signedData = { ...data, timestamp: DateTime.make() };
 
 		return new SignedTransactionData(block.send(data, privateKey).signature, signedData, data);
 	}

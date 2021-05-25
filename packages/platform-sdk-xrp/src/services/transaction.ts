@@ -61,7 +61,7 @@ export class TransactionService implements Contracts.TransactionService {
 				},
 			]);
 
-			const signedData = {...signedTransaction, timestamp: DateTime.make()};
+			const signedData = { ...signedTransaction, timestamp: DateTime.make() };
 
 			return new SignedTransactionData(id, signedData, signedTransaction);
 		} catch (error) {
