@@ -487,7 +487,12 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.actsWithMnemonic} */
 	public actsWithMnemonic(): boolean {
-		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.Mnemonic;
+		return [
+			WalletImportMethod.MnemonicBIP39,
+			WalletImportMethod.MnemonicBIP44,
+			WalletImportMethod.MnemonicBIP49,
+			WalletImportMethod.MnemonicBIP84,
+		].includes(this.data().get(WalletData.ImportMethod)!);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.actsWithAddress} */
