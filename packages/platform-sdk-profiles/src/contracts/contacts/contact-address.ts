@@ -7,7 +7,6 @@
 export interface IContactAddressInput {
 	coin: string;
 	network: string;
-	name: string;
 	address: string;
 }
 
@@ -21,7 +20,6 @@ export interface IContactAddressData {
 	id: string;
 	coin: string;
 	network: string;
-	name: string;
 	address: string;
 }
 
@@ -55,14 +53,6 @@ export interface IContactAddress {
 	 * @memberof IContactAddress
 	 */
 	network(): string;
-
-	/**
-	 *
-	 *
-	 * @returns {string}
-	 * @memberof IContactAddress
-	 */
-	name(): string;
 
 	/**
 	 *
@@ -147,18 +137,10 @@ export interface IContactAddress {
 	/**
 	 *
 	 *
-	 * @param {string} value
+	 * @param {string} address
 	 * @memberof IContactAddress
 	 */
-	setName(value: string): void;
-
-	/**
-	 *
-	 *
-	 * @param {string} name
-	 * @memberof IContactAddress
-	 */
-	setAddress(name: string): void;
+	setAddress(address: string): void;
 
 	/**
 	 *

@@ -32,11 +32,6 @@ export class ContactAddress implements IContactAddress {
 		return this.#data.network;
 	}
 
-	/** {@inheritDoc IContactAddress.name} */
-	public name(): string {
-		return this.#data.name;
-	}
-
 	/** {@inheritDoc IContactAddress.address} */
 	public address(): string {
 		return this.#data.address;
@@ -110,21 +105,13 @@ export class ContactAddress implements IContactAddress {
 			id: this.id(),
 			coin: this.coin(),
 			network: this.network(),
-			name: this.name(),
 			address: this.address(),
 		};
 	}
 
-	/** {@inheritDoc IContactAddress.setName} */
-	public setName(value: string): void {
-		this.#data.name = value;
-
-		this.#profile.status().markAsDirty();
-	}
-
 	/** {@inheritDoc IContactAddress.setAddress} */
-	public setAddress(name: string): void {
-		this.#data.address = name;
+	public setAddress(address: string): void {
+		this.#data.address = address;
 
 		this.#profile.status().markAsDirty();
 	}
