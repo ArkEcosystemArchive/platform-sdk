@@ -43,7 +43,6 @@ export class WalletFactory implements IWalletFactory {
 	/** {@inheritDoc IWalletFactory.fromMnemonic} */
 	public async fromMnemonic({ coin, network, mnemonic, bip = 39 }: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Mnemonic);
 
 		await wallet.mutator().coin(coin, network);
 
@@ -54,10 +53,14 @@ export class WalletFactory implements IWalletFactory {
 		}
 
 		if (bip === 39 && this.allowsDeriveWithBIP39(wallet)) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP39);
+
 			await wallet.mutator().identity(mnemonic);
 		}
 
 		if (bip === 44 && this.allowsDeriveWithBIP44(wallet)) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP44);
+
 			const publicKey: string = await wallet
 				.coin()
 				.identity()
@@ -86,12 +89,16 @@ export class WalletFactory implements IWalletFactory {
 
 		/* istanbul ignore next */
 		if (bip === 49 && this.allowsDeriveWithBIP49(wallet)) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP49);
+
 			/* istanbul ignore next */
 			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#49");
 		}
 
 		/* istanbul ignore next */
 		if (bip === 84 && this.allowsDeriveWithBIP84(wallet)) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP84);
+
 			/* istanbul ignore next */
 			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#84");
 		}
