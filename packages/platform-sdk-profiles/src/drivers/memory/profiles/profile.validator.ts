@@ -25,7 +25,6 @@ export class ProfileValidator implements IProfileValidator {
 							id: Joi.string().required(),
 							coin: Joi.string().required(),
 							network: Joi.string().required(),
-							name: Joi.string().required(),
 							address: Joi.string().required(),
 						}),
 					),
