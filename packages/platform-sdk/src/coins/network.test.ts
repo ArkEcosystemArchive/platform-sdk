@@ -328,3 +328,15 @@ it("#importMethods", () => {
 it("#meta", () => {
 	expect(subject.meta()).toBeObject();
 });
+
+it("#feeType", () => {
+	expect(subject.feeType()).toBe("dynamic");
+});
+
+it("#usesMemo", () => {
+	expect(subject.usesMemo()).toBeBoolean();
+});
+
+it("#usesUTXO", () => {
+	expect(subject.usesUTXO()).toBeBoolean();
+});

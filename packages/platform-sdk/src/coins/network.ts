@@ -1,7 +1,7 @@
 import { get } from "dot-prop";
 
 import { randomHost } from "../helpers";
-import { CoinManifest, ExpirationType, NetworkManifest, NetworkManifestImportMethods } from "./network.models";
+import { CoinManifest, ExpirationType, FeeType, NetworkManifest, NetworkManifestImportMethods } from "./network.models";
 
 export class Network {
 	/**
@@ -229,6 +229,36 @@ export class Network {
 	 */
 	public meta(): Record<string, any> {
 		return get(this.#network, "meta", {});
+	}
+
+	/**
+	 * Returns the meta data of the network.
+	 *
+	 * @return {*}  {FeeType}
+	 * @memberof Network
+	 */
+	public feeType(): FeeType {
+		return this.#network.transactions.fees.type;
+	}
+
+	/**
+	 * Returns the meta data of the network.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public usesMemo(): boolean {
+		return get(this.#network, "memo", false);
+	}
+
+	/**
+	 * Returns the meta data of the network.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public usesUTXO(): boolean {
+		return get(this.#network, "utxo", false);
 	}
 
 	/**
