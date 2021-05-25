@@ -26,7 +26,7 @@ export class SignedTransactionData
 		if (this.signedData.timestamp) {
 			return DateTime.make(this.signedData.timestamp);
 		}
-			
+
 		return DateTime.make();
 	}
 

@@ -44,11 +44,7 @@ export class TransactionService implements Contracts.TransactionService {
 			timestamp: DateTime.make(),
 		};
 
-		return new SignedTransactionData(
-			transaction.hash.toHex(),
-			signedData,
-			transaction.toHex(),
-		);
+		return new SignedTransactionData(transaction.hash.toHex(), signedData, transaction.toHex());
 	}
 
 	public async secondSignature(
