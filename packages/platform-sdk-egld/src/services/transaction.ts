@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import {
 	Address,
 	Balance,
@@ -57,6 +58,7 @@ export class TransactionService implements Contracts.TransactionService {
 			gasPrice: (input.fee as unknown) as number,
 			gasLimit: (input.feeLimit as unknown) as number,
 			data: input.data.memo,
+			timestamp: DateTime.make(),
 		};
 
 		const mnemonic: Mnemonic = Mnemonic.fromString(input.signatory.signingKey());
