@@ -99,4 +99,5 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 		"vote.musig",
 		"vote",
 	],
+	Miscellaneous: ["memo", "utxo", "dynamicFees"],
 };
