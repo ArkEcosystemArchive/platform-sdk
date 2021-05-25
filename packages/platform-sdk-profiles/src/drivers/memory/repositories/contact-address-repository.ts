@@ -96,11 +96,11 @@ export class ContactAddressRepository implements IContactAddressRepository {
 
 		if (data.address) {
 			address.setAddress(data.address);
+
+			this.#data.set(id, address);
+
+			this.#profile.status().markAsDirty();
 		}
-
-		this.#data.set(id, address);
-
-		this.#profile.status().markAsDirty();
 	}
 
 	/** {@inheritDoc IContactAddressRepository.forget} */
