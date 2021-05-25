@@ -7,26 +7,19 @@ import { WIFService } from "./wif";
 export * from "./shared";
 
 export interface IdentityService {
-    __destruct(): Promise<void>;
+	__destruct(): Promise<void>;
 
-    address(): AddressService;
+	address(): AddressService;
 
-    addressList(): AddressListService;
+	addressList(): AddressListService;
 
-    keys(): KeyPairService;
+	keys(): KeyPairService;
 
-    privateKey(): PrivateKeyService;
+	privateKey(): PrivateKeyService;
 
-    publicKey(): PublicKeyService;
+	publicKey(): PublicKeyService;
 
-    wif(): WIFService;
+	wif(): WIFService;
 }
 
-export {
-    AddressService,
-    AddressListService,
-    KeyPairService,
-    PublicKeyService,
-    PrivateKeyService,
-    WIFService,
-}
+export { AddressService, AddressListService, KeyPairService, PublicKeyService, PrivateKeyService, WIFService };

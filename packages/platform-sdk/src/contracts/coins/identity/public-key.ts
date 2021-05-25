@@ -1,4 +1,4 @@
-import { IdentityOptions } from "./shared"
+import { IdentityOptions } from "./shared";
 
 export interface PublicKeyDataTransferObject {
 	publicKey(): string;
