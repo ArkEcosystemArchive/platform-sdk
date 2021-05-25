@@ -321,6 +321,10 @@ it("#chargesZeroFees", () => {
 	expect(subject.chargesZeroFees()).toBeBoolean();
 });
 
+it("#importMethods", () => {
+	expect(subject.importMethods()).toBeObject();
+});
+
 it("#meta", () => {
 	expect(subject.meta()).toBeObject();
 });

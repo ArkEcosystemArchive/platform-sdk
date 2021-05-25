@@ -1,7 +1,7 @@
 import { get } from "dot-prop";
 
 import { randomHost } from "../helpers";
-import { CoinManifest, ExpirationType, NetworkManifest } from "./network.models";
+import { CoinManifest, ExpirationType, NetworkManifest, NetworkManifestImportMethods } from "./network.models";
 
 export class Network {
 	/**
@@ -209,6 +209,16 @@ export class Network {
 	 */
 	public chargesZeroFees(): boolean {
 		return get(this.#network, "fees.type") === "free";
+	}
+
+	/**
+	 * Returns the available import methods for the network.
+	 *
+	 * @return {*}  {NetworkManifestImportMethods}
+	 * @memberof Network
+	 */
+	public importMethods(): NetworkManifestImportMethods {
+		return this.#network.importMethods;
 	}
 
 	/**
