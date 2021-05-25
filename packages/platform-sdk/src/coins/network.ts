@@ -232,7 +232,7 @@ export class Network {
 	}
 
 	/**
-	 * Returns the meta data of the network.
+	 * Returns the type of fee that is used for transactions.
 	 *
 	 * @return {*}  {FeeType}
 	 * @memberof Network
@@ -242,7 +242,7 @@ export class Network {
 	}
 
 	/**
-	 * Returns the meta data of the network.
+	 * Determine sif the network uses memos to store additional data.
 	 *
 	 * @return {*}  {boolean}
 	 * @memberof Network
@@ -252,7 +252,7 @@ export class Network {
 	}
 
 	/**
-	 * Returns the meta data of the network.
+	 * Determines if the network uses UTXO.
 	 *
 	 * @return {*}  {boolean}
 	 * @memberof Network
