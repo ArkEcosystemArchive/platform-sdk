@@ -65,7 +65,7 @@ export abstract class AbstractSignedTransactionData {
 			recipient: this.recipient(),
 			amount: this.amount().toFixed(),
 			fee: this.fee().toFixed(),
-			timestamp: this.timestamp().toString(),
+			timestamp: this.timestamp().toISOString(),
 			data: this.data(),
 			broadcast: this.toBroadcast(),
 		};
