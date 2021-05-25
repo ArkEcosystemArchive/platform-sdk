@@ -1,7 +1,7 @@
 import { get } from "dot-prop";
 
 import { randomHost } from "../helpers";
-import { CoinManifest, ExpirationType, NetworkManifest, NetworkManifestImportMethods } from "./network.models";
+import { CoinManifest, ExpirationType, FeeType, NetworkManifest, NetworkManifestImportMethods } from "./network.models";
 
 export class Network {
 	/**
@@ -229,6 +229,36 @@ export class Network {
 	 */
 	public meta(): Record<string, any> {
 		return get(this.#network, "meta", {});
+	}
+
+	/**
+	 * Returns the type of fee that is used for transactions.
+	 *
+	 * @return {*}  {FeeType}
+	 * @memberof Network
+	 */
+	public feeType(): FeeType {
+		return this.#network.transactions.fees.type;
+	}
+
+	/**
+	 * Determine sif the network uses memos to store additional data.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public usesMemo(): boolean {
+		return get(this.#network, "transactions.memo", false);
+	}
+
+	/**
+	 * Determines if the network uses UTXO.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public usesUTXO(): boolean {
+		return get(this.#network, "transactions.utxo", false);
 	}
 
 	/**
