@@ -9,8 +9,10 @@ export enum WalletData {
 	Bip38EncryptedKey = "BIP38_ENCRYPTED_KEY",
 	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
 	Delegates = "DELEGATES",
+	DerivationPath = "DERIVATION_PATH",
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	ImportMethod = "IMPORT_METHOD",
+	// @TODO: remove this in favour of DerivationPath
 	LedgerPath = "LEDGER_PATH",
 	MultiSignatureParticipants = "MULTI_SIGNATURE_PARTICIPANTS",
 	Sequence = "SEQUENCE",

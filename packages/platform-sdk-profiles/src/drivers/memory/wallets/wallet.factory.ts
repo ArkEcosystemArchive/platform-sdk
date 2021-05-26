@@ -112,7 +112,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Address);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(address);
+		await wallet.mutator().address({ address });
 
 		return wallet;
 	}
@@ -123,7 +123,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.PublicKey);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address((await wallet.coin().identity().address().fromPublicKey(publicKey)).address);
+		await wallet.mutator().address(await wallet.coin().identity().address().fromPublicKey(publicKey));
 
 		return wallet;
 	}
@@ -134,7 +134,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.PrivateKey);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address((await wallet.coin().identity().address().fromPrivateKey(privateKey)).address);
+		await wallet.mutator().address(await wallet.coin().identity().address().fromPrivateKey(privateKey));
 
 		return wallet;
 	}
@@ -179,7 +179,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIF);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address((await wallet.coin().identity().address().fromWIF(wif)).address);
+		await wallet.mutator().address(await wallet.coin().identity().address().fromWIF(wif));
 
 		return wallet;
 	}
@@ -200,7 +200,7 @@ export class WalletFactory implements IWalletFactory {
 
 		await wallet
 			.mutator()
-			.address((await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex"))).address);
+			.address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 

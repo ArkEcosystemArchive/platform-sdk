@@ -28,9 +28,6 @@ export interface IWalletData {
 	id: string;
 	coin: string;
 	network: string;
-	networkConfig: {
-		constants: Coins.NetworkManifestConstants;
-	};
 	address: string;
 	publicKey: string | undefined;
 	data: Record<string, any>;

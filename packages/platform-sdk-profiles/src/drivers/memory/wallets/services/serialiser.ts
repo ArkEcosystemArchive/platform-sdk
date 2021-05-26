@@ -32,15 +32,12 @@ export class WalletSerialiser {
 			id: this.#wallet.id(),
 			coin: this.#wallet.coin().manifest().get<string>("name"),
 			network: this.#wallet.networkId(),
-			// We only persist a few settings to prefer defaults from the SDK.
-			networkConfig: {
-				constants: network.constants,
-			},
 			address: this.#wallet.address(),
 			publicKey: this.#wallet.publicKey(),
 			data: {
 				[WalletData.Balance]: this.serializeBalance(),
 				[WalletData.BroadcastedTransactions]: this.#wallet.data().get(WalletData.BroadcastedTransactions, []),
+				[WalletData.DerivationPath]: this.#wallet.data().get(WalletData.DerivationPath),
 				[WalletData.Sequence]: this.#wallet.nonce().toFixed(),
 				[WalletData.SignedTransactions]: this.#wallet.data().get(WalletData.SignedTransactions, []),
 				[WalletData.Votes]: this.#wallet.data().get(WalletData.Votes, []),
