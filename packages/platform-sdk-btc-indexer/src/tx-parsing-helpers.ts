@@ -1,11 +1,11 @@
-import { VIn, VOut } from "./types";
+import { Input, Output } from "./types";
 
 export const getAmount = (transaction): bigint =>
 	transaction.vout.reduce((c: bigint, v): bigint => {
 		return c + BigInt(Math.round(v.value * 1e8));
 	}, BigInt(0));
 
-export const getVOuts = (transaction): VOut[] =>
+export const getOutputs = (transaction): Output[] =>
 	transaction.vout
 		.sort((a, b) => a.n - b.n)
 		.map((vOut) => ({
@@ -14,7 +14,7 @@ export const getVOuts = (transaction): VOut[] =>
 			amount: Math.round(vOut.value * 1e8),
 		}));
 
-export const getVIns = (transaction): VIn[] =>
+export const getInputs = (transaction): Input[] =>
 	transaction.vin
 		.filter((vin) => vin.txid !== undefined && vin.vout !== undefined)
 		.map((vin) => ({ txid: vin.txid, vout: vin.vout }));

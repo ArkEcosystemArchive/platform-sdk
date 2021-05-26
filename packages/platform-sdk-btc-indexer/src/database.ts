@@ -3,8 +3,8 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Logger } from "./logger";
-import { getAmount, getFees, getVIns, getVOuts } from "./tx-parsing-helpers";
-import { Flags, VIn, VOut } from "./types";
+import { getAmount, getFees, getInputs, getOutputs } from "./tx-parsing-helpers";
+import { Flags, Input, Output } from "./types";
 
 /**
  * Implements a database storage with SQLite.
@@ -119,10 +119,10 @@ export class Database {
 	 */
 	private async storeTransaction(transaction): Promise<any> {
 		const amount: bigint = getAmount(transaction);
-		const vouts: VOut[] = getVOuts(transaction);
-		const vIns = getVIns(transaction);
-		const hashes: string[] = vIns.map((u: VIn) => u.txid);
-		let voutsByTransactionHashAndIdx = {};
+		const outputs: Output[] = getOutputs(transaction);
+		const inputs = getInputs(transaction);
+		const hashes: string[] = inputs.map((u: Input) => u.txid);
+		let outputsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
 			const read = await this.#prisma.transactionPart.findMany({
 				where: {
@@ -144,18 +144,18 @@ export class Database {
 						return carry;
 					}, {});
 
-				voutsByTransactionHashAndIdx = byHashAndIdx(read);
+				outputsByTransactionHashAndIdx = byHashAndIdx(read);
 			}
 		}
 
-		const fee: bigint = getFees(transaction, voutsByTransactionHashAndIdx);
+		const fee: bigint = getFees(transaction, outputsByTransactionHashAndIdx);
 
-		const utxoUpdates = vIns.map((vIn, i) =>
+		const utxoUpdates = inputs.map((input, i) =>
 			this.#prisma.transactionPart.update({
 				where: {
 					output_hash_output_idx: {
-						output_hash: vIn.txid,
-						output_idx: vIn.vout,
+						output_hash: input.txid,
+						output_idx: input.vout,
 					},
 				},
 				data: {
@@ -172,10 +172,10 @@ export class Database {
 				amount: amount,
 				fee: fee,
 				transaction_parts: {
-					create: vouts.map((vout) => ({
-						output_idx: vout.idx,
-						amount: vout.amount,
-						address: JSON.stringify(vout.addresses),
+					create: outputs.map((output) => ({
+						output_idx: output.idx,
+							amount: output.amount,
+						address: JSON.stringify(output.addresses),
 					})),
 				},
 			},
