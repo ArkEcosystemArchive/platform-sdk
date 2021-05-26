@@ -91,8 +91,8 @@ export class Database {
 	private async storeBlock(block): Promise<any> {
 		const transactions: any[] = [];
 		const utxoUpdates: any[] = [];
-		for (const tx of block.tx || []) {
-			const storeTransaction = await this.storeTransaction(tx);
+		for (const transaction of block.tx || []) {
+			const storeTransaction = await this.storeTransaction(transaction);
 			transactions.push(storeTransaction.create);
 			utxoUpdates.push(...storeTransaction.utxoUpdates);
 		}
@@ -101,7 +101,6 @@ export class Database {
 				data: {
 					hash: block.hash,
 					height: block.height,
-					// @ts-ignore
 					transactions: {
 						create: transactions,
 					},
