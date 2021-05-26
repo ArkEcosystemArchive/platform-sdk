@@ -1205,6 +1205,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@polkadot/api': 3.11.1
       '@polkadot/keyring': 5.9.2
@@ -1251,6 +1252,7 @@ importers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
+      '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-transport-mocker': ^5.50.0
       '@polkadot/api': ^3.6.4
@@ -13193,6 +13195,7 @@ packages:
     resolution:
       integrity: sha1-n26xgvbJqozXQwBKfU+WsZaw+ww=
   /p-each-series/2.2.0:
+    dev: true
     engines:
       node: '>=8'
     resolution:

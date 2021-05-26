@@ -1,5 +1,5 @@
 import PQueue from "p-queue";
-import pWaitFor from "p-wait-for";
+import PWaitFor from "p-wait-for";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
 import { Logger } from "./logger";
@@ -35,7 +35,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	// Process sequential, in order and with no gaps
 	for (let j = localHeight; j <= remoteHeight; j++) {
 		logger.info(`processing block ${j}`);
-		await pWaitFor(() => toBeProcessed[j] !== undefined)
+		await PWaitFor(() => toBeProcessed[j] !== undefined)
 		await database.storeBlockWithTransactions(toBeProcessed[j]);
 
 		// Schedule fetching of next block (if still not done)
