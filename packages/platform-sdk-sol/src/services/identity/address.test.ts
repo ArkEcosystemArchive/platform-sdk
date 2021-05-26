@@ -2,15 +2,15 @@ import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/helpers";
-import { Address } from "./address";
+import { AddressService } from "./address";
 
-let subject: Address;
+let subject: AddressService;
 
-beforeEach(async () => (subject = new Address(createConfig())));
+beforeEach(async () => (subject = new AddressService(createConfig())));
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
-		await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toBe(identity.address);
+		await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({ address: identity.address });
 	});
 
 	it("should fail to generate an output from a multiSignature", async () => {
@@ -20,11 +20,11 @@ describe("Address", () => {
 	});
 
 	it("should fail to generate an output from a privateKey", async () => {
-		await expect(subject.fromPrivateKey(identity.privateKey)).resolves.toBe(identity.address);
+		await expect(subject.fromPrivateKey(identity.privateKey)).resolves.toEqual({ address: identity.address });
 	});
 
 	it("should generate an output from a publicKey", async () => {
-		await expect(subject.fromPublicKey(identity.publicKey)).resolves.toBe(identity.address);
+		await expect(subject.fromPublicKey(identity.publicKey)).resolves.toEqual({ address: identity.address });
 	});
 
 	it("should fail to generate an output from a wif", async () => {

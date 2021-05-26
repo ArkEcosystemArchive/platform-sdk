@@ -1,24 +1,27 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { deriveKey } from "./helpers";
 
-export class PublicKey implements Contracts.PublicKey {
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+export class PublicKeyService implements Contracts.PublicKeyService {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.PublicKeyDataTransferObject> {
 		try {
-			return deriveKey(mnemonic).publicKey!.toString("hex");
+			return { publicKey: deriveKey(mnemonic).publicKey!.toString("hex") };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.PublicKeyDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromWIF(wif: string): Promise<string> {
+	public async fromWIF(wif: string): Promise<Contracts.PublicKeyDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.PublicKeyDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

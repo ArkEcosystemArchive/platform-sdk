@@ -2,16 +2,19 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
 import Bitcoin from "bitcore-lib";
 
-export class PrivateKey implements Contracts.PrivateKey {
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+export class PrivateKeyService implements Contracts.PrivateKeyService {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.PrivateKeyDataTransferObject> {
 		try {
-			return BIP32.fromMnemonic(mnemonic).privateKey!.toString("hex");
+			return { privateKey: BIP32.fromMnemonic(mnemonic).privateKey!.toString("hex") };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<string> {
+	public async fromWIF(wif: string): Promise<Contracts.PrivateKeyDataTransferObject> {
 		try {
 			const privateKey: Buffer = Bitcoin.PrivateKey.fromWIF(wif);
 
@@ -19,13 +22,13 @@ export class PrivateKey implements Contracts.PrivateKey {
 				throw new Error(`Failed to derive private key for [${wif}].`);
 			}
 
-			return privateKey.toString("hex");
+			return { privateKey: privateKey.toString("hex") };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.PrivateKeyDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

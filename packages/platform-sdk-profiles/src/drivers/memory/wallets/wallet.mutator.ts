@@ -1,5 +1,5 @@
 import { Avatar } from "../../../helpers/avatar";
-import { IProfile, IReadWriteWallet, WalletSetting } from "../../../contracts";
+import { IProfile, IReadWriteWallet, WalletData, WalletSetting } from "../../../contracts";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
@@ -42,20 +42,27 @@ export class WalletMutator implements IWalletMutator {
 
 	/** {@inheritDoc IWalletMutator.identity} */
 	public async identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void> {
-		this.#wallet
-			.getAttributes()
-			.set("address", await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options));
+		const { address, path } = await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options);
+
+		if (path) {
+			this.#wallet.data().set(WalletData.DerivationPath, path);
+		}
+
+		this.#wallet.getAttributes().set("address", address);
 
 		this.#wallet
 			.getAttributes()
-			.set("publicKey", await this.#wallet.coin().identity().publicKey().fromMnemonic(mnemonic, options));
+			.set(
+				"publicKey",
+				(await this.#wallet.coin().identity().publicKey().fromMnemonic(mnemonic, options)).publicKey,
+			);
 
-		return this.address(this.#wallet.getAttributes().get<string>("address"));
+		return this.address({ address, path });
 	}
 
 	/** {@inheritDoc IWalletMutator.address} */
 	public async address(
-		address: string,
+		{ address, path }: Contracts.AddressDataTransferObject,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
 	): Promise<void> {
 		if (options.validate) {
@@ -64,6 +71,10 @@ export class WalletMutator implements IWalletMutator {
 			if (!isValidAddress) {
 				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
 			}
+		}
+
+		if (path) {
+			this.#wallet.data().set(WalletData.DerivationPath, path);
 		}
 
 		this.#wallet.getAttributes().set("address", address);

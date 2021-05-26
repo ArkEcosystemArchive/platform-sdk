@@ -96,7 +96,7 @@ export class LedgerService implements Contracts.LedgerService {
 				for (const accountIndex of createRange(page, pageSize)) {
 					const path: string = formatLedgerDerivationPath({ coinType: slip44, account: accountIndex });
 					const publicKey: string = await this.getPublicKey(path);
-					const address: string = await this.#identity.address().fromPublicKey(publicKey);
+					const { address } = await this.#identity.address().fromPublicKey(publicKey);
 
 					addresses.push(address);
 
@@ -131,7 +131,7 @@ export class LedgerService implements Contracts.LedgerService {
 						.derive(`m/0/${addressIndex}`)
 						.publicKey.toString("hex");
 
-					const address: string = await this.#identity.address().fromPublicKey(publicKey);
+					const { address } = await this.#identity.address().fromPublicKey(publicKey);
 
 					addresses.push(address);
 

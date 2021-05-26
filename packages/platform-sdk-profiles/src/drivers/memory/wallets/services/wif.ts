@@ -19,16 +19,20 @@ export class WalletImportFormat implements IWalletImportFormat {
 			throw new Error("This wallet does not use BIP38 encryption.");
 		}
 
-		return this.#wallet
-			.coin()
-			.identity()
-			.wif()
-			.fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"));
+		return (
+			await this.#wallet
+				.coin()
+				.identity()
+				.wif()
+				.fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"))
+		).wif;
 	}
 
 	/** {@inheritDoc IWalletImportFormat.set} */
 	public async set(mnemonic: string, password: string): Promise<void> {
-		const { compressed, privateKey } = decode(await this.#wallet.coin().identity().wif().fromMnemonic(mnemonic));
+		const { compressed, privateKey } = decode(
+			(await this.#wallet.coin().identity().wif().fromMnemonic(mnemonic)).wif,
+		);
 
 		this.#wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 

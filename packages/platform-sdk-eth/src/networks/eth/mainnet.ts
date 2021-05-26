@@ -1,4 +1,5 @@
 import { Coins } from "@arkecosystem/platform-sdk";
+import tokens from "./mainnet.tokens.json";
 
 import { transactions, importMethods, featureFlags } from "../shared";
 
@@ -27,6 +28,7 @@ const network: Coins.NetworkManifest = {
 	transactions,
 	importMethods,
 	featureFlags,
+	tokens,
 	meta: {
 		// @TODO
 		networkId: "1",

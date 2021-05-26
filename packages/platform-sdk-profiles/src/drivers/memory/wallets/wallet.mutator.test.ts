@@ -81,7 +81,7 @@ beforeEach(async () => {
 	subject = new Wallet(uuidv4(), {}, profile);
 
 	await subject.mutator().coin("ARK", "ark.devnet");
-	await subject.mutator().identity(identity.mnemonic);
+	// await subject.mutator().identity(identity.mnemonic);
 });
 
 beforeAll(() => nock.disableNetConnect());
@@ -120,5 +120,33 @@ describe("#setCoin", () => {
 
 		expect(subject.publicKey()).toBe("pubKey");
 		expect(subject.address()).toBe("pubKey");
+	});
+});
+
+describe("#identity", () => {
+	it("should mutate the address with a path", async () => {
+		jest.spyOn(subject.coin().identity().address(), "fromMnemonic").mockImplementation(async () => ({
+			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			path: "path",
+		}));
+
+		expect(subject.data().has(WalletData.DerivationPath)).toBeFalse();
+
+		await subject.mutator().identity(identity.mnemonic);
+
+		expect(subject.data().has(WalletData.DerivationPath)).toBeTrue();
+	});
+});
+
+describe("#address", () => {
+	it("should mutate the address with a path", async () => {
+		expect(subject.data().has(WalletData.DerivationPath)).toBeFalse();
+
+		await subject.mutator().address({
+			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			path: "path",
+		});
+
+		expect(subject.data().has(WalletData.DerivationPath)).toBeTrue();
 	});
 });

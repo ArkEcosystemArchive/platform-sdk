@@ -1,11 +1,17 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-export class AddressList implements Contracts.AddressList {
-	public async fromMnemonic(mnemonic: string, pageSize: number): Promise<Contracts.AddressListEntry[]> {
+export class ExtendedAddressService implements Contracts.ExtendedAddressService {
+	public async fromMnemonic(
+		mnemonic: string,
+		pageSize: number,
+	): Promise<Contracts.ExtendedAddressDataTransferObject[]> {
 		return [];
 	}
 
-	public async fromPrivateKey(privateKey: string, pageSize: number): Promise<Contracts.AddressListEntry[]> {
+	public async fromPrivateKey(
+		privateKey: string,
+		pageSize: number,
+	): Promise<Contracts.ExtendedAddressDataTransferObject[]> {
 		return [];
 	}
 }

@@ -2,8 +2,11 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { deriveAccountKey, deriveRootKey } from "./shelley";
 
-export class Keys implements Contracts.Keys {
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
+export class KeyPairService implements Contracts.KeyPairService {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
 			let rootKey = deriveRootKey(mnemonic);
 
@@ -20,15 +23,15 @@ export class Keys implements Contracts.Keys {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
+	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {
+	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
 
-	public async fromSecret(secret: string): Promise<Contracts.KeyPair> {
+	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

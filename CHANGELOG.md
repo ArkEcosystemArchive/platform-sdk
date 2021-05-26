@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.1.23 - 2021-05-24
+
+### Changed
+
+- **[PROFILES]** Return DTO instances from identity services (0eae2422, @faustbrian)
+- **[PROFILES]** Store derivation path if available (10bf552a, @faustbrian)
+
 ## 8.1.9 - 2021-05-24
 
 ### Changed

@@ -1,22 +1,22 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { Address } from "./address";
+import { AddressService } from "./address";
 
-let subject: Address;
+let subject: AddressService;
 
-beforeEach(async () => (subject = new Address()));
+beforeEach(async () => (subject = new AddressService()));
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toBe(identity.address);
+		expect(result).toEqual({ address: identity.address });
 	});
 
 	it("should generate an output from a private key", async () => {
 		const result = await subject.fromPrivateKey(identity.privateKey);
 
-		expect(result).toBe(identity.address);
+		expect(result).toEqual({ address: identity.address });
 	});
 });

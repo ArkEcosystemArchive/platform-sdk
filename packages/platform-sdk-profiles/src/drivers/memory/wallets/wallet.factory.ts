@@ -61,7 +61,7 @@ export class WalletFactory implements IWalletFactory {
 		if (bip === 44 && this.allowsDeriveWithBIP44(wallet)) {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP44);
 
-			const publicKey: string = await wallet
+			const { publicKey } = await wallet
 				.coin()
 				.identity()
 				.publicKey()
@@ -112,7 +112,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Address);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(address);
+		await wallet.mutator().address({ address });
 
 		return wallet;
 	}
@@ -166,7 +166,7 @@ export class WalletFactory implements IWalletFactory {
 		const wallet: IReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicWithEncryption);
 
-		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
+		const { compressed, privateKey } = decode((await wallet.coin().identity().wif().fromMnemonic(mnemonic)).wif);
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
