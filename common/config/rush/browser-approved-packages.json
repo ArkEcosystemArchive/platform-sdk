@@ -683,6 +683,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "p-wait-for",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "password-pwnd",
       "allowedCategories": [ "libraries" ]
     },
