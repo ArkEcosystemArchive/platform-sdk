@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { Account, Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -55,6 +56,7 @@ export class TransactionService implements Contracts.TransactionService {
 				from: input.signatory.address(),
 				to: input.data.to,
 				amount: input.data.amount,
+				timestamp: DateTime.make(),
 			},
 			signedTransaction.toString("hex"),
 		);

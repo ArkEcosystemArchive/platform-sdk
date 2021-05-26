@@ -1,4 +1,5 @@
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { secp256k1 } from "bcrypto";
 
 import { HashAlgorithms } from "./hash";
@@ -45,5 +46,6 @@ export const createSignedTransactionData = (stdSignMsg, keyPair) => {
 			},
 		],
 		memo: stdSignMsg.memo,
+		timestamp: DateTime.make(),
 	};
 };

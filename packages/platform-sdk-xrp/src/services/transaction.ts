@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { RippleAPI } from "ripple-lib";
 
 import { SignedTransactionData } from "../dto";
@@ -60,7 +61,9 @@ export class TransactionService implements Contracts.TransactionService {
 				},
 			]);
 
-			return new SignedTransactionData(id, signedTransaction, signedTransaction);
+			const signedData = { ...signedTransaction, timestamp: DateTime.make() };
+
+			return new SignedTransactionData(id, signedData, signedTransaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

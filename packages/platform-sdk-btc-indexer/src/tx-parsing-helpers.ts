@@ -1,10 +1,10 @@
 import { Input, Output } from "./types";
 
+export const getAmount = (transaction): BigNumber =>
 export const getAmount = (transaction): bigint =>
 	transaction.vout.reduce((carry: bigint, item): bigint => {
 		return carry + BigInt(Math.round(item.value * 1e8));
 	}, BigInt(0));
-
 export const getOutputs = (transaction): Output[] =>
 	transaction.vout
 		.sort((a, b) => a.n - b.n)

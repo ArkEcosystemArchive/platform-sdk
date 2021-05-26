@@ -1,5 +1,6 @@
 import { Identities } from "@arkecosystem/crypto";
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class SignedTransactionData
@@ -19,6 +20,15 @@ export class SignedTransactionData
 
 	public fee(): BigNumber {
 		return BigNumber.make(this.signedData.fee);
+	}
+
+	public timestamp(): DateTime {
+		if (this.signedData.timestamp) {
+			return DateTime.make(this.signedData.timestamp);
+		}
+
+		// defaulting to now because timestamps missing in V2
+		return DateTime.make();
 	}
 
 	public isMultiSignature(): boolean {
