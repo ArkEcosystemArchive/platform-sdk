@@ -354,7 +354,7 @@ it("should return whether it has synced with network", async () => {
 });
 
 it("should fail to set an invalid address", async () => {
-	await expect(() => subject.mutator().address("whatever")).rejects.toThrow(
+	await expect(() => subject.mutator().address({ address: "whatever" })).rejects.toThrow(
 		"Failed to retrieve information for whatever because it is invalid",
 	);
 });
@@ -363,51 +363,38 @@ it("should return explorer link", () => {
 	expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 });
 
-describe.each([123, 456, 789])("%s", (slip44) => {
-	it("should turn into an object", () => {
-		subject.coin().config().set("network.constants.slip44", slip44);
-		subject.data().set("key", "value");
+it("should turn into an object", () => {
+	subject.data().set("key", "value");
 
-		subject.data().set(WalletData.LedgerPath, "1");
-		subject.data().set(WalletFlag.Starred, true);
+	subject.data().set(WalletData.LedgerPath, "1");
+	subject.data().set(WalletFlag.Starred, true);
 
-		const actual: any = subject.toObject();
+	const actual: any = subject.toObject();
 
-		expect(actual).toContainAllKeys([
-			"id",
-			"address",
-			"coin",
-			"network",
-			"networkConfig",
-			"publicKey",
-			"data",
-			"settings",
-		]);
-		expect(actual.id).toBeString();
-		expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-		expect(actual.coin).toBe("ARK");
-		expect(actual.network).toBe("ark.devnet");
-		expect(actual.networkConfig.constants.slip44).toBe(slip44);
-		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
-		expect(actual.data).toEqual({
-			BALANCE: {
-				available: "55827093444556",
-				fees: "55827093444556",
-			},
-			BROADCASTED_TRANSACTIONS: {},
-			LEDGER_PATH: "1",
-			SEQUENCE: "111932",
-			SIGNED_TRANSACTIONS: {},
-			STARRED: true,
-			VOTES: [],
-			VOTES_USED: 0,
-			VOTES_AVAILABLE: 0,
-			WAITING_FOR_OTHER_SIGNATURES_TRANSACTIONS: {},
-			WAITING_FOR_OUR_SIGNATURE_TRANSACTIONS: {},
-		});
-		expect(actual.settings).toBeObject();
-		expect(actual.settings.AVATAR).toBeString();
+	expect(actual).toContainAllKeys(["id", "address", "coin", "network", "publicKey", "data", "settings"]);
+	expect(actual.id).toBeString();
+	expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+	expect(actual.coin).toBe("ARK");
+	expect(actual.network).toBe("ark.devnet");
+	expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+	expect(actual.data).toEqual({
+		BALANCE: {
+			available: "55827093444556",
+			fees: "55827093444556",
+		},
+		BROADCASTED_TRANSACTIONS: {},
+		LEDGER_PATH: "1",
+		SEQUENCE: "111932",
+		SIGNED_TRANSACTIONS: {},
+		STARRED: true,
+		VOTES: [],
+		VOTES_USED: 0,
+		VOTES_AVAILABLE: 0,
+		WAITING_FOR_OTHER_SIGNATURES_TRANSACTIONS: {},
+		WAITING_FOR_OUR_SIGNATURE_TRANSACTIONS: {},
 	});
+	expect(actual.settings).toBeObject();
+	expect(actual.settings.AVATAR).toBeString();
 });
 
 it("should have a primary key", () => {

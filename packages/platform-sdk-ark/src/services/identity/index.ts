@@ -10,9 +10,21 @@ import { WIFService } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
 	readonly #config: CryptoConfig;
+	readonly #addressService: AddressService;
+	readonly #extendedAddressService: ExtendedAddressService;
+	readonly #publicKeyService: PublicKeyService;
+	readonly #privateKeyService: PrivateKeyService;
+	readonly #wIFService: WIFService;
+	readonly #keyPairService: KeyPairService;
 
 	private constructor(config: CryptoConfig) {
 		this.#config = config;
+		this.#addressService = new AddressService(this.#config);
+		this.#extendedAddressService = new ExtendedAddressService();
+		this.#publicKeyService = new PublicKeyService(this.#config);
+		this.#privateKeyService = new PrivateKeyService(this.#config);
+		this.#wIFService = new WIFService(this.#config);
+		this.#keyPairService = new KeyPairService(this.#config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
@@ -24,26 +36,26 @@ export class IdentityService implements Contracts.IdentityService {
 	}
 
 	public address(): AddressService {
-		return new AddressService(this.#config);
+		return this.#addressService;
 	}
 
 	public extendedAddress(): ExtendedAddressService {
-		return new ExtendedAddressService();
+		return this.#extendedAddressService;
 	}
 
 	public publicKey(): PublicKeyService {
-		return new PublicKeyService(this.#config);
+		return this.#publicKeyService;
 	}
 
 	public privateKey(): PrivateKeyService {
-		return new PrivateKeyService(this.#config);
+		return this.#privateKeyService;
 	}
 
 	public wif(): WIFService {
-		return new WIFService(this.#config);
+		return this.#wIFService;
 	}
 
 	public keyPair(): KeyPairService {
-		return new KeyPairService(this.#config);
+		return this.#keyPairService;
 	}
 }
