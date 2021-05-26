@@ -24,6 +24,6 @@ beforeEach(() => {
 
 describe("SignedTransactionData", function () {
 	test("#timestamp", () => {
-		expect(subject.timestamp()).toEqual(DateTime.make(0));
+		expect(DateTime.make(0).isSame(subject.timestamp())).toBeTrue();
 	});
 });

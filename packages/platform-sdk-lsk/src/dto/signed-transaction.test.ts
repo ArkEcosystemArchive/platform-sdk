@@ -3,6 +3,7 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "./signed-transaction";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 let subject: SignedTransactionData;
 
@@ -56,6 +57,6 @@ describe("SignedTransactionData", function () {
 	});
 
 	test("#timestamp", () => {
-		expect(subject.timestamp().toISOString()).toEqual("2020-08-19T03:08:03.000Z");
+		expect(subject.timestamp()).toEqual(DateTime.make("2020-08-19T03:08:03.000Z"));
 	});
 });

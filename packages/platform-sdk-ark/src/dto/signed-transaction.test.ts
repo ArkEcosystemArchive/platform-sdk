@@ -44,11 +44,11 @@ describe("SignedTransactionData", function () {
 	});
 
 	test("#timestamp", () => {
-		expect(subject.timestamp()).toEqual(DateTime.make(0));
+		expect(DateTime.make(0).isSame(subject.timestamp())).toBeTrue();
 	});
 
 	test("#timestamp missing", () => {
 		const subject = new SignedTransactionData("", {}, "");
-		expect(subject.timestamp() instanceof DateTime).toBeTrue();
+		expect(subject.timestamp()).toBeInstanceOf(DateTime);
 	});
 });
