@@ -241,7 +241,8 @@ export class WalletRepository implements IWalletRepository {
 
 			await wallet.mutator().coin(coin!, network, { sync: false });
 
-			await wallet.mutator().address(address, { syncIdentity: false, validate: false });
+			// @TODO: handle path
+			await wallet.mutator().address({ address }, { syncIdentity: false, validate: false });
 
 			wallet.markAsPartiallyRestored();
 
@@ -276,12 +277,12 @@ export class WalletRepository implements IWalletRepository {
 		await syncWallets(laterWallets);
 	}
 
-	private async restoreWallet({ id, address, coin, network, networkConfig }): Promise<void> {
+	private async restoreWallet({ id, address, coin, network }): Promise<void> {
 		const previousWallet: IReadWriteWallet = this.findById(id);
 
 		if (previousWallet.hasBeenPartiallyRestored()) {
 			try {
-				await this.syncWalletWithNetwork({ address, coin, network, networkConfig, wallet: previousWallet });
+				await this.syncWalletWithNetwork({ address, coin, network, wallet: previousWallet });
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully
@@ -294,26 +295,19 @@ export class WalletRepository implements IWalletRepository {
 		address,
 		coin,
 		network,
-		networkConfig,
 		wallet,
 	}: {
 		wallet: IReadWriteWallet;
 		coin: string;
 		network: string;
 		address: string;
-		networkConfig: any;
 	}): Promise<void> {
 		await retry(
 			async () => {
 				await wallet.mutator().coin(coin, network);
 
-				await wallet.mutator().address(address);
-
-				if (networkConfig) {
-					for (const [key, value] of Object.entries(networkConfig)) {
-						wallet.coin().config().set(`network.${key}`, value);
-					}
-				}
+				// @TODO: handle path
+				await wallet.mutator().address({ address });
 			},
 			{
 				onFailedAttempt: (error) =>
