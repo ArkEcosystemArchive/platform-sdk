@@ -18,8 +18,8 @@ model Transaction {
   block				Block				@relation(fields: blockId, references: height)
   blockId			Int
   time				Int
-  amount			String
-  fee				String
+  amount			BigInt
+  fee				BigInt
   transaction_parts	TransactionPart[]
 }
 
@@ -28,7 +28,7 @@ model TransactionPart {
   output_idx   Int
   input_hash   String?
   input_idx    Int?
-  amount       String
+  amount       BigInt
   address      Json?
   transaction Transaction @relation(fields: [output_hash], references: [hash])
   @@id([output_hash, output_idx])
