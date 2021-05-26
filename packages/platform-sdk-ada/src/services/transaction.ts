@@ -132,7 +132,7 @@ export class TransactionService implements Contracts.TransactionService {
 				recipient: input.data.to,
 				amount: input.data.amount,
 				fee: txBody.fee().to_str(),
-				timestamp: DateTime.make().toISOString(),
+				timestamp: DateTime.make(),
 			},
 			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
 		);
