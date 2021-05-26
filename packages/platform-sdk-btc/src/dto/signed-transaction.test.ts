@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { Exceptions } from "@arkecosystem/platform-sdk";
 
 import { SignedTransactionData } from "./signed-transaction";
 
@@ -18,6 +18,6 @@ beforeEach(() => {
 
 describe("SignedTransactionData", function () {
 	test("#timestamp", () => {
-		expect(DateTime.make(0).isSame(subject.timestamp())).toBeTrue();
+		expect(() => subject.timestamp()).toThrow(Exceptions.NotImplemented);
 	});
 });
