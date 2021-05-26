@@ -4,8 +4,8 @@ import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
 import { Logger } from "./logger";
-import { getAmount, getFees, getVIns, getVOuts } from "./tx-parsing-helpers";
-import { Flags, VIn, VOut } from "./types";
+import { getAmount, getFees, getInputs, getOutputs } from "./tx-parsing-helpers";
+import { Flags, Input, Output } from "./types";
 
 /**
  * Implements a database storage with SQLite.
@@ -136,9 +136,9 @@ export class Database {
 	 */
 	private storeTransaction(transaction): void {
 		const amount: BigNumber = getAmount(transaction);
-		const vouts: VOut[] = getVOuts(transaction);
-		const vIns = getVIns(transaction);
-		const hashes: string[] = vIns.map((u: VIn) => u.txid);
+		const vouts: Output[] = getOutputs(transaction);
+		const inputs = getInputs(transaction);
+		const hashes: string[] = inputs.map((u: Input) => u.txid);
 		let voutsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
 			const read = this.#database
@@ -191,8 +191,8 @@ export class Database {
 										input_idx  = :input_idx
 								WHERE output_hash = :output_hash
 									AND output_idx = :output_idx`);
-		for (let i = 0; i < vIns.length; i++) {
-			const vIn = vIns[i];
+		for (let i = 0; i < inputs.length; i++) {
+			const vIn = inputs[i];
 			updateStatement.run({
 				input_hash: transaction.txid,
 				input_idx: i,

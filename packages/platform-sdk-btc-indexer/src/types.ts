@@ -13,13 +13,13 @@ export interface Flags {
 	batchSize: number;
 }
 
-export interface VOut {
+export interface Output {
 	idx: number;
 	addresses: string[];
 	amount: BigNumber;
 }
 
-export interface VIn {
+export interface Input {
 	txid: string;
 	vout: number;
 }
