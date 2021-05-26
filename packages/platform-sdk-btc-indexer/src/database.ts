@@ -169,12 +169,12 @@ export class Database {
 			create: {
 				hash: transaction.txid,
 				time: transaction.time,
-					amount: amount,
-					fee: fee,
+				amount: amount,
+				fee: fee,
 				transaction_parts: {
 					create: vouts.map((vout) => ({
 						output_idx: vout.idx,
-							amount: vout.amount,
+						amount: vout.amount,
 						address: JSON.stringify(vout.addresses),
 					})),
 				},
