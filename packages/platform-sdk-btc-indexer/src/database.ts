@@ -58,10 +58,6 @@ export class Database {
 			},
 		});
 
-		if (lastBlockHeight === undefined) {
-			return 1;
-		}
-
 		return lastBlockHeight["_max"]?.height || 1;
 	}
 
@@ -77,8 +73,7 @@ export class Database {
 		);
 
 		const blockForCreation = await this.storeBlock(block);
-		const blockWithUtxos = [blockForCreation.create, ...blockForCreation.utxoUpdates];
-		this.#prisma.$transaction(blockWithUtxos);
+		await this.#prisma.$transaction([blockForCreation.create, ...blockForCreation.utxoUpdates]);
 	}
 
 	/**
