@@ -137,7 +137,7 @@ export class BigNumber {
 	 * Returns the sum of the different values.
 	 *
 	 * @param {NumberLike[]} values
-	 * @returns {string}
+	 * @returns {BigNumber}
 	 * @memberof BigNumber
 	 */
 	public static sum(values: NumberLike[]): BigNumber {
