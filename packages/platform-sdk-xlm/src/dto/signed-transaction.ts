@@ -1,4 +1,5 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class SignedTransactionData
@@ -18,6 +19,10 @@ export class SignedTransactionData
 
 	public fee(): BigNumber {
 		return this.signedData._fee;
+	}
+
+	public timestamp(): DateTime {
+		return DateTime.make(this.signedData.created_at);
 	}
 
 	public isMultiSignature(): boolean {

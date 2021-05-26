@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
 import { waitReady } from "@polkadot/wasm-crypto";
@@ -38,11 +39,12 @@ export class TransactionService implements Contracts.TransactionService {
 			.transfer(input.data.to, input.data.amount)
 			.signAsync(keypair);
 
-		return new SignedTransactionData(
-			transaction.hash.toHex(),
-			JSON.parse(transaction.toString()),
-			transaction.toHex(),
-		);
+		const signedData = {
+			...JSON.parse(transaction.toString()),
+			timestamp: DateTime.make(),
+		};
+
+		return new SignedTransactionData(transaction.hash.toHex(), signedData, transaction.toHex());
 	}
 
 	public async secondSignature(

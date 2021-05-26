@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BN, Long, units, Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { SignedTransactionData } from "../dto";
@@ -61,6 +62,7 @@ export class TransactionService implements Contracts.TransactionService {
 			recipient: input.data.to,
 			amount,
 			fee,
+			timestamp: DateTime.make(),
 		};
 
 		const transaction = this.#zilliqa.transactions.new({

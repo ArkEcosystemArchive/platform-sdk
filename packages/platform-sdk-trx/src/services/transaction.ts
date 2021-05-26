@@ -7,13 +7,11 @@ import { AddressService } from "./identity/address";
 import { PrivateKeyService } from "./identity/private-key";
 
 export class TransactionService implements Contracts.TransactionService {
-	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
 	readonly #address: AddressService;
 	readonly #privateKey: PrivateKeyService;
 
 	private constructor({ config, peer }) {
-		this.#config = config;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
