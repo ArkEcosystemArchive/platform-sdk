@@ -2,10 +2,10 @@ import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
 import { createConfigWithNetwork } from "../../../test/helpers";
-import { Address } from "./address";
+import { AddressService } from "./address";
 import { IdentityService } from ".";
 
-let subject: Address;
+let subject: AddressService;
 
 beforeEach(async () => (subject = (await IdentityService.__construct(createConfigWithNetwork())).address()));
 
@@ -13,7 +13,7 @@ describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(result).toEqual({ address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" });
 	});
 
 	it("should generate an output from a multiSignature", async () => {
@@ -22,25 +22,25 @@ describe("Address", () => {
 			identity.multiSignature.publicKeys,
 		);
 
-		expect(result).toBe("DMS861mLRrtH47QUMVif3C2rBCAdHbmwsi");
+		expect(result).toEqual({ address: "DMS861mLRrtH47QUMVif3C2rBCAdHbmwsi" });
 	});
 
 	it("should generate an output from a publicKey", async () => {
 		const result = await subject.fromPublicKey(identity.publicKey);
 
-		expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(result).toEqual({ address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" });
 	});
 
 	it("should generate an output from a privateKey", async () => {
 		const result = await subject.fromPrivateKey(identity.privateKey);
 
-		expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(result).toEqual({ address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" });
 	});
 
 	it("should generate an output from a wif", async () => {
 		const result = await subject.fromWIF(identity.wif);
 
-		expect(result).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(result).toEqual({ address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" });
 	});
 
 	it("should validate an address", async () => {

@@ -29,9 +29,9 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new MnemonicSignatory({
 				signingKey: mnemonic,
-				address: await this.#identity.address().fromMnemonic(mnemonic, options),
-				publicKey: await this.#identity.publicKey().fromMnemonic(mnemonic, options),
-				privateKey: await this.#identity.privateKey().fromMnemonic(mnemonic, options),
+				address: (await this.#identity.address().fromMnemonic(mnemonic, options)).address,
+				publicKey: (await this.#identity.publicKey().fromMnemonic(mnemonic, options)).publicKey,
+				privateKey: (await this.#identity.privateKey().fromMnemonic(mnemonic, options)).privateKey,
 			}),
 		);
 	}
@@ -45,9 +45,9 @@ export class AbstractSignatoryService implements SignatoryService {
 			new SecondaryMnemonicSignatory({
 				signingKey,
 				confirmKey,
-				address: await this.#identity.address().fromMnemonic(signingKey, options),
-				publicKey: await this.#identity.publicKey().fromMnemonic(signingKey, options),
-				privateKey: await this.#identity.address().fromMnemonic(signingKey, options),
+				address: (await this.#identity.address().fromMnemonic(signingKey, options)).address,
+				publicKey: (await this.#identity.publicKey().fromMnemonic(signingKey, options)).publicKey,
+				privateKey: (await this.#identity.privateKey().fromMnemonic(signingKey, options)).privateKey,
 			}),
 		);
 	}
@@ -56,9 +56,11 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new MultiMnemonicSignatory(
 				mnemonics,
-				await Promise.all(
-					mnemonics.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
-				),
+				(
+					await Promise.all(
+						mnemonics.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
+					)
+				).map(({ publicKey }) => publicKey),
 			),
 		);
 	}
@@ -67,9 +69,9 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new WIFSignatory({
 				signingKey: primary,
-				address: await this.#identity.address().fromWIF(primary),
-				publicKey: await this.#identity.publicKey().fromWIF(primary),
-				privateKey: await this.#identity.privateKey().fromWIF(primary),
+				address: (await this.#identity.address().fromWIF(primary)).address,
+				publicKey: (await this.#identity.publicKey().fromWIF(primary)).publicKey,
+				privateKey: (await this.#identity.privateKey().fromWIF(primary)).privateKey,
 			}),
 		);
 	}
@@ -79,9 +81,9 @@ export class AbstractSignatoryService implements SignatoryService {
 			new SecondaryWIFSignatory({
 				signingKey,
 				confirmKey,
-				address: await this.#identity.address().fromWIF(signingKey),
-				publicKey: await this.#identity.publicKey().fromWIF(signingKey),
-				privateKey: await this.#identity.address().fromWIF(signingKey),
+				address: (await this.#identity.address().fromWIF(signingKey)).address,
+				publicKey: (await this.#identity.publicKey().fromWIF(signingKey)).publicKey,
+				privateKey: (await this.#identity.privateKey().fromWIF(signingKey)).privateKey,
 			}),
 		);
 	}
@@ -90,7 +92,7 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new PrivateKeySignatory({
 				signingKey: privateKey,
-				address: await this.#identity.address().fromPrivateKey(privateKey, options),
+				address: (await this.#identity.address().fromPrivateKey(privateKey, options)).address,
 			}),
 		);
 	}
@@ -99,7 +101,7 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new SignatureSignatory({
 				signingKey: signature,
-				address: await this.#identity.address().fromPublicKey(senderPublicKey),
+				address: (await this.#identity.address().fromPublicKey(senderPublicKey)).address,
 				publicKey: senderPublicKey,
 			}),
 		);
@@ -109,7 +111,7 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new SenderPublicKeySignatory({
 				signingKey: publicKey,
-				address: await this.#identity.address().fromPublicKey(publicKey, options),
+				address: (await this.#identity.address().fromPublicKey(publicKey, options)).address,
 				publicKey,
 			}),
 		);

@@ -3,14 +3,17 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
 import { derivePrivateKey, derivePublicKey } from "./helpers";
 
-export class Keys implements Contracts.Keys {
+export class KeyPairService implements Contracts.KeyPairService {
 	readonly #slip44: number;
 
 	public constructor(config: Coins.Config) {
 		this.#slip44 = config.get<number>("network.constants.slip44");
 	}
 
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.KeyPairDataTransferObject> {
 		if (!BIP39.validate(mnemonic)) {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
@@ -28,7 +31,7 @@ export class Keys implements Contracts.Keys {
 		};
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
+	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
 		const privateBuffer: Buffer = Buffer.from(privateKey, "hex");
 
 		return {
@@ -37,11 +40,11 @@ export class Keys implements Contracts.Keys {
 		};
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {
+	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
 
-	public async fromSecret(secret: string): Promise<Contracts.KeyPair> {
+	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

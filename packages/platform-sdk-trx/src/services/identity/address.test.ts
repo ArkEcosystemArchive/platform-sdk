@@ -2,16 +2,16 @@ import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/helpers";
-import { Address } from "./address";
+import { AddressService } from "./address";
 
-let subject: Address;
+let subject: AddressService;
 
-beforeEach(async () => (subject = new Address(createConfig())));
+beforeEach(async () => (subject = new AddressService(createConfig())));
 
 describe("Address", () => {
 	describe("#fromMnemonic", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toBe(identity.address);
+			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({ address: identity.address });
 		});
 	});
 });
