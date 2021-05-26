@@ -22,7 +22,7 @@ export abstract class AbstractSignatory {
 	}
 
 	public signingKey(): string {
-		return this.#signingKey;
+		return this.#signingKey.normalize("NFD");
 	}
 
 	public address(): string {
