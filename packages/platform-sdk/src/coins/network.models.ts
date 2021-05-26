@@ -55,10 +55,10 @@ export interface NetworkManifestFeatureFlags {
 }
 
 export interface NetworkManifestToken {
-    name: string;
-    symbol: string;
-    address: string;
-    decimals: number;
+	name: string;
+	symbol: string;
+	address: string;
+	decimals: number;
 }
 
 export interface NetworkManifestImportMethods {
