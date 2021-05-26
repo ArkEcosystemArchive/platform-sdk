@@ -1,5 +1,8 @@
 import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
+import { normalizeTimestamp } from "./timestamps";
 
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
@@ -18,6 +21,10 @@ export class SignedTransactionData
 
 	public fee(): BigNumber {
 		return BigNumber.make(this.signedData.fee);
+	}
+
+	public timestamp(): DateTime {
+		return normalizeTimestamp(this.signedData.timestamp);
 	}
 
 	public isMultiSignature(): boolean {

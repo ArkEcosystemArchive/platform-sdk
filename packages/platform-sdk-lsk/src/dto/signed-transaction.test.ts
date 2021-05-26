@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "./signed-transaction";
@@ -53,5 +54,9 @@ describe("SignedTransactionData", function () {
 
 	test("#fee", () => {
 		expect(subject.fee()).toEqual(BigNumber.make("10000000"));
+	});
+
+	test("#timestamp", () => {
+		expect(subject.timestamp()).toEqual(DateTime.make("2020-08-19T03:08:03.000Z"));
 	});
 });
