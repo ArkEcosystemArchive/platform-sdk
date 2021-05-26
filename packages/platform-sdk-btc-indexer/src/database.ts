@@ -1,4 +1,3 @@
-import { BigNumber } from "@arkecosystem/utils";
 import { PrismaClient } from "@prisma/client";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
@@ -63,7 +62,7 @@ export class Database {
 			return 1;
 		}
 
-		return (lastBlockHeight["_max"]?.height as number) || 1;
+		return lastBlockHeight["_max"]?.height || 1;
 	}
 
 	/**
@@ -120,7 +119,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	private async storeTransaction(transaction): Promise<any> {
-		const amount: BigNumber = getAmount(transaction);
+		const amount: bigint = getAmount(transaction);
 		const vouts: VOut[] = getVOuts(transaction);
 		const vIns = getVIns(transaction);
 		const hashes: string[] = vIns.map((u: VIn) => u.txid);
@@ -142,7 +141,7 @@ export class Database {
 			if (read) {
 				const byHashAndIdx = (readElements) =>
 					readElements.reduce((carry, element) => {
-						carry[element["output_hash"] + element["output_idx"]] = BigNumber.make(element["amount"]);
+						carry[element["output_hash"] + element["output_idx"]] = BigInt(element["amount"]);
 						return carry;
 					}, {});
 
@@ -150,7 +149,7 @@ export class Database {
 			}
 		}
 
-		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
+		const fee: bigint = getFees(transaction, voutsByTransactionHashAndIdx);
 
 		const utxoUpdates = vIns.map((vIn, i) =>
 			this.#prisma.transactionPart.update({
@@ -171,12 +170,12 @@ export class Database {
 			create: {
 				hash: transaction.txid,
 				time: transaction.time,
-				amount: amount.toString(),
-				fee: fee.toString(),
+					amount: amount,
+					fee: fee,
 				transaction_parts: {
 					create: vouts.map((vout) => ({
 						output_idx: vout.idx,
-						amount: vout.amount.toString(),
+							amount: vout.amount,
 						address: JSON.stringify(vout.addresses),
 					})),
 				},
