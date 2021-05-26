@@ -174,7 +174,7 @@ export class Database {
 				transaction_parts: {
 					create: outputs.map((output) => ({
 						output_idx: output.idx,
-							amount: output.amount,
+						amount: output.amount,
 						address: JSON.stringify(output.addresses),
 					})),
 				},
