@@ -23,32 +23,7 @@ beforeEach(() => {
 });
 
 describe("SignedTransactionData", function () {
-	test("#id", () => {
-		expect(subject.id()).toBe("3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572");
-	});
-
-	test("#sender", () => {
-		expect(subject.sender()).toBe("DLK7ts2DpkbeBjFamuFtHLoDAq5upDhCmf");
-	});
-
-	test("#recipient", () => {
-		expect(subject.recipient()).toBe("D6Z26L69gdk9qYmTv5uzk3uGepigtHY4ax");
-	});
-
-	test("#amount", () => {
-		expect(subject.amount()).toEqual(BigNumber.make("12500000000000000"));
-	});
-
-	test("#fee", () => {
-		expect(subject.fee()).toEqual(BigNumber.ZERO);
-	});
-
 	test("#timestamp", () => {
 		expect(subject.timestamp()).toEqual(DateTime.make(0));
-	});
-
-	test("#timestamp missing", () => {
-		const subject = new SignedTransactionData("", {}, "");
-		expect(subject.timestamp() instanceof DateTime).toBeTrue();
 	});
 });
