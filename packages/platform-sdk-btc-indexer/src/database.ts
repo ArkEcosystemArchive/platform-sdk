@@ -61,7 +61,7 @@ export class Database {
 		const lastBlock = this.#database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
 
 		if (lastBlock === undefined) {
-			return 1;
+			return 0;
 		}
 
 		return lastBlock.height;
