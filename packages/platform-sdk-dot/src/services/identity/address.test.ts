@@ -3,21 +3,21 @@ import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/helpers";
-import { Address } from "./address";
+import { AddressService } from "./address";
 
-let subject: Address;
+let subject: AddressService;
 
 beforeEach(async () => {
 	await cryptoWaitReady();
 
-	subject = new Address(createConfig());
+	subject = new AddressService(createConfig());
 });
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toBe(identity.address);
+		expect(result).toEqual({ address: identity.address });
 	});
 
 	it("should generate an output from a multiSignature", async () => {
@@ -26,7 +26,7 @@ describe("Address", () => {
 			identity.multiSignature.publicKeys,
 		);
 
-		expect(result).toBe(identity.multiSignatureAddress);
+		expect(result).toEqual({ address: identity.multiSignatureAddress });
 	});
 
 	it("should fail to generate an output from a privateKey", async () => {

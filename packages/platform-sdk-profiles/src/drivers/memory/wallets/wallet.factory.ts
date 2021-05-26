@@ -61,7 +61,7 @@ export class WalletFactory implements IWalletFactory {
 		if (bip === 44 && this.allowsDeriveWithBIP44(wallet)) {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP44);
 
-			const publicKey: string = await wallet
+			const { publicKey } = await wallet
 				.coin()
 				.identity()
 				.publicKey()
@@ -123,7 +123,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.PublicKey);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(await wallet.coin().identity().address().fromPublicKey(publicKey));
+		await wallet.mutator().address((await wallet.coin().identity().address().fromPublicKey(publicKey)).address);
 
 		return wallet;
 	}
@@ -134,7 +134,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.PrivateKey);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(await wallet.coin().identity().address().fromPrivateKey(privateKey));
+		await wallet.mutator().address((await wallet.coin().identity().address().fromPrivateKey(privateKey)).address);
 
 		return wallet;
 	}
@@ -166,7 +166,7 @@ export class WalletFactory implements IWalletFactory {
 		const wallet: IReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicWithEncryption);
 
-		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
+		const { compressed, privateKey } = decode((await wallet.coin().identity().wif().fromMnemonic(mnemonic)).wif);
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
@@ -179,7 +179,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIF);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(await wallet.coin().identity().address().fromWIF(wif));
+		await wallet.mutator().address((await wallet.coin().identity().address().fromWIF(wif)).address);
 
 		return wallet;
 	}
@@ -200,7 +200,7 @@ export class WalletFactory implements IWalletFactory {
 
 		await wallet
 			.mutator()
-			.address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
+			.address((await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex"))).address);
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 

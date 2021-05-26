@@ -1,8 +1,8 @@
 import { IdentityOptions } from "./shared";
 
 export interface AddressDataTransferObject {
-	address(): string;
-	path(): string;
+	address: string;
+	path?: string;
 }
 
 export interface AddressService {

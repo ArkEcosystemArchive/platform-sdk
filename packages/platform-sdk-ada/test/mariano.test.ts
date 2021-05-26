@@ -274,7 +274,7 @@ describe.each(data)("Addresses from", (wallet) => {
 		const publicKey = await identityService.publicKey().fromMnemonic(wallet.mnemonic);
 		expect(publicKey).toBe(wallet.rootPublicKey);
 
-		const keys = await identityService.keys().fromMnemonic(wallet.mnemonic);
+		const keys = await identityService.keyPair().fromMnemonic(wallet.mnemonic);
 		expect(keys).toStrictEqual({ publicKey: wallet.rootPublicKey, privateKey: wallet.rootPrivateKey });
 	});
 

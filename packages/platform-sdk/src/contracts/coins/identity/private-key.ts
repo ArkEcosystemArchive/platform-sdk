@@ -1,8 +1,8 @@
 import { IdentityOptions } from "./shared";
 
 export interface PrivateKeyDataTransferObject {
-	privateKey(): string;
-	path(): string;
+	privateKey: string;
+	path?: string;
 }
 
 export interface PrivateKeyService {

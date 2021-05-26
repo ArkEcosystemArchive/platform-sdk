@@ -3,38 +3,47 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
 
-export class PublicKey implements Contracts.PublicKey {
+export class PublicKeyService implements Contracts.PublicKeyService {
 	readonly #configCrypto: CryptoConfig;
 
 	public constructor(configCrypto: CryptoConfig) {
 		this.#configCrypto = configCrypto;
 	}
 
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.PublicKeyDataTransferObject> {
 		try {
-			return BasePublicKey.fromPassphrase(mnemonic);
+			return {
+				publicKey: BasePublicKey.fromPassphrase(mnemonic),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.PublicKeyDataTransferObject> {
 		try {
-			return BasePublicKey.fromMultiSignatureAsset({ min, publicKeys });
+			return {
+				publicKey: BasePublicKey.fromMultiSignatureAsset({ min, publicKeys }),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<string> {
+	public async fromWIF(wif: string): Promise<Contracts.PublicKeyDataTransferObject> {
 		try {
-			return BasePublicKey.fromWIF(wif, this.#configCrypto);
+			return {
+				publicKey: BasePublicKey.fromWIF(wif, this.#configCrypto),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.PublicKeyDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

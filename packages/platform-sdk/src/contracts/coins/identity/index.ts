@@ -1,9 +1,9 @@
-import { AddressService } from "./address";
-import { AddressListService } from "./address-list";
-import { KeyPairService } from "./key-pair";
-import { PrivateKeyService } from "./private-key";
-import { PublicKeyService } from "./public-key";
-import { WIFService } from "./wif";
+import { AddressDataTransferObject, AddressService } from "./address";
+import { ExtendedAddressDataTransferObject, ExtendedAddressService } from "./address-list";
+import { KeyPairDataTransferObject, KeyPairService } from "./key-pair";
+import { PrivateKeyDataTransferObject, PrivateKeyService } from "./private-key";
+import { PublicKeyDataTransferObject, PublicKeyService } from "./public-key";
+import { WIFDataTransferObject, WIFService } from "./wif";
 export * from "./shared";
 
 export interface IdentityService {
@@ -11,9 +11,9 @@ export interface IdentityService {
 
 	address(): AddressService;
 
-	addressList(): AddressListService;
+	extendedAddress(): ExtendedAddressService;
 
-	keys(): KeyPairService;
+	keyPair(): KeyPairService;
 
 	privateKey(): PrivateKeyService;
 
@@ -22,4 +22,17 @@ export interface IdentityService {
 	wif(): WIFService;
 }
 
-export { AddressService, AddressListService, KeyPairService, PublicKeyService, PrivateKeyService, WIFService };
+export {
+	AddressDataTransferObject,
+	AddressService,
+	ExtendedAddressDataTransferObject,
+	ExtendedAddressService,
+	KeyPairDataTransferObject,
+	KeyPairService,
+	PrivateKeyDataTransferObject,
+	PublicKeyService,
+	PublicKeyDataTransferObject,
+	PrivateKeyService,
+	WIFDataTransferObject,
+	WIFService,
+};

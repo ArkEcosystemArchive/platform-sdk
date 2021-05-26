@@ -1,5 +1,3 @@
-import { IdentityOptions } from "./shared";
-
 export interface ExtendedAddressDataTransferObject {
 	index: number;
 	spendAddress: string;
@@ -8,7 +6,7 @@ export interface ExtendedAddressDataTransferObject {
 	used: boolean;
 }
 
-export interface AddressListService {
+export interface ExtendedAddressService {
 	fromMnemonic(mnemonic: string, pageSize: number): Promise<ExtendedAddressDataTransferObject[]>;
 	fromPrivateKey(privateKey: string, pageSize: number): Promise<ExtendedAddressDataTransferObject[]>;
 }

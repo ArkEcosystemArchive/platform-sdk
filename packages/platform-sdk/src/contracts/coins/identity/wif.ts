@@ -1,8 +1,8 @@
 import { IdentityOptions } from "./shared";
 
 export interface WIFDataTransferObject {
-	wif(): string;
-	path(): string;
+	wif: string;
+	path?: string;
 }
 
 export interface WIFService {

@@ -20,7 +20,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const { privateKey } = await this.#identityService.keys().fromMnemonic(input.signatory.signingKey());
+			const { privateKey } = await this.#identityService.keyPair().fromMnemonic(input.signatory.signingKey());
 
 			if (privateKey === undefined) {
 				throw new Error("Failed to retrieve the private key for the signatory wallet.");

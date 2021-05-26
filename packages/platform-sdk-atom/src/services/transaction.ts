@@ -38,8 +38,10 @@ export class TransactionService implements Contracts.TransactionService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const senderAddress: string = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
-			const keyPair = await this.#identity.keys().fromMnemonic(input.signatory.signingKey());
+			const { address: senderAddress } = await this.#identity
+				.address()
+				.fromMnemonic(input.signatory.signingKey());
+			const keyPair = await this.#identity.keyPair().fromMnemonic(input.signatory.signingKey());
 
 			const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
 

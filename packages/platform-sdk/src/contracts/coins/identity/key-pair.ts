@@ -1,9 +1,9 @@
 import { IdentityOptions } from "./shared";
 
 export interface KeyPairDataTransferObject {
-	publicKey(): string;
-	privateKey(): string;
-	path(): string;
+	publicKey: string;
+	privateKey: string;
+	path?: string;
 }
 
 export interface KeyPairService {
