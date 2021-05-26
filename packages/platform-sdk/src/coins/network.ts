@@ -1,7 +1,14 @@
 import { get } from "dot-prop";
 
 import { randomHost } from "../helpers";
-import { CoinManifest, ExpirationType, FeeType, NetworkManifest, NetworkManifestImportMethods } from "./network.models";
+import {
+	CoinManifest,
+	ExpirationType,
+	FeeType,
+	NetworkManifest,
+	NetworkManifestImportMethods,
+	NetworkManifestToken,
+} from "./network.models";
 
 export class Network {
 	/**
@@ -259,6 +266,16 @@ export class Network {
 	 */
 	public usesUTXO(): boolean {
 		return get(this.#network, "transactions.utxo", false);
+	}
+
+	/**
+	 * Returns the list of available tokens, like ERC20 or TRC20.
+	 *
+	 * @return {*}  {NetworkManifestToken[]}
+	 * @memberof Network
+	 */
+	public tokens(): NetworkManifestToken[] {
+		return get(this.#network, "tokens", []);
 	}
 
 	/**

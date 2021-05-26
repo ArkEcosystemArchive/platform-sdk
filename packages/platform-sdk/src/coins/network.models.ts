@@ -54,6 +54,13 @@ export interface NetworkManifestFeatureFlags {
 	Transaction?: TransactionMethods;
 }
 
+export interface NetworkManifestToken {
+	name: string;
+	symbol: string;
+	address: string;
+	decimals: number;
+}
+
 export interface NetworkManifestImportMethods {
 	address?: ImportMethod;
 	bip38?: ImportMethod;
@@ -92,6 +99,7 @@ export interface NetworkManifest {
 	importMethods: NetworkManifestImportMethods;
 	knownWallets?: string;
 	featureFlags: NetworkManifestFeatureFlags;
+	tokens?: NetworkManifestToken[];
 	meta?: Record<string, any>;
 }
 

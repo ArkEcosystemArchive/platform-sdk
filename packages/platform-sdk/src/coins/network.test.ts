@@ -340,3 +340,7 @@ it("#usesMemo", () => {
 it("#usesUTXO", () => {
 	expect(subject.usesUTXO()).toBeBoolean();
 });
+
+it("#tokens", () => {
+	expect(subject.tokens()).toBeArray();
+});
