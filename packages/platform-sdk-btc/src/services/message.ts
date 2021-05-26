@@ -29,7 +29,7 @@ export class MessageService implements Contracts.MessageService {
 
 			return {
 				message: input.message,
-				signatory: await this.#identity.address().fromWIF(mnemonic),
+				signatory: (await this.#identity.address().fromWIF(mnemonic)).address,
 				signature: message.sign(privateKey),
 			};
 		} catch (error) {

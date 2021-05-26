@@ -52,9 +52,9 @@ export class TransactionService implements Contracts.TransactionService {
 			let keyPair;
 
 			if (input.signatory.actsWithPrivateKey()) {
-				keyPair = await this.#identity.keys().fromPrivateKey(input.signatory.signingKey());
+				keyPair = await this.#identity.keyPair().fromPrivateKey(input.signatory.signingKey());
 			} else {
-				keyPair = await this.#identity.keys().fromMnemonic(input.signatory.signingKey());
+				keyPair = await this.#identity.keyPair().fromMnemonic(input.signatory.signingKey());
 			}
 
 			const { publicKey, privateKey } = keyPair;

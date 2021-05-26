@@ -2,12 +2,12 @@ import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { Zilliqa } from "@zilliqa-js/zilliqa";
 import { getZilliqa } from "../../zilliqa";
 
-import { Address } from "./address";
-import { AddressList } from "./address-list";
-import { Keys } from "./keys";
-import { PrivateKey } from "./private-key";
-import { PublicKey } from "./public-key";
-import { WIF } from "./wif";
+import { AddressService } from "./address";
+import { ExtendedAddressService } from "./address-list";
+import { KeyPairService } from "./keys";
+import { PrivateKeyService } from "./private-key";
+import { PublicKeyService } from "./public-key";
+import { WIFService } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
 	readonly #zilliqa: Zilliqa;
@@ -24,27 +24,27 @@ export class IdentityService implements Contracts.IdentityService {
 		//
 	}
 
-	public address(): Address {
-		return new Address(this.#zilliqa.wallet);
+	public address(): AddressService {
+		return new AddressService(this.#zilliqa.wallet);
 	}
 
-	public addressList(): AddressList {
-		return new AddressList();
+	public extendedAddress(): ExtendedAddressService {
+		return new ExtendedAddressService();
 	}
 
-	public publicKey(): PublicKey {
-		return new PublicKey(this.#zilliqa.wallet);
+	public publicKey(): PublicKeyService {
+		return new PublicKeyService(this.#zilliqa.wallet);
 	}
 
-	public privateKey(): PrivateKey {
-		return new PrivateKey(this.#zilliqa.wallet);
+	public privateKey(): PrivateKeyService {
+		return new PrivateKeyService(this.#zilliqa.wallet);
 	}
 
-	public wif(): WIF {
-		return new WIF();
+	public wif(): WIFService {
+		return new WIFService();
 	}
 
-	public keys(): Keys {
-		return new Keys(this.#zilliqa.wallet);
+	public keyPair(): KeyPairService {
+		return new KeyPairService(this.#zilliqa.wallet);
 	}
 }

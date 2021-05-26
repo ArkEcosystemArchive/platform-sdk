@@ -1,11 +1,11 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { WIF } from "./wif";
+import { WIFService } from "./wif";
 
-let subject: WIF;
+let subject: WIFService;
 
-beforeEach(async () => (subject = new WIF()));
+beforeEach(async () => (subject = new WIFService()));
 
 describe("WIF", () => {
 	it("should fail to generate an output from a mnemonic", async () => {

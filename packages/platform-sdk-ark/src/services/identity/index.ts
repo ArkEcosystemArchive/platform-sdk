@@ -1,54 +1,49 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
-import { Address } from "./address";
-import { AddressList } from "./address-list";
-import { Keys } from "./keys";
-import { PrivateKey } from "./private-key";
-import { PublicKey } from "./public-key";
-import { WIF } from "./wif";
+import { AddressService } from "./address";
+import { ExtendedAddressService } from "./address-list";
+import { KeyPairService } from "./keys";
+import { PrivateKeyService } from "./private-key";
+import { PublicKeyService } from "./public-key";
+import { WIFService } from "./wif";
 
 export class IdentityService implements Contracts.IdentityService {
-	readonly #config: Coins.Config;
-	readonly #configCrypto: CryptoConfig;
+	readonly #config: CryptoConfig;
 
-	private constructor(config: Coins.Config, network: { pubKeyHash: number; wif: number }) {
+	private constructor(config: CryptoConfig) {
 		this.#config = config;
-		this.#configCrypto = {
-			pubKeyHash: network.pubKeyHash,
-			wif: network.wif,
-		};
 	}
 
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config, config.get("NETWORK_CONFIGURATION.crypto.network"));
+		return new IdentityService(config.get("NETWORK_CONFIGURATION.crypto.network"));
 	}
 
 	public async __destruct(): Promise<void> {
 		//
 	}
 
-	public address(): Address {
-		return new Address(this.#config, this.#configCrypto);
+	public address(): AddressService {
+		return new AddressService(this.#config);
 	}
 
-	public addressList(): AddressList {
-		return new AddressList();
+	public extendedAddress(): ExtendedAddressService {
+		return new ExtendedAddressService();
 	}
 
-	public publicKey(): PublicKey {
-		return new PublicKey(this.#configCrypto);
+	public publicKey(): PublicKeyService {
+		return new PublicKeyService(this.#config);
 	}
 
-	public privateKey(): PrivateKey {
-		return new PrivateKey(this.#configCrypto);
+	public privateKey(): PrivateKeyService {
+		return new PrivateKeyService(this.#config);
 	}
 
-	public wif(): WIF {
-		return new WIF(this.#configCrypto);
+	public wif(): WIFService {
+		return new WIFService(this.#config);
 	}
 
-	public keys(): Keys {
-		return new Keys(this.#configCrypto);
+	public keyPair(): KeyPairService {
+		return new KeyPairService(this.#config);
 	}
 }

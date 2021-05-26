@@ -3,17 +3,17 @@ import "jest-extended";
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/config";
 import { getZilliqa } from "../../zilliqa";
-import { PublicKey } from "./public-key";
+import { PublicKeyService } from "./public-key";
 
-let subject: PublicKey;
+let subject: PublicKeyService;
 
-beforeEach(async () => (subject = new PublicKey(getZilliqa(createConfig()).wallet)));
+beforeEach(async () => (subject = new PublicKeyService(getZilliqa(createConfig()).wallet)));
 
 describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {
-		const result: any = await subject.fromMnemonic(identity.mnemonic);
+		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toBe(identity.publicKey);
+		expect(result).toEqual({ publicKey: identity.publicKey });
 	});
 
 	it("should fail to generate an output from an invalid mnemonic", async () => {

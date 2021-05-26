@@ -44,11 +44,14 @@ export class WalletMutator implements IWalletMutator {
 	public async identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void> {
 		this.#wallet
 			.getAttributes()
-			.set("address", await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options));
+			.set("address", (await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options)).address);
 
 		this.#wallet
 			.getAttributes()
-			.set("publicKey", await this.#wallet.coin().identity().publicKey().fromMnemonic(mnemonic, options));
+			.set(
+				"publicKey",
+				(await this.#wallet.coin().identity().publicKey().fromMnemonic(mnemonic, options)).publicKey,
+			);
 
 		return this.address(this.#wallet.getAttributes().get<string>("address"));
 	}

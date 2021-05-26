@@ -3,11 +3,11 @@ import "jest-extended";
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/config";
 import { getZilliqa } from "../../zilliqa";
-import { Keys } from "./keys";
+import { KeyPairService } from "./keys";
 
-let subject: Keys;
+let subject: KeyPairService;
 
-beforeEach(async () => (subject = new Keys(getZilliqa(createConfig()).wallet)));
+beforeEach(async () => (subject = new KeyPairService(getZilliqa(createConfig()).wallet)));
 
 describe("Keys", () => {
 	it("should generate an output from a mnemonic", async () => {
@@ -24,7 +24,7 @@ describe("Keys", () => {
 	});
 
 	it("should generate an output from a privateKey", async () => {
-		const result: any = await subject.fromPrivateKey(identity.privateKey);
+		const result = await subject.fromPrivateKey(identity.privateKey);
 
 		expect(result).toEqual({
 			privateKey: identity.privateKey,

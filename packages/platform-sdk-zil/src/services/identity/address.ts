@@ -4,36 +4,47 @@ import { validation } from "@zilliqa-js/zilliqa";
 
 import { accountFromMnemonic, accountFromPrivateKey } from "../../zilliqa";
 
-export class Address implements Contracts.Address {
+export class AddressService implements Contracts.AddressService {
 	readonly #wallet: Wallet;
 
 	public constructor(wallet: Wallet) {
 		this.#wallet = wallet;
 	}
 
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		const { address } = await accountFromMnemonic(this.#wallet, mnemonic, options);
-		return address;
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
+		return {
+			address: (await accountFromMnemonic(this.#wallet, mnemonic, options)).bech32Address,
+		};
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, this.fromMultiSignature.name);
 	}
 
-	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromPublicKey(
+		publicKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, this.fromPublicKey.name);
 	}
 
-	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
-		const { address } = await accountFromPrivateKey(this.#wallet, privateKey);
-		return address;
+	public async fromPrivateKey(
+		privateKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
+		return {
+			address: (await accountFromPrivateKey(this.#wallet, privateKey)).bech32Address,
+		};
 	}
 
-	public async fromWIF(wif: string): Promise<string> {
+	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, this.fromWIF.name);
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 

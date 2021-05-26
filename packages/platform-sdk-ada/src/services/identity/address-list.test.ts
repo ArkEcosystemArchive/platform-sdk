@@ -1,9 +1,9 @@
-import { AddressList } from "./address-list";
+import { ExtendedAddressService } from "./address-list";
 import { identity } from "../../../test/fixtures/identity";
 
-describe("AddressList", function () {
+describe("ExtendedAddressService", function () {
 	test("#fromMnemonic", async () => {
-		const subject = new AddressList();
+		const subject = new ExtendedAddressService();
 
 		await expect(subject.fromMnemonic(identity.mnemonic, 20)).resolves.toHaveLength(20);
 	});

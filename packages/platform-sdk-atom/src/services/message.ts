@@ -23,7 +23,7 @@ export class MessageService implements Contracts.MessageService {
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
 			const { publicKey, privateKey } = await this.#identityService
-				.keys()
+				.keyPair()
 				.fromMnemonic(input.signatory.signingKey());
 
 			return {
