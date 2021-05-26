@@ -1,7 +1,6 @@
 import "jest-extended";
 
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "./signed-transaction";
 
