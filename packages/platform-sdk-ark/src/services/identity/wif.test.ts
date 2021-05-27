@@ -1,13 +1,12 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { createConfigWithNetwork } from "../../../test/helpers";
+import { createNetworkConfig } from "../../../test/helpers";
 import { WIFService } from "./wif";
-import { IdentityService } from ".";
 
 let subject: WIFService;
 
-beforeEach(async () => (subject = (await IdentityService.__construct(createConfigWithNetwork())).wif()));
+beforeEach(async () => (subject = new WIFService(createNetworkConfig())));
 
 describe("WIF", () => {
 	it("should generate an output from a mnemonic", async () => {

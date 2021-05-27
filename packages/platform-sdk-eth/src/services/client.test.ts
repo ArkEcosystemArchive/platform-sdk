@@ -72,18 +72,6 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#syncing", () => {
-		it("should succeed", async () => {
-			nock("https://platform.ark.io/api/eth")
-				.get("/status")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`));
-
-			const result = await subject.syncing();
-
-			expect(result).toBeBoolean();
-		});
-	});
-
 	describe("#broadcast", () => {
 		it("should pass", async () => {
 			nock("https://platform.ark.io/api/eth")

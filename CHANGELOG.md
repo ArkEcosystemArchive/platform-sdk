@@ -5,7 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 8.1.23 - 2021-05-24
+## 8.1.29 - 2021-05-27
+
+### Added
+
+- **[SDK]** Include tokens in network manifest (c54fd892, @faustbrian)
+- **[SDK]** Add `timestamp` method to `SignedTransactionData` (da89a0c2, @axeldelamarre)
+- **[SUPPORT]** Add `BigNumber#sum` method (fc11ab72, @axeldelamarre)
+
+### Changed
+
+- **[SDK]** Normalise signing and confirmation keys (02975ba2, @faustbrian)
+- **[BTC-INDEXER]** More meaningful variable names (34307470, @marianogoldman)
+- **[SDK]** Introduce `AbstractIdentityService` (cdfa3258, @faustbrian)
+
+## 8.1.23 - 2021-05-26
 
 ### Changed
 

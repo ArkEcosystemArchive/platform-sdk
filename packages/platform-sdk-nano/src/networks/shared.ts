@@ -53,6 +53,5 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 	],
 	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
-	Peer: ["validate"],
 	Transaction: ["transfer"],
 };

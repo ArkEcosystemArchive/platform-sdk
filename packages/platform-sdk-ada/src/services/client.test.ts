@@ -227,9 +227,5 @@ describe("ClientService", function () {
 		it("#voters", async () => {
 			await expect(subject.voters("", {})).rejects.toThrow(/is not implemented./);
 		});
-
-		it("#syncing", async () => {
-			await expect(subject.syncing()).rejects.toThrow(/is not implemented./);
-		});
 	});
 });

@@ -116,12 +116,6 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
-	public async syncing(): Promise<boolean> {
-		const { syncing } = await this.get("syncing");
-
-		return syncing;
-	}
-
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
