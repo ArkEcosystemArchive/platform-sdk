@@ -1,5 +1,3 @@
-import { BigNumber } from "@arkecosystem/utils";
-
 import { Input, Output } from "./types";
 
 export const getAmount = (transaction): bigint =>

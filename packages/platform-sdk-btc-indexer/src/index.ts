@@ -17,7 +17,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	const client = useClient(flags);
 	const step: number = flags.batchSize;
 
-	const fetchingQueue = new PQueue({concurrency: step});
+	const fetchingQueue = new PQueue({ concurrency: step });
 	const toBeProcessed: object = {};
 
 	// Get the last block we stored in the database and grab the latest block
@@ -25,7 +25,8 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	// copy of the blockchain to avoid holes in the historical data of users.
 	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
 
-	const addBlock = (blockHeight) => fetchingQueue.add(async () => toBeProcessed[blockHeight] = await client.blockWithTransactions(blockHeight));
+	const addBlock = (blockHeight) =>
+		fetchingQueue.add(async () => (toBeProcessed[blockHeight] = await client.blockWithTransactions(blockHeight)));
 	// Load initial batch of size = {step}
 	for (let i = localHeight; i < Math.min(localHeight + step, remoteHeight); i++) {
 		logger.info(`adding block ${i} to queue`);
@@ -35,7 +36,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	// Process sequential, in order and with no gaps
 	for (let j = localHeight; j <= remoteHeight; j++) {
 		logger.info(`processing block ${j}`);
-		await PWaitFor(() => toBeProcessed[j] !== undefined)
+		await PWaitFor(() => toBeProcessed[j] !== undefined);
 		await database.storeBlockWithTransactions(toBeProcessed[j]);
 
 		// Schedule fetching of next block (if still not done)
