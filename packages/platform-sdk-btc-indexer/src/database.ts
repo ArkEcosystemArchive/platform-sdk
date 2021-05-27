@@ -1,3 +1,4 @@
+import { BigNumber } from "@arkecosystem/utils";
 import { PrismaClient } from "@prisma/client";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
@@ -110,7 +111,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	private async storeTransaction(blockId: number, transaction): Promise<void> {
-		const amount: bigint = getAmount(transaction);
+		const amount: BigNumber = getAmount(transaction);
 		const outputs: Output[] = getOutputs(transaction);
 		const inputs = getInputs(transaction);
 		const hashes: string[] = inputs.map((u: Input) => u.txid);
@@ -140,7 +141,7 @@ export class Database {
 			}
 		}
 
-		const fee: bigint = getFees(transaction, outputsByTransactionHashAndIdx);
+		const fee: BigNumber = getFees(transaction, outputsByTransactionHashAndIdx);
 
 		const utxoUpdates = inputs.map((input, i) =>
 			this.#prisma.transactionPart.update({
@@ -163,8 +164,8 @@ export class Database {
 					blockId,
 					hash: transaction.txid,
 					time: transaction.time,
-					amount: amount,
-					fee: fee,
+					amount: BigInt(amount),
+					fee: BigInt(fee),
 					transaction_parts: {
 						create: outputs.map((output) => ({
 							output_idx: output.idx,

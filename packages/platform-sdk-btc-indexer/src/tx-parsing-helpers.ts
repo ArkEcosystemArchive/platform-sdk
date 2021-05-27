@@ -1,9 +1,9 @@
+import { BigNumber } from "@arkecosystem/utils";
+
 import { Input, Output } from "./types";
 
-export const getAmount = (transaction): bigint =>
-	transaction.vout.reduce((carry: bigint, item): bigint => {
-		return carry + BigInt(Math.round(item.value * 1e8));
-	}, BigInt(0));
+export const getAmount = (transaction): BigNumber =>
+	transaction.vout.reduce((carry: BigNumber, item) => carry.plus(Math.round(item.value * 1e8)), BigNumber.ZERO);
 
 export const getOutputs = (transaction): Output[] =>
 	transaction.vout
@@ -19,15 +19,15 @@ export const getInputs = (transaction): Input[] =>
 		.filter((input) => input.txid !== undefined && input.vout !== undefined)
 		.map((input) => ({ txid: input.txid, vout: input.vout }));
 
-export const getFees = (transaction, outputs): bigint => {
+export const getFees = (transaction, outputs): BigNumber => {
 	if (transaction.vin[0].coinbase) {
-		return BigInt(0);
+		return BigNumber.ZERO;
 	}
 
-	const outputAmount: bigint = getAmount(transaction);
-	const inputAmount: bigint = transaction.vin
+	const outputAmount = getAmount(transaction);
+	const inputAmount: BigNumber = transaction.vin
 		.filter((input) => input.txid !== undefined && input.vout !== undefined)
-		.reduce((c: bigint, input): bigint => c + BigInt(outputs[input.txid + input.vout]), BigInt(0));
+		.reduce((carry: BigNumber, input) => carry.plus(outputs[input.txid + input.vout]), BigNumber.ZERO);
 
-	return BigInt(inputAmount) - BigInt(outputAmount);
+	return inputAmount.minus(outputAmount);
 };
