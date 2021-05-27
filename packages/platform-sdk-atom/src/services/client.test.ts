@@ -82,18 +82,6 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#syncing", () => {
-		it("should succeed", async () => {
-			nock("https://stargate.cosmos.network")
-				.get("/syncing")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`));
-
-			const result = await subject.syncing();
-
-			expect(result).toBeBoolean();
-		});
-	});
-
 	describe("#broadcast", () => {
 		const transactionPayload = new SignedTransactionData(
 			"id",

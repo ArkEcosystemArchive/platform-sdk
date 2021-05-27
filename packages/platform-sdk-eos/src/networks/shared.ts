@@ -31,6 +31,5 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 	Identity: ["publicKey.mnemonic.bip39"],
 	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
-	Peer: ["validate"],
 	Transaction: ["transfer"],
 };

@@ -60,9 +60,6 @@ Object {
       "sign",
       "verify",
     ],
-    "Peer": Array [
-      "validate",
-    ],
     "Transaction": Array [
       "delegateRegistration",
       "delegateResignation",
