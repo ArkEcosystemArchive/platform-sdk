@@ -78,9 +78,7 @@ describe("WalletData", function () {
 	};
 
 	describe.each(["mainnet", "devnet"])("%s", (network) => {
-		beforeEach(() => {
-			subject = new WalletData(WalletDataFixture[network]);
-		});
+		beforeEach(() => (subject = new WalletData(WalletDataFixture[network])));
 
 		test("#address", () => {
 			expect(subject.address()).toBe("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
