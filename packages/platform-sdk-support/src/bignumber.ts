@@ -141,7 +141,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public static sum(values: NumberLike[]): BigNumber {
-		return values.reduce((accumulator: BigNumber, currentValue: NumberLike) => carry.plus(value), BigNumber.ZERO);
+		return values.reduce((accumulator: BigNumber, currentValue: NumberLike) => accumulator.plus(currentValue), BigNumber.ZERO);
 	}
 
 	/**
