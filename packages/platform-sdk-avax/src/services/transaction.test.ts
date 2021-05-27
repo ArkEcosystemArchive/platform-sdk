@@ -9,7 +9,7 @@ let subject: TransactionService;
 
 beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
 
-describe("Core", () => {
+describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it.skip("should verify", async () => {
 			const result = await subject.transfer({
