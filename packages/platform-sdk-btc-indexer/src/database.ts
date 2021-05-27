@@ -98,7 +98,7 @@ export class Database {
 					height: block.height,
 				},
 			});
-		} catch (e) {
+		} catch {
 			// Ignore, there's nothing to update if already exists
 			// We could query for existence before creation, but it doesn't really make sense
 		}
@@ -177,7 +177,7 @@ export class Database {
 					},
 				},
 			});
-		} catch (e) {
+		} catch {
 			// Ignore, there's nothing to update if already exists
 			// We could query for existence before creation, but it doesn't really make sense
 		}
