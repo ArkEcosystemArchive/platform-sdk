@@ -336,6 +336,7 @@ export class TransactionService implements Contracts.TransactionService {
 				}
 
 				if (input.signatory.actsWithSecondaryMnemonic()) {
+					transaction.sign(input.signatory.signingKey());
 					transaction.secondSign(input.signatory.confirmKey());
 				}
 
@@ -344,6 +345,7 @@ export class TransactionService implements Contracts.TransactionService {
 				}
 
 				if (input.signatory.actsWithSecondaryWif()) {
+					transaction.signWithWif(input.signatory.signingKey());
 					transaction.secondSignWithWif(input.signatory.confirmKey());
 				}
 			}
