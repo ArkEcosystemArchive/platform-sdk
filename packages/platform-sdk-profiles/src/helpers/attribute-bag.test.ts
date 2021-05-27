@@ -12,9 +12,7 @@ const values = { a: "a", b: "b", c: "c" };
 
 let subject: AttributeBag<Attributes>;
 
-beforeEach(() => {
-	subject = new AttributeBag<Attributes>();
-});
+beforeEach(() => subject = new AttributeBag<Attributes>());
 
 test("#all", async () => {
 	subject.setMany(values);
