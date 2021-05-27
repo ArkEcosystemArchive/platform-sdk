@@ -13,7 +13,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("FeeService", function () {
+describe("FeeService", () => {
 	it("should fetch all available fees", async () => {
 		nock("https://ethgas.watch")
 			.get("/api/gas")

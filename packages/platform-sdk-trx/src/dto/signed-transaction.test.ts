@@ -41,7 +41,7 @@ beforeEach(() => {
 	);
 });
 
-describe("SignedTransactionData", function () {
+describe("SignedTransactionData", () => {
 	test("#timestamp", () => {
 		expect(DateTime.make(1620877822246).isSame(subject.timestamp())).toBeTrue();
 	});

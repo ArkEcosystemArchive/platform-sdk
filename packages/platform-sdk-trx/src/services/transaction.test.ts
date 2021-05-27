@@ -13,7 +13,7 @@ beforeEach(async () => (subject = await TransactionService.__construct(createCon
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("TransactionService", function () {
+describe("TransactionService", () => {
 	test("#transfer", async () => {
 		nock("https://api.shasta.trongrid.io")
 			.post("/wallet/createtransaction")

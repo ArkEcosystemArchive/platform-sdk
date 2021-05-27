@@ -15,7 +15,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("ClientService", function () {
+describe("ClientService", () => {
 	test("#transactions", async () => {
 		nock("https://proxy.nanos.cc/")
 			.get("/proxy")

@@ -14,7 +14,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("ClientService", function () {
+describe("ClientService", () => {
 	describe("#wallet", () => {
 		it("should succeed", async () => {
 			nock("https://api.testnet.eos.io")

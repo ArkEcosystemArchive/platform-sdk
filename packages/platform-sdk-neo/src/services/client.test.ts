@@ -17,7 +17,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("ClientService", function () {
+describe("ClientService", () => {
 	describe("#transactions", () => {
 		it("should succeed", async () => {
 			nock("https://neoscan-testnet.io/api/test_net/v1/")

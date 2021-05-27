@@ -3,7 +3,7 @@ import { MarketTransformer } from "./market-transformer";
 const stubResponse = require("../../test/fixtures/market.json");
 const stubOptions = { type: "day", dateFormat: "DD.MM" };
 
-describe("MarketTransformer", function () {
+describe("MarketTransformer", () => {
 	it("should transform the given data", async () => {
 		const subject = new MarketTransformer(stubResponse.market_data);
 

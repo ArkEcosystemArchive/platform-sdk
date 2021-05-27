@@ -5,7 +5,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { TransactionData } from "./transaction";
 
-describe("TransactionData", function () {
+describe("TransactionData", () => {
 	it("should succeed", async () => {
 		const result = new TransactionData({
 			txid: "718bc4cfc50c361a8afe032e2c170dfebadce16ea72228a57634413b62b7cf24",
