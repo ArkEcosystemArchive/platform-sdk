@@ -1,13 +1,12 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { createConfigWithNetwork } from "../../../test/helpers";
+import { createNetworkConfig } from "../../../test/helpers";
 import { AddressService } from "./address";
-import { IdentityService } from ".";
 
 let subject: AddressService;
 
-beforeEach(async () => (subject = (await IdentityService.__construct(createConfigWithNetwork())).address()));
+beforeEach(async () => (subject = new AddressService(createNetworkConfig())));
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
