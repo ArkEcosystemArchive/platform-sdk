@@ -30,3 +30,5 @@ export const createConfigWithNetwork = () =>
 			status: require(`${__dirname}/fixtures/client/syncing.json`).data,
 		},
 	});
+
+export const createNetworkConfig = () => require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data.network;

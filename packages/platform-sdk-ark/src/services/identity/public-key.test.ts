@@ -1,13 +1,12 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { createConfigWithNetwork } from "../../../test/helpers";
+import { createNetworkConfig } from "../../../test/helpers";
 import { PublicKeyService } from "./public-key";
-import { IdentityService } from ".";
 
 let subject: PublicKeyService;
 
-beforeEach(async () => (subject = (await IdentityService.__construct(createConfigWithNetwork())).publicKey()));
+beforeEach(async () => (subject = new PublicKeyService(createNetworkConfig())));
 
 describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {

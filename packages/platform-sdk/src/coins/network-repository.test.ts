@@ -69,9 +69,6 @@ test("#all", () => {
 		        "sign",
 		        "verify",
 		      ],
-		      "Peer": Array [
-		        "validate",
-		      ],
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
@@ -226,9 +223,6 @@ test("#all", () => {
 		        "sign",
 		        "verify",
 		      ],
-		      "Peer": Array [
-		        "validate",
-		      ],
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
@@ -382,9 +376,6 @@ test("#all", () => {
 		      "Message": Array [
 		        "sign",
 		        "verify",
-		      ],
-		      "Peer": Array [
-		        "validate",
 		      ],
 		      "Transaction": Array [
 		        "delegateRegistration",

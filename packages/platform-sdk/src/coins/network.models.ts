@@ -50,7 +50,6 @@ export interface NetworkManifestFeatureFlags {
 	Ledger?: LedgerMethods;
 	Link?: LinkMethods;
 	Message?: MessageMethods;
-	Peer?: PeerMethods;
 	Transaction?: TransactionMethods;
 }
 
@@ -176,9 +175,6 @@ export type LinkMethods = LinkMethod[];
 
 export type MessageMethod = "sign" | "verify";
 export type MessageMethods = MessageMethod[];
-
-export type PeerMethod = "validate";
-export type PeerMethods = PeerMethod[];
 
 export type TransactionMethod =
 	| "delegateRegistration.ledgerS"
