@@ -2,18 +2,21 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { deriveKeyPair, deriveWallet } from "./utils";
 
-export class Keys implements Contracts.Keys {
+export class KeyPairService implements Contracts.KeyPairService {
 	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<Contracts.KeyPair> {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
 			const { publicKey, privateKey } = deriveWallet(
 				mnemonic,
-				this.#config.get<number>("network.crypto.slip44"),
+				this.#config.get<number>("network.constants.slip44"),
 				options?.bip44?.account || 0,
 				options?.bip44?.change || 0,
 				options?.bip44?.addressIndex || 0,
@@ -25,7 +28,7 @@ export class Keys implements Contracts.Keys {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPair> {
+	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
 			return deriveKeyPair(privateKey);
 		} catch (error) {
@@ -33,7 +36,7 @@ export class Keys implements Contracts.Keys {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.KeyPair> {
+	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
 			return deriveKeyPair(wif);
 		} catch (error) {
@@ -41,7 +44,7 @@ export class Keys implements Contracts.Keys {
 		}
 	}
 
-	public async fromSecret(secret: string): Promise<Contracts.KeyPair> {
+	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

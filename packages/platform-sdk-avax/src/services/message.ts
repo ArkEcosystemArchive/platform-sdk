@@ -38,7 +38,7 @@ export class MessageService implements Contracts.MessageService {
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		const bintools = BinTools.getInstance();
 
-		const hrp = getPreferredHRP(parseInt(this.#config.get(Coins.ConfigKey.CryptoNetworkId)));
+		const hrp = getPreferredHRP(parseInt(this.#config.get("network.meta.networkId")));
 		const keypair = new KeyPair(hrp, "X");
 		const signedBuff = cb58Decode(input.signature);
 		const pubKey = keypair.recover(this.digestMessage(input.message), signedBuff);

@@ -251,6 +251,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@prisma/client",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@ptkdev/logger",
       "allowedCategories": [ "libraries" ]
     },
@@ -679,6 +683,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "p-wait-for",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "password-pwnd",
       "allowedCategories": [ "libraries" ]
     },
@@ -692,6 +700,10 @@
     },
     {
       "name": "prettier",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "prisma",
       "allowedCategories": [ "libraries" ]
     },
     {

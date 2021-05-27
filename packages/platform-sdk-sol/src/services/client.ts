@@ -1,5 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Connection, PublicKey } from "@solana/web3.js";
 
 import { WalletData } from "../dto";
@@ -65,10 +64,6 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
-	public async syncing(): Promise<boolean> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
-	}
-
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
@@ -94,6 +89,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private host(): string {
-		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
+		return Helpers.randomHostFromConfig(this.#config, "full").host;
 	}
 }

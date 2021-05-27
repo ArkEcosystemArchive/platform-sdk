@@ -1,6 +1,12 @@
-import { KeyValuePair } from "../contracts";
-
 export type FeeType = "static" | "dynamic" | "gas" | "free" | "weight";
+
+export type ExpirationType = "height" | "timestamp";
+
+export type SignatureMethod = "default" | "musig" | "ledgerS" | "ledgerX";
+
+export type NetworkHostType = "full" | "musig" | "archival" | "explorer";
+
+export type WalletPermission = "read" | "write";
 
 export type CoinTransactionTypes =
 	| "delegate-registration"
@@ -15,110 +21,61 @@ export type CoinTransactionTypes =
 	| "transfer"
 	| "vote";
 
-export type ExpirationType = "height" | "timestamp";
-
-export interface SignatureMethods {
-	default: boolean;
-	ledgerS?: boolean;
-	ledgerX?: boolean;
+export interface NetworkHost {
+	type: NetworkHostType;
+	host: string;
+	query?: Record<string, string>;
 }
 
-export interface NetworkFeatureFlags {
-	Client?: {
-		transaction?: boolean;
-		transactions?: boolean;
-		wallet?: boolean;
-		wallets?: boolean;
-		delegate?: boolean;
-		delegates?: boolean;
-		votes?: boolean;
-		voters?: boolean;
-		configuration?: boolean;
-		fees?: boolean;
-		syncing?: boolean;
-		broadcast?: boolean;
+export interface ImportMethod {
+	default: boolean;
+	permissions: WalletPermission[];
+}
+
+export interface NetworkManifestTransactions {
+	expirationType: ExpirationType;
+	types: CoinTransactionTypes[];
+	fees: {
+		type: FeeType;
+		ticker: string;
 	};
-	Fee?: {
-		all?: boolean;
-	};
-	Identity?: {
-		address?: {
-			mnemonic?: boolean;
-			multiSignature?: boolean;
-			publicKey?: boolean;
-			privateKey?: boolean;
-			wif?: boolean;
-			secret?: boolean;
-			validate?: boolean;
-		};
-		publicKey?: {
-			mnemonic?: boolean;
-			multiSignature?: boolean;
-			wif?: boolean;
-			secret?: boolean;
-		};
-		privateKey?: {
-			mnemonic?: boolean;
-			wif?: boolean;
-			secret?: boolean;
-		};
-		wif?: {
-			mnemonic?: boolean;
-			secret?: boolean;
-		};
-		keyPair?: {
-			mnemonic?: boolean;
-			privateKey?: boolean;
-			wif?: boolean;
-			secret?: boolean;
-		};
-	};
-	Ledger?: {
-		getVersion?: boolean;
-		getPublicKey?: boolean;
-		signTransaction?: boolean;
-		signMessage?: boolean;
-	};
-	Link?: {
-		block?: boolean;
-		transaction?: boolean;
-		wallet?: boolean;
-	};
-	Message?: {
-		sign?: boolean;
-		verify?: boolean;
-	};
-	Peer?: {
-		search?: boolean;
-	};
-	Transaction?: {
-		transfer?: SignatureMethods;
-		secondSignature?: SignatureMethods;
-		delegateRegistration?: SignatureMethods;
-		vote?: SignatureMethods;
-		multiSignature?: SignatureMethods;
-		ipfs?: SignatureMethods;
-		multiPayment?: SignatureMethods;
-		delegateResignation?: SignatureMethods;
-		htlcLock?: SignatureMethods;
-		htlcClaim?: SignatureMethods;
-		htlcRefund?: SignatureMethods;
-	};
-	Miscellaneous?: {
-		dynamicFees?: boolean;
-		memo?: boolean;
-		utxo?: boolean;
-	};
-	Derivation?: {
-		bip39?: boolean;
-		bip44?: boolean;
-		bip49?: boolean;
-		bip84?: boolean;
-		secret?: boolean;
-	};
-	Internal?: {
-		fastDelegateSync?: boolean;
-	};
+	memo?: boolean;
+	utxo?: boolean;
+}
+
+export interface NetworkManifestFeatureFlags {
+	Client?: ClientMethods;
+	Fee?: FeeMethods;
+	Identity?: IdentityMethods;
+	Ledger?: LedgerMethods;
+	Link?: LinkMethods;
+	Message?: MessageMethods;
+	Transaction?: TransactionMethods;
+}
+
+export interface NetworkManifestToken {
+	name: string;
+	symbol: string;
+	address: string;
+	decimals: number;
+}
+
+export interface NetworkManifestImportMethods {
+	address?: ImportMethod;
+	bip38?: ImportMethod;
+	bip39?: ImportMethod;
+	bip44?: ImportMethod;
+	bip49?: ImportMethod;
+	bip84?: ImportMethod;
+	privateKey?: ImportMethod;
+	publicKey?: ImportMethod;
+	secret?: ImportMethod;
+	wif?: ImportMethod;
+}
+
+export interface NetworkManifestConstants {
+	slip44: number;
+	bech32?: string;
 }
 
 export interface NetworkManifest {
@@ -126,52 +83,142 @@ export interface NetworkManifest {
 	type: string;
 	name: string;
 	coin: string;
-	explorer: string;
 	currency: {
 		ticker: string;
 		symbol: string;
 	};
-	fees: {
-		type: FeeType;
-		ticker: string;
-	};
-	crypto: {
-		networkId?: string;
-		blockchainId?: string;
-		assetId?: string;
-		slip44?: number;
-		bech32?: string;
-		signingMethods?: {
-			mnemonic?: boolean;
-			privateKey?: boolean;
-			wif?: boolean;
-		};
-		derivation?: {
-			extendedPublicKey: boolean;
-		};
-		expirationType: ExpirationType;
-	};
-	networking: {
-		hosts: string[];
-		hostsMultiSignature?: string[];
-		hostsArchival?: string[];
-	};
+	hosts: NetworkHost[];
+	constants: NetworkManifestConstants;
 	governance?: {
-		voting?: {
-			enabled: boolean;
-			delegateCount: number;
-			maximumPerWallet: number;
-			maximumPerTransaction: number;
-		};
+		delegateCount: number;
+		votesPerWallet: number;
+		votesPerTransaction: number;
 	};
-	featureFlags: NetworkFeatureFlags;
-	// @TODO: we could replace this with kebabCase(Object.keys(FeatureFlags.Transaction))
-	transactionTypes: CoinTransactionTypes[];
+	transactions: NetworkManifestTransactions;
+	importMethods: NetworkManifestImportMethods;
 	knownWallets?: string;
-	meta?: KeyValuePair;
+	featureFlags: NetworkManifestFeatureFlags;
+	tokens?: NetworkManifestToken[];
+	meta?: Record<string, any>;
 }
 
 export interface CoinManifest {
 	name: string;
 	networks: Record<string, NetworkManifest>;
 }
+
+// These types and interfaces describe what functionality is available.
+// A client shall use these to modify the UI to avoid the execution of
+// methods that are not available.
+
+export type ClientMethod =
+	| "transaction"
+	| "transactions"
+	| "wallet"
+	| "wallets"
+	| "delegate"
+	| "delegates"
+	| "votes"
+	| "voters"
+	| "configuration"
+	| "fees"
+	| "syncing"
+	| "broadcast";
+export type ClientMethods = ClientMethod[];
+
+export type FeeMethod = "all";
+export type FeeMethods = FeeMethod[];
+
+export type IdentityMethod =
+	| "address.mnemonic.bip39"
+	| "address.mnemonic.bip44"
+	| "address.mnemonic.bip49"
+	| "address.mnemonic.bip84"
+	| "address.multiSignature"
+	| "address.privateKey"
+	| "address.publicKey"
+	| "address.secret"
+	| "address.validate"
+	| "address.wif"
+	| "keyPair.mnemonic.bip39"
+	| "keyPair.mnemonic.bip44"
+	| "keyPair.mnemonic.bip49"
+	| "keyPair.mnemonic.bip84"
+	| "keyPair.privateKey"
+	| "keyPair.secret"
+	| "keyPair.wif"
+	| "privateKey.mnemonic.bip39"
+	| "privateKey.mnemonic.bip44"
+	| "privateKey.mnemonic.bip49"
+	| "privateKey.mnemonic.bip84"
+	| "privateKey.secret"
+	| "privateKey.wif"
+	| "publicKey.mnemonic.bip39"
+	| "publicKey.mnemonic.bip44"
+	| "publicKey.mnemonic.bip49"
+	| "publicKey.mnemonic.bip84"
+	| "publicKey.multiSignature"
+	| "publicKey.secret"
+	| "publicKey.wif"
+	| "wif.mnemonic.bip39"
+	| "wif.mnemonic.bip44"
+	| "wif.mnemonic.bip49"
+	| "wif.mnemonic.bip84"
+	| "wif.secret";
+export type IdentityMethods = IdentityMethod[];
+
+export type LedgerMethod = "getVersion" | "getPublicKey" | "signTransaction" | "signMessage";
+export type LedgerMethods = LedgerMethod[];
+
+export type LinkMethod = "block" | "transaction" | "wallet";
+export type LinkMethods = LinkMethod[];
+
+export type MessageMethod = "sign" | "verify";
+export type MessageMethods = MessageMethod[];
+
+export type TransactionMethod =
+	| "delegateRegistration.ledgerS"
+	| "delegateRegistration.ledgerX"
+	| "delegateRegistration.musig"
+	| "delegateRegistration"
+	| "delegateResignation.ledgerS"
+	| "delegateResignation.ledgerX"
+	| "delegateResignation.musig"
+	| "delegateResignation"
+	| "htlcClaim.ledgerS"
+	| "htlcClaim.ledgerX"
+	| "htlcClaim.musig"
+	| "htlcClaim"
+	| "htlcLock.ledgerS"
+	| "htlcLock.ledgerX"
+	| "htlcLock.musig"
+	| "htlcLock"
+	| "htlcRefund.ledgerS"
+	| "htlcRefund.ledgerX"
+	| "htlcRefund.musig"
+	| "htlcRefund"
+	| "ipfs.ledgerS"
+	| "ipfs.ledgerX"
+	| "ipfs.musig"
+	| "ipfs"
+	| "multiPayment.ledgerS"
+	| "multiPayment.ledgerX"
+	| "multiPayment.musig"
+	| "multiPayment"
+	| "multiSignature.ledgerS"
+	| "multiSignature.ledgerX"
+	| "multiSignature.musig"
+	| "multiSignature"
+	| "secondSignature.ledgerS"
+	| "secondSignature.ledgerX"
+	| "secondSignature.musig"
+	| "secondSignature"
+	| "transfer.ledgerS"
+	| "transfer.ledgerX"
+	| "transfer.musig"
+	| "transfer"
+	| "vote.ledgerS"
+	| "vote.ledgerX"
+	| "vote.musig"
+	| "vote";
+export type TransactionMethods = TransactionMethod[];

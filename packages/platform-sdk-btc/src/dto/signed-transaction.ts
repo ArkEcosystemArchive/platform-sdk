@@ -1,4 +1,5 @@
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class SignedTransactionData
@@ -18,6 +19,10 @@ export class SignedTransactionData
 
 	public fee(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, "fee");
+	}
+
+	public timestamp(): DateTime {
+		throw new Exceptions.NotImplemented(this.constructor.name, this.timestamp.name);
 	}
 
 	public isMultiSignature(): boolean {

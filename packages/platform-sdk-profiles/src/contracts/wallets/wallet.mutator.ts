@@ -36,7 +36,10 @@ export interface IWalletMutator {
 	 * @return {Promise<void>}
 	 * @memberof void
 	 */
-	address(address: string, options?: { syncIdentity: boolean; validate: boolean }): Promise<void>;
+	address(
+		address: Contracts.AddressDataTransferObject,
+		options?: { syncIdentity: boolean; validate: boolean },
+	): Promise<void>;
 
 	/**
 	 * Set the extended public key and optionally synchronise the wallet.

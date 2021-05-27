@@ -1,5 +1,5 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { Account, Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -14,7 +14,7 @@ export class TransactionService implements Contracts.TransactionService {
 	public constructor(config: Coins.Config) {
 		this.#config = config;
 		this.#client = new Connection(this.host());
-		this.#slip44 = config.get<number>("network.crypto.slip44");
+		this.#slip44 = config.get<number>("network.constants.slip44");
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
@@ -56,6 +56,7 @@ export class TransactionService implements Contracts.TransactionService {
 				from: input.signatory.address(),
 				to: input.data.to,
 				amount: input.data.amount,
+				timestamp: DateTime.make(),
 			},
 			signedTransaction.toString("hex"),
 		);
@@ -149,6 +150,6 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	private host(): string {
-		return `${Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"))}/api`;
+		return `${Helpers.randomHostFromConfig(this.#config, "full").host}/api`;
 	}
 }

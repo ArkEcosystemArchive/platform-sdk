@@ -2,56 +2,73 @@ import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { createWallet, deriveWallet } from "./utils";
 
-export class Address implements Contracts.Address {
+export class AddressService implements Contracts.AddressService {
 	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
 		this.#config = config;
 	}
 
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return deriveWallet(
-				mnemonic,
-				this.#config.get<number>("network.crypto.slip44"),
-				options?.bip44?.account || 0,
-				options?.bip44?.change || 0,
-				options?.bip44?.addressIndex || 0,
-			).address;
+			return {
+				address: deriveWallet(
+					mnemonic,
+					this.#config.get<number>("network.constants.slip44"),
+					options?.bip44?.account || 0,
+					options?.bip44?.change || 0,
+					options?.bip44?.addressIndex || 0,
+				).address,
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromPublicKey(
+		publicKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return createWallet(publicKey).address;
+			return {
+				address: createWallet(publicKey).address,
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromPrivateKey(
+		privateKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return createWallet(privateKey).address;
+			return {
+				address: createWallet(privateKey).address,
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<string> {
+	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return createWallet(wif).address;
+			return {
+				address: createWallet(wif).address,
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 

@@ -14,7 +14,7 @@ export class TransactionService implements Contracts.TransactionService {
 	private constructor(opts: Contracts.KeyValuePair) {
 		this.#client = opts.client;
 		this.#identity = opts.identity;
-		this.#networkId = opts.network.crypto.networkId;
+		this.#networkId = opts.network.meta.networkId;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
@@ -38,8 +38,10 @@ export class TransactionService implements Contracts.TransactionService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const senderAddress: string = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
-			const keyPair = await this.#identity.keys().fromMnemonic(input.signatory.signingKey());
+			const { address: senderAddress } = await this.#identity
+				.address()
+				.fromMnemonic(input.signatory.signingKey());
+			const keyPair = await this.#identity.keyPair().fromMnemonic(input.signatory.signingKey());
 
 			const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
 

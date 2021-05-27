@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
@@ -38,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			config,
-			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			peer: Helpers.randomHostFromConfig(config, "full").host,
 		});
 	}
 
@@ -56,7 +55,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const address: string = query.senderId || query.recipientId || query.address || query.addresses![0];
 		const payload: Record<string, boolean | number> = {
 			limit: query.limit || 15,
 		};
@@ -70,7 +68,7 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		const response: any = (
-			await this.#client.get(`${this.#peer}/v1/accounts/${address}/transactions`, payload)
+			await this.#client.get(`${this.#peer}/v1/accounts/${Helpers.pluckAddress(query)}/transactions`, payload)
 		).json();
 
 		return Helpers.createTransactionDataCollectionWithType(
@@ -111,10 +109,6 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
-	public async syncing(): Promise<boolean> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
-	}
-
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
@@ -150,6 +144,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private getHost(): string {
-		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
+		return Helpers.randomHostFromConfig(this.#config, "full").host;
 	}
 }

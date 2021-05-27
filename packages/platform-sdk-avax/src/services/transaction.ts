@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Hash } from "@arkecosystem/platform-sdk-crypto";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/utils";
 import { BN, Buffer } from "avalanche";
 import { AVMAPI } from "avalanche/dist/apis/avm";
@@ -49,7 +50,7 @@ export class TransactionService implements Contracts.TransactionService {
 				await this.#xchain.buildBaseTx(
 					utxos,
 					new BN(input.data.amount),
-					this.#config.get(Coins.ConfigKey.CryptoAssetId),
+					this.#config.get("network.meta.assetId"),
 					[input.data.to],
 					keyPairAddresses,
 					keyPairAddresses,
@@ -65,6 +66,7 @@ export class TransactionService implements Contracts.TransactionService {
 					recipient: input.data.to,
 					amount: input.data.amount,
 					fee: BigNumber.make(0.001).times(1e8),
+					timestamp: DateTime.make(),
 				},
 				signedTx.toString(),
 			);

@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
@@ -31,13 +30,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const address: string | undefined = query.addresses ? query.addresses[0] : query.address;
-
-		if (address === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transactions", "address");
-		}
-
-		const { data } = await this.get(`address/${address}/transactions`);
+		const { data } = await this.get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
 		return Helpers.createTransactionDataCollectionWithType(
 			data.transactions,
@@ -77,10 +70,6 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
-	public async syncing(): Promise<boolean> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
-	}
-
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
@@ -114,6 +103,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private host(): string {
-		return Arr.randomElement(this.#config.get<string[]>("network.networking.hosts"));
+		return Helpers.randomHostFromConfig(this.#config, "full").host;
 	}
 }

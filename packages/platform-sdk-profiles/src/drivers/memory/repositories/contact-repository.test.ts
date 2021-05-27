@@ -12,7 +12,7 @@ import { ContactRepository } from "./contact-repository";
 let subject: ContactRepository;
 
 const name = "John Doe";
-const addr = { name: "JDB", coin: "ARK", network: "ark.devnet", address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" };
+const addr = { coin: "ARK", network: "ark.devnet", address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" };
 
 beforeAll(() => bootContainer());
 
@@ -100,7 +100,6 @@ test("#update with addresses", async () => {
 			{
 				coin: "ARK",
 				network: "ark.devnet",
-				name: "John Doe",
 				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			},
 		],

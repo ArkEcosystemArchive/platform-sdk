@@ -26,11 +26,11 @@ export abstract class AbstractDoubleSignatory {
 	}
 
 	public signingKey(): string {
-		return this.#signingKey;
+		return this.#signingKey.normalize("NFD");
 	}
 
 	public confirmKey(): string {
-		return this.#confirmKey;
+		return this.#confirmKey.normalize("NFD");
 	}
 
 	public address(): string {

@@ -3,31 +3,38 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
 
-export class WIF implements Contracts.WIF {
+export class WIFService implements Contracts.WIFService {
 	readonly #configCrypto: CryptoConfig;
 
 	public constructor(configCrypto: CryptoConfig) {
 		this.#configCrypto = configCrypto;
 	}
 
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.WIFDataTransferObject> {
 		try {
-			return BaseWIF.fromPassphrase(mnemonic, this.#configCrypto);
+			return {
+				wif: BaseWIF.fromPassphrase(mnemonic, this.#configCrypto),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<string> {
+	public async fromPrivateKey(privateKey: string): Promise<Contracts.WIFDataTransferObject> {
 		try {
-			// @ts-ignore - We don't care about having a public key for this
-			return BaseWIF.fromKeys({ privateKey, compressed: true }, this.#configCrypto);
+			return {
+				// @ts-ignore - We don't care about having a public key for this
+				wif: BaseWIF.fromKeys({ privateKey, compressed: true }, this.#configCrypto),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.WIFDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

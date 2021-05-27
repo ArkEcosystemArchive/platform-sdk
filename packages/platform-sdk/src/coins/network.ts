@@ -1,6 +1,14 @@
 import { get } from "dot-prop";
 
-import { CoinManifest, ExpirationType, NetworkManifest } from "./network.models";
+import { randomHost } from "../helpers";
+import {
+	CoinManifest,
+	ExpirationType,
+	FeeType,
+	NetworkManifest,
+	NetworkManifestImportMethods,
+	NetworkManifestToken,
+} from "./network.models";
 
 export class Network {
 	/**
@@ -61,7 +69,7 @@ export class Network {
 	 * Get the explorer URL of the coin that is used.
 	 */
 	public explorer(): string {
-		return this.#network.explorer;
+		return randomHost(this.#network.hosts, "explorer").host;
 	}
 
 	/**
@@ -96,42 +104,42 @@ export class Network {
 	 * Get the expiration method type.
 	 */
 	public expirationType(): ExpirationType {
-		return this.#network.crypto.expirationType;
+		return this.#network.transactions.expirationType;
 	}
 
 	/**
 	 * Determine if voting is supported on this network.
 	 */
 	public allowsVoting(): boolean {
-		return get(this.#network, "governance.voting.enabled", false);
+		return get(this.#network, "governance") !== undefined;
 	}
 
 	/**
 	 * Get the number of delegates that forge blocks.
 	 */
 	public delegateCount(): number {
-		return get(this.#network, "governance.voting.delegateCount", 0);
+		return get(this.#network, "governance.delegateCount", 0);
 	}
 
 	/**
 	 * Get the maximum number of votes per wallet.
 	 */
 	public maximumVotesPerWallet(): number {
-		return get(this.#network, "governance.voting.maximumPerWallet", 0);
+		return get(this.#network, "governance.votesPerWallet", 0);
 	}
 
 	/**
 	 * Get the maximum number of votes per transaction.
 	 */
 	public maximumVotesPerTransaction(): number {
-		return get(this.#network, "governance.voting.maximumPerTransaction", 0);
+		return get(this.#network, "governance.votesPerTransaction", 0);
 	}
 
 	/**
 	 * Determine if the network uses an extended public key for derivation.
 	 */
 	public usesExtendedPublicKey(): boolean {
-		return get(this.#network, "crypto.derivation.extendedPublicKey") === true;
+		return get(this.#network, "meta.extendedPublicKey") === true;
 	}
 
 	/**
@@ -140,7 +148,15 @@ export class Network {
 	 * @param feature
 	 */
 	public allows(feature: string): boolean {
-		return get(this.#network.featureFlags, feature) === true;
+		const [root, ...child] = feature.split(".");
+
+		const features = get<string[]>(this.#network.featureFlags, root);
+
+		if (Array.isArray(features)) {
+			return features.includes(child.join("."));
+		}
+
+		return false;
 	}
 
 	/**
@@ -200,6 +216,66 @@ export class Network {
 	 */
 	public chargesZeroFees(): boolean {
 		return get(this.#network, "fees.type") === "free";
+	}
+
+	/**
+	 * Returns the available import methods for the network.
+	 *
+	 * @return {*}  {NetworkManifestImportMethods}
+	 * @memberof Network
+	 */
+	public importMethods(): NetworkManifestImportMethods {
+		return this.#network.importMethods;
+	}
+
+	/**
+	 * Returns the meta data of the network.
+	 *
+	 * @return {*}  {Record<string, any>}
+	 * @memberof Network
+	 */
+	public meta(): Record<string, any> {
+		return get(this.#network, "meta", {});
+	}
+
+	/**
+	 * Returns the type of fee that is used for transactions.
+	 *
+	 * @return {*}  {FeeType}
+	 * @memberof Network
+	 */
+	public feeType(): FeeType {
+		return this.#network.transactions.fees.type;
+	}
+
+	/**
+	 * Determine sif the network uses memos to store additional data.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public usesMemo(): boolean {
+		return get(this.#network, "transactions.memo", false);
+	}
+
+	/**
+	 * Determines if the network uses UTXO.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof Network
+	 */
+	public usesUTXO(): boolean {
+		return get(this.#network, "transactions.utxo", false);
+	}
+
+	/**
+	 * Returns the list of available tokens, like ERC20 or TRC20.
+	 *
+	 * @return {*}  {NetworkManifestToken[]}
+	 * @memberof Network
+	 */
+	public tokens(): NetworkManifestToken[] {
+		return get(this.#network, "tokens", []);
 	}
 
 	/**

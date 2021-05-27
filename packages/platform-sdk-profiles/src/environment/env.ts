@@ -41,7 +41,7 @@ export class Environment {
 		const { error, value } = Joi.object({
 			data: Joi.object().required(),
 			profiles: Joi.object().pattern(Joi.string().uuid(), Joi.object()).required(),
-		}).validate({ data, profiles });
+		}).validate({ data, profiles }, { stripUnknown: true, allowUnknown: true });
 
 		if (error) {
 			throw new Error(`Terminating due to corrupted state: ${error}`);

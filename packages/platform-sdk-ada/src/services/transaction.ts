@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { SignedTransactionData } from "../dto";
@@ -27,10 +28,14 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit } = this.#config.get<Contracts.KeyValuePair>(
-			"network.meta",
-		);
-		const networkId = this.#config.get<string>(Coins.ConfigKey.CryptoNetworkId);
+		const {
+			minFeeA,
+			minFeeB,
+			minUTxOValue,
+			poolDeposit,
+			keyDeposit,
+			networkId,
+		} = this.#config.get<Contracts.KeyValuePair>("network.meta");
 
 		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
@@ -127,6 +132,7 @@ export class TransactionService implements Contracts.TransactionService {
 				recipient: input.data.to,
 				amount: input.data.amount,
 				fee: txBody.fee().to_str(),
+				timestamp: DateTime.make(),
 			},
 			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
 		);

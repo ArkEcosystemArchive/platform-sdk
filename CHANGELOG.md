@@ -5,6 +5,70 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.1.29 - 2021-05-27
+
+### Added
+
+- **[SDK]** Include tokens in network manifest (c54fd892, @faustbrian)
+- **[SDK]** Add `timestamp` method to `SignedTransactionData` (da89a0c2, @axeldelamarre)
+- **[SUPPORT]** Add `BigNumber#sum` method (fc11ab72, @axeldelamarre)
+
+### Changed
+
+- **[SDK]** Normalise signing and confirmation keys (02975ba2, @faustbrian)
+- **[BTC-INDEXER]** More meaningful variable names (34307470, @marianogoldman)
+- **[SDK]** Introduce `AbstractIdentityService` (cdfa3258, @faustbrian)
+
+## 8.1.23 - 2021-05-26
+
+### Changed
+
+- **[PROFILES]** Return DTO instances from identity services (0eae2422, @faustbrian)
+- **[PROFILES]** Store derivation path if available (10bf552a, @faustbrian)
+
+## 8.1.9 - 2021-05-24
+
+### Changed
+
+- **[PROFILES]** Remove `IContactAddress#name` (928297f2, @dated)
+- **[SDK]** Further DRY the `LinkService` (d136f27f, @faustbrian)
+- **[PROFILES]** Mark mnemonic wallets with specific import type (363fe3dc, @faustbrian)
+
+### Fixed
+
+- **[PROFILES]** Expose import methods for network (00467917, @faustbrian)
+
+## 8.1.5 - 2021-05-24
+
+### Changed
+
+- **[SDK]** Streamline `LinkService` implementation (c76f76c5, @faustbrian)
+
+### Fixed
+
+- **[PROFILES]** Update wallet wif jsdoc (b40a6431, @alesmit)
+- **[SDK]** Match coin transaction enums with `TransactionMethod` type (789c73a8, @goga-m)
+- **[ARK]** Use ARK as coin name for devnet (e674b7be, @faustbrian)
+
+## 8.1.1 - 2021-05-24
+
+### Fixed
+
+- **[EGLD]** Pick any of the given addresses for wallet details (7f7a97da, @faustbrian)
+
+## 8.1.0 - 2021-05-24
+
+### Changed
+
+- **[PROFILES]** Implement `IProfile#hasAcceptedManualInstallationDisclaimer` (469bb506, @dated)
+- **[SDK]** Streamline manifest structure (a1ae0eaf, @faustbrian)
+- **[SDK]** Remove `PeerService` (e0233d4f, @faustbrian)
+
+### Fixed
+
+- **[XLM]** Proper way to fetch payments (c67d71c4, @marianogoldman)
+- **[XLM]** Respect BIP44 account index option (32f63428, @faustbrian)
+
 ## 8.0.2 - 2021-05-20
 
 ### Changed

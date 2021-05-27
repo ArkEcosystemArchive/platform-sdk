@@ -1,61 +1,32 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "trx.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "TRON",
-	explorer: "https://tronscan.org/#",
 	currency: {
 		ticker: "TRX",
 		symbol: "TRX",
 	},
-	fees: {
-		type: "free",
-		ticker: "TRX",
-	},
-	crypto: {
+	constants: {
 		slip44: 195,
-		signingMethods: {
-			mnemonic: true,
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://api.trongrid.io"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
+	hosts: [
+		{
+			type: "full",
+			host: "https://api.trongrid.io",
 		},
-	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			wallet: true,
+		{
+			type: "explorer",
+			host: "https://tronscan.org/#",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
-	transactionTypes: ["transfer"],
+	],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

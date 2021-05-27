@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { AbstractSignedTransactionData } from "./signed-transaction";
@@ -38,6 +39,10 @@ test("#fee", () => {
 	expect(new Transaction("id", { key: "value" }, "").fee()).toBe(BigNumber.ZERO);
 });
 
+test("#timestamp", () => {
+	expect(new Transaction("id", { key: "value" }, "").timestamp()).toEqual(DateTime.make(0));
+});
+
 test("#get", () => {
 	expect(new Transaction("id", { key: "value" }, "").get("key")).toBe("value");
 });
@@ -61,6 +66,7 @@ test("#toObject", () => {
 		  "id": "id",
 		  "recipient": "recipient",
 		  "sender": "sender",
+		  "timestamp": "1970-01-01T00:00:00.000Z",
 		}
 	`);
 });
@@ -84,5 +90,9 @@ class Transaction extends AbstractSignedTransactionData {
 
 	public fee(): BigNumber {
 		return BigNumber.ZERO;
+	}
+
+	public timestamp(): DateTime {
+		return DateTime.make(0);
 	}
 }

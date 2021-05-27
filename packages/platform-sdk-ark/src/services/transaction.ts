@@ -25,7 +25,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		const { crypto, peer, status }: any = config.get(Coins.ConfigKey.NetworkConfiguration);
+		const { crypto, peer, status }: any = config.get("NETWORK_CONFIGURATION");
 
 		return new TransactionService({
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
@@ -188,14 +188,14 @@ export class TransactionService implements Contracts.TransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		applyCryptoConfiguration(this.#configCrypto);
 
-		let keys: Contracts.KeyPair | undefined;
+		let keys: Contracts.KeyPairDataTransferObject | undefined;
 
 		if (input.signatory.actsWithMnemonic()) {
-			keys = await this.#identity.keys().fromMnemonic(input.signatory.signingKey());
+			keys = await this.#identity.keyPair().fromMnemonic(input.signatory.signingKey());
 		}
 
 		if (input.signatory.actsWithWif()) {
-			keys = await this.#identity.keys().fromWIF(input.signatory.signingKey());
+			keys = await this.#identity.keyPair().fromWIF(input.signatory.signingKey());
 		}
 
 		if (!keys) {
@@ -204,7 +204,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 		const transactionWithSignature = this.#multiSignatureSigner.addSignature(transaction, {
 			publicKey: keys.publicKey,
-			privateKey: keys.privateKey!,
+			privateKey: keys.privateKey,
 			compressed: true,
 		});
 
@@ -236,11 +236,11 @@ export class TransactionService implements Contracts.TransactionService {
 			let address: string | undefined;
 
 			if (input.signatory.actsWithMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
-				address = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
+				address = (await this.#identity.address().fromMnemonic(input.signatory.signingKey())).address;
 			}
 
 			if (input.signatory.actsWithWif()) {
-				address = await this.#identity.address().fromWIF(input.signatory.signingKey());
+				address = (await this.#identity.address().fromWIF(input.signatory.signingKey())).address;
 			}
 
 			const transaction = Transactions.BuilderFactory[type]().version(2);
@@ -252,7 +252,7 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			if (input.signatory.actsWithSignature()) {
-				address = await this.#identity.address().fromPublicKey(input.signatory.publicKey());
+				address = (await this.#identity.address().fromPublicKey(input.signatory.publicKey())).address;
 
 				transaction.senderPublicKey(input.signatory.publicKey());
 			}
@@ -314,12 +314,15 @@ export class TransactionService implements Contracts.TransactionService {
 			if (actsWithMultiMnemonic && Array.isArray(input.signatory.signingKeys())) {
 				const signingKeys: string[] = input.signatory.signingKeys();
 
-				const senderPublicKeys: string[] = await Promise.all(
-					signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
-				);
+				const senderPublicKeys: string[] = (
+					await Promise.all(
+						signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
+					)
+				).map(({ publicKey }) => publicKey);
 
 				transaction.senderPublicKey(
-					await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys),
+					(await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys))
+						.publicKey,
 				);
 
 				for (let i = 0; i < signingKeys.length; i++) {
@@ -333,6 +336,7 @@ export class TransactionService implements Contracts.TransactionService {
 				}
 
 				if (input.signatory.actsWithSecondaryMnemonic()) {
+					transaction.sign(input.signatory.signingKey());
 					transaction.secondSign(input.signatory.confirmKey());
 				}
 
@@ -341,6 +345,7 @@ export class TransactionService implements Contracts.TransactionService {
 				}
 
 				if (input.signatory.actsWithSecondaryWif()) {
+					transaction.signWithWif(input.signatory.signingKey());
 					transaction.secondSignWithWif(input.signatory.confirmKey());
 				}
 			}

@@ -12,6 +12,7 @@ export class ProfileValidator implements IProfileValidator {
 	 * @memberof Profile
 	 */
 	public validate(data: IProfileData): IProfileData {
+		// @TODO: adjust schemas for manifest changes
 		const { error, value } = Joi.object({
 			id: Joi.string().required(),
 			contacts: Joi.object().pattern(
@@ -24,7 +25,6 @@ export class ProfileValidator implements IProfileValidator {
 							id: Joi.string().required(),
 							coin: Joi.string().required(),
 							network: Joi.string().required(),
-							name: Joi.string().required(),
 							address: Joi.string().required(),
 						}),
 					),
@@ -47,23 +47,13 @@ export class ProfileValidator implements IProfileValidator {
 					id: Joi.string().required(),
 					coin: Joi.string().required(),
 					network: Joi.string().required(),
-					networkConfig: Joi.object({
-						crypto: Joi.object({
-							slip44: Joi.number().integer().required(),
-						}).required(),
-						networking: Joi.object({
-							hosts: Joi.array().items(Joi.string()).required(),
-							hostsMultiSignature: Joi.array().items(Joi.string()),
-							hostsArchival: Joi.array().items(Joi.string()),
-						}).required(),
-					}),
 					address: Joi.string().required(),
 					publicKey: Joi.string(),
 					data: Joi.object().required(),
 					settings: Joi.object().required(),
 				}),
 			),
-		}).validate(data);
+		}).validate(data, { stripUnknown: true, allowUnknown: true });
 
 		if (error !== undefined) {
 			throw error;

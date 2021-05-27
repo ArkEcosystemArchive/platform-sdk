@@ -1,74 +1,40 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "nano.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "Nano",
-	explorer: "https://nanocrawler.cc",
 	currency: {
 		ticker: "NANO",
 		symbol: "NANO",
 	},
-	fees: {
-		type: "free",
-		ticker: "NANO",
-	},
-	crypto: {
+	constants: {
 		slip44: 165,
-		expirationType: "height",
-	},
-	networking: {
-		hosts: ["https://proxy.nanos.cc/proxy"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
-	},
-	featureFlags: {
 		Client: {
 			transaction: true,
 			wallet: true,
 			broadcast: true,
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				publicKey: true,
-				privateKey: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-			},
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
+	},
+	hosts: [
+		{
+			type: "full",
+			host: "https://proxy.nanos.cc/proxy",
 		},
 		Transaction: {
 			transfer: { default: true },
 		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
+		{
+			type: "explorer",
+			host: "https://nanocrawler.cc",
 		},
-	},
-	transactionTypes: [],
+	],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

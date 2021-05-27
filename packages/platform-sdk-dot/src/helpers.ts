@@ -1,10 +1,9 @@
-import { Coins } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Helpers } from "@arkecosystem/platform-sdk";
 import { ApiPromise } from "@polkadot/api";
 import { HttpProvider } from "@polkadot/rpc-provider";
 
 export const createRpcClient = async (config: Coins.Config): Promise<ApiPromise> => {
-	const provider = new HttpProvider(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+	const provider = new HttpProvider(Helpers.randomHostFromConfig(config, "full").host);
 
 	const api = await ApiPromise.create({ provider });
 	await api.isReady;

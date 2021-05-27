@@ -1,30 +1,28 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr, BigNumber } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
-import { Address } from "./identity/address";
-import { PrivateKey } from "./identity/private-key";
+import { AddressService } from "./identity/address";
+import { PrivateKeyService } from "./identity/private-key";
 
 export class TransactionService implements Contracts.TransactionService {
-	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
-	readonly #address: Address;
-	readonly #privateKey: PrivateKey;
+	readonly #address: AddressService;
+	readonly #privateKey: PrivateKeyService;
 
 	private constructor({ config, peer }) {
-		this.#config = config;
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
-		this.#address = new Address(config);
-		this.#privateKey = new PrivateKey(config);
+		this.#address = new AddressService(config);
+		this.#privateKey = new PrivateKeyService(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			config,
-			peer: Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			peer: Helpers.randomHostFromConfig(config, "full").host,
 		});
 	}
 
@@ -41,7 +39,7 @@ export class TransactionService implements Contracts.TransactionService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const senderAddress: string = await this.#address.fromMnemonic(input.signatory.signingKey());
+			const { address: senderAddress } = await this.#address.fromMnemonic(input.signatory.signingKey());
 
 			if (senderAddress === input.data.to) {
 				throw new Exceptions.InvalidRecipientException("Cannot transfer TRX to the same account.");
@@ -64,7 +62,7 @@ export class TransactionService implements Contracts.TransactionService {
 
 			const response = await this.#connection.trx.sign(
 				transaction,
-				await this.#privateKey.fromMnemonic(input.signatory.signingKey()),
+				(await this.#privateKey.fromMnemonic(input.signatory.signingKey())).privateKey,
 			);
 
 			return new SignedTransactionData(response.txID, response, response);

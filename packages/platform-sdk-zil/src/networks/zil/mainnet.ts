@@ -1,64 +1,32 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "zil.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "Zilliqa",
-	explorer: "https://viewblock.io/zilliqa",
 	currency: {
 		ticker: "ZIL",
 		symbol: "ZIL",
 	},
-	fees: {
-		type: "gas",
-		ticker: "ZIL",
-	},
-	crypto: {
+	constants: {
 		slip44: 313,
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://api.zilliqa.com"],
-	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			wallet: true,
-			broadcast: true,
+	hosts: [
+		{
+			type: "full",
+			host: "https://api.zilliqa.com",
 		},
-		Identity: {
-			address: {
-				mnemonic: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-			},
+		{
+			type: "explorer",
+			host: "https://viewblock.io/zilliqa",
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
-	transactionTypes: ["transfer"],
+	],
+	transactions,
+	importMethods,
+	featureFlags,
 };
 
 export default network;

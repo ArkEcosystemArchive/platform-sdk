@@ -33,8 +33,6 @@ export interface ClientService {
 	// TODO: return struct like VoteReport
 	voters(id: string, query?: KeyValuePair): Promise<WalletDataCollection>;
 
-	syncing(): Promise<boolean>;
-
 	broadcast(transactions: SignedTransactionData[]): Promise<BroadcastResponse>;
 }
 

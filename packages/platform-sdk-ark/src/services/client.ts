@@ -3,7 +3,6 @@ import dotify from "node-dotify";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { getPeerFromConfig } from "../helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -98,12 +97,6 @@ export class ClientService implements Contracts.ClientService {
 		);
 	}
 
-	public async syncing(): Promise<boolean> {
-		const body = await this.get("node/syncing");
-
-		return body.data.syncing;
-	}
-
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		let response: Contracts.KeyValuePair;
 
@@ -123,11 +116,22 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.host()}/${path}`, query?.searchParams)).json();
+		return (
+			await this.#http.get(
+				`${Helpers.randomHostFromConfig(this.#config, "full").host}/${path}`,
+				query?.searchParams,
+			)
+		).json();
 	}
 
 	private async post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.post(`${this.host()}/${path}`, body, searchParams || undefined)).json();
+		return (
+			await this.#http.post(
+				`${Helpers.randomHostFromConfig(this.#config, "full").host}/${path}`,
+				body,
+				searchParams || undefined,
+			)
+		).json();
 	}
 
 	private createMetaPagination(body): Contracts.MetaPagination {
@@ -238,9 +242,5 @@ export class ClientService implements Contracts.ClientService {
 
 	private isUpcoming(): boolean {
 		return this.#network === "ark.devnet";
-	}
-
-	private host(): string {
-		return getPeerFromConfig(this.#config);
 	}
 }

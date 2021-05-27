@@ -3,17 +3,17 @@ import "jest-extended";
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/config";
 import { getZilliqa } from "../../zilliqa";
-import { Address } from "./address";
+import { AddressService } from "./address";
 
-let subject: Address;
+let subject: AddressService;
 
-beforeEach(async () => (subject = new Address(getZilliqa(createConfig()).wallet)));
+beforeEach(async () => (subject = new AddressService(getZilliqa(createConfig()).wallet)));
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toBe(identity.address);
+		expect(result).toEqual({ address: identity.bech32Address });
 	});
 
 	it("should fail to generate an output from a multiSignature", async () => {
@@ -25,7 +25,7 @@ describe("Address", () => {
 	it("should generate an output from a privateKey", async () => {
 		const result = await subject.fromPrivateKey(identity.privateKey);
 
-		expect(result).toBe(identity.address);
+		expect(result).toEqual({ address: identity.bech32Address });
 	});
 
 	it("should fail to generate an output from a publicKey", async () => {

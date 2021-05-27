@@ -4,28 +4,43 @@ import { tools } from "nanocurrency-web";
 
 import { deriveAccount } from "./helpers";
 
-export class Address implements Contracts.Address {
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return deriveAccount(mnemonic, options?.bip44?.account).address;
+export class AddressService implements Contracts.AddressService {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
+		return {
+			address: deriveAccount(mnemonic, options?.bip44?.account).address,
+		};
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return nanocurrency.deriveAddress(publicKey);
+	public async fromPublicKey(
+		publicKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
+		return {
+			address: nanocurrency.deriveAddress(publicKey),
+		};
 	}
 
-	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
-		return nanocurrency.deriveAddress(nanocurrency.derivePublicKey(privateKey));
+	public async fromPrivateKey(
+		privateKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
+		return {
+			address: nanocurrency.deriveAddress(nanocurrency.derivePublicKey(privateKey)),
+		};
 	}
 
-	public async fromWIF(wif: string): Promise<string> {
+	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 

@@ -1,58 +1,75 @@
 import { Address as BaseAddress, Keys } from "@arkecosystem/crypto-identities";
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
 
-export class Address implements Contracts.Address {
-	readonly #config: Coins.Config;
+export class AddressService implements Contracts.AddressService {
 	readonly #configCrypto: CryptoConfig;
 
-	public constructor(config: Coins.Config, configCrypto: CryptoConfig) {
-		this.#config = config;
+	public constructor(configCrypto: CryptoConfig) {
 		this.#configCrypto = configCrypto;
 	}
 
-	public async fromMnemonic(mnemonic: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromMnemonic(
+		mnemonic: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return BaseAddress.fromPassphrase(mnemonic, this.#configCrypto);
+			return {
+				address: BaseAddress.fromPassphrase(mnemonic, this.#configCrypto),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<string> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return BaseAddress.fromMultiSignatureAsset({ min, publicKeys }, this.#configCrypto);
+			return {
+				address: BaseAddress.fromMultiSignatureAsset({ min, publicKeys }, this.#configCrypto),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromPublicKey(publicKey: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromPublicKey(
+		publicKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return BaseAddress.fromPublicKey(publicKey, this.#configCrypto);
+			return {
+				address: BaseAddress.fromPublicKey(publicKey, this.#configCrypto),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string, options?: Contracts.IdentityOptions): Promise<string> {
+	public async fromPrivateKey(
+		privateKey: string,
+		options?: Contracts.IdentityOptions,
+	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return BaseAddress.fromPrivateKey(Keys.fromPrivateKey(privateKey), this.#configCrypto);
+			return {
+				address: BaseAddress.fromPrivateKey(Keys.fromPrivateKey(privateKey), this.#configCrypto),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<string> {
+	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return BaseAddress.fromWIF(wif, this.#configCrypto);
+			return {
+				address: BaseAddress.fromWIF(wif, this.#configCrypto),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	public async fromSecret(secret: string): Promise<string> {
+	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
 		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 

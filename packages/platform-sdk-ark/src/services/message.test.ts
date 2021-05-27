@@ -12,7 +12,7 @@ beforeEach(
 	async () =>
 		(subject = await MessageService.__construct(
 			createConfig(undefined, {
-				networkConfiguration: {
+				NETWORK_CONFIGURATION: {
 					crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
 					status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
 				},

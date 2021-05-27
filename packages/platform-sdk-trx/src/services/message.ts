@@ -1,5 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Buffer } from "buffer";
 import TronWeb from "tronweb";
 
@@ -19,7 +18,7 @@ export class MessageService implements Contracts.MessageService {
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService(
 			await IdentityService.__construct(config),
-			Arr.randomElement(config.get<string[]>("network.networking.hosts")),
+			Helpers.randomHostFromConfig(config, "full").host,
 		);
 	}
 
@@ -29,10 +28,10 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const keys: Contracts.KeyPair = await this.#identityService
-				.keys()
+			const keys: Contracts.KeyPairDataTransferObject = await this.#identityService
+				.keyPair()
 				.fromMnemonic(input.signatory.signingKey());
-			const address = await this.#identityService.address().fromMnemonic(input.signatory.signingKey());
+			const { address } = await this.#identityService.address().fromMnemonic(input.signatory.signingKey());
 
 			if (keys.privateKey === undefined) {
 				throw new Error("Failed to retrieve the private key for the signatory wallet.");

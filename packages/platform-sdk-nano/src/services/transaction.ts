@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
 import { block } from "nanocurrency-web";
 
@@ -46,9 +47,10 @@ export class TransactionService implements Contracts.TransactionService {
 			amountRaw: input.data.amount,
 			work: (await computeWork(frontier))!,
 		};
-
+		const signedData = { ...data, timestamp: DateTime.make() };
 		const broadcastData = block.send(data, privateKey);
-		return new SignedTransactionData(broadcastData.signature, data, broadcastData);
+		
+		return new SignedTransactionData(broadcastData.signature, signedData, broadcastData);
 	}
 
 	public async secondSignature(

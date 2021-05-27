@@ -1,10 +1,10 @@
-import CosmosMainnet from "./networks/cosmos/mainnet";
-import CosmosTestnet from "./networks/cosmos/testnet";
+import AtomMainnet from "./networks/atom/mainnet";
+import AtomTestnet from "./networks/atom/testnet";
 
 export const manifest = {
 	name: "ATOM",
 	networks: {
-		"cosmos.mainnet": CosmosMainnet,
-		"cosmos.testnet": CosmosTestnet,
+		"atom.mainnet": AtomMainnet,
+		"atom.testnet": AtomTestnet,
 	},
 };

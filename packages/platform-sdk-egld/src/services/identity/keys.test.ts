@@ -1,11 +1,11 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { Keys } from "./keys";
+import { KeyPairService } from "./keys";
 
-let subject: Keys;
+let subject: KeyPairService;
 
-beforeEach(async () => (subject = new Keys()));
+beforeEach(async () => (subject = new KeyPairService()));
 
 describe("Keys", () => {
 	it("should generate an output from a mnemonic", async () => {

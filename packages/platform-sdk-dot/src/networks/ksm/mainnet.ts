@@ -1,73 +1,43 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "ksm.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "Kusama",
-	explorer: "https://polkascan.io/kusama",
 	currency: {
 		ticker: "KSM",
 		symbol: "KSM",
 	},
-	fees: {
-		type: "weight",
-		ticker: "DOT",
+	constants: {
+		slip44: 434,
 	},
-	crypto: {
+	hosts: [
+		{
+			type: "full",
+			host: "https://kusama-rpc.polkadot.io/",
+		},
+		{
+			type: "explorer",
+			host: "https://polkascan.io/kusama",
+		},
+	],
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "weight",
+				ticker: "KSM",
+			},
+		},
+	},
+	importMethods,
+	featureFlags,
+	meta: {
 		networkId: "2",
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://kusama-rpc.polkadot.io/"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
-		},
-	},
-	featureFlags: {
-		Identity: {
-			address: {
-				mnemonic: true,
-				multiSignature: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-			},
-		},
-		Ledger: {
-			getVersion: true,
-			getPublicKey: true,
-			signTransaction: true,
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
-	},
-	transactionTypes: ["transfer"],
 };
 
 export default network;

@@ -79,7 +79,7 @@ export class LedgerService implements Contracts.LedgerService {
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Contracts.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
-		const slip44 = this.#config.get<number>("network.crypto.slip44");
+		const slip44 = this.#config.get<number>("network.constants.slip44");
 
 		const addressCache: Record<string, { address: string; publicKey: string }> = {};
 		let wallets: Contracts.WalletData[] = [];
@@ -96,7 +96,7 @@ export class LedgerService implements Contracts.LedgerService {
 				for (const accountIndex of createRange(page, pageSize)) {
 					const path: string = formatLedgerDerivationPath({ coinType: slip44, account: accountIndex });
 					const publicKey: string = await this.getPublicKey(path);
-					const address: string = await this.#identity.address().fromPublicKey(publicKey);
+					const { address } = await this.#identity.address().fromPublicKey(publicKey);
 
 					addresses.push(address);
 
@@ -131,7 +131,7 @@ export class LedgerService implements Contracts.LedgerService {
 						.derive(`m/0/${addressIndex}`)
 						.publicKey.toString("hex");
 
-					const address: string = await this.#identity.address().fromPublicKey(publicKey);
+					const { address } = await this.#identity.address().fromPublicKey(publicKey);
 
 					addresses.push(address);
 

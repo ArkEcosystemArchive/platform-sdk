@@ -207,6 +207,22 @@ it("should determine if the introductory tutorial has been completed", () => {
 	expect(subject.hasCompletedIntroductoryTutorial()).toBeTrue();
 });
 
+it("should mark the manual installation disclaimer as accepted", () => {
+	expect(subject.hasAcceptedManualInstallationDisclaimer()).toBeFalse();
+
+	subject.markManualInstallationDisclaimerAsAccepted();
+
+	expect(subject.hasAcceptedManualInstallationDisclaimer()).toBeTrue();
+});
+
+it("should determine if the manual installation disclaimer has been accepted", () => {
+	expect(subject.hasAcceptedManualInstallationDisclaimer()).toBeFalse();
+
+	subject.data().set(ProfileData.HasAcceptedManualInstallationDisclaimer, true);
+
+	expect(subject.hasAcceptedManualInstallationDisclaimer()).toBeTrue();
+});
+
 // it("should fail to encrypt a profile if the password is invalid", () => {
 // 	subject.auth().setPassword("password");
 

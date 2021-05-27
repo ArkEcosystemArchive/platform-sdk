@@ -1,6 +1,5 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
-import { Arr } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
@@ -91,10 +90,6 @@ export class ClientService implements Contracts.ClientService {
 		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
-	public async syncing(): Promise<boolean> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "syncing");
-	}
-
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		const result: Contracts.BroadcastResponse = {
 			accepted: [],
@@ -131,7 +126,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.post(Arr.randomElement(this.#config.get<string[]>("network.networking.hosts")), {
+			await this.#http.post(Helpers.randomHostFromConfig(this.#config, "full").host, {
 				jsonrpc: "2.0",
 				id: UUID.random(),
 				method,

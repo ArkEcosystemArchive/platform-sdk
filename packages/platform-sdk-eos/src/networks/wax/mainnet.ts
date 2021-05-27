@@ -1,67 +1,45 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "wax.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "WAX",
-	explorer: "https://wax.bloks.io/",
 	currency: {
 		ticker: "WAX",
 		symbol: "WAX",
 	},
-	fees: {
-		type: "free",
-		ticker: "WAX",
-	},
-	crypto: {
-		networkId: "1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4",
+	constants: {
 		slip44: 194,
 		bech32: "WAX",
-		signingMethods: {
-			privateKey: true,
-		},
-		expirationType: "height",
 	},
-	networking: {
-		hosts: ["https://wax.eosphere.io"],
-	},
-	governance: {
-		voting: {
-			enabled: false,
-			delegateCount: 0,
-			maximumPerWallet: 0,
-			maximumPerTransaction: 0,
+	hosts: [
+		{
+			type: "full",
+			host: "https://wax.eosphere.io",
 		},
-	},
-	featureFlags: {
-		Client: {
-			wallet: true,
-			broadcast: true,
+		{
+			type: "explorer",
+			host: "https://wax.bloks.io/",
 		},
-		Identity: {
-			publicKey: {
-				mnemonic: true,
+	],
+	transactions: {
+		...transactions,
+		...{
+			fees: {
+				type: "free",
+				ticker: "WAX",
 			},
 		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
 	},
-	transactionTypes: ["transfer"],
+	importMethods,
+	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4",
+	},
 };
 
 export default network;

@@ -43,7 +43,6 @@ export class WalletFactory implements IWalletFactory {
 	/** {@inheritDoc IWalletFactory.fromMnemonic} */
 	public async fromMnemonic({ coin, network, mnemonic, bip = 39 }: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Mnemonic);
 
 		await wallet.mutator().coin(coin, network);
 
@@ -54,11 +53,15 @@ export class WalletFactory implements IWalletFactory {
 		}
 
 		if (bip === 39 && this.allowsDeriveWithBIP39(wallet)) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP39);
+
 			await wallet.mutator().identity(mnemonic);
 		}
 
 		if (bip === 44 && this.allowsDeriveWithBIP44(wallet)) {
-			const publicKey: string = await wallet
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP44);
+
+			const { publicKey } = await wallet
 				.coin()
 				.identity()
 				.publicKey()
@@ -86,12 +89,16 @@ export class WalletFactory implements IWalletFactory {
 
 		/* istanbul ignore next */
 		if (bip === 49 && this.allowsDeriveWithBIP49(wallet)) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP49);
+
 			/* istanbul ignore next */
 			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#49");
 		}
 
 		/* istanbul ignore next */
 		if (bip === 84 && this.allowsDeriveWithBIP84(wallet)) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP84);
+
 			/* istanbul ignore next */
 			throw new Exceptions.NotImplemented(this.constructor.name, "fromMnemonic#84");
 		}
@@ -105,7 +112,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Address);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(address);
+		await wallet.mutator().address({ address });
 
 		return wallet;
 	}
@@ -159,7 +166,7 @@ export class WalletFactory implements IWalletFactory {
 		const wallet: IReadWriteWallet = await this.fromMnemonic({ coin, network, mnemonic });
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicWithEncryption);
 
-		const { compressed, privateKey } = decode(await wallet.coin().identity().wif().fromMnemonic(mnemonic));
+		const { compressed, privateKey } = decode((await wallet.coin().identity().wif().fromMnemonic(mnemonic)).wif);
 
 		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
@@ -201,22 +208,22 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	private allowsDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP39);
+		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip39);
 	}
 
 	private allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP44);
+		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip44);
 	}
 
 	/* istanbul ignore next */
 	private allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
-		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP49);
+		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip49);
 	}
 
 	/* istanbul ignore next */
 	private allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
-		return wallet.gate().allows(Coins.FeatureFlag.DerivationBIP84);
+		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip84);
 	}
 }

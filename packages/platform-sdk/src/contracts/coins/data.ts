@@ -246,6 +246,7 @@ export interface SignedTransactionData {
 	recipient(): string;
 	amount(): BigNumber;
 	fee(): BigNumber;
+	timestamp(): DateTime;
 
 	// MultiSignature
 	isMultiSignature(): boolean;

@@ -1,4 +1,5 @@
-import { TransactionDataCollection } from "./coins";
+import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Config, NetworkHost, NetworkHostType, TransactionDataCollection } from "./coins";
 import { MetaPagination, TransactionDataType } from "./contracts";
 
 export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
@@ -64,3 +65,36 @@ export const createTransactionDataCollectionWithType = (
 		transactions.map((transaction) => createTransactionDataWithType(transaction, classes)),
 		meta,
 	);
+
+export const filterHosts = (hosts: NetworkHost[], type: NetworkHostType): NetworkHost[] =>
+	hosts.filter((host: NetworkHost) => host.type === type);
+
+export const randomHost = (hosts: NetworkHost[], type: NetworkHostType): NetworkHost =>
+	Arr.randomElement(filterHosts(hosts, type));
+
+// DRY helpers for coin implementations
+export const filterHostsFromConfig = (config: Config, type: NetworkHostType): NetworkHost[] =>
+	filterHosts(config.get<NetworkHost[]>("network.hosts"), type);
+
+export const randomHostFromConfig = (config: Config, type: NetworkHostType): NetworkHost =>
+	randomHost(config.get<NetworkHost[]>("network.hosts"), type);
+
+export const pluckAddress = (query): string => {
+	if (query.senderId) {
+		return query.senderId;
+	}
+
+	if (query.recipientId) {
+		return query.recipientId;
+	}
+
+	if (query.address) {
+		return query.address;
+	}
+
+	if (Array.isArray(query.addresses) && query.addresses[0]) {
+		return query.addresses[0];
+	}
+
+	throw new Error("Failed to pluck any address.");
+};

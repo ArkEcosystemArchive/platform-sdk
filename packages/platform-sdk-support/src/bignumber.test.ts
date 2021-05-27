@@ -28,6 +28,10 @@ test("#times", () => {
 	expect(BigNumber.make(10).times(2).valueOf()).toBe("20");
 });
 
+test("#sum", () => {
+	expect(BigNumber.sum([BigNumber.ONE, 1, "2", 3.0, 5]).valueOf()).toBe("12");
+});
+
 test("#isNaN", () => {
 	expect(BigNumber.make(NaN).isNaN()).toBeTrue();
 	expect(subject.isNaN()).toBeFalse();

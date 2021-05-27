@@ -1,85 +1,41 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
+import { transactions, importMethods, featureFlags } from "../shared";
+
 const network: Coins.NetworkManifest = {
 	id: "lsk.testnet",
 	type: "test",
 	name: "Testnet",
 	coin: "Lisk",
-	explorer: "https://testnet-explorer.lisk.io/",
 	currency: {
 		ticker: "LSK",
 		symbol: "LSK",
 	},
-	fees: {
-		type: "static",
-		ticker: "LSK",
-	},
-	crypto: {
-		networkId: "da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba",
+	constants: {
 		slip44: 134,
-		signingMethods: {
-			mnemonic: true,
+	},
+	hosts: [
+		{
+			type: "full",
+			host: "https://testnet.lisk.io",
 		},
-		expirationType: "height",
-	},
-	networking: {
-		hosts: ["https://testnet.lisk.io"],
-	},
+		{
+			type: "explorer",
+			host: "https://testnet-explorer.lisk.io/",
+		},
+	],
 	governance: {
-		voting: {
-			enabled: true,
-			delegateCount: 101,
-			maximumPerWallet: 101,
-			maximumPerTransaction: 33,
-		},
+		delegateCount: 101,
+		votesPerWallet: 101,
+		votesPerTransaction: 33,
 	},
-	featureFlags: {
-		Client: {
-			transaction: true,
-			transactions: true,
-			wallet: true,
-			wallets: true,
-			delegate: true,
-			delegates: true,
-			broadcast: true,
-		},
-		Identity: {
-			address: {
-				mnemonic: true,
-				publicKey: true,
-			},
-			publicKey: {
-				mnemonic: true,
-			},
-			privateKey: {
-				mnemonic: true,
-			},
-			keyPair: {
-				mnemonic: true,
-			},
-		},
-		Link: {
-			block: true,
-			transaction: true,
-			wallet: true,
-		},
-		Message: {
-			sign: true,
-			verify: true,
-		},
-		Transaction: {
-			transfer: { default: true },
-			secondSignature: { default: true },
-			delegateRegistration: { default: true },
-			vote: { default: true },
-			multiSignature: { default: true },
-		},
-		Derivation: {
-			bip39: true,
-			bip44: true,
-		},
+	transactions,
+	importMethods,
+	featureFlags,
+	meta: {
+		// @TODO
+		networkId: "da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba",
 	},
-	transactionTypes: ["delegate-registration", "multi-signature", "second-signature", "transfer", "vote"],
 };
 
 export default network;

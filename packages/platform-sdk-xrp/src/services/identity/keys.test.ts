@@ -2,11 +2,11 @@ import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
 import { createConfig } from "../../../test/helpers";
-import { Keys } from "./keys";
+import { KeyPairService } from "./keys";
 
-let subject: Keys;
+let subject: KeyPairService;
 
-beforeEach(async () => (subject = new Keys(createConfig())));
+beforeEach(async () => (subject = new KeyPairService(createConfig())));
 
 describe("Keys", () => {
 	it("should generate an output from a secret", async () => {

@@ -14,7 +14,8 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #network;
 
 	private constructor(network: Coins.NetworkManifest) {
-		this.#network = network.crypto.networkId;
+		// eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+		this.#network = network.meta?.networkId!;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {

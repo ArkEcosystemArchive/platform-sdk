@@ -1,5 +1,5 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Arr } from "@arkecosystem/platform-sdk-support";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import {
 	Address,
 	Balance,
@@ -24,7 +24,7 @@ export class TransactionService implements Contracts.TransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(Arr.randomElement(config.get<string[]>("network.networking.hosts")));
+		return new TransactionService(Helpers.randomHostFromConfig(config, "full").host);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -58,6 +58,7 @@ export class TransactionService implements Contracts.TransactionService {
 			gasPrice: (input.fee as unknown) as number,
 			gasLimit: (input.feeLimit as unknown) as number,
 			data: input.data.memo,
+			timestamp: DateTime.make(),
 		};
 
 		const mnemonic: Mnemonic = Mnemonic.fromString(input.signatory.signingKey());

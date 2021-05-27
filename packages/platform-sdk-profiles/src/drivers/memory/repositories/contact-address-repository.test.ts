@@ -9,11 +9,11 @@ import { ContactAddressRepository } from "./contact-address-repository";
 import { Profile } from "../profiles/profile";
 
 let subject: ContactAddressRepository;
+let profile: Profile;
 
 const stubData = {
 	coin: "ARK",
 	network: "ark.devnet",
-	name: "John Doe",
 	address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 };
 
@@ -33,7 +33,7 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
 		.persist();
 
-	const profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
+	profile = new Profile({ id: "uuid", name: "name", avatar: "avatar", data: "" });
 	profile.coins().set("ARK", "ark.devnet");
 
 	subject = new ContactAddressRepository(profile);
@@ -98,24 +98,7 @@ test("#find", async () => {
 });
 
 test("#update invalid", async () => {
-	expect(() => subject.update("invalid", { name: "Jane Doe" })).toThrowError("Failed to find");
-});
-
-test("#update both", async () => {
-	const address = await subject.create(stubData);
-
-	subject.update(address.id(), { name: "Jane Doe", address: "new address" });
-
-	expect(subject.findById(address.id()).name()).toEqual("Jane Doe");
-	expect(subject.findByAddress("new address")[0].name()).toEqual("Jane Doe");
-});
-
-test("#update name", async () => {
-	const address = await subject.create(stubData);
-
-	subject.update(address.id(), { name: "Jane Doe" });
-
-	expect(subject.findById(address.id()).name()).toEqual("Jane Doe");
+	expect(() => subject.update("invalid", { address: stubData.address })).toThrowError("Failed to find");
 });
 
 test("#update address", async () => {
@@ -123,7 +106,16 @@ test("#update address", async () => {
 
 	subject.update(address.id(), { address: "new address" });
 
-	expect(subject.findByAddress("new address")[0].name()).toEqual("John Doe");
+	expect(subject.findByAddress("new address")[0].address()).toEqual("new address");
+	expect(profile.status().isDirty()).toBeTrue();
+});
+
+test("#update without address", async () => {
+	const address = await subject.create(stubData);
+
+	subject.update(address.id(), {});
+
+	expect(subject.findByAddress("new address")).toEqual([]);
 });
 
 test("#forget", async () => {

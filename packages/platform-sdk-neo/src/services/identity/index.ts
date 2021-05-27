@@ -1,48 +1,21 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 
-import { Address } from "./address";
-import { AddressList } from "./address-list";
-import { Keys } from "./keys";
-import { PrivateKey } from "./private-key";
-import { PublicKey } from "./public-key";
-import { WIF } from "./wif";
+import { AddressService } from "./address";
+import { ExtendedAddressService } from "./address-list";
+import { KeyPairService } from "./keys";
+import { PrivateKeyService } from "./private-key";
+import { PublicKeyService } from "./public-key";
+import { WIFService } from "./wif";
 
-export class IdentityService implements Contracts.IdentityService {
-	readonly #config: Coins.Config;
-
-	private constructor(config: Coins.Config) {
-		this.#config = config;
-	}
-
+export class IdentityService extends Services.AbstractIdentityService {
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
-	}
-
-	public address(): Address {
-		return new Address(this.#config);
-	}
-
-	public addressList(): AddressList {
-		return new AddressList();
-	}
-
-	public publicKey(): PublicKey {
-		return new PublicKey(this.#config);
-	}
-
-	public privateKey(): PrivateKey {
-		return new PrivateKey(this.#config);
-	}
-
-	public wif(): WIF {
-		return new WIF(this.#config);
-	}
-
-	public keys(): Keys {
-		return new Keys(this.#config);
+		return new IdentityService({
+			address: new AddressService(config),
+			extendedAddress: new ExtendedAddressService(),
+			publicKey: new PublicKeyService(config),
+			privateKey: new PrivateKeyService(config),
+			wif: new WIFService(config),
+			keyPair: new KeyPairService(config),
+		});
 	}
 }
