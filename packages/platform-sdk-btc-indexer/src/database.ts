@@ -91,15 +91,17 @@ export class Database {
 	 * @memberof Database
 	 */
 	private async storeBlock(block): Promise<any> {
-		return this.#prisma.block.create({
-			data: {
-				hash: block.hash,
-				height: block.height,
-			},
-		}).catch(() => {
-			// Ignore, there's nothing to update if already exists
-			// We could query for existence before creation, but it doesn't really make sense
-		});
+		return this.#prisma.block
+			.create({
+				data: {
+					hash: block.hash,
+					height: block.height,
+				},
+			})
+			.catch(() => {
+				// Ignore, there's nothing to update if already exists
+				// We could query for existence before creation, but it doesn't really make sense
+			});
 	}
 
 	/**
@@ -175,7 +177,7 @@ export class Database {
 					},
 				},
 			}),
-			...utxoUpdates
+			...utxoUpdates,
 		]);
 	}
 }
