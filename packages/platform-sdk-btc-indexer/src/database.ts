@@ -90,18 +90,18 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	private async storeBlock(block): Promise<any> {
-		return this.#prisma.block
-			.create({
+	private async storeBlock(block): Promise<void> {
+		try {
+			await this.#prisma.block.create({
 				data: {
 					hash: block.hash,
 					height: block.height,
 				},
-			})
-			.catch(() => {
-				// Ignore, there's nothing to update if already exists
-				// We could query for existence before creation, but it doesn't really make sense
 			});
+		} catch (e) {
+			// Ignore, there's nothing to update if already exists
+			// We could query for existence before creation, but it doesn't really make sense
+		}
 	}
 
 	/**
@@ -160,8 +160,8 @@ export class Database {
 			}),
 		);
 
-		this.#prisma.transaction
-			.create({
+		try {
+			await this.#prisma.transaction.create({
 				data: {
 					blockId,
 					hash: transaction.txid,
@@ -176,11 +176,11 @@ export class Database {
 						})),
 					},
 				},
-			})
-			.catch(() => {
-				// Ignore, there's nothing to update if already exists
-				// We could query for existence before creation, but it doesn't really make sense
 			});
+		} catch (e) {
+			// Ignore, there's nothing to update if already exists
+			// We could query for existence before creation, but it doesn't really make sense
+		}
 
 		await this.#prisma.$transaction(utxoUpdates);
 	}
