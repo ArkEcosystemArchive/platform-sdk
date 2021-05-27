@@ -58,7 +58,7 @@ export class Database {
 			},
 		});
 
-		return lastBlockHeight["_max"]?.height || 0;
+		return lastBlockHeight["_max"]?.height || 1;
 	}
 
 	/**
@@ -72,8 +72,14 @@ export class Database {
 			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
 		);
 
-		const blockForCreation = await this.storeBlock(block);
-		await this.#prisma.$transaction([blockForCreation.create, ...blockForCreation.utxoUpdates]);
+		await this.storeBlock(block);
+
+		if (block.tx) {
+			for (const transaction of block.tx) {
+				this.#logger.info(`Storing transaction [${transaction.txid}]`);
+				await this.storeTransaction(block.height, transaction);
+			}
+		}
 	}
 
 	/**
@@ -84,35 +90,26 @@ export class Database {
 	 * @memberof Database
 	 */
 	private async storeBlock(block): Promise<any> {
-		const transactions: any[] = [];
-		const utxoUpdates: any[] = [];
-		for (const transaction of block.tx || []) {
-			const storeTransaction = await this.storeTransaction(transaction);
-			transactions.push(storeTransaction.create);
-			utxoUpdates.push(...storeTransaction.utxoUpdates);
-		}
-		return {
-			create: this.#prisma.block.create({
-				data: {
-					hash: block.hash,
-					height: block.height,
-					transactions: {
-						create: transactions,
-					},
-				},
-			}),
-			utxoUpdates,
-		};
+		return this.#prisma.block.create({
+			data: {
+				hash: block.hash,
+				height: block.height,
+			},
+		}).catch(() => {
+			// Ignore, there's nothing to update if already exists
+			// We could query for existence before creation, but it doesn't really make sense
+		});
 	}
 
 	/**
 	 * Stores a transaction with only the absolute minimum of data.
 	 *
 	 * @private
+	 * @param blockId
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private async storeTransaction(transaction): Promise<any> {
+	private async storeTransaction(blockId: number, transaction): Promise<void> {
 		const amount: bigint = getAmount(transaction);
 		const outputs: Output[] = getOutputs(transaction);
 		const inputs = getInputs(transaction);
@@ -160,21 +157,24 @@ export class Database {
 			}),
 		);
 
-		return {
-			create: {
-				hash: transaction.txid,
-				time: transaction.time,
-				amount: amount,
-				fee: fee,
-				transaction_parts: {
-					create: outputs.map((output) => ({
-						output_idx: output.idx,
-						amount: output.amount,
-						address: JSON.stringify(output.addresses),
-					})),
+		await this.#prisma.$transaction([
+			this.#prisma.transaction.create({
+				data: {
+					blockId,
+					hash: transaction.txid,
+					time: transaction.time,
+					amount: amount,
+					fee: fee,
+					transaction_parts: {
+						create: outputs.map((output) => ({
+							output_idx: output.idx,
+							amount: BigInt(output.amount),
+							address: JSON.stringify(output.addresses),
+						})),
+					},
 				},
-			},
-			utxoUpdates,
-		};
+			}),
+			...utxoUpdates
+		]);
 	}
 }
