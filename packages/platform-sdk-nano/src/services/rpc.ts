@@ -2,6 +2,35 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { SignedBlock } from "nanocurrency-web/dist/lib/block-signer";
 
+interface AccountInfoResponse {
+	frontier: string;
+	open_block: string;
+	representative_block: string;
+	balance: string;
+	modified_timestamp: string;
+	block_count: string;
+	account_version: string;
+	confirmation_height: string;
+	confirmation_height_frontier: string;
+	representative: string;
+	pending: string;
+}
+
+interface AccountHistory {
+	type: string;
+	account: string;
+	amount: string;
+	local_timestamp: string;
+	height: string;
+	hash: string;
+}
+
+interface AccountHistoryResponse {
+	account: string;
+	history: AccountHistory[];
+	previous: string;
+}
+
 export class NanoClient {
 	readonly #http: Contracts.HttpClient;
 
@@ -16,19 +45,7 @@ export class NanoClient {
 	public async accountInfo(
 		account: string,
 		options?: { representative?: boolean; pending?: boolean },
-	): Promise<{
-		frontier: string;
-		open_block: string;
-		representative_block: string;
-		balance: string;
-		modified_timestamp: string;
-		block_count: string;
-		account_version: string;
-		confirmation_height: string;
-		confirmation_height_frontier: string;
-		representative: string;
-		pending: string;
-	}> {
+	): Promise<AccountInfoResponse> {
 		return this.post("account_info", { account, ...options });
 	}
 
@@ -36,18 +53,7 @@ export class NanoClient {
 		account: string,
 		count: string,
 		options?: { head?: string | number },
-	): Promise<{
-		account: string;
-		history: Array<{
-			type: string;
-			account: string;
-			amount: string;
-			local_timestamp: string;
-			height: string;
-			hash: string;
-		}>;
-		previous: string;
-	}> {
+	): Promise<AccountHistoryResponse> {
 		return this.post("account_history", { account, count, ...options });
 	}
 
