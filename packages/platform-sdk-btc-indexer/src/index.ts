@@ -23,7 +23,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	// Get the last block we stored in the database and grab the latest block
 	// on the network so that we can sync the missing blocks to complete our
 	// copy of the blockchain to avoid holes in the historical data of users.
-	const [localHeight, remoteHeight] = [database.lastBlockNumber() + 1, await client.height()];
+	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
 
 	const addBlock = (blockHeight) =>
 		fetchingQueue.add(async () => (toBeProcessed[blockHeight] = await client.blockWithTransactions(blockHeight)));
@@ -37,7 +37,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	for (let j = localHeight; j <= remoteHeight; j++) {
 		logger.info(`processing block ${j}`);
 		await PWaitFor(() => toBeProcessed[j] !== undefined);
-		database.storeBlockWithTransactions(toBeProcessed[j]);
+		await database.storeBlockWithTransactions(toBeProcessed[j]);
 
 		// Schedule fetching of next block (if still not done)
 		const nextBlock: number = j + step;

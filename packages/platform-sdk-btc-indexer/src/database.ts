@@ -1,5 +1,5 @@
 import { BigNumber } from "@arkecosystem/utils";
-import sqlite3 from "better-sqlite3";
+import { PrismaClient } from "@prisma/client";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
@@ -14,13 +14,7 @@ import { Flags, Input, Output } from "./types";
  * @class Database
  */
 export class Database {
-	/**
-	 * The database instance.
-	 *
-	 * @type {sqlite3.Database}
-	 * @memberof Database
-	 */
-	readonly #database: sqlite3.Database;
+	readonly #prisma: PrismaClient;
 
 	/**
 	 * The logger instance.
@@ -45,10 +39,11 @@ export class Database {
 
 		logger.debug(`Using [${databaseFile}] as database`);
 
-		this.#database = sqlite3(databaseFile);
-		this.#logger = logger;
+		this.#prisma = new PrismaClient({
+			log: ["info", "warn", "error"],
+		});
 
-		this.migrate();
+		this.#logger = logger;
 	}
 
 	/**
@@ -57,14 +52,14 @@ export class Database {
 	 * @returns {number}
 	 * @memberof Database
 	 */
-	public lastBlockNumber(): number {
-		const lastBlock = this.#database.prepare("SELECT height FROM blocks ORDER BY height DESC LIMIT 1").get();
+	public async lastBlockNumber(): Promise<number> {
+		const lastBlockHeight = await this.#prisma.block.aggregate({
+			_max: {
+				height: true,
+			},
+		});
 
-		if (lastBlock === undefined) {
-			return 0;
-		}
-
-		return lastBlock.height;
+		return lastBlockHeight["_max"]?.height || 1;
 	}
 
 	/**
@@ -73,39 +68,19 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	public storeBlockWithTransactions(block: any): void {
+	public async storeBlockWithTransactions(block: any): Promise<void> {
 		this.#logger.info(
 			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
 		);
 
-		this.#database.transaction((block) => {
-			this.storeBlock(block);
+		await this.storeBlock(block);
 
-			if (block.tx) {
-				for (const transaction of block.tx) {
-					this.#logger.info(`Storing transaction [${transaction.txid}]`);
-
-					this.storeTransaction(transaction);
-				}
+		if (block.tx) {
+			for (const transaction of block.tx) {
+				this.#logger.info(`Storing transaction [${transaction.txid}]`);
+				await this.storeTransaction(block.height, transaction);
 			}
-		})(block);
-	}
-
-	/**
-	 * Stores an error with all of its details.
-	 *
-	 * @param {string} type
-	 * @param {string} hash
-	 * @param {string} body
-	 * @memberof Database
-	 */
-	public storeError(type: string, hash: string, body: string): void {
-		this.#database
-			.prepare(
-				`INSERT INTO errors (type, hash, body)
-								VALUES (:type, :hash, :body)`,
-			)
-			.run({ type, hash, body });
+		}
 	}
 
 	/**
@@ -115,39 +90,47 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	private storeBlock(block): void {
-		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO blocks (hash, height)
-														VALUES (:hash, :height)`,
-			)
-			.run({
-				hash: block.hash,
-				height: block.height,
+	private async storeBlock(block): Promise<void> {
+		try {
+			await this.#prisma.block.create({
+				data: {
+					hash: block.hash,
+					height: block.height,
+				},
 			});
+		} catch {
+			// Ignore, there's nothing to update if already exists
+			// We could query for existence before creation, but it doesn't really make sense
+		}
 	}
 
 	/**
 	 * Stores a transaction with only the absolute minimum of data.
 	 *
 	 * @private
+	 * @param blockId
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private storeTransaction(transaction): void {
+	private async storeTransaction(blockId: number, transaction): Promise<void> {
 		const amount: BigNumber = getAmount(transaction);
-		const vouts: Output[] = getOutputs(transaction);
+		const outputs: Output[] = getOutputs(transaction);
 		const inputs = getInputs(transaction);
 		const hashes: string[] = inputs.map((u: Input) => u.txid);
-		let voutsByTransactionHashAndIdx = {};
+		let outputsByTransactionHashAndIdx = {};
 		if (hashes.length > 0) {
-			const read = this.#database
-				.prepare(
-					`SELECT output_hash, output_idx, amount
-					 FROM transaction_parts
-					 WHERE output_hash IN (${"?,".repeat(hashes.length).slice(0, -1)})`,
-				)
-				.all(hashes);
+			const read = await this.#prisma.transactionPart.findMany({
+				where: {
+					output_hash: {
+						in: hashes,
+					},
+				},
+				select: {
+					output_hash: true,
+					output_idx: true,
+					amount: true,
+				},
+			});
 
 			if (read) {
 				const byHashAndIdx = (readElements) =>
@@ -156,100 +139,49 @@ export class Database {
 						return carry;
 					}, {});
 
-				voutsByTransactionHashAndIdx = byHashAndIdx(read);
+				outputsByTransactionHashAndIdx = byHashAndIdx(read);
 			}
 		}
 
-		const fee: BigNumber = getFees(transaction, voutsByTransactionHashAndIdx);
+		const fee: BigNumber = getFees(transaction, outputsByTransactionHashAndIdx);
 
-		this.#database
-			.prepare(
-				`INSERT OR IGNORE INTO transactions (hash, time, amount, fee)
-				 VALUES (:hash, :time, :amount, :fee)`,
-			)
-			.run({
-				hash: transaction.txid,
-				time: transaction.time,
-				amount: amount.toString(),
-				fee: fee.toString(),
-			});
+		const utxoUpdates = inputs.map((input, i) =>
+			this.#prisma.transactionPart.update({
+				where: {
+					output_hash_output_idx: {
+						output_hash: input.txid,
+						output_idx: input.vout,
+					},
+				},
+				data: {
+					input_hash: transaction.txid,
+					input_idx: i,
+				},
+			}),
+		);
 
-		const statement = this.#database
-			.prepare(`INSERT OR IGNORE INTO transaction_parts (output_hash, output_idx, amount, address)
-								VALUES (:output_hash, :output_idx, :amount, :address)`);
-		for (const vout of vouts) {
-			statement.run({
-				output_hash: transaction.txid,
-				output_idx: vout.idx,
-				amount: vout.amount,
-				address: JSON.stringify(vout.addresses),
+		try {
+			await this.#prisma.transaction.create({
+				data: {
+					blockId,
+					hash: transaction.txid,
+					time: transaction.time,
+					amount: BigInt(amount),
+					fee: BigInt(fee),
+					transaction_parts: {
+						create: outputs.map((output) => ({
+							output_idx: output.idx,
+							amount: BigInt(output.amount),
+							address: JSON.stringify(output.addresses),
+						})),
+					},
+				},
 			});
+		} catch {
+			// Ignore, there's nothing to update if already exists
+			// We could query for existence before creation, but it doesn't really make sense
 		}
 
-		const updateStatement = this.#database.prepare(`UPDATE transaction_parts
-								SET input_hash = :input_hash,
-										input_idx  = :input_idx
-								WHERE output_hash = :output_hash
-									AND output_idx = :output_idx`);
-		for (let i = 0; i < inputs.length; i++) {
-			const vIn = inputs[i];
-			updateStatement.run({
-				input_hash: transaction.txid,
-				input_idx: i,
-				output_hash: vIn.txid,
-				output_idx: vIn.vout,
-			});
-		}
-	}
-
-	/**
-	 * Migrates the database to prepare it for use.
-	 *
-	 * @private
-	 * @memberof Database
-	 */
-	private migrate(): void {
-		this.#database.exec(`
-			PRAGMA journal_mode = WAL;
-			PRAGMA foreign_keys = ON;
-
-
-			CREATE TABLE IF NOT EXISTS blocks(
-				hash     VARCHAR(64)   PRIMARY KEY,
-				height   INTEGER       NOT NULL
-			);
-			CREATE UNIQUE INDEX IF NOT EXISTS blocks_hash ON blocks (hash);
-			CREATE UNIQUE INDEX IF NOT EXISTS blocks_height ON blocks (height);
-
-			CREATE TABLE IF NOT EXISTS transactions(
-				hash     VARCHAR(64)   PRIMARY KEY,
-				time     INTEGER       NOT NULL,
-				amount   INTEGER       NOT NULL,
-				fee      INTEGER       NOT NULL
-			);
-			CREATE UNIQUE INDEX IF NOT EXISTS transactions_hash ON transactions (hash);
-
-
-			CREATE TABLE IF NOT EXISTS transaction_parts(
-				output_hash       VARCHAR(64)   NOT NULL,
-				output_idx        INTEGER       NOT NULL,
-				input_hash        VARCHAR(64),
-				input_idx         INTEGER,
-				amount            INTEGER       NOT NULL,
-				address           VARCHAR(64),
-				PRIMARY KEY (output_hash, output_idx),
-				FOREIGN KEY (output_hash) REFERENCES transactions(hash)
-			);
-			CREATE UNIQUE INDEX IF NOT EXISTS transaction_output_hash_index ON transaction_parts (output_hash, output_idx);
-			CREATE UNIQUE INDEX IF NOT EXISTS transaction_input_hash_index ON transaction_parts (input_hash, input_idx);
-
-
-			CREATE TABLE IF NOT EXISTS errors(
-				id     INTEGER       PRIMARY KEY AUTOINCREMENT,
-				type   VARCHAR(64)   NOT NULL,
-				hash   VARCHAR(64)   NOT NULL,
-				body   TEXT          NOT NULL
-			);
-		`);
+		await this.#prisma.$transaction(utxoUpdates);
 	}
 }
