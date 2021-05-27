@@ -97,12 +97,6 @@ export class ClientService implements Contracts.ClientService {
 		);
 	}
 
-	public async syncing(): Promise<boolean> {
-		const body = await this.get("node/syncing");
-
-		return body.data.syncing;
-	}
-
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
 		let response: Contracts.KeyValuePair;
 

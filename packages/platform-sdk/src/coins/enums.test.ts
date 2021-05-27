@@ -6,11 +6,8 @@ test("FeatureFlag", () => {
 	expect(FeatureFlag).toMatchInlineSnapshot(`
 		Object {
 		  "ClientBroadcast": "Client.broadcast",
-		  "ClientConfiguration": "Client.configuration",
 		  "ClientDelegate": "Client.delegate",
 		  "ClientDelegates": "Client.delegates",
-		  "ClientFees": "Client.fees",
-		  "ClientSyncing": "Client.syncing",
 		  "ClientTransaction": "Client.transaction",
 		  "ClientTransactions": "Client.transactions",
 		  "ClientVoters": "Client.voters",
@@ -62,9 +59,6 @@ test("FeatureFlag", () => {
 		  "LinkWallet": "Link.wallet",
 		  "MessageSign": "Message.sign",
 		  "MessageVerify": "Message.verify",
-		  "MiscellaneousDynamicFees": "Miscellaneous.dynamicFees",
-		  "MiscellaneousMemo": "Miscellaneous.memo",
-		  "MiscellaneousUTXO": "Miscellaneous.utxo",
 		  "PeerSearch": "Peer.search",
 		  "TransactionDelegateRegistration": "Transaction.delegateRegistration",
 		  "TransactionDelegateRegistrationLedgerS": "Transaction.delegateRegistration.ledgerS",

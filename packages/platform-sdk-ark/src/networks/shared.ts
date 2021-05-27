@@ -73,7 +73,6 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
 	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
-	Peer: ["validate"],
 	Transaction: [
 		"delegateRegistration",
 		"delegateResignation",

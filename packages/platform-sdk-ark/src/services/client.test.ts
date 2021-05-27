@@ -177,18 +177,6 @@ describe("ClientService", function () {
 		});
 	});
 
-	describe("#syncing", () => {
-		it("should succeed", async () => {
-			nock(/.+/)
-				.get("/api/node/syncing")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/syncing.json`));
-
-			const result = await subject.syncing();
-
-			expect(result).toBeBoolean();
-		});
-	});
-
 	describe("#broadcast", () => {
 		it("should accept 1 transaction and reject 1 transaction", async () => {
 			nock(/.+/)

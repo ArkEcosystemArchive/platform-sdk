@@ -69,12 +69,6 @@ export const registerClient = () => [
 		}).required(),
 	},
 	{
-		name: "client.syncing",
-		async method({ coin, network }) {
-			return (await makeCoin(coin, network)).client().syncing();
-		},
-	},
-	{
 		name: "client.broadcast",
 		async method({ coin, network, id, data }) {
 			return (await makeCoin(coin, network)).client().broadcast([
