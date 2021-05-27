@@ -58,7 +58,7 @@ export class Database {
 			},
 		});
 
-		return lastBlockHeight["_max"]?.height || 1;
+		return lastBlockHeight["_max"]?.height || 0;
 	}
 
 	/**
