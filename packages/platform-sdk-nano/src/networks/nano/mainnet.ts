@@ -13,19 +13,11 @@ const network: Coins.NetworkManifest = {
 	},
 	constants: {
 		slip44: 165,
-		Client: {
-			transaction: true,
-			wallet: true,
-			broadcast: true,
-		},
 	},
 	hosts: [
 		{
 			type: "full",
 			host: "https://proxy.nanos.cc/proxy",
-		},
-		Transaction: {
-			transfer: { default: true },
 		},
 		{
 			type: "explorer",

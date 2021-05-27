@@ -1,18 +1,18 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
 import { block } from "nanocurrency-web";
 
 import { SignedTransactionData } from "../dto";
 import { deriveAccount } from "./identity/helpers";
-import { getPeerFromConfig } from "./peer-host";
 import { NanoClient } from "./rpc";
 
 export class TransactionService implements Contracts.TransactionService {
 	readonly #client: NanoClient;
 
 	public constructor(config: Coins.Config) {
-		this.#client = new NanoClient(getPeerFromConfig(config));
+		const { host } = Helpers.randomHostFromConfig(config, "full");
+		this.#client = new NanoClient(host);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {

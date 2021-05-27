@@ -2,14 +2,14 @@ import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sd
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { getPeerFromConfig } from "./peer-host";
 import { NanoClient } from "./rpc";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #client: NanoClient;
 
 	private constructor(config: Coins.Config) {
-		this.#client = new NanoClient(getPeerFromConfig(config));
+		const { host } = Helpers.randomHostFromConfig(config, "full");
+		this.#client = new NanoClient(host);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
