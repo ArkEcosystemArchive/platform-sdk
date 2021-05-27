@@ -11,10 +11,11 @@
 	},
 	"files": [
 		"/bin",
-		"/dist"
+		"/dist",
+	  	"/prisma"
 	],
 	"scripts": {
-		"build": "pnpm run clean && tsc",
+		"build": "pnpm run clean && pnpm run prisma:generate && tsc",
 		"build:watch": "pnpm run build -- -w",
 		"clean": "rimraf .coverage dist tmp",
 		"test": "jest --forceExit",
@@ -23,7 +24,9 @@
 		"format": "pnpm run lint && pnpm run prettier",
 		"lint": "eslint src/**/*.ts --fix",
 		"lint:tests": "eslint src/**/*.test.ts --fix",
-		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
+		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
+		"prisma:generate": "npx prisma generate",
+		"prisma:migrate": "npx prisma migrate deploy"
 	},
 	"jest": {
 		"preset": "../../jest.config.js"

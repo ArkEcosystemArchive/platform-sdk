@@ -1,5 +1,5 @@
 import { BigNumber } from "@arkecosystem/utils";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../prisma/generated";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
