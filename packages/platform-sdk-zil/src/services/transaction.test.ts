@@ -9,9 +9,7 @@ import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => {
-	subject = await TransactionService.__construct(createConfig());
-});
+beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {
