@@ -49,7 +49,7 @@ export class TransactionService implements Contracts.TransactionService {
 		};
 		const signedData = { ...data, timestamp: DateTime.make() };
 		const broadcastData = block.send(data, privateKey);
-		
+
 		return new SignedTransactionData(broadcastData.signature, signedData, broadcastData);
 	}
 
