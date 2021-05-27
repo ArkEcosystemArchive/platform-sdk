@@ -53,7 +53,7 @@ export class ProfileValidator implements IProfileValidator {
 					settings: Joi.object().required(),
 				}),
 			),
-		}).validate(data);
+		}).validate(data, { stripUnknown: true, allowUnknown: true });
 
 		if (error !== undefined) {
 			throw error;
