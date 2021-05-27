@@ -1,8 +1,8 @@
 import { BigNumber } from "@arkecosystem/utils";
-import { PrismaClient } from "../prisma/generated";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
+import { PrismaClient } from "../prisma/generated";
 import { Logger } from "./logger";
 import { getAmount, getFees, getInputs, getOutputs } from "./tx-parsing-helpers";
 import { Flags, Input, Output } from "./types";
