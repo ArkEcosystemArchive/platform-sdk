@@ -135,7 +135,7 @@ export class Database {
 			if (read) {
 				const byHashAndIdx = (readElements) =>
 					readElements.reduce((carry, element) => {
-						carry[element["output_hash"] + element["output_idx"]] = BigInt(element["amount"]);
+						carry[element["output_hash"] + element["output_idx"]] = BigNumber.make(element["amount"]);
 						return carry;
 					}, {});
 
@@ -160,24 +160,26 @@ export class Database {
 			}),
 		);
 
-		await this.#prisma.$transaction([
-			this.#prisma.transaction.create({
-				data: {
-					blockId,
-					hash: transaction.txid,
-					time: transaction.time,
-					amount: BigInt(amount),
-					fee: BigInt(fee),
-					transaction_parts: {
-						create: outputs.map((output) => ({
-							output_idx: output.idx,
-							amount: BigInt(output.amount),
-							address: JSON.stringify(output.addresses),
-						})),
-					},
+		this.#prisma.transaction.create({
+			data: {
+				blockId,
+				hash: transaction.txid,
+				time: transaction.time,
+				amount: BigInt(amount),
+				fee: BigInt(fee),
+				transaction_parts: {
+					create: outputs.map((output) => ({
+						output_idx: output.idx,
+						amount: BigInt(output.amount),
+						address: JSON.stringify(output.addresses),
+					})),
 				},
-			}),
-			...utxoUpdates,
-		]);
+			},
+		}).catch(() => {
+			// Ignore, there's nothing to update if already exists
+			// We could query for existence before creation, but it doesn't really make sense
+		});
+
+		await this.#prisma.$transaction(utxoUpdates);
 	}
 }
