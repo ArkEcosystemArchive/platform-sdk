@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 
 import { AddressService } from "./address";
 import { ExtendedAddressService } from "./address-list";
@@ -7,42 +7,15 @@ import { PrivateKeyService } from "./private-key";
 import { PublicKeyService } from "./public-key";
 import { WIFService } from "./wif";
 
-export class IdentityService implements Contracts.IdentityService {
-	readonly #config: Coins.Config;
-
-	public constructor(config: Coins.Config) {
-		this.#config = config;
-	}
-
+export class IdentityService extends Services.AbstractIdentityService {
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		return new IdentityService(config);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
-	}
-
-	public address(): AddressService {
-		return new AddressService(this.#config);
-	}
-
-	public extendedAddress(): ExtendedAddressService {
-		return new ExtendedAddressService();
-	}
-
-	public publicKey(): PublicKeyService {
-		return new PublicKeyService(this.#config);
-	}
-
-	public privateKey(): PrivateKeyService {
-		return new PrivateKeyService(this.#config);
-	}
-
-	public wif(): WIFService {
-		return new WIFService();
-	}
-
-	public keyPair(): KeyPairService {
-		return new KeyPairService(this.#config);
+		return new IdentityService({
+			address: new AddressService(config),
+			extendedAddress: new ExtendedAddressService(),
+			publicKey: new PublicKeyService(config),
+			privateKey: new PrivateKeyService(config),
+			wif: new WIFService(),
+			keyPair: new KeyPairService(config),
+		});
 	}
 }
