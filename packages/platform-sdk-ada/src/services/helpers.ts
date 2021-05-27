@@ -1,4 +1,5 @@
 import { Coins } from "@arkecosystem/platform-sdk";
+import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 import CardanoWasm, {
 	Address,
 	BigNum,
@@ -93,3 +94,6 @@ export const deriveAddressesAndSigningKeys = async (
 	}
 	return addresses;
 };
+
+export const adaToLovelace = (value: NumberLike) => BigNumber.make(value).times(1e6).toString();
+
