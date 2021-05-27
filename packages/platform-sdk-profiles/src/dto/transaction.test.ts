@@ -114,7 +114,7 @@ afterEach(() => {
 });
 
 describe("Transaction", () => {
-	beforeEach(() => subject = createSubject(wallet, undefined, DelegateRegistrationData));
+	beforeEach(() => (subject = createSubject(wallet, undefined, DelegateRegistrationData)));
 
 	it("should have an explorer link", () => {
 		expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/transaction/transactionId");
@@ -430,7 +430,7 @@ describe("DelegateRegistrationData", () => {
 });
 
 describe("DelegateResignationData", () => {
-	beforeEach(() => subject = createSubject(wallet, undefined, DelegateResignationData));
+	beforeEach(() => (subject = createSubject(wallet, undefined, DelegateResignationData)));
 
 	test("#id", () => {
 		expect(subject.id()).toBe("transactionId");

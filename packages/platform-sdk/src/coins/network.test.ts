@@ -6,7 +6,7 @@ import { Network } from "./network";
 
 let subject: Network;
 
-beforeEach(() => subject = new Network(ARK.manifest, ARK.manifest.networks["ark.devnet"]));
+beforeEach(() => (subject = new Network(ARK.manifest, ARK.manifest.networks["ark.devnet"])));
 
 it("should have an coin", () => {
 	expect(subject.coin()).toBe("ARK");
