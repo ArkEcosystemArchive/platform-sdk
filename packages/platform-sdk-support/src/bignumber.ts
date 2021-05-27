@@ -134,6 +134,17 @@ export class BigNumber {
 	}
 
 	/**
+	 * Returns the sum of the different values.
+	 *
+	 * @param {NumberLike[]} values
+	 * @returns {BigNumber}
+	 * @memberof BigNumber
+	 */
+	public static sum(values: NumberLike[]): BigNumber {
+		return values.reduce((accumulator: BigNumber, currentValue: NumberLike) => accumulator.plus(currentValue), BigNumber.ZERO);
+	}
+
+	/**
 	 * Determines if the current value is NaN.
 	 *
 	 * @returns {boolean}
