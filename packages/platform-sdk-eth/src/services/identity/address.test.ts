@@ -17,7 +17,7 @@ describe("Address", () => {
 	it("should generate an output from a multiSignature", async () => {
 		await expect(
 			subject.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
-		).rejects.toThrow(/is not supported/);
+		).rejects.toThrow(/is not implemented/);
 	});
 
 	it("should generate an output from a publicKey", async () => {
@@ -33,6 +33,6 @@ describe("Address", () => {
 	});
 
 	it("should generate an output from a wif", async () => {
-		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
+		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not implemented/);
 	});
 });

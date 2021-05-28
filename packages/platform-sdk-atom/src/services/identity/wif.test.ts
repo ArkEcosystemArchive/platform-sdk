@@ -9,6 +9,6 @@ beforeEach(async () => (subject = new WIFService()));
 
 describe("WIF", () => {
 	it("should fail to generate an output from a mnemonic", async () => {
-		await expect(subject.fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not supported/);
+		await expect(subject.fromMnemonic(identity.mnemonic)).rejects.toThrow(/is not implemented/);
 	});
 });
