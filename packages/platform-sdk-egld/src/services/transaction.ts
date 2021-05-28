@@ -9,7 +9,6 @@ import {
 	Nonce,
 	Transaction,
 	TransactionPayload,
-	UserSecretKey,
 	UserSigner,
 } from "@elrondnetwork/erdjs";
 
