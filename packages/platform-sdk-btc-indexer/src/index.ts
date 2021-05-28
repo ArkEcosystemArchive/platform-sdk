@@ -56,7 +56,7 @@ const runMigrations = async (): Promise<void> => {
 		"migrate",
 		"deploy",
 		"--schema",
-		"node_modules/@arkecosystem/platform-sdk-btc-indexer/prisma/schema.prisma",
+		__dirname + "/../prisma/schema.prisma",
 	]);
 	console.log(stdout);
 };
