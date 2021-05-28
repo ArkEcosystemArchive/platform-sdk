@@ -15,7 +15,7 @@ beforeEach(
 		})),
 );
 
-describe("WalletData", function () {
+describe("WalletData", () => {
 	it("#address", () => {
 		expect(subject.address()).toEqual("0x4581a610f96878266008993475f1476ca9997081");
 	});

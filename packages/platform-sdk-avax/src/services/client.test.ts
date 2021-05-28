@@ -8,7 +8,7 @@ let subject: ClientService;
 
 beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
 
-describe("ClientService", function () {
+describe("ClientService", () => {
 	describe("#transaction", () => {
 		it("should succeed", async () => {
 			const result = await subject.transaction("2qwe2tsgBZ5yqq6Qg2eTDPJ1tVVZZ9KoPLMDwurLTGTNpGMFr9");

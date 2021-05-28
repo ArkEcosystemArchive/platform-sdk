@@ -6,7 +6,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Fixture from "../../test/fixtures/client/transaction.json";
 import { TransactionData } from "./transaction";
 
-describe("TransactionData", function () {
+describe("TransactionData", () => {
 	it("should succeed", async () => {
 		const result = new TransactionData(Fixture);
 

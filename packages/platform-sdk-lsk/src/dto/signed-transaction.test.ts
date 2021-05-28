@@ -35,7 +35,7 @@ beforeEach(() => {
 	);
 });
 
-describe("SignedTransactionData", function () {
+describe("SignedTransactionData", () => {
 	test("#id", () => {
 		expect(subject.id()).toBe("12385936261751136908");
 	});

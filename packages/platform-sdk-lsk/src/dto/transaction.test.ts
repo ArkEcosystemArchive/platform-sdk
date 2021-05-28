@@ -10,7 +10,7 @@ let subject: TransactionData;
 
 beforeEach(() => (subject = new TransactionData(Fixture.data[0])));
 
-describe("TransactionData", function () {
+describe("TransactionData", () => {
 	test("#id", () => {
 		expect(subject.id()).toBe("15210966682544220710");
 	});

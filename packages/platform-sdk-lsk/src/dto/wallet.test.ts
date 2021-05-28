@@ -7,7 +7,7 @@ let subject: WalletData;
 
 beforeEach(() => (subject = new WalletData(Fixture.data[0])));
 
-describe("WalletData", function () {
+describe("WalletData", () => {
 	test("#address", () => {
 		expect(subject.address()).toBe("6566229458323231555L");
 	});

@@ -16,7 +16,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("ClientService", function () {
+describe("ClientService", () => {
 	describe("#transaction", () => {
 		it("should succeed", async () => {
 			nock("https://coins.com")

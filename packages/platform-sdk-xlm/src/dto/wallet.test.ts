@@ -7,7 +7,7 @@ import { WalletData } from "./wallet";
 
 let subject: WalletData;
 
-describe("WalletData", function () {
+describe("WalletData", () => {
 	const subject = new WalletData(Fixture);
 	const implementedMethods = {
 		address: "GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB",

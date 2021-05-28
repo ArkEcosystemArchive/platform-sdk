@@ -21,7 +21,7 @@ beforeEach(() => {
 	);
 });
 
-describe("SignedTransactionData", function () {
+describe("SignedTransactionData", () => {
 	test("#timestamp", () => {
 		expect(subject.timestamp()).toEqual(DateTime.make(0));
 	});

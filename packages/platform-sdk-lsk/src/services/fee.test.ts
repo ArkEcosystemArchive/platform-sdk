@@ -7,7 +7,7 @@ let subject: FeeService;
 
 beforeEach(async () => (subject = await FeeService.__construct(createConfig())));
 
-describe("FeeService", function () {
+describe("FeeService", () => {
 	describe("#all", () => {
 		it("should succeed", async () => {
 			const result = await subject.all();
