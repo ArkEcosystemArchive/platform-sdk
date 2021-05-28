@@ -81,10 +81,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
 		txBuilder.add_output(
-			CardanoWasm.TransactionOutput.new(
-				CardanoWasm.Address.from_bech32(input.data.to),
-				createValue(amount),
-			),
+			CardanoWasm.TransactionOutput.new(CardanoWasm.Address.from_bech32(input.data.to), createValue(amount)),
 		);
 
 		// This is the expiration slot which should be estimated with #estimateExpiration
