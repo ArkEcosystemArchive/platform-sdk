@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.1.38 - 2021-05-28
+
+### Added
+
+- **[NANO]** Nano transactions & broadcasts (66c7a368, @axeldelamarre)
+
+### Changed
+
+- **[BTC-INDEXER]** Better handling of parallel fetching and sequential processing (1b6a2709, @marianogoldman)
+- **[BTC-INDEXER]** Use `prisma` as database layer (891b1d07, @marianogoldman)
+- **[SDK]** Introduce abstract identity services (779ee8fa, @faustbrian)
+- **[SDK]** Introduce abstract transaction service (d8a3be55, @faustbrian)
+- **[SDK]** Normalise signing keys (0f151caa, @faustbrian)
+
+### Fixed
+
+- **[ARK]** Apply signing key for double signatures (e7d239eb, @faustbrian)
+- **[NANO]** Convert `NANO` to `RAW` (60a13416, @faustbrian)
+
 ## 8.1.29 - 2021-05-27
 
 ### Added
