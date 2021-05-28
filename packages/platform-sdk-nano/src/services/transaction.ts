@@ -13,8 +13,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	public constructor(config: Coins.Config) {
 		super();
 
-		const { host } = Helpers.randomHostFromConfig(config, "full");
-		this.#client = new NanoClient(host);
+		this.#client = new NanoClient(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {

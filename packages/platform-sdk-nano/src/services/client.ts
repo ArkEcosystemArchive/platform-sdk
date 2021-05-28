@@ -8,8 +8,7 @@ export class ClientService implements Contracts.ClientService {
 	readonly #client: NanoClient;
 
 	private constructor(config: Coins.Config) {
-		const { host } = Helpers.randomHostFromConfig(config, "full");
-		this.#client = new NanoClient(host);
+		this.#client = new NanoClient(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
