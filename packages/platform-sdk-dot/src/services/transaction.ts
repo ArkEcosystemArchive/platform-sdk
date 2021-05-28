@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
 import { waitReady } from "@polkadot/wasm-crypto";
@@ -36,9 +37,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.signatory");
 		}
 
+		const amount = BigNumber.make(input.data.amount).times(1e10).toString();
 		const keypair = this.#keyring.addFromMnemonic(input.signatory.signingKey());
 		const transaction = await this.#client.tx.balances
-			.transfer(input.data.to, input.data.amount)
+			.transfer(input.data.to, amount)
 			.signAsync(keypair);
 
 		const signedData = {
