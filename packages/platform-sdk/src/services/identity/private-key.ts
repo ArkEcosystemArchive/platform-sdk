@@ -4,10 +4,7 @@ import { IdentityOptions, PrivateKeyService as Contract, PrivateKeyDataTransferO
 import { NotSupported } from "../../exceptions";
 
 export abstract class AbstractPrivateKeyService implements Contract {
-	public async fromMnemonic(
-		mnemonic: string,
-		options?: IdentityOptions,
-	): Promise<PrivateKeyDataTransferObject> {
+	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<PrivateKeyDataTransferObject> {
 		throw new NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 

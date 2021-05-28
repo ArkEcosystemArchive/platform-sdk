@@ -4,10 +4,7 @@ import { IdentityOptions, AddressService as Contract, AddressDataTransferObject 
 import { NotSupported } from "../../exceptions";
 
 export abstract class AbstractAddressService implements Contract {
-	public async fromMnemonic(
-		mnemonic: string,
-		options?: IdentityOptions,
-	): Promise<AddressDataTransferObject> {
+	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<AddressDataTransferObject> {
 		throw new NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
@@ -15,17 +12,11 @@ export abstract class AbstractAddressService implements Contract {
 		throw new NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPublicKey(
-		publicKey: string,
-		options?: IdentityOptions,
-	): Promise<AddressDataTransferObject> {
+	public async fromPublicKey(publicKey: string, options?: IdentityOptions): Promise<AddressDataTransferObject> {
 		throw new NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
-	public async fromPrivateKey(
-		privateKey: string,
-		options?: IdentityOptions,
-	): Promise<AddressDataTransferObject> {
+	public async fromPrivateKey(privateKey: string, options?: IdentityOptions): Promise<AddressDataTransferObject> {
 		throw new NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 

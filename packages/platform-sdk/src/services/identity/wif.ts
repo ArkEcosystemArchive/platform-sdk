@@ -4,10 +4,7 @@ import { IdentityOptions, WIFService as Contract, WIFDataTransferObject } from "
 import { NotSupported } from "../../exceptions";
 
 export abstract class AbstractWIFService implements Contract {
-	public async fromMnemonic(
-		mnemonic: string,
-		options?: IdentityOptions,
-	): Promise<WIFDataTransferObject> {
+	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<WIFDataTransferObject> {
 		throw new NotSupported(this.constructor.name, "fromPrivateKey");
 	}
 
