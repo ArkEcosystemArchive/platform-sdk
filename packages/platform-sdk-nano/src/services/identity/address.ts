@@ -1,10 +1,10 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import * as nanocurrency from "nanocurrency";
 import { tools } from "nanocurrency-web";
 
 import { deriveAccount } from "./helpers";
 
-export class AddressService implements Contracts.AddressService {
+export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
@@ -12,10 +12,6 @@ export class AddressService implements Contracts.AddressService {
 		return {
 			address: deriveAccount(mnemonic, options?.bip44?.account).address,
 		};
-	}
-
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
 	}
 
 	public async fromPublicKey(
@@ -34,14 +30,6 @@ export class AddressService implements Contracts.AddressService {
 		return {
 			address: nanocurrency.deriveAddress(nanocurrency.derivePublicKey(privateKey)),
 		};
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 
 	public async validate(address: string): Promise<boolean> {

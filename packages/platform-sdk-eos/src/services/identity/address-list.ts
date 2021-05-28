@@ -1,6 +1,6 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
 
-export class ExtendedAddressService implements Contracts.ExtendedAddressService {
+export class ExtendedAddressService extends Services.AbstractExtendedAddressService {
 	public async fromMnemonic(
 		mnemonic: string,
 		pageSize: number,

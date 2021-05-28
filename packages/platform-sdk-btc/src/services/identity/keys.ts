@@ -1,8 +1,8 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
 import { PrivateKey, PublicKey } from "bitcore-lib";
 
-export class KeyPairService implements Contracts.KeyPairService {
+export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
@@ -28,10 +28,6 @@ export class KeyPairService implements Contracts.KeyPairService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 
 	private normalize(privateKey: Buffer): Contracts.KeyPairDataTransferObject {

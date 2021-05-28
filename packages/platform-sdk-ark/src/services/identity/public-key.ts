@@ -1,9 +1,9 @@
 import { PublicKey as BasePublicKey } from "@arkecosystem/crypto-identities";
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
 
-export class PublicKeyService implements Contracts.PublicKeyService {
+export class PublicKeyService extends Services.AbstractPublicKeyService {
 	readonly #configCrypto: CryptoConfig;
 
 	public constructor(configCrypto: CryptoConfig) {
@@ -41,9 +41,5 @@ export class PublicKeyService implements Contracts.PublicKeyService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.PublicKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

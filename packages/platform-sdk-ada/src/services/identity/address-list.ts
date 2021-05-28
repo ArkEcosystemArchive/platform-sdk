@@ -3,7 +3,7 @@ import { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { deriveAccountKey, deriveRootKey, deriveSpendKey, deriveChangeKey, deriveStakeKey } from "./shelley";
 
-export class ExtendedAddressService implements Contracts.ExtendedAddressService {
+export class ExtendedAddressService extends Services.AbstractExtendedAddressService {
 	public async fromMnemonic(
 		mnemonic: string,
 		pageSize: number,

@@ -1,11 +1,14 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { Wallet } from "@zilliqa-js/account";
+
 import { accountFromMnemonic, accountFromPrivateKey } from "../../zilliqa";
 
-export class KeyPairService implements Contracts.KeyPairService {
+export class KeyPairService extends Services.AbstractKeyPairService {
 	readonly #wallet: Wallet;
 
 	public constructor(wallet: Wallet) {
+		super();
+
 		this.#wallet = wallet;
 	}
 
@@ -22,13 +25,5 @@ export class KeyPairService implements Contracts.KeyPairService {
 		const { publicKey } = await accountFromPrivateKey(this.#wallet, privateKey);
 
 		return { publicKey, privateKey };
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

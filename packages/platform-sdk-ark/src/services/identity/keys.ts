@@ -1,12 +1,14 @@
 import { Keys as BaseKeys } from "@arkecosystem/crypto-identities";
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
 
-export class KeyPairService implements Contracts.KeyPairService {
+export class KeyPairService extends Services.AbstractKeyPairService {
 	readonly #configCrypto: CryptoConfig;
 
 	public constructor(configCrypto: CryptoConfig) {
+		super();
+
 		this.#configCrypto = configCrypto;
 	}
 
@@ -23,10 +25,6 @@ export class KeyPairService implements Contracts.KeyPairService {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
-	}
-
 	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
 			const { publicKey, privateKey } = BaseKeys.fromWIF(wif, this.#configCrypto);
@@ -35,9 +33,5 @@ export class KeyPairService implements Contracts.KeyPairService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }
