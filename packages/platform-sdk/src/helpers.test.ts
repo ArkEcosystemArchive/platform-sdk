@@ -129,7 +129,7 @@ test.each([
 	).toBeInstanceOf(TransactionDataCollection);
 });
 
-const configMock = {
+const configMock = ({
 	get: () => [
 		{
 			type: "full",
@@ -144,12 +144,10 @@ const configMock = {
 			host: "https://explorer.ark.io/",
 		},
 	],
-} as unknown as Config;
+} as unknown) as Config;
 
 test("filterHostsFromConfig", () => {
-	expect(
-		filterHostsFromConfig(configMock, "explorer"),
-	).toEqual([
+	expect(filterHostsFromConfig(configMock, "explorer")).toEqual([
 		{
 			type: "explorer",
 			host: "https://explorer.ark.io/",
@@ -158,28 +156,21 @@ test("filterHostsFromConfig", () => {
 });
 
 test("randomNetworkHostFromConfig", () => {
-	expect(
-		randomNetworkHostFromConfig(configMock, "explorer")
-	).toEqual({
+	expect(randomNetworkHostFromConfig(configMock, "explorer")).toEqual({
 		type: "explorer",
 		host: "https://explorer.ark.io/",
 	});
 });
 
 test("randomNetworkHostFromConfig default", () => {
-	expect(
-		randomNetworkHostFromConfig(configMock)
-	).toEqual({
+	expect(randomNetworkHostFromConfig(configMock)).toEqual({
 		type: "full",
 		host: "https://wallets.ark.io",
 	});
 });
 
-
 test("randomHostFromConfig default", () => {
-	expect(
-		randomHostFromConfig(configMock)
-	).toBe("https://wallets.ark.io");
+	expect(randomHostFromConfig(configMock)).toBe("https://wallets.ark.io");
 });
 
 describe("pluckAddress", () => {
