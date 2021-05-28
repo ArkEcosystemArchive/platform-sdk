@@ -18,19 +18,19 @@ export abstract class AbstractDoubleSignatory {
 		publicKey: string;
 		privateKey: string;
 	}) {
-		this.#signingKey = signingKey;
-		this.#confirmKey = confirmKey;
+		this.#signingKey = signingKey.normalize("NFD");
+		this.#confirmKey = confirmKey.normalize("NFD");
 		this.#address = address;
 		this.#publicKey = publicKey;
 		this.#privateKey = privateKey;
 	}
 
 	public signingKey(): string {
-		return this.#signingKey.normalize("NFD");
+		return this.#signingKey;
 	}
 
 	public confirmKey(): string {
-		return this.#confirmKey.normalize("NFD");
+		return this.#confirmKey;
 	}
 
 	public address(): string {
