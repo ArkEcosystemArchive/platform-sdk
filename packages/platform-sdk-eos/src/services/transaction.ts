@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { ConfigKey } from "@arkecosystem/platform-sdk/dist/coins";
 import { createHash } from "crypto";
 import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
@@ -11,18 +12,21 @@ import { SignedTransactionData } from "../dto";
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #networkId: string;
 	readonly #peer: string;
+	readonly #ticker: string;
 
-	private constructor({ networkId, peer }) {
+	private constructor({ networkId, peer, ticker }) {
 		super();
 
 		this.#networkId = networkId;
 		this.#peer = peer;
+		this.#ticker = ticker;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			networkId: config.get<string>("network.meta.networkId"),
+			networkId: config.get<string>(ConfigKey.NetworkMetaId),
 			peer: Helpers.randomHostFromConfig(config, "full").host,
+			ticker: config.get<string>(ConfigKey.CurrencyTicker),
 		});
 	}
 
@@ -32,7 +36,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			if (input.signatory.signingKey() === undefined) {
-				throw new Error("No mnemonic provided.");
+				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
 			const { client, signatureProvider } = this.getClient(input.signatory.signingKey());
@@ -52,7 +56,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 							data: {
 								from: input.signatory.address(),
 								to: input.data.to,
-								quantity: "0.0001 TNT", // todo: use network specific token
+								quantity: `${input.data.amount} ${this.#ticker}`,
 								memo: input.data.memo,
 							},
 						},
