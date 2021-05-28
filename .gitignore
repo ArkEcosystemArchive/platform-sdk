@@ -62,3 +62,6 @@ common/deploy/
 common/temp/
 common/autoinstallers/*/.npmrc
 **/.rush/temp/
+
+# Prisma client generated files
+/packages/platform-sdk-btc-indexer/prisma/generated/

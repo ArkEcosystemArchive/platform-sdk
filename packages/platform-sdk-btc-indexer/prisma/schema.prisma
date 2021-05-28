@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated"
 }
 
 datasource db {
@@ -15,8 +16,8 @@ model Block {
 
 model Transaction {
   hash				String				@id
-  block				Block				@relation(fields: blockId, references: height)
-  blockId			Int
+  block				Block				@relation(fields: block_id, references: height)
+  block_id			Int
   time				Int
   amount			BigInt
   fee				BigInt
