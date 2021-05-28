@@ -129,7 +129,7 @@ describe.each([
 		subject.data().set(WalletData.LedgerPath, "1");
 		subject.data().set(WalletFlag.Starred, true);
 
-		const actual: any = subject.toObject();
+		const actual = subject.toObject();
 
 		expect(actual).toContainAllKeys(["id", "address", "coin", "network", "publicKey", "data", "settings"]);
 		expect(actual.id).toBeString();
@@ -150,7 +150,7 @@ describe.each([
 		subject.data().set(WalletFlag.Starred, true);
 		const partiallyRestoredMock = jest.spyOn(subject, "hasBeenPartiallyRestored").mockReturnValue(true);
 
-		const actual: any = subject.toObject();
+		const actual = subject.toObject();
 
 		expect(actual).toEqual({});
 		partiallyRestoredMock.mockRestore();

@@ -369,7 +369,7 @@ it("should turn into an object", () => {
 	subject.data().set(WalletData.LedgerPath, "1");
 	subject.data().set(WalletFlag.Starred, true);
 
-	const actual: any = subject.toObject();
+	const actual = subject.toObject();
 
 	expect(actual).toContainAllKeys(["id", "address", "coin", "network", "publicKey", "data", "settings"]);
 	expect(actual.id).toBeString();

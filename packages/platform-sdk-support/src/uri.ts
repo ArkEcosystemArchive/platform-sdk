@@ -61,7 +61,7 @@ export class URI {
 
 		try {
 			let method: string = parsed[1];
-			const params: any = querystring.parse(parsed[2].substring(1));
+			const params = querystring.parse(parsed[2].substring(1));
 
 			// When this is false we just have to assume that we are handling AIP13
 			// unless we integrate the parsing more tightly to specific coins which

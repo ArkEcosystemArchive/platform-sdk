@@ -101,7 +101,7 @@ export class DelegateService implements IDelegateService {
 	}
 
 	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): IReadOnlyWallet {
-		const result: any = this.all(coin, network).find((delegate) => delegate[key]() === value);
+		const result = this.all(coin, network).find((delegate) => delegate[key]() === value);
 
 		if (result === undefined) {
 			throw new Error(`No delegate for ${key} with ${value} could be found.`);

@@ -258,7 +258,7 @@ export class WalletRepository implements IWalletRepository {
 		const earlyWallets: Record<string, object> = {};
 		const laterWallets: Record<string, object> = {};
 
-		for (const [id, wallet] of Object.entries(this.#dataRaw) as any) {
+		for (const [id, wallet] of Object.entries(this.#dataRaw)) {
 			const nid: string = wallet.network;
 
 			if (earlyWallets[nid] === undefined) {

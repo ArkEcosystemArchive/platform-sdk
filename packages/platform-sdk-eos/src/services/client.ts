@@ -24,7 +24,7 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(Helpers.randomHostFromConfig(config, "full").host);
+		return new ClientService(Helpers.randomHostFromConfig(config));
 	}
 
 	public async __destruct(): Promise<void> {

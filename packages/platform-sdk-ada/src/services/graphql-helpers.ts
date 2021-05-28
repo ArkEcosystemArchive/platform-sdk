@@ -5,7 +5,7 @@ import { UnspentTransaction } from "./transaction.models";
 const postGraphql = async (config: Coins.Config, query: string): Promise<Record<string, any>> => {
 	const response = await config
 		.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient)
-		.post(Helpers.randomHostFromConfig(config, "full").host, { query });
+		.post(Helpers.randomHostFromConfig(config), { query });
 
 	const json = response.json();
 
@@ -17,10 +17,7 @@ const postGraphql = async (config: Coins.Config, query: string): Promise<Record<
 };
 
 export const submitTransaction = async (config: Coins.Config, toBroadcast: string): Promise<string> => {
-	return ((await postGraphql(
-		config,
-		`mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`,
-	)) as any).hash;
+	return (await postGraphql(config, `mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`)).hash;
 };
 
 export const fetchTransaction = async (id: string, config: Coins.Config): Promise<object[]> => {
@@ -99,13 +96,13 @@ export const fetchTransactions = async (config: Coins.Config, addresses: string[
 				}
 			}`;
 
-	return ((await postGraphql(config, query)) as any).transactions;
+	return (await postGraphql(config, query)).transactions;
 };
 
 export const fetchNetworkTip = async (config: Coins.Config): Promise<number> => {
 	const query = `{ cardano { tip { slotNo } } }`;
 
-	return parseInt(((await postGraphql(config, query)) as any).cardano.tip.slotNo);
+	return parseInt((await postGraphql(config, query)).cardano.tip.slotNo);
 };
 
 export const fetchUsedAddressesData = async (config: Coins.Config, addresses: string[]): Promise<string[]> => {
@@ -143,7 +140,7 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 					}
 				}
 			}`;
-	return ((await postGraphql(config, query)) as any).transactions
+	return (await postGraphql(config, query)).transactions
 		.flatMap((tx) => tx.inputs.map((i) => i.address).concat(tx.outputs.map((o) => o.address)))
 		.sort();
 };
@@ -195,5 +192,5 @@ export const fetchUtxosAggregate = async (config: Coins.Config, addresses: strin
 					}
 				}
 			}`;
-	return ((await postGraphql(config, query)) as any).utxos_aggregate.aggregate.sum.value;
+	return (await postGraphql(config, query)).utxos_aggregate.aggregate.sum.value;
 };

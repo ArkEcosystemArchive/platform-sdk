@@ -37,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			config,
-			peer: Helpers.randomHostFromConfig(config, "full").host,
+			peer: Helpers.randomHostFromConfig(config),
 		});
 	}
 
@@ -67,7 +67,7 @@ export class ClientService implements Contracts.ClientService {
 			payload.only_to = true;
 		}
 
-		const response: any = (
+		const response = (
 			await this.#client.get(`${this.#peer}/v1/accounts/${Helpers.pluckAddress(query)}/transactions`, payload)
 		).json();
 
@@ -144,6 +144,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private getHost(): string {
-		return Helpers.randomHostFromConfig(this.#config, "full").host;
+		return Helpers.randomHostFromConfig(this.#config);
 	}
 }

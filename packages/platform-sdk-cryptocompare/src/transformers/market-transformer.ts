@@ -26,7 +26,7 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 	public transform(options: Contracts.KeyValuePair): Contracts.MarketDataCollection {
 		const result = {};
 
-		for (const value of Object.values(this.data) as any) {
+		for (const value of Object.values(this.data)) {
 			result[value.TOSYMBOL] = {
 				currency: value.TOSYMBOL,
 				price: value.PRICE,
