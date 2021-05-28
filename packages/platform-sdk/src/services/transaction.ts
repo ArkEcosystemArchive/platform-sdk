@@ -1,23 +1,22 @@
 /* istanbul ignore file */
 
 import {
-	IdentityOptions,
-	TransactionService as Contract,
-	TransferInput,
-	TransactionOptions,
-	SignedTransactionData,
-	SecondSignatureInput,
 	DelegateRegistrationInput,
-	VoteInput,
-	MultiSignatureInput,
+	DelegateResignationInput,
+	HtlcClaimInput,
+	HtlcLockInput,
+	HtlcRefundInput,
 	IpfsInput,
 	MultiPaymentInput,
-	DelegateResignationInput,
-	HtlcLockInput,
-	HtlcClaimInput,
-	HtlcRefundInput,
+	MultiSignatureInput,
 	RawTransactionData,
+	SecondSignatureInput,
+	SignedTransactionData,
 	TransactionInputs,
+	TransactionOptions,
+	TransactionService as Contract,
+	TransferInput,
+	VoteInput,
 } from "../contracts";
 import { NotImplemented } from "../exceptions";
 
