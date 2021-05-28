@@ -17,7 +17,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("ClientService", function () {
+describe("ClientService", () => {
 	it("#wallet should succeed", async () => {
 		nock(/.+/)
 			.post("/")

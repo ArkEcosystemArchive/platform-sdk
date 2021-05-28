@@ -13,7 +13,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("FeeService", function () {
+describe("FeeService", () => {
 	describe("#all", () => {
 		it("should succeed", async () => {
 			nock(/.+/)

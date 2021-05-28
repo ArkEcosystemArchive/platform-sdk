@@ -20,7 +20,7 @@ beforeAll(async () => {
 
 afterEach(() => nock.cleanAll());
 
-describe("ClientService", function () {
+describe("ClientService", () => {
 	describe("#transaction", () => {
 		it("should succeed", async () => {
 			nock(/.+/)

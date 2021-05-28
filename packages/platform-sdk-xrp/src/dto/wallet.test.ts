@@ -5,7 +5,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { result as fixture } from "../../test/fixtures/client/wallet.json";
 import { WalletData } from "./wallet";
 
-describe("WalletData", function () {
+describe("WalletData", () => {
 	it("should succeed", async () => {
 		const result = new WalletData(fixture.account_data);
 

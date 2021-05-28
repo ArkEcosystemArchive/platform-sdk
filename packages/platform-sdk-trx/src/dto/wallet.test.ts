@@ -7,7 +7,7 @@ import { WalletData } from "./wallet";
 
 let subject: WalletData;
 
-describe("WalletData", function () {
+describe("WalletData", () => {
 	const subject = new WalletData(data[0]);
 
 	it("#address", () => {

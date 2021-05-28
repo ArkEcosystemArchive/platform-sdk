@@ -18,7 +18,7 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => nock.disableNetConnect());
 
-describe("ClientService", function () {
+describe("ClientService", () => {
 	test("#transaction", async () => {
 		nock(/.+/)
 			.post("/")

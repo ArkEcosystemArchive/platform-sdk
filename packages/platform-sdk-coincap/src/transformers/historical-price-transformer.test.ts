@@ -191,8 +191,8 @@ const stubOptions = {
 	dateFormat: "DD.MM",
 };
 
-describe("CoinCap", function () {
-	describe("HistoricalPriceTransformer", function () {
+describe("CoinCap", () => {
+	describe("HistoricalPriceTransformer", () => {
 		it("should transform the given data", async () => {
 			const subject = new HistoricalPriceTransformer(stubResponse.data);
 
