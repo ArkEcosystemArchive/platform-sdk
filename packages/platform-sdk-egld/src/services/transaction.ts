@@ -7,7 +7,6 @@ import {
 	GasPrice,
 	Mnemonic,
 	Nonce,
-	ProxyProvider,
 	Transaction,
 	TransactionPayload,
 	UserSecretKey,
@@ -17,12 +16,8 @@ import {
 import { SignedTransactionData } from "../dto";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #provider: ProxyProvider;
-
 	private constructor(peer: string) {
 		super();
-
-		this.#provider = new ProxyProvider(peer);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
@@ -59,11 +54,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			timestamp: DateTime.make(),
 		};
 
-		const mnemonic: Mnemonic = Mnemonic.fromString(input.signatory.signingKey());
-		const secretKey: UserSecretKey = mnemonic.deriveKey(0); // TODO probably need to consider account index for all bip44 wallets
-		const signer: UserSigner = new UserSigner(secretKey);
+		const mnemonic = Mnemonic.fromString(input.signatory.signingKey());
+		const secretKey = mnemonic.deriveKey(0); // TODO probably need to consider account index for all bip44 wallets
+		const signer = new UserSigner(secretKey);
 
-		const transaction: Transaction = new Transaction({
+		const transaction = new Transaction({
 			receiver: Address.fromString(input.data.to),
 			value: Balance.egld(input.data.amount),
 			gasPrice: new GasPrice((input.fee as unknown) as number),
