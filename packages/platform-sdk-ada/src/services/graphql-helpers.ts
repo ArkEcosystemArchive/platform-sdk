@@ -5,7 +5,7 @@ import { UnspentTransaction } from "./transaction.models";
 const postGraphql = async (config: Coins.Config, query: string): Promise<Record<string, any>> => {
 	const response = await config
 		.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient)
-		.post(Helpers.randomHostFromConfig(config, "full").host, { query });
+		.post(Helpers.randomHostFromConfig(config), { query });
 
 	const json = response.json();
 

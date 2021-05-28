@@ -103,6 +103,6 @@ export class ClientService implements Contracts.ClientService {
 	}
 
 	private host(): string {
-		return Helpers.randomHostFromConfig(this.#config, "full").host;
+		return Helpers.randomHostFromConfig(this.#config);
 	}
 }

@@ -20,7 +20,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		const unspent: UnspentAggregator = new UnspentAggregator({
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-			peer: Helpers.randomHostFromConfig(config, "full").host,
+			peer: Helpers.randomHostFromConfig(config),
 		});
 
 		return new TransactionService({

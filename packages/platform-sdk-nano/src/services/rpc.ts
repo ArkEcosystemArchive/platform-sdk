@@ -34,7 +34,7 @@ export class NanoClient {
 	readonly #http: Contracts.HttpClient;
 
 	public constructor(config: Coins.Config) {
-		const { host } = Helpers.randomHostFromConfig(config, "full");
+		const host = Helpers.randomHostFromConfig(config);
 
 		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient).baseUrl(host);
 	}

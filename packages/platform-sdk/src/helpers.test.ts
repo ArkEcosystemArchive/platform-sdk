@@ -6,6 +6,7 @@ import {
 	createTransactionDataWithType,
 	filterHostsFromConfig,
 	pluckAddress,
+	randomNetworkHostFromConfig,
 	randomHostFromConfig,
 } from "./helpers";
 
@@ -159,10 +160,10 @@ test("filterHostsFromConfig", () => {
 	]);
 });
 
-test("randomHostFromConfig", () => {
+test("randomNetworkHostFromConfig", () => {
 	// @ts-ignore
 	expect(
-		randomHostFromConfig(
+		randomNetworkHostFromConfig(
 			{
 				// @ts-ignore
 				get: () => [
@@ -186,6 +187,32 @@ test("randomHostFromConfig", () => {
 		type: "explorer",
 		host: "https://explorer.ark.io/",
 	});
+});
+
+test("randomHostFromConfig", () => {
+	// @ts-ignore
+	expect(
+		randomHostFromConfig(
+			{
+				// @ts-ignore
+				get: () => [
+					{
+						type: "full",
+						host: "https://wallets.ark.io",
+					},
+					{
+						type: "musig",
+						host: "https://musig1.ark.io",
+					},
+					{
+						type: "explorer",
+						host: "https://explorer.ark.io/",
+					},
+				],
+			},
+			"explorer",
+		),
+	).toBe("https://explorer.ark.io/");
 });
 
 describe("pluckAddress", () => {

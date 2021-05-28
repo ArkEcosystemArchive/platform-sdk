@@ -79,7 +79,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private useClient(): LCDClient {
 		return useClient(
-			`${Helpers.randomHostFromConfig(this.#config, "full").host}/api`,
+			`${Helpers.randomHostFromConfig(this.#config)}/api`,
 			this.#config.get("network.meta.networkId"),
 		);
 	}

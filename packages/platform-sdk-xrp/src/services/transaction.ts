@@ -69,7 +69,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.post(Helpers.randomHostFromConfig(this.#config, "full").host, {
+			await this.#http.post(Helpers.randomHostFromConfig(this.#config), {
 				jsonrpc: "2.0",
 				id: UUID.random(),
 				method,
