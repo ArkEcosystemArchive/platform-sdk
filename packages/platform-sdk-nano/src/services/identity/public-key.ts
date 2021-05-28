@@ -1,7 +1,7 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { deriveAccount } from "./helpers";
 
-export class PublicKeyService implements Contracts.PublicKeyService {
+export class PublicKeyService extends Services.AbstractPublicKeyService {
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
@@ -9,17 +9,5 @@ export class PublicKeyService implements Contracts.PublicKeyService {
 		return {
 			publicKey: deriveAccount(mnemonic, options?.bip44?.account).publicKey,
 		};
-	}
-
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.PublicKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.PublicKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.PublicKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

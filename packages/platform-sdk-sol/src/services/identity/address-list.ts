@@ -1,17 +1,5 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Services } from "@arkecosystem/platform-sdk";
 
-export class ExtendedAddressService implements Contracts.ExtendedAddressService {
-	public async fromMnemonic(
-		mnemonic: string,
-		pageSize: number,
-	): Promise<Contracts.ExtendedAddressDataTransferObject[]> {
-		return [];
-	}
-
-	public async fromPrivateKey(
-		privateKey: string,
-		pageSize: number,
-	): Promise<Contracts.ExtendedAddressDataTransferObject[]> {
-		return [];
-	}
+export class ExtendedAddressService extends Services.AbstractExtendedAddressService {
+	//
 }

@@ -1,12 +1,14 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
 import { derivePrivateKey } from "./helpers";
 
-export class PrivateKeyService implements Contracts.PrivateKeyService {
+export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	readonly #slip44: number;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#slip44 = config.get<number>("network.constants.slip44");
 	}
 
@@ -26,13 +28,5 @@ export class PrivateKeyService implements Contracts.PrivateKeyService {
 				this.#slip44,
 			).toString("hex"),
 		};
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.PrivateKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.PrivateKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

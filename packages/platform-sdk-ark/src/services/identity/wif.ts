@@ -1,13 +1,15 @@
 import { WIF as BaseWIF } from "@arkecosystem/crypto-identities";
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
 
-export class WIFService implements Contracts.WIFService {
-	readonly #configCrypto: CryptoConfig;
+export class WIFService extends Services.AbstractWIFService {
+	readonly #config: CryptoConfig;
 
-	public constructor(configCrypto: CryptoConfig) {
-		this.#configCrypto = configCrypto;
+	public constructor(config: CryptoConfig) {
+		super();
+
+		this.#config = config;
 	}
 
 	public async fromMnemonic(
@@ -16,7 +18,7 @@ export class WIFService implements Contracts.WIFService {
 	): Promise<Contracts.WIFDataTransferObject> {
 		try {
 			return {
-				wif: BaseWIF.fromPassphrase(mnemonic, this.#configCrypto),
+				wif: BaseWIF.fromPassphrase(mnemonic, this.#config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -27,14 +29,10 @@ export class WIFService implements Contracts.WIFService {
 		try {
 			return {
 				// @ts-ignore - We don't care about having a public key for this
-				wif: BaseWIF.fromKeys({ privateKey, compressed: true }, this.#configCrypto),
+				wif: BaseWIF.fromKeys({ privateKey, compressed: true }, this.#config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.WIFDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

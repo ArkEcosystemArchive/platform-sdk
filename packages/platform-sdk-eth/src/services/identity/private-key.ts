@@ -1,11 +1,13 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import { createWallet } from "./utils";
 
-export class PrivateKeyService implements Contracts.PrivateKeyService {
+export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 	}
 
@@ -28,13 +30,5 @@ export class PrivateKeyService implements Contracts.PrivateKeyService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.PrivateKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.PrivateKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }
