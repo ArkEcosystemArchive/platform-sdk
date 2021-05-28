@@ -1,5 +1,4 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { SignedBlock } from "nanocurrency-web/dist/lib/block-signer";
 
 interface AccountInfoResponse {
@@ -34,8 +33,10 @@ interface AccountHistoryResponse {
 export class NanoClient {
 	readonly #http: Contracts.HttpClient;
 
-	public constructor(host: string) {
-		this.#http = new Request().baseUrl(host);
+	public constructor(config: Coins.Config) {
+		const { host } = Helpers.randomHostFromConfig(config, "full");
+
+		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient).baseUrl(host);
 	}
 
 	public async accountBalance(account: string): Promise<{ balance: string; pending: string }> {
