@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { ConfigKey } from "@arkecosystem/platform-sdk/dist/coins";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { createHash } from "crypto";
 import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
@@ -24,7 +24,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
-			networkId: config.get<string>(ConfigKey.NetworkMetaId),
+			networkId: config.get<string>(ConfigKey.MetaNetworkId),
 			peer: Helpers.randomHostFromConfig(config, "full").host,
 			ticker: config.get<string>(ConfigKey.CurrencyTicker),
 		});
