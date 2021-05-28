@@ -1,6 +1,6 @@
 import { Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
@@ -9,7 +9,7 @@ import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
-export class TransactionService implements Contracts.TransactionService {
+export class TransactionService extends Services.AbstractTransactionService {
 	readonly #http: Contracts.HttpClient;
 	readonly #identity: IdentityService;
 	readonly #peer: string;
@@ -17,6 +17,8 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #configCrypto: any;
 
 	private constructor({ http, identity, peer, multiSignatureSigner, configCrypto }) {
+		super();
+
 		this.#http = http;
 		this.#identity = identity;
 		this.#peer = peer;
@@ -34,10 +36,6 @@ export class TransactionService implements Contracts.TransactionService {
 			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
 			configCrypto: { crypto, status },
 		});
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transfer(
