@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
 import { block, tools } from "nanocurrency-web";

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { LCDClient, MnemonicKey, MsgSend } from "@terra-money/terra.js";
 
