@@ -17,10 +17,7 @@ const postGraphql = async (config: Coins.Config, query: string): Promise<Record<
 };
 
 export const submitTransaction = async (config: Coins.Config, toBroadcast: string): Promise<string> => {
-	return ((await postGraphql(
-		config,
-		`mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`,
-	))).hash;
+	return (await postGraphql(config, `mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`)).hash;
 };
 
 export const fetchTransaction = async (id: string, config: Coins.Config): Promise<object[]> => {
