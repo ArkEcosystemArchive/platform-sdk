@@ -16,7 +16,6 @@ npm install @arkecosystem/platform-sdk-btc-indexer
 
 ```bash
 export DATABASE_URL="postgresql://user:password@localhost:5432/database?schema=public"
-npx prisma migrate deploy --schema node_modules/@arkecosystem/platform-sdk-btc-indexer/prisma/schema.prisma
 npx pbtc run --host=https://your.btc-server.com/rpc
 ```
 

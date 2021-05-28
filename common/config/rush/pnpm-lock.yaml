@@ -595,6 +595,7 @@ importers:
       '@prisma/client': 2.23.0_prisma@2.23.0
       better-sqlite3: 7.1.5
       env-paths: 2.2.1
+      execa: 5.0.0
       fs-extra: 9.1.0
       meow: 9.0.0
       p-queue: 6.6.2
@@ -666,6 +667,7 @@ importers:
       eslint-plugin-prettier: ^3.4.0
       eslint-plugin-simple-import-sort: ^7.0.0
       eslint-plugin-tsdoc: ~0.2.14
+      execa: ~5.0.0
       fs-extra: ^9.1.0
       got: ^11.8.2
       jest: ^26.6.3
@@ -4591,6 +4593,7 @@ packages:
       jest-validate: 26.6.2
       jest-watcher: 26.6.2
       micromatch: 4.0.4
+      p-each-series: 2.2.0
       rimraf: 3.0.2
       slash: 3.0.0
       strip-ansi: 6.0.0
@@ -5427,7 +5430,7 @@ packages:
     dependencies:
       '@prisma/engines-version': 2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b
       prisma: 2.23.0
-    dev: true
+    dev: false
     engines:
       node: '>=10.16'
     peerDependencies:
@@ -5439,7 +5442,7 @@ packages:
     resolution:
       integrity: sha512-xsHdo3+wIH0hJVGfKHYTEKtifStjKH0b5t8t7hV32Fypq6+3uxhAi3F25yxuI4XSHXg21nb7Ha82lNwU/0TERA==
   /@prisma/engines-version/2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b:
-    dev: true
+    dev: false
     resolution:
       integrity: sha512-VNgnOe+oPQKmy3HOtWi/Q1fvcKZUQkf1OfTD1pzrLBx9tJPejyxt1Mq54L+OOAuYvfrua6bmfojFVLh7uXuWVw==
   /@prisma/engines/2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b:

@@ -4,6 +4,7 @@ import PWaitFor from "p-wait-for";
 import { useClient, useDatabase, useLogger } from "./helpers";
 import { Logger } from "./logger";
 import { Flags } from "./types";
+import execa from "execa";
 
 /**
  * Launch the indexer and subscribe to updates for new data.
@@ -12,6 +13,9 @@ import { Flags } from "./types";
  * @returns {Promise<void>}
  */
 export const subscribe = async (flags: Flags): Promise<void> => {
+
+	await runMigrations();
+
 	const logger: Logger = useLogger();
 	const database = useDatabase(flags, logger);
 	const client = useClient(flags);
@@ -46,3 +50,8 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 		}
 	}
 };
+
+const runMigrations = async (): Promise<void> => {
+	const { stdout } = await execa("npx", ["prisma", "migrate", "deploy", "--schema", "node_modules/@arkecosystem/platform-sdk-btc-indexer/prisma/schema.prisma"]);
+	console.log(stdout);
+}

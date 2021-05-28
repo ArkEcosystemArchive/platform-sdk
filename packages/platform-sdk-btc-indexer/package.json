@@ -43,7 +43,8 @@
 		"p-queue": "^6.6.2",
 		"p-wait-for": "^3.2.0",
 		"url-parse-lax": "^4.0.0",
-		"uuid": "^8.3.2"
+		"uuid": "^8.3.2",
+		"execa": "~5.0.0"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
