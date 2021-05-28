@@ -39,9 +39,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		const amount = BigNumber.make(input.data.amount).times(1e10).toString();
 		const keypair = this.#keyring.addFromMnemonic(input.signatory.signingKey());
-		const transaction = await this.#client.tx.balances
-			.transfer(input.data.to, amount)
-			.signAsync(keypair);
+		const transaction = await this.#client.tx.balances.transfer(input.data.to, amount).signAsync(keypair);
 
 		const signedData = {
 			...JSON.parse(transaction.toString()),
