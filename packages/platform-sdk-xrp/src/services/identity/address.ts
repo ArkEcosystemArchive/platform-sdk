@@ -34,6 +34,10 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
+	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
+		return { address: deriveAddress(deriveKeypair(secret).publicKey) };
+	}
+
 	public async validate(address: string): Promise<boolean> {
 		return true;
 	}

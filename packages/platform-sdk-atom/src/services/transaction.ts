@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 
 import { SignedTransactionData } from "../dto";
@@ -6,12 +6,14 @@ import { createSignedTransactionData } from "../utils/crypto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
 
-export class TransactionService implements Contracts.TransactionService {
+export class TransactionService extends Services.AbstractTransactionService {
 	readonly #client;
 	readonly #identity;
 	readonly #networkId;
 
 	private constructor(opts: Contracts.KeyValuePair) {
+		super();
+
 		this.#client = opts.client;
 		this.#identity = opts.identity;
 		this.#networkId = opts.network.meta.networkId;
@@ -23,10 +25,6 @@ export class TransactionService implements Contracts.TransactionService {
 			client: await ClientService.__construct(config),
 			identity: await IdentityService.__construct(config),
 		});
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transfer(
@@ -83,86 +81,5 @@ export class TransactionService implements Contracts.TransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async secondSignature(
-		input: Contracts.SecondSignatureInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "secondSignature");
-	}
-
-	public async delegateRegistration(
-		input: Contracts.DelegateRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegateRegistration");
-	}
-
-	public async vote(
-		input: Contracts.VoteInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "vote");
-	}
-
-	public async multiSignature(
-		input: Contracts.MultiSignatureInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiSignature");
-	}
-
-	public async ipfs(
-		input: Contracts.IpfsInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "ipfs");
-	}
-
-	public async multiPayment(
-		input: Contracts.MultiPaymentInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiPayment");
-	}
-
-	public async delegateResignation(
-		input: Contracts.DelegateResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegateResignation");
-	}
-
-	public async htlcLock(
-		input: Contracts.HtlcLockInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcLock");
-	}
-
-	public async htlcClaim(
-		input: Contracts.HtlcClaimInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcClaim");
-	}
-
-	public async htlcRefund(
-		input: Contracts.HtlcRefundInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
-	}
-
-	public multiSign(
-		transaction: Contracts.RawTransactionData,
-		input: Contracts.TransactionInputs,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
-	}
-
-	public async estimateExpiration(value?: string): Promise<string | undefined> {
-		return undefined;
 	}
 }

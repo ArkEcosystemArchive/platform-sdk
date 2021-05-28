@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { Account, Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { v4 as uuidv4 } from "uuid";
@@ -6,12 +6,14 @@ import { v4 as uuidv4 } from "uuid";
 import { SignedTransactionData } from "../dto";
 import { derivePrivateKey, derivePublicKey } from "./identity/helpers";
 
-export class TransactionService implements Contracts.TransactionService {
+export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.Config;
 	readonly #client: Connection;
 	readonly #slip44: number;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 		this.#client = new Connection(this.host());
 		this.#slip44 = config.get<number>("network.constants.slip44");
@@ -19,10 +21,6 @@ export class TransactionService implements Contracts.TransactionService {
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService(config);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transfer(
@@ -60,87 +58,6 @@ export class TransactionService implements Contracts.TransactionService {
 			},
 			signedTransaction.toString("hex"),
 		);
-	}
-
-	public async secondSignature(
-		input: Contracts.SecondSignatureInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "secondSignature");
-	}
-
-	public async delegateRegistration(
-		input: Contracts.DelegateRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegateRegistration");
-	}
-
-	public async vote(
-		input: Contracts.VoteInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "vote");
-	}
-
-	public async multiSignature(
-		input: Contracts.MultiSignatureInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiSignature");
-	}
-
-	public async ipfs(
-		input: Contracts.IpfsInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "ipfs");
-	}
-
-	public async multiPayment(
-		input: Contracts.MultiPaymentInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiPayment");
-	}
-
-	public async delegateResignation(
-		input: Contracts.DelegateResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegateResignation");
-	}
-
-	public async htlcLock(
-		input: Contracts.HtlcLockInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcLock");
-	}
-
-	public async htlcClaim(
-		input: Contracts.HtlcClaimInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcClaim");
-	}
-
-	public async htlcRefund(
-		input: Contracts.HtlcRefundInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
-	}
-
-	public async multiSign(
-		transaction: Contracts.RawTransactionData,
-		input: Contracts.TransactionInputs,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
-	}
-
-	public async estimateExpiration(value?: string): Promise<string | undefined> {
-		return undefined;
 	}
 
 	private sign(transaction: Transaction, privateKey: Buffer): Buffer {

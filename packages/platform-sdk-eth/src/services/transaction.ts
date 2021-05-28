@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import Common from "@ethereumjs/common";
 import { Transaction } from "@ethereumjs/tx";
@@ -7,7 +7,7 @@ import Web3 from "web3";
 import { SignedTransactionData } from "../dto";
 import { IdentityService } from "./identity";
 
-export class TransactionService implements Contracts.TransactionService {
+export class TransactionService extends Services.AbstractTransactionService {
 	readonly #http: Contracts.HttpClient;
 	readonly #peer;
 	readonly #chain: string;
@@ -15,6 +15,8 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #web3;
 
 	private constructor(opts: Contracts.KeyValuePair) {
+		super();
+
 		this.#http = opts.http;
 		this.#peer = opts.peer;
 		this.#chain = opts.network;
@@ -27,10 +29,6 @@ export class TransactionService implements Contracts.TransactionService {
 			...config.all(),
 			identity: await IdentityService.__construct(config),
 		});
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transfer(
@@ -92,87 +90,6 @@ export class TransactionService implements Contracts.TransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async secondSignature(
-		input: Contracts.SecondSignatureInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "secondSignature");
-	}
-
-	public async delegateRegistration(
-		input: Contracts.DelegateRegistrationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegateRegistration");
-	}
-
-	public async vote(
-		input: Contracts.VoteInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "vote");
-	}
-
-	public async multiSignature(
-		input: Contracts.MultiSignatureInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiSignature");
-	}
-
-	public async ipfs(
-		input: Contracts.IpfsInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "ipfs");
-	}
-
-	public async multiPayment(
-		input: Contracts.MultiPaymentInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiPayment");
-	}
-
-	public async delegateResignation(
-		input: Contracts.DelegateResignationInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegateResignation");
-	}
-
-	public async htlcLock(
-		input: Contracts.HtlcLockInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcLock");
-	}
-
-	public async htlcClaim(
-		input: Contracts.HtlcClaimInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcClaim");
-	}
-
-	public async htlcRefund(
-		input: Contracts.HtlcRefundInput,
-		options?: Contracts.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "htlcRefund");
-	}
-
-	public multiSign(
-		transaction: Contracts.RawTransactionData,
-		input: Contracts.TransactionInputs,
-	): Promise<Contracts.SignedTransactionData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiSign");
-	}
-
-	public async estimateExpiration(value?: string): Promise<string | undefined> {
-		return undefined;
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
