@@ -163,7 +163,7 @@ export class Database {
 		try {
 			await this.#prisma.transaction.create({
 				data: {
-					blockId,
+					block_id: blockId,
 					hash: transaction.txid,
 					time: transaction.time,
 					amount: BigInt(amount),
