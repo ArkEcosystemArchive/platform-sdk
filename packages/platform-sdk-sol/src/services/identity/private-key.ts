@@ -7,6 +7,8 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	readonly #slip44: number;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#slip44 = config.get<number>("network.constants.slip44");
 	}
 
