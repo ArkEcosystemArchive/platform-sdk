@@ -1,6 +1,7 @@
 import execa from "execa";
 import PQueue from "p-queue";
 import PWaitFor from "p-wait-for";
+import path from "path";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
 import { Logger } from "./logger";
@@ -56,7 +57,7 @@ const runMigrations = async (): Promise<void> => {
 		"migrate",
 		"deploy",
 		"--schema",
-		__dirname + "/../prisma/schema.prisma",
+		path.resolve(__dirname, "/../prisma/schema.prisma"),
 	]);
 	console.log(stdout);
 };
