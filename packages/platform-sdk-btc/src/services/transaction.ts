@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import BigNumber from "bignumber.js";
 import { Transaction } from "bitcore-lib";
 
@@ -40,10 +39,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of mnemonic
-			const mnemonic: string = BIP39.normalize(input.signatory.signingKey());
 
 			// 1. Derive the sender address
-			const senderAddress: string = await this.#identity.address().fromWIF(mnemonic);
+			const senderAddress: string = await this.#identity.address().fromWIF(input.signatory.signingKey());
 			// ({ wif: input.signatory.signingKey() });
 
 			// 2. Aggregate the unspent transactions
@@ -60,7 +58,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				transaction = transaction.fee(input.fee);
 			}
 
-			return transaction.sign(mnemonic).toString();
+			return transaction.sign(input.signatory.signingKey()).toString();
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

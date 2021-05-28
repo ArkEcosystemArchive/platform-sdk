@@ -3,7 +3,7 @@ export class MultiMnemonicSignatory {
 	readonly #identifiers: string[];
 
 	public constructor(signingKeys: string[], identifiers: string[]) {
-		this.#signingKeys = signingKeys;
+		this.#signingKeys = signingKeys.map((signingKey: string) => signingKey.normalize("NFD"));
 		this.#identifiers = identifiers;
 	}
 
