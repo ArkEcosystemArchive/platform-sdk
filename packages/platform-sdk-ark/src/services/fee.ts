@@ -57,8 +57,6 @@ export class FeeService implements Contracts.FeeService {
 	}
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (
-			await this.#http.get(`${Helpers.randomHostFromConfig(this.#config)}/${path}`, query)
-		).json();
+		return (await this.#http.get(`${Helpers.randomHostFromConfig(this.#config)}/${path}`, query)).json();
 	}
 }

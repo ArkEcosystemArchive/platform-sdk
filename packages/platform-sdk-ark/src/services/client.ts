@@ -117,10 +117,7 @@ export class ClientService implements Contracts.ClientService {
 
 	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.get(
-				`${Helpers.randomHostFromConfig(this.#config)}/${path}`,
-				query?.searchParams,
-			)
+			await this.#http.get(`${Helpers.randomHostFromConfig(this.#config)}/${path}`, query?.searchParams)
 		).json();
 	}
 
