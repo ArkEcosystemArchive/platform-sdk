@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { Message, PrivateKey } from "bitcore-lib";
 
 import { IdentityService } from "./identity";

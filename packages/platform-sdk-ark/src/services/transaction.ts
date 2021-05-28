@@ -303,7 +303,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
-				const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.signatory.signingList());
+				const transactionWithSignature = this.#multiSignatureSigner.sign(
+					transaction,
+					input.signatory.signingList(),
+				);
 
 				return new SignedTransactionData(
 					transactionWithSignature.id!,
