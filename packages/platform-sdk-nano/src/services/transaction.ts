@@ -1,7 +1,7 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
-import { block } from "nanocurrency-web";
+import { block, tools } from "nanocurrency-web";
 
 import { SignedTransactionData } from "../dto";
 import { deriveAccount } from "./identity/helpers";
@@ -36,7 +36,7 @@ export class TransactionService implements Contracts.TransactionService {
 			toAddress: input.data.to,
 			representativeAddress: representative,
 			frontier,
-			amountRaw: input.data.amount,
+			amountRaw: tools.convert(input.data.amount, 'NANO', 'RAW'),
 			work: (await computeWork(frontier))!,
 		};
 		const signedData = { ...data, timestamp: DateTime.make() };
