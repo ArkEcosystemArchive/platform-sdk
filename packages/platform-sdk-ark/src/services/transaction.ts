@@ -330,7 +330,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				);
 
 				for (let i = 0; i < signingKeys.length; i++) {
-					transaction.multiSign(BIP39.normalize(signingKeys[i]), i);
+					transaction.multiSign(signingKeys[i], i);
 				}
 			} else if (input.signatory.actsWithSignature()) {
 				transaction.data.signature = input.signatory.signingKey();

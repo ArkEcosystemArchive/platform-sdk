@@ -102,11 +102,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			// todo: support multisignature
 
 			if (input.signatory.signingKey()) {
-				struct.passphrase = BIP39.normalize(input.signatory.signingKey());
+				struct.passphrase = input.signatory.signingKey();
 			}
 
 			if (input.signatory.actsWithSecondaryMnemonic()) {
-				struct.secondPassphrase = BIP39.normalize(input.signatory.confirmKey());
+				struct.secondPassphrase = input.signatory.confirmKey();
 			}
 
 			const signedTransaction = {
