@@ -11,7 +11,7 @@ export class AddressService extends Services.AbstractAddressService {
 		const account = makeAccount();
 		account.loadFromMnemonic(mnemonic);
 
-		return { address: account.address() };
+		return { type: "bip39", address: account.address() };
 	}
 
 	public async fromPrivateKey(
@@ -21,7 +21,7 @@ export class AddressService extends Services.AbstractAddressService {
 		const account = makeAccount();
 		account.loadFromHexPrivateKey(privateKey);
 
-		return { address: account.address() };
+		return { type: "bip39", address: account.address() };
 	}
 
 	public async validate(address: string): Promise<boolean> {

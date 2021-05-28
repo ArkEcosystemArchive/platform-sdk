@@ -10,6 +10,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: deriveAccount(mnemonic, options?.bip44?.account).address,
 		};
 	}
@@ -19,6 +20,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: nanocurrency.deriveAddress(publicKey),
 		};
 	}
@@ -28,6 +30,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: nanocurrency.deriveAddress(nanocurrency.derivePublicKey(privateKey)),
 		};
 	}

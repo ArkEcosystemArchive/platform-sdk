@@ -17,11 +17,17 @@ export class AddressService extends Services.AbstractAddressService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
-		return { address: this.#keyring.addFromMnemonic(mnemonic).address };
+		return {
+			type: "ss58",
+			address: this.#keyring.addFromMnemonic(mnemonic).address,
+		};
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
-		return { address: encodeAddress(createKeyMulti(publicKeys, min), 0) };
+		return {
+			type: "ss58",
+			address: encodeAddress(createKeyMulti(publicKeys, min), 0),
+		};
 	}
 
 	public async validate(address: string): Promise<boolean> {
