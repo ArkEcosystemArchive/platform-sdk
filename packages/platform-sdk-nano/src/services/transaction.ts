@@ -1,15 +1,18 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
 import { block } from "nanocurrency-web";
 
 import { SignedTransactionData } from "../dto";
+import { deriveAccount } from "./identity/helpers";
+import { NanoClient } from "./rpc";
 
 export class TransactionService implements Contracts.TransactionService {
-	readonly #config: Coins.Config;
+	readonly #client: NanoClient;
 
 	public constructor(config: Coins.Config) {
-		this.#config = config;
+		const { host } = Helpers.randomHostFromConfig(config, "full");
+		this.#client = new NanoClient(host);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
@@ -24,28 +27,22 @@ export class TransactionService implements Contracts.TransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		// @TODO: derive from mnemonic
-		const privateKey = "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3";
+		const { address, privateKey } = deriveAccount(input.signatory.signingKey());
+		const { balance, representative, frontier } = await this.#client.accountInfo(address, { representative: true });
+
 		const data = {
-			// Current balance from wallet info
-			walletBalanceRaw: "5618869000000000000000000000000",
-			// Your wallet address
+			walletBalanceRaw: balance,
 			fromAddress: input.signatory.address(),
-			// The address to send to
 			toAddress: input.data.to,
-			// From wallet info
-			representativeAddress: "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
-			// Previous block, from wallet info
-			frontier: "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
-			// The amount to send in RAW
+			representativeAddress: representative,
+			frontier,
 			amountRaw: input.data.amount,
-			// Generate work on server-side or with a DPOW service
-			work: (await computeWork("previousBlock"))!,
+			work: (await computeWork(frontier))!,
 		};
-
 		const signedData = { ...data, timestamp: DateTime.make() };
+		const broadcastData = block.send(data, privateKey);
 
-		return new SignedTransactionData(block.send(data, privateKey).signature, signedData, data);
+		return new SignedTransactionData(broadcastData.signature, signedData, broadcastData);
 	}
 
 	public async secondSignature(
