@@ -4,10 +4,12 @@ import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { CryptoConfig } from "../../contracts";
 
 export class PublicKeyService extends Services.AbstractPublicKeyService {
-	readonly #configCrypto: CryptoConfig;
+	readonly #config: CryptoConfig;
 
-	public constructor(configCrypto: CryptoConfig) {
-		this.#configCrypto = configCrypto;
+	public constructor(config: CryptoConfig) {
+		super();
+
+		this.#config = config;
 	}
 
 	public async fromMnemonic(
@@ -36,7 +38,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 	public async fromWIF(wif: string): Promise<Contracts.PublicKeyDataTransferObject> {
 		try {
 			return {
-				publicKey: BasePublicKey.fromWIF(wif, this.#configCrypto),
+				publicKey: BasePublicKey.fromWIF(wif, this.#config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
