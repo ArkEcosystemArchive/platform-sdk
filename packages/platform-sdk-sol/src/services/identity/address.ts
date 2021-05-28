@@ -22,6 +22,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 
 		return {
+			type: "bip44",
 			address: base58.encode(
 				derivePublicKey(
 					derivePrivateKey(
@@ -40,6 +41,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: base58.encode(Buffer.from(publicKey, "hex")),
 		};
 	}
@@ -49,6 +51,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: base58.encode(derivePublicKey(Buffer.from(privateKey, "hex"))),
 		};
 	}

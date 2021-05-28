@@ -7,7 +7,7 @@ export class AddressService extends Services.AbstractAddressService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
-		return { address: deriveKey(mnemonic).accAddress };
+		return { type: "bip39", address: deriveKey(mnemonic).accAddress };
 	}
 
 	public async validate(address: string): Promise<boolean> {

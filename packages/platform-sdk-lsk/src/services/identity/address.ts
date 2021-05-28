@@ -8,7 +8,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return { address: cryptography.getAddressFromPassphrase(mnemonic) };
+			return { type: "bip39", address: cryptography.getAddressFromPassphrase(mnemonic) };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -19,7 +19,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return { address: cryptography.getAddressFromPublicKey(publicKey) };
+			return { type: "bip39", address: cryptography.getAddressFromPublicKey(publicKey) };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

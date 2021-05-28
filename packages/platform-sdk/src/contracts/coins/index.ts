@@ -12,3 +12,4 @@ export * from "./multi-signature";
 export * from "./signatory";
 export * from "./transaction";
 export * from "./known-wallets";
+export * from "./wallet-discovery";

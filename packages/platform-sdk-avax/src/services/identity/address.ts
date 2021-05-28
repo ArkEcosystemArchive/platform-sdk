@@ -17,6 +17,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: keyPairFromMnemonic(this.#config, mnemonic).getAddressString(),
 		};
 	}
@@ -26,6 +27,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: useKeychain(this.#config)
 				.importKey(BinTools.getInstance().cb58Decode(privateKey))
 				.getAddressString(),

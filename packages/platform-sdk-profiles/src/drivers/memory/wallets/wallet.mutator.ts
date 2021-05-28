@@ -42,7 +42,7 @@ export class WalletMutator implements IWalletMutator {
 
 	/** {@inheritDoc IWalletMutator.identity} */
 	public async identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void> {
-		const { address, path } = await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options);
+		const { type, address, path } = await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options);
 
 		if (path) {
 			this.#wallet.data().set(WalletData.DerivationPath, path);
@@ -57,7 +57,7 @@ export class WalletMutator implements IWalletMutator {
 				(await this.#wallet.coin().identity().publicKey().fromMnemonic(mnemonic, options)).publicKey,
 			);
 
-		return this.address({ address, path });
+		return this.address({ type, address, path });
 	}
 
 	/** {@inheritDoc IWalletMutator.address} */

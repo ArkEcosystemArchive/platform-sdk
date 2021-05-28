@@ -9,6 +9,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(options?.bip44?.account || 0),
 			};
 		} catch (error) {
@@ -22,6 +23,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: Stellar.Keypair.fromSecret(privateKey).publicKey(),
 			};
 		} catch (error) {

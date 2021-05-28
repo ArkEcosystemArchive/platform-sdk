@@ -22,6 +22,7 @@ export class AddressService extends Services.AbstractAddressService {
 			});
 
 			return {
+				type: "bip44",
 				address: bech32.encode(this.#config.get(Coins.ConfigKey.Bech32), bech32.toWords(child.identifier)),
 			};
 		} catch (error) {

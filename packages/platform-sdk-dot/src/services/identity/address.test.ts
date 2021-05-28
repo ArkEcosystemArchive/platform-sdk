@@ -17,7 +17,7 @@ describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ address: identity.address });
+		expect(result).toEqual({ type: "ss58", address: identity.address });
 	});
 
 	it("should generate an output from a multiSignature", async () => {
@@ -26,7 +26,7 @@ describe("Address", () => {
 			identity.multiSignature.publicKeys,
 		);
 
-		expect(result).toEqual({ address: identity.multiSignatureAddress });
+		expect(result).toEqual({ type: "ss58", address: identity.multiSignatureAddress });
 	});
 
 	it("should fail to generate an output from a privateKey", async () => {
