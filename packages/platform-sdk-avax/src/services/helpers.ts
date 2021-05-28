@@ -8,7 +8,7 @@ import HDKey from "hdkey";
 import urlParseLax from "url-parse-lax";
 
 export const useAvalanche = (config: Coins.Config): Avalanche => {
-	const { hostname: host, port, protocol } = urlParseLax(Helpers.randomHostFromConfig(config, "full").host);
+	const { hostname: host, port, protocol } = urlParseLax(Helpers.randomHostFromConfig(config));
 
 	return new Avalanche(
 		host,

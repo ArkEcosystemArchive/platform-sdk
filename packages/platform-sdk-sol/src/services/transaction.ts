@@ -67,6 +67,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	private host(): string {
-		return `${Helpers.randomHostFromConfig(this.#config, "full").host}/api`;
+		return `${Helpers.randomHostFromConfig(this.#config)}/api`;
 	}
 }

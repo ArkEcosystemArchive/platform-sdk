@@ -23,7 +23,7 @@ export class ClientService implements Contracts.ClientService {
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-			peer: `${Helpers.randomHostFromConfig(config, "full").host}/api`,
+			peer: `${Helpers.randomHostFromConfig(config)}/api`,
 		});
 	}
 
