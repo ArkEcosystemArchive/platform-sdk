@@ -23,7 +23,7 @@ describe("TransactionService", () => {
 				.query(true)
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
 
-			const result: any = await subject.transfer({
+			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
 						signingKey: identity.mnemonic,

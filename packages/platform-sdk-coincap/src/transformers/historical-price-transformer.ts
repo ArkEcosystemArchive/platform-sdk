@@ -32,7 +32,7 @@ export class HistoricalPriceTransformer implements Contracts.HistoricalTransform
 		const tokenId = token.toUpperCase();
 		const datasets = {};
 
-		for (const value of Object.values(this.data) as any) {
+		for (const value of Object.values(this.data)) {
 			datasets[DateTime.make(value.date).format(dateFormat)] = convertToCurrency(value.priceUsd, {
 				from: currency,
 				to: tokenId,

@@ -37,10 +37,10 @@ export class ClientService implements Contracts.ClientService {
 			query.senderPublicKey,
 		);
 
-		const transactions = (await fetchTransactions(
+		const transactions = await fetchTransactions(
 			this.#config,
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
-		)) as any;
+		);
 
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,

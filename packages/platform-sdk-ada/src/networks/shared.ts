@@ -1,7 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 
 // @TODO: type
-export const constants: any = {
+export const constants = {
 	slip44: 1815,
 };
 

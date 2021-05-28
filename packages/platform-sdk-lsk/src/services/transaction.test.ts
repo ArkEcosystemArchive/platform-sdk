@@ -15,7 +15,7 @@ describe("TransactionService", () => {
 		it.each(["lsk.mainnet", "lsk.testnet"])("should create for %s", async (network) => {
 			const service = await TransactionService.__construct(createConfig({ network }));
 
-			const result: any = await service.transfer({
+			const result = await service.transfer({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
 						signingKey: identity.mnemonic,
@@ -36,7 +36,7 @@ describe("TransactionService", () => {
 
 	describe("#secondSignature", () => {
 		it("should verify", async () => {
-			const result: any = await subject.secondSignature({
+			const result = await subject.secondSignature({
 				signatory: new Signatories.Signatory(
 					new Signatories.SecondaryMnemonicSignatory({
 						signingKey: identity.mnemonic,
@@ -57,7 +57,7 @@ describe("TransactionService", () => {
 
 	describe("#delegateRegistration", () => {
 		it("should verify", async () => {
-			const result: any = await subject.delegateRegistration({
+			const result = await subject.delegateRegistration({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
 						signingKey: identity.mnemonic,
@@ -77,7 +77,7 @@ describe("TransactionService", () => {
 
 	describe("#vote", () => {
 		it("should verify", async () => {
-			const result: any = await subject.vote({
+			const result = await subject.vote({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
 						signingKey: identity.mnemonic,
@@ -98,7 +98,7 @@ describe("TransactionService", () => {
 
 	describe("#multiSignature", () => {
 		it("should verify", async () => {
-			const result: any = await subject.multiSignature({
+			const result = await subject.multiSignature({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
 						signingKey: identity.mnemonic,
