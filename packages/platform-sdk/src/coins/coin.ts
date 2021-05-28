@@ -10,6 +10,7 @@ import {
 	MultiSignatureService,
 	SignatoryService,
 	TransactionService,
+	WalletDiscoveryService,
 } from "../contracts/coins";
 import { BadMethodDependencyException } from "../exceptions";
 import { Config, ConfigKey } from "./config";
@@ -171,6 +172,14 @@ export class Coin {
 		}
 
 		return this.#services!.transaction;
+	}
+
+	public walletDiscovery(): WalletDiscoveryService {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, "walletDiscovery", "__construct");
+		}
+
+		return this.#services!.walletDiscovery;
 	}
 
 	public hasBeenSynchronized(): boolean {

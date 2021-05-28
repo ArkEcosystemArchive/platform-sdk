@@ -1,6 +1,7 @@
 import { IdentityOptions } from "./shared";
 
 export interface AddressDataTransferObject {
+	type: "bip39" | "bip44" | "bip49" | "bip84" | "ss58" | "rfc6979" | "bip44.legacy";
 	address: string;
 	path?: string;
 }

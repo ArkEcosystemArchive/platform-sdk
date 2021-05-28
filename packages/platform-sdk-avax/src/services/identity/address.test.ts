@@ -10,7 +10,10 @@ beforeEach(async () => (subject = new AddressService(createConfig())));
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
-		await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({ address: identity.address });
+		await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({
+			type: "bip44",
+			address: identity.address,
+		});
 	});
 
 	it("should fail to generate an output from a multiSignature", async () => {
@@ -18,7 +21,10 @@ describe("Address", () => {
 	});
 
 	it("should fail to generate an output from a privateKey", async () => {
-		await expect(subject.fromPrivateKey(identity.privateKey)).resolves.toEqual({ address: identity.address });
+		await expect(subject.fromPrivateKey(identity.privateKey)).resolves.toEqual({
+			type: "bip44",
+			address: identity.address,
+		});
 	});
 
 	it("should fail to generate an output from a publicKey", async () => {

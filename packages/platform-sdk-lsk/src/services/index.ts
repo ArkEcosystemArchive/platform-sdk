@@ -8,3 +8,4 @@ export * from "./message";
 export * from "./multi-signature";
 export * from "./signatory";
 export * from "./transaction";
+export * from "./wallet-discovery";

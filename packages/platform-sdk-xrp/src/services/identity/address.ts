@@ -28,14 +28,14 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			return { address: deriveAddress(publicKey) };
+			return { type: "rfc6979", address: deriveAddress(publicKey) };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
 	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
-		return { address: deriveAddress(deriveKeypair(secret).publicKey) };
+		return { type: "rfc6979", address: deriveAddress(deriveKeypair(secret).publicKey) };
 	}
 
 	public async validate(address: string): Promise<boolean> {

@@ -354,7 +354,7 @@ it("should return whether it has synced with network", async () => {
 });
 
 it("should fail to set an invalid address", async () => {
-	await expect(() => subject.mutator().address({ address: "whatever" })).rejects.toThrow(
+	await expect(() => subject.mutator().address({ type: "bip39", address: "whatever" })).rejects.toThrow(
 		"Failed to retrieve information for whatever because it is invalid",
 	);
 });

@@ -16,6 +16,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: TronWeb.address.fromPrivateKey(
 				BIP44.deriveChild(mnemonic, {
 					coinType: this.#config.get(Coins.ConfigKey.Slip44),
