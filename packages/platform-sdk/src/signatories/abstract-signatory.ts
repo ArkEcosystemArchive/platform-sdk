@@ -15,14 +15,14 @@ export abstract class AbstractSignatory {
 		publicKey: string;
 		privateKey: string;
 	}) {
-		this.#signingKey = signingKey;
+		this.#signingKey = signingKey.normalize("NFD");
 		this.#address = address;
 		this.#publicKey = publicKey;
 		this.#privateKey = privateKey;
 	}
 
 	public signingKey(): string {
-		return this.#signingKey.normalize("NFD");
+		return this.#signingKey;
 	}
 
 	public address(): string {
