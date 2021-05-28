@@ -76,8 +76,11 @@ export const randomHost = (hosts: NetworkHost[], type: NetworkHostType): Network
 export const filterHostsFromConfig = (config: Config, type: NetworkHostType): NetworkHost[] =>
 	filterHosts(config.get<NetworkHost[]>("network.hosts"), type);
 
-export const randomHostFromConfig = (config: Config, type: NetworkHostType): NetworkHost =>
+export const randomNetworkHostFromConfig = (config: Config, type: NetworkHostType = "full"): NetworkHost =>
 	randomHost(config.get<NetworkHost[]>("network.hosts"), type);
+
+export const randomHostFromConfig = (config: Config, type: NetworkHostType = "full"): string =>
+	randomNetworkHostFromConfig(config, type).host;
 
 export const pluckAddress = (query): string => {
 	if (query.senderId) {

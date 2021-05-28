@@ -12,7 +12,7 @@ beforeEach(async () => (subject = await MessageService.__construct(createConfig(
 
 describe("MessageService", () => {
 	it("should sign a message", async () => {
-		const result: any = await subject.sign({
+		const result = await subject.sign({
 			message: "Hello World",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({

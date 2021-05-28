@@ -5,7 +5,7 @@ import { URL } from "url";
 
 import { Config, NetworkHost } from "../coins";
 import { LinkService } from "../contracts/coins";
-import { randomHostFromConfig } from "../helpers";
+import { randomNetworkHostFromConfig } from "../helpers";
 
 export interface LinkServiceSchema {
 	block: string;
@@ -18,7 +18,7 @@ export abstract class AbstractLinkService implements LinkService {
 	readonly #schema: LinkServiceSchema;
 
 	public constructor(config: Config, schema: LinkServiceSchema) {
-		this.#host = randomHostFromConfig(config, "explorer");
+		this.#host = randomNetworkHostFromConfig(config, "explorer");
 		this.#schema = schema;
 	}
 

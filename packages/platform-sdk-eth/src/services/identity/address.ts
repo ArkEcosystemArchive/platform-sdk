@@ -19,6 +19,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: getAddress(
 					createWallet(
 						mnemonic,
@@ -40,6 +41,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: getAddress(Wallet.fromPublicKey(Buffoon.fromHex(publicKey))),
 			};
 		} catch (error) {
@@ -53,6 +55,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: getAddress(Wallet.fromPrivateKey(Buffoon.fromHex(privateKey))),
 			};
 		} catch (error) {

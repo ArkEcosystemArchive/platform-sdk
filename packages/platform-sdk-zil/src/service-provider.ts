@@ -13,6 +13,7 @@ import { MessageService } from "./services/message";
 import { MultiSignatureService } from "./services/multi-signature";
 import { SignatoryService } from "./services/signatory";
 import { TransactionService } from "./services/transaction";
+import { WalletDiscoveryService } from "./services/wallet-discovery";
 
 export class ServiceProvider {
 	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
@@ -28,6 +29,7 @@ export class ServiceProvider {
 			multiSignature,
 			signatory,
 			transaction,
+			walletDiscovery,
 		] = await Promise.all<any>([
 			ClientService.__construct(config),
 			DataTransferObjectService.__construct(config),
@@ -40,6 +42,7 @@ export class ServiceProvider {
 			MultiSignatureService.__construct(config),
 			SignatoryService.__construct(config),
 			TransactionService.__construct(config),
+			WalletDiscoveryService.__construct(config),
 		]);
 
 		return {
@@ -54,6 +57,7 @@ export class ServiceProvider {
 			multiSignature,
 			signatory,
 			transaction,
+			walletDiscovery,
 		};
 	}
 }

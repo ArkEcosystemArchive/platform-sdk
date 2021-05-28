@@ -5,7 +5,7 @@ import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
-import { IProfileRepository, ProfileSetting } from "../../../contracts";
+import { IProfileInput, IProfileRepository, ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ProfileRepository } from "./profile-repository";
 import { ProfileImporter } from "../profiles/profile.importer";
@@ -195,7 +195,7 @@ describe("ProfileRepository", () => {
 
 		const repositoryDump = subject.toObject();
 
-		const restoredJohn = new Profile(repositoryDump[john.id()] as any);
+		const restoredJohn = new Profile(repositoryDump[john.id()] as IProfileInput);
 		await new ProfileImporter(restoredJohn).import();
 		await restoredJohn.sync();
 
@@ -214,7 +214,7 @@ describe("ProfileRepository", () => {
 
 		const repositoryDump = subject.toObject();
 
-		const restoredJane = new Profile(repositoryDump[jane.id()] as any);
+		const restoredJane = new Profile(repositoryDump[jane.id()] as IProfileInput);
 		await new ProfileImporter(restoredJane).import("password");
 		await restoredJane.sync();
 

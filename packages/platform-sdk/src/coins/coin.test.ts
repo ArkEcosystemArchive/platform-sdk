@@ -34,6 +34,8 @@ const services = {
 	signatory: { __construct: jest.fn(), __destruct: jest.fn() },
 	// @ts-ignore
 	transaction: { __construct: jest.fn(), __destruct: jest.fn() },
+	// @ts-ignore
+	walletDiscovery: { __construct: jest.fn(), __destruct: jest.fn() },
 };
 
 beforeEach(async () => {
@@ -63,6 +65,7 @@ beforeEach(async () => {
 					services.multiSignature.__construct();
 					services.signatory.__construct();
 					services.transaction.__construct();
+					services.walletDiscovery.__construct();
 
 					return {
 						client: services.client,
@@ -76,6 +79,7 @@ beforeEach(async () => {
 						multiSignature: services.multiSignature,
 						signatory: services.signatory,
 						transaction: services.transaction,
+						walletDiscovery: services.walletDiscovery,
 					};
 				},
 			},
@@ -244,4 +248,14 @@ test("#transaction", async () => {
 
 test("#transaction with throw", async () => {
 	expect(() => subject.transaction()).toThrow();
+});
+
+test("#walletDiscovery", async () => {
+	await subject.__construct();
+
+	expect(subject.walletDiscovery()).toBeObject();
+});
+
+test("#walletDiscovery with throw", async () => {
+	expect(() => subject.walletDiscovery()).toThrow();
 });

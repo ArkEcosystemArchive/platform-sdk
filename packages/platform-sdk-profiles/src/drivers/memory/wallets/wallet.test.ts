@@ -354,7 +354,7 @@ it("should return whether it has synced with network", async () => {
 });
 
 it("should fail to set an invalid address", async () => {
-	await expect(() => subject.mutator().address({ address: "whatever" })).rejects.toThrow(
+	await expect(() => subject.mutator().address({ type: "bip39", address: "whatever" })).rejects.toThrow(
 		"Failed to retrieve information for whatever because it is invalid",
 	);
 });
@@ -369,7 +369,7 @@ it("should turn into an object", () => {
 	subject.data().set(WalletData.LedgerPath, "1");
 	subject.data().set(WalletFlag.Starred, true);
 
-	const actual: any = subject.toObject();
+	const actual = subject.toObject();
 
 	expect(actual).toContainAllKeys(["id", "address", "coin", "network", "publicKey", "data", "settings"]);
 	expect(actual.id).toBeString();

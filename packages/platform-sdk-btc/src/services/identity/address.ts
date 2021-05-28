@@ -18,14 +18,14 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			if (options?.bip44) {
-				return { address: (await bip44(mnemonic, this.#network.name))! };
+				return bip44(mnemonic, this.#network.name);
 			}
 
 			if (options?.bip49) {
-				return { address: (await bip49(mnemonic, this.#network.name))! };
+				return bip49(mnemonic, this.#network.name);
 			}
 
-			return { address: await bip84(mnemonic, options || {}) };
+			return bip84(mnemonic, options || {});
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -40,7 +40,10 @@ export class AddressService extends Services.AbstractAddressService {
 				throw new Error(`Failed to derive address for [${publicKeys}].`);
 			}
 
-			return { address: address.toString() };
+			return {
+				type: "bip39",
+				address: address.toString(),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -58,7 +61,10 @@ export class AddressService extends Services.AbstractAddressService {
 				throw new Error(`Failed to derive address for [${publicKey}].`);
 			}
 
-			return { address: address.toString() };
+			return {
+				type: "bip39",
+				address: address.toString(),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -76,7 +82,10 @@ export class AddressService extends Services.AbstractAddressService {
 				throw new Error(`Failed to derive address for [${privateKey}].`);
 			}
 
-			return { address: address.toString() };
+			return {
+				type: "bip39",
+				address: address.toString(),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -91,7 +100,10 @@ export class AddressService extends Services.AbstractAddressService {
 				throw new Error(`Failed to derive address for [${wif}].`);
 			}
 
-			return { address: address.toString() };
+			return {
+				type: "bip39",
+				address: address.toString(),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

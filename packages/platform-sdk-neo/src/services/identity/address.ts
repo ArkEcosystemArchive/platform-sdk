@@ -17,6 +17,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: deriveWallet(
 					mnemonic,
 					this.#config.get<number>("network.constants.slip44"),
@@ -36,6 +37,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: createWallet(publicKey).address,
 			};
 		} catch (error) {
@@ -49,6 +51,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: createWallet(privateKey).address,
 			};
 		} catch (error) {
@@ -59,6 +62,7 @@ export class AddressService extends Services.AbstractAddressService {
 	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			return {
+				type: "bip44",
 				address: createWallet(wif).address,
 			};
 		} catch (error) {

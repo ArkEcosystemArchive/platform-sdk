@@ -20,7 +20,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(Helpers.randomHostFromConfig(config, "full").host);
+		return new TransactionService(Helpers.randomHostFromConfig(config));
 	}
 
 	public async transfer(

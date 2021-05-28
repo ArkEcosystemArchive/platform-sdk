@@ -21,7 +21,7 @@ describe("TransactionService", () => {
 				.get("/bank/balances/cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet-balance.json`));
 
-			const result: any = await subject.transfer({
+			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
 						signingKey: "this is a top secret passphrase",

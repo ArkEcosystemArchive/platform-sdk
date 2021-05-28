@@ -25,7 +25,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			networkId: config.get<string>(ConfigKey.MetaNetworkId),
-			peer: Helpers.randomHostFromConfig(config, "full").host,
+			peer: Helpers.randomHostFromConfig(config),
 			ticker: config.get<string>(ConfigKey.CurrencyTicker),
 		});
 	}

@@ -11,6 +11,7 @@ import {
 	MultiSignatureService,
 	SignatoryService,
 	TransactionService,
+	WalletDiscoveryService,
 } from "../contracts/coins";
 import { CoinManifest } from "./network.models";
 
@@ -37,4 +38,5 @@ export interface CoinServices {
 	multiSignature: MultiSignatureService;
 	signatory: SignatoryService;
 	transaction: TransactionService;
+	walletDiscovery: WalletDiscoveryService;
 }

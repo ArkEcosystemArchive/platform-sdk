@@ -12,6 +12,7 @@ import { MessageService } from "./services/message";
 import { MultiSignatureService } from "./services/multi-signature";
 import { SignatoryService } from "./services/signatory";
 import { TransactionService } from "./services/transaction";
+import { WalletDiscoveryService } from "./services/wallet-discovery";
 
 export class ServiceProvider {
 	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
@@ -30,8 +31,9 @@ export class ServiceProvider {
 			message,
 			signatory,
 			transaction,
+			walletDiscovery,
 		] = await Promise.all<any>([
-			ClientService.__construct(config) as any,
+			ClientService.__construct(config),
 			DataTransferObjectService.__construct(config),
 			FeeService.__construct(config),
 			IdentityService.__construct(config),
@@ -41,6 +43,7 @@ export class ServiceProvider {
 			MessageService.__construct(config),
 			SignatoryService.__construct(config),
 			TransactionService.__construct(config),
+			WalletDiscoveryService.__construct(config),
 		]);
 
 		return {
@@ -55,15 +58,16 @@ export class ServiceProvider {
 			multiSignature,
 			signatory,
 			transaction,
+			walletDiscovery,
 		};
 	}
 
 	private static async retrieveNetworkConfiguration(config: Coins.Config): Promise<{ crypto; peer; status }> {
 		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 
-		let peer: string = Helpers.randomHostFromConfig(config, "full").host;
+		let peer: string = Helpers.randomHostFromConfig(config);
 
-		const [crypto, status]: any = await Promise.all([
+		const [crypto, status] = await Promise.all([
 			http.get(`${peer}/node/configuration/crypto`),
 			http.get(`${peer}/node/syncing`),
 		]);

@@ -241,7 +241,7 @@ export class WalletRepository implements IWalletRepository {
 
 			await wallet.mutator().coin(coin!, network, { sync: false });
 
-			// @TODO: handle path
+			// @ts-ignore --- @TODO: handle type and path
 			await wallet.mutator().address({ address }, { syncIdentity: false, validate: false });
 
 			wallet.markAsPartiallyRestored();
@@ -258,7 +258,7 @@ export class WalletRepository implements IWalletRepository {
 		const earlyWallets: Record<string, object> = {};
 		const laterWallets: Record<string, object> = {};
 
-		for (const [id, wallet] of Object.entries(this.#dataRaw) as any) {
+		for (const [id, wallet] of Object.entries(this.#dataRaw)) {
 			const nid: string = wallet.network;
 
 			if (earlyWallets[nid] === undefined) {
@@ -306,7 +306,7 @@ export class WalletRepository implements IWalletRepository {
 			async () => {
 				await wallet.mutator().coin(coin, network);
 
-				// @TODO: handle path
+				// @ts-ignore --- @TODO: handle type and path
 				await wallet.mutator().address({ address });
 			},
 			{

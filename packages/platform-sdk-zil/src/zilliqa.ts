@@ -58,4 +58,4 @@ export const convertQaToZil = (qa: string): string => units.fromQa(new BN(qa), u
 
 export const convertZilToQa = (zil: string | number): string => units.toQa(zil, units.Units.Zil).toString();
 
-const getHost = (config: Coins.Config): string => Helpers.randomHostFromConfig(config, "full").host;
+const getHost = (config: Coins.Config): string => Helpers.randomHostFromConfig(config);

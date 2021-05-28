@@ -11,7 +11,10 @@ beforeEach(async () => (subject = new AddressService(createConfig())));
 describe("Address", () => {
 	describe("#fromMnemonic", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({ address: identity.address });
+			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({
+				type: "bip44",
+				address: identity.address,
+			});
 		});
 	});
 });

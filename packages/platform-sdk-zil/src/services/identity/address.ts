@@ -18,6 +18,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: (await accountFromMnemonic(this.#wallet, mnemonic, options)).bech32Address,
 		};
 	}
@@ -27,6 +28,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
+			type: "bip44",
 			address: (await accountFromPrivateKey(this.#wallet, privateKey)).bech32Address,
 		};
 	}
