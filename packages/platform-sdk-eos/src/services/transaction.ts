@@ -1,6 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { ConfigKey } from "@arkecosystem/platform-sdk/dist/coins";
+import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { createHash } from "crypto";
 import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
