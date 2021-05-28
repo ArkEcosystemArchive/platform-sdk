@@ -2,7 +2,7 @@ import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
 import * as nanocurrency from "nanocurrency";
 import { tools } from "nanocurrency-web";
 
-import { deriveAccountKey } from "./helpers";
+import { deriveAccount } from "./helpers";
 
 export class AddressService implements Contracts.AddressService {
 	public async fromMnemonic(
@@ -10,7 +10,7 @@ export class AddressService implements Contracts.AddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		return {
-			address: deriveAccountKey(mnemonic, options?.bip44?.account || 0).address,
+			address: deriveAccount(mnemonic, options?.bip44?.account).address,
 		};
 	}
 

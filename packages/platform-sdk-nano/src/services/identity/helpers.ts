@@ -1,3 +1,3 @@
 import { wallet } from "nanocurrency-web";
 
-export const deriveAccountKey = (mnemonic: string, index: number) => wallet.fromMnemonic(mnemonic).accounts[index || 0];
+export const deriveAccount = (mnemonic: string, index = 0) => wallet.fromMnemonic(mnemonic).accounts[index];

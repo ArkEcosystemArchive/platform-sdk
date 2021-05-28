@@ -1,5 +1,5 @@
 import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { deriveAccountKey } from "./helpers";
+import { deriveAccount } from "./helpers";
 
 export class KeyPairService implements Contracts.KeyPairService {
 	public async fromMnemonic(
@@ -7,7 +7,7 @@ export class KeyPairService implements Contracts.KeyPairService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
-			const { publicKey, privateKey } = deriveAccountKey(mnemonic, options?.bip44?.account || 0);
+			const { publicKey, privateKey } = deriveAccount(mnemonic, options?.bip44?.account);
 
 			return { publicKey, privateKey };
 		} catch (error) {
