@@ -10,7 +10,7 @@ export abstract class AbstractValueSignatory {
 	}
 
 	public signingKey(): string {
-		return this.#signingKey;
+		return this.#signingKey.normalize("NFD");
 	}
 
 	public address(): string {

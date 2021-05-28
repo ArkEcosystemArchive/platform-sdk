@@ -8,7 +8,7 @@ export class MultiMnemonicSignatory {
 	}
 
 	public signingKeys(): string[] {
-		return this.#signingKeys;
+		return this.#signingKeys.map((signingKey: string) => signingKey.normalize("NFD"));
 	}
 
 	public identifiers(): string[] {

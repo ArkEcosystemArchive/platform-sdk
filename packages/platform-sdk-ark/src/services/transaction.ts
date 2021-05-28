@@ -303,7 +303,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
-				return this.handleMultiSignature(transaction, input);
+				const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.signatory.signingList());
+
+				return new SignedTransactionData(
+					transactionWithSignature.id!,
+					transactionWithSignature,
+					transactionWithSignature,
+				);
 			}
 
 			const actsWithMultiMnemonic =
@@ -354,15 +360,5 @@ export class TransactionService extends Services.AbstractTransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
-		const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.signatory.signingList());
-
-		return new SignedTransactionData(
-			transactionWithSignature.id!,
-			transactionWithSignature,
-			transactionWithSignature,
-		);
 	}
 }
