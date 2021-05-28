@@ -57,7 +57,7 @@ const runMigrations = async (): Promise<void> => {
 		"migrate",
 		"deploy",
 		"--schema",
-		path.resolve(__dirname, "/../prisma/schema.prisma"),
+		path.resolve(__dirname, "../prisma/schema.prisma"),
 	]);
 	console.log(stdout);
 };
