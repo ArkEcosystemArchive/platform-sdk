@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { TransactionDataCollection } from "./coins";
+import { Config, TransactionDataCollection } from "./coins";
 import {
 	createTransactionDataCollectionWithType,
 	createTransactionDataWithType,
@@ -129,29 +129,26 @@ test.each([
 	).toBeInstanceOf(TransactionDataCollection);
 });
 
+const configMock = {
+	get: () => [
+		{
+			type: "full",
+			host: "https://wallets.ark.io",
+		},
+		{
+			type: "musig",
+			host: "https://musig1.ark.io",
+		},
+		{
+			type: "explorer",
+			host: "https://explorer.ark.io/",
+		},
+	],
+} as unknown as Config;
+
 test("filterHostsFromConfig", () => {
-	// @ts-ignore
 	expect(
-		filterHostsFromConfig(
-			{
-				// @ts-ignore
-				get: () => [
-					{
-						type: "full",
-						host: "https://wallets.ark.io",
-					},
-					{
-						type: "musig",
-						host: "https://musig1.ark.io",
-					},
-					{
-						type: "explorer",
-						host: "https://explorer.ark.io/",
-					},
-				],
-			},
-			"explorer",
-		),
+		filterHostsFromConfig(configMock, "explorer"),
 	).toEqual([
 		{
 			type: "explorer",
@@ -161,58 +158,28 @@ test("filterHostsFromConfig", () => {
 });
 
 test("randomNetworkHostFromConfig", () => {
-	// @ts-ignore
 	expect(
-		randomNetworkHostFromConfig(
-			{
-				// @ts-ignore
-				get: () => [
-					{
-						type: "full",
-						host: "https://wallets.ark.io",
-					},
-					{
-						type: "musig",
-						host: "https://musig1.ark.io",
-					},
-					{
-						type: "explorer",
-						host: "https://explorer.ark.io/",
-					},
-				],
-			},
-			"explorer",
-		),
+		randomNetworkHostFromConfig(configMock, "explorer")
 	).toEqual({
 		type: "explorer",
 		host: "https://explorer.ark.io/",
 	});
 });
 
-test("randomHostFromConfig", () => {
-	// @ts-ignore
+test("randomNetworkHostFromConfig default", () => {
 	expect(
-		randomHostFromConfig(
-			{
-				// @ts-ignore
-				get: () => [
-					{
-						type: "full",
-						host: "https://wallets.ark.io",
-					},
-					{
-						type: "musig",
-						host: "https://musig1.ark.io",
-					},
-					{
-						type: "explorer",
-						host: "https://explorer.ark.io/",
-					},
-				],
-			},
-			"explorer",
-		),
-	).toBe("https://explorer.ark.io/");
+		randomNetworkHostFromConfig(configMock)
+	).toEqual({
+		type: "full",
+		host: "https://wallets.ark.io",
+	});
+});
+
+
+test("randomHostFromConfig default", () => {
+	expect(
+		randomHostFromConfig(configMock)
+	).toBe("https://wallets.ark.io");
 });
 
 describe("pluckAddress", () => {
