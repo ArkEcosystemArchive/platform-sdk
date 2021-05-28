@@ -64,4 +64,4 @@ common/autoinstallers/*/.npmrc
 **/.rush/temp/
 
 # Prisma client generated files
-generated/*
+/packages/platform-sdk-btc-indexer/prisma/generated/
