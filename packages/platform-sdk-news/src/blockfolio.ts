@@ -45,7 +45,7 @@ export class Blockfolio {
 		coins: string[];
 		categories?: string[];
 	}): Promise<BlockfolioResponse> {
-		const { data, meta }: any = (
+		const { data, meta } = (
 			await this.#httpClient.get(`https://platform.ark.io/api/coins/signals`, query)
 		).json();
 

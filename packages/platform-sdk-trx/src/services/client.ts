@@ -67,7 +67,7 @@ export class ClientService implements Contracts.ClientService {
 			payload.only_to = true;
 		}
 
-		const response: any = (
+		const response = (
 			await this.#client.get(`${this.#peer}/v1/accounts/${Helpers.pluckAddress(query)}/transactions`, payload)
 		).json();
 

@@ -13,7 +13,7 @@ export class UnspentAggregator {
 	}
 
 	public async aggregate(address: string, amount: BigNumber): Promise<UnspentTransaction[]> {
-		const response: any = (await this.#http.get(`${this.#peer}/wallets/${address}/transactions/unspent`)).json();
+		const response = (await this.#http.get(`${this.#peer}/wallets/${address}/transactions/unspent`)).json();
 
 		return response.map((transaction) => ({
 			address: transaction.address,

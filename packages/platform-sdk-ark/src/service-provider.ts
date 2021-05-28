@@ -31,7 +31,7 @@ export class ServiceProvider {
 			signatory,
 			transaction,
 		] = await Promise.all<any>([
-			ClientService.__construct(config) as any,
+			ClientService.__construct(config),
 			DataTransferObjectService.__construct(config),
 			FeeService.__construct(config),
 			IdentityService.__construct(config),
@@ -63,7 +63,7 @@ export class ServiceProvider {
 
 		let peer: string = Helpers.randomHostFromConfig(config, "full").host;
 
-		const [crypto, status]: any = await Promise.all([
+		const [crypto, status] = await Promise.all([
 			http.get(`${peer}/node/configuration/crypto`),
 			http.get(`${peer}/node/syncing`),
 		]);

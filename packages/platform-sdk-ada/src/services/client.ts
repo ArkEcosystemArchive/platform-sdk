@@ -40,7 +40,7 @@ export class ClientService implements Contracts.ClientService {
 		const transactions = (await fetchTransactions(
 			this.#config,
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
-		)) as any;
+		));
 
 		return Helpers.createTransactionDataCollectionWithType(
 			transactions,

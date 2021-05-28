@@ -28,7 +28,7 @@ export class ServiceProvider {
 			signatory,
 			transaction,
 		] = await Promise.all<any>([
-			ClientService.__construct(config) as any,
+			ClientService.__construct(config),
 			DataTransferObjectService.__construct(config),
 			FeeService.__construct(config),
 			IdentityService.__construct(config),
