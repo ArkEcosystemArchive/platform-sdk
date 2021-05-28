@@ -17,7 +17,7 @@ describe("PublicKey", () => {
 	it("should generate an output from a multiSignature", async () => {
 		await expect(
 			subject.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
-		).rejects.toThrow(/is not supported/);
+		).rejects.toThrow(/is not implemented/);
 	});
 
 	it("should generate an output from a wif", async () => {

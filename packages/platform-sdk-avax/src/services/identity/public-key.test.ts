@@ -14,10 +14,10 @@ describe("PublicKey", () => {
 	});
 
 	it("should fail to generate an output from a multiSignature", async () => {
-		await expect(subject.fromMultiSignature(0, [])).rejects.toThrow(/is not supported/);
+		await expect(subject.fromMultiSignature(0, [])).rejects.toThrow(/is not implemented/);
 	});
 
 	it("should fail to generate an output from a wif", async () => {
-		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
+		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not implemented/);
 	});
 });

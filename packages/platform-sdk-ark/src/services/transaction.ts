@@ -1,6 +1,6 @@
 import { Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
@@ -9,7 +9,7 @@ import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
-export class TransactionService implements Contracts.TransactionService {
+export class TransactionService extends Services.AbstractTransactionService {
 	readonly #http: Contracts.HttpClient;
 	readonly #identity: IdentityService;
 	readonly #peer: string;
@@ -17,6 +17,8 @@ export class TransactionService implements Contracts.TransactionService {
 	readonly #configCrypto: any;
 
 	private constructor({ http, identity, peer, multiSignatureSigner, configCrypto }) {
+		super();
+
 		this.#http = http;
 		this.#identity = identity;
 		this.#peer = peer;
@@ -34,10 +36,6 @@ export class TransactionService implements Contracts.TransactionService {
 			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
 			configCrypto: { crypto, status },
 		});
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transfer(
@@ -305,7 +303,16 @@ export class TransactionService implements Contracts.TransactionService {
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
-				return this.handleMultiSignature(transaction, input);
+				const transactionWithSignature = this.#multiSignatureSigner.sign(
+					transaction,
+					input.signatory.signingList(),
+				);
+
+				return new SignedTransactionData(
+					transactionWithSignature.id!,
+					transactionWithSignature,
+					transactionWithSignature,
+				);
 			}
 
 			const actsWithMultiMnemonic =
@@ -326,7 +333,7 @@ export class TransactionService implements Contracts.TransactionService {
 				);
 
 				for (let i = 0; i < signingKeys.length; i++) {
-					transaction.multiSign(BIP39.normalize(signingKeys[i]), i);
+					transaction.multiSign(signingKeys[i], i);
 				}
 			} else if (input.signatory.actsWithSignature()) {
 				transaction.data.signature = input.signatory.signingKey();
@@ -356,15 +363,5 @@ export class TransactionService implements Contracts.TransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	private async handleMultiSignature(transaction: Contracts.RawTransactionData, input: Contracts.TransactionInputs) {
-		const transactionWithSignature = this.#multiSignatureSigner.sign(transaction, input.signatory.signingList());
-
-		return new SignedTransactionData(
-			transactionWithSignature.id!,
-			transactionWithSignature,
-			transactionWithSignature,
-		);
 	}
 }

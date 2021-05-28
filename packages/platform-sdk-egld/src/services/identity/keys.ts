@@ -1,8 +1,8 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import { makeAccount } from "../helpers";
 
-export class KeyPairService implements Contracts.KeyPairService {
+export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
@@ -24,13 +24,5 @@ export class KeyPairService implements Contracts.KeyPairService {
 			publicKey: account.publicKeyAsString(),
 			privateKey: account.privateKeyAsString(),
 		};
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

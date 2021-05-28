@@ -33,6 +33,6 @@ describe("Keys", () => {
 	});
 
 	it("should fail to generate an output from a wif", async () => {
-		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not supported/);
+		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not implemented/);
 	});
 });

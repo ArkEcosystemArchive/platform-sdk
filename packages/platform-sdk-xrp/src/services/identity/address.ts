@@ -1,11 +1,13 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 
-export class AddressService implements Contracts.AddressService {
+export class AddressService extends Services.AbstractAddressService {
 	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 	}
 
@@ -21,10 +23,6 @@ export class AddressService implements Contracts.AddressService {
 		);
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
-	}
-
 	public async fromPublicKey(
 		publicKey: string,
 		options?: Contracts.IdentityOptions,
@@ -34,17 +32,6 @@ export class AddressService implements Contracts.AddressService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async fromPrivateKey(
-		privateKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
 	}
 
 	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {

@@ -1,13 +1,15 @@
 import { PrivateKey as BasePrivateKey } from "@arkecosystem/crypto-identities";
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
 
-export class PrivateKeyService implements Contracts.PrivateKeyService {
-	readonly #configCrypto: CryptoConfig;
+export class PrivateKeyService extends Services.AbstractPrivateKeyService {
+	readonly #config: CryptoConfig;
 
-	public constructor(configCrypto: CryptoConfig) {
-		this.#configCrypto = configCrypto;
+	public constructor(config: CryptoConfig) {
+		super();
+
+		this.#config = config;
 	}
 
 	public async fromMnemonic(
@@ -26,14 +28,10 @@ export class PrivateKeyService implements Contracts.PrivateKeyService {
 	public async fromWIF(wif: string): Promise<Contracts.PrivateKeyDataTransferObject> {
 		try {
 			return {
-				privateKey: BasePrivateKey.fromWIF(wif, this.#configCrypto),
+				privateKey: BasePrivateKey.fromWIF(wif, this.#config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.PrivateKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

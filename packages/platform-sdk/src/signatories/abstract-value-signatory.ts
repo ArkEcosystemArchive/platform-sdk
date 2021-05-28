@@ -4,7 +4,7 @@ export abstract class AbstractValueSignatory {
 	readonly #publicKey: string;
 
 	public constructor({ signingKey, address, publicKey }: { signingKey: string; address: string; publicKey: string }) {
-		this.#signingKey = signingKey;
+		this.#signingKey = signingKey.normalize("NFD");
 		this.#address = address;
 		this.#publicKey = publicKey;
 	}

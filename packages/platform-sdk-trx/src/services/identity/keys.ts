@@ -1,10 +1,12 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
-export class KeyPairService implements Contracts.KeyPairService {
+export class KeyPairService extends Services.AbstractKeyPairService {
 	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 	}
 
@@ -21,17 +23,5 @@ export class KeyPairService implements Contracts.KeyPairService {
 			publicKey: publicKey.toString("hex"),
 			privateKey: privateKey!.toString("hex"),
 		};
-	}
-
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromPrivateKey");
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

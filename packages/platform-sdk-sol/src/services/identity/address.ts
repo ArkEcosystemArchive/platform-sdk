@@ -1,13 +1,15 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { base58 } from "bstring";
 
 import { derivePrivateKey, derivePublicKey } from "./helpers";
 
-export class AddressService implements Contracts.AddressService {
+export class AddressService extends Services.AbstractAddressService {
 	readonly #slip44: number;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#slip44 = config.get<number>("network.constants.slip44");
 	}
 
@@ -33,10 +35,6 @@ export class AddressService implements Contracts.AddressService {
 		};
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMultiSignature");
-	}
-
 	public async fromPublicKey(
 		publicKey: string,
 		options?: Contracts.IdentityOptions,
@@ -53,14 +51,6 @@ export class AddressService implements Contracts.AddressService {
 		return {
 			address: base58.encode(derivePublicKey(Buffer.from(privateKey, "hex"))),
 		};
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 
 	public async validate(address: string): Promise<boolean> {

@@ -1,12 +1,14 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BinTools } from "avalanche";
 
 import { cb58Encode, keyPairFromMnemonic, useKeychain } from "../helpers";
 
-export class KeyPairService implements Contracts.KeyPairService {
+export class KeyPairService extends Services.AbstractKeyPairService {
 	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 	}
 
@@ -29,13 +31,5 @@ export class KeyPairService implements Contracts.KeyPairService {
 			publicKey: cb58Encode(keyPair.getPublicKey()),
 			privateKey: cb58Encode(keyPair.getPrivateKey()),
 		};
-	}
-
-	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromWIF");
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.KeyPairDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 }

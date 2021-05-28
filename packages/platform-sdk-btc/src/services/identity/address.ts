@@ -1,12 +1,14 @@
-import { Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import Bitcoin from "bitcore-lib";
 
 import { bip44, bip49, bip84 } from "./utils";
 
-export class AddressService implements Contracts.AddressService {
+export class AddressService extends Services.AbstractAddressService {
 	readonly #network: Record<string, any>;
 
 	public constructor(network: string) {
+		super();
+
 		this.#network = Bitcoin.Networks[network];
 	}
 
@@ -93,10 +95,6 @@ export class AddressService implements Contracts.AddressService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromSecret");
 	}
 
 	public async validate(address: string): Promise<boolean> {
