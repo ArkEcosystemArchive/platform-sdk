@@ -1,6 +1,6 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
-import Bitcoin from "bitcore-lib";
+import * as bitcoin from "bitcoinjs-lib";
 
 export class PublicKeyService extends Services.AbstractPublicKeyService {
 	public async fromMnemonic(
@@ -16,7 +16,9 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 
 	public async fromWIF(wif: string): Promise<Contracts.PublicKeyDataTransferObject> {
 		try {
-			return { publicKey: Bitcoin.PrivateKey.fromWIF(wif).toPublicKey().toString() };
+			return {
+				publicKey: bitcoin.ECPair.fromWIF(wif).publicKey.toString("hex"),
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

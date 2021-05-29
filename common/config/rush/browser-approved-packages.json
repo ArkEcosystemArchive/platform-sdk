@@ -367,6 +367,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "bitcoinjs-message",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "bitcore-lib",
       "allowedCategories": [ "libraries" ]
     },

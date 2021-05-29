@@ -1,18 +1,18 @@
 import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
-import Bitcoin from "bitcore-lib";
 import * as bitcoin from "bitcoinjs-lib";
 
 import { AddressFactory } from "./address.factory";
+import { getNetworkConfig } from "./helpers";
 
 export class AddressService extends Services.AbstractAddressService {
 	readonly #factory: AddressFactory;
-	readonly #network: string;
+	readonly #network: bitcoin.networks.Network;
 
 	public constructor(config: Coins.Config) {
 		super();
 
-		this.#network = config.get<Coins.NetworkManifest>("network").id.split(".")[1];
-		this.#factory = new AddressFactory(config, this.#network ? bitcoin.networks.bitcoin : bitcoin.networks.testnet);
+		this.#network = getNetworkConfig(config);
+		this.#factory = new AddressFactory(config);
 	}
 
 	public async fromMnemonic(
@@ -35,10 +35,15 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	// @TODO: use bitcoinjs-lib instead of bitcore-lib
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const address = new Bitcoin.Address(publicKeys, min);
+			const { address } = bitcoin.payments.p2sh({
+				redeem: bitcoin.payments.p2ms({
+					m: min,
+					pubkeys: publicKeys.map((publicKey: string) => Buffer.from(publicKey, "hex")),
+				}),
+				network: this.#network,
+			});
 
 			if (!address) {
 				throw new Error(`Failed to derive address for [${publicKeys}].`);
@@ -54,13 +59,15 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	// @TODO: use bitcoinjs-lib instead of bitcore-lib
 	public async fromPublicKey(
 		publicKey: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const address = Bitcoin.Address.fromPublicKey(new Bitcoin.PublicKey(publicKey), this.#network);
+			const { address } = bitcoin.payments.p2pkh({
+				pubkey: bitcoin.ECPair.fromPublicKey(Buffer.from(publicKey, "hex")).publicKey,
+				network: this.#network,
+			});
 
 			if (!address) {
 				throw new Error(`Failed to derive address for [${publicKey}].`);
@@ -76,13 +83,15 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	// @TODO: use bitcoinjs-lib instead of bitcore-lib
 	public async fromPrivateKey(
 		privateKey: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const address = new Bitcoin.PrivateKey(privateKey).toAddress(this.#network);
+			const { address } = bitcoin.payments.p2pkh({
+				pubkey: bitcoin.ECPair.fromPrivateKey(Buffer.from(privateKey, "hex")).publicKey,
+				network: this.#network,
+			});
 
 			if (!address) {
 				throw new Error(`Failed to derive address for [${privateKey}].`);
@@ -98,10 +107,12 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	// @TODO: use bitcoinjs-lib instead of bitcore-lib
 	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const address = Bitcoin.PrivateKey.fromWIF(wif).toAddress(this.#network);
+			const { address } = bitcoin.payments.p2pkh({
+				pubkey: bitcoin.ECPair.fromWIF(wif).publicKey,
+				network: this.#network,
+			});
 
 			if (!address) {
 				throw new Error(`Failed to derive address for [${wif}].`);
@@ -109,7 +120,7 @@ export class AddressService extends Services.AbstractAddressService {
 
 			return {
 				type: "bip39",
-				address: address.toString(),
+				address,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
