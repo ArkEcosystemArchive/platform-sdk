@@ -96,9 +96,15 @@ export class BIP44 {
 	 * @returns {BIP32Interface}
 	 * @memberof BIP44
 	 */
-	public static stringify(
-		options: { purpose?: number; coinType: number; account?: number; change?: number; index?: number },
-	): string {
-		return `m/${options.purpose || 44}'/${options.coinType}'/${options.account || 0}'/${options.change || 0}/${options.index || 0}`;
+	public static stringify(options: {
+		purpose?: number;
+		coinType: number;
+		account?: number;
+		change?: number;
+		index?: number;
+	}): string {
+		return `m/${options.purpose || 44}'/${options.coinType}'/${options.account || 0}'/${options.change || 0}/${
+			options.index || 0
+		}`;
 	}
 }

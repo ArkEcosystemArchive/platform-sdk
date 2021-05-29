@@ -24,6 +24,10 @@ export class AddressService extends Services.AbstractAddressService {
 			return {
 				type: "bip44",
 				address: bech32.encode(this.#config.get(Coins.ConfigKey.Bech32), bech32.toWords(child.identifier)),
+				path: BIP44.stringify({
+					coinType: this.#config.get(Coins.ConfigKey.Slip44),
+					index: options?.bip44?.addressIndex,
+				}),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

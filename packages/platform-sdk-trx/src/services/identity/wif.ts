@@ -20,6 +20,10 @@ export class WIFService extends Services.AbstractWIFService {
 					coinType: this.#config.get(Coins.ConfigKey.Slip44),
 					index: options?.bip44?.addressIndex,
 				}).toWIF(),
+				path: BIP44.stringify({
+					coinType: this.#config.get(Coins.ConfigKey.Slip44),
+					index: options?.bip44?.addressIndex,
+				}),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

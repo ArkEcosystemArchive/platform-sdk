@@ -23,6 +23,10 @@ export class AddressService extends Services.AbstractAddressService {
 					index: options?.bip44?.addressIndex,
 				}).privateKey!.toString("hex"),
 			),
+			path: BIP44.stringify({
+				coinType: this.#config.get(Coins.ConfigKey.Slip44),
+				index: options?.bip44?.addressIndex,
+			}),
 		};
 	}
 

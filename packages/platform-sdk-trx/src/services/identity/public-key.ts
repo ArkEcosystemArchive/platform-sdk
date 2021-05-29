@@ -19,6 +19,10 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 				coinType: this.#config.get(Coins.ConfigKey.Slip44),
 				index: options?.bip44?.addressIndex,
 			}).publicKey.toString("hex"),
+			path: BIP44.stringify({
+				coinType: this.#config.get(Coins.ConfigKey.Slip44),
+				index: options?.bip44?.addressIndex,
+			}),
 		};
 	}
 }
