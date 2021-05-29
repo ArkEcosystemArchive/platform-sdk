@@ -14,6 +14,11 @@ npm install @arkecosystem/platform-sdk-btc-indexer
 
 ## Usage
 
+```bash
+export DATABASE_URL="postgresql://user:password@localhost:5432/database?schema=public"
+npx pbtc run --host=https://your.btc-server.com/rpc
+```
+
 Documentation can be found [here](https://ark.dev/docs/platform-sdk).
 
 ## Security

@@ -1,5 +1,7 @@
+import execa from "execa";
 import PQueue from "p-queue";
 import PWaitFor from "p-wait-for";
+import path from "path";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
 import { Logger } from "./logger";
@@ -12,6 +14,8 @@ import { Flags } from "./types";
  * @returns {Promise<void>}
  */
 export const subscribe = async (flags: Flags): Promise<void> => {
+	await runMigrations();
+
 	const logger: Logger = useLogger();
 	const database = useDatabase(flags, logger);
 	const client = useClient(flags);
@@ -45,4 +49,15 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 			void addBlock(nextBlock);
 		}
 	}
+};
+
+const runMigrations = async (): Promise<void> => {
+	const { stdout } = await execa("npx", [
+		"prisma",
+		"migrate",
+		"deploy",
+		"--schema",
+		path.resolve(__dirname, "../prisma/schema.prisma"),
+	]);
+	console.log(stdout);
 };

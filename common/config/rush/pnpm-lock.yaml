@@ -514,8 +514,8 @@ importers:
       '@ledgerhq/hw-app-btc': 5.50.0
       bignumber.js: 9.0.1
       bip32: 2.0.6
-      bip84: 0.2.5
       bitcoinjs-lib: 5.2.0
+      bitcoinjs-message: 2.2.0
       bitcore-lib: 8.25.8
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
@@ -566,8 +566,8 @@ importers:
       '@typescript-eslint/parser': ^4.22.0
       bignumber.js: ^9.0.1
       bip32: ^2.0.6
-      bip84: ~0.2.5
       bitcoinjs-lib: ^5.2.0
+      bitcoinjs-message: ~2.2.0
       bitcore-lib: ^8.25.8
       cross-env: ^7.0.3
       eslint: ^7.25.0
@@ -592,8 +592,10 @@ importers:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@arkecosystem/utils': 1.3.0
       '@konceiver/foreman': 2.0.2
+      '@prisma/client': 2.23.0_prisma@2.23.0
       better-sqlite3: 7.1.5
       env-paths: 2.2.1
+      execa: 5.0.0
       fs-extra: 9.1.0
       meow: 9.0.0
       p-queue: 6.6.2
@@ -602,7 +604,6 @@ importers:
       uuid: 8.3.2
     devDependencies:
       '@ledgerhq/hw-transport-mocker': 5.50.0
-      '@prisma/client': 2.23.0_prisma@2.23.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': 7.2.10
       '@types/eslint-plugin-prettier': 3.1.0
@@ -641,7 +642,7 @@ importers:
       '@arkecosystem/utils': ^1.3.0
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ~2.23.0
+      '@prisma/client': ^2.23.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -666,6 +667,7 @@ importers:
       eslint-plugin-prettier: ^3.4.0
       eslint-plugin-simple-import-sort: ^7.0.0
       eslint-plugin-tsdoc: ~0.2.14
+      execa: ~5.0.0
       fs-extra: ^9.1.0
       got: ^11.8.2
       jest: ^26.6.3
@@ -677,7 +679,7 @@ importers:
       p-queue: ^6.6.2
       p-wait-for: ^3.2.0
       prettier: ^2.2.1
-      prisma: ~2.23.0
+      prisma: ^2.23.0
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: 4.2.4
@@ -4591,6 +4593,7 @@ packages:
       jest-validate: 26.6.2
       jest-watcher: 26.6.2
       micromatch: 4.0.4
+      p-each-series: 2.2.0
       rimraf: 3.0.2
       slash: 3.0.0
       strip-ansi: 6.0.0
@@ -5427,7 +5430,7 @@ packages:
     dependencies:
       '@prisma/engines-version': 2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b
       prisma: 2.23.0
-    dev: true
+    dev: false
     engines:
       node: '>=10.16'
     peerDependencies:
@@ -5439,7 +5442,7 @@ packages:
     resolution:
       integrity: sha512-xsHdo3+wIH0hJVGfKHYTEKtifStjKH0b5t8t7hV32Fypq6+3uxhAi3F25yxuI4XSHXg21nb7Ha82lNwU/0TERA==
   /@prisma/engines-version/2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b:
-    dev: true
+    dev: false
     resolution:
       integrity: sha512-VNgnOe+oPQKmy3HOtWi/Q1fvcKZUQkf1OfTD1pzrLBx9tJPejyxt1Mq54L+OOAuYvfrua6bmfojFVLh7uXuWVw==
   /@prisma/engines/2.23.0-36.adf5e8cba3daf12d456d911d72b6e9418681b28b:
@@ -7101,14 +7104,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-AfqHSHhcpwlV1QESF9GzE5lpyiI=
-  /bip84/0.2.5:
-    dependencies:
-      bip39: 3.0.4
-      bitcoinjs-lib: 5.2.0
-      bs58check: 2.1.2
-    dev: false
-    resolution:
-      integrity: sha512-a3Yr1QqcC0SZSjwMZtZasAA4C1HAC12j2F8fUTfQTgvTIlI28anWrk5D5OkdBV7rke4qTpl33fxYb180Y/zD/w==
   /bitcoin-ops/1.4.1:
     dev: false
     resolution:
@@ -7135,6 +7130,19 @@ packages:
       node: '>=8.0.0'
     resolution:
       integrity: sha512-5DcLxGUDejgNBYcieMIUfjORtUeNWl828VWLHJGVKZCb4zIS1oOySTUr0LGmcqJBQgTBz3bGbRQla4FgrdQEIQ==
+  /bitcoinjs-message/2.2.0:
+    dependencies:
+      bech32: 1.1.4
+      bs58check: 2.1.2
+      buffer-equals: 1.0.4
+      create-hash: 1.2.0
+      secp256k1: 3.8.0
+      varuint-bitcoin: 1.1.2
+    dev: false
+    engines:
+      node: '>=0.10'
+    resolution:
+      integrity: sha512-103Wy3xg8Y9o+pdhGP4M3/mtQQuUWs6sPuOp1mYphSUoSMHjHTlkj32K4zxU8qMH0Ckv23emfkGlFWtoWZ7YFA==
   /bitcore-lib/8.25.8:
     dependencies:
       bech32: 1.1.3
@@ -7426,6 +7434,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=
+  /buffer-equals/1.0.4:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-A1O1T9B/2VZBcGca5vZrnPENJ/U=
   /buffer-fill/1.0.0:
     dev: false
     resolution:

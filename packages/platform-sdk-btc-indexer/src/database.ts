@@ -1,8 +1,8 @@
 import { BigNumber } from "@arkecosystem/utils";
-import { PrismaClient } from "@prisma/client";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
+import { PrismaClient } from "../prisma/generated";
 import { Logger } from "./logger";
 import { getAmount, getFees, getInputs, getOutputs } from "./tx-parsing-helpers";
 import { Flags, Input, Output } from "./types";
@@ -163,7 +163,7 @@ export class Database {
 		try {
 			await this.#prisma.transaction.create({
 				data: {
-					blockId,
+					block_id: blockId,
 					hash: transaction.txid,
 					time: transaction.time,
 					amount: BigInt(amount),

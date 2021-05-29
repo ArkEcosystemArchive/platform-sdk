@@ -1,15 +1,18 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
-import Bitcoin from "bitcore-lib";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import * as bitcoin from "bitcoinjs-lib";
 
-import { bip44, bip49, bip84 } from "./utils";
+import { AddressFactory } from "./address.factory";
+import { getNetworkConfig } from "./helpers";
 
 export class AddressService extends Services.AbstractAddressService {
-	readonly #network: Record<string, any>;
+	readonly #factory: AddressFactory;
+	readonly #network: bitcoin.networks.Network;
 
-	public constructor(network: string) {
+	public constructor(config: Coins.Config) {
 		super();
 
-		this.#network = Bitcoin.Networks[network];
+		this.#network = getNetworkConfig(config);
+		this.#factory = new AddressFactory(config);
 	}
 
 	public async fromMnemonic(
@@ -18,14 +21,14 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			if (options?.bip44) {
-				return bip44(mnemonic, this.#network.name);
+				return this.#factory.bip44(mnemonic, options);
 			}
 
 			if (options?.bip49) {
-				return bip49(mnemonic, this.#network.name);
+				return this.#factory.bip49(mnemonic, options);
 			}
 
-			return bip84(mnemonic, options || {});
+			return this.#factory.bip84(mnemonic, options);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -34,7 +37,13 @@ export class AddressService extends Services.AbstractAddressService {
 	// @TODO: support for bip44/49/84
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const address = new Bitcoin.Address(publicKeys, min);
+			const { address } = bitcoin.payments.p2sh({
+				redeem: bitcoin.payments.p2ms({
+					m: min,
+					pubkeys: publicKeys.map((publicKey: string) => Buffer.from(publicKey, "hex")),
+				}),
+				network: this.#network,
+			});
 
 			if (!address) {
 				throw new Error(`Failed to derive address for [${publicKeys}].`);
@@ -55,7 +64,10 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const address = Bitcoin.Address.fromPublicKey(new Bitcoin.PublicKey(publicKey), this.#network);
+			const { address } = bitcoin.payments.p2pkh({
+				pubkey: bitcoin.ECPair.fromPublicKey(Buffer.from(publicKey, "hex")).publicKey,
+				network: this.#network,
+			});
 
 			if (!address) {
 				throw new Error(`Failed to derive address for [${publicKey}].`);
@@ -76,7 +88,10 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const address = new Bitcoin.PrivateKey(privateKey).toAddress(this.#network);
+			const { address } = bitcoin.payments.p2pkh({
+				pubkey: bitcoin.ECPair.fromPrivateKey(Buffer.from(privateKey, "hex")).publicKey,
+				network: this.#network,
+			});
 
 			if (!address) {
 				throw new Error(`Failed to derive address for [${privateKey}].`);
@@ -94,7 +109,10 @@ export class AddressService extends Services.AbstractAddressService {
 	// @TODO: support for bip44/49/84
 	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const address = Bitcoin.PrivateKey.fromWIF(wif).toAddress(this.#network);
+			const { address } = bitcoin.payments.p2pkh({
+				pubkey: bitcoin.ECPair.fromWIF(wif).publicKey,
+				network: this.#network,
+			});
 
 			if (!address) {
 				throw new Error(`Failed to derive address for [${wif}].`);
@@ -102,7 +120,7 @@ export class AddressService extends Services.AbstractAddressService {
 
 			return {
 				type: "bip39",
-				address: address.toString(),
+				address,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

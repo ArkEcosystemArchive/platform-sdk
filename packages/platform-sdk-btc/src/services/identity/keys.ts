@@ -1,6 +1,6 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
-import { PrivateKey, PublicKey } from "bitcore-lib";
+import * as bitcoin from "bitcoinjs-lib";
 
 export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
@@ -8,7 +8,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
-			return this.normalize(new PrivateKey(BIP32.fromMnemonic(mnemonic).privateKey!.toString("hex")));
+			return this.normalize(bitcoin.ECPair.fromPrivateKey(BIP32.fromMnemonic(mnemonic).privateKey!));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -16,7 +16,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
-			return this.normalize(new PrivateKey(privateKey));
+			return this.normalize(bitcoin.ECPair.fromPrivateKey(Buffer.from(privateKey, "hex")));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -24,17 +24,17 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
-			return this.normalize(PrivateKey.fromWIF(wif));
+			return this.normalize(bitcoin.ECPair.fromWIF(wif));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	private normalize(privateKey: Buffer): Contracts.KeyPairDataTransferObject {
+	private normalize(keyPair: bitcoin.ECPair.ECPairInterface): Contracts.KeyPairDataTransferObject {
 		try {
 			return {
-				publicKey: PublicKey.fromPrivateKey(privateKey).toString("hex"),
-				privateKey: privateKey.toString("hex"),
+				publicKey: keyPair.publicKey.toString("hex"),
+				privateKey: keyPair.privateKey!.toString("hex"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
