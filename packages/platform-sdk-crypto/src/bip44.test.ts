@@ -24,3 +24,15 @@ test("#deriveChildFromPath", async () => {
 		"xprv9wMjT6HUeJy2LQqk1GRdSkiJRBxxurasRZ8aU2wBktamDQ282PM9t1cmxCf5bhUoz19KNJAwAYeTEExUkxzinFSb7bRDdnWcytMGj53aKcH",
 	);
 });
+
+test("#stringify", async () => {
+	expect(
+		BIP44.stringify({
+			purpose: 1,
+			coinType: 2,
+			account: 3,
+			change: 4,
+			index: 5,
+		}),
+	).toMatchInlineSnapshot(`"m/1'/2'/3'/4/5"`);
+});
