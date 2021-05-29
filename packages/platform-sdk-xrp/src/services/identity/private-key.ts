@@ -15,15 +15,14 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.PrivateKeyDataTransferObject> {
+		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
+			coinType: this.#config.get(Coins.ConfigKey.Slip44),
+			index: options?.bip44?.addressIndex,
+		});
+
 		return {
-			privateKey: BIP44.deriveChild(mnemonic, {
-				coinType: this.#config.get(Coins.ConfigKey.Slip44),
-				index: options?.bip44?.addressIndex,
-			}).privateKey?.toString("hex")!,
-			path: BIP44.stringify({
-				coinType: this.#config.get(Coins.ConfigKey.Slip44),
-				index: options?.bip44?.addressIndex,
-			}),
+			privateKey: child.privateKey?.toString("hex")!,
+			path,
 		};
 	}
 

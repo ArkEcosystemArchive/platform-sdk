@@ -14,16 +14,15 @@ export class WIFService extends Services.AbstractWIFService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.WIFDataTransferObject> {
+		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
+			coinType: this.#config.get(Coins.ConfigKey.Slip44),
+			index: options?.bip44?.addressIndex,
+		});
+
 		try {
 			return {
-				wif: BIP44.deriveChild(mnemonic, {
-					coinType: this.#config.get(Coins.ConfigKey.Slip44),
-					index: options?.bip44?.addressIndex,
-				}).toWIF(),
-				path: BIP44.stringify({
-					coinType: this.#config.get(Coins.ConfigKey.Slip44),
-					index: options?.bip44?.addressIndex,
-				}),
+				wif: child.toWIF(),
+				path,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
