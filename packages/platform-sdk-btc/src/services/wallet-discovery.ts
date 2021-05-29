@@ -1,15 +1,18 @@
 import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
-import Bitcoin from "bitcore-lib";
+import { networks } from "bitcoinjs-lib";
 
-import { bip44, bip49, bip84 } from "./identity/utils";
+import { AddressFactory } from "./identity/address.factory";
 
 export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryService {
-	readonly #network: Record<string, any>;
+	readonly #factory: AddressFactory;
 
 	public constructor(config: Coins.Config) {
 		super();
 
-		this.#network = Bitcoin.Networks[config.get<Coins.NetworkManifest>("network").id.split(".")[1]];
+		this.#factory = new AddressFactory(
+			config,
+			config.get<Coins.NetworkManifest>("network").id.split(".")[1] ? networks.bitcoin : networks.testnet,
+		);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<WalletDiscoveryService> {
@@ -21,9 +24,9 @@ export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryServ
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject[]> {
 		return Promise.all([
-			bip44(mnemonic, this.#network.name, options),
-			bip49(mnemonic, this.#network.name, options),
-			bip84(mnemonic, options || {}),
+			this.#factory.bip44(mnemonic, options),
+			this.#factory.bip49(mnemonic, options),
+			this.#factory.bip84(mnemonic, options),
 		]);
 	}
 }

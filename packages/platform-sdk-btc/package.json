@@ -32,7 +32,6 @@
 		"@ledgerhq/hw-app-btc": "^5.50.0",
 		"bignumber.js": "^9.0.1",
 		"bip32": "^2.0.6",
-		"bip84": "~0.2.5",
 		"bitcoinjs-lib": "^5.2.0",
 		"bitcore-lib": "^8.25.8"
 	},

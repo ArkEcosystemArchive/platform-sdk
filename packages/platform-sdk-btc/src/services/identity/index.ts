@@ -10,7 +10,7 @@ import { WIFService } from "./wif";
 export class IdentityService extends Services.AbstractIdentityService {
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
 		return new IdentityService({
-			address: new AddressService(config.get<Coins.NetworkManifest>("network").id.split(".")[1]),
+			address: new AddressService(config),
 			extendedAddress: new ExtendedAddressService(),
 			publicKey: new PublicKeyService(),
 			privateKey: new PrivateKeyService(),
