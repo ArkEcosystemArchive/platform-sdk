@@ -59,7 +59,7 @@ export class BIP44 {
 	public static deriveChildWithPath(
 		mnemonic: string,
 		options: { purpose?: number; coinType: number; account?: number; change?: number; index?: number },
-	): { child: BIP32Interface; path: string; } {
+	): { child: BIP32Interface; path: string } {
 		return {
 			child: BIP44.deriveChild(mnemonic, options),
 			path: BIP44.stringify(options),
