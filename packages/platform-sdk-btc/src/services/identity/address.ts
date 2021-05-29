@@ -38,7 +38,10 @@ export class AddressService extends Services.AbstractAddressService {
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			const { address } = bitcoin.payments.p2sh({
-				redeem: bitcoin.payments.p2ms({ m: min, pubkeys: publicKeys.map((publicKey: string) => Buffer.from(publicKey, "hex")) }),
+				redeem: bitcoin.payments.p2ms({
+					m: min,
+					pubkeys: publicKeys.map((publicKey: string) => Buffer.from(publicKey, "hex")),
+				}),
 				network: this.#network,
 			});
 

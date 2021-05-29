@@ -1,5 +1,4 @@
 import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
-import { networks } from "bitcoinjs-lib";
 
 import { AddressFactory } from "./identity/address.factory";
 
