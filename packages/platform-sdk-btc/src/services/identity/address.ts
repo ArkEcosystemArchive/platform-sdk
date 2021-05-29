@@ -35,7 +35,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-    // @TODO: use bitcoinjs-lib instead of bitcore-lib
+	// @TODO: use bitcoinjs-lib instead of bitcore-lib
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			const address = new Bitcoin.Address(publicKeys, min);
@@ -54,7 +54,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-    // @TODO: use bitcoinjs-lib instead of bitcore-lib
+	// @TODO: use bitcoinjs-lib instead of bitcore-lib
 	public async fromPublicKey(
 		publicKey: string,
 		options?: Contracts.IdentityOptions,
@@ -76,7 +76,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-    // @TODO: use bitcoinjs-lib instead of bitcore-lib
+	// @TODO: use bitcoinjs-lib instead of bitcore-lib
 	public async fromPrivateKey(
 		privateKey: string,
 		options?: Contracts.IdentityOptions,
@@ -98,7 +98,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-    // @TODO: use bitcoinjs-lib instead of bitcore-lib
+	// @TODO: use bitcoinjs-lib instead of bitcore-lib
 	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
 		try {
 			const address = Bitcoin.PrivateKey.fromWIF(wif).toAddress(this.#network);

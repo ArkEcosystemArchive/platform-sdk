@@ -1,5 +1,5 @@
 import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
-import * as bitcoin from "bitcoinjs-lib";
+import { networks } from "bitcoinjs-lib";
 
 import { AddressFactory } from "./identity/address.factory";
 
@@ -11,9 +11,7 @@ export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryServ
 
 		this.#factory = new AddressFactory(
 			config,
-			config.get<Coins.NetworkManifest>("network").id.split(".")[1]
-				? bitcoin.networks.bitcoin
-				: bitcoin.networks.testnet,
+			config.get<Coins.NetworkManifest>("network").id.split(".")[1] ? networks.bitcoin : networks.testnet,
 		);
 	}
 
