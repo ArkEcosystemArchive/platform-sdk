@@ -1,14 +1,15 @@
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import * as bitcoin from "bitcoinjs-lib";
+import { getNetworkConfig } from "./helpers";
 
 export class AddressFactory {
 	readonly #config: Coins.Config;
 	readonly #network: bitcoin.networks.Network;
 
-	public constructor(config: Coins.Config, network: bitcoin.networks.Network) {
+	public constructor(config: Coins.Config) {
 		this.#config = config;
-		this.#network = network;
+		this.#network = getNetworkConfig(config);
 	}
 
 	public bip44(mnemonic: string, options?: Contracts.IdentityOptions): Contracts.AddressDataTransferObject {

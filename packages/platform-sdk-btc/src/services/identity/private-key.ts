@@ -1,6 +1,6 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
-import Bitcoin from "bitcore-lib";
+import * as bitcoin from "bitcoinjs-lib";
 
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	public async fromMnemonic(
@@ -16,7 +16,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 
 	public async fromWIF(wif: string): Promise<Contracts.PrivateKeyDataTransferObject> {
 		try {
-			const privateKey: Buffer = Bitcoin.PrivateKey.fromWIF(wif);
+			const { privateKey } = bitcoin.ECPair.fromWIF(wif);
 
 			if (!privateKey) {
 				throw new Error(`Failed to derive private key for [${wif}].`);

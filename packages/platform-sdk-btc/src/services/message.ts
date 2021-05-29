@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
-import { Message, PrivateKey } from "bitcore-lib";
+import * as bitcoin from "bitcoinjs-lib";
+import * as bitcoinMessage from "bitcoinjs-message";
 
 import { IdentityService } from "./identity";
 
@@ -22,13 +23,16 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const privateKey = PrivateKey.fromWIF(input.signatory.signingKey());
-			const message = new Message(input.message);
+			const { compressed, privateKey } = bitcoin.ECPair.fromWIF(input.signatory.signingKey());
+
+			if (!privateKey) {
+				throw new Error(`Failed to derive private key for [${input.signatory.signingKey()}].`);
+			}
 
 			return {
 				message: input.message,
 				signatory: (await this.#identity.address().fromWIF(input.signatory.signingKey())).address,
-				signature: message.sign(privateKey),
+				signature: bitcoinMessage.sign(input.message, privateKey, compressed).toString("base64"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -37,7 +41,7 @@ export class MessageService implements Contracts.MessageService {
 
 	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
 		try {
-			return new Message(input.message).verify(input.signatory, input.signature);
+			return bitcoinMessage.verify(input.message, input.signatory, input.signature);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

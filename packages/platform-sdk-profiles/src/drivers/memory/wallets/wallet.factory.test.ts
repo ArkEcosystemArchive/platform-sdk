@@ -59,7 +59,7 @@ describe("#fromMnemonic", () => {
 			bip: 44,
 		});
 
-		expect(wallet.address()).toBe("mghuMQjuyXbcsk7D4J6VSnftNC8bEKKQXU");
+		expect(wallet.address()).toBe("muJmwqMYzXinDoAxueuCBr5y3e3zca8MXY");
 		expect(wallet.publicKey()).toBe("025b7319847965a1dfda25e5337cb6f5bd4665a55fe0b456de2eff79c157d5d21e");
 	});
 
