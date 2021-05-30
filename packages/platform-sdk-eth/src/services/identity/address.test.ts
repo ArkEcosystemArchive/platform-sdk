@@ -11,7 +11,7 @@ describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).expect(result).toMatchInlineSnapshot();
+		expect(result).toMatchInlineSnapshot();
 	});
 
 	it("should generate an output from a multiSignature", async () => {
@@ -23,13 +23,13 @@ describe("Address", () => {
 	it("should generate an output from a publicKey", async () => {
 		const result = await subject.fromPublicKey(identity.publicKey);
 
-		expect(result).expect(result).toMatchInlineSnapshot();
+		expect(result).toMatchInlineSnapshot();
 	});
 
 	it("should generate an output from a privateKey", async () => {
 		const result = await subject.fromPrivateKey(identity.privateKey);
 
-		expect(result).expect(result).toMatchInlineSnapshot();
+		expect(result).toMatchInlineSnapshot();
 	});
 
 	it("should generate an output from a wif", async () => {
