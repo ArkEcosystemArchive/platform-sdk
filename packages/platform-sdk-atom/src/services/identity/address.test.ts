@@ -12,7 +12,7 @@ describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ type: "bip44", address: identity.address });
+		expect(result).toMatchInlineSnapshot();
 	});
 
 	it("should generate an output from a multiSignature", async () => {

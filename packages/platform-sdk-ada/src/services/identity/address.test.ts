@@ -12,7 +12,7 @@ describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ type: "bip44", address: identity.address });
+		expect(result).expect(result).toMatchInlineSnapshot();
 	});
 
 	it("should fail to generate an output from a multiSignature", async () => {
@@ -28,7 +28,7 @@ describe("Address", () => {
 	it("should generate an output from a publicKey", async () => {
 		const result = await subject.fromPublicKey(identity.extPublicKey);
 
-		expect(result).toEqual({ type: "bip44", address: identity.address });
+		expect(result).expect(result).toMatchInlineSnapshot();
 	});
 
 	it("should fail to generate an output from a wif", async () => {
