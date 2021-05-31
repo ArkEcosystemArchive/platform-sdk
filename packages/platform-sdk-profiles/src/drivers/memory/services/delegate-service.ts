@@ -56,7 +56,10 @@ export class DelegateService implements IDelegateService {
 
 		this.#dataRepository.set(
 			`${coin}.${network}.delegates`,
-			result.map((delegate: Contracts.WalletData) => delegate.toObject()),
+			result.map((delegate: Contracts.WalletData) => ({
+				...delegate.toObject(),
+				explorerLink: instance.link().wallet(delegate.address())
+			})),
 		);
 	}
 
@@ -116,7 +119,7 @@ export class DelegateService implements IDelegateService {
 			publicKey: delegate.publicKey,
 			username: delegate.username,
 			rank: (delegate.rank as unknown) as number,
-			explorerLink: "",
+			explorerLink: delegate.explorerLink,
 			isDelegate: delegate.isDelegate,
 			isResignedDelegate: delegate.isResignedDelegate,
 		});
