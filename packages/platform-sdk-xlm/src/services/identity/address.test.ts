@@ -14,6 +14,7 @@ describe("Address", () => {
 		expect(result).toMatchInlineSnapshot(`
 		Object {
 		  "address": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
+		  "path": "m/44'/148'/0'",
 		  "type": "bip44",
 		}
 	`);
@@ -25,6 +26,7 @@ describe("Address", () => {
 		expect(result).toMatchInlineSnapshot(`
 		Object {
 		  "address": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
+		  "path": "m/44'/148'/0'",
 		  "type": "bip44",
 		}
 	`);
