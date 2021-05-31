@@ -7,6 +7,14 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Testnet",
 	coin: "Solana",
+	currency: {
+		ticker: "SOL",
+		symbol: "SOL",
+		decimals: 9,
+	},
+	constants: {
+		slip44: 501,
+	},
 	hosts: [
 		{
 			type: "full",
@@ -18,13 +26,6 @@ const network: Coins.NetworkManifest = {
 			query: { cluster: "testnet" },
 		},
 	],
-	currency: {
-		ticker: "SOL",
-		symbol: "SOL",
-	},
-	constants: {
-		slip44: 501,
-	},
 	transactions,
 	importMethods,
 	featureFlags,
