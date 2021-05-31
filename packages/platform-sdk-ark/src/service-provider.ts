@@ -6,6 +6,7 @@ import * as Services from "./services";
 
 export class ServiceProvider extends IoC.AbstractServiceProvider {
 	public async make(): Promise<Coins.CoinServices> {
+		// @TODO: store this in the container
 		this.config.set("NETWORK_CONFIGURATION", await this.retrieveNetworkConfiguration());
 
 		return this.compose(Services, container);
