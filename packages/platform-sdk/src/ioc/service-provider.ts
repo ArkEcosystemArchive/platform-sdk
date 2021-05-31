@@ -1,7 +1,7 @@
 import { CoinServices, CoinSpec, Config } from "../coins";
 import { Container } from "./container";
 
-export abstract class ServiceProvider {
+export abstract class AbstractServiceProvider {
 	protected readonly coin: CoinSpec;
 	protected readonly config: Config;
 
