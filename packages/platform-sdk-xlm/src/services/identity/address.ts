@@ -15,7 +15,8 @@ export class AddressService extends Services.AbstractAddressService {
 			index: options?.bip44?.addressIndex,
 		});
 
-		const { key } = derivePath("m/44'/148'/0'/0/0", BIP39.toSeed(mnemonic).toString("hex"));
+		// @TODO: use account index
+		const { key } = derivePath("m/44'/148'/0'", BIP39.toSeed(mnemonic).toString("hex"));
 
 		return {
 			type: "bip44",
