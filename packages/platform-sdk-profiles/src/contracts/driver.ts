@@ -1,4 +1,5 @@
 import { IoC } from "@arkecosystem/platform-sdk";
+
 import { EnvironmentOptions } from "../environment/env.models";
 
 /**

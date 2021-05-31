@@ -4,8 +4,8 @@ import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-s
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
-import { container } from "../container";
 
+import { container } from "../container";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
