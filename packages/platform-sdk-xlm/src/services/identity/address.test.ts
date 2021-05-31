@@ -22,6 +22,11 @@ describe("Address", () => {
 	it("should generate an output from a private key", async () => {
 		const result = await subject.fromPrivateKey(identity.privateKey);
 
-		expect(result).toMatchInlineSnapshot();
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
+		  "type": "bip44",
+		}
+	`);
 	});
 });
