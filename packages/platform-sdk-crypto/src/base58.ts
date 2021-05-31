@@ -1,6 +1,6 @@
 import { base58 } from "bstring";
 
-const normalise = (value: string | Buffer) => (value instanceof Buffer ? value : Buffer.from(value, "hex"));
+const normalise = (value: string | Buffer): Buffer => (value instanceof Buffer ? value : Buffer.from(value, "hex"));
 
 /**
  * Implements all functionality that is required to work with the Base58
