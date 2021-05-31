@@ -13,7 +13,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 			return {
 				publicKey: child.publicKey(),
 				path,
-			}
+			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

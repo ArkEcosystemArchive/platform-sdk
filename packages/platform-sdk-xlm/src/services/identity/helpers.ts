@@ -5,7 +5,10 @@ import { Keypair } from "stellar-sdk";
 
 export const buildPath = (options?: Contracts.IdentityOptions): string => `m/44'/148'/${options?.bip44?.account || 0}'`;
 
-export const deriveKeyPair = (mnemonic: string, options?: Contracts.IdentityOptions): {
+export const deriveKeyPair = (
+	mnemonic: string,
+	options?: Contracts.IdentityOptions,
+): {
 	child: Keypair;
 	path: string;
 } => {
@@ -16,4 +19,4 @@ export const deriveKeyPair = (mnemonic: string, options?: Contracts.IdentityOpti
 		child: Keypair.fromRawEd25519Seed(key),
 		path,
 	};
-}
+};
