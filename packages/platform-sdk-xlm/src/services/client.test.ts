@@ -116,7 +116,7 @@ describe("ClientService", () => {
 						}),
 					),
 					data: {
-						amount: "10000000",
+						amount: "1",
 						to: identity.address,
 					},
 				}),
@@ -153,7 +153,7 @@ describe("ClientService", () => {
 						}),
 					),
 					data: {
-						amount: "10000000",
+						amount: "1",
 						to: identity.address,
 					},
 				}),
