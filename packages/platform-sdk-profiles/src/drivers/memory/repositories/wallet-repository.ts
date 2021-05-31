@@ -4,6 +4,7 @@ import retry from "p-retry";
 import { Wallet } from "../wallets/wallet";
 import { DataRepository } from "../../../repositories/data-repository";
 import {
+	WalletData,
 	IDataRepository,
 	IReadWriteWallet,
 	IWalletRepository,
@@ -241,8 +242,11 @@ export class WalletRepository implements IWalletRepository {
 
 			await wallet.mutator().coin(coin!, network, { sync: false });
 
-			// @ts-ignore --- @TODO: handle type and path
-			await wallet.mutator().address({ address }, { syncIdentity: false, validate: false });
+			await wallet.mutator().address({
+				address,
+				path: wallet.data().get(WalletData.DerivationPath),
+				type: wallet.data().get(WalletData.DerivationType)!,
+			}, { syncIdentity: false, validate: false });
 
 			wallet.markAsPartiallyRestored();
 
@@ -277,12 +281,12 @@ export class WalletRepository implements IWalletRepository {
 		await syncWallets(laterWallets);
 	}
 
-	private async restoreWallet({ id, address, coin, network }): Promise<void> {
+	private async restoreWallet({ id, address, coin, network, path, type }): Promise<void> {
 		const previousWallet: IReadWriteWallet = this.findById(id);
 
 		if (previousWallet.hasBeenPartiallyRestored()) {
 			try {
-				await this.syncWalletWithNetwork({ address, coin, network, wallet: previousWallet });
+				await this.syncWalletWithNetwork({ path, type, address, coin, network, wallet: previousWallet });
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully
@@ -296,18 +300,21 @@ export class WalletRepository implements IWalletRepository {
 		coin,
 		network,
 		wallet,
+		path,
+		type,
 	}: {
 		wallet: IReadWriteWallet;
 		coin: string;
 		network: string;
 		address: string;
+		path?: string;
+		type: "bip39" | "bip44" | "bip49" | "bip84" | "ss58" | "rfc6979" | "bip44.legacy";
 	}): Promise<void> {
 		await retry(
 			async () => {
 				await wallet.mutator().coin(coin, network);
 
-				// @ts-ignore --- @TODO: handle type and path
-				await wallet.mutator().address({ address });
+				await wallet.mutator().address({ address, path, type });
 			},
 			{
 				onFailedAttempt: (error) =>
