@@ -1,65 +1,14 @@
 import { Managers } from "@arkecosystem/crypto";
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, IoC } from "@arkecosystem/platform-sdk";
 
-import { ClientService } from "./services/client";
-import { DataTransferObjectService } from "./services/data-transfer-object";
-import { FeeService } from "./services/fee";
-import { IdentityService } from "./services/identity";
-import { KnownWalletService } from "./services/known-wallets";
-import { LedgerService } from "./services/ledger";
-import { LinkService } from "./services/link";
-import { MessageService } from "./services/message";
-import { MultiSignatureService } from "./services/multi-signature";
-import { SignatoryService } from "./services/signatory";
-import { TransactionService } from "./services/transaction";
-import { WalletDiscoveryService } from "./services/wallet-discovery";
+import { container } from "./container";
+import * as Services from "./services";
 
-export class ServiceProvider {
-	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
+export class ServiceProvider extends IoC.ServiceProvider {
+	public async make(): Promise<Coins.CoinServices> {
 		config.set("NETWORK_CONFIGURATION", await ServiceProvider.retrieveNetworkConfiguration(config));
 
-		const multiSignature = await MultiSignatureService.__construct(config);
-
-		const [
-			client,
-			dataTransferObject,
-			fee,
-			identity,
-			knownWallets,
-			ledger,
-			link,
-			message,
-			signatory,
-			transaction,
-			walletDiscovery,
-		] = await Promise.all<any>([
-			ClientService.__construct(config),
-			DataTransferObjectService.__construct(config),
-			FeeService.__construct(config),
-			IdentityService.__construct(config),
-			KnownWalletService.__construct(config),
-			LedgerService.__construct(config),
-			LinkService.__construct(config),
-			MessageService.__construct(config),
-			SignatoryService.__construct(config),
-			TransactionService.__construct(config),
-			WalletDiscoveryService.__construct(config),
-		]);
-
-		return {
-			client,
-			dataTransferObject,
-			fee,
-			identity,
-			knownWallets,
-			ledger,
-			link,
-			message,
-			multiSignature,
-			signatory,
-			transaction,
-			walletDiscovery,
-		};
+		return this.bindServices(await this.makeServices(Services), container);
 	}
 
 	private static async retrieveNetworkConfiguration(config: Coins.Config): Promise<{ crypto; peer; status }> {
