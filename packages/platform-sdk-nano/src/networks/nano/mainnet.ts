@@ -10,6 +10,7 @@ const network: Coins.NetworkManifest = {
 	currency: {
 		ticker: "NANO",
 		symbol: "NANO",
+		decimals: 30,
 	},
 	constants: {
 		slip44: 165,

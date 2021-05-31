@@ -10,6 +10,7 @@ const network: Coins.NetworkManifest = {
 	currency: {
 		ticker: "TLOS",
 		symbol: "TLOS",
+		decimals: 4,
 	},
 	constants: {
 		slip44: 194,

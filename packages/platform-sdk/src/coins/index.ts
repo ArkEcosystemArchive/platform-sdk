@@ -4,6 +4,7 @@ export * from "./collections";
 export * from "./collections/paginator";
 export * from "./config";
 export * from "./contracts";
+export * from "./currency";
 export * from "./enums";
 export * from "./manifest";
 export * from "./network-repository";

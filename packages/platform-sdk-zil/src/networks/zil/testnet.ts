@@ -7,6 +7,14 @@ const network: Coins.NetworkManifest = {
 	type: "test",
 	name: "Testnet",
 	coin: "Zilliqa",
+	currency: {
+		ticker: "ZIL",
+		symbol: "ZIL",
+		decimals: 12,
+	},
+	constants: {
+		slip44: 313,
+	},
 	hosts: [
 		{
 			type: "full",
@@ -18,13 +26,6 @@ const network: Coins.NetworkManifest = {
 			query: { network: "testnet" },
 		},
 	],
-	currency: {
-		ticker: "ZIL",
-		symbol: "ZIL",
-	},
-	constants: {
-		slip44: 313,
-	},
 	transactions,
 	importMethods,
 	featureFlags,

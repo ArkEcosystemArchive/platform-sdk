@@ -10,6 +10,7 @@ const network: Coins.NetworkManifest = {
 	currency: {
 		ticker: "ZIL",
 		symbol: "ZIL",
+		decimals: 12,
 	},
 	constants: {
 		slip44: 313,
