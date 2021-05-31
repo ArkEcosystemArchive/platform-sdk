@@ -16,6 +16,7 @@ test("#all", () => {
 		      "slip44": 1,
 		    },
 		    "currency": Object {
+		      "decimals": 8,
 		      "symbol": "DѦ",
 		      "ticker": "DARK",
 		    },
@@ -170,6 +171,7 @@ test("#all", () => {
 		      "slip44": 111,
 		    },
 		    "currency": Object {
+		      "decimals": 8,
 		      "symbol": "Ѧ",
 		      "ticker": "ARK",
 		    },
