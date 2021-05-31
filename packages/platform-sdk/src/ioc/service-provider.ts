@@ -82,7 +82,7 @@ export abstract class AbstractServiceProvider {
 		};
 	}
 
-	protected async bindServices(services: CoinServices, container: Container): Promise<void> {
+	protected bindServices(services: CoinServices, container: Container): void {
 		container.constant(ServiceKeys.ClientService, services.client);
 		container.constant(ServiceKeys.DataTransferObjectService, services.dataTransferObject);
 		container.constant(ServiceKeys.FeeService, services.fee);
