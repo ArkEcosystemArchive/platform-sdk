@@ -16,7 +16,7 @@ export const ServiceKeys = {
 	SignatoryService: Symbol("SignatoryService"),
 	TransactionService: Symbol("TransactionService"),
 	WalletDiscoveryService: Symbol("WalletDiscoveryService"),
-}
+};
 
 export abstract class AbstractServiceProvider {
 	protected readonly coin: CoinSpec;

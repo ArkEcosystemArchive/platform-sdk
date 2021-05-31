@@ -12,7 +12,7 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 		return this.compose(Services, container);
 	}
 
-	private async retrieveNetworkConfiguration(): Promise<{ crypto; peer; status }> {
+	private async retrieveNetworkConfiguration(): Promise<void> {
 		const http: Contracts.HttpClient = this.config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 
 		let peer: string = Helpers.randomHostFromConfig(this.config);
