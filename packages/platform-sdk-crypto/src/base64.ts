@@ -62,7 +62,7 @@ export class Base64 {
 	 */
 	public static validate(value: string): boolean {
 		try {
-			return btoa(atob(value)) === value;
+			return Buffer.from(value, "base64").toString("base64") === value;
 		} catch {
 			return false;
 		}
