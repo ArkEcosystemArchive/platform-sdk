@@ -1,20 +1,24 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
-import { BIP39, BIP44 } from "@arkecosystem/platform-sdk-crypto";
-import { derivePath } from "ed25519-hd-key";
 import Stellar from "stellar-sdk";
+
+import { buildPath, deriveKeyPair } from "./helpers";
 
 export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
-		const { key } = derivePath(`m/44'/148'/${options?.bip44?.account || 0}'`, BIP39.toSeed(mnemonic).toString("hex"));
+		try {
+			const { child, path } = deriveKeyPair(mnemonic, options);
 
-		return {
-			type: "bip44",
-			address: Stellar.Keypair.fromRawEd25519Seed(key).publicKey(),
-			// @TODO: return path
-		};
+			return {
+				type: "bip44",
+				address: child.publicKey(),
+				path,
+			};
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
 	}
 
 	public async fromPrivateKey(
@@ -25,7 +29,7 @@ export class AddressService extends Services.AbstractAddressService {
 			return {
 				type: "bip44",
 				address: Stellar.Keypair.fromSecret(privateKey).publicKey(),
-				// @TODO: return path
+				path: buildPath(options),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

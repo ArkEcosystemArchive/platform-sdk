@@ -11,6 +11,11 @@ describe("PrivateKey", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ privateKey: identity.privateKey });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "path": "m/44'/148'/0'",
+		  "privateKey": "SCVPKP4VG6NDJHHGQ7OLDGWO6TZMZTUCKRMKUQ3KDGHCAJ7J5RG3L7WC",
+		}
+	`);
 	});
 });

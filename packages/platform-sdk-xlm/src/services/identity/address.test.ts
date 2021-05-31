@@ -8,12 +8,13 @@ let subject: AddressService;
 beforeEach(async () => (subject = new AddressService()));
 
 describe("Address", () => {
-	it.only("should generate an output from a mnemonic", async () => {
+	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toMatchInlineSnapshot(`
 		Object {
 		  "address": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
+		  "path": "m/44'/148'/0'",
 		  "type": "bip44",
 		}
 	`);
@@ -25,6 +26,7 @@ describe("Address", () => {
 		expect(result).toMatchInlineSnapshot(`
 		Object {
 		  "address": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
+		  "path": "m/44'/148'/0'",
 		  "type": "bip44",
 		}
 	`);
