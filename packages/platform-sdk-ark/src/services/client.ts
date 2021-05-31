@@ -3,6 +3,12 @@ import dotify from "node-dotify";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
+import { guessBroadcastError } from "./client.errors";
+
+interface BroadcastError {
+	type: string;
+	message: string;
+}
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
@@ -216,20 +222,19 @@ export class ClientService implements Contracts.ClientService {
 		}
 
 		if (errors) {
-			for (const [key, value] of Object.entries(errors)) {
+			const responseErrors: [string, BroadcastError][] = Object.entries(errors);
+
+			for (const [key, value] of responseErrors) {
 				if (Array.isArray(value)) {
 					if (!Array.isArray(result.errors[key])) {
 						result.errors[key] = [];
 					}
 
-					// @ts-ignore
 					for (const error of value) {
-						// @ts-ignore
-						result.errors[key].push(error.type);
+						result.errors[key].push(guessBroadcastError(error.message));
 					}
 				} else {
-					// @ts-ignore
-					result.errors[key] = [value.type];
+					result.errors[key] = [guessBroadcastError(value.message)];
 				}
 			}
 		}
