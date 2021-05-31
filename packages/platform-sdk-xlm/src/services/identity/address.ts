@@ -1,7 +1,6 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BIP39, BIP44 } from "@arkecosystem/platform-sdk-crypto";
-import { derivePath, getPublicKey } from "ed25519-hd-key";
-import StellarHDWallet from "stellar-hd-wallet";
+import { derivePath } from "ed25519-hd-key";
 import Stellar from "stellar-sdk";
 
 export class AddressService extends Services.AbstractAddressService {
@@ -9,14 +8,7 @@ export class AddressService extends Services.AbstractAddressService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
-		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
-			coinType: 148,
-			account: options?.bip44?.account,
-			index: options?.bip44?.addressIndex,
-		});
-
-		// @TODO: use account index
-		const { key } = derivePath("m/44'/148'/0'", BIP39.toSeed(mnemonic).toString("hex"));
+		const { key } = derivePath(`m/44'/148'/${options?.bip44?.account || 0}'`, BIP39.toSeed(mnemonic).toString("hex"));
 
 		return {
 			type: "bip44",
