@@ -10,6 +10,7 @@ const network: Coins.NetworkManifest = {
 	currency: {
 		ticker: "XRP",
 		symbol: "XRP",
+		decimals: 6,
 	},
 	constants: {
 		slip44: 144,

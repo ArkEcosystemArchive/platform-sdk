@@ -86,6 +86,7 @@ export interface NetworkManifest {
 	currency: {
 		ticker: string;
 		symbol: string;
+		decimals?: number;
 	};
 	hosts: NetworkHost[];
 	constants: NetworkManifestConstants;

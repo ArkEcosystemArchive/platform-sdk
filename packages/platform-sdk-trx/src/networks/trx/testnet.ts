@@ -10,6 +10,7 @@ const network: Coins.NetworkManifest = {
 	currency: {
 		ticker: "TRX",
 		symbol: "TRX",
+		decimals: 6,
 	},
 	constants: {
 		slip44: 195,

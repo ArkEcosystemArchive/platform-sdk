@@ -10,6 +10,7 @@ const network: Coins.NetworkManifest = {
 	currency: {
 		ticker: "ADA",
 		symbol: "ADA",
+		decimals: 6,
 	},
 	constants,
 	hosts: [
