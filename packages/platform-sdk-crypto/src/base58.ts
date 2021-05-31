@@ -1,6 +1,6 @@
 import { base58 } from "bstring";
 
-const normalise = (value: string | Buffer): Buffer => (value instanceof Buffer ? value : Buffer.from(value, "hex"));
+const normalise = (value: string | Buffer): Buffer => (value instanceof Buffer ? value : Buffer.from(value));
 
 /**
  * Implements all functionality that is required to work with the Base58
@@ -28,12 +28,12 @@ export class Base58 {
 	 * Decodes a string in compliance with the Base58 encoding scheme.
 	 *
 	 * @static
-	 * @param {(string | Buffer)} value
+	 * @param {string} value
 	 * @returns {Buffer}
 	 * @memberof Base58
 	 */
-	public static decode(value: string | Buffer): Buffer {
-		return base58.decode(normalise(value));
+	public static decode(value: string): Buffer {
+		return base58.decode(value).toString();
 	}
 
 	/**
@@ -50,12 +50,6 @@ export class Base58 {
 	 * @memberof Base58
 	 */
 	public static validate(value: string): boolean {
-		try {
-			base58.decode(value);
-
-			return true;
-		} catch {
-			return false;
-		}
+		return base58.test(value);
 	}
 }
