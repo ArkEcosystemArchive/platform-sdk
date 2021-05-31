@@ -10,15 +10,17 @@ import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
+	readonly #config: Coins.Config;
 	readonly #http: Contracts.HttpClient;
 	readonly #identity: IdentityService;
 	readonly #peer: string;
 	readonly #multiSignatureSigner: MultiSignatureSigner;
 	readonly #configCrypto: any;
 
-	private constructor({ http, identity, peer, multiSignatureSigner, configCrypto }) {
+	private constructor({ config, http, identity, peer, multiSignatureSigner, configCrypto }) {
 		super();
 
+		this.#config = config;
 		this.#http = http;
 		this.#identity = identity;
 		this.#peer = peer;
@@ -30,6 +32,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const { crypto, peer, status } = config.get("NETWORK_CONFIGURATION");
 
 		return new TransactionService({
+			config,
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 			peer,
 			identity: await IdentityService.__construct(config),
@@ -264,11 +267,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.data && input.data.amount) {
-				transaction.amount(input.data.amount);
+				const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+				transaction.amount(amount);
 			}
 
 			if (input.fee) {
-				transaction.fee(input.fee);
+				const fee = Coins.toRawUnit(input.fee, this.#config).toString();
+				transaction.fee(fee);
 			}
 
 			if (input.data && input.data.expiration) {
@@ -321,16 +326,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			if (actsWithMultiMnemonic && Array.isArray(input.signatory.signingKeys())) {
 				const signingKeys: string[] = input.signatory.signingKeys();
 
-				const senderPublicKeys: string[] = (
-					await Promise.all(
-						signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
-					)
-				).map(({ publicKey }) => publicKey);
+				const promises = signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic));
+				const senderPublicKeys: string[] = (await Promise.all(promises)).map(({ publicKey }) => publicKey);
 
-				transaction.senderPublicKey(
-					(await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys))
-						.publicKey,
-				);
+				const { publicKey } = await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys);
+				transaction.senderPublicKey(publicKey);
 
 				for (let i = 0; i < signingKeys.length; i++) {
 					transaction.multiSign(signingKeys[i], i);
