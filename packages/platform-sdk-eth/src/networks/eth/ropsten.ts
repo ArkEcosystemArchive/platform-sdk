@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://ropsten.etherscan.io/",
+			host: "https://ropsten.etherscan.io",
 		},
 	],
 	transactions,

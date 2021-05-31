@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://goerli.etherscan.io/",
+			host: "https://goerli.etherscan.io",
 		},
 	],
 	transactions,

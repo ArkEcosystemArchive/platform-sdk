@@ -38,7 +38,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://neoscan-testnet.io/",
+			host: "https://neoscan-testnet.io",
 		},
 	],
 	transactions,

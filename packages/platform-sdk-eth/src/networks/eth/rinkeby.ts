@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://rinkeby.etherscan.io/",
+			host: "https://rinkeby.etherscan.io",
 		},
 	],
 	transactions,

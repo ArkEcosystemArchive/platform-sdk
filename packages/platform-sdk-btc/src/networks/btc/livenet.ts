@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://blockstream.info/",
+			host: "https://blockstream.info",
 		},
 	],
 	transactions,
