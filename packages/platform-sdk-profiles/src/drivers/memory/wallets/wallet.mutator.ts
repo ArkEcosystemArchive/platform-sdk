@@ -67,10 +67,10 @@ export class WalletMutator implements IWalletMutator {
 
 	/** {@inheritDoc IWalletMutator.address} */
 	public async address(
-		{ address, path, type }: Contracts.AddressDataTransferObject,
+		{ address, path, type }: Partial<Contracts.AddressDataTransferObject>,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
 	): Promise<void> {
-		if (options.validate) {
+		if (options.validate && address) {
 			const isValidAddress: boolean = await this.#wallet.coin().identity().address().validate(address);
 
 			if (!isValidAddress) {

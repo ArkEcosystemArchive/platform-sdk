@@ -241,7 +241,6 @@ export class WalletRepository implements IWalletRepository {
 
 			await wallet.mutator().coin(coin!, network, { sync: false });
 
-			// @ts-ignore --- @TODO: handle type and path
 			await wallet.mutator().address({ address }, { syncIdentity: false, validate: false });
 
 			wallet.markAsPartiallyRestored();
@@ -306,7 +305,6 @@ export class WalletRepository implements IWalletRepository {
 			async () => {
 				await wallet.mutator().coin(coin, network);
 
-				// @ts-ignore --- @TODO: handle type and path
 				await wallet.mutator().address({ address });
 			},
 			{
