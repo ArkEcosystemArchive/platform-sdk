@@ -32,11 +32,11 @@ describe("TransactionService", () => {
 			),
 			data: {
 				to: "TEre3kN6JdPzqCNpiZT8JWM4kt8iGrg1Rm",
-				amount: `${1e8}`,
+				amount: "1",
 			},
 		});
 
 		expect(result).toBeObject();
-		expect(result.amount().divide(1e6).toString()).toBe(`${1e8}`);
+		expect(result.amount().toNumber()).toBe(1_000_000);
 	});
 });
