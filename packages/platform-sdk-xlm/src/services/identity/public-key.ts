@@ -9,6 +9,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		try {
 			return {
 				publicKey: StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(options?.bip44?.account || 0),
+				// @TODO: return path
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
