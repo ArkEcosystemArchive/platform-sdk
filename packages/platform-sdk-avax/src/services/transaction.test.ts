@@ -28,6 +28,7 @@ describe("TransactionService", () => {
 			});
 
 			expect(result).toBeInstanceOf(SignedTransactionData);
+			expect(result.amount()).toBe(1_000_000_000);
 		});
 	});
 });
