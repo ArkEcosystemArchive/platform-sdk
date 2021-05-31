@@ -19,7 +19,7 @@ export class AddressService extends Services.AbstractAddressService {
 
 		return {
 			type: "bip44",
-			address: Stellar.Keypair.fromRawEd25519Seed(key).publicKey,
+			address: Stellar.Keypair.fromRawEd25519Seed(key).publicKey(),
 			// @TODO: return path
 		};
 	}
