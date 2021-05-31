@@ -1,4 +1,5 @@
 import "jest-extended";
+
 import { Config } from "./config";
 import { toRawUnit } from "./currency";
 
