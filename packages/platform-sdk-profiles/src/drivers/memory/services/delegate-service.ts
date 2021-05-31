@@ -58,7 +58,7 @@ export class DelegateService implements IDelegateService {
 			`${coin}.${network}.delegates`,
 			result.map((delegate: Contracts.WalletData) => ({
 				...delegate.toObject(),
-				explorerLink: instance.link().wallet(delegate.address())
+				explorerLink: instance.link().wallet(delegate.address()),
 			})),
 		);
 	}
