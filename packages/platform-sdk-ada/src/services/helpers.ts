@@ -94,5 +94,3 @@ export const deriveAddressesAndSigningKeys = async (
 	}
 	return addresses;
 };
-
-export const adaToLovelace = (value: NumberLike) => BigNumber.make(value).times(1e6).toString();

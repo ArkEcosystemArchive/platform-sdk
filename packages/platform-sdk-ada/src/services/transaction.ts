@@ -4,7 +4,7 @@ import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serializat
 
 import { SignedTransactionData } from "../dto";
 import { fetchNetworkTip, listUnspentTransactions } from "./graphql-helpers";
-import { adaToLovelace, addUtxoInput, deriveAddressesAndSigningKeys, usedAddressesForAccount } from "./helpers";
+import { addUtxoInput, deriveAddressesAndSigningKeys, usedAddressesForAccount } from "./helpers";
 import { deriveAccountKey, deriveAddress, deriveRootKey } from "./identity/shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
@@ -62,7 +62,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];
-		const amount = adaToLovelace(input.data.amount);
+		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
 		const requestedAmount: BigNum = BigNum.from_str(amount);
 		let totalTxAmount: BigNum = BigNum.from_str("0");
 		let totalFeesAmount: BigNum = BigNum.from_str("0");
