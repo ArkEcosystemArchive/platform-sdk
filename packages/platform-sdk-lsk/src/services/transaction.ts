@@ -11,17 +11,18 @@ import {
 import { SignedTransactionData } from "../dto/signed-transaction";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #network;
+	readonly #config: Coins.Config;
+	readonly #network: string;
 
-	private constructor(network: Coins.NetworkManifest) {
+	private constructor(config: Coins.Config) {
 		super();
 
-		// eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-		this.#network = network.meta?.networkId!;
+		this.#config = config;
+		this.#network = config.get<string>("network.meta.networkId");
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config.get<Coins.NetworkManifest>("network"));
+		return new TransactionService(config);
 	}
 
 	public async transfer(
@@ -32,7 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			...input,
 			...{
 				data: {
-					amount: input.data.amount.toString(),
+					amount: Coins.toRawUnit(input.data.amount, this.#config).toString(),
 					recipientId: input.data.to,
 					data: input.data.memo,
 				},
