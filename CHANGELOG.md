@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.2.11 - 2021-05-31
+
+### Fixed
+
+- **[PROFILES]** Accept partial address data (15073cd2, @faustbrian)
+
 ## 8.2.10 - 2021-05-31
 
 ### Changed
