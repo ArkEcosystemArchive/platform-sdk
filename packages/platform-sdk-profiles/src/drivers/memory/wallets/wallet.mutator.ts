@@ -44,6 +44,10 @@ export class WalletMutator implements IWalletMutator {
 	public async identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void> {
 		const { type, address, path } = await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options);
 
+		if (type) {
+			this.#wallet.data().set(WalletData.DerivationType, type);
+		}
+
 		if (path) {
 			this.#wallet.data().set(WalletData.DerivationPath, path);
 		}
@@ -62,7 +66,7 @@ export class WalletMutator implements IWalletMutator {
 
 	/** {@inheritDoc IWalletMutator.address} */
 	public async address(
-		{ address, path }: Contracts.AddressDataTransferObject,
+		{ address, path, type }: Contracts.AddressDataTransferObject,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
 	): Promise<void> {
 		if (options.validate) {
@@ -71,6 +75,10 @@ export class WalletMutator implements IWalletMutator {
 			if (!isValidAddress) {
 				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
 			}
+		}
+
+		if (type) {
+			this.#wallet.data().set(WalletData.DerivationType, type);
 		}
 
 		if (path) {
