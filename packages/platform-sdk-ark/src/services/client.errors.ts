@@ -1,9 +1,9 @@
-export const errors = {
-	ERR_INVALID_TRANSACTION_TYPE: "Transaction type ${type.toString()} does not exist.",
-	ERR_DEACTIVATED_TRANSACTION_HANDLER: "Transaction type ${type.toString()} is deactivated.",
-	ERR_UNSATISFIED_DEPENDENCY: "Transaction type ${type.toString()} is missing required dependencies",
-	ERR_ALREADY_REGISTERED: "Transaction type ${type.toString()} is already registered",
-	ERR_UNEXPECTED_NONCE: "Cannot ${action} a transaction with nonce ${txNonce.toFixed()}: the sender ${sender.getPublicKey()} has nonce ${sender.getNonce().toFixed()}.",
+export const broadcastErrors = {
+	ERR_INVALID_TRANSACTION_TYPE: "Transaction type (.*) does not exist.",
+	ERR_DEACTIVATED_TRANSACTION_HANDLER: "Transaction type (.*) is deactivated.",
+	ERR_UNSATISFIED_DEPENDENCY: "Transaction type (.*) is missing required dependencies",
+	ERR_ALREADY_REGISTERED: "Transaction type (.*) is already registered",
+	ERR_UNEXPECTED_NONCE: "Cannot (.*) a transaction with nonce (.*): the sender (.*) has nonce (.*).",
 	ERR_COLD_WALLET: "Insufficient balance in database wallet. Wallet is not allowed to spend before funding is confirmed.",
 	ERR_INSUFFICIENT_BALANCE: "Insufficient balance in the wallet.",
 	ERR_SENDER_WALLET_MISMATCH: "Failed to apply transaction, because the public key does not match the wallet.",
@@ -15,7 +15,7 @@ export const errors = {
 	ERR_WALLET_ALREADY_RESIGNED: "Failed to apply transaction, because the wallet already resigned as delegate.",
 	ERR_WALLET_NOT_A_DELEGATE: "Failed to apply transaction, because the wallet is not a delegate.",
 	ERR_WALLET_IS_ALREADY_DELEGATE: "Failed to apply transaction, because the wallet already has a registered username.",
-	ERR_WALLET_USERNAME_ALREADY_REGISTERED: "Failed to apply transaction, because the username '${username}' is already registered.",
+	ERR_WALLET_USERNAME_ALREADY_REGISTERED: "Failed to apply transaction, because the username '(.*)' is already registered.",
 	ERR_SECOND_SIGNATURE_ALREADY_REGISTERED: "Failed to apply transaction, because second signature is already enabled.",
 	ERR_NOT_SUPPORTED_FOR_MULTI_SIGNATURE_WALLET: "Failed to apply transaction, because multi signature is enabled.",
 	ERR_ALREADY_VOTED: "Failed to apply transaction, because the sender wallet has already voted.",
@@ -35,4 +35,15 @@ export const errors = {
 	ERR_HTLC_SECRET_HASH_MISMATCH: "Failed to apply transaction, because the secret provided does not match the associated HTLC lock transaction secret.",
 	ERR_HTLC_LOCK_NOT_EXPIRED: "Failed to apply transaction, because the associated HTLC lock transaction did not expire yet.",
 	ERR_HTLC_LOCK_EXPIRED: "Failed to apply transaction, because the associated HTLC lock transaction expired.",
+	ERR_UNKNOWN: "Failed to apply transaction, because an unknown error occurred.",
+}
+
+export const guessBroadcastError = (error: string): string => {
+	for (const [type, pattern] of Object.entries(broadcastErrors)) {
+		if (new RegExp(pattern).test(error)) {
+			return type;
+		}
+	}
+
+	return "ERR_UNKNOWN";
 }
