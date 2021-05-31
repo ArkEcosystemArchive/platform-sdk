@@ -1,6 +1,6 @@
 {
-	"private": true,
 	"name": "@arkecosystem/platform-sdk-examples",
+	"private": true,
 	"license": "MIT",
 	"main": "dist/index",
 	"types": "dist/index",

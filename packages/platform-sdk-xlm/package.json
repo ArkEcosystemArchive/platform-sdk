@@ -30,9 +30,9 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@ledgerhq/hw-app-str": "^5.50.0",
+		"ed25519-hd-key": "^1.2.0",
 		"stellar-sdk": "^8.1.1",
-		"uuid": "^8.3.2",
-		"ed25519-hd-key": "^1.2.0"
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
