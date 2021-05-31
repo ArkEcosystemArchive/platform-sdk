@@ -1,3 +1,6 @@
+import "reflect-metadata";
+
+export * as IoC from "./ioc";
 export * as Coins from "./coins";
 export * as Contracts from "./contracts";
 export * as Data from "./data";
