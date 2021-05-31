@@ -16,9 +16,12 @@ export class AddressService extends Services.AbstractAddressService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
+		const { child, path } = keyPairFromMnemonic(this.#config, mnemonic);
+
 		return {
 			type: "bip44",
-			address: keyPairFromMnemonic(this.#config, mnemonic).getAddressString(),
+			address: child.getAddressString(),
+			path,
 		};
 	}
 

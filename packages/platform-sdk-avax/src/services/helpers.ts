@@ -1,5 +1,5 @@
-import { Coins, Helpers } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { BIP39, BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { Avalanche, BinTools, Buffer } from "avalanche";
 import { AVMAPI, KeyPair } from "avalanche/dist/apis/avm";
 import { InfoAPI } from "avalanche/dist/apis/info";
@@ -33,8 +33,18 @@ export const cb58Decode = (value: string): Buffer => BinTools.getInstance().cb58
 export const cb58Encode = (value: Buffer): string => BinTools.getInstance().cb58Encode(value);
 
 // Crypto
-export const keyPairFromMnemonic = (config: Coins.Config, mnemonic: string): KeyPair =>
-	useKeychain(config).importKey(
-		// @ts-ignore
-		HDKey.fromMasterSeed(BIP39.toSeed(mnemonic)).derive(`m/44'/9000'/0'/0/0`).privateKey,
-	);
+export const keyPairFromMnemonic = (config: Coins.Config, mnemonic: string, options?: Contracts.IdentityOptions): { child: KeyPair; path: string; } => {
+	const path = BIP44.stringify({
+		coinType: config.get(Coins.ConfigKey.Slip44),
+		account: options?.bip44?.account,
+		index: options?.bip44?.addressIndex,
+	});
+
+	return {
+		child: useKeychain(config).importKey(
+			// @ts-ignore
+			HDKey.fromMasterSeed(BIP39.toSeed(mnemonic)).derive(path).privateKey,
+		),
+		path,
+	};
+};
