@@ -1,6 +1,7 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
-import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
+
+import { buildPath, deriveKeyPair } from "./helpers";
 
 export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(
@@ -8,10 +9,12 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
+			const { child, path } = deriveKeyPair(mnemonic, options);
+
 			return {
 				type: "bip44",
-				address: StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(options?.bip44?.account || 0),
-				// @TODO: return path
+				address: child.publicKey(),
+				path,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -26,7 +29,7 @@ export class AddressService extends Services.AbstractAddressService {
 			return {
 				type: "bip44",
 				address: Stellar.Keypair.fromSecret(privateKey).publicKey(),
-				// @TODO: return path
+				path: buildPath(options),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
