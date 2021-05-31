@@ -22,14 +22,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Contracts.TransferInput,
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
+		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+
 		const transaction = await this.useClient()
 			.wallet(
-				new MnemonicKey({
-					mnemonic: input.signatory.signingKey(),
-				}),
+				new MnemonicKey({ mnemonic: input.signatory.signingKey() }),
 			)
 			.createAndSignTx({
-				msgs: [new MsgSend(input.signatory.address(), input.data.to, { uluna: input.data.amount })],
+				msgs: [new MsgSend(input.signatory.address(), input.data.to, { uluna: amount })],
 				memo: input.data.memo,
 			});
 
