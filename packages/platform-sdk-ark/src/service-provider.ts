@@ -6,7 +6,6 @@ import * as Services from "./services";
 
 export class ServiceProvider extends IoC.AbstractServiceProvider {
 	public async make(): Promise<Coins.CoinServices> {
-		// @TODO: store this in the container
 		await this.retrieveNetworkConfiguration();
 
 		return this.compose(Services, container);
@@ -32,6 +31,6 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 		Managers.configManager.setConfig(dataCrypto);
 		Managers.configManager.setHeight(dataStatus.height);
 
-		this.config.set("NETWORK_CONFIGURATION", { crypto: dataCrypto, peer, status: dataStatus });
+		container.constant("NETWORK_CONFIGURATION", { crypto: dataCrypto, peer, status: dataStatus });
 	}
 }

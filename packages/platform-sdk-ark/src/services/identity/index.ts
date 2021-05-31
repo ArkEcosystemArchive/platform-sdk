@@ -1,4 +1,5 @@
 import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { container } from "../../container";
 
 import { CryptoConfig } from "../../contracts";
 import { AddressService } from "./address";
@@ -10,7 +11,7 @@ import { WIFService } from "./wif";
 
 export class IdentityService extends Services.AbstractIdentityService {
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		const cryptoConfig: CryptoConfig = config.get("NETWORK_CONFIGURATION.crypto.network");
+		const cryptoConfig: CryptoConfig = container.get("NETWORK_CONFIGURATION.crypto.network");
 
 		return new IdentityService({
 			address: new AddressService(cryptoConfig),
