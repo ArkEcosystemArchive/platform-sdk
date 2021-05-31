@@ -14,6 +14,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 			return {
 				publicKey: source.getPublicKey(options?.bip44?.account || 0),
 				privateKey: source.getSecret(options?.bip44?.account || 0),
+				// @TODO: return path
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

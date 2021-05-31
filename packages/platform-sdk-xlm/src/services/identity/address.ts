@@ -11,6 +11,7 @@ export class AddressService extends Services.AbstractAddressService {
 			return {
 				type: "bip44",
 				address: StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(options?.bip44?.account || 0),
+				// @TODO: return path
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -25,6 +26,7 @@ export class AddressService extends Services.AbstractAddressService {
 			return {
 				type: "bip44",
 				address: Stellar.Keypair.fromSecret(privateKey).publicKey(),
+				// @TODO: return path
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

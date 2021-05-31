@@ -15,11 +15,14 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.PublicKeyDataTransferObject> {
+		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
+			coinType: this.#config.get(Coins.ConfigKey.Slip44),
+			index: options?.bip44?.addressIndex,
+		});
+
 		return {
-			publicKey: BIP44.deriveChild(mnemonic, {
-				coinType: this.#config.get(Coins.ConfigKey.Slip44),
-				index: options?.bip44?.addressIndex,
-			}).publicKey.toString("hex"),
+			publicKey: child.publicKey.toString("hex"),
+			path,
 		};
 	}
 

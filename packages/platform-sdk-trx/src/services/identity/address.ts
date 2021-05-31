@@ -15,14 +15,15 @@ export class AddressService extends Services.AbstractAddressService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
+		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
+			coinType: this.#config.get(Coins.ConfigKey.Slip44),
+			index: options?.bip44?.addressIndex,
+		});
+
 		return {
 			type: "bip44",
-			address: TronWeb.address.fromPrivateKey(
-				BIP44.deriveChild(mnemonic, {
-					coinType: this.#config.get(Coins.ConfigKey.Slip44),
-					index: options?.bip44?.addressIndex,
-				}).privateKey!.toString("hex"),
-			),
+			address: TronWeb.address.fromPrivateKey(child.privateKey!.toString("hex")),
+			path,
 		};
 	}
 

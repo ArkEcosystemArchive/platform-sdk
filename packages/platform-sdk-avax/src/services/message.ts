@@ -23,12 +23,12 @@ export class MessageService implements Contracts.MessageService {
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
 		try {
-			const keypair = keyPairFromMnemonic(this.#config, input.signatory.signingKey());
+			const { child } = keyPairFromMnemonic(this.#config, input.signatory.signingKey());
 
 			return {
 				message: input.message,
-				signatory: keypair.getAddressString(),
-				signature: cb58Encode(keypair.sign(this.digestMessage(input.message))),
+				signatory: child.getAddressString(),
+				signature: cb58Encode(child.sign(this.digestMessage(input.message))),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

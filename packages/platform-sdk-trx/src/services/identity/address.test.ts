@@ -11,10 +11,13 @@ beforeEach(async () => (subject = new AddressService(createConfig())));
 describe("Address", () => {
 	describe("#fromMnemonic", () => {
 		it("should generate an output from a mnemonic", async () => {
-			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({
-				type: "bip44",
-				address: identity.address,
-			});
+			await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toMatchInlineSnapshot(`
+						Object {
+						  "address": "TAq9SwPACv2Ut6YGJK4T8Pw57AGNmFArdP",
+						  "path": "m/44'/195'/0'/0/0",
+						  "type": "bip44",
+						}
+					`);
 		});
 	});
 });

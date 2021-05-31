@@ -12,19 +12,37 @@ describe("Address", () => {
 	it("should generate an output from a mnemonic (BIP44)", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic, { bip44: { account: 0 } });
 
-		expect(result).toEqual({ type: "bip44", address: identity.addressBIP44 });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "1PLDRLacEkAaaiWnfojVDb5hWpwXvKJrRa",
+		  "path": "m/44'/0'/0'/0/0",
+		  "type": "bip44",
+		}
+	`);
 	});
 
 	it("should generate an output from a mnemonic (BIP49)", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic, { bip49: { account: 0 } });
 
-		expect(result).toEqual({ type: "bip49", address: identity.addressBIP49 });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "3GU5e9mPrLgPemhawVHHrDt6bjZZ6M9CPc",
+		  "path": "m/49'/0'/0'/0/0",
+		  "type": "bip49",
+		}
+	`);
 	});
 
 	it("should generate an output from a mnemonic (BIP84)", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic, { bip84: { account: 0 } });
 
-		expect(result).toEqual({ type: "bip84", address: identity.addressBIP84 });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "bc1qpeeu3vjrm9dn2y42sl926374y5cvdhfn5k7kxm",
+		  "path": "m/84'/0'/0'/0/0",
+		  "type": "bip84",
+		}
+	`);
 	});
 
 	it("should generate an output from a multiSignature", async () => {
@@ -33,24 +51,44 @@ describe("Address", () => {
 			identity.multiSignature.publicKeys,
 		);
 
-		expect(result).toEqual({ type: "bip39", address: "36NUkt6FWUi3LAWBqWRdDmdTWbt91Yvfu7" });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "36NUkt6FWUi3LAWBqWRdDmdTWbt91Yvfu7",
+		  "type": "bip39",
+		}
+	`);
 	});
 
 	it("should generate an output from a publicKey", async () => {
 		const result = await subject.fromPublicKey(identity.publicKey);
 
-		expect(result).toEqual({ type: "bip39", address: identity.address });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "12eUJoaWBENQ3tNZE52ZQaHqr3v4tTX4os",
+		  "type": "bip39",
+		}
+	`);
 	});
 
 	it("should generate an output from a privateKey", async () => {
 		const result = await subject.fromPrivateKey(identity.privateKey);
 
-		expect(result).toEqual({ type: "bip39", address: identity.address });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "12eUJoaWBENQ3tNZE52ZQaHqr3v4tTX4os",
+		  "type": "bip39",
+		}
+	`);
 	});
 
 	it("should generate an output from a wif", async () => {
 		const result = await subject.fromWIF(identity.wif);
 
-		expect(result).toEqual({ type: "bip39", address: identity.address });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "12eUJoaWBENQ3tNZE52ZQaHqr3v4tTX4os",
+		  "type": "bip39",
+		}
+	`);
 	});
 });

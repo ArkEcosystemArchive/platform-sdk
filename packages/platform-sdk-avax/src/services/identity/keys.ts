@@ -16,11 +16,12 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.KeyPairDataTransferObject> {
-		const keyPair = keyPairFromMnemonic(this.#config, mnemonic);
+		const { child, path } = keyPairFromMnemonic(this.#config, mnemonic, options);
 
 		return {
-			publicKey: cb58Encode(keyPair.getPublicKey()),
-			privateKey: cb58Encode(keyPair.getPrivateKey()),
+			publicKey: cb58Encode(child.getPublicKey()),
+			privateKey: cb58Encode(child.getPrivateKey()),
+			path,
 		};
 	}
 

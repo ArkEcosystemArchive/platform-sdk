@@ -10,10 +10,13 @@ beforeEach(async () => (subject = new AddressService(createConfig())));
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
-		await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toEqual({
-			type: "bip44",
-			address: identity.address,
-		});
+		await expect(subject.fromMnemonic(identity.mnemonic)).resolves.toMatchInlineSnapshot(`
+					Object {
+					  "address": "X-fuji1rusf9c2uwlqxg5crfrqr8xrt4r49yk6rskehvm",
+					  "path": "m/44'/9000'/0'/0/0",
+					  "type": "bip44",
+					}
+				`);
 	});
 
 	it("should fail to generate an output from a multiSignature", async () => {
