@@ -8,7 +8,7 @@ let subject: AddressService;
 beforeEach(async () => (subject = new AddressService()));
 
 describe("Address", () => {
-	it("should generate an output from a mnemonic", async () => {
+	it.only("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toMatchInlineSnapshot(`

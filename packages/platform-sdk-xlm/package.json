@@ -32,7 +32,8 @@
 		"@ledgerhq/hw-app-str": "^5.50.0",
 		"stellar-hd-wallet": "^0.0.10",
 		"stellar-sdk": "^8.1.1",
-		"uuid": "^8.3.2"
+		"uuid": "^8.3.2",
+		"ed25519-hd-key": "^1.2.0"
 	},
 	"devDependencies": {
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
