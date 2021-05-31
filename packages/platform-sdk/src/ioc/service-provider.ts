@@ -3,6 +3,21 @@ import { Container } from "./container";
 
 export type ServiceList = Record<string, { __construct: Function }>;
 
+export const ServiceKeys = {
+	ClientService: Symbol("ClientService"),
+	DataTransferObjectService: Symbol("DataTransferObjectService"),
+	FeeService: Symbol("FeeService"),
+	IdentityService: Symbol("IdentityService"),
+	KnownWalletService: Symbol("KnownWalletService"),
+	LedgerService: Symbol("LedgerService"),
+	LinkService: Symbol("LinkService"),
+	MessageService: Symbol("MessageService"),
+	MultiSignatureService: Symbol("MultiSignatureService"),
+	SignatoryService: Symbol("SignatoryService"),
+	TransactionService: Symbol("TransactionService"),
+	WalletDiscoveryService: Symbol("WalletDiscoveryService"),
+}
+
 export abstract class AbstractServiceProvider {
 	protected readonly coin: CoinSpec;
 	protected readonly config: Config;
@@ -68,6 +83,17 @@ export abstract class AbstractServiceProvider {
 	}
 
 	protected async bindServices(services: CoinServices, container: Container): Promise<void> {
-		// @TODO: bind instances to container with unique keys
+		container.constant(ServiceKeys.ClientService, services.client);
+		container.constant(ServiceKeys.DataTransferObjectService, services.dataTransferObject);
+		container.constant(ServiceKeys.FeeService, services.fee);
+		container.constant(ServiceKeys.IdentityService, services.identity);
+		container.constant(ServiceKeys.KnownWalletService, services.knownWallets);
+		container.constant(ServiceKeys.LedgerService, services.ledger);
+		container.constant(ServiceKeys.LinkService, services.link);
+		container.constant(ServiceKeys.MessageService, services.message);
+		container.constant(ServiceKeys.MultiSignatureService, services.multiSignature);
+		container.constant(ServiceKeys.SignatoryService, services.signatory);
+		container.constant(ServiceKeys.TransactionService, services.transaction);
+		container.constant(ServiceKeys.WalletDiscoveryService, services.walletDiscovery);
 	}
 }
