@@ -5,6 +5,6 @@ import * as Services from "./services";
 
 export class ServiceProvider extends IoC.AbstractServiceProvider {
 	public async make(): Promise<Coins.CoinServices> {
-		return this.bindServices(await this.makeServices(Services), container);
+		return this.compose(Services, container);
 	}
 }

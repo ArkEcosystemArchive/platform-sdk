@@ -1,6 +1,8 @@
 import { CoinServices, CoinSpec, Config } from "../coins";
 import { Container } from "./container";
 
+export type ServiceList = Record<string, { __construct: Function }>;
+
 export abstract class AbstractServiceProvider {
 	protected readonly coin: CoinSpec;
 	protected readonly config: Config;
@@ -10,9 +12,17 @@ export abstract class AbstractServiceProvider {
 		this.config = config;
 	}
 
-	abstract make(): Promise<CoinServices>;
+	public abstract make(): Promise<CoinServices>;
 
-	protected async makeServices(services: Record<string, { __construct: Function }>): Promise<CoinServices> {
+	protected async compose(serviceList: ServiceList, container: Container): Promise<CoinServices> {
+		const services: CoinServices = await this.makeServices(serviceList);
+
+		this.bindServices(services, container);
+
+		return services;
+	}
+
+	protected async makeServices(services: ServiceList): Promise<CoinServices> {
 		const [
 			client,
 			dataTransferObject,
@@ -57,7 +67,7 @@ export abstract class AbstractServiceProvider {
 		};
 	}
 
-	protected async bindServices(services: CoinServices, container: Container): Promise<CoinServices> {
-		return services;
+	protected async bindServices(services: CoinServices, container: Container): Promise<void> {
+		// @TODO: bind instances to container with unique keys
 	}
 }
