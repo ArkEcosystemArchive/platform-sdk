@@ -10,6 +10,7 @@ export enum WalletData {
 	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",
 	Delegates = "DELEGATES",
 	DerivationPath = "DERIVATION_PATH",
+	DerivationType = "DERIVATION_TYPE",
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	ImportMethod = "IMPORT_METHOD",
 	// @TODO: remove this in favour of DerivationPath
