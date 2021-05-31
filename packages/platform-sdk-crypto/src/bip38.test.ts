@@ -7,7 +7,6 @@ import { BIP38 } from "./bip38";
 const mnemonic = "TestingOneTwoThree";
 
 test("#encrypt", async () => {
-	// @ts-ignore
 	const { compressed, privateKey } = wif.decode("5KN7MzqK5wt2TP1fQCYyHBtDrXdJuXbUzm4A9rKAteGu3Qi5CVR");
 
 	expect(BIP38.encrypt(privateKey, mnemonic, compressed)).toBe(

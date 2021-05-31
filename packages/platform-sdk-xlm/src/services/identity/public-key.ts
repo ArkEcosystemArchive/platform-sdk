@@ -1,5 +1,6 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
-import StellarHDWallet from "stellar-hd-wallet";
+
+import { deriveKeyPair } from "./helpers";
 
 export class PublicKeyService extends Services.AbstractPublicKeyService {
 	public async fromMnemonic(
@@ -7,8 +8,11 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.PublicKeyDataTransferObject> {
 		try {
+			const { child, path } = deriveKeyPair(mnemonic, options);
+
 			return {
-				publicKey: StellarHDWallet.fromMnemonic(mnemonic).getPublicKey(options?.bip44?.account || 0),
+				publicKey: child.publicKey(),
+				path,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

@@ -14,14 +14,15 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.KeyPairDataTransferObject> {
-		const { publicKey, privateKey } = BIP44.deriveChild(mnemonic, {
+		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,
 		});
 
 		return {
-			publicKey: publicKey.toString("hex"),
-			privateKey: privateKey!.toString("hex"),
+			publicKey: child.publicKey.toString("hex"),
+			privateKey: child.privateKey!.toString("hex"),
+			path,
 		};
 	}
 }

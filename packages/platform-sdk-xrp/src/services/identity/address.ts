@@ -15,6 +15,7 @@ export class AddressService extends Services.AbstractAddressService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
+		// @TODO: return path
 		return this.fromPublicKey(
 			BIP44.deriveChild(mnemonic, {
 				coinType: this.#config.get(Coins.ConfigKey.Slip44),

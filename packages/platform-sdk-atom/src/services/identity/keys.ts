@@ -16,18 +16,19 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
-			const privateKey: Buffer | undefined = BIP44.deriveChild(mnemonic, {
+			const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
 				coinType: this.#config.get(Coins.ConfigKey.Slip44),
 				index: options?.bip44?.addressIndex,
-			}).privateKey;
+			});
 
-			if (!privateKey) {
+			if (!child.privateKey) {
 				throw new Error("Failed to derive private key.");
 			}
 
 			return {
-				publicKey: secp256k1.publicKeyCreate(privateKey, true).toString("hex"),
-				privateKey: privateKey.toString("hex"),
+				publicKey: secp256k1.publicKeyCreate(child.privateKey, true).toString("hex"),
+				privateKey: child.privateKey.toString("hex"),
+				path,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

@@ -11,12 +11,24 @@ describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ type: "bip44", address: identity.address });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
+		  "path": "m/44'/148'/0'",
+		  "type": "bip44",
+		}
+	`);
 	});
 
 	it("should generate an output from a private key", async () => {
 		const result = await subject.fromPrivateKey(identity.privateKey);
 
-		expect(result).toEqual({ type: "bip44", address: identity.address });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
+		  "path": "m/44'/148'/0'",
+		  "type": "bip44",
+		}
+	`);
 	});
 });

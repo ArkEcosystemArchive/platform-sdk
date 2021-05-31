@@ -38,11 +38,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 
 		try {
-			const keyPair = this.#keychain.importKey(
-				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).getPrivateKey(),
+			const { child } = this.#keychain.importKey(
+				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).child.getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
-			const { utxos } = await this.#xchain.getUTXOs(keyPair.getAddressString());
+			const { utxos } = await this.#xchain.getUTXOs(child.getAddressString());
 
 			const signedTx = (
 				await this.#xchain.buildBaseTx(
@@ -82,11 +82,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 
 		try {
-			const keyPair = this.#keychain.importKey(
-				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).getPrivateKey(),
+			const { child } = this.#keychain.importKey(
+				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).child.getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
-			const { utxos } = await this.#pchain.getUTXOs(keyPair.getAddressString());
+			const { utxos } = await this.#pchain.getUTXOs(child.getAddressString());
 
 			const signedTx = (
 				await this.#pchain.buildAddDelegatorTx(

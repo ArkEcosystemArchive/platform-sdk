@@ -11,3 +11,8 @@ test("#encode", async () => {
 test("#decode", async () => {
 	expect(Base64.decode(Base64.encode(message))).toBe(message);
 });
+
+test("#validate", () => {
+	expect(Base64.validate(Base64.encode("Hello"))).toBeTrue();
+	expect(Base64.validate("!#$%*#$%*")).toBeFalse();
+});

@@ -16,7 +16,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.AddressDataTransferObject> {
 		try {
-			const child = BIP44.deriveChild(mnemonic, {
+			const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
 				coinType: this.#config.get(Coins.ConfigKey.Slip44),
 				index: options?.bip44?.addressIndex,
 			});
@@ -24,6 +24,7 @@ export class AddressService extends Services.AbstractAddressService {
 			return {
 				type: "bip44",
 				address: bech32.encode(this.#config.get(Coins.ConfigKey.Bech32), bech32.toWords(child.identifier)),
+				path,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

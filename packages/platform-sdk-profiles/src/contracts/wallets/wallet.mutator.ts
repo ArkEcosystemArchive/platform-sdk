@@ -37,7 +37,7 @@ export interface IWalletMutator {
 	 * @memberof void
 	 */
 	address(
-		address: Contracts.AddressDataTransferObject,
+		address: Partial<Contracts.AddressDataTransferObject>,
 		options?: { syncIdentity: boolean; validate: boolean },
 	): Promise<void>;
 

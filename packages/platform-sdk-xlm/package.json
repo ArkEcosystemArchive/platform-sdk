@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-xlm",
-	"version": "8.2.2",
+	"version": "8.2.11",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -30,7 +30,7 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@ledgerhq/hw-app-str": "^5.50.0",
-		"stellar-hd-wallet": "^0.0.10",
+		"ed25519-hd-key": "^1.2.0",
 		"stellar-sdk": "^8.1.1",
 		"uuid": "^8.3.2"
 	},

@@ -11,6 +11,11 @@ describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ publicKey: identity.publicKey });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "path": "m/44'/148'/0'",
+		  "publicKey": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
+		}
+	`);
 	});
 });

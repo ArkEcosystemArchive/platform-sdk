@@ -131,16 +131,19 @@ describe("#identity", () => {
 			path: "path",
 		}));
 
+		expect(subject.data().has(WalletData.DerivationType)).toBeFalse();
 		expect(subject.data().has(WalletData.DerivationPath)).toBeFalse();
 
 		await subject.mutator().identity(identity.mnemonic);
 
+		expect(subject.data().has(WalletData.DerivationType)).toBeTrue();
 		expect(subject.data().has(WalletData.DerivationPath)).toBeTrue();
 	});
 });
 
 describe("#address", () => {
 	it("should mutate the address with a path", async () => {
+		expect(subject.data().has(WalletData.DerivationType)).toBeFalse();
 		expect(subject.data().has(WalletData.DerivationPath)).toBeFalse();
 
 		await subject.mutator().address({
@@ -149,6 +152,7 @@ describe("#address", () => {
 			path: "path",
 		});
 
+		expect(subject.data().has(WalletData.DerivationType)).toBeTrue();
 		expect(subject.data().has(WalletData.DerivationPath)).toBeTrue();
 	});
 });

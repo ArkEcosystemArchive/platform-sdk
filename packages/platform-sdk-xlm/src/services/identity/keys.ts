@@ -1,7 +1,7 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import StellarHDWallet from "stellar-hd-wallet";
 import Stellar from "stellar-sdk";
+
+import { deriveKeyPair } from "./helpers";
 
 export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
@@ -9,11 +9,12 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.KeyPairDataTransferObject> {
 		try {
-			const source = StellarHDWallet.fromMnemonic(BIP39.normalize(mnemonic));
+			const { child, path } = deriveKeyPair(mnemonic, options);
 
 			return {
-				publicKey: source.getPublicKey(options?.bip44?.account || 0),
-				privateKey: source.getSecret(options?.bip44?.account || 0),
+				publicKey: child.publicKey(),
+				privateKey: child.secret(),
+				path,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

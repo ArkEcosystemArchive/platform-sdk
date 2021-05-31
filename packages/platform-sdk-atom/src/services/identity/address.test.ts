@@ -12,7 +12,13 @@ describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ type: "bip44", address: identity.address });
+		expect(result).toMatchInlineSnapshot(`
+		Object {
+		  "address": "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
+		  "path": "m/44'/118'/0'/0/0",
+		  "type": "bip44",
+		}
+	`);
 	});
 
 	it("should generate an output from a multiSignature", async () => {

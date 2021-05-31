@@ -5,6 +5,69 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.2.11 - 2021-05-31
+
+### Fixed
+
+- **[PROFILES]** Accept partial address data (15073cd2, @faustbrian)
+
+## 8.2.10 - 2021-05-31
+
+### Changed
+
+- **[PROFILES]** Store derivation type for wallets (e0a12132, @faustbrian)
+
+## 8.2.9 - 2021-05-31
+
+### Added
+
+- **[CRYPTO]** Implement `BIP44#stringify` (a2e186d4, @faustbrian)
+
+### Changed
+
+- **[SDK]** Respect BIP44/49/84 settings for `AddressService#fromMnemonic` (85851c32, @faustbrian)
+- **[BTC]** Use `bitcoinjs-lib` where possible (4589e6d5, @faustbrian)
+- **[SDK]** Return BIP44/49/84 derivation paths (f34755fd, @faustbrian)
+- **[ARK]** Return more meaningful broadcasting errors (37728c80, @faustbrian)
+- **[XLM]** Remove `stellar-hd-wallet` dependency (7506eab0, @faustbrian)
+
+### Fixed
+
+- **[BTC]** Use `p2sh` for BIP49 (894bf86a, @faustbrian)
+
+## 8.2.2 - 2021-05-28
+
+### Fixed
+
+- **[BTC-INDEXER]** Specify binary client targets (de277694, @marianogoldman)
+
+## 8.2.1 - 2021-05-28
+
+### Fixed
+
+- **[BTC-INDEXER]** Use the schema file relative to running code (9c2da2e4, @marianogoldman)
+
+## 8.2.0 - 2021-05-28
+
+### Added
+
+- **[SDK]** Implement `WalletDiscoveryService` (b6066c1f, @faustbrian)
+
+### Changed
+
+- **[SDK]** Crackdown on illegal `any`s (13dd3a58, @axeldelamarre)
+- **[SDK]** Dryer `randomHostFromConfig` (ea984742, @axeldelamarre)
+
+### Fixed
+
+- **[BTC-INDEXER]** Prisma client is not a dev dependency (275fbc7c, @marianogoldman)
+
+## 8.1.39 - 2021-05-28
+
+### Fixed
+
+- **[NANO]** Use configured client instead of got (6ee7a166, @faustbrian)
+
 ## 8.1.38 - 2021-05-28
 
 ### Added

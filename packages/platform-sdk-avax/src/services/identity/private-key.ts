@@ -15,8 +15,11 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		mnemonic: string,
 		options?: Contracts.IdentityOptions,
 	): Promise<Contracts.PrivateKeyDataTransferObject> {
+		const { child, path } = keyPairFromMnemonic(this.#config, mnemonic, options);
+
 		return {
-			privateKey: cb58Encode(keyPairFromMnemonic(this.#config, mnemonic).getPrivateKey()),
+			privateKey: cb58Encode(child.getPrivateKey()),
+			path,
 		};
 	}
 }

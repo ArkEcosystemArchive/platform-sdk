@@ -112,7 +112,6 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.Address);
 
 		await wallet.mutator().coin(coin, network);
-		// @ts-ignore --- @TODO: handle type and path
 		await wallet.mutator().address({ address });
 
 		return wallet;

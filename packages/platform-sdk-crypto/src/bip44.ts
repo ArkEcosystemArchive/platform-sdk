@@ -48,6 +48,25 @@ export class BIP44 {
 	}
 
 	/**
+	 * Derives a child and its path.
+	 *
+	 * @static
+	 * @param {string} mnemonic
+	 * @param {{ purpose?: number; coinType: number; account?: number; change?: number; index?: number }} options
+	 * @returns {BIP32Interface}
+	 * @memberof BIP44
+	 */
+	public static deriveChildWithPath(
+		mnemonic: string,
+		options: { purpose?: number; coinType: number; account?: number; change?: number; index?: number },
+	): { child: BIP32Interface; path: string } {
+		return {
+			child: BIP44.deriveChild(mnemonic, options),
+			path: BIP44.stringify(options),
+		};
+	}
+
+	/**
 	 * Derives a child from a BIP32 HDWallet, using a BIP44 compliant path.
 	 *
 	 * @static
@@ -86,5 +105,25 @@ export class BIP44 {
 			change: result[3],
 			addressIndex: result[4],
 		};
+	}
+
+	/**
+	 * Creates a BIP32 path from a given set of values. Assumes BIP44 by default.
+	 *
+	 * @static
+	 * @param {{ purpose?: number; coinType: number; account?: number; change?: number; index?: number }} options
+	 * @returns {BIP32Interface}
+	 * @memberof BIP44
+	 */
+	public static stringify(options: {
+		purpose?: number;
+		coinType: number;
+		account?: number;
+		change?: number;
+		index?: number;
+	}): string {
+		return `m/${options.purpose || 44}'/${options.coinType}'/${options.account || 0}'/${options.change || 0}/${
+			options.index || 0
+		}`;
 	}
 }
