@@ -171,8 +171,8 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	private normalizeTransaction(transaction): Record<string, any> {
 		return {
 			...transaction.data,
-			// This is the real ID, computed by the MuSig Server.
-			...{ id: transaction.id, timestamp: transaction.timestamp },
+			id: transaction.id, // This is the real ID, computed by the MuSig Server.
+			timestamp: transaction.timestamp,
 			multiSignature: transaction.multisigAsset,
 		};
 	}
