@@ -7,12 +7,14 @@ import { UnspentAggregator } from "../utils/unspent-aggregator";
 import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
+	readonly #config: Coins.Config;
 	readonly #identity;
 	readonly #unspent;
 
 	private constructor(opts: Contracts.KeyValuePair) {
 		super();
 
+		this.#config = opts.config;
 		this.#identity = opts.identity;
 		this.#unspent = opts.unspent;
 	}
@@ -35,7 +37,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			if (input.signatory.signingKey() === undefined) {
-				throw new Error("No mnemonic provided.");
+				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
 			// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of mnemonic
@@ -48,14 +50,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 			const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
 
 			// 3. Compute the amount to be transfered
-			const amount = new BigNumber(input.data.amount).times(1e8).toNumber();
+			const amount = Coins.toRawUnit(input.data.amount, this.#config).toNumber();
 
 			// 4. Build and sign the transaction
 			let transaction = new Transaction().from(unspent).to(input.data.to, amount).change(senderAddress);
 
 			// 5. Set a fee if configured. If none is set the fee will be estimated by bitcore-lib.
 			if (input.fee) {
-				const fee = new BigNumber(input.fee).times(1e8).toNumber();
+				const fee = Coins.toRawUnit(input.fee, this.#config).toNumber();
 				transaction = transaction.fee(fee);
 			}
 
