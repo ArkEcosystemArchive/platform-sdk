@@ -1,5 +1,4 @@
 import { Coins } from "@arkecosystem/platform-sdk";
-import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 import CardanoWasm, {
 	Address,
 	BigNum,
