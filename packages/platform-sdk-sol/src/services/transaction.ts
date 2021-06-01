@@ -28,8 +28,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "signatory");
 		}
+		const amount = Coins.toRawUnit(input.data.amount, this.#config).toNumber();
 
 		const transaction = new Transaction();
 		transaction.recentBlockhash = (await this.#client.getRecentBlockhash()).blockhash;
@@ -39,7 +40,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			SystemProgram.transfer({
 				fromPubkey: transaction.feePayer,
 				toPubkey: new PublicKey(input.data.to),
-				lamports: parseInt(input.data.amount),
+				lamports: amount,
 			}),
 		);
 
@@ -53,7 +54,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			{
 				from: input.signatory.address(),
 				to: input.data.to,
-				amount: input.data.amount,
+				amount,
 				timestamp: DateTime.make(),
 			},
 			signedTransaction.toString("hex"),

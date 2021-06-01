@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
@@ -7,25 +6,22 @@ import { AddressService } from "./identity/address";
 import { PrivateKeyService } from "./identity/private-key";
 
 export class TransactionService extends Services.AbstractTransactionService {
+	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
 	readonly #address: AddressService;
 	readonly #privateKey: PrivateKeyService;
 
-	private constructor({ config, peer }) {
+	private constructor(config: Coins.Config, peer: string) {
 		super();
 
-		this.#connection = new TronWeb({
-			fullHost: peer,
-		});
+		this.#config = config;
+		this.#connection = new TronWeb({ fullHost: peer });
 		this.#address = new AddressService(config);
 		this.#privateKey = new PrivateKeyService(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService({
-			config,
-			peer: Helpers.randomHostFromConfig(config),
-		});
+		return new TransactionService(config, Helpers.randomHostFromConfig(config));
 	}
 
 	public async transfer(
@@ -34,7 +30,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			if (input.signatory.signingKey() === undefined) {
-				throw new Error("No mnemonic provided.");
+				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
 			const { address: senderAddress } = await this.#address.fromMnemonic(input.signatory.signingKey());
@@ -45,7 +41,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			let transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
-				BigNumber.make(input.data.amount).divide(1e8).times(1e6).toString(),
+				Coins.toRawUnit(input.data.amount, this.#config).toString(),
 				senderAddress,
 				1,
 			);

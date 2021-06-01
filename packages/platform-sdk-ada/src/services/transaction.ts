@@ -62,7 +62,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];
-		const requestedAmount: BigNum = BigNum.from_str(input.data.amount);
+		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+		const requestedAmount: BigNum = BigNum.from_str(amount);
 		let totalTxAmount: BigNum = BigNum.from_str("0");
 		let totalFeesAmount: BigNum = BigNum.from_str("0");
 
@@ -80,10 +81,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// These are the outputs that will be transferred to other wallets. For now we only support a single output.
 		txBuilder.add_output(
-			CardanoWasm.TransactionOutput.new(
-				CardanoWasm.Address.from_bech32(input.data.to),
-				createValue(input.data.amount),
-			),
+			CardanoWasm.TransactionOutput.new(CardanoWasm.Address.from_bech32(input.data.to), createValue(amount)),
 		);
 
 		// This is the expiration slot which should be estimated with #estimateExpiration
@@ -128,7 +126,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				// @TODO This doesn't make sense in Cardano, because there can be any many senders (all addresses from the same sender)
 				sender: input.signatory.publicKey(),
 				recipient: input.data.to,
-				amount: input.data.amount,
+				amount: amount,
 				fee: txBody.fee().to_str(),
 				timestamp: DateTime.make(),
 			},

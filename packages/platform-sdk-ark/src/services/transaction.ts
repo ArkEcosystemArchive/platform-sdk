@@ -11,15 +11,17 @@ import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
+	readonly #config: Coins.Config;
 	readonly #http: Contracts.HttpClient;
 	readonly #identity: IdentityService;
 	readonly #peer: string;
 	readonly #multiSignatureSigner: MultiSignatureSigner;
 	readonly #configCrypto: any;
 
-	private constructor({ http, identity, peer, multiSignatureSigner, configCrypto }) {
+	private constructor({ config, http, identity, peer, multiSignatureSigner, configCrypto }) {
 		super();
 
+		this.#config = config;
 		this.#http = http;
 		this.#identity = identity;
 		this.#peer = peer;
@@ -31,6 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const { crypto, status } = container.get("NETWORK_CONFIGURATION");
 
 		return new TransactionService({
+			config,
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Helpers.randomHostFromConfig(config),
 			identity: await IdentityService.__construct(config),
@@ -120,7 +123,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		return this.createFromData("multiPayment", input, options, ({ transaction, data }) => {
 			for (const payment of data.payments) {
-				transaction.addPayment(payment.to, payment.amount);
+				transaction.addPayment(payment.to, Coins.toRawUnit(payment.amount, this.#config).toString());
 			}
 
 			if (data.memo) {
@@ -141,7 +144,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.createFromData("htlcLock", input, options, ({ transaction, data }) => {
-			transaction.amount(data.amount);
+			transaction.amount(Coins.toRawUnit(data.amount, this.#config).toString());
 
 			transaction.recipientId(data.to);
 
@@ -265,11 +268,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.data && input.data.amount) {
-				transaction.amount(input.data.amount);
+				transaction.amount(Coins.toRawUnit(input.data.amount, this.#config).toString());
 			}
 
 			if (input.fee) {
-				transaction.fee(input.fee);
+				transaction.fee(Coins.toRawUnit(input.fee, this.#config).toString());
 			}
 
 			if (input.data && input.data.expiration) {

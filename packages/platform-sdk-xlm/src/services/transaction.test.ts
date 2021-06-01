@@ -33,12 +33,13 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "10000000",
+					amount: "1",
 					to: identity.address,
 				},
 			});
 
 			expect(result).toBeObject();
+			expect(result.amount().toNumber()).toBe(10_000_000);
 		});
 	});
 });

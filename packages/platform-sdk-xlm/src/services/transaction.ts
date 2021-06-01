@@ -6,9 +6,10 @@ import { SignedTransactionData } from "../dto";
 import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
+	readonly #config: Coins.Config;
+	readonly #identity: IdentityService;
 	readonly #client;
 	readonly #networkPassphrase;
-	readonly #identity: IdentityService;
 
 	readonly #networks = {
 		mainnet: {
@@ -21,21 +22,20 @@ export class TransactionService extends Services.AbstractTransactionService {
 		},
 	};
 
-	private constructor(options) {
+	private constructor(config: Coins.Config, identity: IdentityService) {
 		super();
 
-		const network = this.#networks[options.network.id.split(".")[1]];
+		const networkConfig = config.get<Coins.NetworkManifest>("network");
+		const network = this.#networks[networkConfig.id.split(".")[1]];
 
+		this.#config = config;
+		this.#identity = identity;
 		this.#client = new Stellar.Server(network.host);
 		this.#networkPassphrase = network.networkPassphrase;
-		this.#identity = options.identity;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService({
-			network: config.get<Coins.NetworkManifest>("network"),
-			identity: await IdentityService.__construct(config),
-		});
+		return new TransactionService(config, await IdentityService.__construct(config));
 	}
 
 	public async transfer(
@@ -44,11 +44,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			if (input.signatory.signingKey() === undefined) {
-				throw new Error("No mnemonic provided.");
+				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
-			let keyPair;
-
+			let keyPair: Contracts.KeyPairDataTransferObject;
 			if (input.signatory.actsWithPrivateKey()) {
 				keyPair = await this.#identity.keyPair().fromPrivateKey(input.signatory.signingKey());
 			} else {
@@ -58,6 +57,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			const { publicKey, privateKey } = keyPair;
 
 			const account = await this.#client.loadAccount(publicKey);
+			const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
 
 			const transaction = new Stellar.TransactionBuilder(account, {
 				fee: input.fee || Stellar.BASE_FEE,
@@ -67,7 +67,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					Stellar.Operation.payment({
 						destination: input.data.to,
 						asset: Stellar.Asset.native(),
-						amount: `${input.data.amount}`,
+						amount,
 					}),
 				)
 				.setTimeout(30) // todo: support expiration

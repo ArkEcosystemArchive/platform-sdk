@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Services } from "@arkecosystem/platform-sdk";
 
 import { makeAccount } from "../helpers";
 
