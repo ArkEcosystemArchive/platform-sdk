@@ -168,12 +168,12 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	 * @returns {Record<string, any>}
 	 * @memberof MultiSignatureService
 	 */
-	private normalizeTransaction(transaction): Record<string, any> {
+	private normalizeTransaction({data, id, timestamp, multisigAsset}): Record<string, any> {
 		return {
-			...transaction.data,
-			id: transaction.id, // This is the real ID, computed by the MuSig Server.
-			timestamp: transaction.timestamp,
-			multiSignature: transaction.multisigAsset,
+			...data,
+			id, // This is the real ID, computed by the MuSig Server.
+			timestamp,
+			multiSignature: multisigAsset,
 		};
 	}
 
@@ -192,6 +192,6 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 				publicKey,
 				state,
 			})
-		).map((transaction) => this.normalizeTransaction(transaction));
+		).map(this.normalizeTransaction);
 	}
 }
