@@ -39,6 +39,7 @@ describe("TransactionService", () => {
 			});
 
 			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
+			expect(result.amount().toNumber()).toBe(100_000_000);
 		});
 
 		it("should compute the id with a custom signature", async () => {
@@ -58,7 +59,7 @@ describe("TransactionService", () => {
 				},
 			});
 
-			expect(result.id()).toBe("0ad7808a51b49b7c1686f0ce113afad280b789ac2fb338923d7e93095fda7486");
+			expect(result.id()).toBe("2309501a11e4353f894c39268e65e24b2e12a6106769dc10ed898ed3c793a9f6");
 		});
 
 		it("should get the transaction bytes", async () => {
@@ -82,7 +83,7 @@ describe("TransactionService", () => {
 
 			expect(result.id()).not.toBe("dummy");
 			expect(result.toString()).toBe(
-				"ff021e0100000000000100000000000000039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f228096980000000000000100000000000000000000001ec10f500ee29157df2248e26cbe7fae0da06042b4",
+				"ff021e0100000000000100000000000000039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f2280969800000000000000e1f50500000000000000001ec10f500ee29157df2248e26cbe7fae0da06042b4",
 			);
 		});
 
@@ -104,7 +105,7 @@ describe("TransactionService", () => {
 				},
 			});
 
-			expect(result.id()).toBe("b2822f8bbaaff112f4fbdc949cd204e457d6a10be52444704820178ef71bddf0");
+			expect(result.id()).toBe("a0663692055a4c3a646971dc9db93cea3df1dbb95c79fe9688b96d4e6955ceb8");
 		});
 
 		it("should sign using network estimated expiration", async () => {

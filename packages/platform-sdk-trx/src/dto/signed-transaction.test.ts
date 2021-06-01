@@ -45,4 +45,8 @@ describe("SignedTransactionData", () => {
 	test("#timestamp", () => {
 		expect(DateTime.make(1620877822246).isSame(subject.timestamp())).toBeTrue();
 	});
+
+	test("#amount", () => {
+		expect(subject.amount().toNumber()).toBe(1_000_000);
+	});
 });

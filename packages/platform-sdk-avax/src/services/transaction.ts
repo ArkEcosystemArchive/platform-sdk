@@ -43,11 +43,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#xchain.getUTXOs(child.getAddressString());
+			const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
 
 			const signedTx = (
 				await this.#xchain.buildBaseTx(
 					utxos,
-					new BN(input.data.amount),
+					new BN(amount),
 					this.#config.get("network.meta.assetId"),
 					[input.data.to],
 					keyPairAddresses,
@@ -62,7 +63,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				{
 					sender: input.signatory.address(),
 					recipient: input.data.to,
-					amount: input.data.amount,
+					amount,
 					fee: BigNumber.make(0.001).times(1e8),
 					timestamp: DateTime.make(),
 				},

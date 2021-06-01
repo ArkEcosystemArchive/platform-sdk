@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import Common from "@ethereumjs/common";
 import { Transaction } from "@ethereumjs/tx";
@@ -9,26 +9,23 @@ import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #http: Contracts.HttpClient;
-	readonly #peer;
 	readonly #chain: string;
-	readonly #identity;
-	readonly #web3;
+	readonly #identity: IdentityService;
+	readonly #peer: string;
+	readonly #web3: Web3;
 
-	private constructor(opts: Contracts.KeyValuePair) {
+	private constructor(config: Coins.Config, identity: IdentityService) {
 		super();
 
-		this.#http = opts.http;
-		this.#peer = opts.peer;
-		this.#chain = opts.network;
-		this.#identity = opts.identity;
-		this.#web3 = new Web3(""); // todo: provide a host?
+		this.#http = config.all().http;
+		this.#chain = config.all().network;
+		this.#identity = identity;
+		this.#peer = Helpers.randomHostFromConfig(config);
+		this.#web3 = new Web3(); // @TODO: provide a host
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService({
-			...config.all(),
-			identity: await IdentityService.__construct(config),
-		});
+		return new TransactionService(config, await IdentityService.__construct(config));
 	}
 
 	public async transfer(
@@ -36,17 +33,16 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			const senderAddress: string = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
+			const senderData = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
 
 			let privateKey: string;
-
 			if (input.signatory.actsWithPrivateKey()) {
 				privateKey = input.signatory.signingKey();
 			} else {
-				privateKey = await this.#identity.privateKey().fromMnemonic(input.signatory.signingKey());
+				privateKey = (await this.#identity.privateKey().fromMnemonic(input.signatory.signingKey())).privateKey;
 			}
 
-			const { nonce } = await this.get(`wallets/${senderAddress}`);
+			const { nonce } = await this.get(`wallets/${senderData.address}`);
 
 			let data: object;
 

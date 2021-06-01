@@ -8,12 +8,14 @@ import { SignedTransactionData } from "../dto/signed-transaction";
 import { createRpcClient } from "../helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
+	readonly #config: Coins.Config;
 	readonly #client: ApiPromise;
 	readonly #keyring: Keyring;
 
-	public constructor(client: ApiPromise) {
+	public constructor(config: Coins.Config, client: ApiPromise) {
 		super();
 
+		this.#config = config;
 		this.#client = client;
 		this.#keyring = new Keyring({ type: "sr25519" });
 	}
@@ -21,7 +23,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		await waitReady();
 
-		return new TransactionService(await createRpcClient(config));
+		return new TransactionService(config, await createRpcClient(config));
 	}
 
 	public async __destruct(): Promise<void> {
@@ -36,10 +38,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.signatory");
 		}
 
+		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
 		const keypair = this.#keyring.addFromMnemonic(input.signatory.signingKey());
-		const transaction = await this.#client.tx.balances
-			.transfer(input.data.to, input.data.amount)
-			.signAsync(keypair);
+		const transaction = await this.#client.tx.balances.transfer(input.data.to, amount).signAsync(keypair);
 
 		const signedData = {
 			...JSON.parse(transaction.toString()),

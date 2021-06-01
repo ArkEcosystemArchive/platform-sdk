@@ -1,13 +1,12 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { createConfig } from "../../../test/config";
-import { getZilliqa } from "../../zilliqa";
+import { mockWallet } from "../../../test/config";
 import { AddressService } from "./address";
 
 let subject: AddressService;
 
-beforeEach(async () => (subject = new AddressService(getZilliqa(createConfig()).wallet)));
+beforeEach(async () => (subject = new AddressService(mockWallet())));
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {

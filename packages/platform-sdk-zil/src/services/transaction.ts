@@ -1,9 +1,9 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BN, Long, units, Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { SignedTransactionData } from "../dto";
-import { convertZilToQa, getZilliqa, getZilliqaVersion } from "../zilliqa";
+import { convertZilToQa, getZilliqaVersion } from "../zilliqa";
 
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #zilliqa: Zilliqa;
@@ -12,7 +12,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	private constructor(config: Coins.Config) {
 		super();
 
-		this.#zilliqa = getZilliqa(config);
+		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(config));
 		this.#version = getZilliqaVersion(config);
 	}
 
@@ -41,7 +41,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 
 		if (input.signatory.signingKey() === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "sign.mnemonic");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "signatory");
 		}
 
 		const address = this.#zilliqa.wallet.addByMnemonic(input.signatory.signingKey());

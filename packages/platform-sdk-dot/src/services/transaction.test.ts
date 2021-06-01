@@ -13,7 +13,7 @@ beforeEach(async () => (subject = await TransactionService.__construct(createCon
 
 jest.setTimeout(10000);
 
-describe("Core", () => {
+describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it("should verify", async () => {
 			const result = await subject.transfer({
@@ -32,6 +32,7 @@ describe("Core", () => {
 			});
 
 			expect(result).toBeInstanceOf(SignedTransactionData);
+			expect(result.amount()).toBe(123_450_000_000_000);
 		});
 	});
 });

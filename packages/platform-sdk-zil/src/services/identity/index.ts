@@ -1,5 +1,5 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
-import { getZilliqa } from "../../zilliqa";
+import { Coins, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { AddressService } from "./address";
 import { ExtendedAddressService } from "./address-list";
@@ -10,7 +10,7 @@ import { WIFService } from "./wif";
 
 export class IdentityService extends Services.AbstractIdentityService {
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		const { wallet } = getZilliqa(config);
+		const { wallet } = new Zilliqa(Helpers.randomHostFromConfig(config));
 
 		return new IdentityService({
 			address: new AddressService(wallet),

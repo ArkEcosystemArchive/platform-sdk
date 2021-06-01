@@ -28,25 +28,20 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			if (input.signatory.signingKey() === undefined) {
-				throw new Error("No mnemonic provided.");
+				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
+			const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
 			const prepared = await this.#ripple.preparePayment(
 				input.signatory.address(),
 				{
 					source: {
 						address: input.signatory.address(),
-						maxAmount: {
-							value: `${input.data.amount}`,
-							currency: "XRP",
-						},
+						maxAmount: { value: amount, currency: "XRP" },
 					},
 					destination: {
 						address: input.data.to,
-						amount: {
-							value: `${input.data.amount}`,
-							currency: "XRP",
-						},
+						amount: { value: amount, currency: "XRP" },
 					},
 				},
 				{ maxLedgerVersionOffset: 5 },

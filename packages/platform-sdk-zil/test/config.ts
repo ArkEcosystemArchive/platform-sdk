@@ -1,4 +1,5 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Helpers } from "@arkecosystem/platform-sdk";
+import { Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
@@ -10,3 +11,5 @@ export const createConfig = (options?: object) => {
 
 	return config;
 };
+
+export const mockWallet = () => new Zilliqa(Helpers.randomHostFromConfig(createConfig())).wallet;

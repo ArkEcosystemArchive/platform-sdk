@@ -1,21 +1,11 @@
 import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
 import { Wallet, Account } from "@zilliqa-js/account";
-import { Zilliqa, bytes, units, BN } from "@zilliqa-js/zilliqa";
-
-let zilliqa: Zilliqa | undefined;
-
-export const getZilliqa = (config: Coins.Config) => {
-	if (!zilliqa) {
-		zilliqa = new Zilliqa(getHost(config));
-	}
-
-	return zilliqa;
-};
+import { bytes, units, BN } from "@zilliqa-js/zilliqa";
 
 export const getZilliqaVersion = (config: Coins.Config) => {
 	const id = config.get<string>("network.id");
 
-	let chainId;
+	let chainId: number | undefined;
 	if (id === "zil.testnet") {
 		chainId = 333;
 	}
@@ -57,5 +47,3 @@ export const checkGasPrice = (gasPrice: string, minGasPrice = "0") => {
 export const convertQaToZil = (qa: string): string => units.fromQa(new BN(qa), units.Units.Zil);
 
 export const convertZilToQa = (zil: string | number): string => units.toQa(zil, units.Units.Zil).toString();
-
-const getHost = (config: Coins.Config): string => Helpers.randomHostFromConfig(config);

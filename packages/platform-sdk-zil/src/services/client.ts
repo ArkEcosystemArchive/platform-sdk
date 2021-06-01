@@ -3,13 +3,13 @@ import { Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { checkGasPrice, getZilliqa } from "../zilliqa";
+import { checkGasPrice } from "../zilliqa";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #zilliqa: Zilliqa;
 
 	private constructor(config: Coins.Config) {
-		this.#zilliqa = getZilliqa(config);
+		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(config));
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {

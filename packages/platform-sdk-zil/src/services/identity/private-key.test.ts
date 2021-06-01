@@ -1,13 +1,12 @@
 import "jest-extended";
 
 import { identity } from "../../../test/fixtures/identity";
-import { createConfig } from "../../../test/config";
-import { getZilliqa } from "../../zilliqa";
+import { mockWallet } from "../../../test/config";
 import { PrivateKeyService } from "./private-key";
 
 let subject: PrivateKeyService;
 
-beforeEach(async () => (subject = new PrivateKeyService(getZilliqa(createConfig()).wallet)));
+beforeEach(async () => (subject = new PrivateKeyService(mockWallet())));
 
 describe("PrivateKey", () => {
 	it("should generate an output from a mnemonic", async () => {
