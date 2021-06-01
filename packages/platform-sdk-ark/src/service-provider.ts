@@ -12,9 +12,9 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 	}
 
 	private async retrieveNetworkConfiguration(): Promise<void> {
-		const http: Contracts.HttpClient = this.config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		const http: Contracts.HttpClient = this.config().get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 
-		let peer: string = Helpers.randomHostFromConfig(this.config);
+		let peer: string = Helpers.randomHostFromConfig(this.config());
 
 		const [crypto, status] = await Promise.all([
 			http.get(`${peer}/node/configuration/crypto`),
@@ -24,7 +24,7 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 		const dataCrypto = crypto.json().data;
 		const dataStatus = status.json().data;
 
-		if (dataCrypto.network.client.token !== this.config.get(Coins.ConfigKey.CurrencyTicker)) {
+		if (dataCrypto.network.client.token !== this.config().get(Coins.ConfigKey.CurrencyTicker)) {
 			throw new Error(`Failed to connect to ${peer} because it is on another network.`);
 		}
 
