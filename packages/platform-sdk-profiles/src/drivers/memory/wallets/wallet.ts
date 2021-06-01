@@ -130,12 +130,12 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.address} */
 	public address(): string {
-		return this.#attributes.get("address");
+		return this.data().get(WalletData.Address)!;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.publicKey} */
 	public publicKey(): string | undefined {
-		return this.#attributes.get("publicKey");
+		return this.data().get(WalletData.PublicKey);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.balance} */
@@ -202,11 +202,13 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.hasSyncedWithNetwork} */
 	public hasSyncedWithNetwork(): boolean {
-		if (this.#attributes.get<Contracts.WalletData>("wallet") === undefined) {
+		const wallet: Contracts.WalletData | undefined = this.#attributes.get<Contracts.WalletData>("wallet");
+
+		if (wallet === undefined) {
 			return false;
 		}
 
-		return this.#attributes.get<Contracts.WalletData>("wallet").hasPassed();
+		return wallet.hasPassed();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.data} */

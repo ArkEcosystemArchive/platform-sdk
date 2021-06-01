@@ -10,6 +10,7 @@ import {
 	IWalletExportOptions,
 	IWalletData,
 	IProfile,
+	WalletData,
 } from "../../../contracts";
 import { injectable } from "inversify";
 import { pqueue } from "../../../helpers";
@@ -231,7 +232,7 @@ export class WalletRepository implements IWalletRepository {
 		this.#dataRaw = struct;
 
 		for (const item of Object.values(struct)) {
-			const { id, coin, network, address, data, settings } = item;
+			const { id, data, settings } = item;
 
 			const wallet = new Wallet(id, item, this.#profile);
 
@@ -239,9 +240,18 @@ export class WalletRepository implements IWalletRepository {
 
 			wallet.settings().fill(settings);
 
-			await wallet.mutator().coin(coin!, network, { sync: false });
+			await wallet
+				.mutator()
+				.coin(wallet.data().get<string>(WalletData.Coin)!, wallet.data().get<string>(WalletData.Network)!, {
+					sync: false,
+				});
 
-			await wallet.mutator().address({ address }, { syncIdentity: false, validate: false });
+			await wallet
+				.mutator()
+				.address(
+					{ address: wallet.data().get<string>(WalletData.Address) },
+					{ syncIdentity: false, validate: false },
+				);
 
 			wallet.markAsPartiallyRestored();
 
@@ -276,12 +286,17 @@ export class WalletRepository implements IWalletRepository {
 		await syncWallets(laterWallets);
 	}
 
-	private async restoreWallet({ id, address, coin, network }): Promise<void> {
+	private async restoreWallet({ id, data }): Promise<void> {
 		const previousWallet: IReadWriteWallet = this.findById(id);
 
 		if (previousWallet.hasBeenPartiallyRestored()) {
 			try {
-				await this.syncWalletWithNetwork({ address, coin, network, wallet: previousWallet });
+				await this.syncWalletWithNetwork({
+					coin: data[WalletData.Coin],
+					network: data[WalletData.Network],
+					address: data[WalletData.Address],
+					wallet: previousWallet,
+				});
 			} catch {
 				// If we end up here the wallet had previously been
 				// partially restored but we again failed to fully

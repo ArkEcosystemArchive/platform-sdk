@@ -5,6 +5,12 @@
  * @enum {number}
  */
 export enum WalletData {
+	// Identity
+	Coin = "COIN",
+	Network = "NETWORK",
+	Address = "ADDRESS",
+	PublicKey = "PUBLIC_KEY",
+	// Other
 	Balance = "BALANCE",
 	Bip38EncryptedKey = "BIP38_ENCRYPTED_KEY",
 	BroadcastedTransactions = "BROADCASTED_TRANSACTIONS",

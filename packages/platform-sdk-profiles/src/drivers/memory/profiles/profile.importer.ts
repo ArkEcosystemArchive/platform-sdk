@@ -1,5 +1,5 @@
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
-import { IProfileData, IProfile } from "../../../contracts";
+import { IProfileData, IProfile, WalletData } from "../../../contracts";
 
 import { ProfileEncrypter } from "./profile.encrypter";
 import { IProfileImporter } from "../../../contracts/profiles/profile.importer";
@@ -87,8 +87,8 @@ export class ProfileImporter implements IProfileImporter {
 	 * @memberof ProfileImporter
 	 */
 	private gatherCoins(data: IProfileData): void {
-		for (const { coin, network } of Object.values(data.wallets)) {
-			this.#profile.coins().set(coin, network);
+		for (const wallet of Object.values(data.wallets)) {
+			this.#profile.coins().set(wallet.data[WalletData.Coin], wallet.data[WalletData.Network]);
 		}
 
 		for (const contact of Object.values(data.contacts)) {
