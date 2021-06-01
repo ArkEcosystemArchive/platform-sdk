@@ -186,6 +186,7 @@ export type TransactionMethod =
 	| "delegateResignation.ledgerX"
 	| "delegateResignation.musig"
 	| "delegateResignation"
+	| "estimateExpiration"
 	| "htlcClaim.ledgerS"
 	| "htlcClaim.ledgerX"
 	| "htlcClaim.musig"
