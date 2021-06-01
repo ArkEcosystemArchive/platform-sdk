@@ -1,7 +1,8 @@
-import { Container } from "../../environment/container";
-import { Events, Identifiers } from "../../environment/container.models";
+import { IoC } from "@arkecosystem/platform-sdk";
+
+import { Identifiers } from "../../environment/container.models";
 import { EnvironmentOptions } from "../../environment/env.models";
-import { Driver, IProfileRepository } from "../../contracts";
+import { Driver } from "../../contracts";
 import { DataRepository } from "../../repositories/data-repository";
 import { ProfileRepository } from "./repositories/profile-repository";
 import { DelegateService } from "./services/delegate-service";
@@ -10,18 +11,17 @@ import { FeeService } from "./services/fee-service";
 import { KnownWalletService } from "./services/known-wallet-service";
 import { WalletService } from "./services/wallet-service";
 import { PluginRegistry } from "./plugins";
-import { ProfileExporter } from "./profiles/profile.exporter";
 import { StorageFactory } from "../../environment/storage/factory";
 
 export class MemoryDriver implements Driver {
 	/**
 	 * Create all necessary container bindings based on the given options.
 	 *
-	 * @param {Container} container
+	 * @param {IoC.Container} container
 	 * @param {EnvironmentOptions} options
 	 * @memberof MemoryDriver
 	 */
-	public make(container: Container, options: EnvironmentOptions): void {
+	public make(container: IoC.Container, options: EnvironmentOptions): void {
 		if (typeof options.storage === "string") {
 			container.constant(Identifiers.Storage, StorageFactory.make(options.storage));
 		} else {

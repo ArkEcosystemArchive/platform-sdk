@@ -31,7 +31,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://eos.bloks.io/",
+			host: "https://eos.bloks.io",
 		},
 	],
 	transactions,

@@ -17,30 +17,19 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 	/** {@inheritDoc IWalletSynchroniser.identity} */
 	public async identity(): Promise<void> {
 		const currentWallet = this.#wallet.getAttributes().get<Contracts.WalletData>("wallet");
-		const currentPublicKey = this.#wallet.getAttributes().get<string>("publicKey");
+		const currentPublicKey = this.#wallet.data().get<string>(WalletData.PublicKey);
 
 		try {
-			this.#wallet.getAttributes().set(
-				"wallet",
-				await this.#wallet
-					.getAttributes()
-					.get<Coins.Coin>("coin")
-					.client()
-					.wallet(this.#wallet.address()),
-			);
+			const wallet: Contracts.WalletData = await this.#wallet
+				.getAttributes()
+				.get<Coins.Coin>("coin")
+				.client()
+				.wallet(this.#wallet.address());
 
-			if (this.#wallet.getAttributes().missing("publicKey")) {
-				this.#wallet
-					.getAttributes()
-					.set("publicKey", this.#wallet.getAttributes().get<Contracts.WalletData>("wallet").publicKey());
-			}
-
-			this.#wallet
-				.data()
-				.set(WalletData.Balance, this.#wallet.getAttributes().get<Contracts.WalletData>("wallet").balance());
-			this.#wallet
-				.data()
-				.set(WalletData.Sequence, this.#wallet.getAttributes().get<Contracts.WalletData>("wallet").nonce());
+			this.#wallet.getAttributes().set("wallet", wallet);
+			this.#wallet.data().set(WalletData.PublicKey, wallet.publicKey());
+			this.#wallet.data().set(WalletData.Balance, wallet.balance());
+			this.#wallet.data().set(WalletData.Sequence, wallet.nonce());
 		} catch {
 			/**
 			 * TODO: decide what to do if the wallet couldn't be found
@@ -50,7 +39,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 			 */
 
 			this.#wallet.getAttributes().set("wallet", currentWallet);
-			this.#wallet.getAttributes().set("publicKey", currentPublicKey);
+			this.#wallet.data().set(WalletData.PublicKey, currentPublicKey);
 		}
 	}
 

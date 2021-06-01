@@ -38,6 +38,7 @@ export class SettingRepository implements ISettingRepository {
 
 	/** {@inheritDoc ISettingRepository.set} */
 	public set(key: string, value: string | number | boolean | object): void {
+		/* istanbul ignore next */
 		if (this.isUnknownKey(key)) {
 			/* istanbul ignore next */
 			return;
@@ -103,6 +104,7 @@ export class SettingRepository implements ISettingRepository {
 			this.#data.forget(key);
 		}
 
+		/* istanbul ignore next */
 		return true;
 	}
 }

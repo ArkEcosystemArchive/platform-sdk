@@ -166,11 +166,8 @@ test("#fill", async () => {
 		await subject.fill({
 			[newWallet.id()]: {
 				id: newWallet.id(),
-				coin: newWallet.coinId(),
-				network: newWallet.networkId(),
-				address: newWallet.address(),
-				data: newWallet.data(),
-				settings: newWallet.settings(),
+				data: newWallet.data().all(),
+				settings: newWallet.settings().all(),
 			},
 		}),
 	);
@@ -256,11 +253,8 @@ describe("#sortBy", () => {
 			await subject.fill({
 				[wallet.id()]: {
 					id: wallet.id(),
-					coin: wallet.coinId(),
-					network: wallet.networkId(),
-					address: wallet.address(),
-					data: wallet.data(),
-					settings: wallet.settings(),
+					data: wallet.data().all(),
+					settings: wallet.settings().all(),
 				},
 			});
 		});
@@ -274,19 +268,13 @@ describe("#sortBy", () => {
 			await subject.fill({
 				[wallet.id()]: {
 					id: wallet.id(),
-					coin: wallet.coinId(),
-					network: wallet.networkId(),
-					address: wallet.address(),
-					data: wallet.data(),
-					settings: wallet.settings(),
+					data: wallet.data().all(),
+					settings: wallet.settings().all(),
 				},
 				[newWallet2.id()]: {
 					id: newWallet2.id(),
-					coin: newWallet2.coinId(),
-					network: newWallet2.networkId(),
-					address: newWallet2.address(),
-					data: newWallet2.data(),
-					settings: newWallet2.settings(),
+					data: newWallet2.data().all(),
+					settings: newWallet2.settings().all(),
 				},
 			});
 

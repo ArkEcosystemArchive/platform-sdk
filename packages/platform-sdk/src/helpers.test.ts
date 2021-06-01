@@ -141,7 +141,7 @@ const configMock = ({
 		},
 		{
 			type: "explorer",
-			host: "https://explorer.ark.io/",
+			host: "https://explorer.ark.io",
 		},
 	],
 } as unknown) as Config;
@@ -150,7 +150,7 @@ test("filterHostsFromConfig", () => {
 	expect(filterHostsFromConfig(configMock, "explorer")).toEqual([
 		{
 			type: "explorer",
-			host: "https://explorer.ark.io/",
+			host: "https://explorer.ark.io",
 		},
 	]);
 });
@@ -158,7 +158,7 @@ test("filterHostsFromConfig", () => {
 test("randomNetworkHostFromConfig", () => {
 	expect(randomNetworkHostFromConfig(configMock, "explorer")).toEqual({
 		type: "explorer",
-		host: "https://explorer.ark.io/",
+		host: "https://explorer.ark.io",
 	});
 });
 

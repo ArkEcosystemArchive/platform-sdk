@@ -5,7 +5,7 @@ import nock from "nock";
 
 import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "./profile";
-import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";
+import { IProfile, IProfileRepository } from "../../../contracts";
 import { ProfileDumper } from "./profile.dumper";
 import { Identifiers } from "../../../environment/container.models";
 import { container } from "../../../environment/container";

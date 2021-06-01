@@ -131,12 +131,14 @@ describe.each([
 
 		const actual = subject.toObject();
 
-		expect(actual).toContainAllKeys(["id", "address", "coin", "network", "publicKey", "data", "settings"]);
+		expect(actual).toContainAllKeys(["id", "data", "settings"]);
 		expect(actual.id).toBeString();
-		expect(actual.address).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-		expect(actual.coin).toBe("ARK");
-		expect(actual.network).toBe("ark.devnet");
-		expect(actual.publicKey).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+		expect(actual.data[WalletData.Address]).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(actual.data[WalletData.Coin]).toBe("ARK");
+		expect(actual.data[WalletData.Network]).toBe("ark.devnet");
+		expect(actual.data[WalletData.PublicKey]).toBe(
+			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		);
 		expect(actual.data).toMatchSnapshot();
 		expect(actual.settings).toBeObject();
 		expect(actual.settings.AVATAR).toBeString();

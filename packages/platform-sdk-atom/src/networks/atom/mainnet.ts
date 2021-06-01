@@ -23,7 +23,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://stake.id/",
+			host: "https://stake.id",
 		},
 	],
 	transactions,

@@ -23,7 +23,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://wax.bloks.io/",
+			host: "https://wax.bloks.io",
 		},
 	],
 	transactions: {
