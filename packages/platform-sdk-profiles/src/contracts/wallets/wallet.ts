@@ -26,10 +26,6 @@ import { IProfile } from "../profiles";
  */
 export interface IWalletData {
 	id: string;
-	coin: string;
-	network: string;
-	address: string;
-	publicKey: string | undefined;
 	data: Record<string, any>;
 	settings: Record<string, any>;
 }

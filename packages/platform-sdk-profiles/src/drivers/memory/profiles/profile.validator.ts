@@ -45,10 +45,6 @@ export class ProfileValidator implements IProfileValidator {
 				Joi.string().uuid(),
 				Joi.object({
 					id: Joi.string().required(),
-					coin: Joi.string().required(),
-					network: Joi.string().required(),
-					address: Joi.string().required(),
-					publicKey: Joi.string(),
 					data: Joi.object().required(),
 					settings: Joi.object().required(),
 				}),
