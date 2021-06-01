@@ -27,7 +27,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://worbli-test.bloks.io/",
+			host: "https://worbli-test.bloks.io",
 		},
 	],
 	transactions: {

@@ -90,7 +90,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://neotracker.io/",
+			host: "https://neotracker.io",
 		},
 	],
 	transactions,

@@ -5,16 +5,11 @@ import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-moc
 import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
-import { createConfig } from "../../test/helpers";
+import { createConfigWithNetwork } from "../../test/helpers";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
-	const config = createConfig(undefined, {
-		NETWORK_CONFIGURATION: {
-			crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
-			status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
-		},
-	});
+	const config = createConfigWithNetwork();
 	const transport = await LedgerService.__construct(config);
 
 	const fromString = RecordStore.fromString(record);
@@ -26,19 +21,11 @@ const createMockService = async (record: string) => {
 describe("constructor", () => {
 	it("should pass with an empty configuration", async () => {
 		const transport = await LedgerService.__construct(
-			createConfig(
-				{
-					services: {
-						ledger: {},
-					},
+			createConfigWithNetwork({
+				services: {
+					ledger: {},
 				},
-				{
-					NETWORK_CONFIGURATION: {
-						crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
-						status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
-					},
-				},
-			),
+			}),
 		);
 
 		expect(transport).toBeInstanceOf(LedgerService);

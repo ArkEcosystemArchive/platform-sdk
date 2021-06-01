@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://kovan.etherscan.io/",
+			host: "https://kovan.etherscan.io",
 		},
 	],
 	transactions,

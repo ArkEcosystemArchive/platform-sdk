@@ -47,7 +47,9 @@ export class Coin {
 	}
 
 	public async __construct(): Promise<void> {
-		this.#services = await this.#specification.ServiceProvider.make(this, this.#config);
+		const serviceProvider = new this.#specification.ServiceProvider(this, this.#config);
+
+		this.#services = await serviceProvider.make(this, this.#config);
 	}
 
 	public async __destruct(): Promise<void> {
