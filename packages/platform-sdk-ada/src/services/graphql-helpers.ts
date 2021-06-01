@@ -32,6 +32,7 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 					) {
 						hash
 						includedAt
+						fee
 						inputs {
 							sourceTransaction {
        					hash
@@ -47,6 +48,7 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 				}
 			}`;
 
+	console.log("query", query);
 	return (await postGraphql(config, query)).transactions[0];
 };
 
@@ -79,6 +81,7 @@ export const fetchTransactions = async (config: Coins.Config, addresses: string[
 					) {
 						hash
 						includedAt
+						fee
 						inputs {
 							sourceTransaction {
        					hash
