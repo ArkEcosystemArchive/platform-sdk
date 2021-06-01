@@ -43,7 +43,6 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 						  index
 						  value
 							address
-						}
 					}
 				}
 			}`;
@@ -92,7 +91,6 @@ export const fetchTransactions = async (config: Coins.Config, addresses: string[
 						  value
 							address
 						}
-					}
 				}
 			}`;
 
