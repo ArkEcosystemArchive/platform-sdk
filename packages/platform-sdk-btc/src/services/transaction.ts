@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
-import BigNumber from "bignumber.js";
 import { Transaction } from "bitcore-lib";
 
 import { UnspentTransaction } from "../contracts";
