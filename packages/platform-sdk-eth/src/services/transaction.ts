@@ -21,7 +21,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#chain = config.all().network;
 		this.#identity = identity;
 		this.#peer = Helpers.randomHostFromConfig(config);
-		this.#web3 = new Web3(this.#peer);
+		this.#web3 = new Web3(); // @TODO: provide a host
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {

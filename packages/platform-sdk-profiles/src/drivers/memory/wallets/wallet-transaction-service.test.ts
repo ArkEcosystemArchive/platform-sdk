@@ -530,53 +530,53 @@ describe("signatures", () => {
 		    "asset": Object {
 		      "payments": Array [
 		        Object {
-		          "amount": "10",
+		          "amount": "1000000000",
 		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 		        },
 		        Object {
-		          "amount": "10",
+		          "amount": "1000000000",
 		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 		        },
 		        Object {
-		          "amount": "10",
+		          "amount": "1000000000",
 		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 		        },
 		      ],
 		    },
 		    "fee": "10000000",
-		    "id": "2294061d2eb5fc4eff3d9dedb7b6eb2ee3cd38b0d2463bbd7ffd866c77a12052",
+		    "id": "2f971c86b5c07130ae16ccb8ebfc25872628b69bea0788e15b3ad49adea2432b",
 		    "network": 30,
 		    "nonce": "1",
 		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-		    "signature": "3d63add40f7fa512e225338db4108e1ae616bf6784a9e4cdf18e618b841f8dfce1221f62e850ecadff07a023634acb7d3c91349593de47edd3bc899bc0798605",
+		    "signature": "34e757a023e8102b0af39f8d7ef262dbedea3f4141502f2ff106e802e4b136d64693d9c38387eb0beafb5f402c8b508df6e4f47467cc16f6adbdc702dde056aa",
 		    "type": 6,
 		    "version": 2,
 		  },
-		  "identifier": "2294061d2eb5fc4eff3d9dedb7b6eb2ee3cd38b0d2463bbd7ffd866c77a12052",
+		  "identifier": "2f971c86b5c07130ae16ccb8ebfc25872628b69bea0788e15b3ad49adea2432b",
 		  "signedData": Object {
 		    "amount": "0",
 		    "asset": Object {
 		      "payments": Array [
 		        Object {
-		          "amount": "10",
+		          "amount": "1000000000",
 		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 		        },
 		        Object {
-		          "amount": "10",
+		          "amount": "1000000000",
 		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 		        },
 		        Object {
-		          "amount": "10",
+		          "amount": "1000000000",
 		          "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 		        },
 		      ],
 		    },
 		    "fee": "10000000",
-		    "id": "2294061d2eb5fc4eff3d9dedb7b6eb2ee3cd38b0d2463bbd7ffd866c77a12052",
+		    "id": "2f971c86b5c07130ae16ccb8ebfc25872628b69bea0788e15b3ad49adea2432b",
 		    "network": 30,
 		    "nonce": "1",
 		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-		    "signature": "3d63add40f7fa512e225338db4108e1ae616bf6784a9e4cdf18e618b841f8dfce1221f62e850ecadff07a023634acb7d3c91349593de47edd3bc899bc0798605",
+		    "signature": "34e757a023e8102b0af39f8d7ef262dbedea3f4141502f2ff106e802e4b136d64693d9c38387eb0beafb5f402c8b508df6e4f47467cc16f6adbdc702dde056aa",
 		    "type": 6,
 		    "version": 2,
 		  },
@@ -657,7 +657,7 @@ describe("signatures", () => {
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
 		  "broadcastData": Object {
-		    "amount": "1",
+		    "amount": "100000000",
 		    "asset": Object {
 		      "lock": Object {
 		        "expiration": Object {
@@ -668,18 +668,18 @@ describe("signatures", () => {
 		      },
 		    },
 		    "fee": "10000000",
-		    "id": "a282b42b1c6c864571310a1393cc2439d2a994e99af9e758dc390e506704ed42",
+		    "id": "4a4f3df0124c5c3c906a57d727d04342718d5a62d9a1dac59de48cb275460887",
 		    "network": 30,
 		    "nonce": "1",
 		    "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-		    "signature": "5d3aee4dad2cce7fc9eb2dd3f09390ad3bf7fdc9d7b9bb849992a28f67af37f5e724a849afdf89f29051300ecf70de8a137b6245c3f36701f1cf862fd9079876",
+		    "signature": "e9b27363096eb565b7741222991831e0563274b09ce18449a7590d811968e5794b3613a6a7dfde0b9a8f2bbfae8c466c68d9c2b7454edd224f9c1324a5be7581",
 		    "type": 8,
 		    "version": 2,
 		  },
-		  "identifier": "a282b42b1c6c864571310a1393cc2439d2a994e99af9e758dc390e506704ed42",
+		  "identifier": "4a4f3df0124c5c3c906a57d727d04342718d5a62d9a1dac59de48cb275460887",
 		  "signedData": Object {
-		    "amount": "1",
+		    "amount": "100000000",
 		    "asset": Object {
 		      "lock": Object {
 		        "expiration": Object {
@@ -690,12 +690,12 @@ describe("signatures", () => {
 		      },
 		    },
 		    "fee": "10000000",
-		    "id": "a282b42b1c6c864571310a1393cc2439d2a994e99af9e758dc390e506704ed42",
+		    "id": "4a4f3df0124c5c3c906a57d727d04342718d5a62d9a1dac59de48cb275460887",
 		    "network": 30,
 		    "nonce": "1",
 		    "recipientId": "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 		    "senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-		    "signature": "5d3aee4dad2cce7fc9eb2dd3f09390ad3bf7fdc9d7b9bb849992a28f67af37f5e724a849afdf89f29051300ecf70de8a137b6245c3f36701f1cf862fd9079876",
+		    "signature": "e9b27363096eb565b7741222991831e0563274b09ce18449a7590d811968e5794b3613a6a7dfde0b9a8f2bbfae8c466c68d9c2b7454edd224f9c1324a5be7581",
 		    "type": 8,
 		    "version": 2,
 		  },
@@ -824,7 +824,7 @@ describe("signatures", () => {
 });
 
 it("#transaction lifecycle", async () => {
-	const realHash = "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50";
+	const realHash = "54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2";
 
 	const input = {
 		signatory: new Signatories.Signatory(
@@ -1146,14 +1146,14 @@ it("should broadcast transaction", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50"],
+				accept: ["54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
 		.reply(200, { data: { confirmations: 1 } });
 
 	const input = {
@@ -1183,14 +1183,14 @@ it("should broadcast a transfer and confirm it", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50"],
+				accept: ["54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
 		.reply(200, { data: { confirmations: 51 } });
 
 	const input = {
@@ -1342,14 +1342,14 @@ it("#confirm", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50"],
+				accept: ["54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
 		.reply(200, { data: { confirmations: 1 } });
 
 	const input = {
@@ -1371,7 +1371,7 @@ it("#confirm", async () => {
 	await expect(subject.broadcast(id)).resolves.toMatchInlineSnapshot(`
 					Object {
 					  "accepted": Array [
-					    "7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50",
+					    "54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2",
 					  ],
 					  "errors": Object {},
 					  "rejected": Array [],
@@ -1399,7 +1399,7 @@ it("#confirm", async () => {
 	// Confirmed
 	nock.cleanAll();
 	nock(/.+/)
-		.get("/api/transactions/7c7eca984ef0dafe64897e71e72d8376159f7a73979c6666ddd49325c56ede50")
+		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
 		.reply(200, { data: { confirmations: 51 } });
 
 	await subject.confirm(id);
