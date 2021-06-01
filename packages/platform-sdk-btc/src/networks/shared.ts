@@ -16,15 +16,15 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 		permissions: ["read"],
 	},
 	bip39: {
-		default: true,
+		default: false,
 		permissions: ["read", "write"],
 	},
 	bip44: {
-		default: true,
+		default: false,
 		permissions: ["read", "write"],
 	},
 	bip49: {
-		default: true,
+		default: false,
 		permissions: ["read", "write"],
 	},
 	bip84: {
