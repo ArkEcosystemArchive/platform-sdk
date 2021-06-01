@@ -9,7 +9,7 @@ import { MessageService } from "./message";
 let subject: MessageService;
 
 beforeEach(async () => {
-	subject = await MessageService.__construct(createConfigWithNetwork())
+	subject = await MessageService.__construct(createConfigWithNetwork());
 });
 
 describe("MessageService", () => {

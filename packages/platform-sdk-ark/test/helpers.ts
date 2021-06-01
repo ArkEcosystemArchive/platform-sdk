@@ -33,6 +33,6 @@ export const createConfigWithNetwork = (options?: object, meta = {}) => {
 	}
 
 	return createConfig(options, meta);
-}
+};
 
 export const createNetworkConfig = () => require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data.network;
