@@ -330,7 +330,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 				const promises = signingKeys.map((mnemo: string) => this.#identity.publicKey().fromMnemonic(mnemo));
 				const senderPublicKeys: string[] = (await Promise.all(promises)).map(({ publicKey }) => publicKey);
 
-				const keyData = await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys);
+				const keyData = await this.#identity
+					.publicKey()
+					.fromMultiSignature(signingKeys.length, senderPublicKeys);
 				transaction.senderPublicKey(keyData.publicKey);
 
 				for (let i = 0; i < signingKeys.length; i++) {
