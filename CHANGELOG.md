@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.3.0 - 2021-06-01
+
+### Added
+
+- **[SDK]** Store decimals in coin manifests (f37ae32a, @axeldelamarre)
+
+### Changed
+
+- **[PROFILES]** Store coin service instances in container (60f6bbea, @faustbrian)
+- **[PROFILES]** Make coin and config private and read-only (23e74bb7, @faustbrian)
+- **[PROFILES]** Store required wallet information as data (16783661, @faustbrian)
+- **[PROFILES]** Normalize input amounts (ba799dcd, @axeldelamarre)
+- **[PROFILES]** Persist profile data only if marked as dirty (e3eeb2bf, @goga-m)
+
+### Fixed
+
+- **[PROFILES]** Set explorer link (56909cf0, @marianogoldman)
+- **[PROFILES]** Explorer links (d308e53f, @marianogoldman)
+
 ## 8.2.11 - 2021-05-31
 
 ### Fixed
