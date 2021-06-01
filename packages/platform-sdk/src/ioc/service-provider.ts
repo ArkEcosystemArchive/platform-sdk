@@ -21,15 +21,23 @@ export const ServiceKeys = {
 };
 
 export abstract class AbstractServiceProvider {
-	protected readonly coin: CoinSpec;
-	protected readonly config: Config;
+	readonly #coin: CoinSpec;
+	readonly #config: Config;
 
 	public constructor(coin: CoinSpec, config: Config) {
-		this.coin = coin;
-		this.config = config;
+		this.#coin = coin;
+		this.#config = config;
 	}
 
 	public abstract make(): Promise<CoinServices>;
+
+	protected coin(): CoinSpec {
+		return this.#coin;
+	}
+
+	protected config(): Config {
+		return this.#config;
+	}
 
 	protected async compose(serviceList: ServiceList, container: Container): Promise<CoinServices> {
 		const services: CoinServices = await this.makeServices(serviceList);
