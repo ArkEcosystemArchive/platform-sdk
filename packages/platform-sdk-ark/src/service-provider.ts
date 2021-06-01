@@ -2,6 +2,7 @@ import { Managers } from "@arkecosystem/crypto";
 import { Coins, Contracts, Helpers, IoC } from "@arkecosystem/platform-sdk";
 
 import { container } from "./container";
+import { Bindings } from "./contracts";
 import * as Services from "./services";
 
 export class ServiceProvider extends IoC.AbstractServiceProvider {
@@ -31,8 +32,12 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 		Managers.configManager.setConfig(dataCrypto);
 		Managers.configManager.setHeight(dataStatus.height);
 
-		if (container.missing("NETWORK_CONFIGURATION")) {
-			container.constant("NETWORK_CONFIGURATION", { crypto: dataCrypto, peer, status: dataStatus });
+		if (container.missing(Bindings.Crypto)) {
+			container.constant(Bindings.Crypto, dataCrypto);
+		}
+
+		if (container.missing(Bindings.Status)) {
+			container.constant(Bindings.Status, dataStatus);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 import { Managers } from "@arkecosystem/crypto";
 
-export const applyCryptoConfiguration = ({ crypto, status }): void => {
+export const applyCryptoConfiguration = ({ crypto, height }): void => {
 	Managers.configManager.setConfig(crypto);
-	Managers.configManager.setHeight(status.height);
+	Managers.configManager.setHeight(height);
 };

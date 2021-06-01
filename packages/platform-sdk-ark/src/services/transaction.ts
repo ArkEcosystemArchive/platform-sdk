@@ -1,4 +1,4 @@
-import { Transactions } from "@arkecosystem/crypto";
+import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
@@ -6,6 +6,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
 
 import { container } from "../container";
+import { Bindings } from "../contracts";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
@@ -16,7 +17,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #identity: IdentityService;
 	readonly #peer: string;
 	readonly #multiSignatureSigner: MultiSignatureSigner;
-	readonly #configCrypto: any;
+	readonly #configCrypto: { crypto: Interfaces.NetworkConfig; height: number; };
 
 	private constructor({ config, http, identity, peer, multiSignatureSigner, configCrypto }) {
 		super();
@@ -30,15 +31,16 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		const { crypto, status } = container.get("NETWORK_CONFIGURATION");
+		const crypto = container.get<Interfaces.NetworkConfig>(Bindings.Crypto);
+		const { height } = container.get(Bindings.Status);
 
 		return new TransactionService({
 			config,
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Helpers.randomHostFromConfig(config),
 			identity: await IdentityService.__construct(config),
-			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
-			configCrypto: { crypto, status },
+			multiSignatureSigner: new MultiSignatureSigner(crypto, height),
+			configCrypto: { crypto, height },
 		});
 	}
 
