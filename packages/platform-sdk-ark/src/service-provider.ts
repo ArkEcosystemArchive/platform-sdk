@@ -31,6 +31,8 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 		Managers.configManager.setConfig(dataCrypto);
 		Managers.configManager.setHeight(dataStatus.height);
 
-		container.constant("NETWORK_CONFIGURATION", { crypto: dataCrypto, peer, status: dataStatus });
+		if (container.missing("NETWORK_CONFIGURATION")) {
+			container.constant("NETWORK_CONFIGURATION", { crypto: dataCrypto, peer, status: dataStatus });
+		}
 	}
 }
