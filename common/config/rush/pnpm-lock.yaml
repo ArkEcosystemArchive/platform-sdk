@@ -14,8 +14,10 @@ importers:
       censorify-it: 3.0.2
       dayjs: 1.10.4
       dot-prop: 6.0.1
+      inversify: 5.1.1
       joi: 17.4.0
       node-emoji: 1.10.0
+      reflect-metadata: 0.1.13
       type-fest: 1.0.2
     devDependencies:
       '@sindresorhus/tsconfig': 1.0.2
@@ -77,6 +79,7 @@ importers:
       eslint-plugin-prettier: ^3.4.0
       eslint-plugin-simple-import-sort: ^7.0.0
       eslint-plugin-tsdoc: ~0.2.14
+      inversify: ~5.1.1
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
@@ -85,6 +88,7 @@ importers:
       node-emoji: ^1.10.0
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
+      reflect-metadata: ~0.1.13
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       type-fest: ^1.0.2
@@ -3073,8 +3077,6 @@ importers:
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ledgerhq/hw-app-str': 5.50.0
       ed25519-hd-key: 1.2.0
-      noble-ed25519: 1.2.1
-      stellar-hd-wallet: 0.0.10
       stellar-sdk: 8.1.1
       uuid: 8.3.2
     devDependencies:
@@ -3133,12 +3135,10 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
-      noble-ed25519: ~1.2.1
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
       rimraf: ^3.0.2
-      stellar-hd-wallet: ^0.0.10
       stellar-sdk: ^8.1.1
       ts-jest: ^26.5.5
       typescript: 4.2.4
@@ -14968,22 +14968,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
-  /stellar-base/0.13.2:
-    dependencies:
-      base32.js: 0.1.0
-      bignumber.js: 4.1.0
-      crc: 3.8.0
-      js-xdr: 1.3.0
-      lodash: 4.17.21
-      sha.js: 2.4.11
-      tweetnacl: 1.0.3
-    dev: false
-    engines:
-      node: '>=6.14.0'
-    optionalDependencies:
-      sodium-native: 2.4.9
-    resolution:
-      integrity: sha512-y0GO3L+HWPx4auyR8QiAC2uRqoa23MzJ9BnVzm1Li/0VsC5oWH82K7Nj040o++Q61KLIVhiZyKZNwCLHj1+0zw==
   /stellar-base/5.1.0:
     dependencies:
       base32.js: 0.1.0
@@ -14998,15 +14982,6 @@ packages:
       sodium-native: 2.4.9
     resolution:
       integrity: sha512-J0hdF2UGKlRmwaQCpL5IedetJMDBvxTmoFEnvwHMxZBeSNfGt3+pjLi+dghURiWyuBOF9ZeyS8lUBeOhy/tOpA==
-  /stellar-hd-wallet/0.0.10:
-    dependencies:
-      bip39: 2.6.0
-      create-hmac: 1.1.7
-      lodash: 4.17.21
-      stellar-base: 0.13.2
-    dev: false
-    resolution:
-      integrity: sha512-rkg3Q394S6A4h1EYWwACz1v8hkU8zkW574THZ0yY96A8aUqifdBPtVYMInyYbq+le5S+K/Q05x/TZzTAPTIivQ==
   /stellar-sdk/8.1.1:
     dependencies:
       '@types/eventsource': 1.1.5

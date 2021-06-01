@@ -1,10 +1,11 @@
 import { Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
 
+import { container } from "../container";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
@@ -29,12 +30,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		const { crypto, peer, status } = config.get("NETWORK_CONFIGURATION");
+		const { crypto, status } = container.get("NETWORK_CONFIGURATION");
 
 		return new TransactionService({
 			config,
 			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-			peer,
+			peer: Helpers.randomHostFromConfig(config),
 			identity: await IdentityService.__construct(config),
 			multiSignatureSigner: new MultiSignatureSigner(crypto, status.height),
 			configCrypto: { crypto, status },
@@ -326,10 +327,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 			if (actsWithMultiMnemonic && Array.isArray(input.signatory.signingKeys())) {
 				const signingKeys: string[] = input.signatory.signingKeys();
 
-				const promises = signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic));
+				const promises = signingKeys.map((mnemonic: string) =>
+					this.#identity.publicKey().fromMnemonic(mnemonic),
+				);
 				const senderPublicKeys: string[] = (await Promise.all(promises)).map(({ publicKey }) => publicKey);
 
-				const { publicKey } = await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys);
+				const { publicKey } = await this.#identity
+					.publicKey()
+					.fromMultiSignature(signingKeys.length, senderPublicKeys);
 				transaction.senderPublicKey(publicKey);
 
 				for (let i = 0; i < signingKeys.length; i++) {

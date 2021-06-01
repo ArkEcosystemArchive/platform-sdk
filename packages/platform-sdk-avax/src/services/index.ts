@@ -1,9 +1,12 @@
-// export * from "./client";
-// export * from "./fee";
+export * from "./client";
+export * from "./data-transfer-object";
+export * from "./fee";
 export * from "./identity";
 export * from "./known-wallets";
-// export * from "./ledger";
+export * from "./ledger";
 export * from "./link";
 export * from "./message";
 export * from "./multi-signature";
-// export * from "./transaction";
+export * from "./signatory";
+export * from "./transaction";
+export * from "./wallet-discovery";

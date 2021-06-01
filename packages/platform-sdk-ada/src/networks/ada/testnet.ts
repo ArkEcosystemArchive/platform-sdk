@@ -20,7 +20,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://shelleyexplorer.cardano.org/",
+			host: "https://shelleyexplorer.cardano.org",
 		},
 	],
 	transactions,

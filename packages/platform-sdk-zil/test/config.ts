@@ -12,6 +12,4 @@ export const createConfig = (options?: object) => {
 	return config;
 };
 
-export const mockWallet = () => (
-	new Zilliqa(Helpers.randomHostFromConfig(createConfig())).wallet
-);
+export const mockWallet = () => new Zilliqa(Helpers.randomHostFromConfig(createConfig())).wallet;

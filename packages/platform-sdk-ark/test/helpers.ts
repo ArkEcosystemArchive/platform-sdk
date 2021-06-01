@@ -1,6 +1,7 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
+import { container } from "../src/container";
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
 
@@ -23,12 +24,15 @@ export const createConfig = (options?: object, meta = {}) => {
 	return config;
 };
 
-export const createConfigWithNetwork = () =>
-	createConfig(undefined, {
-		NETWORK_CONFIGURATION: {
+export const createConfigWithNetwork = (options?: object, meta = {}) => {
+	if (container.missing("NETWORK_CONFIGURATION")) {
+		container.constant("NETWORK_CONFIGURATION", {
 			crypto: require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data,
 			status: require(`${__dirname}/fixtures/client/syncing.json`).data,
-		},
-	});
+		});
+	}
+
+	return createConfig(options, meta);
+};
 
 export const createNetworkConfig = () => require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data.network;

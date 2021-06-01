@@ -38,6 +38,38 @@ const services = {
 	walletDiscovery: { __construct: jest.fn(), __destruct: jest.fn() },
 };
 
+class ServiceProvider {
+	public make() {
+		services.client.__construct();
+		services.dataTransferObject.__construct();
+		services.fee.__construct();
+		services.identity.__construct();
+		services.knownWallets.__construct();
+		services.ledger.__construct();
+		services.link.__construct();
+		services.message.__construct();
+		services.multiSignature.__construct();
+		services.signatory.__construct();
+		services.transaction.__construct();
+		services.walletDiscovery.__construct();
+
+		return {
+			client: services.client,
+			dataTransferObject: services.dataTransferObject,
+			fee: services.fee,
+			identity: services.identity,
+			knownWallets: services.knownWallets,
+			ledger: services.ledger,
+			link: services.link,
+			message: services.message,
+			multiSignature: services.multiSignature,
+			signatory: services.signatory,
+			transaction: services.transaction,
+			walletDiscovery: services.walletDiscovery,
+		};
+	}
+}
+
 beforeEach(async () => {
 	subject = new Coin({
 		networks: new NetworkRepository(ARK.manifest.networks),
@@ -52,37 +84,7 @@ beforeEach(async () => {
 		specification: {
 			manifest: ARK.manifest,
 			schema: ARK.schema,
-			ServiceProvider: {
-				make: () => {
-					services.client.__construct();
-					services.dataTransferObject.__construct();
-					services.fee.__construct();
-					services.identity.__construct();
-					services.knownWallets.__construct();
-					services.ledger.__construct();
-					services.link.__construct();
-					services.message.__construct();
-					services.multiSignature.__construct();
-					services.signatory.__construct();
-					services.transaction.__construct();
-					services.walletDiscovery.__construct();
-
-					return {
-						client: services.client,
-						dataTransferObject: services.dataTransferObject,
-						fee: services.fee,
-						identity: services.identity,
-						knownWallets: services.knownWallets,
-						ledger: services.ledger,
-						link: services.link,
-						message: services.message,
-						multiSignature: services.multiSignature,
-						signatory: services.signatory,
-						transaction: services.transaction,
-						walletDiscovery: services.walletDiscovery,
-					};
-				},
-			},
+			ServiceProvider,
 		},
 	});
 });

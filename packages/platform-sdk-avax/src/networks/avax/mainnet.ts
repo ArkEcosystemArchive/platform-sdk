@@ -26,7 +26,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://explorer.avax.network/",
+			host: "https://explorer.avax.network",
 		},
 	],
 	transactions,

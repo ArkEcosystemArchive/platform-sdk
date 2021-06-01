@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://testnet.xrpl.org/",
+			host: "https://testnet.xrpl.org",
 		},
 	],
 	transactions,

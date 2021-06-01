@@ -1,5 +1,6 @@
+import { IoC } from "@arkecosystem/platform-sdk";
+
 import { Driver } from "../contracts";
-import { Container } from "../environment/container";
 import { EnvironmentOptions } from "../environment/env.models";
 import { MemoryDriver } from "./memory";
 
@@ -15,12 +16,12 @@ export class DriverFactory {
 	 *
 	 * @static
 	 * @param {string} name
-	 * @param {Container} container
+	 * @param {IoC.Container} container
 	 * @param {EnvironmentOptions} options
 	 * @returns {void}
 	 * @memberof DriverFactory
 	 */
-	public static make(name: string, container: Container, options: EnvironmentOptions): void {
+	public static make(name: string, container: IoC.Container, options: EnvironmentOptions): void {
 		const driver: (() => Driver) | undefined = {
 			memory: () => new MemoryDriver(),
 		}[name];

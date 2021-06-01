@@ -25,10 +25,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(
-			config,
-			await IdentityService.__construct(config),
-		);
+		return new TransactionService(config, await IdentityService.__construct(config));
 	}
 
 	public async transfer(
@@ -36,7 +33,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			const {address: senderAddress} = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
+			const { address: senderAddress } = await this.#identity
+				.address()
+				.fromMnemonic(input.signatory.signingKey());
 
 			let privateKey: string;
 			if (input.signatory.actsWithPrivateKey()) {
