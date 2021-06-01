@@ -25,7 +25,7 @@ beforeAll(() => {
 beforeEach(async () => {
 	nock.cleanAll();
 
-	nock(/.+/)
+	nock("https://dwallets.ark.io")
 		.get("/api/node/configuration")
 		.reply(200, require("../../../../test/fixtures/client/configuration.json"))
 		.get("/api/peers")
@@ -36,6 +36,22 @@ beforeEach(async () => {
 		.reply(200, require("../../../../test/fixtures/client/syncing.json"))
 		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
 		.reply(200, require("../../../../test/fixtures/client/wallet.json"))
+		.persist();
+
+	nock("https://wallets.ark.io")
+		.get("/api/node/configuration")
+		.reply(200, require("../../../../test/fixtures/coins/ark/mainnet/configuration.json"))
+		.get("/api/peers")
+		.reply(200, require("../../../../test/fixtures/coins/ark/mainnet/peers.json"))
+		.get("/api/node/configuration/crypto")
+		.reply(200, require("../../../../test/fixtures/coins/ark/mainnet/cryptoConfiguration.json"))
+		.get("/api/node/syncing")
+		.reply(200, require("../../../../test/fixtures/coins/ark/mainnet/syncing.json"))
+		.get("/api/wallets/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")
+		.reply(
+			200,
+			require("../../../../test/fixtures/coins/ark/mainnet/wallets/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX.json"),
+		)
 		.persist();
 });
 
@@ -102,6 +118,14 @@ test("#fromAddress", async () => {
 
 	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+
+	const mainnetWallet = await subject.fromAddress({
+		coin: "ARK",
+		network: "ark.mainnet",
+		address: "AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX",
+	});
+
+	expect(mainnetWallet.address()).toBe("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX");
 });
 
 test("#fromPublicKey", async () => {
