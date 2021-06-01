@@ -16,7 +16,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #identity: IdentityService;
 	readonly #peer: string;
 	readonly #multiSignatureSigner: MultiSignatureSigner;
-	readonly #configCrypto: { crypto: Interfaces.NetworkConfig; height: number; };
+	readonly #configCrypto: { crypto: Interfaces.NetworkConfig; height: number };
 
 	private constructor({ config, http, identity, peer, multiSignatureSigner, configCrypto }) {
 		super();

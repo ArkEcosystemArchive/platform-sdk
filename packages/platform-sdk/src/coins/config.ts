@@ -41,7 +41,7 @@ export class Config {
 	}
 
 	public missing(key: string): boolean {
-		return ! this.has(key);
+		return !this.has(key);
 	}
 }
 

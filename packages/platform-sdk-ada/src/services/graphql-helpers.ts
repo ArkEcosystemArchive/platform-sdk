@@ -32,6 +32,7 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 					) {
 						hash
 						includedAt
+						fee
 						inputs {
 							sourceTransaction {
        					hash
@@ -43,7 +44,6 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 						  index
 						  value
 							address
-						}
 					}
 				}
 			}`;
@@ -80,6 +80,7 @@ export const fetchTransactions = async (config: Coins.Config, addresses: string[
 					) {
 						hash
 						includedAt
+						fee
 						inputs {
 							sourceTransaction {
        					hash
@@ -92,7 +93,6 @@ export const fetchTransactions = async (config: Coins.Config, addresses: string[
 						  value
 							address
 						}
-					}
 				}
 			}`;
 
