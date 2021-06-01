@@ -15,6 +15,10 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 		default: false,
 		permissions: ["read"],
 	},
+	bip38: {
+		default: false,
+		permissions: ["read", "write"],
+	},
 	bip39: {
 		default: false,
 		permissions: ["read", "write"],
@@ -34,6 +38,14 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 	publicKey: {
 		default: false,
 		permissions: ["read"],
+	},
+	privateKey: {
+		default: false,
+		permissions: ["read", "write"],
+	},
+	wif: {
+		default: false,
+		permissions: ["read", "write"],
 	},
 };
 
