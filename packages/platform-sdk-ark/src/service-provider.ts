@@ -1,71 +1,20 @@
 import { Managers } from "@arkecosystem/crypto";
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, IoC } from "@arkecosystem/platform-sdk";
 
-import { ClientService } from "./services/client";
-import { DataTransferObjectService } from "./services/data-transfer-object";
-import { FeeService } from "./services/fee";
-import { IdentityService } from "./services/identity";
-import { KnownWalletService } from "./services/known-wallets";
-import { LedgerService } from "./services/ledger";
-import { LinkService } from "./services/link";
-import { MessageService } from "./services/message";
-import { MultiSignatureService } from "./services/multi-signature";
-import { SignatoryService } from "./services/signatory";
-import { TransactionService } from "./services/transaction";
-import { WalletDiscoveryService } from "./services/wallet-discovery";
+import { container } from "./container";
+import * as Services from "./services";
 
-export class ServiceProvider {
-	public static async make(coin: Coins.CoinSpec, config: Coins.Config): Promise<Coins.CoinServices> {
-		config.set("NETWORK_CONFIGURATION", await ServiceProvider.retrieveNetworkConfiguration(config));
+export class ServiceProvider extends IoC.AbstractServiceProvider {
+	public async make(): Promise<Coins.CoinServices> {
+		await this.retrieveNetworkConfiguration();
 
-		const multiSignature = await MultiSignatureService.__construct(config);
-
-		const [
-			client,
-			dataTransferObject,
-			fee,
-			identity,
-			knownWallets,
-			ledger,
-			link,
-			message,
-			signatory,
-			transaction,
-			walletDiscovery,
-		] = await Promise.all<any>([
-			ClientService.__construct(config),
-			DataTransferObjectService.__construct(config),
-			FeeService.__construct(config),
-			IdentityService.__construct(config),
-			KnownWalletService.__construct(config),
-			LedgerService.__construct(config),
-			LinkService.__construct(config),
-			MessageService.__construct(config),
-			SignatoryService.__construct(config),
-			TransactionService.__construct(config),
-			WalletDiscoveryService.__construct(config),
-		]);
-
-		return {
-			client,
-			dataTransferObject,
-			fee,
-			identity,
-			knownWallets,
-			ledger,
-			link,
-			message,
-			multiSignature,
-			signatory,
-			transaction,
-			walletDiscovery,
-		};
+		return this.compose(Services, container);
 	}
 
-	private static async retrieveNetworkConfiguration(config: Coins.Config): Promise<{ crypto; peer; status }> {
-		const http: Contracts.HttpClient = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+	private async retrieveNetworkConfiguration(): Promise<void> {
+		const http: Contracts.HttpClient = this.config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 
-		let peer: string = Helpers.randomHostFromConfig(config);
+		let peer: string = Helpers.randomHostFromConfig(this.config);
 
 		const [crypto, status] = await Promise.all([
 			http.get(`${peer}/node/configuration/crypto`),
@@ -75,13 +24,15 @@ export class ServiceProvider {
 		const dataCrypto = crypto.json().data;
 		const dataStatus = status.json().data;
 
-		if (dataCrypto.network.client.token !== config.get(Coins.ConfigKey.CurrencyTicker)) {
+		if (dataCrypto.network.client.token !== this.config.get(Coins.ConfigKey.CurrencyTicker)) {
 			throw new Error(`Failed to connect to ${peer} because it is on another network.`);
 		}
 
 		Managers.configManager.setConfig(dataCrypto);
 		Managers.configManager.setHeight(dataStatus.height);
 
-		return { crypto: dataCrypto, peer, status: dataStatus };
+		if (container.missing("NETWORK_CONFIGURATION")) {
+			container.constant("NETWORK_CONFIGURATION", { crypto: dataCrypto, peer, status: dataStatus });
+		}
 	}
 }

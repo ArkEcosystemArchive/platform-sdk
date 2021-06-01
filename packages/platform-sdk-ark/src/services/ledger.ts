@@ -12,7 +12,7 @@ const chunk = <T>(value: T[], size: number) =>
 const formatLedgerDerivationPath = (scheme: LedgerDerivationScheme) =>
 	`${scheme.purpose || 44}'/${scheme.coinType}'/${scheme.account || 0}'/${scheme.change || 0}/${scheme.address || 0}`;
 
-export type LedgerDerivationScheme = {
+type LedgerDerivationScheme = {
 	coinType: number;
 	purpose?: number;
 	account?: number;
@@ -20,7 +20,7 @@ export type LedgerDerivationScheme = {
 	address?: number;
 };
 
-export const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
+const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
 export class LedgerService implements Contracts.LedgerService {
 	readonly #config: Coins.Config;
