@@ -13,8 +13,12 @@ export class WalletMutator implements IWalletMutator {
 	/** {@inheritDoc IWalletMutator.coin} */
 	public async coin(coin: string, network: string, options: { sync: boolean } = { sync: true }): Promise<void> {
 		try {
-			const instance = this.#wallet.profile().coins().set(coin, network);
+			// Ensure that we set the coin & network IDs
+			this.#wallet.data().set(WalletData.Coin, coin);
+			this.#wallet.data().set(WalletData.Network, network);
 
+			// Ensure that we set the coin instance. This only exists in-memory for the lifetime of the client.
+			const instance = this.#wallet.profile().coins().set(coin, network);
 			this.#wallet.getAttributes().set("coin", instance);
 
 			/**
@@ -35,7 +39,8 @@ export class WalletMutator implements IWalletMutator {
 			}
 
 			this.#wallet.profile().status().markAsDirty();
-		} catch {
+		} catch (e) {
+			console.log(e);
 			this.#wallet.markAsPartiallyRestored();
 		}
 	}
@@ -53,12 +58,13 @@ export class WalletMutator implements IWalletMutator {
 			this.#wallet.data().set(WalletData.DerivationPath, path);
 		}
 
-		this.#wallet.getAttributes().set("address", address);
+		// @TODO: this can probably be removed because we also call this.address(...)
+		this.#wallet.data().set(WalletData.Address, address);
 
 		this.#wallet
-			.getAttributes()
+			.data()
 			.set(
-				"publicKey",
+				WalletData.PublicKey,
 				(await this.#wallet.coin().identity().publicKey().fromMnemonic(mnemonic, options)).publicKey,
 			);
 
@@ -71,7 +77,7 @@ export class WalletMutator implements IWalletMutator {
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
 	): Promise<void> {
 		if (options.validate && address) {
-			const isValidAddress: boolean = await this.#wallet.coin().identity().address().validate(address);
+			const isValidAddress: boolean = await this.#wallet.coin().identity().address().validate(address!);
 
 			if (!isValidAddress) {
 				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
@@ -86,7 +92,7 @@ export class WalletMutator implements IWalletMutator {
 			this.#wallet.data().set(WalletData.DerivationPath, path);
 		}
 
-		this.#wallet.getAttributes().set("address", address);
+		this.#wallet.data().set(WalletData.Address, address);
 
 		if (options.syncIdentity) {
 			await this.#wallet.synchroniser().identity();
@@ -100,7 +106,8 @@ export class WalletMutator implements IWalletMutator {
 		publicKey: string,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
 	): Promise<void> {
-		this.#wallet.getAttributes().setMany({ address: publicKey, publicKey });
+		this.#wallet.data().set(WalletData.Address, publicKey);
+		this.#wallet.data().set(WalletData.PublicKey, publicKey);
 
 		if (options.syncIdentity) {
 			await this.#wallet.synchroniser().identity();

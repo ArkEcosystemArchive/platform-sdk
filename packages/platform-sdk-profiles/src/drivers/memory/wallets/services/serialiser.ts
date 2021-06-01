@@ -30,11 +30,11 @@ export class WalletSerialiser {
 
 		return {
 			id: this.#wallet.id(),
-			coin: this.#wallet.coin().manifest().get<string>("name"),
-			network: this.#wallet.networkId(),
-			address: this.#wallet.address(),
-			publicKey: this.#wallet.publicKey(),
 			data: {
+				[WalletData.Coin]: this.#wallet.coin().manifest().get<string>("name"),
+				[WalletData.Network]: this.#wallet.networkId(),
+				[WalletData.Address]: this.#wallet.address(),
+				[WalletData.PublicKey]: this.#wallet.publicKey(),
 				[WalletData.Balance]: this.serializeBalance(),
 				[WalletData.BroadcastedTransactions]: this.#wallet.data().get(WalletData.BroadcastedTransactions, []),
 				[WalletData.DerivationPath]: this.#wallet.data().get(WalletData.DerivationPath),
