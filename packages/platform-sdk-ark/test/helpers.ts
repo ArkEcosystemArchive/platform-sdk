@@ -26,15 +26,17 @@ export const createConfig = (options?: object, meta = {}) => {
 };
 
 export const createConfigWithNetwork = (options?: object, meta = {}) => {
-	if (container.missing(Bindings.Crypto)) {
-		container.constant(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
+	const config = createConfig(options, meta);
+
+	if (config.missing(Bindings.Crypto)) {
+		config.set(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
 	}
 
-	if (container.missing(Bindings.Height)) {
-		container.constant(Bindings.Height, require(`${__dirname}/fixtures/client/syncing.json`).data.height);
+	if (config.missing(Bindings.Height)) {
+		config.set(Bindings.Height, require(`${__dirname}/fixtures/client/syncing.json`).data.height);
 	}
 
-	return createConfig(options, meta);
+	return config;
 };
 
 export const createNetworkConfig = () => require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data.network;
