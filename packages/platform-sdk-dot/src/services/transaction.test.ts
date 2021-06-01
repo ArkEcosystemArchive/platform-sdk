@@ -32,7 +32,7 @@ describe("TransactionService", () => {
 			});
 
 			expect(result).toBeInstanceOf(SignedTransactionData);
-			expect(result.amount()).toBe(123_450_000_000_000);
+			expect(result.amount().toString()).toBe("123450000000000");
 		});
 	});
 });
