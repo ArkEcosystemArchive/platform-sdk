@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://testnet-explorer.lisk.io/",
+			host: "https://testnet-explorer.lisk.io",
 		},
 	],
 	governance: {
