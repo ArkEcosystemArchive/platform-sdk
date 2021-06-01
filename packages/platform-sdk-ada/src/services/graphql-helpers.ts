@@ -48,7 +48,6 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 				}
 			}`;
 
-	console.log("query", query);
 	return (await postGraphql(config, query)).transactions[0];
 };
 
