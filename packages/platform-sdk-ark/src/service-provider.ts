@@ -36,8 +36,8 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 			container.constant(Bindings.Crypto, dataCrypto);
 		}
 
-		if (container.missing(Bindings.Status)) {
-			container.constant(Bindings.Status, dataStatus);
+		if (container.missing(Bindings.Height)) {
+			container.constant(Bindings.Height, dataStatus.height);
 		}
 	}
 }

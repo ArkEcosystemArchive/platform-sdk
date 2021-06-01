@@ -30,8 +30,8 @@ export const createConfigWithNetwork = (options?: object, meta = {}) => {
 		container.constant(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
 	}
 
-	if (container.missing(Bindings.Status)) {
-		container.constant(Bindings.Status, require(`${__dirname}/fixtures/client/syncing.json`).data);
+	if (container.missing(Bindings.Height)) {
+		container.constant(Bindings.Height, require(`${__dirname}/fixtures/client/syncing.json`).data.height);
 	}
 
 	return createConfig(options, meta);

@@ -32,7 +32,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		const crypto = container.get<Interfaces.NetworkConfig>(Bindings.Crypto);
-		const { height } = container.get(Bindings.Status);
+		const height = container.get<number>(Bindings.Height);
 
 		return new TransactionService({
 			config,

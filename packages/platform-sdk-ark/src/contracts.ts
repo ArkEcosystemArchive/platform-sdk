@@ -5,5 +5,5 @@ export interface CryptoConfig {
 
 export const Bindings = {
 	Crypto: Symbol("Crypto"),
-	Status: Symbol("Status"),
+	Height: Symbol("Height"),
 };
