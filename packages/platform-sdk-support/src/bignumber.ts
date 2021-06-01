@@ -154,8 +154,8 @@ export class BigNumber {
 	 * @returns {BigNumber}
 	 * @memberof BigNumber
 	 */
-	public powerOfTen(exponent: NumberLike): BigNumber {
-		const power = this.toBigNumber(exponent).toNumber();
+	public static powerOfTen(exponent: NumberLike): BigNumber {
+		const power = BigNumber.make(exponent).toNumber();
 		return BigNumber.make(`1${"0".repeat(power)}`);
 	}
 
@@ -285,13 +285,12 @@ export class BigNumber {
 	 */
 	public toHuman(decimals?: number): string {
 		decimals = decimals || this.#decimals || 8;
-		if (decimals === undefined) {
-			// TODO: remove 8 above and uncomment below once everything has been ported
-			// throw new Error("Specify number of decimals for using toHuman()");
-		}
-		const denominator = this.powerOfTen(decimals);
+		// TODO: remove 8 above and uncomment below once everything has been ported
+		// if (decimals === undefined) {
+		//	throw new Error("Specify number of decimals for using toHuman()");
+		// }
 		return BigNumber.make(this.#value)
-			.divide(denominator)
+			.divide(BigNumber.powerOfTen(decimals))
 			.toFixed(decimals);
 	}
 
