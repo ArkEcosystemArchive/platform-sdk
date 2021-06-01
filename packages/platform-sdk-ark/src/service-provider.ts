@@ -32,12 +32,12 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 		Managers.configManager.setConfig(dataCrypto);
 		Managers.configManager.setHeight(dataStatus.height);
 
-		if (container.missing(Bindings.Crypto)) {
-			container.constant(Bindings.Crypto, dataCrypto);
+		if (this.config().missing(Bindings.Crypto)) {
+			this.config().set(Bindings.Crypto, dataCrypto);
 		}
 
-		if (container.missing(Bindings.Height)) {
-			container.constant(Bindings.Height, dataStatus.height);
+		if (this.config().missing(Bindings.Height)) {
+			this.config().set(Bindings.Height, dataStatus.height);
 		}
 	}
 }
