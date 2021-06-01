@@ -327,15 +327,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			if (actsWithMultiMnemonic && Array.isArray(input.signatory.signingKeys())) {
 				const signingKeys: string[] = input.signatory.signingKeys();
 
-				const promises = signingKeys.map((mnemonic: string) =>
-					this.#identity.publicKey().fromMnemonic(mnemonic),
-				);
+				const promises = signingKeys.map((mnemo: string) => this.#identity.publicKey().fromMnemonic(mnemo));
 				const senderPublicKeys: string[] = (await Promise.all(promises)).map(({ publicKey }) => publicKey);
 
-				const { publicKey } = await this.#identity
-					.publicKey()
-					.fromMultiSignature(signingKeys.length, senderPublicKeys);
-				transaction.senderPublicKey(publicKey);
+				const keyData = await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys);
+				transaction.senderPublicKey(keyData.publicKey);
 
 				for (let i = 0; i < signingKeys.length; i++) {
 					transaction.multiSign(signingKeys[i], i);

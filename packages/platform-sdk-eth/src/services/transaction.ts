@@ -33,9 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Contracts.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			const { address: senderAddress } = await this.#identity
-				.address()
-				.fromMnemonic(input.signatory.signingKey());
+			const senderData = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
 
 			let privateKey: string;
 			if (input.signatory.actsWithPrivateKey()) {
@@ -44,7 +42,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				privateKey = (await this.#identity.privateKey().fromMnemonic(input.signatory.signingKey())).privateKey;
 			}
 
-			const { nonce } = await this.get(`wallets/${senderAddress}`);
+			const { nonce } = await this.get(`wallets/${senderData.address}`);
 
 			let data: object;
 
