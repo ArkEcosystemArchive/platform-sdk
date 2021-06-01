@@ -302,9 +302,34 @@ describe("ProfileRepository", () => {
 		expect(profile.status().isRestored()).toBeFalse();
 		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
 
+		subject.persist(profile);
+
+		expect(profile.status().isRestored()).toBeFalse();
+		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
+	});
+
+	it("should not save profile data if profile is not marked as dirty", async () => {
+		subject.flush();
+
+		const profile = subject.create("John");
+
+		const profileAttibuteSetMock = jest.spyOn(profile.getAttributes(), "set").mockImplementation(() => {
+			return true;
+		});
+
+		profile.status().reset();
+		expect(profile.status().isRestored()).toBeFalse();
+		expect(profile.status().isDirty()).toBeFalse();
+		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
+
 		await subject.restore(profile);
+		const profileDirtyStatusMock = jest.spyOn(profile.status(), "isDirty").mockReturnValue(false);
+		subject.persist(profile);
 
 		expect(profile.status().isRestored()).toBeTrue();
-		expect(profileAttibuteSetMock).toHaveBeenCalledTimes(0);
+		expect(profile.status().isDirty()).toBeFalse();
+		expect(profileAttibuteSetMock).not.toHaveBeenCalled();
+		profileDirtyStatusMock.mockRestore();
+		profileAttibuteSetMock.mockRestore();
 	});
 });
