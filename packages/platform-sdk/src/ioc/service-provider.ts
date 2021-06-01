@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { CoinServices, CoinSpec, Config } from "../coins";
 import { Container } from "./container";
 

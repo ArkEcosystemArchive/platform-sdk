@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Container as Inversify } from "inversify";
 
 export type ContainerKey = string | symbol;

@@ -4,30 +4,22 @@ import { Transactions } from "@arkecosystem/crypto";
 import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
+import { createConfigWithNetwork } from "../../test/helpers";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => {
-	subject = await TransactionService.__construct(
-		createConfig(undefined, {
-			NETWORK_CONFIGURATION: {
-				crypto: require(`${__dirname}/../../test/fixtures/client/cryptoConfiguration.json`).data,
-				peer: "http://127.0.0.1/api",
-				status: require(`${__dirname}/../../test/fixtures/client/syncing.json`).data,
-			},
-		}),
-	);
-});
-
 afterEach(() => nock.cleanAll());
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(async () => {
+	nock.disableNetConnect();
+
+	subject = await TransactionService.__construct(createConfigWithNetwork());
+});
 
 jest.setTimeout(10000);
 
-describe("Core", () => {
+describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it("should verify", async () => {
 			const result = await subject.transfer({
@@ -116,7 +108,7 @@ describe("Core", () => {
 		});
 
 		it("should sign using network estimated expiration", async () => {
-			nock("http://127.0.0.1")
+			nock(/.+/)
 				.get("/api/blockchain")
 				.reply(200, require("../../test/fixtures/client/blockchain.json"))
 				.get("/api/node/configuration")
@@ -338,7 +330,7 @@ describe("Core", () => {
 	});
 
 	test("#estimateExpiration", async () => {
-		nock("http://127.0.0.1")
+		nock(/.+/)
 			.get("/api/blockchain")
 			.reply(200, require("../../test/fixtures/client/blockchain.json"))
 			.get("/api/node/configuration")

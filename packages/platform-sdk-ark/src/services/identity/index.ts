@@ -11,7 +11,7 @@ import { WIFService } from "./wif";
 
 export class IdentityService extends Services.AbstractIdentityService {
 	public static async __construct(config: Coins.Config): Promise<IdentityService> {
-		const cryptoConfig: CryptoConfig = container.get("NETWORK_CONFIGURATION.crypto.network");
+		const cryptoConfig: CryptoConfig = container.get<any>("NETWORK_CONFIGURATION").crypto.network;
 
 		return new IdentityService({
 			address: new AddressService(cryptoConfig),
