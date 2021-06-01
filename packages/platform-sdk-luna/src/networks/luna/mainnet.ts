@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://finder.terra.money/tequila-0004/",
+			host: "https://finder.terra.money/tequila-0004",
 		},
 	],
 	transactions,

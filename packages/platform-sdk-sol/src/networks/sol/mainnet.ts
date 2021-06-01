@@ -22,7 +22,7 @@ const network: Coins.NetworkManifest = {
 		},
 		{
 			type: "explorer",
-			host: "https://explorer.solana.com/",
+			host: "https://explorer.solana.com",
 		},
 	],
 	transactions,
