@@ -39,6 +39,10 @@ export class Config {
 	public has(key: string): boolean {
 		return has(this.#config, key);
 	}
+
+	public missing(key: string): boolean {
+		return ! this.has(key);
+	}
 }
 
 export enum ConfigKey {
