@@ -100,10 +100,6 @@ test("#toHuman", () => {
 	expect(BigNumber.make(1e8).times(1e8).toHuman()).toBe(`${1e8}.00000000`);
 });
 
-test("#toSatoshi", () => {
-	expect(subject.toSatoshi()).toEqual(BigNumber.make(100000000));
-});
-
 test("#toFixed", () => {
 	expect(subject.toFixed()).toEqual("1");
 	expect(subject.toFixed(2)).toEqual("1.00");

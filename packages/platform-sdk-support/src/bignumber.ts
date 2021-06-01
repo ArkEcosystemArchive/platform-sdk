@@ -34,21 +34,20 @@ export class BigNumber {
 	public static readonly ONE: BigNumber = new BigNumber(1);
 
 	/**
-	 * Quick accessor for a satoshi, a commonly used value.
-	 *
-	 * @static
-	 * @type {BigNumber}
-	 * @memberof BigNumber
-	 */
-	public static readonly SATOSHI: BigNumber = new BigNumber(1e8);
-
-	/**
 	 * The current value as a bignumber.js instance.
 	 *
 	 * @type {BigNumberJS}
 	 * @memberof BigNumber
 	 */
 	readonly #value: BigNumberJS;
+
+	/**
+	 * The number of decimals
+	 *
+	 * @type {number}
+	 * @memberof BigNumber
+	 */
+	readonly #decimals: number | undefined;
 
 	/**
 	 * Creates an instance of BigNumber.
@@ -61,6 +60,7 @@ export class BigNumber {
 		this.#value = this.toBigNumber(value);
 
 		if (decimals !== undefined) {
+			this.#decimals = decimals;
 			this.#value = this.#value.decimalPlaces(decimals);
 		}
 	}
@@ -145,6 +145,18 @@ export class BigNumber {
 			(accumulator: BigNumber, currentValue: NumberLike) => accumulator.plus(currentValue),
 			BigNumber.ZERO,
 		);
+	}
+
+	/**
+	 * Creates an instance of BigNumber that's a power of ten.
+	 *
+	 * @param {NumberLike} exponent
+	 * @returns {BigNumber}
+	 * @memberof BigNumber
+	 */
+	public powerOfTen(exponent: NumberLike): BigNumber {
+		const power = this.toBigNumber(exponent).toNumber();
+		return BigNumber.make(`1${"0".repeat(power)}`);
 	}
 
 	/**
@@ -265,25 +277,21 @@ export class BigNumber {
 	}
 
 	/**
-	 * Creates an instance of BigNumber with the current value multiplied by one satoshi.
-	 *
-	 * @returns {BigNumber}
-	 * @memberof BigNumber
-	 */
-	public toSatoshi(): BigNumber {
-		return BigNumber.make(this.#value.multipliedBy(1e8));
-	}
-
-	/**
 	 * Divides the current value by one satoshi and rounds it to the given amount of decimals.
 	 *
 	 * @param {number} [decimals=8]
 	 * @returns {string}
 	 * @memberof BigNumber
 	 */
-	public toHuman(decimals = 8): string {
+	public toHuman(decimals?: number): string {
+		decimals = decimals || this.#decimals || 8;
+		if (decimals === undefined) {
+			// TODO: remove 8 above and uncomment below once everything has been ported
+			// throw new Error("Specify number of decimals for using toHuman()");
+		}
+		const denominator = this.powerOfTen(decimals);
 		return BigNumber.make(this.#value)
-			.divide(1e8)
+			.divide(denominator)
 			.toFixed(decimals);
 	}
 

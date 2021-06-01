@@ -51,7 +51,7 @@ describe("ClientService", () => {
 
 			expect(result).toBeObject();
 			expect(result.address()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
-			expect(result.balance().available).toEqual(BigNumber.make(9).times(BigNumber.SATOSHI));
+			expect(result.balance().available).toEqual(BigNumber.make(9).times(1e8));
 		});
 	});
 
