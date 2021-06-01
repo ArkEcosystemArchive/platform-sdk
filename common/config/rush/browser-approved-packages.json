@@ -787,6 +787,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "ts-morph",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "type-fest",
       "allowedCategories": [ "libraries" ]
     },
