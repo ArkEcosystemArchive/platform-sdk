@@ -62,6 +62,14 @@ test("#has", () => {
 	expect(subject.has("key")).toBeTrue();
 });
 
+test("#missing", () => {
+	expect(subject.missing("key")).toBeTrue();
+
+	subject.set("key", "value");
+
+	expect(subject.missing("key")).toBeFalse();
+});
+
 test("ConfigKey", () => {
 	expect(ConfigKey).toMatchInlineSnapshot(`
 		Object {
