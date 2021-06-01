@@ -121,8 +121,11 @@ export class ProfileRepository implements IProfileRepository {
 
 	/** {@inheritDoc IProfileRepository.persist} */
 	public persist(profile: IProfile): void {
-		/* istanbul ignore next */
 		if (!profile.status().isRestored()) {
+			return;
+		}
+
+		if (!profile.status().isDirty()) {
 			return;
 		}
 

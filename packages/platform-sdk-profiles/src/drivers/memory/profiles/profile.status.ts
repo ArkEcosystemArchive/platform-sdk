@@ -32,5 +32,6 @@ export class ProfileStatus implements IProfileStatus {
 	/** {@inheritDoc IAuthenticator.reset} */
 	public reset(): void {
 		this.#isRestored = false;
+		this.#isDirty = false;
 	}
 }
