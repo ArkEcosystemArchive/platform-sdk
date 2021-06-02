@@ -13,7 +13,6 @@ import {
 	SyntaxKind,
 } from "ts-morph";
 
-
 // setup
 const project: Project = new Project();
 project.addSourceFilesAtPaths("src/**/*.ts");
@@ -30,7 +29,7 @@ const knownMethods = [
 	"secondSignature",
 	"transfer",
 	"vote",
-	"estimateExpiration"
+	"estimateExpiration",
 ];
 
 // load
@@ -58,10 +57,8 @@ for (const knownMethod of knownMethods) {
 console.log(`🌍 ADA supports ${countSupported} out of ${knownMethods.length} methods for the TransactionService`);
 
 // Now update the shared.ts file
-let supported = knownMethods
-	.filter((method) => members.includes(method))
-	.map((method) => `"${method}"`);
-	// .join(", ");
+let supported = knownMethods.filter((method) => members.includes(method)).map((method) => `"${method}"`);
+// .join(", ");
 
 // Open shared file
 let shared: SourceFile = project.getDirectoryOrThrow("src/networks").getSourceFileOrThrow("shared.ts");
@@ -76,17 +73,18 @@ const childSyntaxList: SyntaxList = featureFlagsInitializer.getChildSyntaxListOr
 for (let child of childSyntaxList.getChildrenOfKind(SyntaxKind.PropertyAssignment)) {
 	console.log(child.getKindName(), child.getName(), child.getText(), "\n");
 	if (child.getName() === "Transaction") {
-		const transactionList: ArrayLiteralExpression = child.getFirstChildByKindOrThrow(SyntaxKind.ArrayLiteralExpression);
+		const transactionList: ArrayLiteralExpression = child.getFirstChildByKindOrThrow(
+			SyntaxKind.ArrayLiteralExpression,
+		);
 		transactionList.forgetDescendants();
-		console.log( transactionList.getKindName());
+		console.log(transactionList.getKindName());
 		// for (let i = 0; i < transactionList.getElements().length; i++) {
 		// 	transactionList.removeElement(0);
 		// }
-		transactionList.addElements(supported)
+		transactionList.addElements(supported);
 	}
 }
 // console.log(childAtIndex.getChildAtIndex(8).getText());
-
 
 // console.log(featureFlags.getFullText());
 
