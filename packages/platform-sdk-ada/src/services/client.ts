@@ -27,7 +27,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		if (query.senderPublicKey === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transactions", "senderPublicKey");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transactions.name, "senderPublicKey");
 		}
 
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(

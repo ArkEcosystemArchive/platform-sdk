@@ -18,7 +18,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
 		if (!BIP39.validate(mnemonic)) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
+			throw new Exceptions.InvalidArguments(this.constructor.name, this.fromMnemonic.name);
 		}
 
 		return {

@@ -34,7 +34,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.signatory");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 		}
 
 		try {
@@ -79,7 +79,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "vote", "input.signatory");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.vote.name, "input.signatory");
 		}
 
 		try {

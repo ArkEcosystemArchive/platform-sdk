@@ -35,7 +35,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "input.signatory");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 		}
 
 		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();

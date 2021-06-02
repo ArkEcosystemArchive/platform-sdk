@@ -17,7 +17,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {
 		if (!BIP39.validate(mnemonic)) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
+			throw new Exceptions.InvalidArguments(this.constructor.name, this.fromMnemonic.name);
 		}
 
 		return {

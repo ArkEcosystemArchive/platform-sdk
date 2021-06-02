@@ -4,6 +4,6 @@ import { TransactionData } from "../transaction";
 
 export class SecondSignatureData extends TransactionData implements Contracts.SecondSignatureData {
 	public secondPublicKey(): string {
-		throw new Exceptions.NotSupported(this.constructor.name, "secondPublicKey");
+		throw new Exceptions.NotSupported(this.constructor.name, this.secondPublicKey.name);
 	}
 }

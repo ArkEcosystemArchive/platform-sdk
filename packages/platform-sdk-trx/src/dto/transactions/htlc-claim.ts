@@ -4,10 +4,10 @@ import { TransactionData } from "../transaction";
 
 export class HtlcClaimData extends TransactionData implements Contracts.HtlcClaimData {
 	public lockTransactionId(): string {
-		throw new Exceptions.NotSupported(this.constructor.name, "lockTransactionId");
+		throw new Exceptions.NotSupported(this.constructor.name, this.lockTransactionId.name);
 	}
 
 	public unlockSecret(): string {
-		throw new Exceptions.NotSupported(this.constructor.name, "unlockSecret");
+		throw new Exceptions.NotSupported(this.constructor.name, this.unlockSecret.name);
 	}
 }
