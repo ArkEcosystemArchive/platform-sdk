@@ -1,7 +1,8 @@
 /* istanbul ignore file */
 
 import { NotImplemented } from "../exceptions";
-import { AddressDataTransferObject, IdentityOptions } from "./identity";
+import { AddressDataTransferObject } from "./identity";
+import { IdentityOptions } from "./identity/shared.contract";
 import { WalletDiscoveryService } from "./wallet-discovery.contract";
 
 export abstract class AbstractWalletDiscoveryService implements WalletDiscoveryService {

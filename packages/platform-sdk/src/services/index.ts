@@ -5,6 +5,8 @@ export * from "./data-transfer-object.service";
 export * from "./fee.contract";
 export * from "./fee.service";
 export * from "./identity";
+export * from "./identity.contract";
+export * from "./identity.service";
 export * from "./known-wallet.contract";
 export * from "./known-wallet.service";
 export * from "./ledger.contract";

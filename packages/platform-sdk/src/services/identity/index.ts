@@ -2,8 +2,6 @@ export * from "./address.contract";
 export * from "./address.service";
 export * from "./extended-address.contract";
 export * from "./extended-address.service";
-export * from "../identity.contract";
-export * from "./identity.service";
 export * from "./key-pair.contract";
 export * from "./key-pair.service";
 export * from "./private-key.contract";
