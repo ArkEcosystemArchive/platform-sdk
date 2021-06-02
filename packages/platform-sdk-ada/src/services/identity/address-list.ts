@@ -1,4 +1,4 @@
-import { Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 import { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { deriveAccountKey, deriveRootKey, deriveSpendKey, deriveChangeKey, deriveStakeKey } from "./shelley";
@@ -8,17 +8,17 @@ export class ExtendedAddressService extends Services.AbstractExtendedAddressServ
 		mnemonic: string,
 		pageSize: number,
 	): Promise<Services.ExtendedAddressDataTransferObject[]> {
-		return this.deriveAddresses(deriveAccountKey(deriveRootKey(mnemonic), 0), pageSize);
+		return this.#deriveAddresses(deriveAccountKey(deriveRootKey(mnemonic), 0), pageSize);
 	}
 
 	public async fromPrivateKey(
 		privateKey: string,
 		pageSize: number,
 	): Promise<Services.ExtendedAddressDataTransferObject[]> {
-		return this.deriveAddresses(Bip32PrivateKey.from_bech32(privateKey), pageSize);
+		return this.#deriveAddresses(Bip32PrivateKey.from_bech32(privateKey), pageSize);
 	}
 
-	private async deriveAddresses(
+	async #deriveAddresses(
 		accountKey: Bip32PrivateKey,
 		pageSize: number,
 	): Promise<Services.ExtendedAddressDataTransferObject[]> {
