@@ -1,13 +1,15 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { ECPair } from "bitcoinjs-lib";
 import { sign, verify } from "bitcoinjs-message";
 
 import { IdentityService } from "./identity";
 
-export class MessageService implements Contracts.MessageService {
+export class MessageService extends Services.AbstractMessageService {
 	readonly #identity: IdentityService;
 
 	private constructor(identityService: IdentityService) {
+		super();
+
 		this.#identity = identityService;
 	}
 
@@ -15,10 +17,6 @@ export class MessageService implements Contracts.MessageService {
 		const identityService = await IdentityService.__construct(config);
 
 		return new MessageService(identityService);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {

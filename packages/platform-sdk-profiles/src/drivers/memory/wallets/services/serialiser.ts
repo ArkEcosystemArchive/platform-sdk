@@ -50,7 +50,6 @@ export class WalletSerialiser {
 				[WalletData.WaitingForOtherSignaturesTransactions]: this.#wallet
 					.data()
 					.get(WalletData.WaitingForOtherSignaturesTransactions, []),
-				[WalletData.LedgerPath]: this.#wallet.data().get(WalletData.LedgerPath),
 				[WalletData.Bip38EncryptedKey]: this.#wallet.data().get(WalletData.Bip38EncryptedKey),
 				[WalletFlag.Starred]: this.#wallet.isStarred(),
 			},

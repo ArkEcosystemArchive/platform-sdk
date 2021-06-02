@@ -1,10 +1,10 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
-export class ClientService implements Contracts.ClientService {
+export class ClientService extends Services.AbstractClientService {
 	readonly #client;
 
 	readonly #broadcastErrors: Record<string, string> = {
@@ -16,6 +16,8 @@ export class ClientService implements Contracts.ClientService {
 	};
 
 	private constructor(network: string) {
+		super();
+
 		this.#client = new Stellar.Server(
 			{ mainnet: "https://horizon.stellar.org", testnet: "https://horizon-testnet.stellar.org" }[
 				network.split(".")[1]
@@ -25,10 +27,6 @@ export class ClientService implements Contracts.ClientService {
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService(config.get<Coins.NetworkManifest>("network").id);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transaction(
@@ -64,26 +62,6 @@ export class ClientService implements Contracts.ClientService {
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(await this.#client.loadAccount(id));
-	}
-
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
-	}
-
-	public async delegate(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
-	}
-
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
-	}
-
-	public async votes(id: string): Promise<Contracts.VoteReport> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
-	}
-
-	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {

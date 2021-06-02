@@ -126,7 +126,7 @@ describe.each([
 		subject.data().set("key", "value");
 
 		subject.data().set(WalletData.Balance, balance);
-		subject.data().set(WalletData.LedgerPath, "1");
+		subject.data().set(WalletData.DerivationPath, "1");
 		subject.data().set(WalletFlag.Starred, true);
 
 		const actual = subject.toObject();
@@ -148,7 +148,7 @@ describe.each([
 		subject.coin().config().set("network.constants.slip44", slip44);
 		subject.data().set("key", "value");
 
-		subject.data().set(WalletData.LedgerPath, "1");
+		subject.data().set(WalletData.DerivationPath, "1");
 		subject.data().set(WalletFlag.Starred, true);
 		const partiallyRestoredMock = jest.spyOn(subject, "hasBeenPartiallyRestored").mockReturnValue(true);
 

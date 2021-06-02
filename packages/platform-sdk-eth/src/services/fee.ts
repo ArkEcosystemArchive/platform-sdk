@@ -1,18 +1,16 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 
-export class FeeService implements Contracts.FeeService {
+export class FeeService extends Services.AbstractFeeService {
 	readonly #http: Contracts.HttpClient;
 
 	private constructor(http: Contracts.HttpClient) {
+		super();
+
 		this.#http = http;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<FeeService> {
 		return new FeeService(config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient));
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async all(): Promise<Contracts.TransactionFees> {
