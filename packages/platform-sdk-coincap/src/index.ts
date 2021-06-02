@@ -98,7 +98,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 
 	/** {@inheritDoc Contracts.PriceTracker.historicalVolume} */
 	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "historicalVolume");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.historicalVolume.name);
 	}
 
 	/** {@inheritDoc Contracts.PriceTracker.dailyAverage} */

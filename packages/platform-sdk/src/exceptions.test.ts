@@ -11,7 +11,7 @@ import {
 
 test("NotImplemented", () => {
 	expect(() => {
-		throw new NotImplemented("klass", "method");
+		throw new NotImplemented("klass", this.method.name);
 	}).toThrow(`Method klass#method is not implemented.`);
 });
 

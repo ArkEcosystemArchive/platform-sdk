@@ -5,10 +5,10 @@ import { ExtendedAddressDataTransferObject, ExtendedAddressService } from "./ext
 
 export abstract class AbstractExtendedAddressService implements ExtendedAddressService {
 	public async fromMnemonic(mnemonic: string, pageSize: number): Promise<ExtendedAddressDataTransferObject[]> {
-		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
+		throw new NotImplemented(this.constructor.name, this.fromMultiSignature.name);
 	}
 
 	public async fromPrivateKey(privateKey: string, pageSize: number): Promise<ExtendedAddressDataTransferObject[]> {
-		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
+		throw new NotImplemented(this.constructor.name, this.fromMultiSignature.name);
 	}
 }
