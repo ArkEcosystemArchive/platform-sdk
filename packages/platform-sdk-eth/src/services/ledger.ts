@@ -1,16 +1,12 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import Ethereum from "@ledgerhq/hw-app-eth";
 
-export class LedgerService implements Contracts.LedgerService {
+export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Contracts.LedgerTransport;
 	#transport!: Ethereum;
 
 	public static async __construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
-	}
-
-	public async __destruct(): Promise<void> {
-		await this.disconnect();
 	}
 
 	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
@@ -34,19 +30,11 @@ export class LedgerService implements Contracts.LedgerService {
 		return publicKey;
 	}
 
-	public async getExtendedPublicKey(path: string): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
-	}
-
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		return JSON.stringify(await this.#transport.signTransaction(path, payload));
 	}
 
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
 		return JSON.stringify(await this.#transport.signPersonalMessage(path, payload));
-	}
-
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
 	}
 }

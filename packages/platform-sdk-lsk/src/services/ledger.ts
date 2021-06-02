@@ -1,17 +1,13 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 
-export class LedgerService implements Contracts.LedgerService {
+export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Contracts.LedgerTransport;
 	#transport!: DposLedger;
 
 	public static async __construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
-	}
-
-	public async __destruct(): Promise<void> {
-		await this.disconnect();
 	}
 
 	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
@@ -36,10 +32,6 @@ export class LedgerService implements Contracts.LedgerService {
 		return publicKey;
 	}
 
-	public async getExtendedPublicKey(path: string): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
-	}
-
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		const signature: Buffer = await this.#transport.signTX(this.getLedgerAccount(path), payload);
 
@@ -50,10 +42,6 @@ export class LedgerService implements Contracts.LedgerService {
 		const signature: Buffer = await this.#transport.signMSG(this.getLedgerAccount(path), payload);
 
 		return signature.slice(0, 64).toString("hex");
-	}
-
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
 	}
 
 	private getLedgerAccount(path: string): LedgerAccount {
