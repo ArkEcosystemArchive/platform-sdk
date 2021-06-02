@@ -1,6 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, pollTransactionStatus, useLogger } from "../helpers";
+import { createProfile, pollTransactionStatus, useLogger } from "../../helpers";
 
 export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	const logger = useLogger();

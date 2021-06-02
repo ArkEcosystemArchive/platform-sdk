@@ -1,10 +1,9 @@
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
 
-import { useEnvironment, useLogger } from "../helpers";
+import { useLogger } from "../helpers";
 
-export const createProfileWithWallets = async () => {
+export const createProfileWithWallets = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
-	const env: Environment = await useEnvironment();
 
 	// Create profile
 	const profile: Contracts.IProfile = env.profiles().create("my-profile-name");
@@ -39,7 +38,6 @@ export const createProfileWithWallets = async () => {
 			{
 				coin: "ARK",
 				network: "ark.mainnet",
-				name: "main",
 				address: "AN77jrAmEPAqpUv51ZUP2vL1XquXz5Mhob"
 			}
 		]

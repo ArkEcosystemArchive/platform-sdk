@@ -1,5 +1,5 @@
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
-import { pollTransactionStatus, createProfile, useLogger } from "../helpers";
+import { pollTransactionStatus, createProfile, useLogger } from "../../helpers";
 
 export const transferFundsWithXLM = async (env: Environment): Promise<void> => {
 	const logger = useLogger();

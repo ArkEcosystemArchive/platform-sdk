@@ -1,4 +1,5 @@
-import { Contracts } from "@arkecosystem/platform-sdk-profiles";
+import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
+
 import { useLogger } from "../helpers";
 
 export const openExistingProfile = async (env: Environment): Promise<void> => {

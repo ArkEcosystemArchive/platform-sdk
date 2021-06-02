@@ -1,5 +1,5 @@
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, pollTransactionStatus, useLogger } from "../helpers";
+import { createProfile, pollTransactionStatus, useLogger } from "../../helpers";
 
 export const transferFundsWithARK = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
