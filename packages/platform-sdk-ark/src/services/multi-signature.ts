@@ -1,7 +1,7 @@
 import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
 
-export class MultiSignatureService implements Contracts.MultiSignatureService {
+export class MultiSignatureService extends Services.AbstractMultiSignatureService {
 	/**
 	 * The configuration of the current instance.
 	 *
@@ -32,11 +32,6 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 	/** @inheritdoc */
 	public static async __construct(config: Coins.Config): Promise<MultiSignatureService> {
 		return new MultiSignatureService(config);
-	}
-
-	/** @inheritdoc */
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	/** @inheritdoc */
