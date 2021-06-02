@@ -192,6 +192,6 @@ export class MultiSignatureService implements Contracts.MultiSignatureService {
 				publicKey,
 				state,
 			})
-		).map(this.normalizeTransaction);
+		).map((transaction) => this.normalizeTransaction(transaction));
 	}
 }
