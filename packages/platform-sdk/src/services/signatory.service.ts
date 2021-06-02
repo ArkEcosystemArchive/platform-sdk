@@ -12,7 +12,8 @@ import {
 	SignatureSignatory,
 	WIFSignatory,
 } from "../signatories";
-import { IdentityOptions, IdentityService } from "./identity.contract";
+import { IdentityService } from "./identity.contract";
+import { IdentityOptions } from "./shared.contract";
 import { SignatoryService } from "./signatory.contract";
 
 export class AbstractSignatoryService implements SignatoryService {
