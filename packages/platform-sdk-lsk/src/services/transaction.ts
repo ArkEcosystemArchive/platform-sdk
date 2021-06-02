@@ -26,8 +26,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async transfer(
-		input: Contracts.TransferInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.TransferInput,
+		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.createFromData("transfer", {
 			...input,
@@ -42,8 +42,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async secondSignature(
-		input: Contracts.SecondSignatureInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.SecondSignatureInput,
+		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.createFromData("registerSecondPassphrase", {
 			...input,
@@ -56,22 +56,22 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async delegateRegistration(
-		input: Contracts.DelegateRegistrationInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.DelegateRegistrationInput,
+		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.createFromData("registerDelegate", input);
 	}
 
 	public async vote(
-		input: Contracts.VoteInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.VoteInput,
+		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.createFromData("castVotes", input);
 	}
 
 	public async multiSignature(
-		input: Contracts.MultiSignatureInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.MultiSignatureInput,
+		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.createFromData("registerMultisignature", {
 			...input,
@@ -88,7 +88,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	private async createFromData(
 		type: string,
 		input: Contracts.KeyValuePair,
-		options?: Contracts.TransactionOptions,
+		options?: Services.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
 		try {

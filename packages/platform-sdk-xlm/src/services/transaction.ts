@@ -39,15 +39,15 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async transfer(
-		input: Contracts.TransferInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.TransferInput,
+		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			if (input.signatory.signingKey() === undefined) {
 				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
-			let keyPair: Contracts.KeyPairDataTransferObject;
+			let keyPair: Services.KeyPairDataTransferObject;
 			if (input.signatory.actsWithPrivateKey()) {
 				keyPair = await this.#identity.keyPair().fromPrivateKey(input.signatory.signingKey());
 			} else {

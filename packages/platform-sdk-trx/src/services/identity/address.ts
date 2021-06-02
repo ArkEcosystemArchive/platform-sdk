@@ -13,8 +13,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,

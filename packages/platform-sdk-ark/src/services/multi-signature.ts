@@ -37,22 +37,22 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	}
 
 	/** @inheritdoc */
-	public async allWithPendingState(publicKey: string): Promise<Contracts.MultiSignatureTransaction[]> {
+	public async allWithPendingState(publicKey: string): Promise<Services.MultiSignatureTransaction[]> {
 		return this.fetchAll(publicKey, "pending");
 	}
 
 	/** @inheritdoc */
-	public async allWithReadyState(publicKey: string): Promise<Contracts.MultiSignatureTransaction[]> {
+	public async allWithReadyState(publicKey: string): Promise<Services.MultiSignatureTransaction[]> {
 		return this.fetchAll(publicKey, "ready");
 	}
 
 	/** @inheritdoc */
-	public async findById(id: string): Promise<Contracts.MultiSignatureTransaction> {
+	public async findById(id: string): Promise<Services.MultiSignatureTransaction> {
 		return this.normalizeTransaction(await this.get(`transaction/${id}`));
 	}
 
 	/** @inheritdoc */
-	public async broadcast(transaction: Contracts.MultiSignatureTransaction): Promise<string> {
+	public async broadcast(transaction: Services.MultiSignatureTransaction): Promise<string> {
 		let multiSignature = transaction.multiSignature;
 
 		if (transaction.asset && transaction.asset.multiSignature) {
@@ -68,7 +68,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	}
 
 	/** @inheritdoc */
-	public async flush(): Promise<Contracts.MultiSignatureTransaction> {
+	public async flush(): Promise<Services.MultiSignatureTransaction> {
 		return this.delete("transactions");
 	}
 

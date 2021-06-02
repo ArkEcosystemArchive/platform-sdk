@@ -31,7 +31,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transaction(
 		id: string,
-		input?: Contracts.TransactionDetailInput,
+		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		return Helpers.createTransactionDataWithType(await this.get(`transactions/${id}`), TransactionDTO);
 	}
@@ -40,8 +40,8 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(await this.get(`wallets/${id}`));
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		const result: Contracts.BroadcastResponse = {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},

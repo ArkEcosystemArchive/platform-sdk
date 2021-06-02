@@ -26,7 +26,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transaction(
 		id: string,
-		input?: Contracts.TransactionDetailInput,
+		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const transaction = new Tx();
 		transaction.fromString(await this.#xchain.getTx(id));
@@ -44,7 +44,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const { transactions } = await this.get("v2/transactions", {
 			chainID: this.#config.get("network.meta.blockchainId"),
 			limit: 100,
@@ -87,8 +87,8 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		const result: Contracts.BroadcastResponse = {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},

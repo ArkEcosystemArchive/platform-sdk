@@ -13,7 +13,7 @@ export class FeeService extends Services.AbstractFeeService {
 		return new FeeService(config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient));
 	}
 
-	public async all(): Promise<Contracts.TransactionFees> {
+	public async all(): Promise<Services.TransactionFees> {
 		const { slow, normal, fast, instant } = (await this.#http.get("https://ethgas.watch/api/gas")).json();
 
 		const fees = {

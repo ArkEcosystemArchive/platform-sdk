@@ -1,15 +1,15 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import Tron from "@ledgerhq/hw-app-trx";
 
 export class LedgerService extends Services.AbstractLedgerService {
-	#ledger: Contracts.LedgerTransport;
+	#ledger: Services.LedgerTransport;
 	#transport!: Tron;
 
 	public static async __construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
 	}
 
-	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
 		this.#transport = new Tron(this.#ledger);
 	}

@@ -1,8 +1,8 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
 export class LedgerService extends Services.AbstractLedgerService {
-	#ledger: Contracts.LedgerTransport;
+	#ledger: Services.LedgerTransport;
 	#bip44SessionPath: string;
 
 	private constructor() {
@@ -15,7 +15,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 		return new LedgerService();
 	}
 
-	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.create();
 	}
 
@@ -80,7 +80,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	 * - https://github.com/CityOfZion/neon-js/blob/master/packages/neon-ledger/src/main.ts.ts
 	 */
 	private async neoSignTransaction(
-		transport: Contracts.LedgerTransport,
+		transport: Services.LedgerTransport,
 		path: string,
 		payload: Buffer,
 	): Promise<string> {

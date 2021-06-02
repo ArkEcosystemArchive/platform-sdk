@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { Buffer } from "buffer";
 import TronWeb from "tronweb";
 
@@ -21,9 +21,9 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService(await IdentityService.__construct(config), Helpers.randomHostFromConfig(config));
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
-			const keys: Contracts.KeyPairDataTransferObject = await this.#identityService
+			const keys: Services.KeyPairDataTransferObject = await this.#identityService
 				.keyPair()
 				.fromMnemonic(input.signatory.signingKey());
 			const { address } = await this.#identityService.address().fromMnemonic(input.signatory.signingKey());
@@ -45,7 +45,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			const messageAsHex = Buffer.from(input.message).toString("hex");
 			return this.#connection.trx.verifyMessage(messageAsHex, input.signature, input.signatory);

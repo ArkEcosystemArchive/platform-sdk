@@ -1,6 +1,7 @@
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Config, NetworkHost, NetworkHostType, TransactionDataCollection } from "./coins";
-import { MetaPagination, TransactionDataType } from "./contracts";
+import { TransactionDataType } from "./contracts";
+import { MetaPagination } from "./services";
 
 export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
 	const instance: TransactionDataType = new dtos.TransactionData(transaction);

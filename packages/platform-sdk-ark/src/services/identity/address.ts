@@ -14,8 +14,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip39",
@@ -26,7 +26,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip39",
@@ -39,8 +39,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPublicKey(
 		publicKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip39",
@@ -53,8 +53,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPrivateKey(
 		privateKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip39",
@@ -65,7 +65,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
+	public async fromWIF(wif: string): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip39",

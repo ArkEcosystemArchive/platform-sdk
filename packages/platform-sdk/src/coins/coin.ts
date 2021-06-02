@@ -1,3 +1,4 @@
+import { BadMethodDependencyException } from "../exceptions";
 import {
 	ClientService,
 	DataTransferObjectService,
@@ -11,8 +12,7 @@ import {
 	SignatoryService,
 	TransactionService,
 	WalletDiscoveryService,
-} from "../contracts/coins";
-import { BadMethodDependencyException } from "../exceptions";
+} from "../services";
 import { Config, ConfigKey } from "./config";
 import { CoinServices, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";

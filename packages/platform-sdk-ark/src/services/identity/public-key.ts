@@ -14,8 +14,8 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PublicKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
 				publicKey: BasePublicKey.fromPassphrase(mnemonic),
@@ -25,7 +25,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		}
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.PublicKeyDataTransferObject> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
 				publicKey: BasePublicKey.fromMultiSignatureAsset({ min, publicKeys }),
@@ -35,7 +35,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.PublicKeyDataTransferObject> {
+	public async fromWIF(wif: string): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
 				publicKey: BasePublicKey.fromWIF(wif, this.#config),

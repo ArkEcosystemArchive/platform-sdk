@@ -23,8 +23,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async transfer(
-		input: Contracts.TransferInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.TransferInput,
+		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		const {
 			minFeeA,

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 
 import { AddressFactory } from "./identity/address.factory";
 
@@ -17,8 +17,8 @@ export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryServ
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject[]> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject[]> {
 		return Promise.all([
 			this.#factory.bip44(mnemonic, options),
 			this.#factory.bip49(mnemonic, options),

@@ -17,8 +17,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			if (options?.bip44) {
 				return this.#factory.bip44(mnemonic, options);
@@ -35,7 +35,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Contracts.AddressDataTransferObject> {
+	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { address } = bitcoin.payments.p2sh({
 				redeem: bitcoin.payments.p2ms({
@@ -61,8 +61,8 @@ export class AddressService extends Services.AbstractAddressService {
 	// @TODO: support for bip44/49/84
 	public async fromPublicKey(
 		publicKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { address } = bitcoin.payments.p2pkh({
 				pubkey: bitcoin.ECPair.fromPublicKey(Buffer.from(publicKey, "hex")).publicKey,
@@ -85,8 +85,8 @@ export class AddressService extends Services.AbstractAddressService {
 	// @TODO: support for bip44/49/84
 	public async fromPrivateKey(
 		privateKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { address } = bitcoin.payments.p2pkh({
 				pubkey: bitcoin.ECPair.fromPrivateKey(Buffer.from(privateKey, "hex")).publicKey,
@@ -107,7 +107,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	public async fromWIF(wif: string): Promise<Contracts.AddressDataTransferObject> {
+	public async fromWIF(wif: string): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { address } = bitcoin.payments.p2pkh({
 				pubkey: bitcoin.ECPair.fromWIF(wif).publicKey,

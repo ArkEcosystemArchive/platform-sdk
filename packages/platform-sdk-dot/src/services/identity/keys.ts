@@ -5,8 +5,8 @@ import { mnemonicToMiniSecret, naclKeypairFromSeed } from "@polkadot/util-crypto
 export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		const { publicKey, secretKey } = naclKeypairFromSeed(mnemonicToMiniSecret(mnemonic));
 
 		return { publicKey: u8aToHex(publicKey), privateKey: u8aToHex(secretKey) };
