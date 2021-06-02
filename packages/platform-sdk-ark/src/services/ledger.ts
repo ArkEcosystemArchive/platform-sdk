@@ -1,5 +1,5 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { BIP44, HDKey } from "@arkecosystem/platform-sdk-crypto";
 
 import { WalletData } from "../dto";
@@ -22,7 +22,7 @@ type LedgerDerivationScheme = {
 
 const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
-export class LedgerService implements Contracts.LedgerService {
+export class LedgerService extends Services.AbstractLedgerService {
 	readonly #config: Coins.Config;
 	readonly #identity: IdentityService;
 	readonly #client: ClientService;
@@ -30,6 +30,8 @@ export class LedgerService implements Contracts.LedgerService {
 	#transport!: ARKTransport;
 
 	private constructor(config: Coins.Config, identity: IdentityService, client: ClientService) {
+		super();
+
 		this.#config = config;
 		this.#identity = identity;
 		this.#client = client;
@@ -41,10 +43,6 @@ export class LedgerService implements Contracts.LedgerService {
 			await IdentityService.__construct(config),
 			await ClientService.__construct(config),
 		);
-	}
-
-	public async __destruct(): Promise<void> {
-		await this.disconnect();
 	}
 
 	public async connect(transport: Contracts.LedgerTransport): Promise<void> {

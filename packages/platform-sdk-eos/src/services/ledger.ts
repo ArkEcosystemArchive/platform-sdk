@@ -1,15 +1,11 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
-export class LedgerService implements Contracts.LedgerService {
+export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Contracts.LedgerTransport;
 
 	public static async __construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
-	}
-
-	public async __destruct(): Promise<void> {
-		await this.disconnect();
 	}
 
 	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
@@ -32,22 +28,10 @@ export class LedgerService implements Contracts.LedgerService {
 		return result.slice(1, 1 + result[0]).toString("hex");
 	}
 
-	public async getExtendedPublicKey(path: string): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
-	}
-
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		const signature = await this.eosSignTransaction(path, payload);
 
 		return signature;
-	}
-
-	public async signMessage(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
-	}
-
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
 	}
 
 	/**
