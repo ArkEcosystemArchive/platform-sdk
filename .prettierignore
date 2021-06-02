@@ -2,4 +2,4 @@
 dist
 docs
 packages/**/dist
-packages/**/generated
+packages/**/prisma

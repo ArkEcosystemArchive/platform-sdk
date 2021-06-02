@@ -35,12 +35,9 @@ export const featureFlags: Coins.NetworkManifestFeatureFlags = {
 		"delegates",
 		"votes",
 		"voters",
-		"configuration",
 		"fees",
-		"syncing",
 		"broadcast",
 	],
-	Fee: ["all"],
 	Identity: [
 		"address.mnemonic.bip44",
 		"address.privateKey",
