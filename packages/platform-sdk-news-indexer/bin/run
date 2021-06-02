@@ -6,7 +6,7 @@ const { subscribe } = require("../dist");
 
 const { flags, input } = require("./meow");
 
-const processName = `btc-${flags.network}-indexer`;
+const processName = "news-indexer";
 
 if (input[0] === "run") {
 	(async () => subscribe(flags))();

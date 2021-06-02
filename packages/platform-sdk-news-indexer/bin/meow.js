@@ -5,24 +5,15 @@ const meow = require("meow");
 module.exports = meow(
 	`
 	Usage
-	  $ pbtc <input>
+	  $ pnews <input>
 `,
 	{
 		flags: {
-			network: {
-				type: "string",
-				alias: "c",
-				default: "mainnet",
-			},
 			host: {
 				type: "string",
 			},
-			database: {
+			key: {
 				type: "string",
-			},
-			batchSize: {
-				type: "number",
-				default: 50,
 			},
 		},
 	},

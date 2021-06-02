@@ -27,7 +27,9 @@ export class Client {
 	 * @memberof Client
 	 */
 	public constructor(flags: Flags) {
-		this.#client = new Request().baseUrl(flags.host);
+		this.#client = new Request().baseUrl(flags.host).withHeaders({
+			'X-Blockfolio-ApiKey': flags.key,
+		});
 	}
 
 	/**
@@ -36,23 +38,22 @@ export class Client {
 	 * @returns {Promise<number>}
 	 * @memberof Client
 	 */
-	public async height(): Promise<number> {
-		return this.post<number>("getblockcount", []);
+	public async teams(symbol: string): Promise<any> {
+		return (await this.get("teams", { symbol })).results;
 	}
 
 	/**
-	 * Returns the block data for the given ID, including transactions.
+	 * Returns the latest height / block number.
 	 *
-	 * @param {number} id
-	 * @returns {Promise<Record<string, any>>}
+	 * @returns {Promise<number>}
 	 * @memberof Client
 	 */
-	public async blockWithTransactions(id: number): Promise<Record<string, any>> {
-		return this.post("getblockbyheight", [id, true, true]);
+	public async signals(team: string, query?: { cursor?: number; limit?: number; }): Promise<any> {
+		return this.get(`teams/${team}/signals`, query);
 	}
 
 	/**
-	 * Sends a HTTP POST request to the bitcoind JSON-RPC.
+	 * Sends a HTTP GET request to the source server.
 	 *
 	 * @private
 	 * @template T
@@ -61,14 +62,7 @@ export class Client {
 	 * @returns {Promise<T>}
 	 * @memberof Client
 	 */
-	private async post<T = Record<string, any>>(method: string, params: any): Promise<T> {
-		return (
-			await this.#client.post("/", {
-				jsonrpc: "1.0",
-				id: uuidv4(),
-				method,
-				params,
-			})
-		).json().result;
+	private async get<T = Record<string, any>>(path: string, query?: Record<string, any>): Promise<T> {
+		return (await this.#client.get(path, query)).json();
 	}
 }

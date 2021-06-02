@@ -1,7 +1,6 @@
 import execa from "execa";
-import PQueue from "p-queue";
-import PWaitFor from "p-wait-for";
 import path from "path";
+import { COINS } from "./constants";
 
 import { useClient, useDatabase, useLogger } from "./helpers";
 import { Logger } from "./logger";
@@ -19,36 +18,39 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	const logger: Logger = useLogger();
 	const database = useDatabase(flags, logger);
 	const client = useClient(flags);
-	const step: number = flags.batchSize;
 
-	const fetchingQueue = new PQueue({ concurrency: step });
-	const toBeProcessed: object = {};
+	// Index Teams
+	for (const [symbol, alias] of Object.entries(COINS)) {
+		const teams = await client.teams(alias);
 
-	// Get the last block we stored in the database and grab the latest block
-	// on the network so that we can sync the missing blocks to complete our
-	// copy of the blockchain to avoid holes in the historical data of users.
-	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
+		for(const team of teams) {
+			const coinModel = await database.storeCoin({ alias, symbol, coin: team.coin });
+			logger.info(`Stored COIN [${team.coin.name}] with ID [${coinModel.id}]`);
 
-	const addBlock = (blockHeight) =>
-		fetchingQueue.add(async () => (toBeProcessed[blockHeight] = await client.blockWithTransactions(blockHeight)));
-	// Load initial batch of size = {step}
-	for (let i = localHeight; i < Math.min(localHeight + step, remoteHeight); i++) {
-		logger.info(`adding block ${i} to queue`);
-		void addBlock(i);
-	}
+			const teamModel = await database.storeTeam({ coin: coinModel, symbol, team });
+			logger.info(`Stored TEAM [${teamModel.name}] with ID [${teamModel.id}]`);
 
-	// Process sequential, in order and with no gaps
-	for (let j = localHeight; j <= remoteHeight; j++) {
-		logger.info(`processing block ${j}`);
-		await PWaitFor(() => toBeProcessed[j] !== undefined);
-		await database.storeBlockWithTransactions(toBeProcessed[j]);
+			// Index Signals
+			const initialResponse = await client.signals(teamModel.uuid);
 
-		// Schedule fetching of next block (if still not done)
-		const nextBlock: number = j + step;
-		if (nextBlock < remoteHeight) {
-			void addBlock(nextBlock);
+			let signals = initialResponse.results;
+            let hasMore = initialResponse.cursor.next !== undefined;
+            while (hasMore) {
+				const { results, cursor } = await client.signals(team.uuid, initialResponse.cursor.next);
+
+				hasMore = cursor.next !== undefined
+				signals = signals.concat(results);
+            }
+
+			for(const signal of signals) {
+				const signalModel = await database.storeSignal({ team: teamModel, signal });
+
+				logger.info(`Stored SIGNAL [${signalModel.title}] with ID [${signalModel.id}]`);
+			}
 		}
 	}
+
+	process.exit();
 };
 
 const runMigrations = async (): Promise<void> => {
