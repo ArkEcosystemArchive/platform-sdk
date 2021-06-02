@@ -33,7 +33,7 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 				},
 			});
@@ -54,7 +54,7 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 				},
 			});
@@ -74,7 +74,7 @@ describe("TransactionService", () => {
 						}),
 					),
 					data: {
-						amount: "1",
+						amount: 1,
 						to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 					},
 				},
@@ -99,7 +99,7 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 					expiration: 102,
 				},
@@ -126,7 +126,7 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 				},
 			});
@@ -231,9 +231,9 @@ describe("TransactionService", () => {
 				),
 				data: {
 					payments: [
-						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
-						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
-						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
+						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
+						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
+						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
 					],
 				},
 			});
@@ -273,7 +273,7 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 					secretHash: "0f128d401958b1b30ad0d10406f47f9489321017b4614e6cb993fc63913c5454",
 					expiration: {

@@ -158,7 +158,7 @@ it.skip(`can send a transfer`, async function () {
 
 	const wallet2 = data[1]; // Mariano's
 	const to: string = wallet2.addresses.spend[2];
-	const amount: string = "1200000";
+	const amount: number = 1.2;
 
 	const tx = await subject.transfer({
 		signatory: new Signatories.Signatory(

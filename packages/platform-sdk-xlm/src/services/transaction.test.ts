@@ -33,7 +33,7 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to: identity.address,
 				},
 			});
