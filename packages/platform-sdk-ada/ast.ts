@@ -1,4 +1,11 @@
-import { ClassDeclaration, Project, SourceFile, OptionalKind, VariableDeclarationKind, VariableStatementStructure } from "ts-morph";
+import {
+	ClassDeclaration,
+	Project,
+	SourceFile,
+	OptionalKind,
+	VariableDeclarationKind,
+	VariableStatementStructure,
+} from "ts-morph";
 
 // setup
 const project: Project = new Project();

@@ -2,16 +2,16 @@
 
 import { TransactionDataCollection, WalletDataCollection } from "../coins";
 import {
-	ClientService,
-	TransactionDataType,
-	VoteReport,
 	BroadcastResponse,
-	ClientWalletsInput,
+	ClientService,
 	ClientTransactionsInput,
-	TransactionDetailInput,
-	WalletData,
+	ClientWalletsInput,
 	KeyValuePair,
 	SignedTransactionData,
+	TransactionDataType,
+	TransactionDetailInput,
+	VoteReport,
+	WalletData,
 } from "../contracts";
 import { NotImplemented } from "../exceptions";
 
