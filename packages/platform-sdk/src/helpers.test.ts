@@ -10,7 +10,13 @@ import {
 	randomHostFromConfig,
 } from "./helpers";
 
-class TransactionData {
+abstract class AbstractTransactionData {
+	public withDecimals(): this {
+		return this;
+	}
+}
+
+class TransactionData extends AbstractTransactionData {
 	public isDelegateRegistration(): boolean {
 		return false;
 	}
@@ -64,18 +70,18 @@ class TransactionData {
 	}
 }
 
-class DelegateRegistrationData {}
-class DelegateResignationData {}
-class HtlcClaimData {}
-class HtlcLockData {}
-class HtlcRefundData {}
-class IpfsData {}
-class MultiPaymentData {}
-class MultiSignatureData {}
-class SecondSignatureData {}
-class TransferData {}
-class VoteData {}
-class UnvoteData {}
+class DelegateRegistrationData extends AbstractTransactionData {}
+class DelegateResignationData extends AbstractTransactionData {}
+class HtlcClaimData extends AbstractTransactionData {}
+class HtlcLockData extends AbstractTransactionData {}
+class HtlcRefundData extends AbstractTransactionData {}
+class IpfsData extends AbstractTransactionData {}
+class MultiPaymentData extends AbstractTransactionData {}
+class MultiSignatureData extends AbstractTransactionData {}
+class SecondSignatureData extends AbstractTransactionData {}
+class TransferData extends AbstractTransactionData {}
+class VoteData extends AbstractTransactionData {}
+class UnvoteData extends AbstractTransactionData {}
 
 afterEach(() => jest.restoreAllMocks());
 
