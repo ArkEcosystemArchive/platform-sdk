@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import dotify from "node-dotify";
 
 import { WalletData } from "../dto";
@@ -10,12 +10,14 @@ interface BroadcastError {
 	message: string;
 }
 
-export class ClientService implements Contracts.ClientService {
+export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #http: Contracts.HttpClient;
 	readonly #network: string;
 
 	private constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#network = config.get<string>("network.id");
@@ -23,10 +25,6 @@ export class ClientService implements Contracts.ClientService {
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService(config);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transaction(
