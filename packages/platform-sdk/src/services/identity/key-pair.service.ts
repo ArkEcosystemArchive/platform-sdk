@@ -1,9 +1,10 @@
 /* istanbul ignore file */
 
-import { IdentityOptions, KeyPairService as Contract, KeyPairDataTransferObject } from "../../contracts";
+import { KeyPairService, KeyPairDataTransferObject } from "./key-pair.contract";
 import { NotImplemented } from "../../exceptions";
+import { IdentityOptions } from "./shared.contract";
 
-export abstract class AbstractKeyPairService implements Contract {
+export abstract class AbstractKeyPairService implements KeyPairService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<KeyPairDataTransferObject> {
 		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
 	}

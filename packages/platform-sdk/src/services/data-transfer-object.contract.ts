@@ -1,4 +1,4 @@
-import { SignedTransactionData, TransactionDataType } from "./data";
+import { SignedTransactionData, TransactionDataType } from "../contracts/coins/data";
 
 export interface DataTransferObjectService {
 	__destruct(): Promise<void>;

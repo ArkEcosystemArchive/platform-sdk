@@ -1,4 +1,4 @@
-import { IdentityOptions } from "./shared";
+import { IdentityOptions } from "./shared.contract";
 
 export interface AddressDataTransferObject {
 	type: "bip39" | "bip44" | "bip49" | "bip84" | "ss58" | "rfc6979" | "bip44.legacy";

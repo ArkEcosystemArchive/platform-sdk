@@ -1,4 +1,4 @@
-import { WalletData } from "./data";
+import { WalletData } from "../contracts";
 
 export interface LedgerOptions {
 	transport: LedgerTransport;

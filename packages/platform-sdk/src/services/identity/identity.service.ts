@@ -8,7 +8,7 @@ import {
 	PrivateKeyService,
 	PublicKeyService,
 	WIFService,
-} from "../../contracts";
+} from "../identity.contract";
 
 interface Services {
 	address: AddressService;

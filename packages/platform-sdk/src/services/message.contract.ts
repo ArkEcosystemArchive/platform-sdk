@@ -1,4 +1,4 @@
-import { Signatory } from "../../signatories/signatory";
+import { Signatory } from "../signatories";
 
 export interface MessageService {
 	__destruct(): Promise<void>;

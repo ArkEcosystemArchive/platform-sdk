@@ -1,9 +1,10 @@
 /* istanbul ignore file */
 
-import { IdentityOptions, PrivateKeyService as Contract, PrivateKeyDataTransferObject } from "../../contracts";
+import { PrivateKeyService, PrivateKeyDataTransferObject } from "./private-key.contract";
 import { NotImplemented } from "../../exceptions";
+import { IdentityOptions } from "./shared.contract";
 
-export abstract class AbstractPrivateKeyService implements Contract {
+export abstract class AbstractPrivateKeyService implements PrivateKeyService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<PrivateKeyDataTransferObject> {
 		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
 	}

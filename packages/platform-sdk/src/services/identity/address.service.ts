@@ -1,9 +1,10 @@
 /* istanbul ignore file */
 
-import { IdentityOptions, AddressService as Contract, AddressDataTransferObject } from "../../contracts";
+import { AddressService, AddressDataTransferObject } from "./address.contract";
 import { NotImplemented } from "../../exceptions";
+import { IdentityOptions } from "./shared.contract";
 
-export abstract class AbstractAddressService implements Contract {
+export abstract class AbstractAddressService implements AddressService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<AddressDataTransferObject> {
 		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
 	}

@@ -1,9 +1,10 @@
 /* istanbul ignore file */
 
-import { IdentityOptions, WIFService as Contract, WIFDataTransferObject } from "../../contracts";
+import { WIFService, WIFDataTransferObject } from "./wif.contract";
 import { NotImplemented } from "../../exceptions";
+import { IdentityOptions } from "./shared.contract";
 
-export abstract class AbstractWIFService implements Contract {
+export abstract class AbstractWIFService implements WIFService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<WIFDataTransferObject> {
 		throw new NotImplemented(this.constructor.name, "fromPrivateKey");
 	}

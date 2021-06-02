@@ -1,7 +1,8 @@
 /* istanbul ignore file */
 
-import { DataTransferObjectService, SignedTransactionData, TransactionDataType } from "../contracts";
+import { SignedTransactionData, TransactionDataType } from "../contracts";
 import { NotImplemented } from "../exceptions";
+import { DataTransferObjectService } from "./data-transfer-object.contract";
 
 export abstract class AbstractDataTransferObjectService implements DataTransferObjectService {
 	public async __destruct(): Promise<void> {

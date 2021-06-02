@@ -3,17 +3,14 @@
 import { TransactionDataCollection, WalletDataCollection } from "../coins";
 import {
 	ClientService,
-	TransactionDataType,
 	VoteReport,
 	BroadcastResponse,
 	ClientWalletsInput,
 	ClientTransactionsInput,
 	TransactionDetailInput,
-	WalletData,
-	KeyValuePair,
-	SignedTransactionData,
-} from "../contracts";
+} from "./client.contract";
 import { NotImplemented } from "../exceptions";
+import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
 
 export abstract class AbstractClientService implements ClientService {
 	public async __destruct(): Promise<void> {

@@ -1,4 +1,4 @@
-import { SignedTransactionData } from "./data";
+import { SignedTransactionData } from "../contracts";
 
 export type MultiSignatureTransaction = Record<string, any>;
 

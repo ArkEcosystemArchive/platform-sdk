@@ -1,4 +1,4 @@
-import { IdentityOptions } from "./shared";
+import { IdentityOptions } from "./shared.contract";
 
 export interface WIFDataTransferObject {
 	wif: string;

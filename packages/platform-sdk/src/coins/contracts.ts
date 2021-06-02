@@ -1,8 +1,10 @@
 import {
+	HttpClient,
+} from "../contracts/coins";
+import {
 	ClientService,
 	DataTransferObjectService,
 	FeeService,
-	HttpClient,
 	IdentityService,
 	KnownWalletService,
 	LedgerService,
@@ -12,7 +14,7 @@ import {
 	SignatoryService,
 	TransactionService,
 	WalletDiscoveryService,
-} from "../contracts/coins";
+} from "../services";
 import { CoinManifest } from "./network.models";
 
 export interface CoinSpec {

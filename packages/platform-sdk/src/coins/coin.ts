@@ -11,7 +11,7 @@ import {
 	SignatoryService,
 	TransactionService,
 	WalletDiscoveryService,
-} from "../contracts/coins";
+} from "../services";
 import { BadMethodDependencyException } from "../exceptions";
 import { Config, ConfigKey } from "./config";
 import { CoinServices, CoinSpec } from "./contracts";

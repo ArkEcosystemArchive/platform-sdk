@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
-import { IdentityOptions, IdentityService, SignatoryService } from "../contracts";
+import { IdentityOptions, IdentityService } from "./identity.contract";
+import { SignatoryService } from "./signatory.contract";
 import {
 	MnemonicSignatory,
 	MultiMnemonicSignatory,

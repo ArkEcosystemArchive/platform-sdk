@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { MessageInput, MessageService, SignedMessage } from "../contracts";
+import { MessageInput, MessageService, SignedMessage } from "./message.contract";
 import { NotImplemented } from "../exceptions";
 
 export abstract class AbstractMessageService implements MessageService {

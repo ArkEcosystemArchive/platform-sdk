@@ -9,16 +9,15 @@ import {
 	IpfsInput,
 	MultiPaymentInput,
 	MultiSignatureInput,
-	RawTransactionData,
 	SecondSignatureInput,
-	SignedTransactionData,
 	TransactionInputs,
 	TransactionOptions,
 	TransactionService as Contract,
 	TransferInput,
 	VoteInput,
-} from "../contracts";
+} from "./transaction.contract";
 import { NotImplemented } from "../exceptions";
+import { RawTransactionData, SignedTransactionData } from "../contracts";
 
 export abstract class AbstractTransactionService implements Contract {
 	public async __destruct(): Promise<void> {

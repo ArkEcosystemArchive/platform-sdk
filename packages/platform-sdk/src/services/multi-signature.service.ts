@@ -1,7 +1,8 @@
 /* istanbul ignore file */
 
-import { MultiSignatureService, MultiSignatureTransaction, SignedTransactionData } from "../contracts";
+import { MultiSignatureService, MultiSignatureTransaction } from "./multi-signature.contract";
 import { NotImplemented } from "../exceptions";
+import { SignedTransactionData } from "../contracts";
 
 export abstract class AbstractMultiSignatureService implements MultiSignatureService {
 	public async __destruct(): Promise<void> {

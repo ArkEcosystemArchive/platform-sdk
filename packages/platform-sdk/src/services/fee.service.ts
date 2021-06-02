@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { FeeService, TransactionFees } from "../contracts";
+import { FeeService, TransactionFees } from "./fee.contract";
 import { NotImplemented } from "../exceptions";
 
 export abstract class AbstractFeeService implements FeeService {

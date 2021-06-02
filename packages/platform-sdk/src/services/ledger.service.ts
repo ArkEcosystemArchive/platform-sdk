@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { LedgerService, LedgerTransport, LedgerWalletList } from "../contracts";
+import { LedgerService, LedgerTransport, LedgerWalletList } from "./ledger.contract";
 import { NotImplemented } from "../exceptions";
 
 export abstract class AbstractLedgerService implements LedgerService {
