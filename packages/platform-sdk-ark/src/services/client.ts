@@ -44,7 +44,7 @@ export class ClientService extends Services.AbstractClientService {
 			: await this.post("transactions/search", this.createSearchParams(query));
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response.data.map(data => [data, this.#decimals]),
+			response.data.map((data) => [data, this.#decimals]),
 			this.createMetaPagination(response),
 			TransactionDTO,
 		);

@@ -8,7 +8,10 @@ import { MetaPagination } from "./services";
 type AbstractConstructorParameters<T> = ConstructorParameters<(new (...args) => unknown) & T>;
 type TransactionDataArgs = AbstractConstructorParameters<typeof AbstractTransactionData>;
 
-export const createTransactionDataWithType = (args: TransactionDataArgs, dtos: Record<string, any>): TransactionDataType => {
+export const createTransactionDataWithType = (
+	args: TransactionDataArgs,
+	dtos: Record<string, any>,
+): TransactionDataType => {
 	const instance: TransactionDataType = new dtos.TransactionData(...args);
 
 	if (instance.isDelegateRegistration()) {
