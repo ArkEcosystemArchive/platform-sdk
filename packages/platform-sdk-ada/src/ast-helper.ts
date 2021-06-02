@@ -30,7 +30,6 @@ const updaters = {
 };
 
 export class Updater {
-
 	readonly #project: Project;
 
 	constructor() {
@@ -67,9 +66,7 @@ export class Updater {
 			}
 		}
 
-		console.log(
-			`🌍 ADA supports ${countSupported} out of ${knownMethods.length} methods for the ${className}`,
-		);
+		console.log(`🌍 ADA supports ${countSupported} out of ${knownMethods.length} methods for the ${className}`);
 		return members;
 	}
 
