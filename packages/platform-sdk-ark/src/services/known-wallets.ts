@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 
 export class KnownWalletService extends Services.AbstractKnownWalletService {
 	readonly #httpClient: Contracts.HttpClient;
