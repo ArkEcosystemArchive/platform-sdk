@@ -13,8 +13,8 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PublicKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PublicKeyDataTransferObject> {
 		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,
@@ -26,7 +26,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		};
 	}
 
-	public async fromSecret(secret: string): Promise<Contracts.PublicKeyDataTransferObject> {
+	public async fromSecret(secret: string): Promise<Services.PublicKeyDataTransferObject> {
 		return { publicKey: deriveKeypair(secret).publicKey };
 	}
 }

@@ -15,8 +15,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		if (!BIP39.validate(mnemonic)) {
 			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
 		}
@@ -38,8 +38,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPublicKey(
 		publicKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: base58.encode(Buffer.from(publicKey, "hex")),
@@ -48,8 +48,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPrivateKey(
 		privateKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: base58.encode(derivePublicKey(Buffer.from(privateKey, "hex"))),

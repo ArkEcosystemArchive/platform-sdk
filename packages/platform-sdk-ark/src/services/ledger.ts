@@ -26,7 +26,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	readonly #config: Coins.Config;
 	readonly #identity: IdentityService;
 	readonly #client: ClientService;
-	#ledger: Contracts.LedgerTransport;
+	#ledger: Services.LedgerTransport;
 	#transport!: ARKTransport;
 
 	private constructor(config: Coins.Config, identity: IdentityService, client: ClientService) {
@@ -45,7 +45,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 		);
 	}
 
-	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
 		this.#transport = new ARKTransport(this.#ledger);
 	}
@@ -74,7 +74,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Contracts.LedgerWalletList> {
+	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.#config.get<number>("network.constants.slip44");
@@ -151,8 +151,8 @@ export class LedgerService extends Services.AbstractLedgerService {
 		} while (hasMore);
 
 		// Create a mapping of paths and wallets that have been found.
-		const cold: Contracts.LedgerWalletList = {};
-		const used: Contracts.LedgerWalletList = {};
+		const cold: Services.LedgerWalletList = {};
+		const used: Services.LedgerWalletList = {};
 
 		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
 			const matchingWallet: Contracts.WalletData | undefined = wallets.find(

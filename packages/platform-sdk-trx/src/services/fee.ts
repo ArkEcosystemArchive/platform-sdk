@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class FeeService extends Services.AbstractFeeService {
@@ -6,8 +6,8 @@ export class FeeService extends Services.AbstractFeeService {
 		return new FeeService();
 	}
 
-	public async all(): Promise<Contracts.TransactionFees> {
-		const fee: Contracts.TransactionFee = {
+	public async all(): Promise<Services.TransactionFees> {
+		const fee: Services.TransactionFee = {
 			static: BigNumber.ZERO.toString(),
 			max: BigNumber.ZERO.toString(),
 			min: BigNumber.ZERO.toString(),

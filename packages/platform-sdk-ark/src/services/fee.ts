@@ -15,7 +15,7 @@ export class FeeService extends Services.AbstractFeeService {
 		return new FeeService(config);
 	}
 
-	public async all(): Promise<Contracts.TransactionFees> {
+	public async all(): Promise<Services.TransactionFees> {
 		const node = await this.get("node/fees");
 		const type = await this.get("transactions/fees");
 
@@ -43,7 +43,7 @@ export class FeeService extends Services.AbstractFeeService {
 		typeGroup: number,
 		staticFees: object,
 		dynamicFees: object,
-	): Contracts.TransactionFee {
+	): Services.TransactionFee {
 		const dynamicFee = dynamicFees[typeGroup][type];
 
 		return {

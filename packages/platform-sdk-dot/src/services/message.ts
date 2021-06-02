@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { Keyring } from "@polkadot/keyring";
 import { hexToU8a, stringToU8a, u8aToHex } from "@polkadot/util";
 import { signatureVerify } from "@polkadot/util-crypto";
@@ -20,7 +20,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService(config);
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const keypair = this.#keyring.addFromUri(input.signatory.signingKey());
 
@@ -34,7 +34,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return signatureVerify(stringToU8a(input.message), hexToU8a(input.signature), input.signatory).isValid;
 		} catch (error) {

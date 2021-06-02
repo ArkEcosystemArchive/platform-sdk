@@ -15,8 +15,8 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			const wallet: Wallet = createWallet(
 				mnemonic,
@@ -35,7 +35,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
+	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			const wallet: Wallet = Wallet.fromPrivateKey(Buffoon.fromHex(privateKey));
 

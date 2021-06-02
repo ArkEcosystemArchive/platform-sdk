@@ -6,8 +6,8 @@ import { makeAccount } from "../helpers";
 export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		const account = makeAccount();
 		account.loadFromMnemonic(mnemonic);
 
@@ -16,8 +16,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPrivateKey(
 		privateKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		const account = makeAccount();
 		account.loadFromHexPrivateKey(privateKey);
 

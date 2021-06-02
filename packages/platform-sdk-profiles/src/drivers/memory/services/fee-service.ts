@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
 import { DataRepository } from "../../../repositories/data-repository";
@@ -10,8 +10,8 @@ export class FeeService implements IFeeService {
 	readonly #dataRepository: DataRepository = new DataRepository();
 
 	/** {@inheritDoc IFeeService.all} */
-	public all(coin: string, network: string): Contracts.TransactionFees {
-		const result: Contracts.TransactionFees | undefined = this.#dataRepository.get(`${coin}.${network}.fees`);
+	public all(coin: string, network: string): Services.TransactionFees {
+		const result: Services.TransactionFees | undefined = this.#dataRepository.get(`${coin}.${network}.fees`);
 
 		if (result === undefined) {
 			throw new Error(
@@ -23,7 +23,7 @@ export class FeeService implements IFeeService {
 	}
 
 	/** {@inheritDoc IFeeService.findByType} */
-	public findByType(coin: string, network: string, type: string): Contracts.TransactionFee {
+	public findByType(coin: string, network: string, type: string): Services.TransactionFee {
 		return this.all(coin, network)[type];
 	}
 

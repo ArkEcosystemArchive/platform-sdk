@@ -5,8 +5,8 @@ import * as bitcoin from "bitcoinjs-lib";
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PrivateKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			return { privateKey: BIP32.fromMnemonic(mnemonic).privateKey!.toString("hex") };
 		} catch (error) {
@@ -14,7 +14,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.PrivateKeyDataTransferObject> {
+	public async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			const { privateKey } = bitcoin.ECPair.fromWIF(wif);
 

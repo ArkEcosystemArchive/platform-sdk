@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import { privateToPublic, sign, verify } from "../crypto";
 
@@ -7,7 +7,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService();
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			return {
 				message: input.message,
@@ -19,7 +19,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return verify(input.signature, input.message, input.signatory);
 		} catch (error) {

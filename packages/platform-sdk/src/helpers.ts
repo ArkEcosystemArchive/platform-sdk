@@ -1,7 +1,8 @@
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Config, NetworkHost, NetworkHostType, TransactionDataCollection } from "./coins";
-import { MetaPagination, TransactionDataType } from "./contracts";
+import { TransactionDataType } from "./contracts";
 import { AbstractTransactionData } from "./dto";
+import { MetaPagination } from "./services";
 
 // TODO: following line unnecessary in TypeScript 4.3+
 type AbstractConstructorParameters<T> = ConstructorParameters<(new (...args) => unknown) & T>;

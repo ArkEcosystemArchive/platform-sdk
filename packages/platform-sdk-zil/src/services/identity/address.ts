@@ -15,8 +15,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: (await accountFromMnemonic(this.#wallet, mnemonic, options)).bech32Address,
@@ -25,8 +25,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPrivateKey(
 		privateKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: (await accountFromPrivateKey(this.#wallet, privateKey)).bech32Address,

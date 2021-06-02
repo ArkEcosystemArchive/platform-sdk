@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { IProfile, IReadWriteWallet, ITransactionAggregate } from "../../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../../dto";
 
@@ -11,7 +11,7 @@ type HistoryWallet = ExtendedTransactionDataCollection;
 
 type AggregateQuery = {
 	addresses?: string[];
-} & Contracts.ClientPagination;
+} & Services.ClientPagination;
 
 export class TransactionAggregate implements ITransactionAggregate {
 	readonly #profile: IProfile;

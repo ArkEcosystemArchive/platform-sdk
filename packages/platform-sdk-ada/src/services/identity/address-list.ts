@@ -7,22 +7,22 @@ export class ExtendedAddressService extends Services.AbstractExtendedAddressServ
 	public async fromMnemonic(
 		mnemonic: string,
 		pageSize: number,
-	): Promise<Contracts.ExtendedAddressDataTransferObject[]> {
+	): Promise<Services.ExtendedAddressDataTransferObject[]> {
 		return this.deriveAddresses(deriveAccountKey(deriveRootKey(mnemonic), 0), pageSize);
 	}
 
 	public async fromPrivateKey(
 		privateKey: string,
 		pageSize: number,
-	): Promise<Contracts.ExtendedAddressDataTransferObject[]> {
+	): Promise<Services.ExtendedAddressDataTransferObject[]> {
 		return this.deriveAddresses(Bip32PrivateKey.from_bech32(privateKey), pageSize);
 	}
 
 	private async deriveAddresses(
 		accountKey: Bip32PrivateKey,
 		pageSize: number,
-	): Promise<Contracts.ExtendedAddressDataTransferObject[]> {
-		const addresses: Contracts.ExtendedAddressDataTransferObject[] = [];
+	): Promise<Services.ExtendedAddressDataTransferObject[]> {
+		const addresses: Services.ExtendedAddressDataTransferObject[] = [];
 
 		for (let i = 0; i < pageSize; ++i) {
 			addresses.push({

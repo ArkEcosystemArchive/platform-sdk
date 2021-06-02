@@ -31,14 +31,14 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transaction(
 		id: string,
-		input?: Contracts.TransactionDetailInput,
+		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.get(`transactions/${id}`);
 
 		return Helpers.createTransactionDataWithType([body.data, this.#decimals], TransactionDTO);
 	}
 
-	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const response = this.isUpcoming()
 			? await this.get("transactions", this.createSearchParams(query))
 			: await this.post("transactions/search", this.createSearchParams(query));
@@ -56,7 +56,7 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(body.data);
 	}
 
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
+	public async wallets(query: Services.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
 		const response = this.isUpcoming()
 			? await this.get("wallets", this.createSearchParams(query))
 			: await this.post("wallets/search", this.createSearchParams(query));
@@ -82,7 +82,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async votes(id: string): Promise<Contracts.VoteReport> {
+	public async votes(id: string): Promise<Services.VoteReport> {
 		const { data } = await this.get(`wallets/${id}`);
 
 		const hasVoted = data.attributes?.vote !== undefined;
@@ -103,7 +103,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		let response: Contracts.KeyValuePair;
 
 		try {
@@ -137,7 +137,7 @@ export class ClientService extends Services.AbstractClientService {
 		).json();
 	}
 
-	private createMetaPagination(body): Contracts.MetaPagination {
+	private createMetaPagination(body): Services.MetaPagination {
 		const getPage = (url: string): string | undefined => {
 			const match: RegExpExecArray | null = RegExp(/page=(\d+)/).exec(url);
 
@@ -152,7 +152,7 @@ export class ClientService extends Services.AbstractClientService {
 		};
 	}
 
-	private createSearchParams(body: Contracts.ClientPagination): { body: object | null; searchParams: object | null } {
+	private createSearchParams(body: Services.ClientPagination): { body: object | null; searchParams: object | null } {
 		if (Object.keys(body).length <= 0) {
 			return { body: null, searchParams: null };
 		}
@@ -204,10 +204,10 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private handleBroadcastResponse(response): Contracts.BroadcastResponse {
+	private handleBroadcastResponse(response): Services.BroadcastResponse {
 		const { data, errors } = response;
 
-		const result: Contracts.BroadcastResponse = {
+		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { BIP39, BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { Avalanche, BinTools, Buffer } from "avalanche";
 import { AVMAPI, KeyPair } from "avalanche/dist/apis/avm";
@@ -36,7 +36,7 @@ export const cb58Encode = (value: Buffer): string => BinTools.getInstance().cb58
 export const keyPairFromMnemonic = (
 	config: Coins.Config,
 	mnemonic: string,
-	options?: Contracts.IdentityOptions,
+	options?: Services.IdentityOptions,
 ): { child: KeyPair; path: string } => {
 	const path = BIP44.stringify({
 		coinType: config.get(Coins.ConfigKey.Slip44),

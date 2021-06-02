@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { Ed25519Signature, PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { deriveRootKey } from "./identity/shelley";
@@ -8,7 +8,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService();
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const privateKey = deriveRootKey(input.signatory.signingKey());
 
@@ -22,7 +22,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return PublicKey.from_bech32(input.signatory).verify(
 				Buffer.from(input.message, "utf8"),

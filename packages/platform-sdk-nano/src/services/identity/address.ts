@@ -7,8 +7,8 @@ import { deriveAccount } from "./helpers";
 export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: deriveAccount(mnemonic, options?.bip44?.account).address,
@@ -17,8 +17,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPublicKey(
 		publicKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: nanocurrency.deriveAddress(publicKey),
@@ -27,8 +27,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPrivateKey(
 		privateKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: nanocurrency.deriveAddress(nanocurrency.derivePublicKey(privateKey)),

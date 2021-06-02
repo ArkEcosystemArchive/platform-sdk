@@ -1,7 +1,8 @@
+import { Services } from "@arkecosystem/platform-sdk";
+
 import { Avatar } from "../../../helpers/avatar";
-import { IProfile, IReadWriteWallet, WalletData, WalletSetting } from "../../../contracts";
+import { IReadWriteWallet, WalletData, WalletSetting } from "../../../contracts";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export class WalletMutator implements IWalletMutator {
 	readonly #wallet: IReadWriteWallet;
@@ -46,7 +47,7 @@ export class WalletMutator implements IWalletMutator {
 	}
 
 	/** {@inheritDoc IWalletMutator.identity} */
-	public async identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void> {
+	public async identity(mnemonic: string, options?: Services.IdentityOptions): Promise<void> {
 		const { type, address, path } = await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options);
 
 		/* istanbul ignore next */
@@ -73,7 +74,7 @@ export class WalletMutator implements IWalletMutator {
 
 	/** {@inheritDoc IWalletMutator.address} */
 	public async address(
-		{ address, path, type }: Partial<Contracts.AddressDataTransferObject>,
+		{ address, path, type }: Partial<Services.AddressDataTransferObject>,
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
 	): Promise<void> {
 		if (options.validate && address) {

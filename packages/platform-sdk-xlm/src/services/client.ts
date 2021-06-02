@@ -31,7 +31,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transaction(
 		id: string,
-		input?: Contracts.TransactionDetailInput,
+		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
@@ -45,7 +45,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const { records, next, prev } = await this.#client.payments().forAccount(query.address).call();
 
 		return Helpers.createTransactionDataCollectionWithType(
@@ -64,8 +64,8 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(await this.#client.loadAccount(id));
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		const result: Contracts.BroadcastResponse = {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},

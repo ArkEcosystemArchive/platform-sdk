@@ -12,8 +12,8 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,

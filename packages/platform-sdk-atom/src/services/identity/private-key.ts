@@ -13,8 +13,8 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PrivateKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			const keys = new KeyPairService(this.#config);
 			const { privateKey } = await keys.fromMnemonic(mnemonic);

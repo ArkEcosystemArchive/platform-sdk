@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Services } from "@arkecosystem/platform-sdk";
 import { pqueueSettled } from "../../../../helpers";
 
 export interface IDelegateSyncer {
@@ -6,9 +6,9 @@ export interface IDelegateSyncer {
 }
 
 export class ParallelDelegateSyncer implements IDelegateSyncer {
-	readonly #clientService: Contracts.ClientService;
+	readonly #clientService: Services.ClientService;
 
-	public constructor(clientService: Contracts.ClientService) {
+	public constructor(clientService: Services.ClientService) {
 		this.#clientService = clientService;
 	}
 
@@ -45,15 +45,15 @@ export class ParallelDelegateSyncer implements IDelegateSyncer {
 }
 
 export class SerialDelegateSyncer implements IDelegateSyncer {
-	readonly #client: Contracts.ClientService;
+	readonly #client: Services.ClientService;
 
-	public constructor(client: Contracts.ClientService) {
+	public constructor(client: Services.ClientService) {
 		this.#client = client;
 	}
 
 	public async sync(): Promise<Contracts.WalletData[]> {
 		const result: Contracts.WalletData[] = [];
-		let options: Contracts.ClientPagination = {};
+		let options: Services.ClientPagination = {};
 
 		let lastResponse;
 		do {

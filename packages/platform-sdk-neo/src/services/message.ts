@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import Neon, { wallet } from "@cityofzion/neon-js";
 
 export class MessageService extends Services.AbstractMessageService {
@@ -6,7 +6,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService();
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const account = new wallet.Account(input.signatory.signingKey());
 			const signature = Neon.sign.message(input.message, account.privateKey);
@@ -17,7 +17,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return Neon.verify.message(input.message, input.signature, input.signatory);
 		} catch (error) {

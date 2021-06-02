@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { Wallet, Account } from "@zilliqa-js/account";
 import { bytes, units, BN } from "@zilliqa-js/zilliqa";
 
@@ -24,7 +24,7 @@ export const getZilliqaVersion = (config: Coins.Config) => {
 export const accountFromMnemonic = async (
 	wallet: Wallet,
 	mnemonic: string,
-	options?: Contracts.IdentityOptions,
+	options?: Services.IdentityOptions,
 ): Promise<Account> => {
 	const index = options?.bip44?.addressIndex;
 	const address = wallet.addByMnemonic(mnemonic, index); // TODO: is second argument correct?

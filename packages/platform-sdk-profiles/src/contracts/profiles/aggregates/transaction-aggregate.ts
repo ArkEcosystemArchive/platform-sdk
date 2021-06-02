@@ -1,9 +1,9 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Contracts, Services } from "@arkecosystem/platform-sdk";
 import { ExtendedTransactionDataCollection } from "../../../dto/transaction-collection";
 
 type AggregateQuery = {
 	addresses?: string[];
-} & Contracts.ClientPagination;
+} & Services.ClientPagination;
 
 /**
  * Defines the implementation contract for the transaction aggregate.

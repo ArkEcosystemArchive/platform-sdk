@@ -31,7 +31,7 @@ export class ClientService extends Services.AbstractClientService {
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-transaction-information
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-table-information
-	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
 	}
 
@@ -40,7 +40,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-transfer-an-eosio-token
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result = await this.#api.transact(
 			{
 				actions: [
