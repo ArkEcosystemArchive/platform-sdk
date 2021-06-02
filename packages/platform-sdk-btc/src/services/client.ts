@@ -36,7 +36,9 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return Helpers.createTransactionDataWithType(await this.get(`transactions/${id}`), TransactionDTO).withDecimals(this.#decimals);
+		return Helpers.createTransactionDataWithType(await this.get(`transactions/${id}`), TransactionDTO).withDecimals(
+			this.#decimals,
+		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
