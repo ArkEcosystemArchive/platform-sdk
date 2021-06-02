@@ -33,13 +33,13 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "420.69",
+					amount: 100,
 					to: identity.address,
 				},
 			});
 
 			expect(result).toBeInstanceOf(SignedTransactionData);
-			expect(result.amount().toString()).toBe("420690000000000000000000000000000");
+			expect(result.amount().toString()).toBe("100000000000000000000000000000000");
 		});
 	});
 });

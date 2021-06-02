@@ -589,12 +589,12 @@ export interface IReadWriteWallet {
 	actsWithPrivateKey(): boolean;
 
 	/**
-	 * Determines if the wallet has been imported with a address with ledger path.
+	 * Determines if the wallet has been imported with an address with a derivation path.
 	 *
 	 * @return {*}  {boolean}
 	 * @memberof IReadWriteWallet
 	 */
-	actsWithAddressWithLedgerPath(): boolean;
+	actsWithAddressWithDerivationPath(): boolean;
 
 	/**
 	 * Determines if the wallet has been imported with a mnemonic with encryption.

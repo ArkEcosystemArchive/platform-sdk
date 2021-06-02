@@ -1,20 +1,18 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
-export class LedgerService implements Contracts.LedgerService {
+export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Contracts.LedgerTransport;
 	#bip44SessionPath: string;
 
 	private constructor() {
+		super();
+
 		this.#bip44SessionPath = "";
 	}
 
 	public static async __construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
-	}
-
-	public async __destruct(): Promise<void> {
-		await this.disconnect();
 	}
 
 	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
@@ -38,10 +36,6 @@ export class LedgerService implements Contracts.LedgerService {
 		return result.toString("hex").substring(0, 130);
 	}
 
-	public async getExtendedPublicKey(path: string): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
-	}
-
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		if (this.#bip44SessionPath != path || this.#bip44SessionPath.length == 0) {
 			throw new Error(
@@ -54,14 +48,6 @@ export class LedgerService implements Contracts.LedgerService {
 		const signature = await this.neoSignTransaction(this.#ledger, path, payload);
 
 		return signature;
-	}
-
-	public async signMessage(path: string, payload: Buffer): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signMessage");
-	}
-
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
 	}
 
 	/**

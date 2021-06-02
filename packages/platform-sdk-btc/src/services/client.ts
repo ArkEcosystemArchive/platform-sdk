@@ -1,9 +1,9 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
-export class ClientService implements Contracts.ClientService {
+export class ClientService extends Services.AbstractClientService {
 	readonly #http: Contracts.HttpClient;
 	readonly #peer: string;
 
@@ -16,6 +16,8 @@ export class ClientService implements Contracts.ClientService {
 	};
 
 	private constructor({ http, peer }) {
+		super();
+
 		this.#http = http;
 		this.#peer = peer;
 	}
@@ -27,10 +29,6 @@ export class ClientService implements Contracts.ClientService {
 		});
 	}
 
-	public async __destruct(): Promise<void> {
-		//
-	}
-
 	public async transaction(
 		id: string,
 		input?: Contracts.TransactionDetailInput,
@@ -38,32 +36,8 @@ export class ClientService implements Contracts.ClientService {
 		return Helpers.createTransactionDataWithType(await this.get(`transactions/${id}`), TransactionDTO);
 	}
 
-	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transactions");
-	}
-
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(await this.get(`wallets/${id}`));
-	}
-
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
-	}
-
-	public async delegate(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
-	}
-
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
-	}
-
-	public async votes(id: string): Promise<Contracts.VoteReport> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
-	}
-
-	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {

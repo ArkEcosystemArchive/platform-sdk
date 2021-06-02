@@ -12,7 +12,7 @@ describe("TransactionData", () => {
 			time: 1588930966,
 			block_height: 4259222,
 			asset: "c56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
-			amount: "1",
+			amount: 1,
 			address_to: "Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF",
 			address_from: "AStJyBXGGBK6bwrRfRUHSjp993PB5C9QgF",
 		});

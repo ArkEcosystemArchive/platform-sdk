@@ -150,8 +150,8 @@ test("#fromPrivateKey", async () => {
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 });
 
-test("#fromAddressWithLedgerPath", async () => {
-	const wallet = await subject.fromAddressWithLedgerPath({
+test("#fromAddressWithDerivationPath", async () => {
+	const wallet = await subject.fromAddressWithDerivationPath({
 		coin: "ARK",
 		network: "ark.devnet",
 		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",

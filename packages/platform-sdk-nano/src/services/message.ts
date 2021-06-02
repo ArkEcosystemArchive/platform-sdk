@@ -1,21 +1,19 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { getPublicKey, sign, verify } from "noble-ed25519";
 
 import { IdentityService } from "./identity";
 
-export class MessageService implements Contracts.MessageService {
+export class MessageService extends Services.AbstractMessageService {
 	readonly #identityService: IdentityService;
 
 	private constructor(identityService: IdentityService) {
+		super();
+
 		this.#identityService = identityService;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService(await IdentityService.__construct(config));
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {

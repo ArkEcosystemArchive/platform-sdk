@@ -5,6 +5,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.4.0 - 2021-06-02
+
+### Added
+
+- **[NEWS]** Implement indexer and server for news (02221187, @faustbrian)
+
+### Changed
+
+- **[CLI]** Integrate `examples` into the CLI (e318ba5d, @faustbrian)
+- **[SDK]** **[BREAKING]** Change `amount`, `fee` and `feeLimit` to type of `number` (2a479cb9, @faustbrian)
+
+### Fixed
+
+- **[ADA]** Add transaction to manifest and fix braces (bde01400, @marianogoldman)
+- **[ADA]** Fix manifest for fee all (ee99ddbb, @marianogoldman)
+
+## 8.3.4 - 2021-06-01
+
+### Changed
+
+- **[ARK]** Temporarily revert back to config bindings (17d3c312, @faustbrian)
+
+## 8.3.3 - 2021-06-01
+
+### Changed
+
+- **[ARK]** Directly bind crypto and status values (823b2ac4, @faustbrian)
+
+## 8.3.2 - 2021-06-01
+
+### Fixed
+
+- **[BTC]** Only mark BIP84 as default (87e54364, @faustbrian)
+
+## 8.3.1 - 2021-06-01
+
+### Fixed
+
+- **[ARK]** Store musig timestamp (360a72f6, @faustbrian)
+
 ## 8.3.0 - 2021-06-01
 
 ### Added
