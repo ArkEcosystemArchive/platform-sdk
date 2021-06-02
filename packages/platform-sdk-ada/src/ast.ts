@@ -1,16 +1,12 @@
 import {
+	ArrayLiteralExpression,
 	ClassDeclaration,
+	Expression,
 	Project,
 	SourceFile,
-	VariableDeclaration,
-	Expression,
-	OptionalKind,
-	VariableStatement,
-	VariableDeclarationKind,
-	VariableStatementStructure,
-	ArrayLiteralExpression,
-	SyntaxList,
 	SyntaxKind,
+	SyntaxList,
+	VariableDeclaration,
 } from "ts-morph";
 
 // setup
@@ -57,35 +53,35 @@ for (const knownMethod of knownMethods) {
 console.log(`🌍 ADA supports ${countSupported} out of ${knownMethods.length} methods for the TransactionService`);
 
 // Now update the shared.ts file
-let supported = knownMethods.filter((method) => members.includes(method)).map((method) => `"${method}"`);
-// .join(", ");
 
 // Open shared file
 let shared: SourceFile = project.getDirectoryOrThrow("src/networks").getSourceFileOrThrow("shared.ts");
 
-const importMethods = shared.getVariableStatement("importMethods");
+let varName = "featureFlags";
+let propertyName = "Transaction";
+let propertyValues = knownMethods.filter((method) => members.includes(method)).map((method) => `"${method}"`);
 
-const featureFlags: VariableDeclaration = shared.getVariableDeclarationOrThrow("featureFlags");
+function fixVariable(varName: string, propertyName: string, propertyValues: array): void {
+	const featureFlags: VariableDeclaration = shared.getVariableDeclarationOrThrow(varName);
 
-const featureFlagsInitializer: Expression = featureFlags.getInitializerOrThrow();
-const childSyntaxList: SyntaxList = featureFlagsInitializer.getChildSyntaxListOrThrow();
+	const featureFlagsInitializer: Expression = featureFlags.getInitializerOrThrow();
+	const childSyntaxList: SyntaxList = featureFlagsInitializer.getChildSyntaxListOrThrow();
 
-for (let child of childSyntaxList.getChildrenOfKind(SyntaxKind.PropertyAssignment)) {
-	console.log(child.getKindName(), child.getName(), child.getText(), "\n");
-	if (child.getName() === "Transaction") {
-		const transactionList: ArrayLiteralExpression = child.getFirstChildByKindOrThrow(
-			SyntaxKind.ArrayLiteralExpression,
-		);
-		transactionList.forgetDescendants();
-		console.log(transactionList.getKindName());
-		// for (let i = 0; i < transactionList.getElements().length; i++) {
-		// 	transactionList.removeElement(0);
-		// }
-		transactionList.addElements(supported);
+	for (let child of childSyntaxList.getChildrenOfKind(SyntaxKind.PropertyAssignment)) {
+		console.log(child.getKindName(), child.getName(), child.getText(), "\n");
+		if (child.getName() === propertyName) {
+			const transactionList: ArrayLiteralExpression = child.getFirstChildByKindOrThrow(
+				SyntaxKind.ArrayLiteralExpression,
+			);
+			let elementsToRemove = transactionList.getElements().length;
+			for (let i = 0; i < elementsToRemove; i++) {
+				transactionList.removeElement(0);
+			}
+			transactionList.addElements(propertyValues);
+		}
 	}
 }
-// console.log(childAtIndex.getChildAtIndex(8).getText());
 
-// console.log(featureFlags.getFullText());
+fixVariable(varName, propertyName, propertyValues);
 
 shared.save();
