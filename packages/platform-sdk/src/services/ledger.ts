@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { LedgerService, LedgerTransport, LedgerWalletList } from "../contracts";
 import { NotImplemented } from "../exceptions";
 

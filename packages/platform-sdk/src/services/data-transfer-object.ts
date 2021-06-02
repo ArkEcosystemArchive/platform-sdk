@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { DataTransferObjectService, SignedTransactionData, TransactionDataType } from "../contracts";
 import { NotImplemented } from "../exceptions";
 

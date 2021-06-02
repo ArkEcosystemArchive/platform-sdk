@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { MultiSignatureService, MultiSignatureTransaction, SignedTransactionData } from "../contracts";
 import { NotImplemented } from "../exceptions";
 
