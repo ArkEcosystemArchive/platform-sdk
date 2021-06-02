@@ -31,7 +31,7 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to: "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
 				},
 			});

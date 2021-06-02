@@ -1,18 +1,13 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { constants } from "@liskhq/lisk-transactions";
 
-export class FeeService implements Contracts.FeeService {
+export class FeeService extends Services.AbstractFeeService {
 	public static async __construct(config: Coins.Config): Promise<FeeService> {
 		return new FeeService();
 	}
 
-	public async __destruct(): Promise<void> {
-		//
-	}
-
 	public async all(): Promise<Contracts.TransactionFees> {
 		return {
-			// Core
 			transfer: this.transform("TRANSFER_FEE"),
 			secondSignature: this.transform("SIGNATURE_FEE"),
 			delegateRegistration: this.transform("DELEGATE_FEE"),

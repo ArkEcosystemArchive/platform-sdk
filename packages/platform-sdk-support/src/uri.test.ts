@@ -13,7 +13,7 @@ describe("URI", () => {
 			coin: "ark",
 			network: "ark.mainnet",
 			recipient: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-			amount: "1.2",
+			amount: 1.2,
 			memo: "ARK",
 		});
 

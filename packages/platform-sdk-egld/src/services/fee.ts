@@ -1,13 +1,9 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-export class FeeService implements Contracts.FeeService {
+export class FeeService extends Services.AbstractFeeService {
 	public static async __construct(config: Coins.Config): Promise<FeeService> {
 		return new FeeService();
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	// @TODO: find out the real fees

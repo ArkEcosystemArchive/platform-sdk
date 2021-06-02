@@ -1,18 +1,14 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import Bitcoin from "@ledgerhq/hw-app-btc";
 import { getAppAndVersion } from "@ledgerhq/hw-app-btc/lib/getAppAndVersion";
 import { serializeTransactionOutputs } from "@ledgerhq/hw-app-btc/lib/serializeTransaction";
 
-export class LedgerService implements Contracts.LedgerService {
+export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Contracts.LedgerTransport;
 	#transport!: Bitcoin;
 
 	public static async __construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
-	}
-
-	public async __destruct(): Promise<void> {
-		await this.disconnect();
 	}
 
 	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
@@ -36,10 +32,6 @@ export class LedgerService implements Contracts.LedgerService {
 		return publicKey;
 	}
 
-	public async getExtendedPublicKey(path: string): Promise<string> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "getPublicKey");
-	}
-
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
 		const tx = await this.#transport.splitTransaction(payload.toString());
 		const utxoPath = path.match(new RegExp("([0-9]+'?/?){3}$", "g"));
@@ -58,9 +50,5 @@ export class LedgerService implements Contracts.LedgerService {
 		const signature = await this.#transport.signMessageNew(path, payload.toString("hex"));
 
 		return JSON.stringify(signature);
-	}
-
-	public async scan(options?: { useLegacy: boolean }): Promise<Contracts.LedgerWalletList> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "scan");
 	}
 }

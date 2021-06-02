@@ -1,10 +1,12 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 
-export class KnownWalletService implements Contracts.KnownWalletService {
+export class KnownWalletService extends Services.AbstractKnownWalletService {
 	readonly #httpClient: Contracts.HttpClient;
 	readonly #source: string | undefined;
 
 	private constructor(config: Coins.Config) {
+		super();
+
 		this.#httpClient = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#source = config.getLoose<string>(Coins.ConfigKey.KnownWallets);
 	}
@@ -12,8 +14,6 @@ export class KnownWalletService implements Contracts.KnownWalletService {
 	public static async __construct(config: Coins.Config): Promise<KnownWalletService> {
 		return new KnownWalletService(config);
 	}
-
-	public async __destruct(): Promise<void> {}
 
 	public async all(): Promise<Contracts.KnownWallet[]> {
 		if (this.#source === undefined) {

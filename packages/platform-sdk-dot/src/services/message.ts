@@ -1,13 +1,15 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { Keyring } from "@polkadot/keyring";
 import { hexToU8a, stringToU8a, u8aToHex } from "@polkadot/util";
 import { signatureVerify } from "@polkadot/util-crypto";
 import { waitReady } from "@polkadot/wasm-crypto";
 
-export class MessageService implements Contracts.MessageService {
+export class MessageService extends Services.AbstractMessageService {
 	readonly #keyring: Keyring;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#keyring = new Keyring({ type: "sr25519" });
 		this.#keyring.setSS58Format(config.get("network.meta.networkId"));
 	}
@@ -16,10 +18,6 @@ export class MessageService implements Contracts.MessageService {
 		await waitReady();
 
 		return new MessageService(config);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {

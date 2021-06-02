@@ -29,8 +29,8 @@ export interface TransactionService {
 
 // Transaction Signing
 export interface TransactionInput {
-	fee?: string;
-	feeLimit?: string;
+	fee?: number;
+	feeLimit?: number;
 	nonce?: string;
 	signatory: Signatory;
 	contract?: {
@@ -45,7 +45,7 @@ export interface TransactionOptions {
 
 export interface TransferInput extends TransactionInput {
 	data: {
-		amount: string;
+		amount: number;
 		to: string;
 		memo?: string;
 		expiration?: number;
@@ -80,7 +80,7 @@ export interface IpfsInput extends TransactionInput {
 export interface MultiPaymentInput extends TransactionInput {
 	data: {
 		memo?: string;
-		payments: { to: string; amount: string }[];
+		payments: { to: string; amount: number }[];
 	};
 }
 
@@ -88,7 +88,7 @@ export type DelegateResignationInput = TransactionInput;
 
 export interface HtlcLockInput extends TransactionInput {
 	data: {
-		amount: string;
+		amount: number;
 		to: string;
 		secretHash: string;
 		expiration: {

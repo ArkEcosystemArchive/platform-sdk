@@ -1,10 +1,10 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import Neon, { api } from "@cityofzion/neon-js";
 
 import * as TransactionDTO from "../dto";
 import { WalletData } from "../dto";
 
-export class ClientService implements Contracts.ClientService {
+export class ClientService extends Services.AbstractClientService {
 	readonly #http: Contracts.HttpClient;
 	readonly #peer: string;
 	readonly #apiProvider;
@@ -19,6 +19,8 @@ export class ClientService implements Contracts.ClientService {
 	};
 
 	private constructor({ http, network }) {
+		super();
+
 		this.#http = http;
 
 		this.#peer = {
@@ -35,18 +37,7 @@ export class ClientService implements Contracts.ClientService {
 			network: config.get<Coins.NetworkManifest>("network").id.split(".")[1],
 		});
 	}
-
-	public async __destruct(): Promise<void> {
-		//
-	}
-
 	// get_transaction/{txid}
-	public async transaction(
-		id: string,
-		input?: Contracts.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
-	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const basePath = `get_address_abstracts/${query.address}`;
@@ -76,26 +67,6 @@ export class ClientService implements Contracts.ClientService {
 			address: id,
 			balance: response.balance.find((balance) => balance.asset === "NEO").amount,
 		});
-	}
-
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
-	}
-
-	public async delegate(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
-	}
-
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
-	}
-
-	public async votes(id: string): Promise<Contracts.VoteReport> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
-	}
-
-	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {

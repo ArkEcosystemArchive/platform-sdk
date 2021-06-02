@@ -16,7 +16,7 @@ beforeEach(() => {
 			height: undefined,
 			relays: undefined,
 			confirmations: undefined,
-			amount: "1",
+			amount: 1,
 			type: 0,
 			timestamp: 133697283,
 			senderPublicKey: "ceb7bb7475a14b729eba069dfb27715331727a910acf5773a950ed4f863c89ed",

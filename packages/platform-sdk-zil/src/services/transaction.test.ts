@@ -24,17 +24,17 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "420.69",
+					amount: 100,
 					to: identity.bech32Address,
 				},
-				fee: "2000",
-				feeLimit: "50",
+				fee: 2000,
+				feeLimit: 50,
 				nonce: "1",
 			});
 
 			expect(result).toBeInstanceOf(SignedTransactionData);
 			expect(typeof result.toBroadcast()).toBe("string");
-			expect(result.amount().toNumber()).toBe(420_690_000_000_000);
+			expect(result.amount().toNumber()).toBe(100_000_000_000_000);
 		});
 	});
 });

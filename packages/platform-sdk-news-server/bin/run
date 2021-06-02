@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+
+const { Foreman } = require("@konceiver/foreman");
+const { resolve } = require("path");
+const { subscribe } = require("../dist");
+
+const { flags, input } = require("./meow");
+
+const processName = `${flags.coin}-server`;
+
+if (input[0] === "run") {
+	(async () => subscribe(flags))();
+}
+
+if (input[0] === "start") {
+	new Foreman().start(
+		{
+			// eslint-disable-next-line no-undef
+			script: resolve(__dirname, "subscribe.js"),
+			args: flags,
+			env: {
+				NODE_ENV: "production",
+			},
+		},
+		{ name: processName },
+	);
+}
+
+if (input[0] === "stop") {
+	new Foreman().stop(processName);
+}
+
+if (input[0] === "restart") {
+	new Foreman().restart(processName);
+}
+
+if (input[0] === "delete") {
+	new Foreman().delete(processName);
+}
