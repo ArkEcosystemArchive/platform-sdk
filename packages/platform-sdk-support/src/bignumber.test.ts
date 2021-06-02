@@ -101,25 +101,10 @@ test("#isLessThanOrEqualTo", () => {
 });
 
 test("#toHuman", () => {
-	expect(BigNumber.make(100 * 1e8).toHuman()).toBe("100.00000000");
-	expect(BigNumber.make(123.456 * 1e8).toHuman()).toBe("123.45600000");
-	expect(BigNumber.make(123.456789 * 1e8).toHuman()).toBe("123.45678900");
-	expect(BigNumber.make(1e8).times(1e8).toHuman()).toBe(`${1e8}.00000000`);
-});
-
-test.each([
-	[2, 1e2, "100.00"],
-	[3, 1e3, "100.000"],
-	[4, 1e4, "100.0000"],
-	[5, 1e5, "100.00000"],
-	[6, 1e6, "100.000000"],
-	[7, 1e7, "100.0000000"],
-	[8, 1e8, "100.00000000"],
-	[9, 1e9, "100.000000000"],
-	[10, 1e10, "100.0000000000"],
-])("#toHuman(%s)", (decimals, multiplier, expected) => {
-	expect(BigNumber.make(100 * multiplier, decimals).toHuman()).toBe(expected);
-	expect(BigNumber.make(100 * multiplier).toHuman(decimals)).toBe(expected);
+	expect(BigNumber.make(100 * 1e8).toHuman()).toBe("100");
+	expect(BigNumber.make(123.456 * 1e8).toHuman()).toBe("123.456");
+	expect(BigNumber.make(123.456789 * 1e8).toHuman()).toBe("123.456789");
+	expect(BigNumber.make(1e8).times(1e8).toHuman()).toBe(`${1e8}`);
 });
 
 test("#toFixed", () => {

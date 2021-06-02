@@ -1,68 +1,73 @@
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { Config, NetworkHost, NetworkHostType, TransactionDataCollection } from "./coins";
 import { MetaPagination, TransactionDataType } from "./contracts";
+import { AbstractTransactionData } from "./dto";
 
-export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
-	const instance: TransactionDataType = new dtos.TransactionData(transaction);
+// TODO: following line unnecessary in TypeScript 4.3+
+type AbstractConstructorParameters<T> = ConstructorParameters<(new (...args) => unknown) & T>;
+type TransactionDataArgs = AbstractConstructorParameters<typeof AbstractTransactionData>;
+
+export const createTransactionDataWithType = (args: TransactionDataArgs, dtos: Record<string, any>): TransactionDataType => {
+	const instance: TransactionDataType = new dtos.TransactionData(...args);
 
 	if (instance.isDelegateRegistration()) {
-		return new dtos.DelegateRegistrationData(transaction);
+		return new dtos.DelegateRegistrationData(...args);
 	}
 
 	if (instance.isDelegateResignation()) {
-		return new dtos.DelegateResignationData(transaction);
+		return new dtos.DelegateResignationData(...args);
 	}
 
 	if (instance.isHtlcClaim()) {
-		return new dtos.HtlcClaimData(transaction);
+		return new dtos.HtlcClaimData(...args);
 	}
 
 	if (instance.isHtlcLock()) {
-		return new dtos.HtlcLockData(transaction);
+		return new dtos.HtlcLockData(...args);
 	}
 
 	if (instance.isHtlcRefund()) {
-		return new dtos.HtlcRefundData(transaction);
+		return new dtos.HtlcRefundData(...args);
 	}
 
 	if (instance.isIpfs()) {
-		return new dtos.IpfsData(transaction);
+		return new dtos.IpfsData(...args);
 	}
 
 	if (instance.isMultiPayment()) {
-		return new dtos.MultiPaymentData(transaction);
+		return new dtos.MultiPaymentData(...args);
 	}
 
 	if (instance.isMultiSignature()) {
-		return new dtos.MultiSignatureData(transaction);
+		return new dtos.MultiSignatureData(...args);
 	}
 
 	if (instance.isSecondSignature()) {
-		return new dtos.SecondSignatureData(transaction);
+		return new dtos.SecondSignatureData(...args);
 	}
 
 	if (instance.isTransfer()) {
-		return new dtos.TransferData(transaction);
+		return new dtos.TransferData(...args);
 	}
 
 	if (instance.isVote()) {
-		return new dtos.VoteData(transaction);
+		return new dtos.VoteData(...args);
 	}
 
 	if (instance.isUnvote()) {
-		return new dtos.VoteData(transaction);
+		return new dtos.VoteData(...args);
 	}
 
 	return instance;
 };
 
 export const createTransactionDataCollectionWithType = (
-	transactions: unknown[],
+	argsList: TransactionDataArgs[],
 	meta: MetaPagination,
 	classes: Record<string, any>,
 ): TransactionDataCollection =>
 	new TransactionDataCollection(
-		transactions.map((transaction) => createTransactionDataWithType(transaction, classes)),
+		argsList.map((args) => createTransactionDataWithType(args, classes)),
 		meta,
 	);
 

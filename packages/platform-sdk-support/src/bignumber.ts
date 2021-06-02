@@ -289,9 +289,9 @@ export class BigNumber {
 		// if (decimals === undefined) {
 		//	throw new Error("Specify number of decimals for using toHuman()");
 		// }
-		return BigNumber.make(this.#value)
+		return BigNumber.make(this.#value, decimals)
 			.divide(BigNumber.powerOfTen(decimals))
-			.toFixed(decimals);
+			.toString();
 	}
 
 	/**
