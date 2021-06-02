@@ -43,7 +43,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 
 		return Helpers.createTransactionDataCollectionWithType(
-			transactions.map(transaction => [transaction, this.#decimals]),
+			transactions.map((transaction) => [transaction, this.#decimals]),
 			{
 				prev: undefined,
 				self: undefined,
