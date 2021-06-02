@@ -69,7 +69,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			toAddr: input.data.to,
 			amount: new BN(convertZilToQa(input.data.amount)),
 			gasPrice: new BN(units.toQa(input.fee, units.Units.Li)),
-			gasLimit: Long.fromString(input.feeLimit),
+			gasLimit: Long.fromNumber(input.feeLimit),
 			data: input.data.memo,
 			nonce: new BN(input.nonce).toNumber(),
 		});

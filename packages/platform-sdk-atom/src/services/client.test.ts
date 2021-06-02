@@ -90,13 +90,13 @@ describe("ClientService", () => {
 					{
 						type: "cosmos-sdk/MsgSend",
 						value: {
-							amount: [{ amount: "1", denom: "umuon" }],
+							amount: [{ amount: 1, denom: "umuon" }],
 							from_address: "cosmos1pnc559thh9ks4crsp5p3wta2f2m09t4gluyl2l",
 							to_address: "cosmos1xvt4e7xd0j9dwv2w83g50tpcltsl90h52003e2",
 						},
 					},
 				],
-				fee: { amount: [{ amount: "5000", denom: "umuon" }], gas: "200000" },
+				fee: { amount: [{ amount: 5000, denom: "umuon" }], gas: "200000" },
 				signatures: [
 					{
 						signature:

@@ -41,7 +41,7 @@ export const transferFundsWithADA = async (env: Environment): Promise<void> => {
 	const transactionId = await wallet1.transaction().signTransfer({
 		signatory,
 		data: {
-			amount: "1100000",
+			amount: 1100000,
 			to: address2,
 		},
 	});

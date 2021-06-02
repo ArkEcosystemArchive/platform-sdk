@@ -42,7 +42,7 @@ describe("TransactionService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to:
 						"addr_test1qpz03ezdyda8ag724zp3n5fqulay02dp7j9mweyeylcaapsxu2hyfhlkwuxupa9d5085eunq2qywy7hvmvej456flknscw3xw7",
 				},

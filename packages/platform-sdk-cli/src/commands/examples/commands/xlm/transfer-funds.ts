@@ -38,7 +38,7 @@ export const transferFundsWithXLM = async (env: Environment): Promise<void> => {
 	const transactionId = await wallet1.transaction().signTransfer({
 		signatory,
 		data: {
-			amount: "2",
+			amount: 2,
 			to: address2,
 		},
 	});

@@ -162,7 +162,7 @@ describe("ClientService", () => {
 					}),
 				),
 				data: {
-					amount: "1",
+					amount: 1,
 					to:
 						"addr_test1qpgs3nex8wvaggzx9pnwjgh946e7zk3k8vc9lnf4jrk5fs4u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsnfunm6",
 				},
