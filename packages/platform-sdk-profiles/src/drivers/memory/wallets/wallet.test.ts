@@ -366,7 +366,7 @@ it("should return explorer link", () => {
 it("should turn into an object", () => {
 	subject.data().set("key", "value");
 
-	subject.data().set(WalletData.LedgerPath, "1");
+	subject.data().set(WalletData.DerivationPath, "1");
 	subject.data().set(WalletFlag.Starred, true);
 
 	const actual = subject.toObject();
@@ -499,7 +499,7 @@ it("should determine if the wallet acts with private key", () => {
 });
 
 it("should determine if the wallet acts with address with ledger path", () => {
-	expect(subject.actsWithAddressWithLedgerPath()).toBeBoolean();
+	expect(subject.actsWithAddressWithDerivationPath()).toBeBoolean();
 });
 
 it("should determine if the wallet acts with mnemonic with encryption", () => {

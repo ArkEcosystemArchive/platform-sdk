@@ -87,7 +87,7 @@ export const importByMnemonic = async (
 	return wallet;
 };
 
-export const importByAddressWithLedgerPath = async (
+export const importByAddressWithDerivationPath = async (
 	profile: IProfile,
 	address: string,
 	coin: string,
@@ -96,7 +96,7 @@ export const importByAddressWithLedgerPath = async (
 ): Promise<IReadWriteWallet> => {
 	const factory: WalletFactory = new WalletFactory(profile);
 
-	const wallet = await factory.fromAddressWithLedgerPath({
+	const wallet = await factory.fromAddressWithDerivationPath({
 		coin,
 		network,
 		address,

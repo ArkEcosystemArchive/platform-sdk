@@ -6,7 +6,7 @@ import nock from "nock";
 import { identity } from "../../../../test/fixtures/identity";
 import {
 	bootContainer,
-	importByAddressWithLedgerPath,
+	importByAddressWithDerivationPath,
 	importByMnemonic,
 	generateWallet,
 } from "../../../../test/helpers";
@@ -96,7 +96,7 @@ describe("should turn into an object with options", () => {
 	});
 
 	it("should exclude ledger wallets", async () => {
-		await importByAddressWithLedgerPath(profile, identity.address, "ARK", "ark.devnet", "0");
+		await importByAddressWithDerivationPath(profile, identity.address, "ARK", "ark.devnet", "0");
 
 		const filtered = subject.toJSON({
 			excludeEmptyWallets: false,
