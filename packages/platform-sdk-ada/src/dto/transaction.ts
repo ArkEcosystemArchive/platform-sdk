@@ -67,7 +67,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
 				  );
 
-		return totalInput.minus(changeOutput).minus(this.fee()).decimalPlaces(this.decimals);
+		const netAmount = totalInput.minus(changeOutput).minus(this.fee());
+		return BigNumber.make(netAmount, this.decimals);
 	}
 
 	public fee(): BigNumber {
