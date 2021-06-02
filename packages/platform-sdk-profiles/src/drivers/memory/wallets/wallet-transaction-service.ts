@@ -1,4 +1,4 @@
-import { Contracts, Signatories } from "@arkecosystem/platform-sdk";
+import { Contracts, Signatories, Services } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 import { IReadWriteWallet, ITransactionService, WalletData } from "../../../contracts";
 

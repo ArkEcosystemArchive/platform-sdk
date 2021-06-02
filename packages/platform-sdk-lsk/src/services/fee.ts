@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { constants } from "@liskhq/lisk-transactions";
 
 export class FeeService extends Services.AbstractFeeService {

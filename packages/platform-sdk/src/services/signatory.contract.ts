@@ -1,5 +1,5 @@
 import { Signatory } from "../signatories";
-import { IdentityOptions } from "./identity/shared.contract";
+import { IdentityOptions } from "./shared.contract";
 
 export interface SignatoryService {
 	__destruct(): Promise<void>;

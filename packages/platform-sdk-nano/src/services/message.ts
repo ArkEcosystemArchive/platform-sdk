@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { getPublicKey, sign, verify } from "noble-ed25519";
 
 import { IdentityService } from "./identity";

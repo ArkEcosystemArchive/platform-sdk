@@ -1,6 +1,4 @@
-import {
-	HttpClient,
-} from "../contracts/coins";
+import { HttpClient } from "../contracts/coins";
 import {
 	ClientService,
 	DataTransferObjectService,

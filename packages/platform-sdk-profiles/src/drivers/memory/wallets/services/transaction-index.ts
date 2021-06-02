@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 
 import { ExtendedTransactionData } from "../../../../dto/transaction";
 import { transformTransactionData, transformTransactionDataCollection } from "../../../../dto/transaction-mapper";

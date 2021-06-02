@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BinTools, Buffer } from "avalanche";
 import { KeyPair } from "avalanche/dist/apis/avm";
 import { getPreferredHRP } from "avalanche/dist/utils";

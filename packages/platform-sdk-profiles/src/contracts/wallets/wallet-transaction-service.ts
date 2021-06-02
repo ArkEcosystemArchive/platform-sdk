@@ -1,4 +1,4 @@
-import { Contracts, Signatories } from "@arkecosystem/platform-sdk";
+import { Contracts, Signatories, Services } from "@arkecosystem/platform-sdk";
 
 type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
 

@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 
 import { pqueueSettled } from "../../../helpers/queue";
 import { DataRepository } from "../../../repositories/data-repository";

@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 
 /**
  * Defines the implementation contract for the wallet mutator.

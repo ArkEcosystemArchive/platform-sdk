@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { BIP39, BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { Avalanche, BinTools, Buffer } from "avalanche";
 import { AVMAPI, KeyPair } from "avalanche/dist/apis/avm";

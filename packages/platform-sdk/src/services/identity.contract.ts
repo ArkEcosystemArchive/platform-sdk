@@ -1,10 +1,11 @@
-import { AddressDataTransferObject, AddressService } from "./identity/address.contract";
-import { ExtendedAddressDataTransferObject, ExtendedAddressService } from "./identity/extended-address.contract";
-import { KeyPairDataTransferObject, KeyPairService } from "./identity/key-pair.contract";
-import { PrivateKeyDataTransferObject, PrivateKeyService } from "./identity/private-key.contract";
-import { PublicKeyDataTransferObject, PublicKeyService } from "./identity/public-key.contract";
-import { WIFDataTransferObject, WIFService } from "./identity/wif.contract";
-export * from "./identity/shared.contract";
+/* istanbul ignore file */
+
+import { AddressDataTransferObject, AddressService } from "./address.contract";
+import { ExtendedAddressDataTransferObject, ExtendedAddressService } from "./extended-address.contract";
+import { KeyPairDataTransferObject, KeyPairService } from "./key-pair.contract";
+import { PrivateKeyDataTransferObject, PrivateKeyService } from "./private-key.contract";
+import { PublicKeyDataTransferObject, PublicKeyService } from "./public-key.contract";
+import { WIFDataTransferObject, WIFService } from "./wif.contract";
 
 export interface IdentityService {
 	__destruct(): Promise<void>;

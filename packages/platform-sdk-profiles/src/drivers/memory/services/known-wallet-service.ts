@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 
 import { pqueue } from "../../../helpers/queue";
 import { IKnownWalletService, IProfile } from "../../../contracts";

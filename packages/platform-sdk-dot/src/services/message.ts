@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { Keyring } from "@polkadot/keyring";
 import { hexToU8a, stringToU8a, u8aToHex } from "@polkadot/util";
 import { signatureVerify } from "@polkadot/util-crypto";

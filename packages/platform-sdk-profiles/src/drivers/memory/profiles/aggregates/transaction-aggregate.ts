@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { IProfile, IReadWriteWallet, ITransactionAggregate } from "../../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../../dto";
 

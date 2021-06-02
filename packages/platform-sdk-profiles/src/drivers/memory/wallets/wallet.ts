@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -365,37 +365,37 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.client} */
-	public client(): Contracts.ClientService {
+	public client(): Services.ClientService {
 		return this.#attributes.get<Coins.Coin>("coin").client();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.dataTransferObject} */
-	public dataTransferObject(): Contracts.DataTransferObjectService {
+	public dataTransferObject(): Services.DataTransferObjectService {
 		return this.#attributes.get<Coins.Coin>("coin").dataTransferObject();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.identity} */
-	public identity(): Contracts.IdentityService {
+	public identity(): Services.IdentityService {
 		return this.#attributes.get<Coins.Coin>("coin").identity();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.ledger} */
-	public ledger(): Contracts.LedgerService {
+	public ledger(): Services.LedgerService {
 		return this.#attributes.get<Coins.Coin>("coin").ledger();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.link} */
-	public link(): Contracts.LinkService {
+	public link(): Services.LinkService {
 		return this.#attributes.get<Coins.Coin>("coin").link();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.message} */
-	public message(): Contracts.MessageService {
+	public message(): Services.MessageService {
 		return this.#attributes.get<Coins.Coin>("coin").message();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.signatory} */
-	public signatory(): Contracts.SignatoryService {
+	public signatory(): Services.SignatoryService {
 		return this.#attributes.get<Coins.Coin>("coin").signatory();
 	}
 

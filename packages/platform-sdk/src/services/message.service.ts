@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
-import { MessageInput, MessageService, SignedMessage } from "./message.contract";
 import { NotImplemented } from "../exceptions";
+import { MessageInput, MessageService, SignedMessage } from "./message.contract";
 
 export abstract class AbstractMessageService implements MessageService {
 	public async __destruct(): Promise<void> {

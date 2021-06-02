@@ -1,7 +1,8 @@
+import { Services } from "@arkecosystem/platform-sdk";
+
 import { Avatar } from "../../../helpers/avatar";
-import { IProfile, IReadWriteWallet, WalletData, WalletSetting } from "../../../contracts";
+import { IReadWriteWallet, WalletData, WalletSetting } from "../../../contracts";
 import { IWalletMutator } from "../../../contracts/wallets/wallet.mutator";
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 
 export class WalletMutator implements IWalletMutator {
 	readonly #wallet: IReadWriteWallet;

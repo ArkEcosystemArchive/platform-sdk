@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import Ripple from "@ledgerhq/hw-app-xrp";
 
 export class LedgerService extends Services.AbstractLedgerService {

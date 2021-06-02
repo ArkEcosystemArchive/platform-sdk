@@ -1,5 +1,5 @@
 import { Crypto } from "@arkecosystem/crypto";
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 export class MessageService extends Services.AbstractMessageService {
 	public static async __construct(config: Coins.Config): Promise<MessageService> {

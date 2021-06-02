@@ -1,5 +1,5 @@
-import { Signatory } from "../signatories";
 import { RawTransactionData, SignedTransactionData } from "../contracts/coins/data";
+import { Signatory } from "../signatories";
 
 export interface TransactionService {
 	__destruct(): Promise<void>;

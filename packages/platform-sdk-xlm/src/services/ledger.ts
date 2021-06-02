@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "@ledgerhq/hw-app-str";
 
 export class LedgerService extends Services.AbstractLedgerService {

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
-import { FeeService, TransactionFees } from "./fee.contract";
 import { NotImplemented } from "../exceptions";
+import { FeeService, TransactionFees } from "./fee.contract";
 
 export abstract class AbstractFeeService implements FeeService {
 	public async __destruct(): Promise<void> {

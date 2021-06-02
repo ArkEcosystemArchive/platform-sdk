@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import Neon, { wallet } from "@cityofzion/neon-js";
 
 export class MessageService extends Services.AbstractMessageService {

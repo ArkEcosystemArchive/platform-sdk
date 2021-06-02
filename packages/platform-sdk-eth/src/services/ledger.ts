@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import Ethereum from "@ledgerhq/hw-app-eth";
 
 export class LedgerService extends Services.AbstractLedgerService {

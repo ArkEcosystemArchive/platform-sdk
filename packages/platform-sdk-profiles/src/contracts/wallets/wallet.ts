@@ -1,12 +1,7 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { ExtendedTransactionData } from "../../dto/transaction";
-import { ExtendedTransactionDataCollection } from "../../dto/transaction-collection";
-import { TransactionService } from "../../drivers/memory/wallets/wallet-transaction-service";
 import { IDataRepository } from "../repositories/data-repository";
-import { IPeerRepository } from "../repositories/peer-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
-import { IReadOnlyWallet } from "./read-only-wallet";
 import { IWalletGate } from "./wallet.gate";
 import { IWalletSynchroniser } from "./wallet.synchroniser";
 import { IWalletMutator } from "./wallet.mutator";
@@ -361,58 +356,58 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the client service instance.
 	 *
-	 * @return {Contracts.ClientService}
+	 * @return {Services.ClientService}
 	 * @memberof IReadWriteWallet
 	 */
-	client(): Contracts.ClientService;
+	client(): Services.ClientService;
 
 	/**
 	 * Get the data transfer object service instance.
 	 *
-	 * @return {Contracts.DataTransferObjectService}
+	 * @return {Services.DataTransferObjectService}
 	 * @memberof IReadWriteWallet
 	 */
-	dataTransferObject(): Contracts.DataTransferObjectService;
+	dataTransferObject(): Services.DataTransferObjectService;
 
 	/**
 	 * Get the identity service instance.
 	 *
-	 * @return {Contracts.IdentityService}
+	 * @return {Services.IdentityService}
 	 * @memberof IReadWriteWallet
 	 */
-	identity(): Contracts.IdentityService;
+	identity(): Services.IdentityService;
 
 	/**
 	 * Get the ledger service instance.
 	 *
-	 * @return {Contracts.LedgerService}
+	 * @return {Services.LedgerService}
 	 * @memberof IReadWriteWallet
 	 */
-	ledger(): Contracts.LedgerService;
+	ledger(): Services.LedgerService;
 
 	/**
 	 * Get the link service instance.
 	 *
-	 * @return {Contracts.LinkService}
+	 * @return {Services.LinkService}
 	 * @memberof IReadWriteWallet
 	 */
-	link(): Contracts.LinkService;
+	link(): Services.LinkService;
 
 	/**
 	 * Get the message service instance.
 	 *
-	 * @return {Contracts.MessageService}
+	 * @return {Services.MessageService}
 	 * @memberof IReadWriteWallet
 	 */
-	message(): Contracts.MessageService;
+	message(): Services.MessageService;
 
 	/**
 	 * Get the signatory service instance.
 	 *
-	 * @return {Contracts.SignatoryService}
+	 * @return {Services.SignatoryService}
 	 * @memberof IReadWriteWallet
 	 */
-	signatory(): Contracts.SignatoryService;
+	signatory(): Services.SignatoryService;
 
 	/**
 	 * Get the transaction service instance.

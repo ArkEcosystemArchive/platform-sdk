@@ -1,5 +1,7 @@
 /* istanbul ignore file */
 
+import { RawTransactionData, SignedTransactionData } from "../contracts";
+import { NotImplemented } from "../exceptions";
 import {
 	DelegateRegistrationInput,
 	DelegateResignationInput,
@@ -16,8 +18,6 @@ import {
 	TransferInput,
 	VoteInput,
 } from "./transaction.contract";
-import { NotImplemented } from "../exceptions";
-import { RawTransactionData, SignedTransactionData } from "../contracts";
 
 export abstract class AbstractTransactionService implements Contract {
 	public async __destruct(): Promise<void> {

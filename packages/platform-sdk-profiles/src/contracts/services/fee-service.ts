@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 import { IProfile } from "../profiles";
 
 /**

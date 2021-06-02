@@ -1,16 +1,16 @@
 /* istanbul ignore file */
 
 import { TransactionDataCollection, WalletDataCollection } from "../coins";
-import {
-	ClientService,
-	VoteReport,
-	BroadcastResponse,
-	ClientWalletsInput,
-	ClientTransactionsInput,
-	TransactionDetailInput,
-} from "./client.contract";
-import { NotImplemented } from "../exceptions";
 import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
+import { NotImplemented } from "../exceptions";
+import {
+	BroadcastResponse,
+	ClientService,
+	ClientTransactionsInput,
+	ClientWalletsInput,
+	TransactionDetailInput,
+	VoteReport,
+} from "./client.contract";
 
 export abstract class AbstractClientService implements ClientService {
 	public async __destruct(): Promise<void> {

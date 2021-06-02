@@ -4,8 +4,8 @@ import { formatString } from "@arkecosystem/utils";
 import { URL } from "url";
 
 import { Config, NetworkHost } from "../coins";
-import { LinkService } from "./link.contract";
 import { randomNetworkHostFromConfig } from "../helpers";
+import { LinkService } from "./link.contract";
 
 export interface LinkServiceSchema {
 	block: string;

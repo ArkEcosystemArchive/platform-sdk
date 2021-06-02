@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { Wallet, Account } from "@zilliqa-js/account";
 import { bytes, units, BN } from "@zilliqa-js/zilliqa";
 

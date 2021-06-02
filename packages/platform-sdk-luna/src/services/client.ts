@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { LCDClient } from "@terra-money/terra.js";
 
 import { useClient } from "./helpers";

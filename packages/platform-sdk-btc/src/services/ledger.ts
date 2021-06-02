@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import Bitcoin from "@ledgerhq/hw-app-btc";
 import { getAppAndVersion } from "@ledgerhq/hw-app-btc/lib/getAppAndVersion";
 import { serializeTransactionOutputs } from "@ledgerhq/hw-app-btc/lib/serializeTransaction";

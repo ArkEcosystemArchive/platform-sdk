@@ -1,7 +1,5 @@
 /* istanbul ignore file */
 
-import { IdentityOptions, IdentityService } from "./identity.contract";
-import { SignatoryService } from "./signatory.contract";
 import {
 	MnemonicSignatory,
 	MultiMnemonicSignatory,
@@ -14,6 +12,8 @@ import {
 	SignatureSignatory,
 	WIFSignatory,
 } from "../signatories";
+import { IdentityOptions, IdentityService } from "./identity.contract";
+import { SignatoryService } from "./signatory.contract";
 
 export class AbstractSignatoryService implements SignatoryService {
 	readonly #identity: IdentityService;

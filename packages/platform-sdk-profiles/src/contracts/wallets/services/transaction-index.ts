@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 
 import { ExtendedTransactionData } from "../../../dto/transaction";
 import { ExtendedTransactionDataCollection } from "../../../dto/transaction-collection";
