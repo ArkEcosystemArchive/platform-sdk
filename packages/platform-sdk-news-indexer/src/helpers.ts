@@ -10,7 +10,7 @@ import { Flags } from "./types";
  * @param {Logger} logger
  * @returns {Database}
  */
-export const useDatabase = (flags: Flags, logger: Logger): Database => new Database(flags, logger);
+export const useDatabase = (): Database => new Database();
 
 /**
  * Creates a new logger instance.

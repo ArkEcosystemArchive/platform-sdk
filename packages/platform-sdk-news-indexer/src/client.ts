@@ -1,5 +1,4 @@
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { v4 as uuidv4 } from "uuid";
 
 import { Flags } from "./types";
 
@@ -28,7 +27,7 @@ export class Client {
 	 */
 	public constructor(flags: Flags) {
 		this.#client = new Request().baseUrl(flags.host).withHeaders({
-			'X-Blockfolio-ApiKey': flags.key,
+			"X-Blockfolio-ApiKey": flags.key,
 		});
 	}
 
@@ -48,7 +47,7 @@ export class Client {
 	 * @returns {Promise<number>}
 	 * @memberof Client
 	 */
-	public async signals(team: string, query?: { cursor?: number; limit?: number; }): Promise<any> {
+	public async signals(team: string, query?: { cursor?: number; limit?: number }): Promise<any> {
 		return this.get(`teams/${team}/signals`, query);
 	}
 

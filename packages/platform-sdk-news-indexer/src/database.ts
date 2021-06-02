@@ -1,37 +1,12 @@
-import { Prisma, PrismaClient } from "../prisma/generated";
-import { Logger } from "./logger";
-import { Flags } from "./types";
+import { PrismaClient } from "../prisma/generated";
 
-/**
- * Implements a database storage with SQLite.
- *
- * @export
- * @class Database
- */
 export class Database {
 	readonly #prisma: PrismaClient;
 
-	/**
-	 * The logger instance.
-	 *
-	 * @type {Logger}
-	 * @memberof Database
-	 */
-	readonly #logger: Logger;
-
-	/**
-	 * Creates an instance of Database.
-	 *
-	 * @param {Flags} flags
-	 * @param {Logger} logger
-	 * @memberof Database
-	 */
-	public constructor(flags: Flags, logger: Logger) {
+	public constructor() {
 		this.#prisma = new PrismaClient({
 			log: ["info", "warn", "error"],
 		});
-
-		this.#logger = logger;
 	}
 
 	public async storeCoin({ alias, symbol, coin }): Promise<any> {

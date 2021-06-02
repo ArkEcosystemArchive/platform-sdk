@@ -1,7 +1,7 @@
 import execa from "execa";
 import path from "path";
-import { COINS } from "./constants";
 
+import { COINS } from "./constants";
 import { useClient, useDatabase, useLogger } from "./helpers";
 import { Logger } from "./logger";
 import { Flags } from "./types";
@@ -16,14 +16,14 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	await runMigrations();
 
 	const logger: Logger = useLogger();
-	const database = useDatabase(flags, logger);
+	const database = useDatabase();
 	const client = useClient(flags);
 
 	// Index Teams
 	for (const [symbol, alias] of Object.entries(COINS)) {
 		const teams = await client.teams(alias);
 
-		for(const team of teams) {
+		for (const team of teams) {
 			const coinModel = await database.storeCoin({ alias, symbol, coin: team.coin });
 			logger.info(`Stored COIN [${team.coin.name}] with ID [${coinModel.id}]`);
 
@@ -34,21 +34,23 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 			const initialResponse = await client.signals(teamModel.uuid);
 
 			let signals = initialResponse.results;
-            let hasMore = initialResponse.cursor.next !== undefined;
-            while (hasMore) {
+			let hasMore = initialResponse.cursor.next !== undefined;
+			while (hasMore) {
 				const { results, cursor } = await client.signals(team.uuid, initialResponse.cursor.next);
 
-				hasMore = cursor.next !== undefined
+				hasMore = cursor.next !== undefined;
 				signals = signals.concat(results);
-            }
+			}
 
-			for(const signal of signals) {
+			for (const signal of signals) {
 				const signalModel = await database.storeSignal({ team: teamModel, signal });
 
-				logger.info(`Stored SIGNAL [${signalModel.title}] with ID [${signalModel.id}]`);
+				logger.info(`Stored SIGNAL [${signalModel.uuid}] with ID [${signalModel.id}]`);
 			}
 		}
 	}
+
+	logger.info("Completed indexing. Terminating...");
 
 	process.exit();
 };

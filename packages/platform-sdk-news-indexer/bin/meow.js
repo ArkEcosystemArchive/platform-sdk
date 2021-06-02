@@ -5,7 +5,7 @@ const meow = require("meow");
 module.exports = meow(
 	`
 	Usage
-	  $ pnews <input>
+	  $ pnei <input>
 `,
 	{
 		flags: {

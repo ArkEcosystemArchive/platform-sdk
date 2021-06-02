@@ -1,150 +1,150 @@
 import Hapi from "@hapi/hapi";
 import Joi from "joi";
 
-import { useClient, useDatabase, useLogger } from "./helpers";
+import { useDatabase, useLogger } from "./helpers";
 
-const PAGE_SIZE = 25;
+const PAGE_SIZE = 15;
 
 export const subscribe = async (flags: {
-	coin: string;
-	network: string;
 	host: string;
 	port: string;
-	database: string;
-	// JSON-RPC
-	rpc: string;
-	// Rate Limit
-	points: string;
 	duration: string;
 	whitelist: string;
 	blacklist: string;
 }): Promise<void> => {
 	const logger = useLogger();
-	const database = useDatabase(flags, logger);
-	const client = useClient(flags.rpc);
+	const database = useDatabase();
 
 	const server = Hapi.server({
 		host: flags.host || "0.0.0.0",
 		port: flags.port || 3000,
 	});
 
-	await server.register({
-		plugin: require("@konceiver/hapi-rate-limiter-flexible"),
-		options: {
-			enabled: true,
-			points: flags.points,
-			duration: flags.duration,
-			whitelist: flags.whitelist.split(",").filter(Boolean),
-			blacklist: flags.blacklist.split(",").filter(Boolean),
-		},
-	});
-
 	server.route({
 		method: "GET",
-		path: "/",
-		handler: async () => {
-			const [height, syncing] = await Promise.all([client.eth.getBlockNumber(), client.eth.isSyncing()]);
+		path: "/signals",
+		options: {
+			validate: {
+				query: Joi.object({
+					coins: Joi.string().max(256).required(),
+					query: Joi.string().max(32),
+					categories: Joi.string().max(256),
+					page: Joi.number().optional().min(1).default(1),
+				}).options({ stripUnknown: true }),
+			},
+		},
+		async handler(request) {
+			const coins = await database.coin.findMany({
+				where: {
+					symbol: {
+						in: request.query.coins.toUpperCase().split(","),
+					},
+				},
+			});
+
+			const query: any = {
+				where: {
+					team: {
+						coin_id: {
+							in: coins.map(({ id }) => id),
+						},
+					},
+				},
+				orderBy: {
+					date_created: "desc",
+				},
+				skip: (request.query.page - 1) * PAGE_SIZE,
+				take: PAGE_SIZE,
+			};
+
+			if (request.query.query) {
+				query.where.text = {
+					contains: request.query.query,
+				};
+			}
+
+			if (request.query.categories) {
+				const categories = request.query.categories.split(",");
+
+				if (categories.length === 1) {
+					query.where.category = {
+						path: ["description"],
+						string_contains: categories[0],
+					};
+				} else {
+					query.where.OR = [];
+
+					for (const category of categories) {
+						query.where.OR.push({
+							category: {
+								path: ["description"],
+								string_contains: category,
+							},
+						});
+					}
+				}
+			}
 
 			return {
-				height,
-				syncing,
+				data: (await database.signal.findMany(query)).map((signal: any) => ({
+					id: signal.id,
+					text: signal.rich_text.text,
+					links: signal.rich_text.textItems
+						.filter(({ textType }) => textType === "URL")
+						.map(({ token }) => token),
+					category: signal.category.description,
+					author: {
+						title: signal.attributed_author.title,
+						name: signal.attributed_author.user.displayName,
+						team: signal.attributed_author.signalTeam.name,
+						coin: signal.attributed_author.signalTeam.coin.symbol,
+					},
+					is_featured: signal.is_featured,
+					created_at: signal.date_created,
+					updated_at: signal.date_updated,
+				})),
 			};
 		},
 	});
 
 	server.route({
 		method: "GET",
-		path: "/blocks/{block}",
+		path: "/{coin}",
 		options: {
 			validate: {
 				params: Joi.object({
-					block: [Joi.number().integer(), Joi.string().length(66)],
-				}).options({ stripUnknown: true }),
-			},
-		},
-		handler: (request) =>
-			database
-				.prepare(
-					`SELECT * FROM blocks WHERE hash = '${request.params.block}' OR number = '${request.params.block}';`,
-				)
-				.get(),
-	});
-
-	server.route({
-		method: "POST",
-		path: "/transactions",
-		options: {
-			validate: {
-				payload: Joi.object({
-					transaction: Joi.string().max(1024),
-				}).options({ stripUnknown: true }),
-			},
-		},
-		handler: async (request) => client.eth.sendSignedTransaction(request.payload.transaction),
-	});
-
-	server.route({
-		method: "GET",
-		path: "/transactions/{transaction}",
-		options: {
-			validate: {
-				params: Joi.object({
-					transaction: Joi.string().length(66),
-				}).options({ stripUnknown: true }),
-			},
-		},
-		handler: (request) =>
-			database.prepare(`SELECT * FROM transactions WHERE hash = '${request.params.transaction}';`).get(),
-	});
-
-	server.route({
-		method: "GET",
-		path: "/wallets/{wallet}",
-		options: {
-			validate: {
-				params: Joi.object({
-					wallet: Joi.string().length(42),
-				}).options({ stripUnknown: true }),
-			},
-		},
-		handler: async (request) => {
-			const address: string = request.params.wallet;
-
-			const [balance, nonce, code] = await Promise.all([
-				client.eth.getBalance(address),
-				client.eth.getTransactionCount(address),
-				client.eth.getCode(address),
-			]);
-
-			return {
-				address,
-				balance,
-				nonce,
-				code,
-			};
-		},
-	});
-
-	server.route({
-		method: "GET",
-		path: "/wallets/{wallet}/transactions",
-		options: {
-			validate: {
-				params: Joi.object({
-					wallet: Joi.string().length(42),
+					coin: Joi.string(),
 				}).options({ stripUnknown: true }),
 				query: Joi.object({
 					page: Joi.number().optional().min(1).default(1),
 				}).options({ stripUnknown: true }),
 			},
 		},
-		handler: (request) => {
-			const offset = (request.query.page - 1) * PAGE_SIZE;
-			return database
-				.prepare(
-					`SELECT * FROM transactions WHERE sender = '${request.params.wallet}' OR recipient = '${request.params.wallet}' ORDER BY nonce LIMIT ${PAGE_SIZE} OFFSET ${offset};`,
-				)
-				.all();
+		async handler(request) {
+			const coin: any | null = await database.coin.findFirst({
+				where: { symbol: request.params.coin.toUpperCase() },
+			});
+
+			if (!coin) {
+				throw new Error("Failed to retrieve coin.");
+			}
+
+			const { data, name, symbol } = coin;
+
+			return {
+				data: {
+					name: name,
+					symbol: symbol,
+					supply: {
+						total: data.totalSupply,
+						circulating: data.circulatingSupply,
+					},
+					volume: data.volume24hr,
+					marketCap: data.marketCapExc,
+					rank: data.rank,
+					followers: data.followerCount,
+				},
+			};
 		},
 	});
 

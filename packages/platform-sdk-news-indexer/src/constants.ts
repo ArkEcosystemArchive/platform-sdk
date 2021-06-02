@@ -11,4 +11,4 @@ export const COINS = {
 	XLM: "XLM",
 	XMR: "XMR",
 	XRP: "XRP",
-}
+};
