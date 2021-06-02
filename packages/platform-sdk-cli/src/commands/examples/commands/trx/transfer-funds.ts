@@ -39,7 +39,7 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	const transactionId = await wallet1.transaction().signTransfer({
 		signatory,
 		data: {
-			amount: "200000000", // 2 TRX
+			amount: 2,
 			to: address2,
 			memo: "This is a nice memo",
 		},

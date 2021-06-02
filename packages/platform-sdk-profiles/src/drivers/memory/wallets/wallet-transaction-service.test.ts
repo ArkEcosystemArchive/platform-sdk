@@ -149,7 +149,7 @@ describe("signatures", () => {
 				}),
 			),
 			data: {
-				amount: "1",
+				amount: 1,
 				to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			},
 		};
@@ -513,9 +513,9 @@ describe("signatures", () => {
 			),
 			data: {
 				payments: [
-					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
-					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
-					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: "10" },
+					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
+					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
+					{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
 				],
 			},
 		};
@@ -641,7 +641,7 @@ describe("signatures", () => {
 				}),
 			),
 			data: {
-				amount: "1",
+				amount: 1,
 				to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
 				secretHash: "0f128d401958b1b30ad0d10406f47f9489321017b4614e6cb993fc63913c5454",
 				expiration: {
@@ -836,7 +836,7 @@ it("#transaction lifecycle", async () => {
 			}),
 		),
 		data: {
-			amount: "1",
+			amount: 1,
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		},
 	};
@@ -901,7 +901,7 @@ it("#pending", async () => {
 			}),
 		),
 		data: {
-			amount: "1",
+			amount: 1,
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		},
 	};
@@ -965,7 +965,7 @@ it("#dump", async () => {
 			}),
 		),
 		data: {
-			amount: "1",
+			amount: 1,
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		},
 	};
@@ -991,7 +991,7 @@ it("#restore", async () => {
 			}),
 		),
 		data: {
-			amount: "1",
+			amount: 1,
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		},
 	};
@@ -1166,7 +1166,7 @@ it("should broadcast transaction", async () => {
 			}),
 		),
 		data: {
-			amount: "1",
+			amount: 1,
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		},
 	};
@@ -1203,7 +1203,7 @@ it("should broadcast a transfer and confirm it", async () => {
 			}),
 		),
 		data: {
-			amount: "1",
+			amount: 1,
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		},
 	};
@@ -1362,7 +1362,7 @@ it("#confirm", async () => {
 			}),
 		),
 		data: {
-			amount: "1",
+			amount: 1,
 			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 		},
 	};

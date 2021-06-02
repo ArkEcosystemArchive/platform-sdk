@@ -521,14 +521,14 @@ describe("MultiPaymentData", () => {
 		subject = createSubject(
 			wallet,
 			{
-				payments: () => [{ recipient: "recipient", amount: "1000" }],
+				payments: () => [{ recipient: "recipient", amount: 1000 }],
 			},
 			MultiPaymentData,
 		);
 	});
 
 	test("#payments", () => {
-		expect(subject.payments()).toEqual([{ recipient: "recipient", amount: "1000" }]);
+		expect(subject.payments()).toEqual([{ recipient: "recipient", amount: 1000 }]);
 	});
 });
 

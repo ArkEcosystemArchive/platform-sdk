@@ -18,7 +18,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			const signedTransaction = {
 				account: new wallet.Account(input.signatory.signingKey()),
 				intents: api.makeIntent(
-					{ NEO: parseFloat(input.data.amount), GAS: parseFloat(input.fee!) },
+					{ NEO: parseFloat(input.data.amount.toString()), GAS: parseFloat(input.fee!.toString()) },
 					input.data.to,
 				),
 			};

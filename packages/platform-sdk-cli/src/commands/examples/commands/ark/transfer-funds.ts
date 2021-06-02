@@ -38,7 +38,7 @@ export const transferFundsWithARK = async (env: Environment): Promise<void> => {
 	const transactionId = await wallet1.transaction().signTransfer({
 		signatory,
 		data: {
-			amount: "100000000",
+			amount: 100000000,
 			to: address2,
 		},
 	});
