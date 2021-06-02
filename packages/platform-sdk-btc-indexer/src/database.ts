@@ -171,7 +171,7 @@ export class Database {
 					transaction_parts: {
 						create: outputs.map((output) => ({
 							output_idx: output.idx,
-							amount: BigInt(output.amount),
+							amount: BigInt(output.amount.toString()),
 							address: JSON.stringify(output.addresses),
 						})),
 					},
