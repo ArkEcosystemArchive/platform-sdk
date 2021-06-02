@@ -35,10 +35,10 @@
 		"@hapi/hapi": "^20.1.2",
 		"@konceiver/foreman": "^2.0.2",
 		"@konceiver/hapi-rate-limiter-flexible": "^1.0.3",
+		"@prisma/client": "^2.24.0",
 		"joi": "^17.4.0",
 		"meow": "^9.0.0",
-		"uuid": "^8.3.2",
-		"@prisma/client": "^2.24.0"
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
@@ -72,6 +72,7 @@
 		"nock": "^13.0.11",
 		"npm-check-updates": "^11.5.6",
 		"prettier": "^2.2.1",
+		"prisma": "^2.24.0",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^26.5.5",
 		"typescript": "4.2.4"
