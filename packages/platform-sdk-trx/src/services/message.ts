@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { Buffer } from "buffer";
 import TronWeb from "tronweb";
 
