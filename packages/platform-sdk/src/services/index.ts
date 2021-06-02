@@ -1,4 +1,5 @@
 export * from "./client";
+export * from "./data-transfer-object";
 export * from "./fee";
 export * from "./identity";
 export * from "./known-wallet";

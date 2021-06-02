@@ -7,10 +7,10 @@ export abstract class AbstractMessageService implements MessageService {
 	}
 
 	public async sign(input: MessageInput): Promise<SignedMessage> {
-		throw new NotImplemented(this.constructor.name, "sign");
+		throw new NotImplemented(this.constructor.name, this.sign.name);
 	}
 
 	public async verify(input: SignedMessage): Promise<boolean> {
-		throw new NotImplemented(this.constructor.name, "verify");
+		throw new NotImplemented(this.constructor.name, this.verify.name);
 	}
 }
