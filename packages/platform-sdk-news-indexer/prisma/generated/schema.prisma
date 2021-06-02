@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+  binaryTargets = ["debian-openssl-1.1.x", "darwin", "native"]
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model Block {
+  height		Int    			@id
+  hash			String			@unique
+  transactions	Transaction[]
+}
+
+model Transaction {
+  hash				String				@id
+  block				Block				@relation(fields: block_id, references: height)
+  block_id			Int
+  time				Int
+  amount			BigInt
+  fee				BigInt
+  transaction_parts	TransactionPart[]
+}
+
+model TransactionPart {
+  output_hash  String
+  output_idx   Int
+  input_hash   String?
+  input_idx    Int?
+  amount       BigInt
+  address      Json?
+  transaction Transaction @relation(fields: [output_hash], references: [hash])
+  @@id([output_hash, output_idx])
+  @@unique([input_hash, input_idx], name: "transaction_input_hash_index")
+}

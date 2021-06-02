@@ -216,6 +216,18 @@
 			"shouldPublish": true
 		},
 		{
+			"packageName": "@arkecosystem/platform-sdk-news-indexer",
+			"projectFolder": "packages/platform-sdk-news-indexer",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
+			"packageName": "@arkecosystem/platform-sdk-news-server",
+			"projectFolder": "packages/platform-sdk-news-server",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
 			"packageName": "@arkecosystem/platform-sdk-profiles",
 			"projectFolder": "packages/platform-sdk-profiles",
 			"reviewCategory": "libraries",
