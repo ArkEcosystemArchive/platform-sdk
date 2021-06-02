@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 import {
 	IAddressOptions,
-	IAddressWithLedgerPathOptions,
+	IAddressWithDerivationPathOptions,
 	IGenerateOptions,
 	IMnemonicOptions,
 	IMnemonicWithEncryptionOptions,
@@ -139,19 +139,19 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
-	/** {@inheritDoc IWalletFactory.fromAddressWithLedgerPath} */
-	public async fromAddressWithLedgerPath({
+	/** {@inheritDoc IWalletFactory.fromAddressWithDerivationPath} */
+	public async fromAddressWithDerivationPath({
 		coin,
 		network,
 		address,
 		path,
-	}: IAddressWithLedgerPathOptions): Promise<IReadWriteWallet> {
+	}: IAddressWithDerivationPathOptions): Promise<IReadWriteWallet> {
 		// @TODO: eventually handle the whole process from slip44 path to public key to address
 
 		const wallet: IReadWriteWallet = await this.fromAddress({ coin, network, address });
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.AddressWithLedgerPath);
+		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.AddressWithDerivationPath);
 
-		wallet.data().set(WalletData.LedgerPath, path);
+		wallet.data().set(WalletData.DerivationPath, path);
 
 		return wallet;
 	}
