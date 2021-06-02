@@ -4,11 +4,13 @@ import TronWeb from "tronweb";
 
 import { IdentityService } from "./identity";
 
-export class MessageService implements Contracts.MessageService {
+export class MessageService extends Services.AbstractMessageService {
 	readonly #identityService: IdentityService;
 	readonly #connection: TronWeb;
 
 	private constructor(identityService: IdentityService, peer: string) {
+		super();
+
 		this.#identityService = identityService;
 		this.#connection = new TronWeb({
 			fullHost: peer,
@@ -17,10 +19,6 @@ export class MessageService implements Contracts.MessageService {
 
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService(await IdentityService.__construct(config), Helpers.randomHostFromConfig(config));
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {

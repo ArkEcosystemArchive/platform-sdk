@@ -1,13 +1,9 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { signMessageWithPassphrase, verifyMessageWithPublicKey } from "@liskhq/lisk-cryptography";
 
-export class MessageService implements Contracts.MessageService {
+export class MessageService extends Services.AbstractMessageService {
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService();
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {

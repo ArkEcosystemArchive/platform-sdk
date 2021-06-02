@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BinTools, Buffer } from "avalanche";
 import { KeyPair } from "avalanche/dist/apis/avm";
 import { getPreferredHRP } from "avalanche/dist/utils";
@@ -6,19 +6,17 @@ import { createHash } from "crypto";
 
 import { cb58Decode, cb58Encode, keyPairFromMnemonic } from "./helpers";
 
-export class MessageService implements Contracts.MessageService {
+export class MessageService extends Services.AbstractMessageService {
 	readonly #config: Coins.Config;
 
 	public constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<MessageService> {
 		return new MessageService(config);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
