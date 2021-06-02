@@ -1,13 +1,12 @@
 import { Coins } from "@arkecosystem/platform-sdk";
-import { Environment} from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, useEnvironment, useLogger } from "../helpers";
+import { Environment } from "@arkecosystem/platform-sdk-profiles";
+import { createProfile, useLogger } from "../../helpers";
 
-export default async () => {
+export const listTransactionsWithXLM = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
-	const env: Environment = await useEnvironment();
 
 	// Create profile
-	const profile = await createProfile(env,  "stellar-profile", "my-password");
+	const profile = await createProfile(env, "stellar-profile", "my-password");
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
@@ -18,7 +17,7 @@ export default async () => {
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "XLM",
-		network: "xlm.testnet"
+		network: "xlm.testnet",
 	});
 	profile.wallets().push(wallet1);
 
@@ -28,9 +27,9 @@ export default async () => {
 	// Show transactions
 	const transactions: Coins.TransactionDataCollection = await wallet1
 		.client()
-		.transactions({address: wallet1.address()});
+		.transactions({ address: wallet1.address() });
 
-	logger.log(`Found ${transactions.items().length}`)
+	logger.log(`Found ${transactions.items().length}`);
 	for (const transaction of transactions.items()) {
 		logger.log([
 			transaction.id(),

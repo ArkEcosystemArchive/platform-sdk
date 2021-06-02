@@ -1,10 +1,9 @@
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
 
-import { useEnvironment, useLogger } from "../helpers";
+import { useLogger } from "../helpers";
 
-export default async () => {
+export const createProfileWithWallets = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
-	const env: Environment = await useEnvironment();
 
 	// Create profile
 	const profile: Contracts.IProfile = env.profiles().create("my-profile-name");
@@ -16,7 +15,7 @@ export default async () => {
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "ARK",
-		network: "ark.mainnet"
+		network: "ark.mainnet",
 	});
 	profile.wallets().push(wallet1);
 
@@ -24,7 +23,7 @@ export default async () => {
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: "ATsPMTAHNsUwKedzNpjTNRfcj1oRGaX5xC",
 		coin: "ARK",
-		network: "ark.mainnet"
+		network: "ark.mainnet",
 	});
 	profile.wallets().push(wallet2);
 
@@ -39,10 +38,9 @@ export default async () => {
 			{
 				coin: "ARK",
 				network: "ark.mainnet",
-				name: "main",
-				address: "AN77jrAmEPAqpUv51ZUP2vL1XquXz5Mhob"
-			}
-		]
+				address: "AN77jrAmEPAqpUv51ZUP2vL1XquXz5Mhob",
+			},
+		],
 	});
 	contact.toggleStarred();
 

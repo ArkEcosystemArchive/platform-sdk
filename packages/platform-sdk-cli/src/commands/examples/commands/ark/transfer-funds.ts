@@ -1,10 +1,8 @@
-import { Signatories } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, pollTransactionStatus, useEnvironment, useLogger } from "../helpers";
+import { createProfile, pollTransactionStatus, useLogger } from "../../helpers";
 
-export default async () => {
+export const transferFundsWithARK = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
-	const env: Environment = await useEnvironment();
 
 	// Create profile
 	const profile = await createProfile(env, "ark-profile", "my-password");
@@ -18,7 +16,7 @@ export default async () => {
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "ARK",
-		network: "ark.testnet"
+		network: "ark.testnet",
 	});
 	profile.wallets().push(wallet1);
 
@@ -27,7 +25,7 @@ export default async () => {
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: address2,
 		coin: "ARK",
-		network: "ark.testnet"
+		network: "ark.testnet",
 	});
 	profile.wallets().push(wallet2);
 
@@ -37,15 +35,13 @@ export default async () => {
 
 	// Transfer from wallet1 to wallet2
 	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
-	const transactionId = await wallet1
-		.transaction()
-		.signTransfer({
-			signatory,
-			data: {
-				amount: 100000000,
-				to: address2
-			}
-		});
+	const transactionId = await wallet1.transaction().signTransfer({
+		signatory,
+		data: {
+			amount: 100000000,
+			to: address2,
+		},
+	});
 	logger.log("signedTransactionData", transactionId);
 
 	await wallet1.transaction().broadcast(transactionId);

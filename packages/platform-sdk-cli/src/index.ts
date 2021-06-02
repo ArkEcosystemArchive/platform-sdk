@@ -18,6 +18,7 @@ export const main = async (): Promise<void> => {
 			choices: [
 				{ title: "Access Profile", value: "access-profile" },
 				{ title: "Create Profile", value: "create-profile" },
+				{ title: "Examples", value: "examples" },
 				{ title: "Exit", value: "exit" },
 			],
 			initial: 0,
@@ -34,6 +35,10 @@ export const main = async (): Promise<void> => {
 		}
 
 		if (command === "create-profile") {
+			await createProfile(env);
+		}
+
+		if (command === "examples") {
 			await createProfile(env);
 		}
 	}
