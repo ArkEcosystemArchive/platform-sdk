@@ -1,13 +1,12 @@
-import { Coins, Signatories } from "@arkecosystem/platform-sdk";
+import { Coins } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, pollTransactionStatus, useEnvironment, useLogger } from "../helpers";
+import { createProfile, pollTransactionStatus, useLogger } from "../../helpers";
 
-export default async () => {
+export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
-	const env: Environment = await useEnvironment();
 
 	// Create profile
-	const profile = await createProfile(env,  "tron-profile", "my-password");
+	const profile = await createProfile(env, "tron-profile", "my-password");
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
@@ -18,7 +17,7 @@ export default async () => {
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "TRX",
-		network: "trx.testnet"
+		network: "trx.testnet",
 	});
 	profile.wallets().push(wallet1);
 
@@ -27,7 +26,7 @@ export default async () => {
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: address2,
 		coin: "TRX",
-		network: "trx.testnet"
+		network: "trx.testnet",
 	});
 	profile.wallets().push(wallet2);
 
@@ -37,16 +36,14 @@ export default async () => {
 
 	// Transfer from wallet1 to wallet2
 	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
-	const transactionId = await wallet1
-		.transaction()
-		.signTransfer({
-			signatory,
-			data: {
-				amount: "200000000", // 2 TRX
-				to: address2,
-				memo: "This is a nice memo"
-			}
-		});
+	const transactionId = await wallet1.transaction().signTransfer({
+		signatory,
+		data: {
+			amount: "200000000", // 2 TRX
+			to: address2,
+			memo: "This is a nice memo",
+		},
+	});
 	logger.log("signedTransactionData", transactionId);
 
 	await wallet1.transaction().broadcast(transactionId);
@@ -55,9 +52,9 @@ export default async () => {
 	// Show transactions
 	const transactions: Coins.TransactionDataCollection = await wallet1
 		.client()
-		.transactions({address: wallet1.address()});
+		.transactions({ address: wallet1.address() });
 
-	logger.log(`Found ${transactions.items().length}`)
+	logger.log(`Found ${transactions.items().length}`);
 	for (const transaction of transactions.items()) {
 		logger.log([
 			transaction.id(),

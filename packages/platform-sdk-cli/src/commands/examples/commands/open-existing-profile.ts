@@ -1,9 +1,9 @@
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
-import { useEnvironment, useLogger } from "../helpers";
 
-export default async () => {
+import { useLogger } from "../helpers";
+
+export const openExistingProfile = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
-	const env: Environment = await useEnvironment();
 
 	// Open profile
 	const profile: Contracts.IProfile | undefined = env.profiles().findByName("my-profile-name");
