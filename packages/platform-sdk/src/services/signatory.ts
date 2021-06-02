@@ -12,7 +12,7 @@ import {
 	Signatory,
 	SignatureSignatory,
 	WIFSignatory,
-} from ".";
+} from "../signatories";
 
 export class AbstractSignatoryService implements SignatoryService {
 	readonly #identity: IdentityService;
