@@ -44,13 +44,12 @@ for (const knownMethod of knownMethods) {
 console.log(`🌍 ADA supports ${countSupported} out of ${knownMethods.length} methods for the TransactionService`);
 
 let supported = knownMethods
-	.filter(method => members.includes(method))
-	.map(method => `"${method}"`)
+	.filter((method) => members.includes(method))
+	.map((method) => `"${method}"`)
 	.join(", ");
 
-
 // Create shared file
-let shared: SourceFile = project.getDirectoryOrThrow('src/networks').createSourceFile("shared2.ts");
+let shared: SourceFile = project.getDirectoryOrThrow("src/networks").createSourceFile("shared2.ts");
 shared.addImportDeclaration({
 	namedImports: ["Coins"],
 	moduleSpecifier: "@arkecosystem/platform-sdk",
@@ -58,32 +57,39 @@ shared.addImportDeclaration({
 
 shared.addVariableStatement({
 	declarationKind: VariableDeclarationKind.Const, // defaults to "let"
-	declarations: [{
-		name: "importMethods",
-		type: "Coins.NetworkManifestImportMethods",
-		initializer: `{}`,
-	}],
+	declarations: [
+		{
+			name: "importMethods",
+			type: "Coins.NetworkManifestImportMethods",
+			initializer: `{}`,
+		},
+	],
 });
 
 shared.addVariableStatement({
 	declarationKind: VariableDeclarationKind.Const, // defaults to "let"
-	declarations: [{
-		name: "featureFlags",
-		type: "Coins.NetworkManifestFeatureFlags",
+	declarations: [
+		{
+			name: "featureFlags",
+			type: "Coins.NetworkManifestFeatureFlags",
 
-		// TODO More than a fixed initializer string it would be nice to build it with code
-		// Adding intentation, etc...
-		initializer: `{
+			// TODO More than a fixed initializer string it would be nice to build it with code
+			// Adding intentation, etc...
+			initializer: `{
 			Transaction: [${supported}],
 		}`,
-	}],
+		},
+	],
 });
 
 shared.addExportDeclaration({
-	namedExports: [{
-		name: "importMethods",
-	}, {
-		name: "featureFlags",
-	}],
+	namedExports: [
+		{
+			name: "importMethods",
+		},
+		{
+			name: "featureFlags",
+		},
+	],
 });
 shared.save();
