@@ -14,14 +14,14 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		const { publicKey, privateKey } = await accountFromMnemonic(this.#wallet, mnemonic, options);
 
 		return { publicKey, privateKey };
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
+	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		const { publicKey } = await accountFromPrivateKey(this.#wallet, privateKey);
 
 		return { publicKey, privateKey };

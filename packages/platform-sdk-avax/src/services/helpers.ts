@@ -36,7 +36,7 @@ export const cb58Encode = (value: Buffer): string => BinTools.getInstance().cb58
 export const keyPairFromMnemonic = (
 	config: Coins.Config,
 	mnemonic: string,
-	options?: Contracts.IdentityOptions,
+	options?: Services.IdentityOptions,
 ): { child: KeyPair; path: string } => {
 	const path = BIP44.stringify({
 		coinType: config.get(Coins.ConfigKey.Slip44),

@@ -45,118 +45,118 @@ export interface ITransactionService {
 	/**
 	 * Sign a Transfer transaction.
 	 *
-	 * @param {Contracts.TransferInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.TransferInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signTransfer(input: Contracts.TransferInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signTransfer(input: Services.TransferInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Second-Signature Registration transaction.
 	 *
-	 * @param {Contracts.SecondSignatureInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.SecondSignatureInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signSecondSignature(input: Contracts.SecondSignatureInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signSecondSignature(input: Services.SecondSignatureInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Delegate Registration transaction.
 	 *
-	 * @param {Contracts.DelegateRegistrationInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.DelegateRegistrationInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signDelegateRegistration(
-		input: Contracts.DelegateRegistrationInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.DelegateRegistrationInput,
+		options?: Services.TransactionOptions,
 	): Promise<string>;
 
 	/**
 	 * Sign a Vote transaction.
 	 *
-	 * @param {Contracts.VoteInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.VoteInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signVote(input: Contracts.VoteInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signVote(input: Services.VoteInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Multi-Signature Registration transaction.
 	 *
-	 * @param {Contracts.MultiSignatureInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.MultiSignatureInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signMultiSignature(input: Contracts.MultiSignatureInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signMultiSignature(input: Services.MultiSignatureInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign an IPFS transaction.
 	 *
-	 * @param {Contracts.IpfsInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.IpfsInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signIpfs(input: Contracts.IpfsInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signIpfs(input: Services.IpfsInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Multi-Payment transaction.
 	 *
-	 * @param {Contracts.MultiPaymentInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.MultiPaymentInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signMultiPayment(input: Contracts.MultiPaymentInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signMultiPayment(input: Services.MultiPaymentInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a Delegate Resignation transaction.
 	 *
-	 * @param {Contracts.DelegateResignationInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.DelegateResignationInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
 	signDelegateResignation(
-		input: Contracts.DelegateResignationInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.DelegateResignationInput,
+		options?: Services.TransactionOptions,
 	): Promise<string>;
 
 	/**
 	 * Sign a HTLC Lock transaction.
 	 *
-	 * @param {Contracts.HtlcLockInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.HtlcLockInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcLock(input: Contracts.HtlcLockInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signHtlcLock(input: Services.HtlcLockInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a HTLC Claim transaction.
 	 *
-	 * @param {Contracts.HtlcClaimInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.HtlcClaimInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcClaim(input: Contracts.HtlcClaimInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signHtlcClaim(input: Services.HtlcClaimInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Sign a HTLC Refund transaction.
 	 *
-	 * @param {Contracts.HtlcRefundInput} input
-	 * @param {Contracts.TransactionOptions} options
+	 * @param {Services.HtlcRefundInput} input
+	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcRefund(input: Contracts.HtlcRefundInput, options?: Contracts.TransactionOptions): Promise<string>;
+	signHtlcRefund(input: Services.HtlcRefundInput, options?: Services.TransactionOptions): Promise<string>;
 
 	/**
 	 * Get the transaction for the given ID if it is exists with any valid state.
@@ -293,10 +293,10 @@ export interface ITransactionService {
 	 * Broadcast the given ID.
 	 *
 	 * @param {string} id
-	 * @return {Promise<Contracts.BroadcastResponse>}
+	 * @return {Promise<Services.BroadcastResponse>}
 	 * @memberof ITransactionService
 	 */
-	broadcast(id: string): Promise<Contracts.BroadcastResponse>;
+	broadcast(id: string): Promise<Services.BroadcastResponse>;
 
 	/**
 	 * Check if the given ID has been confirmed by the respective network.

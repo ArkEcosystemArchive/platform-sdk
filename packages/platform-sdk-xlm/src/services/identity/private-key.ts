@@ -5,8 +5,8 @@ import { deriveKeyPair } from "./helpers";
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PrivateKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			const { child, path } = deriveKeyPair(mnemonic, options);
 

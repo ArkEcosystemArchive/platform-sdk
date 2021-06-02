@@ -3,7 +3,7 @@ import { ExtendedTransactionDataCollection } from "../../../dto/transaction-coll
 
 type AggregateQuery = {
 	addresses?: string[];
-} & Contracts.ClientPagination;
+} & Services.ClientPagination;
 
 /**
  * Defines the implementation contract for the transaction aggregate.

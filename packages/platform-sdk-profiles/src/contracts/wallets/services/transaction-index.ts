@@ -7,29 +7,29 @@ export interface ITransactionIndex {
 	/**
 	 * Get a list of sent and received transactions.
 	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
+	 * @param {Services.ClientTransactionsInput} [query]
 	 * @return {Promise<ExtendedTransactionDataCollection>}
 	 * @memberof IReadWriteWallet
 	 */
-	all(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+	all(query?: Services.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 
 	/**
 	 * Get a list of sent transactions.
 	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
+	 * @param {Services.ClientTransactionsInput} [query]
 	 * @return {Promise<ExtendedTransactionDataCollection>}
 	 * @memberof IReadWriteWallet
 	 */
-	sent(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+	sent(query?: Services.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 
 	/**
 	 * Get a list of received transactions.
 	 *
-	 * @param {Contracts.ClientTransactionsInput} [query]
+	 * @param {Services.ClientTransactionsInput} [query]
 	 * @return {Promise<ExtendedTransactionDataCollection>}
 	 * @memberof IReadWriteWallet
 	 */
-	received(query?: Contracts.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
+	received(query?: Services.ClientTransactionsInput): Promise<ExtendedTransactionDataCollection>;
 
 	/**
 	 * Find a transaction by the given ID.

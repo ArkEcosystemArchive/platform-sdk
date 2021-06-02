@@ -5,8 +5,8 @@ import * as bitcoin from "bitcoinjs-lib";
 export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			return this.normalize(bitcoin.ECPair.fromPrivateKey(BIP32.fromMnemonic(mnemonic).privateKey!));
 		} catch (error) {
@@ -14,7 +14,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
+	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			return this.normalize(bitcoin.ECPair.fromPrivateKey(Buffer.from(privateKey, "hex")));
 		} catch (error) {
@@ -22,7 +22,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
+	public async fromWIF(wif: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			return this.normalize(bitcoin.ECPair.fromWIF(wif));
 		} catch (error) {
@@ -30,7 +30,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	private normalize(keyPair: bitcoin.ECPair.ECPairInterface): Contracts.KeyPairDataTransferObject {
+	private normalize(keyPair: bitcoin.ECPair.ECPairInterface): Services.KeyPairDataTransferObject {
 		try {
 			return {
 				publicKey: keyPair.publicKey.toString("hex"),

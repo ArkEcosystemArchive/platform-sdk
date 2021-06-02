@@ -7,7 +7,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService();
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const privateKey = Mnemonic.fromString(input.signatory.signingKey()).deriveKey(0).hex();
 
@@ -21,7 +21,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return verify(input.signature, Buffer.from(input.message, "utf8").toString("hex"), input.signatory);
 		} catch (error) {

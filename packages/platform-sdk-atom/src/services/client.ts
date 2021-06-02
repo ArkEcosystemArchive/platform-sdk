@@ -53,14 +53,14 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transaction(
 		id: string,
-		input?: Contracts.TransactionDetailInput,
+		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const response = await this.get(`txs/${id}`);
 
 		return Helpers.createTransactionDataWithType(response, TransactionDTO);
 	}
 
-	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const page = Number(query.cursor || 1);
 
 		const response = await this.get("txs", {
@@ -94,8 +94,8 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		const result: Contracts.BroadcastResponse = {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},

@@ -22,11 +22,11 @@ export interface IWalletMutator {
 	 * Set the identity based on a mnemonic.
 	 *
 	 * @param {string} mnemonic
-	 * @param {Contracts.IdentityOptions} [options]
+	 * @param {Services.IdentityOptions} [options]
 	 * @return {Promise<void>}
 	 * @memberof void
 	 */
-	identity(mnemonic: string, options?: Contracts.IdentityOptions): Promise<void>;
+	identity(mnemonic: string, options?: Services.IdentityOptions): Promise<void>;
 
 	/**
 	 * Set the address and optionally synchronise the wallet.
@@ -37,7 +37,7 @@ export interface IWalletMutator {
 	 * @memberof void
 	 */
 	address(
-		address: Partial<Contracts.AddressDataTransferObject>,
+		address: Partial<Services.AddressDataTransferObject>,
 		options?: { syncIdentity: boolean; validate: boolean },
 	): Promise<void>;
 

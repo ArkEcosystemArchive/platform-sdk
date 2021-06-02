@@ -6,8 +6,8 @@ import { buildPath, deriveKeyPair } from "./helpers";
 export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { child, path } = deriveKeyPair(mnemonic, options);
 
@@ -23,8 +23,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPrivateKey(
 		privateKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip44",

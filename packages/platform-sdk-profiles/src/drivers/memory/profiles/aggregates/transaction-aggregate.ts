@@ -11,7 +11,7 @@ type HistoryWallet = ExtendedTransactionDataCollection;
 
 type AggregateQuery = {
 	addresses?: string[];
-} & Contracts.ClientPagination;
+} & Services.ClientPagination;
 
 export class TransactionAggregate implements ITransactionAggregate {
 	readonly #profile: IProfile;

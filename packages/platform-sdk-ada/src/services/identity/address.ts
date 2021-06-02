@@ -14,8 +14,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: addressFromMnemonic(
@@ -30,8 +30,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPublicKey(
 		publicKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
 			address: addressFromAccountExtPublicKey(

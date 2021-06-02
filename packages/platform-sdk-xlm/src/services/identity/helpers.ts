@@ -3,11 +3,11 @@ import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { derivePath } from "ed25519-hd-key";
 import { Keypair } from "stellar-sdk";
 
-export const buildPath = (options?: Contracts.IdentityOptions): string => `m/44'/148'/${options?.bip44?.account || 0}'`;
+export const buildPath = (options?: Services.IdentityOptions): string => `m/44'/148'/${options?.bip44?.account || 0}'`;
 
 export const deriveKeyPair = (
 	mnemonic: string,
-	options?: Contracts.IdentityOptions,
+	options?: Services.IdentityOptions,
 ): {
 	child: Keypair;
 	path: string;

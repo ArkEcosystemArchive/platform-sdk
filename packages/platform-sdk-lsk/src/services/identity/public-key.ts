@@ -4,8 +4,8 @@ import * as cryptography from "@liskhq/lisk-cryptography";
 export class PublicKeyService extends Services.AbstractPublicKeyService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PublicKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
 				publicKey: cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic).publicKey,

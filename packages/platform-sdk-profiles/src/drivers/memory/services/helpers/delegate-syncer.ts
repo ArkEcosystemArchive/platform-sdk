@@ -53,7 +53,7 @@ export class SerialDelegateSyncer implements IDelegateSyncer {
 
 	public async sync(): Promise<Contracts.WalletData[]> {
 		const result: Contracts.WalletData[] = [];
-		let options: Contracts.ClientPagination = {};
+		let options: Services.ClientPagination = {};
 
 		let lastResponse;
 		do {

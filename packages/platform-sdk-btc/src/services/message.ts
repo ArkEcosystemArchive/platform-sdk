@@ -19,7 +19,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService(identityService);
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const { compressed, privateKey } = ECPair.fromWIF(input.signatory.signingKey());
 
@@ -37,7 +37,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return verify(input.message, input.signatory, input.signature);
 		} catch (error) {

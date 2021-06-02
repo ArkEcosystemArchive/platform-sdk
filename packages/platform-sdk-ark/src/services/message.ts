@@ -6,7 +6,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService();
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			return {
 				message: input.message,
@@ -22,7 +22,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return Crypto.Hash.verifySchnorr(
 				Crypto.HashAlgorithms.sha256(input.message),

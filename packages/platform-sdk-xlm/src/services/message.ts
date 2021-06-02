@@ -7,7 +7,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService();
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const source = Stellar.Keypair.fromSecret(input.signatory.privateKey());
 
@@ -21,7 +21,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return Stellar.Keypair.fromPublicKey(input.signatory).verify(
 				Buffoon.fromUTF8(input.message),

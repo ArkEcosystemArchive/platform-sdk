@@ -14,8 +14,8 @@ export class WIFService extends Services.AbstractWIFService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.WIFDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.WIFDataTransferObject> {
 		try {
 			return {
 				wif: BaseWIF.fromPassphrase(mnemonic, this.#config),
@@ -25,7 +25,7 @@ export class WIFService extends Services.AbstractWIFService {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.WIFDataTransferObject> {
+	public async fromPrivateKey(privateKey: string): Promise<Services.WIFDataTransferObject> {
 		try {
 			return {
 				// @ts-ignore - We don't care about having a public key for this

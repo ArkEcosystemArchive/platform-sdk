@@ -15,8 +15,8 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PublicKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			const { privateKey } = await new PrivateKeyService(this.#config).fromMnemonic(mnemonic, options);
 			const keyPair = Wallet.fromPrivateKey(Buffoon.fromHex(privateKey));

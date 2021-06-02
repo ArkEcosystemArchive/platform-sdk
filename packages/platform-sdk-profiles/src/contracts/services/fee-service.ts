@@ -13,10 +13,10 @@ export interface IFeeService {
 	 *
 	 * @param {string} coin
 	 * @param {string} network
-	 * @return {Contracts.TransactionFees}
+	 * @return {Services.TransactionFees}
 	 * @memberof IFeeService
 	 */
-	all(coin: string, network: string): Contracts.TransactionFees;
+	all(coin: string, network: string): Services.TransactionFees;
 
 	/**
 	 * Get fees for the given coin, network and type.
@@ -24,10 +24,10 @@ export interface IFeeService {
 	 * @param {string} coin
 	 * @param {string} network
 	 * @param {string} type
-	 * @return {Contracts.TransactionFee}
+	 * @return {Services.TransactionFee}
 	 * @memberof IFeeService
 	 */
-	findByType(coin: string, network: string, type: string): Contracts.TransactionFee;
+	findByType(coin: string, network: string, type: string): Services.TransactionFee;
 
 	/**
 	 * Synchronise fees for the given coin and network.

@@ -14,8 +14,8 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		const { child, path } = keyPairFromMnemonic(this.#config, mnemonic, options);
 
 		return {
@@ -25,7 +25,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		};
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
+	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		const keyPair = useKeychain(this.#config).importKey(BinTools.getInstance().cb58Decode(privateKey));
 
 		return {

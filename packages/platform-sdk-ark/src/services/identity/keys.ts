@@ -14,8 +14,8 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			const { publicKey, privateKey } = BaseKeys.fromPassphrase(mnemonic, true);
 
@@ -25,7 +25,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.KeyPairDataTransferObject> {
+	public async fromWIF(wif: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			const { publicKey, privateKey } = BaseKeys.fromWIF(wif, this.#config);
 

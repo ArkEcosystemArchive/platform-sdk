@@ -6,8 +6,8 @@ export class FeeService extends Services.AbstractFeeService {
 		return new FeeService();
 	}
 
-	public async all(): Promise<Contracts.TransactionFees> {
-		const fee: Contracts.TransactionFee = {
+	public async all(): Promise<Services.TransactionFees> {
+		const fee: Services.TransactionFee = {
 			static: BigNumber.ZERO.toString(),
 			max: BigNumber.ZERO.toString(),
 			min: BigNumber.ZERO.toString(),

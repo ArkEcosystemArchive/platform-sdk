@@ -4,7 +4,7 @@ import { pqueue } from "../../../helpers/queue";
 import { IKnownWalletService, IProfile } from "../../../contracts";
 import { injectable } from "inversify";
 
-type KnownWalletRegistry = Record<string, Contracts.KnownWallet[]>;
+type KnownWalletRegistry = Record<string, Services.KnownWallet[]>;
 
 @injectable()
 export class KnownWalletService implements IKnownWalletService {
@@ -49,14 +49,14 @@ export class KnownWalletService implements IKnownWalletService {
 		return this.hasType(network, address, "team");
 	}
 
-	private findByAddress(network: string, address: string): Contracts.KnownWallet | undefined {
-		const registry: Contracts.KnownWallet[] = this.#registry[network];
+	private findByAddress(network: string, address: string): Services.KnownWallet | undefined {
+		const registry: Services.KnownWallet[] = this.#registry[network];
 
 		if (registry === undefined) {
 			return undefined;
 		}
 
-		return registry.find((wallet: Contracts.KnownWallet) => wallet.address === address);
+		return registry.find((wallet: Services.KnownWallet) => wallet.address === address);
 	}
 
 	private hasType(network: string, address: string, type: string): boolean {
