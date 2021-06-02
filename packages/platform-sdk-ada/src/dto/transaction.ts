@@ -32,7 +32,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			.sort((a, b) => a.index - b.index)
 			.map((out) => ({
 				address: out.address,
-				amount: BigNumber.make(out.value),
+				amount: BigNumber.make(out.value, this.decimals),
 			}));
 	}
 
@@ -41,7 +41,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			(input: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
 					id: input.sourceTransaction.hash,
-					amount: BigNumber.make(input.value),
+					amount: BigNumber.make(input.value, this.decimals),
 					addresses: [input.address],
 				}),
 		);
@@ -51,7 +51,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.outputs.map(
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
-					amount: BigNumber.make(output.value),
+					amount: BigNumber.make(output.value, this.decimals),
 					addresses: [output.address],
 				}),
 		);
@@ -72,7 +72,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee);
+		return BigNumber.make(this.data.fee, this.decimals);
 	}
 
 	public asset(): Record<string, unknown> {
