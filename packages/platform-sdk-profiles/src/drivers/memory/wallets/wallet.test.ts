@@ -366,7 +366,7 @@ it("should return explorer link", () => {
 it("should turn into an object", () => {
 	subject.data().set("key", "value");
 
-	subject.data().set(WalletData.LedgerPath, "1");
+	subject.data().set(WalletData.DerivationPath, "1");
 	subject.data().set(WalletFlag.Starred, true);
 
 	const actual = subject.toObject();
@@ -388,9 +388,8 @@ it("should turn into an object", () => {
 		BIP38_ENCRYPTED_KEY: undefined,
 		BROADCASTED_TRANSACTIONS: {},
 		COIN: "ARK",
-		DERIVATION_PATH: undefined,
+		DERIVATION_PATH: "1",
 		DERIVATION_TYPE: "bip39",
-		LEDGER_PATH: "1",
 		NETWORK: "ark.devnet",
 		PUBLIC_KEY: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 		SEQUENCE: "111932",
@@ -499,7 +498,7 @@ it("should determine if the wallet acts with private key", () => {
 });
 
 it("should determine if the wallet acts with address with ledger path", () => {
-	expect(subject.actsWithAddressWithLedgerPath()).toBeBoolean();
+	expect(subject.actsWithAddressWithDerivationPath()).toBeBoolean();
 });
 
 it("should determine if the wallet acts with mnemonic with encryption", () => {

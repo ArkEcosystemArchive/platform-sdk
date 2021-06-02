@@ -61,9 +61,9 @@ export interface IPrivateKeyOptions {
 /**
  * Defines the options for an import with a BIP44 path.
  *
- * @interface IAddressWithLedgerPathOptions
+ * @interface IAddressWithDerivationPathOptions
  */
-export interface IAddressWithLedgerPathOptions {
+export interface IAddressWithDerivationPathOptions {
 	coin: string;
 	network: string;
 	address: string;
@@ -160,11 +160,11 @@ export interface IWalletFactory {
 	/**
 	 * Imports a wallet from a BIP44 path.
 	 *
-	 * @param {IAddressWithLedgerPathOptions} options
+	 * @param {IAddressWithDerivationPathOptions} options
 	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
-	fromAddressWithLedgerPath(options: IAddressWithLedgerPathOptions): Promise<IReadWriteWallet>;
+	fromAddressWithDerivationPath(options: IAddressWithDerivationPathOptions): Promise<IReadWriteWallet>;
 
 	/**
 	 * Imports a wallet from a mnemonic with a password.
