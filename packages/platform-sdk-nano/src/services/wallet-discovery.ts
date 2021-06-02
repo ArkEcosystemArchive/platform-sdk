@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 
 import { deriveAccount, deriveLegacyAccount } from "./identity/helpers";
 
@@ -9,8 +9,8 @@ export class WalletDiscoveryService implements Services.AbstractWalletDiscoveryS
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject[]> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject[]> {
 		const [legacy, standard] = await Promise.all([
 			deriveLegacyAccount(mnemonic, options?.bip44?.account || 0),
 			deriveAccount(mnemonic, options?.bip44?.account || 0),

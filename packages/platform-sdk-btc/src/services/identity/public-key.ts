@@ -5,8 +5,8 @@ import * as bitcoin from "bitcoinjs-lib";
 export class PublicKeyService extends Services.AbstractPublicKeyService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PublicKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return { publicKey: BIP32.fromMnemonic(mnemonic).publicKey.toString("hex") };
 		} catch (error) {
@@ -14,7 +14,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.PublicKeyDataTransferObject> {
+	public async fromWIF(wif: string): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
 				publicKey: bitcoin.ECPair.fromWIF(wif).publicKey.toString("hex"),

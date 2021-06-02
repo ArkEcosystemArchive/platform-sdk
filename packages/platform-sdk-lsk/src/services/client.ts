@@ -31,14 +31,14 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transaction(
 		id: string,
-		input?: Contracts.TransactionDetailInput,
+		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.get("transactions", { id });
 
 		return Helpers.createTransactionDataWithType(result.data[0], TransactionDTO);
 	}
 
-	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		// @ts-ignore
 		const result = await this.get("transactions", this.createSearchParams({ sort: "timestamp:desc", ...query }));
 
@@ -55,7 +55,7 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(result.data[0]);
 	}
 
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
+	public async wallets(query: Services.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
 		const result = await this.get("accounts", query);
 
 		return new Coins.WalletDataCollection(
@@ -79,7 +79,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async votes(id: string): Promise<Contracts.VoteReport> {
+	public async votes(id: string): Promise<Services.VoteReport> {
 		const { data } = await this.get("votes", { address: id, limit: 101 });
 
 		return {
@@ -89,8 +89,8 @@ export class ClientService extends Services.AbstractClientService {
 		};
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		const result: Contracts.BroadcastResponse = {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},
@@ -133,7 +133,7 @@ export class ClientService extends Services.AbstractClientService {
 		return response.json();
 	}
 
-	private createSearchParams(searchParams: Contracts.ClientTransactionsInput): object {
+	private createSearchParams(searchParams: Services.ClientTransactionsInput): object {
 		if (!searchParams) {
 			searchParams = {};
 		}
@@ -161,7 +161,7 @@ export class ClientService extends Services.AbstractClientService {
 		return searchParams;
 	}
 
-	private createPagination(data, meta): Contracts.MetaPagination {
+	private createPagination(data, meta): Services.MetaPagination {
 		const hasPreviousPage: boolean = data && data.length === meta.limit && meta.offset !== 0;
 		const hasNextPage: boolean = data && data.length === meta.limit;
 

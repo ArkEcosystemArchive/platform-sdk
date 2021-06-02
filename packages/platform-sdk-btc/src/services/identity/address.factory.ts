@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import * as bitcoin from "bitcoinjs-lib";
 import { getNetworkConfig } from "./helpers";
@@ -20,7 +20,7 @@ export class AddressFactory {
 		this.#network = getNetworkConfig(config);
 	}
 
-	public bip44(mnemonic: string, options?: Contracts.IdentityOptions): Contracts.AddressDataTransferObject {
+	public bip44(mnemonic: string, options?: Services.IdentityOptions): Services.AddressDataTransferObject {
 		const levels: Levels = {
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
 			account: options?.bip44?.account,
@@ -37,7 +37,7 @@ export class AddressFactory {
 		);
 	}
 
-	public bip49(mnemonic: string, options?: Contracts.IdentityOptions): Contracts.AddressDataTransferObject {
+	public bip49(mnemonic: string, options?: Services.IdentityOptions): Services.AddressDataTransferObject {
 		const levels: Levels = {
 			purpose: 49,
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
@@ -58,7 +58,7 @@ export class AddressFactory {
 		);
 	}
 
-	public bip84(mnemonic: string, options?: Contracts.IdentityOptions): Contracts.AddressDataTransferObject {
+	public bip84(mnemonic: string, options?: Services.IdentityOptions): Services.AddressDataTransferObject {
 		const levels: Levels = {
 			purpose: 84,
 			coinType: this.#config.get(Coins.ConfigKey.Slip44),
@@ -80,7 +80,7 @@ export class AddressFactory {
 		type: "bip44" | "bip49" | "bip84",
 		levels: Levels,
 		payment: bitcoin.payments.Payment,
-	): Contracts.AddressDataTransferObject {
+	): Services.AddressDataTransferObject {
 		const { address } = payment;
 
 		if (!address) {

@@ -6,8 +6,8 @@ import { deriveKeyPair } from "./helpers";
 export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			const { child, path } = deriveKeyPair(mnemonic, options);
 
@@ -21,7 +21,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Contracts.KeyPairDataTransferObject> {
+	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			const source = Stellar.Keypair.fromSecret(privateKey);
 

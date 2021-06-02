@@ -20,7 +20,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transaction(
 		id: string,
-		input?: Contracts.TransactionDetailInput,
+		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const transaction = await this.#zilliqa.blockchain.getTransaction(id);
 		const receipt = transaction.getReceipt();
@@ -55,10 +55,10 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const minGasPrice = (await this.#zilliqa.blockchain.getMinimumGasPrice()).result;
 
-		const response: Contracts.BroadcastResponse = {
+		const response: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},

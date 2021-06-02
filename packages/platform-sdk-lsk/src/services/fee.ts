@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { constants } from "@liskhq/lisk-transactions";
 
 export class FeeService extends Services.AbstractFeeService {
@@ -6,7 +6,7 @@ export class FeeService extends Services.AbstractFeeService {
 		return new FeeService();
 	}
 
-	public async all(): Promise<Contracts.TransactionFees> {
+	public async all(): Promise<Services.TransactionFees> {
 		return {
 			transfer: this.transform("TRANSFER_FEE"),
 			secondSignature: this.transform("SIGNATURE_FEE"),
@@ -22,7 +22,7 @@ export class FeeService extends Services.AbstractFeeService {
 		};
 	}
 
-	private transform(type: string | number): Contracts.TransactionFee {
+	private transform(type: string | number): Services.TransactionFee {
 		const fee: number = type === 0 ? 0 : constants[type];
 
 		return {

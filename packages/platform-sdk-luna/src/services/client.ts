@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { LCDClient } from "@terra-money/terra.js";
 
 import { useClient } from "./helpers";
@@ -16,8 +16,8 @@ export class ClientService extends Services.AbstractClientService {
 		return new ClientService(config);
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
-		const result: Contracts.BroadcastResponse = {
+	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
 			errors: {},

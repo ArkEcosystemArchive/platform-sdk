@@ -13,8 +13,8 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PrivateKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PrivateKeyDataTransferObject> {
 		return {
 			privateKey: (await accountFromMnemonic(this.#wallet, mnemonic, options)).privateKey,
 		};

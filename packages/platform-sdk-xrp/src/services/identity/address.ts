@@ -13,8 +13,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		// @TODO: return path
 		return this.fromPublicKey(
 			BIP44.deriveChild(mnemonic, {
@@ -26,8 +26,8 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async fromPublicKey(
 		publicKey: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.AddressDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			return { type: "rfc6979", address: deriveAddress(publicKey) };
 		} catch (error) {
@@ -35,7 +35,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async fromSecret(secret: string): Promise<Contracts.AddressDataTransferObject> {
+	public async fromSecret(secret: string): Promise<Services.AddressDataTransferObject> {
 		return { type: "rfc6979", address: deriveAddress(deriveKeypair(secret).publicKey) };
 	}
 

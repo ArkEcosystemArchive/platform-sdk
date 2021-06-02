@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { BinTools, Buffer } from "avalanche";
 import { KeyPair } from "avalanche/dist/apis/avm";
 import { getPreferredHRP } from "avalanche/dist/utils";
@@ -19,7 +19,7 @@ export class MessageService extends Services.AbstractMessageService {
 		return new MessageService(config);
 	}
 
-	public async sign(input: Contracts.MessageInput): Promise<Contracts.SignedMessage> {
+	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const { child } = keyPairFromMnemonic(this.#config, input.signatory.signingKey());
 
@@ -33,7 +33,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Contracts.SignedMessage): Promise<boolean> {
+	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		const bintools = BinTools.getInstance();
 
 		const hrp = getPreferredHRP(parseInt(this.#config.get("network.meta.networkId")));

@@ -13,8 +13,8 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.PrivateKeyDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			return {
 				privateKey: deriveWallet(
@@ -30,7 +30,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Contracts.PrivateKeyDataTransferObject> {
+	public async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			return {
 				privateKey: createWallet(wif).privateKey,

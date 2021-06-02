@@ -1,16 +1,16 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 
 export class LedgerService extends Services.AbstractLedgerService {
-	#ledger: Contracts.LedgerTransport;
+	#ledger: Services.LedgerTransport;
 	#transport!: DposLedger;
 
 	public static async __construct(config: Coins.Config): Promise<LedgerService> {
 		return new LedgerService();
 	}
 
-	public async connect(transport: Contracts.LedgerTransport): Promise<void> {
+	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
 		// @ts-ignore
 		this.#transport = new DposLedger(new CommHandler(this.#ledger));

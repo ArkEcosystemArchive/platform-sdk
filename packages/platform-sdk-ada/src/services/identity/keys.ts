@@ -5,8 +5,8 @@ import { deriveAccountKey, deriveRootKey } from "./shelley";
 export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
 		mnemonic: string,
-		options?: Contracts.IdentityOptions,
-	): Promise<Contracts.KeyPairDataTransferObject> {
+		options?: Services.IdentityOptions,
+	): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			let rootKey = deriveRootKey(mnemonic);
 

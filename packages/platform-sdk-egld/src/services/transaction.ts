@@ -24,8 +24,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async transfer(
-		input: Contracts.TransferInput,
-		options?: Contracts.TransactionOptions,
+		input: Services.TransferInput,
+		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
