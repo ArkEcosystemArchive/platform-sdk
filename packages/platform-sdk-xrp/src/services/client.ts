@@ -1,25 +1,23 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 import { broadcastErrors } from "./client.helpers";
 
-export class ClientService implements Contracts.ClientService {
+export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #http: Contracts.HttpClient;
 
 	private constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService(config);
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transaction(
@@ -68,26 +66,6 @@ export class ClientService implements Contracts.ClientService {
 				])
 			).account_data,
 		);
-	}
-
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
-	}
-
-	public async delegate(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
-	}
-
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
-	}
-
-	public async votes(id: string): Promise<Contracts.VoteReport> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
-	}
-
-	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {

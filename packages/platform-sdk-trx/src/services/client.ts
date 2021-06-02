@@ -1,10 +1,10 @@
-import { Coins, Contracts, Exceptions, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
-export class ClientService implements Contracts.ClientService {
+export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
 	readonly #peer: string;
@@ -26,6 +26,8 @@ export class ClientService implements Contracts.ClientService {
 	};
 
 	private constructor({ config, peer }) {
+		super();
+
 		this.#config = config;
 		this.#peer = peer;
 		this.#connection = new TronWeb({
@@ -39,10 +41,6 @@ export class ClientService implements Contracts.ClientService {
 			config,
 			peer: Helpers.randomHostFromConfig(config),
 		});
-	}
-
-	public async __destruct(): Promise<void> {
-		//
 	}
 
 	public async transaction(
@@ -87,26 +85,6 @@ export class ClientService implements Contracts.ClientService {
 		const { data } = (await this.#client.get(`${this.getHost()}/v1/accounts/${id}`)).json();
 
 		return new WalletData(data[0]);
-	}
-
-	public async wallets(query: Contracts.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "wallets");
-	}
-
-	public async delegate(id: string): Promise<Contracts.WalletData> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegate");
-	}
-
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "delegates");
-	}
-
-	public async votes(id: string): Promise<Contracts.VoteReport> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
-	}
-
-	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, "voters");
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Contracts.BroadcastResponse> {
