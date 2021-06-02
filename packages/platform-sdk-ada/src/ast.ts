@@ -6,7 +6,6 @@ import {
 	VariableDeclarationKind,
 	VariableStatementStructure,
 } from "ts-morph";
-
 // setup
 const project: Project = new Project();
 project.addSourceFilesAtPaths("src/**/*.ts");
