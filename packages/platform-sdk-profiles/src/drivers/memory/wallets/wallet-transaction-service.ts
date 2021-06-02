@@ -133,10 +133,7 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.signHtlcClaim} */
-	public async signHtlcClaim(
-		input: Services.HtlcClaimInput,
-		options?: Services.TransactionOptions,
-	): Promise<string> {
+	public async signHtlcClaim(input: Services.HtlcClaimInput, options?: Services.TransactionOptions): Promise<string> {
 		return this.signTransaction("htlcClaim", input, options);
 	}
 
