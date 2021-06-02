@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { FeeService, TransactionFees } from "../contracts";
 import { NotImplemented } from "../exceptions";
 

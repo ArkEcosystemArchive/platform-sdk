@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { MessageInput, MessageService, SignedMessage } from "../contracts";
 import { NotImplemented } from "../exceptions";
 

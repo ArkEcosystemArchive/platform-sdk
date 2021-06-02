@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { KnownWallet, KnownWalletService } from "../contracts";
 
 export abstract class AbstractKnownWalletService implements KnownWalletService {
