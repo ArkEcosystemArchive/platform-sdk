@@ -127,6 +127,10 @@ test:
     - packages/platform-sdk-news/*
     - packages/platform-sdk-news/**/*
 
+"Domain: News/Indexer":
+    - packages/platform-sdk-news-indexer/*
+    - packages/platform-sdk-news-indexer/**/*
+
 "Domain: News/Server":
     - packages/platform-sdk-news-server/*
     - packages/platform-sdk-news-server/**/*
