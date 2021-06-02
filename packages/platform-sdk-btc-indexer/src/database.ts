@@ -166,12 +166,12 @@ export class Database {
 					block_id: blockId,
 					hash: transaction.txid,
 					time: transaction.time,
-					amount: BigInt(amount),
-					fee: BigInt(fee),
+					amount: BigInt(amount.toString()),
+					fee: BigInt(fee.toString()),
 					transaction_parts: {
 						create: outputs.map((output) => ({
 							output_idx: output.idx,
-							amount: BigInt(output.amount),
+							amount: BigInt(output.amount.toString()),
 							address: JSON.stringify(output.addresses),
 						})),
 					},
