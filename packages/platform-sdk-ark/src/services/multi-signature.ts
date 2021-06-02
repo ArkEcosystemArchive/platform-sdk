@@ -1,5 +1,5 @@
 import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 
 export class MultiSignatureService extends Services.AbstractMultiSignatureService {
 	/**
@@ -25,6 +25,8 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	 * @memberof MultiSignatureService
 	 */
 	private constructor(config: Coins.Config) {
+		super();
+
 		this.#config = config;
 		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 	}
