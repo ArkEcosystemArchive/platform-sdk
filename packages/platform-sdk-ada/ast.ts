@@ -55,12 +55,12 @@ let supported = knownMethods
 	.map((method) => `"${method}"`)
 	.join(", ");
 
-// Create shared file
-let shared: SourceFile = project.getDirectoryOrThrow("src/networks").createSourceFile("shared2.ts");
-shared.addImportDeclaration({
-	namedImports: ["Coins"],
-	moduleSpecifier: "@arkecosystem/platform-sdk",
-});
+// Open shared file
+let shared: SourceFile = project.getDirectoryOrThrow("src/networks").getSourceFileOrThrow("shared.ts");
+// shared.addImportDeclaration({
+// 	namedImports: ["Coins"],
+// 	moduleSpecifier: "@arkecosystem/platform-sdk",
+// });
 
 shared.addVariableStatement({
 	declarationKind: VariableDeclarationKind.Const, // defaults to "let"
