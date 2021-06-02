@@ -1,13 +1,7 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 
-export class KnownWalletService implements Contracts.KnownWalletService {
+export class KnownWalletService extends Services.AbstractKnownWalletService {
 	public static async __construct(config: Coins.Config): Promise<KnownWalletService> {
 		return new KnownWalletService();
-	}
-
-	public async __destruct(): Promise<void> {}
-
-	public async all(): Promise<Contracts.KnownWallet[]> {
-		return [];
 	}
 }
