@@ -307,7 +307,7 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.isLedger} */
 	public isLedger(): boolean {
-		return this.data().get(WalletData.LedgerPath) !== undefined;
+		return this.data().get(WalletData.DerivationPath) !== undefined;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.isMultiSignature} */
@@ -512,9 +512,9 @@ export class Wallet implements IReadWriteWallet {
 		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.PrivateKey;
 	}
 
-	/** {@inheritDoc IReadWriteWallet.actsWithAddressWithLedgerPath} */
-	public actsWithAddressWithLedgerPath(): boolean {
-		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.AddressWithLedgerPath;
+	/** {@inheritDoc IReadWriteWallet.actsWithAddressWithDerivationPath} */
+	public actsWithAddressWithDerivationPath(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.AddressWithDerivationPath;
 	}
 
 	/** {@inheritDoc IReadWriteWallet.actsWithMnemonicWithEncryption} */

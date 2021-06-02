@@ -19,8 +19,6 @@ export enum WalletData {
 	DerivationType = "DERIVATION_TYPE",
 	ExchangeCurrency = "EXCHANGE_CURRENCY",
 	ImportMethod = "IMPORT_METHOD",
-	// @TODO: remove this in favour of DerivationPath
-	LedgerPath = "LEDGER_PATH",
 	MultiSignatureParticipants = "MULTI_SIGNATURE_PARTICIPANTS",
 	Sequence = "SEQUENCE",
 	SignedTransactions = "SIGNED_TRANSACTIONS",
@@ -67,7 +65,7 @@ export enum WalletImportMethod {
 	Address = "ADDRESS",
 	PublicKey = "PUBLIC_KEY",
 	PrivateKey = "PRIVATE_KEY",
-	AddressWithLedgerPath = "ADDRESS_WITH_LEDGER_PATH",
+	AddressWithDerivationPath = "ADDRESS_WITH_DERIVATION_PATH",
 	MnemonicWithEncryption = "MNEMONIC_WITH_ENCRYPTION",
 	WIF = "WIF",
 	WIFWithEncryption = "WIF_WITH_ENCRYPTION",
