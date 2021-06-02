@@ -131,6 +131,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				timestamp: DateTime.make(),
 			},
 			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
+			this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 		);
 	}
 

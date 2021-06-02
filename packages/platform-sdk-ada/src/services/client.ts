@@ -7,9 +7,11 @@ import { usedAddressesForAccount } from "./helpers";
 
 export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
+	readonly #decimals: number;
 
-	private constructor(config) {
+	private constructor(config: Coins.Config) {
 		this.#config = config;
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -24,7 +26,7 @@ export class ClientService implements Contracts.ClientService {
 		id: string,
 		input?: Contracts.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return new TransactionData(await fetchTransaction(id, this.#config));
+		return new TransactionData(await fetchTransaction(id, this.#config), this.#decimals);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -43,7 +45,7 @@ export class ClientService implements Contracts.ClientService {
 		);
 
 		return Helpers.createTransactionDataCollectionWithType(
-			transactions,
+			transactions.map(transaction => [transaction, this.#decimals]),
 			{
 				prev: undefined,
 				self: undefined,

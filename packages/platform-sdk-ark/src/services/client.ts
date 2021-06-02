@@ -14,11 +14,13 @@ export class ClientService implements Contracts.ClientService {
 	readonly #config: Coins.Config;
 	readonly #http: Contracts.HttpClient;
 	readonly #network: string;
+	readonly #decimals: number;
 
 	private constructor(config: Coins.Config) {
 		this.#config = config;
 		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#network = config.get<string>("network.id");
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -35,7 +37,7 @@ export class ClientService implements Contracts.ClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.get(`transactions/${id}`);
 
-		return Helpers.createTransactionDataWithType(body.data, TransactionDTO);
+		return Helpers.createTransactionDataWithType([body.data, this.#decimals], TransactionDTO);
 	}
 
 	public async transactions(query: Contracts.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -44,7 +46,7 @@ export class ClientService implements Contracts.ClientService {
 			: await this.post("transactions/search", this.createSearchParams(query));
 
 		return Helpers.createTransactionDataCollectionWithType(
-			response.data,
+			response.data.map(data => [data, this.#decimals]),
 			this.createMetaPagination(response),
 			TransactionDTO,
 		);

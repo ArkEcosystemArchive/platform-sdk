@@ -34,23 +34,21 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 		return this.data.asset.payments.map((payment: { recipientId: string; amount: string }) => ({
 			address: payment.recipientId,
-			amount: BigNumber.make(payment.amount),
+			amount: BigNumber.make(payment.amount, this.decimals),
 		}));
 	}
 
 	public amount(): BigNumber {
 		if (this.isMultiPayment()) {
-			return this.data.asset.payments.reduce(
-				(sum: BigNumber, { amount }: { amount: string }) => sum.plus(amount),
-				BigNumber.ZERO,
-			);
+			const amount = BigNumber.sum(this.data.asset.payments.map(({ amount }) => amount));
+			return BigNumber.make(amount, this.decimals);
 		}
 
-		return BigNumber.make(this.data.amount);
+		return BigNumber.make(this.data.amount, this.decimals);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee);
+		return BigNumber.make(this.data.fee, this.decimals);
 	}
 
 	public asset(): Record<string, unknown> {

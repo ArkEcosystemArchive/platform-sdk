@@ -364,7 +364,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const signedTransaction = transaction.build().toJson();
 
-			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction);
+			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction, this.#config.get(Coins.ConfigKey.CurrencyDecimals));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

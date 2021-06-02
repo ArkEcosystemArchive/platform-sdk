@@ -58,9 +58,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		const totalInput = this.data.inputs
-			.map((input: Contracts.KeyValuePair) => BigNumber.make(input.value))
-			.reduce((a, b) => a.plus(b), BigNumber.ZERO);
+		const totalInput = BigNumber.sum(this.data.inputs.map(({ value }) => value));
 
 		const changeOutput =
 			this.data.outputs <= 1
@@ -69,7 +67,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
 				  );
 
-		return totalInput.minus(changeOutput).minus(this.fee());
+		return totalInput.minus(changeOutput).minus(this.fee()).decimalPlaces(this.decimals);
 	}
 
 	public fee(): BigNumber {
