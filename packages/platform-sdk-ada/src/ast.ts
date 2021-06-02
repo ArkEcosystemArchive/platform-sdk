@@ -2,10 +2,18 @@ import {
 	ClassDeclaration,
 	Project,
 	SourceFile,
+	VariableDeclaration,
+	Expression,
 	OptionalKind,
+	VariableStatement,
 	VariableDeclarationKind,
 	VariableStatementStructure,
+	ArrayLiteralExpression,
+	SyntaxList,
+	SyntaxKind,
 } from "ts-morph";
+
+
 // setup
 const project: Project = new Project();
 project.addSourceFilesAtPaths("src/**/*.ts");
@@ -22,7 +30,7 @@ const knownMethods = [
 	"secondSignature",
 	"transfer",
 	"vote",
-	"estimateExpiration",
+	"estimateExpiration"
 ];
 
 // load
@@ -49,54 +57,37 @@ for (const knownMethod of knownMethods) {
 
 console.log(`🌍 ADA supports ${countSupported} out of ${knownMethods.length} methods for the TransactionService`);
 
+// Now update the shared.ts file
 let supported = knownMethods
 	.filter((method) => members.includes(method))
-	.map((method) => `"${method}"`)
-	.join(", ");
+	.map((method) => `"${method}"`);
+	// .join(", ");
 
 // Open shared file
 let shared: SourceFile = project.getDirectoryOrThrow("src/networks").getSourceFileOrThrow("shared.ts");
-// shared.addImportDeclaration({
-// 	namedImports: ["Coins"],
-// 	moduleSpecifier: "@arkecosystem/platform-sdk",
-// });
 
-shared.addVariableStatement({
-	declarationKind: VariableDeclarationKind.Const, // defaults to "let"
-	declarations: [
-		{
-			name: "importMethods",
-			type: "Coins.NetworkManifestImportMethods",
-			initializer: `{}`,
-		},
-	],
-});
+const importMethods = shared.getVariableStatement("importMethods");
 
-const newVar: OptionalKind<VariableStatementStructure> = {
-	declarationKind: VariableDeclarationKind.Const, // defaults to "let"
-	declarations: [
-		{
-			name: "featureFlags",
-			type: "Coins.NetworkManifestFeatureFlags",
+const featureFlags: VariableDeclaration = shared.getVariableDeclarationOrThrow("featureFlags");
 
-			// TODO More than a fixed initializer string it would be nice to build it with code
-			// Adding intentation, etc...
-			initializer: `{
-			Transaction: [${supported}],
-		}`,
-		},
-	],
-};
-shared.addVariableStatement(newVar);
+const featureFlagsInitializer: Expression = featureFlags.getInitializerOrThrow();
+const childSyntaxList: SyntaxList = featureFlagsInitializer.getChildSyntaxListOrThrow();
 
-shared.addExportDeclaration({
-	namedExports: [
-		{
-			name: "importMethods",
-		},
-		{
-			name: "featureFlags",
-		},
-	],
-});
+for (let child of childSyntaxList.getChildrenOfKind(SyntaxKind.PropertyAssignment)) {
+	console.log(child.getKindName(), child.getName(), child.getText(), "\n");
+	if (child.getName() === "Transaction") {
+		const transactionList: ArrayLiteralExpression = child.getFirstChildByKindOrThrow(SyntaxKind.ArrayLiteralExpression);
+		transactionList.forgetDescendants();
+		console.log( transactionList.getKindName());
+		// for (let i = 0; i < transactionList.getElements().length; i++) {
+		// 	transactionList.removeElement(0);
+		// }
+		transactionList.addElements(supported)
+	}
+}
+// console.log(childAtIndex.getChildAtIndex(8).getText());
+
+
+// console.log(featureFlags.getFullText());
+
 shared.save();
