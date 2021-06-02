@@ -923,6 +923,7 @@ it("#pending", async () => {
 		    "type": 0,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2",
 		  "signedData": Object {
 		    "amount": "100000000",

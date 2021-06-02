@@ -101,10 +101,14 @@ test("#isLessThanOrEqualTo", () => {
 });
 
 test("#toHuman", () => {
-	expect(BigNumber.make(100 * 1e8).toHuman()).toBe("100");
-	expect(BigNumber.make(123.456 * 1e8).toHuman()).toBe("123.456");
-	expect(BigNumber.make(123.456789 * 1e8).toHuman()).toBe("123.456789");
-	expect(BigNumber.make(1e8).times(1e8).toHuman()).toBe(`${1e8}`);
+	expect(BigNumber.make(100 * 1e8, 8).toHuman()).toBe("100");
+	expect(BigNumber.make(123.456 * 1e8, 8).toHuman()).toBe("123.456");
+	expect(BigNumber.make(123.456789 * 1e8, 8).toHuman()).toBe("123.456789");
+	expect(BigNumber.make(1e8).times(1e8).toHuman(8)).toBe(`${1e8}`);
+	expect(BigNumber.make(123456).toHuman()).toBe("123456");
+	expect(BigNumber.make(123456).toHuman(0)).toBe("123456");
+	expect(BigNumber.make(123456).toHuman(1)).toBe("12345.6");
+	expect(BigNumber.make(123456).toHuman(6)).toBe("0.123456");
 });
 
 test("#toFixed", () => {

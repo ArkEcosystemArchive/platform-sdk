@@ -10,6 +10,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #client;
 	readonly #identity;
 	readonly #networkId;
+	readonly #decimals;
 
 	private constructor(opts: Contracts.KeyValuePair) {
 		super();
@@ -17,6 +18,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#client = opts.client;
 		this.#identity = opts.identity;
 		this.#networkId = opts.network.meta.networkId;
+		this.#decimals = opts.decimals;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
@@ -24,6 +26,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			...config.all(),
 			client: await ClientService.__construct(config),
 			identity: await IdentityService.__construct(config),
+			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
 		});
 	}
 
@@ -77,7 +80,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				keyPair,
 			);
 
-			return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
+			return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction, this.#decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

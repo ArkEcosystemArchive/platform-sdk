@@ -279,18 +279,14 @@ export class BigNumber {
 	/**
 	 * Divides the current value by one satoshi and rounds it to the given amount of decimals.
 	 *
-	 * @param {number} [decimals=8]
+	 * @param {number} [decimals]
 	 * @returns {string}
 	 * @memberof BigNumber
 	 */
 	public toHuman(decimals?: number): string {
-		decimals = decimals || this.#decimals || 8;
-		// TODO: remove 8 above and uncomment below once everything has been ported
-		// if (decimals === undefined) {
-		//	throw new Error("Specify number of decimals for using toHuman()");
-		// }
+		decimals ??= this.#decimals;
 		return BigNumber.make(this.#value, decimals)
-			.divide(BigNumber.powerOfTen(decimals))
+			.divide(BigNumber.powerOfTen(decimals || 0))
 			.toString();
 	}
 
