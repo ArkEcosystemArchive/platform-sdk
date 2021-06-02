@@ -1,10 +1,9 @@
-import { Coins, Signatories } from "@arkecosystem/platform-sdk";
+import { Coins } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, pollTransactionStatus, useEnvironment, useLogger } from "../helpers";
+import { createProfile, pollTransactionStatus, useLogger } from "../helpers";
 
-export default async () => {
+export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
-	const env: Environment = await useEnvironment();
 
 	// Create profile
 	const profile = await createProfile(env,  "tron-profile", "my-password");

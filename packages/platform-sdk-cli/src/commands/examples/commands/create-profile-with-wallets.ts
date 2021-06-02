@@ -2,7 +2,7 @@ import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
 
 import { useEnvironment, useLogger } from "../helpers";
 
-export default async () => {
+export const createProfileWithWallets = async () => {
 	const logger = useLogger();
 	const env: Environment = await useEnvironment();
 

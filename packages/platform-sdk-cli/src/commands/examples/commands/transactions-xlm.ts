@@ -1,10 +1,9 @@
 import { Coins } from "@arkecosystem/platform-sdk";
-import { Environment} from "@arkecosystem/platform-sdk-profiles";
-import { createProfile, useEnvironment, useLogger } from "../helpers";
+import { Environment } from "@arkecosystem/platform-sdk-profiles";
+import { createProfile, useLogger } from "../helpers";
 
-export default async () => {
+export const listTransactionsWithXLM = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
-	const env: Environment = await useEnvironment();
 
 	// Create profile
 	const profile = await createProfile(env,  "stellar-profile", "my-password");
