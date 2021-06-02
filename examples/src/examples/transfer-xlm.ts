@@ -42,7 +42,7 @@ export default async () => {
 			.signTransfer({
 				signatory,
 			data: {
-				amount: "2",
+				amount: 2,
 				to: address2,
 			}
 		});

@@ -31,8 +31,8 @@ export class URI {
 	 * @returns {string}
 	 * @memberof URI
 	 */
-	public serialize(input: Record<string, string>): string {
-		const method: string = input.method;
+	public serialize(input: Record<string, string | number>): string {
+		const method: string = input.method as string;
 
 		delete input.method;
 

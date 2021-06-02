@@ -33,7 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			toAddress: input.data.to,
 			representativeAddress: representative,
 			frontier,
-			amountRaw: tools.convert(input.data.amount, "NANO", "RAW"),
+			amountRaw: tools.convert(input.data.amount.toString(), "NANO", "RAW"),
 			work: (await computeWork(frontier))!,
 		};
 		const signedData = { ...data, timestamp: DateTime.make() };
