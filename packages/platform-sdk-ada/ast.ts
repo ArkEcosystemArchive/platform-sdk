@@ -1,4 +1,4 @@
-import { ClassDeclaration, Project, SourceFile, VariableDeclarationKind } from "ts-morph";
+import { ClassDeclaration, Project, SourceFile, OptionalKind, VariableDeclarationKind, VariableStatementStructure } from "ts-morph";
 
 // setup
 const project: Project = new Project();
@@ -66,7 +66,7 @@ shared.addVariableStatement({
 	],
 });
 
-shared.addVariableStatement({
+const newVar: OptionalKind<VariableStatementStructure> = {
 	declarationKind: VariableDeclarationKind.Const, // defaults to "let"
 	declarations: [
 		{
@@ -80,7 +80,8 @@ shared.addVariableStatement({
 		}`,
 		},
 	],
-});
+};
+shared.addVariableStatement(newVar);
 
 shared.addExportDeclaration({
 	namedExports: [
