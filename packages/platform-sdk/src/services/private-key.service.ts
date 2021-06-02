@@ -6,7 +6,7 @@ import { IdentityOptions } from "./shared.contract";
 
 export abstract class AbstractPrivateKeyService implements PrivateKeyService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<PrivateKeyDataTransferObject> {
-		throw new NotImplemented(this.constructor.name, this.fromMultiSignature.name);
+		throw new NotImplemented(this.constructor.name, this.fromMnemonic.name);
 	}
 
 	public async fromWIF(wif: string): Promise<PrivateKeyDataTransferObject> {
