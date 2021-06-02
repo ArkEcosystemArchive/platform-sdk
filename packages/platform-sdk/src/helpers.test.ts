@@ -80,7 +80,7 @@ class UnvoteData {}
 afterEach(() => jest.restoreAllMocks());
 
 test("#createTransactionDataWithType (unknown type)", () => {
-	expect(createTransactionDataWithType([{}], { TransactionData })).toBeInstanceOf(TransactionData);
+	expect(createTransactionDataWithType({}, { TransactionData })).toBeInstanceOf(TransactionData);
 });
 
 test.each([
@@ -100,7 +100,7 @@ test.each([
 	// @ts-ignore
 	jest.spyOn(TransactionData.prototype, method).mockReturnValue(true);
 
-	expect(createTransactionDataWithType([{}], { [dtoName]: dtoClass, TransactionData })).toBeInstanceOf(dtoClass);
+	expect(createTransactionDataWithType({}, { [dtoName]: dtoClass, TransactionData })).toBeInstanceOf(dtoClass);
 });
 
 test.each([
@@ -122,7 +122,7 @@ test.each([
 
 	expect(
 		createTransactionDataCollectionWithType(
-			[[{}]],
+			[{}],
 			{ prev: 1, self: 2, next: 3, last: 3 },
 			{ [dtoName]: dtoClass, TransactionData },
 		),

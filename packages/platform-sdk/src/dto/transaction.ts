@@ -31,10 +31,13 @@ export abstract class AbstractTransactionData {
 		magistrate: "isMagistrate",
 	};
 
-	protected readonly decimals?: number;
+	protected decimals?: number;
 
-	public constructor(protected readonly data: KeyValuePair, decimals?: number | string) {
+	public constructor(protected readonly data: KeyValuePair) {}
+
+	public withDecimals(decimals?: number | string): this {
 		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;
+		return this;
 	}
 
 	abstract id(): string;

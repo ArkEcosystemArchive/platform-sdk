@@ -24,7 +24,7 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return new TransactionData(await fetchTransaction(id, this.#config), this.#decimals);
+		return new TransactionData(await fetchTransaction(id, this.#config)).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -43,7 +43,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 
 		return Helpers.createTransactionDataCollectionWithType(
-			transactions.map((transaction) => [transaction, this.#decimals]),
+			transactions,
 			{
 				prev: undefined,
 				self: undefined,
@@ -51,6 +51,7 @@ export class ClientService extends Services.AbstractClientService {
 				last: undefined,
 			},
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 

@@ -4,7 +4,9 @@ import { KeyValuePair } from "@arkecosystem/platform-sdk/dist/contracts";
 import * as DTO from "../dto";
 
 export class DataTransferObjectService extends Services.AbstractDataTransferObjectService {
-	public constructor(private decimals: number) {}
+	public constructor(private decimals?: number) {
+		super();
+	}
 
 	public static async __construct(config: Coins.Config): Promise<DataTransferObjectService> {
 		return new DataTransferObjectService(config.get(Coins.ConfigKey.CurrencyDecimals));
@@ -15,6 +17,6 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 	}
 
 	public transaction(transaction: KeyValuePair): Contracts.TransactionDataType {
-		return Helpers.createTransactionDataWithType([transaction, this.decimals], DTO);
+		return Helpers.createTransactionDataWithType(transaction, DTO).withDecimals(this.decimals);
 	}
 }

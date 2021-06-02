@@ -4,74 +4,71 @@ import { TransactionDataType } from "./contracts";
 import { AbstractTransactionData } from "./dto";
 import { MetaPagination } from "./services";
 
-// TODO: following line unnecessary in TypeScript 4.3+
-type AbstractConstructorParameters<T> = ConstructorParameters<(new (...args) => unknown) & T>;
-type TransactionDataArgs = AbstractConstructorParameters<typeof AbstractTransactionData>;
-
 export const createTransactionDataWithType = (
-	args: TransactionDataArgs,
+	transaction: unknown,
 	dtos: Record<string, any>,
-): TransactionDataType => {
-	const instance: TransactionDataType = new dtos.TransactionData(...args);
+): TransactionDataType & AbstractTransactionData => {
+	const instance: TransactionDataType = new dtos.TransactionData(transaction);
 
 	if (instance.isDelegateRegistration()) {
-		return new dtos.DelegateRegistrationData(...args);
+		return new dtos.DelegateRegistrationData(transaction);
 	}
 
 	if (instance.isDelegateResignation()) {
-		return new dtos.DelegateResignationData(...args);
+		return new dtos.DelegateResignationData(transaction);
 	}
 
 	if (instance.isHtlcClaim()) {
-		return new dtos.HtlcClaimData(...args);
+		return new dtos.HtlcClaimData(transaction);
 	}
 
 	if (instance.isHtlcLock()) {
-		return new dtos.HtlcLockData(...args);
+		return new dtos.HtlcLockData(transaction);
 	}
 
 	if (instance.isHtlcRefund()) {
-		return new dtos.HtlcRefundData(...args);
+		return new dtos.HtlcRefundData(transaction);
 	}
 
 	if (instance.isIpfs()) {
-		return new dtos.IpfsData(...args);
+		return new dtos.IpfsData(transaction);
 	}
 
 	if (instance.isMultiPayment()) {
-		return new dtos.MultiPaymentData(...args);
+		return new dtos.MultiPaymentData(transaction);
 	}
 
 	if (instance.isMultiSignature()) {
-		return new dtos.MultiSignatureData(...args);
+		return new dtos.MultiSignatureData(transaction);
 	}
 
 	if (instance.isSecondSignature()) {
-		return new dtos.SecondSignatureData(...args);
+		return new dtos.SecondSignatureData(transaction);
 	}
 
 	if (instance.isTransfer()) {
-		return new dtos.TransferData(...args);
+		return new dtos.TransferData(transaction);
 	}
 
 	if (instance.isVote()) {
-		return new dtos.VoteData(...args);
+		return new dtos.VoteData(transaction);
 	}
 
 	if (instance.isUnvote()) {
-		return new dtos.VoteData(...args);
+		return new dtos.VoteData(transaction);
 	}
 
-	return instance;
+	return instance as AbstractTransactionData;
 };
 
 export const createTransactionDataCollectionWithType = (
-	argsList: TransactionDataArgs[],
+	transactions: unknown[],
 	meta: MetaPagination,
 	classes: Record<string, any>,
+	decimals?: number,
 ): TransactionDataCollection =>
 	new TransactionDataCollection(
-		argsList.map((args) => createTransactionDataWithType(args, classes)),
+		transactions.map((transaction) => createTransactionDataWithType(transaction, classes).withDecimals(decimals)),
 		meta,
 	);
 
