@@ -1,19 +1,7 @@
-import { Coins, Contracts, Exceptions } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
-export class DataTransferObjectService implements Contracts.DataTransferObjectService {
+export class DataTransferObjectService extends Services.AbstractDataTransferObjectService {
 	public static async __construct(config: Coins.Config): Promise<DataTransferObjectService> {
 		return new DataTransferObjectService();
-	}
-
-	public async __destruct(): Promise<void> {
-		//
-	}
-
-	public signedTransaction(identifier: string, signedData: string): Contracts.SignedTransactionData {
-		throw new Exceptions.NotImplemented(this.constructor.name, "signedTransaction");
-	}
-
-	public transaction(transaction: unknown): Contracts.TransactionDataType {
-		throw new Exceptions.NotImplemented(this.constructor.name, "transaction");
 	}
 }

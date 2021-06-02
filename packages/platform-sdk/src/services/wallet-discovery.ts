@@ -5,6 +5,6 @@ import { NotImplemented } from "../exceptions";
 
 export abstract class AbstractWalletDiscoveryService implements Contract {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<AddressDataTransferObject[]> {
-		throw new NotImplemented(this.constructor.name, "fromMnemonic");
+		throw new NotImplemented(this.constructor.name, this.fromMnemonic.name);
 	}
 }
