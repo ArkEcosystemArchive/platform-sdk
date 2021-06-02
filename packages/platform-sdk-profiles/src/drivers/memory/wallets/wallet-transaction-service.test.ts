@@ -171,6 +171,7 @@ describe("signatures", () => {
 		    "type": 0,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2",
 		  "signedData": Object {
 		    "amount": "100000000",
@@ -226,6 +227,7 @@ describe("signatures", () => {
 		    "type": 1,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "90b8567a332d628064856f7a4749f98f56f5d2cdeb31a94025ceeeb51489ea81",
 		  "signedData": Object {
 		    "amount": "0",
@@ -284,6 +286,7 @@ describe("signatures", () => {
 		    "type": 2,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "9ea43c795cf5939999295a16a07d962f8fd812e97097a8fb93684807d72b3558",
 		  "signedData": Object {
 		    "amount": "0",
@@ -343,6 +346,7 @@ describe("signatures", () => {
 		    "type": 3,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "17afd04af3bac79a735b42649c9ae717f0c96838d8a0e74eb4c0697ca9a11ad2",
 		  "signedData": Object {
 		    "amount": "0",
@@ -415,6 +419,7 @@ describe("signatures", () => {
 		    "type": 4,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "eaad3581c9e341b1087cc852ba6b1c8c8e5ccb4e17ec546364b7075a91a30031",
 		  "signedData": Object {
 		    "amount": "0",
@@ -481,6 +486,7 @@ describe("signatures", () => {
 		    "type": 5,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "c753ed6430a565cc18020f821561176f9da07d66c9276c161fbc66971e713492",
 		  "signedData": Object {
 		    "amount": "0",
@@ -552,6 +558,7 @@ describe("signatures", () => {
 		    "type": 6,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "2f971c86b5c07130ae16ccb8ebfc25872628b69bea0788e15b3ad49adea2432b",
 		  "signedData": Object {
 		    "amount": "0",
@@ -613,6 +620,7 @@ describe("signatures", () => {
 		    "type": 7,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "64ee4412671695897cc26c2952e9247c050d4a18533dd4326d751cb88f338cdd",
 		  "signedData": Object {
 		    "amount": "0",
@@ -677,6 +685,7 @@ describe("signatures", () => {
 		    "type": 8,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "4a4f3df0124c5c3c906a57d727d04342718d5a62d9a1dac59de48cb275460887",
 		  "signedData": Object {
 		    "amount": "100000000",
@@ -742,6 +751,7 @@ describe("signatures", () => {
 		    "type": 9,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "098651eca8c8dad8ac0ae06704f6db64b2ebe4ca30d871e2565bcbf86e8ea1fd",
 		  "signedData": Object {
 		    "amount": "0",
@@ -801,6 +811,7 @@ describe("signatures", () => {
 		    "type": 10,
 		    "version": 2,
 		  },
+		  "decimals": 8,
 		  "identifier": "52df20e0a8b2cf0f952afc87fb179be03f73a053fbf6bfe658e74fd0106a5819",
 		  "signedData": Object {
 		    "amount": "0",
