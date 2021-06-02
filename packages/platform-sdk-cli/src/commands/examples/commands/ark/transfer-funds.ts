@@ -16,7 +16,7 @@ export const transferFundsWithARK = async (env: Environment): Promise<void> => {
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "ARK",
-		network: "ark.testnet"
+		network: "ark.testnet",
 	});
 	profile.wallets().push(wallet1);
 
@@ -25,7 +25,7 @@ export const transferFundsWithARK = async (env: Environment): Promise<void> => {
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: address2,
 		coin: "ARK",
-		network: "ark.testnet"
+		network: "ark.testnet",
 	});
 	profile.wallets().push(wallet2);
 
@@ -35,15 +35,13 @@ export const transferFundsWithARK = async (env: Environment): Promise<void> => {
 
 	// Transfer from wallet1 to wallet2
 	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
-	const transactionId = await wallet1
-		.transaction()
-		.signTransfer({
-			signatory,
-			data: {
-				amount: "100000000",
-				to: address2
-			}
-		});
+	const transactionId = await wallet1.transaction().signTransfer({
+		signatory,
+		data: {
+			amount: "100000000",
+			to: address2,
+		},
+	});
 	logger.log("signedTransactionData", transactionId);
 
 	await wallet1.transaction().broadcast(transactionId);

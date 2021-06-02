@@ -6,7 +6,7 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
 
 	// Create profile
-	const profile = await createProfile(env,  "tron-profile", "my-password");
+	const profile = await createProfile(env, "tron-profile", "my-password");
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
@@ -17,7 +17,7 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "TRX",
-		network: "trx.testnet"
+		network: "trx.testnet",
 	});
 	profile.wallets().push(wallet1);
 
@@ -26,7 +26,7 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: address2,
 		coin: "TRX",
-		network: "trx.testnet"
+		network: "trx.testnet",
 	});
 	profile.wallets().push(wallet2);
 
@@ -36,16 +36,14 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 
 	// Transfer from wallet1 to wallet2
 	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
-	const transactionId = await wallet1
-		.transaction()
-		.signTransfer({
-			signatory,
-			data: {
-				amount: "200000000", // 2 TRX
-				to: address2,
-				memo: "This is a nice memo"
-			}
-		});
+	const transactionId = await wallet1.transaction().signTransfer({
+		signatory,
+		data: {
+			amount: "200000000", // 2 TRX
+			to: address2,
+			memo: "This is a nice memo",
+		},
+	});
 	logger.log("signedTransactionData", transactionId);
 
 	await wallet1.transaction().broadcast(transactionId);
@@ -54,9 +52,9 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	// Show transactions
 	const transactions: Coins.TransactionDataCollection = await wallet1
 		.client()
-		.transactions({address: wallet1.address()});
+		.transactions({ address: wallet1.address() });
 
-	logger.log(`Found ${transactions.items().length}`)
+	logger.log(`Found ${transactions.items().length}`);
 	for (const transaction of transactions.items()) {
 		logger.log([
 			transaction.id(),

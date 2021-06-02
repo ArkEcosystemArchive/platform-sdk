@@ -5,7 +5,7 @@ export const transferFundsWithXLM = async (env: Environment): Promise<void> => {
 	const logger = useLogger();
 
 	// Create profile
-	const profile = await createProfile(env,  "stellar-profile", "my-password");
+	const profile = await createProfile(env, "stellar-profile", "my-password");
 
 	// Restore it and sync
 	await env.profiles().restore(profile, "my-password");
@@ -16,7 +16,7 @@ export const transferFundsWithXLM = async (env: Environment): Promise<void> => {
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "XLM",
-		network: "xlm.testnet"
+		network: "xlm.testnet",
 	});
 	profile.wallets().push(wallet1);
 
@@ -25,7 +25,7 @@ export const transferFundsWithXLM = async (env: Environment): Promise<void> => {
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: address2,
 		coin: "XLM",
-		network: "xlm.testnet"
+		network: "xlm.testnet",
 	});
 	profile.wallets().push(wallet2);
 
@@ -35,15 +35,13 @@ export const transferFundsWithXLM = async (env: Environment): Promise<void> => {
 
 	// Transfer from wallet1 to wallet2
 	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);
-	const transactionId = await wallet1
-			.transaction()
-			.signTransfer({
-				signatory,
-			data: {
-				amount: "2",
-				to: address2,
-			}
-		});
+	const transactionId = await wallet1.transaction().signTransfer({
+		signatory,
+		data: {
+			amount: "2",
+			to: address2,
+		},
+	});
 	logger.log("signedTransactionData", transactionId);
 
 	await wallet1.transaction().broadcast(transactionId);

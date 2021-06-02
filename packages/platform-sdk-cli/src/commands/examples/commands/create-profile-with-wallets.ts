@@ -15,7 +15,7 @@ export const createProfileWithWallets = async (env: Environment): Promise<void> 
 	const wallet1 = await profile.walletFactory().fromMnemonic({
 		mnemonic: mnemonic1,
 		coin: "ARK",
-		network: "ark.mainnet"
+		network: "ark.mainnet",
 	});
 	profile.wallets().push(wallet1);
 
@@ -23,7 +23,7 @@ export const createProfileWithWallets = async (env: Environment): Promise<void> 
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: "ATsPMTAHNsUwKedzNpjTNRfcj1oRGaX5xC",
 		coin: "ARK",
-		network: "ark.mainnet"
+		network: "ark.mainnet",
 	});
 	profile.wallets().push(wallet2);
 
@@ -38,9 +38,9 @@ export const createProfileWithWallets = async (env: Environment): Promise<void> 
 			{
 				coin: "ARK",
 				network: "ark.mainnet",
-				address: "AN77jrAmEPAqpUv51ZUP2vL1XquXz5Mhob"
-			}
-		]
+				address: "AN77jrAmEPAqpUv51ZUP2vL1XquXz5Mhob",
+			},
+		],
 	});
 	contact.toggleStarred();
 
