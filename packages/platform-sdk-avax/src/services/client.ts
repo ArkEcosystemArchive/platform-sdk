@@ -11,6 +11,7 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #xchain: AVMAPI;
 	readonly #pchain: PlatformVMAPI;
+	readonly #decimals: number;
 
 	private constructor(config: Coins.Config) {
 		super();
@@ -18,6 +19,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#config = config;
 		this.#xchain = useXChain(config);
 		this.#pchain = usePChain(config);
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -41,7 +43,7 @@ export class ClientService extends Services.AbstractClientService {
 			amount: unsignedTransaction.getOutputTotal(assetId).toString(),
 			fee: unsignedTransaction.getBurn(assetId).toString(),
 			memo: baseTransaction.getMemo().toString("utf-8"),
-		});
+		}).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
@@ -61,6 +63,7 @@ export class ClientService extends Services.AbstractClientService {
 				last: undefined,
 			},
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 
