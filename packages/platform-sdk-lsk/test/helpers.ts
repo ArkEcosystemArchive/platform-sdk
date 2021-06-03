@@ -5,10 +5,7 @@ import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
 
 export const createConfig = (options?: object) => {
-	const config = new Coins.Config(
-		{ ...(options || { network: "lsk.testnet" }), ...{ httpClient: new Request() } },
-		schema,
-	);
+	const config = new Coins.Config({ ...(options || { network: "lsk.testnet" }), httpClient: new Request() }, schema);
 
 	config.set(Coins.ConfigKey.Network, manifest.networks["lsk.testnet"]);
 

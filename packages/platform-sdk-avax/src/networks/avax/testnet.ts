@@ -31,11 +31,9 @@ const network: Networks.NetworkManifest = {
 	],
 	transactions: {
 		...transactions,
-		...{
-			fees: {
-				type: "static",
-				ticker: "FUJI",
-			},
+		fees: {
+			type: "static",
+			ticker: "FUJI",
 		},
 	},
 	importMethods,

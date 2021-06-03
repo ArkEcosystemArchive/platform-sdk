@@ -39,7 +39,7 @@ export class ClientService extends Services.AbstractClientService {
 		return Helpers.createTransactionDataWithType(
 			{
 				...transaction,
-				...{ operation: operations.records[0] },
+				operation: operations.records[0],
 			},
 			TransactionDTO,
 		);
