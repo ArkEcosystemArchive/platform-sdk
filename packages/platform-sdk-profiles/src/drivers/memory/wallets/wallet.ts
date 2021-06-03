@@ -154,7 +154,12 @@ export class Wallet implements IReadWriteWallet {
 
 		return container
 			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
-			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().denominated());
+			.exchange(
+				this.currency(),
+				this.exchangeCurrency(),
+				DateTime.make(),
+				this.balance().denominated(),
+			);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.nonce} */
