@@ -481,6 +481,10 @@ it("should determine if the wallet has been partially restored", () => {
 	expect(subject.hasBeenPartiallyRestored()).toBeTrue();
 });
 
+it("should determine if the wallet can perform write actions", () => {
+	expect(subject.canWrite()).toBeBoolean();
+});
+
 it("should determine if the wallet acts with mnemonic", () => {
 	expect(subject.actsWithMnemonic()).toBeBoolean();
 });
