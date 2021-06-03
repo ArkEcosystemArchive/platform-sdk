@@ -43,7 +43,7 @@ export class Database {
 		this.#database = sqlite3(databaseFile);
 		this.#logger = logger;
 
-		this.migrate();
+		this.#migrate();
 	}
 
 	/**
@@ -70,11 +70,11 @@ export class Database {
 	 */
 	public storeBlockWithTransactions(block: { hash: string; transactions: { id: string }[] }): void {
 		this.#logger.info(`Storing block [${block.hash}] with [${block.transactions.length}] transaction(s)`);
-		this.storeBlock(block);
+		this.#storeBlock(block);
 
 		for (const transaction of block.transactions) {
 			this.#logger.info(`Storing transaction [${transaction.id}]`);
-			this.storeTransaction(block, transaction);
+			this.#storeTransaction(block, transaction);
 		}
 	}
 
@@ -85,7 +85,7 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	private storeBlock(block): void {
+	#storeBlock(block): void {
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO blocks (
@@ -122,7 +122,7 @@ export class Database {
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private storeTransaction(block, transaction): void {
+	#storeTransaction(block, transaction): void {
 		this.#database
 			.prepare(
 				`INSERT INTO transactions (
@@ -157,7 +157,7 @@ export class Database {
 	 * @private
 	 * @memberof Database
 	 */
-	private migrate(): void {
+	#migrate(): void {
 		this.#database.exec(`
 			PRAGMA journal_mode = WAL;
 

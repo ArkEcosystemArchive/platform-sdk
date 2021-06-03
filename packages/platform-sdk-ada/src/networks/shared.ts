@@ -1,11 +1,11 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Networks } from "@arkecosystem/platform-sdk";
 
 // @TODO: type
 export const constants = {
 	slip44: 1815,
 };
 
-export const transactions: Coins.NetworkManifestTransactions = {
+export const transactions: Networks.NetworkManifestTransactions = {
 	expirationType: "height",
 	types: ["transfer"],
 	fees: {
@@ -15,7 +15,7 @@ export const transactions: Coins.NetworkManifestTransactions = {
 	utxo: true,
 };
 
-export const importMethods: Coins.NetworkManifestImportMethods = {
+export const importMethods: Networks.NetworkManifestImportMethods = {
 	address: {
 		default: false,
 		permissions: ["read"],
@@ -30,7 +30,7 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 	},
 };
 
-export const featureFlags: Coins.NetworkManifestFeatureFlags = {
+export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Client: ["transactions", "transaction", "wallet", "broadcast"],
 	Identity: [
 		"address.mnemonic.bip44",

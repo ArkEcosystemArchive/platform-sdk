@@ -58,12 +58,12 @@ export class TransactionService implements ITransactionService {
 
 	/** {@inheritDoc ITransactionService.sync} */
 	public async sync(): Promise<void> {
-		await pqueueSettled([() => this.syncPendingMultiSignatures(), () => this.syncReadyMultiSignatures()]);
+		await pqueueSettled([() => this.#syncPendingMultiSignatures(), () => this.#syncReadyMultiSignatures()]);
 	}
 
 	/** {@inheritDoc ITransactionService.addSignature} */
 	public async addSignature(id: string, signatory: Signatories.Signatory): Promise<void> {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		const transaction = await this.#wallet.coin().multiSignature().findById(id);
 
@@ -74,7 +74,7 @@ export class TransactionService implements ITransactionService {
 
 	/** {@inheritDoc ITransactionService.signTransfer} */
 	public async signTransfer(input: Services.TransferInput, options?: Services.TransactionOptions): Promise<string> {
-		return this.signTransaction("transfer", input, options);
+		return this.#signTransaction("transfer", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signSecondSignature} */
@@ -82,7 +82,7 @@ export class TransactionService implements ITransactionService {
 		input: Services.SecondSignatureInput,
 		options?: Services.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("secondSignature", input, options);
+		return this.#signTransaction("secondSignature", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signDelegateRegistration} */
@@ -90,12 +90,12 @@ export class TransactionService implements ITransactionService {
 		input: Services.DelegateRegistrationInput,
 		options?: Services.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("delegateRegistration", input, options);
+		return this.#signTransaction("delegateRegistration", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signVote} */
 	public async signVote(input: Services.VoteInput, options?: Services.TransactionOptions): Promise<string> {
-		return this.signTransaction("vote", input, options);
+		return this.#signTransaction("vote", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signMultiSignature} */
@@ -103,12 +103,12 @@ export class TransactionService implements ITransactionService {
 		input: Services.MultiSignatureInput,
 		options?: Services.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("multiSignature", input, options);
+		return this.#signTransaction("multiSignature", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signIpfs} */
 	public async signIpfs(input: Services.IpfsInput, options?: Services.TransactionOptions): Promise<string> {
-		return this.signTransaction("ipfs", input, options);
+		return this.#signTransaction("ipfs", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signMultiPayment} */
@@ -116,7 +116,7 @@ export class TransactionService implements ITransactionService {
 		input: Services.MultiPaymentInput,
 		options?: Services.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("multiPayment", input, options);
+		return this.#signTransaction("multiPayment", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signDelegateResignation} */
@@ -124,17 +124,17 @@ export class TransactionService implements ITransactionService {
 		input: Services.DelegateResignationInput,
 		options?: Services.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("delegateResignation", input, options);
+		return this.#signTransaction("delegateResignation", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signHtlcLock} */
 	public async signHtlcLock(input: Services.HtlcLockInput, options?: Services.TransactionOptions): Promise<string> {
-		return this.signTransaction("htlcLock", input, options);
+		return this.#signTransaction("htlcLock", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signHtlcClaim} */
 	public async signHtlcClaim(input: Services.HtlcClaimInput, options?: Services.TransactionOptions): Promise<string> {
-		return this.signTransaction("htlcClaim", input, options);
+		return this.#signTransaction("htlcClaim", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signHtlcRefund} */
@@ -142,12 +142,12 @@ export class TransactionService implements ITransactionService {
 		input: Services.HtlcRefundInput,
 		options?: Services.TransactionOptions,
 	): Promise<string> {
-		return this.signTransaction("htlcRefund", input, options);
+		return this.#signTransaction("htlcRefund", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.transaction} */
 	public transaction(id: string): Contracts.SignedTransactionData {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		if (this.hasBeenConfirmed(id)) {
 			return this.#confirmed[id];
@@ -204,49 +204,49 @@ export class TransactionService implements ITransactionService {
 
 	/** {@inheritDoc ITransactionService.hasBeenSigned} */
 	public hasBeenSigned(id: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		return this.#signed[id] !== undefined;
 	}
 
 	/** {@inheritDoc ITransactionService.hasBeenBroadcasted} */
 	public hasBeenBroadcasted(id: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		return this.#broadcasted[id] !== undefined;
 	}
 
 	/** {@inheritDoc ITransactionService.hasBeenConfirmed} */
 	public hasBeenConfirmed(id: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		return this.#confirmed[id] !== undefined;
 	}
 
 	/** {@inheritDoc ITransactionService.isAwaitingConfirmation} */
 	public isAwaitingConfirmation(id: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		return this.#broadcasted[id] !== undefined;
 	}
 
 	/** {@inheritDoc ITransactionService.isAwaitingOurSignature} */
 	public isAwaitingOurSignature(id: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		return this.#waitingForOurSignature[id] !== undefined;
 	}
 
 	/** {@inheritDoc ITransactionService.isAwaitingOtherSignatures} */
 	public isAwaitingOtherSignatures(id: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		return this.#waitingForOtherSignatures[id] !== undefined;
 	}
 
 	/** {@inheritDoc ITransactionService.isAwaitingSignatureByPublicKey} */
 	public isAwaitingSignatureByPublicKey(id: string, publicKey: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		let transaction: Contracts.SignedTransactionData | undefined;
 
@@ -267,21 +267,24 @@ export class TransactionService implements ITransactionService {
 
 	/** {@inheritDoc ITransactionService.canBeSigned} */
 	public canBeSigned(id: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
-		return this.#wallet.coin().multiSignature().needsWalletSignature(this.transaction(id), this.getPublicKey());
+		return this.#wallet
+			.coin()
+			.multiSignature()
+			.needsWalletSignature(this.transaction(id), this.#getPublicKey());
 	}
 
 	/** {@inheritDoc ITransactionService.canBeBroadcasted} */
 	public canBeBroadcasted(id: string): boolean {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		return this.#signed[id] !== undefined;
 	}
 
 	/** {@inheritDoc ITransactionService.broadcast} */
 	public async broadcast(id: string): Promise<Services.BroadcastResponse> {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		const transaction: Contracts.SignedTransactionData = this.transaction(id);
 
@@ -306,7 +309,7 @@ export class TransactionService implements ITransactionService {
 
 	/** {@inheritDoc ITransactionService.confirm} */
 	public async confirm(id: string): Promise<boolean> {
-		this.assertHasValidIdentifier(id);
+		this.#assertHasValidIdentifier(id);
 
 		if (!this.isAwaitingConfirmation(id)) {
 			throw new Error(`Transaction [${id}] is not awaiting confirmation.`);
@@ -342,7 +345,7 @@ export class TransactionService implements ITransactionService {
 			const result: Record<string, object> = {};
 
 			for (const [id, transaction] of Object.entries(storage)) {
-				this.assertHasValidIdentifier(id);
+				this.#assertHasValidIdentifier(id);
 
 				result[id] = transaction;
 			}
@@ -362,7 +365,7 @@ export class TransactionService implements ITransactionService {
 			const transactions: object = this.#wallet.data().get(storageKey) || {};
 
 			for (const [id, transaction] of Object.entries(transactions)) {
-				this.assertHasValidIdentifier(id);
+				this.#assertHasValidIdentifier(id);
 
 				storage[id] = this.#wallet.dataTransferObject().signedTransaction(id, transaction);
 			}
@@ -384,7 +387,7 @@ export class TransactionService implements ITransactionService {
 	 * @returns {Promise<string>}
 	 * @memberof TransactionService
 	 */
-	private async signTransaction(type: string, input: any, options?: Services.TransactionOptions): Promise<string> {
+	async #signTransaction(type: string, input: any, options?: Services.TransactionOptions): Promise<string> {
 		const transaction: Contracts.SignedTransactionData = await this.#wallet
 			.coin()
 			.transaction()
@@ -411,7 +414,7 @@ export class TransactionService implements ITransactionService {
 	 * @param {string} id
 	 * @memberof TransactionService
 	 */
-	private assertHasValidIdentifier(id: string): void {
+	#assertHasValidIdentifier(id: string): void {
 		if (id === undefined) {
 			throw new Error("Encountered a malformed ID. This looks like a bug.");
 		}
@@ -424,9 +427,10 @@ export class TransactionService implements ITransactionService {
 	 * @param {string} id
 	 * @memberof TransactionService
 	 */
-	private getPublicKey(): string {
+	#getPublicKey(): string {
 		const publicKey: string | undefined = this.#wallet.publicKey();
 
+		/* istanbul ignore next */
 		if (publicKey === undefined) {
 			throw new Error(
 				"This wallet is lacking a public key. Please sync the wallet before interacting with transactions.",
@@ -436,8 +440,11 @@ export class TransactionService implements ITransactionService {
 		return publicKey;
 	}
 
-	private async syncPendingMultiSignatures(): Promise<void> {
-		const transactions = await this.#wallet.coin().multiSignature().allWithPendingState(this.getPublicKey());
+	async #syncPendingMultiSignatures(): Promise<void> {
+		const transactions = await this.#wallet
+			.coin()
+			.multiSignature()
+			.allWithPendingState(this.#getPublicKey());
 
 		this.#waitingForOurSignature = {};
 		this.#waitingForOtherSignatures = {};
@@ -459,8 +466,11 @@ export class TransactionService implements ITransactionService {
 		}
 	}
 
-	private async syncReadyMultiSignatures(): Promise<void> {
-		const transactions = await this.#wallet.coin().multiSignature().allWithReadyState(this.getPublicKey());
+	async #syncReadyMultiSignatures(): Promise<void> {
+		const transactions = await this.#wallet
+			.coin()
+			.multiSignature()
+			.allWithReadyState(this.#getPublicKey());
 
 		for (const transaction of transactions) {
 			this.#signed[transaction.id] = new SignedTransactionData(

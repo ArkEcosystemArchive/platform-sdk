@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Collections } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
@@ -25,7 +25,7 @@ describe("ClientService", () => {
 			address: "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
 		});
 
-		expect(result).toBeInstanceOf(Coins.TransactionDataCollection);
+		expect(result).toBeInstanceOf(Collections.TransactionDataCollection);
 
 		const transaction = result.items()[0];
 

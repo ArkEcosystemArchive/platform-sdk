@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
@@ -62,7 +62,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];
-		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
 		const requestedAmount: BigNum = BigNum.from_str(amount);
 		let totalTxAmount: BigNum = BigNum.from_str("0");
 		let totalFeesAmount: BigNum = BigNum.from_str("0");

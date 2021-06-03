@@ -679,11 +679,12 @@ export class Censor {
 			return false;
 		}
 
-		const alphaValue = value.replace(/[^a-zA-Z0-9]/g, "");
+		const alphaValue = value.toLowerCase().replace(/[^a-z0-9]/g, "");
 
-		for (const bad of this.blacklist.concat(this.shortUrls)) {
+		for (let bad of this.blacklist.concat(this.shortUrls)) {
+			bad = bad.toLowerCase();
 			const badDirectly = alphaValue.includes(bad);
-			const badVariation = alphaValue.includes(bad.replace(/[^a-zA-Z0-9]/g, ""));
+			const badVariation = alphaValue.includes(bad.replace(/[^a-z0-9]/g, ""));
 
 			if (badDirectly || badVariation) {
 				return true;
@@ -702,8 +703,8 @@ export class Censor {
 	 */
 	public process(value: string): string {
 		if (value) {
-			value = this.removeSpam(value);
-			value = this.removeBadWords(value);
+			value = this.#removeSpam(value);
+			value = this.#removeBadWords(value);
 		}
 
 		return value;
@@ -717,7 +718,7 @@ export class Censor {
 	 * @returns {string}
 	 * @memberof Censor
 	 */
-	private removeBadWords(value: string): string {
+	#removeBadWords(value: string): string {
 		const badwords = new BadWords();
 		badwords.addWords("pedo", "pedophile");
 
@@ -736,7 +737,7 @@ export class Censor {
 	 * @returns {string}
 	 * @memberof Censor
 	 */
-	private removeSpam(value: string): string {
+	#removeSpam(value: string): string {
 		return new Censorify().process(value);
 	}
 }

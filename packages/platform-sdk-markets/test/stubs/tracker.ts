@@ -1,23 +1,29 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import {
+	DailyAverageOptions,
+	HistoricalData,
+	HistoricalPriceOptions,
+	HistoricalVolumeOptions,
+	MarketDataCollection,
+} from "../../src/contracts";
 
-export class PriceTracker implements Contracts.PriceTracker {
+export class PriceTracker implements PriceTracker {
 	public async verifyToken(token: string): Promise<boolean> {
 		return false;
 	}
 
-	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
-		return {} as Contracts.MarketDataCollection;
+	public async marketData(token: string): Promise<MarketDataCollection> {
+		return {} as MarketDataCollection;
 	}
 
-	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
-		return {} as Contracts.HistoricalData;
+	public async historicalPrice(options: HistoricalPriceOptions): Promise<HistoricalData> {
+		return {} as HistoricalData;
 	}
 
-	public async historicalVolume(options: Contracts.HistoricalVolumeOptions): Promise<Contracts.HistoricalData> {
-		return {} as Contracts.HistoricalData;
+	public async historicalVolume(options: HistoricalVolumeOptions): Promise<HistoricalData> {
+		return {} as HistoricalData;
 	}
 
-	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
+	public async dailyAverage(options: DailyAverageOptions): Promise<number> {
 		return 0;
 	}
 }

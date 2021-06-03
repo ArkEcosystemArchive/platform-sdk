@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { Contracts } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { injectable } from "inversify";
 import semver from "semver";
 import { IPluginRegistry, IRegistryPlugin } from "../../../contracts";
@@ -11,10 +12,10 @@ import { RegistryPlugin } from "./registry-plugin";
 
 @injectable()
 export class PluginRegistry implements IPluginRegistry {
-	readonly #httpClient: Contracts.HttpClient;
+	readonly #httpClient: HttpClient;
 
 	public constructor() {
-		this.#httpClient = container.get<Contracts.HttpClient>(Identifiers.HttpClient);
+		this.#httpClient = container.get<HttpClient>(Identifiers.HttpClient);
 	}
 
 	/** {@inheritDoc IPluginRegistry.all} */
@@ -46,13 +47,13 @@ export class PluginRegistry implements IPluginRegistry {
 					continue;
 				}
 
-				results.push(this.expand(item.package));
+				results.push(this.#expand(item.package));
 			}
 
 			i++;
 		}
 
-		return this.applyWhitelist(await Promise.all(results));
+		return this.#applyWhitelist(await Promise.all(results));
 	}
 
 	/** {@inheritDoc IPluginRegistry.size} */
@@ -77,7 +78,7 @@ export class PluginRegistry implements IPluginRegistry {
 		return result;
 	}
 
-	private async applyWhitelist(plugins: IRegistryPlugin[]): Promise<IRegistryPlugin[]> {
+	async #applyWhitelist(plugins: IRegistryPlugin[]): Promise<IRegistryPlugin[]> {
 		const whitelist: Record<string, string> = (
 			await this.#httpClient.get(
 				"https://raw.githubusercontent.com/ArkEcosystem/common/master/desktop-wallet/whitelist.json",
@@ -101,7 +102,7 @@ export class PluginRegistry implements IPluginRegistry {
 		return result;
 	}
 
-	private async expand(pkg: any): Promise<IRegistryPlugin> {
+	async #expand(pkg: any): Promise<IRegistryPlugin> {
 		return new RegistryPlugin(
 			pkg,
 			(

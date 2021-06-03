@@ -15,7 +15,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		super();
 
 		this.#config = config;
-		this.#client = new Connection(this.host());
+		this.#client = new Connection(this.#host());
 		this.#slip44 = config.get<number>("network.constants.slip44");
 	}
 
@@ -30,7 +30,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "signatory");
 		}
-		const amount = Coins.toRawUnit(input.data.amount, this.#config).toNumber();
+		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toNumber();
 
 		const transaction = new Transaction();
 		transaction.recentBlockhash = (await this.#client.getRecentBlockhash()).blockhash;
@@ -44,7 +44,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}),
 		);
 
-		const signedTransaction = this.sign(
+		const signedTransaction = this.#sign(
 			transaction,
 			derivePrivateKey(input.signatory.signingKey(), 0, 0, this.#slip44),
 		);
@@ -61,13 +61,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		);
 	}
 
-	private sign(transaction: Transaction, privateKey: Buffer): Buffer {
+	#sign(transaction: Transaction, privateKey: Buffer): Buffer {
 		transaction.sign(new Account(derivePublicKey(privateKey)));
 
 		return transaction.serialize({ requireAllSignatures: false, verifySignatures: false });
 	}
 
-	private host(): string {
+	#host(): string {
 		return `${Helpers.randomHostFromConfig(this.#config)}/api`;
 	}
 }

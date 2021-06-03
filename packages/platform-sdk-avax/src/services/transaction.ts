@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { Hash } from "@arkecosystem/platform-sdk-crypto";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/utils";
@@ -43,7 +43,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#xchain.getUTXOs(child.getAddressString());
-			const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
 
 			const signedTx = (
 				await this.#xchain.buildBaseTx(

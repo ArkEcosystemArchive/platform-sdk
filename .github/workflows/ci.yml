@@ -198,66 +198,6 @@ jobs:
               run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-btc/ && pnpm run test -- --coverage
-    coincap:
-        needs: [conflicts]
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [14.x]
-        steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - name: Cache pnpm modules
-              uses: actions/cache@v2
-              env:
-                  cache-name: cache-pnpm-modules
-              with:
-                  path: ~/.pnpm-store
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
-                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-            - name: Install pnpm
-              uses: pnpm/action-setup@v1.2.1
-              with:
-                  version: 5.18.1
-            - name: Install dependencies
-              run: node common/scripts/install-run-rush.js install
-            - name: Build
-              run: node common/scripts/install-run-rush.js rebuild --verbose
-            - name: Test
-              run: cd packages/platform-sdk-coincap/ && pnpm run test -- --coverage
-    coingecko:
-        needs: [conflicts]
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [14.x]
-        steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - name: Cache pnpm modules
-              uses: actions/cache@v2
-              env:
-                  cache-name: cache-pnpm-modules
-              with:
-                  path: ~/.pnpm-store
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
-                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-            - name: Install pnpm
-              uses: pnpm/action-setup@v1.2.1
-              with:
-                  version: 5.18.1
-            - name: Install dependencies
-              run: node common/scripts/install-run-rush.js install
-            - name: Build
-              run: node common/scripts/install-run-rush.js rebuild --verbose
-            - name: Test
-              run: cd packages/platform-sdk-coingecko/ && pnpm run test -- --coverage
     crypto:
         needs: [conflicts]
         runs-on: ubuntu-latest
@@ -288,36 +228,6 @@ jobs:
               run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-crypto/ && pnpm run test -- --coverage
-    cryptocompare:
-        needs: [conflicts]
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [14.x]
-        steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - name: Cache pnpm modules
-              uses: actions/cache@v2
-              env:
-                  cache-name: cache-pnpm-modules
-              with:
-                  path: ~/.pnpm-store
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
-                  restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-            - name: Install pnpm
-              uses: pnpm/action-setup@v1.2.1
-              with:
-                  version: 5.18.1
-            - name: Install dependencies
-              run: node common/scripts/install-run-rush.js install
-            - name: Build
-              run: node common/scripts/install-run-rush.js rebuild --verbose
-            - name: Test
-              run: cd packages/platform-sdk-cryptocompare/ && pnpm run test -- --coverage
     dot:
         needs: [conflicts]
         runs-on: ubuntu-latest

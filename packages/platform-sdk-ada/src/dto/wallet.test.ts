@@ -19,10 +19,6 @@ describe("WalletData", () => {
 		expect(subject.balance().fees.toString()).toEqual("0");
 	});
 
-	it("#entities", () => {
-		expect(subject.entities()).toHaveLength(0);
-	});
-
 	it("#nonce", () => {
 		expect(() => subject.nonce()).toThrow(/not implemented/);
 	});

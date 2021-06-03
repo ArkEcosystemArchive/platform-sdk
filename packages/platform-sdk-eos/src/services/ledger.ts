@@ -23,13 +23,13 @@ export class LedgerService extends Services.AbstractLedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		const result = await this.#ledger.send(0xd4, 0x02, 0x00, 0x00, this.eosBip44Parse(path));
+		const result = await this.#ledger.send(0xd4, 0x02, 0x00, 0x00, this.#eosBip44Parse(path));
 
 		return result.slice(1, 1 + result[0]).toString("hex");
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
-		const signature = await this.eosSignTransaction(path, payload);
+		const signature = await this.#eosSignTransaction(path, payload);
 
 		return signature;
 	}
@@ -37,7 +37,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	/**
 	 * EOS-like Bip44 Parsing
 	 */
-	private eosBip44Parse(path: string): Buffer {
+	#eosBip44Parse(path: string): Buffer {
 		const elements: number[] = Object.values(BIP44.parse(path));
 		const payload = Buffer.alloc(1 + elements.length * 4);
 		payload[0] = elements.length;
@@ -51,8 +51,8 @@ export class LedgerService extends Services.AbstractLedgerService {
 	/**
 	 * EOS-like Transaction Signing
 	 */
-	private async eosSignTransaction(path: string, rawTxHex: Buffer): Promise<string> {
-		const eosPaths = this.eosBip44Parse(path);
+	async #eosSignTransaction(path: string, rawTxHex: Buffer): Promise<string> {
+		const eosPaths = this.#eosBip44Parse(path);
 		const buffer = Buffer.concat([eosPaths, rawTxHex]);
 
 		const chunkSize = 150;

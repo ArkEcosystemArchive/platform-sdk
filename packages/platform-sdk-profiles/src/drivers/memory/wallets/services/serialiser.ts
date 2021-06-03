@@ -1,6 +1,5 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Networks, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import dot from "dot-prop";
 
 import { IReadWriteWallet, IWalletData, WalletData, WalletFlag } from "../../../../contracts";
 
@@ -26,7 +25,7 @@ export class WalletSerialiser {
 
 		this.#wallet.transaction().dump();
 
-		const network: Coins.NetworkManifest = this.#wallet.coin().network().toObject();
+		const network: Networks.NetworkManifest = this.#wallet.coin().network().toObject();
 
 		return {
 			id: this.#wallet.id(),
@@ -35,7 +34,7 @@ export class WalletSerialiser {
 				[WalletData.Network]: this.#wallet.networkId(),
 				[WalletData.Address]: this.#wallet.address(),
 				[WalletData.PublicKey]: this.#wallet.publicKey(),
-				[WalletData.Balance]: this.serializeBalance(),
+				[WalletData.Balance]: this.#serializeBalance(),
 				[WalletData.BroadcastedTransactions]: this.#wallet.data().get(WalletData.BroadcastedTransactions, []),
 				[WalletData.DerivationPath]: this.#wallet.data().get(WalletData.DerivationPath),
 				[WalletData.DerivationType]: this.#wallet.data().get(WalletData.DerivationType),
@@ -57,7 +56,7 @@ export class WalletSerialiser {
 		};
 	}
 
-	private serializeBalance(): SerializedBalance {
+	#serializeBalance(): SerializedBalance {
 		const balance = this.#wallet.data().get<Contracts.WalletBalance>(WalletData.Balance);
 
 		const serializedBalance: SerializedBalance = {

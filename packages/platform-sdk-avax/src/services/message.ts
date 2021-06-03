@@ -26,7 +26,7 @@ export class MessageService extends Services.AbstractMessageService {
 			return {
 				message: input.message,
 				signatory: child.getAddressString(),
-				signature: cb58Encode(child.sign(this.digestMessage(input.message))),
+				signature: cb58Encode(child.sign(this.#digestMessage(input.message))),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -39,12 +39,12 @@ export class MessageService extends Services.AbstractMessageService {
 		const hrp = getPreferredHRP(parseInt(this.#config.get("network.meta.networkId")));
 		const keypair = new KeyPair(hrp, "X");
 		const signedBuff = cb58Decode(input.signature);
-		const pubKey = keypair.recover(this.digestMessage(input.message), signedBuff);
+		const pubKey = keypair.recover(this.#digestMessage(input.message), signedBuff);
 
 		return bintools.addressToString(hrp, "X", keypair.addressFromPublicKey(pubKey)) === input.signatory;
 	}
 
-	private digestMessage(msgStr: string): Buffer {
+	#digestMessage(msgStr: string): Buffer {
 		const mBuf = Buffer.from(msgStr, "utf8");
 		const msgSize = Buffer.alloc(4);
 		msgSize.writeUInt32BE(mBuf.length, 0);

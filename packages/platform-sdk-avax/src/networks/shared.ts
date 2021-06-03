@@ -1,6 +1,6 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Networks } from "@arkecosystem/platform-sdk";
 
-export const transactions: Coins.NetworkManifestTransactions = {
+export const transactions: Networks.NetworkManifestTransactions = {
 	expirationType: "height",
 	types: ["transfer", "vote"],
 	fees: {
@@ -10,7 +10,7 @@ export const transactions: Coins.NetworkManifestTransactions = {
 	utxo: true,
 };
 
-export const importMethods: Coins.NetworkManifestImportMethods = {
+export const importMethods: Networks.NetworkManifestImportMethods = {
 	address: {
 		default: false,
 		permissions: ["read"],
@@ -25,7 +25,7 @@ export const importMethods: Coins.NetworkManifestImportMethods = {
 	},
 };
 
-export const featureFlags: Coins.NetworkManifestFeatureFlags = {
+export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Client: ["transactions", "wallet", "broadcast"],
 	Identity: [
 		"address.mnemonic.bip44",

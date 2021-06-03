@@ -1,10 +1,11 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #peer: string;
 	readonly #decimals: string;
 
@@ -26,7 +27,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
-			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
+			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Helpers.randomHostFromConfig(config),
 			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
 		});
@@ -36,13 +37,13 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return Helpers.createTransactionDataWithType(await this.get(`transactions/${id}`), TransactionDTO).withDecimals(
+		return Helpers.createTransactionDataWithType(await this.#get(`transactions/${id}`), TransactionDTO).withDecimals(
 			this.#decimals,
 		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		return new WalletData(await this.get(`wallets/${id}`));
+		return new WalletData(await this.#get(`wallets/${id}`));
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
@@ -59,7 +60,7 @@ export class ClientService extends Services.AbstractClientService {
 				throw new Error("Failed to compute the transaction ID.");
 			}
 
-			const response = await this.post("transactions", { transactions: [transaction.toBroadcast()] });
+			const response = await this.#post("transactions", { transactions: [transaction.toBroadcast()] });
 
 			if (response.result) {
 				result.accepted.push(transactionId);
@@ -83,13 +84,13 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.get(`${this.#peer}/${path}`, query);
 
 		return response.json();
 	}
 
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.post(`${this.#peer}/${path}`, body);
 
 		return response.json();

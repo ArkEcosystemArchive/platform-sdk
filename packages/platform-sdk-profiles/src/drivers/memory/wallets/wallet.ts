@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Networks, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -74,7 +74,7 @@ export class Wallet implements IReadWriteWallet {
 		this.#walletImportFormat = new WalletImportFormat(this);
 		this.#multiSignature = new MultiSignature(this);
 
-		this.restore();
+		this.#restore();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.profile} */
@@ -93,7 +93,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.network} */
-	public network(): Coins.Network {
+	public network(): Networks.Network {
 		return this.coin().network();
 	}
 
@@ -405,8 +405,8 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.transactionTypes} */
-	public transactionTypes(): Coins.CoinTransactionTypes[] {
-		const manifest: Coins.NetworkManifest = this.coin().manifest().get<object>("networks")[this.networkId()];
+	public transactionTypes(): Networks.CoinTransactionTypes[] {
+		const manifest: Networks.NetworkManifest = this.coin().manifest().get<object>("networks")[this.networkId()];
 
 		return manifest.transactions.types;
 	}
@@ -490,10 +490,10 @@ export class Wallet implements IReadWriteWallet {
 	/** {@inheritDoc IReadWriteWallet.actsWithMnemonic} */
 	public actsWithMnemonic(): boolean {
 		return [
-			WalletImportMethod.MnemonicBIP39,
-			WalletImportMethod.MnemonicBIP44,
-			WalletImportMethod.MnemonicBIP49,
-			WalletImportMethod.MnemonicBIP84,
+			WalletImportMethod.BIP39.MNEMONIC,
+			WalletImportMethod.BIP44.MNEMONIC,
+			WalletImportMethod.BIP49.MNEMONIC,
+			WalletImportMethod.BIP84.MNEMONIC,
 		].includes(this.data().get(WalletData.ImportMethod)!);
 	}
 
@@ -514,12 +514,21 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.actsWithAddressWithDerivationPath} */
 	public actsWithAddressWithDerivationPath(): boolean {
-		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.AddressWithDerivationPath;
+		return [
+			WalletImportMethod.BIP44.DERIVATION_PATH,
+			WalletImportMethod.BIP49.DERIVATION_PATH,
+			WalletImportMethod.BIP84.DERIVATION_PATH,
+		].includes(this.data().get(WalletData.ImportMethod)!);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.actsWithMnemonicWithEncryption} */
 	public actsWithMnemonicWithEncryption(): boolean {
-		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.MnemonicWithEncryption;
+		return [
+			WalletImportMethod.BIP39.MNEMONIC_WITH_ENCRYPTION,
+			WalletImportMethod.BIP44.MNEMONIC_WITH_ENCRYPTION,
+			WalletImportMethod.BIP49.MNEMONIC_WITH_ENCRYPTION,
+			WalletImportMethod.BIP84.MNEMONIC_WITH_ENCRYPTION,
+		].includes(this.data().get(WalletData.ImportMethod)!);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.actsWithWif} */
@@ -532,7 +541,7 @@ export class Wallet implements IReadWriteWallet {
 		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.WIFWithEncryption;
 	}
 
-	private restore(): void {
+	#restore(): void {
 		const balance: Contracts.WalletBalance | undefined = this.data().get<Contracts.WalletBalance>(
 			WalletData.Balance,
 		);

@@ -1,5 +1,8 @@
 import { Arr } from "@arkecosystem/platform-sdk-support";
-import { Config, NetworkHost, NetworkHostType, TransactionDataCollection } from "./coins";
+import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
+import { Config } from "./coins";
+import { NetworkHost, NetworkHostType } from "./networks";
+import { TransactionDataCollection } from "./collections";
 import { TransactionDataType } from "./contracts";
 import { AbstractTransactionData } from "./dto";
 import { MetaPagination } from "./services";
@@ -106,4 +109,10 @@ export const pluckAddress = (query): string => {
 	}
 
 	throw new Error("Failed to pluck any address.");
+};
+
+export const toRawUnit = (value: NumberLike, config: Config) => {
+	const decimals = config.get<number>("network.currency.decimals");
+	const denomination = BigNumber.make(`1${"0".repeat(decimals)}`); // poor man's bigint exponentiation
+	return denomination.times(value);
 };

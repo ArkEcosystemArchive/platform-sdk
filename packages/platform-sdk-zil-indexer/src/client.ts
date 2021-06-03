@@ -34,7 +34,7 @@ export class Client {
 	 * @memberof Client
 	 */
 	public async height(): Promise<number> {
-		return parseInt(await this.post<string>("GetNumTxBlocks", []));
+		return parseInt(await this.#post<string>("GetNumTxBlocks", []));
 	}
 
 	/**
@@ -45,7 +45,7 @@ export class Client {
 	 * @memberof Client
 	 */
 	public async block(height: number): Promise<TxBlockObj> {
-		return this.post("GetTxBlock", [height.toString()]);
+		return this.#post("GetTxBlock", [height.toString()]);
 	}
 
 	/**
@@ -56,7 +56,7 @@ export class Client {
 	 * @memberof Client
 	 */
 	public async transactions(height: number): Promise<TransactionObj[]> {
-		return this.post("GetTxnBodiesForTxBlock", [height.toString()]);
+		return this.#post("GetTxnBodiesForTxBlock", [height.toString()]);
 	}
 
 	/**
@@ -69,7 +69,7 @@ export class Client {
 	 * @returns {Promise<T>}
 	 * @memberof Client
 	 */
-	private async post<T = Record<string, any>>(method: string, params: any): Promise<T> {
+	async #post<T = Record<string, any>>(method: string, params: any): Promise<T> {
 		return (
 			await this.#client.post("/", {
 				jsonrpc: "2.0",

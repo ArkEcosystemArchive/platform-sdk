@@ -1,4 +1,4 @@
-import { Contracts, Http } from "@arkecosystem/platform-sdk";
+import { AbstractRequest, HttpResponse, RequestOptions, Response } from "@arkecosystem/platform-sdk-http";
 import bent from "bent";
 import { URLSearchParams } from "url";
 
@@ -9,16 +9,12 @@ import { URLSearchParams } from "url";
  *
  * @export
  * @class Request
- * @extends {Http.Request}
+ * @extends {Request}
  */
-export class Request extends Http.Request {
-	/** {@inheritDoc Http.Request.send} */
-	protected async send(
-		method: string,
-		url: string,
-		data?: { query?: object; data?: any },
-	): Promise<Contracts.HttpResponse> {
-		const options: Http.RequestOptions = {
+export class Request extends AbstractRequest {
+	/** {@inheritDoc Request.send} */
+	protected async send(method: string, url: string, data?: { query?: object; data?: any }): Promise<HttpResponse> {
+		const options: RequestOptions = {
 			...this._options,
 		};
 
@@ -55,13 +51,13 @@ export class Request extends Http.Request {
 				response = await bent(method)(url, options.json || options.body, options.headers);
 			}
 
-			return new Http.Response({
+			return new Response({
 				body: await response.text(),
 				headers: response.headers,
 				statusCode: response.statusCode,
 			});
 		} catch (error) {
-			return new Http.Response(
+			return new Response(
 				{
 					body: await error.text(),
 					headers: error.headers,

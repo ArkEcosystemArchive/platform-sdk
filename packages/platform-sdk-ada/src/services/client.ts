@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 
 import * as TransactionDTO from "../dto";
 import { TransactionData, WalletData } from "../dto";
@@ -27,7 +27,7 @@ export class ClientService extends Services.AbstractClientService {
 		return new TransactionData(await fetchTransaction(id, this.#config)).withDecimals(this.#decimals);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		if (query.senderPublicKey === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transactions.name, "senderPublicKey");
 		}

@@ -2,7 +2,7 @@ import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Entity, WalletBalance } from "../contracts/coins";
+import { WalletBalance } from "../contracts";
 import { AbstractWalletData } from "./wallet";
 
 test("#address", () => {
@@ -35,10 +35,6 @@ test("#rank", () => {
 
 test("#votes", () => {
 	expect(new Wallet({ key: "value" }).votes()).toBe(BigNumber.ZERO);
-});
-
-test("#entities", () => {
-	expect(new Wallet({ key: "value" }).entities()).toEqual([]);
 });
 
 test("#isDelegate", () => {
@@ -130,10 +126,6 @@ class Wallet extends AbstractWalletData {
 
 	public votes(): BigNumber | undefined {
 		return BigNumber.ZERO;
-	}
-
-	public entities(): Entity[] {
-		return [];
 	}
 
 	public isDelegate(): boolean {

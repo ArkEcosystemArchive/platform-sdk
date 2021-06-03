@@ -1,4 +1,4 @@
-import { Contracts, Http } from "@arkecosystem/platform-sdk";
+import { AbstractRequest, HttpResponse, RequestOptions, Response } from "@arkecosystem/platform-sdk-http";
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 
@@ -9,16 +9,12 @@ import { URLSearchParams } from "url";
  *
  * @export
  * @class Request
- * @extends {Http.Request}
+ * @extends {Request}
  */
-export class Request extends Http.Request {
-	/** {@inheritDoc Http.Request.send} */
-	protected async send(
-		method: string,
-		url: string,
-		data?: { query?: object; data?: any },
-	): Promise<Contracts.HttpResponse> {
-		const options: Http.RequestOptions = {
+export class Request extends AbstractRequest {
+	/** {@inheritDoc Request.send} */
+	protected async send(method: string, url: string, data?: { query?: object; data?: any }): Promise<HttpResponse> {
+		const options: RequestOptions = {
 			...this._options,
 		};
 
@@ -45,7 +41,7 @@ export class Request extends Http.Request {
 		try {
 			const response = await fetch(url.replace(/^\/+/g, ""), options);
 
-			return new Http.Response({
+			return new Response({
 				body: await response.text(),
 				headers: response.headers.raw(),
 				statusCode: response.status,
@@ -59,7 +55,7 @@ export class Request extends Http.Request {
 				body = undefined;
 			}
 
-			return new Http.Response(
+			return new Response(
 				{
 					body,
 					headers: error.response.headers(),

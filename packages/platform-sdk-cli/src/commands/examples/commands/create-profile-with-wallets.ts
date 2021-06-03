@@ -12,7 +12,7 @@ export const createProfileWithWallets = async (env: Environment): Promise<void> 
 
 	// Create read-write wallet #1
 	const mnemonic1: string = "super secure password";
-	const wallet1 = await profile.walletFactory().fromMnemonic({
+	const wallet1 = await profile.walletFactory().fromMnemonicWithBIP39({
 		mnemonic: mnemonic1,
 		coin: "ARK",
 		network: "ark.mainnet",

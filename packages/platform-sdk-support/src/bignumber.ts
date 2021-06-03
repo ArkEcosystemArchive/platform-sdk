@@ -57,7 +57,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	private constructor(value: NumberLike, decimals?: number) {
-		this.#value = this.toBigNumber(value);
+		this.#value = this.#toBigNumber(value);
 
 		if (decimals !== undefined) {
 			this.#decimals = decimals;
@@ -97,7 +97,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public plus(value: NumberLike): BigNumber {
-		return BigNumber.make(this.#value.plus(this.toBigNumber(value)));
+		return BigNumber.make(this.#value.plus(this.#toBigNumber(value)));
 	}
 
 	/**
@@ -108,7 +108,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public minus(value: NumberLike): BigNumber {
-		return BigNumber.make(this.#value.minus(this.toBigNumber(value)));
+		return BigNumber.make(this.#value.minus(this.#toBigNumber(value)));
 	}
 
 	/**
@@ -119,7 +119,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public divide(value: NumberLike): BigNumber {
-		return BigNumber.make(this.#value.dividedBy(this.toBigNumber(value)));
+		return BigNumber.make(this.#value.dividedBy(this.#toBigNumber(value)));
 	}
 
 	/**
@@ -130,7 +130,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public times(value: NumberLike): BigNumber {
-		return BigNumber.make(this.#value.multipliedBy(this.toBigNumber(value)));
+		return BigNumber.make(this.#value.multipliedBy(this.#toBigNumber(value)));
 	}
 
 	/**
@@ -218,7 +218,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public comparedTo(value: NumberLike): number {
-		return this.#value.comparedTo(this.toBigNumber(value));
+		return this.#value.comparedTo(this.#toBigNumber(value));
 	}
 
 	/**
@@ -229,7 +229,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public isEqualTo(value: NumberLike): boolean {
-		return this.#value.isEqualTo(this.toBigNumber(value));
+		return this.#value.isEqualTo(this.#toBigNumber(value));
 	}
 
 	/**
@@ -240,7 +240,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public isGreaterThan(value: NumberLike): boolean {
-		return this.#value.isGreaterThan(this.toBigNumber(value));
+		return this.#value.isGreaterThan(this.#toBigNumber(value));
 	}
 
 	/**
@@ -251,7 +251,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public isGreaterThanOrEqualTo(value: NumberLike): boolean {
-		return this.#value.isGreaterThanOrEqualTo(this.toBigNumber(value));
+		return this.#value.isGreaterThanOrEqualTo(this.#toBigNumber(value));
 	}
 
 	/**
@@ -262,7 +262,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public isLessThan(value: NumberLike): boolean {
-		return this.#value.isLessThan(this.toBigNumber(value));
+		return this.#value.isLessThan(this.#toBigNumber(value));
 	}
 
 	/**
@@ -273,7 +273,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public isLessThanOrEqualTo(value: NumberLike): boolean {
-		return this.#value.isLessThanOrEqualTo(this.toBigNumber(value));
+		return this.#value.isLessThanOrEqualTo(this.#toBigNumber(value));
 	}
 
 	/**
@@ -343,7 +343,7 @@ export class BigNumber {
 	 * @returns {BigNumberJS}
 	 * @memberof BigNumber
 	 */
-	private toBigNumber(value: NumberLike): BigNumberJS {
+	#toBigNumber(value: NumberLike): BigNumberJS {
 		if (value instanceof BigNumber) {
 			return new BigNumberClone(value.valueOf());
 		}

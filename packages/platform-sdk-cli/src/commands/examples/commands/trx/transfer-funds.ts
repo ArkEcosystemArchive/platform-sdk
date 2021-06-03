@@ -1,4 +1,4 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Collections } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import { createProfile, pollTransactionStatus, useLogger } from "../../helpers";
 
@@ -14,7 +14,7 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 
 	// Create read-write wallet 1
 	const mnemonic1: string = "cabin fold parrot grunt tide exact spoon regular wait mercy very fame";
-	const wallet1 = await profile.walletFactory().fromMnemonic({
+	const wallet1 = await profile.walletFactory().fromMnemonicWithBIP39({
 		mnemonic: mnemonic1,
 		coin: "TRX",
 		network: "trx.testnet",
@@ -50,7 +50,7 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	await pollTransactionStatus(transactionId, wallet1);
 
 	// Show transactions
-	const transactions: Coins.TransactionDataCollection = await wallet1
+	const transactions: Collections.TransactionDataCollection = await wallet1
 		.client()
 		.transactions({ address: wallet1.address() });
 

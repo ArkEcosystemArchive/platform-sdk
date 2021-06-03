@@ -1,13 +1,14 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 export class KnownWalletService extends Services.AbstractKnownWalletService {
-	readonly #httpClient: Contracts.HttpClient;
+	readonly #httpClient: HttpClient;
 	readonly #source: string | undefined;
 
 	private constructor(config: Coins.Config) {
 		super();
 
-		this.#httpClient = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#httpClient = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#source = config.getLoose<string>(Coins.ConfigKey.KnownWallets);
 	}
 

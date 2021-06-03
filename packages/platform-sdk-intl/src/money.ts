@@ -72,7 +72,7 @@ export class Money {
 	 * @memberof Money
 	 */
 	public plus(value: Money): Money {
-		return Money.make(this.#value.add(this.toDinero(value)), this.#currency);
+		return Money.make(this.#value.add(this.#toDinero(value)), this.#currency);
 	}
 
 	/**
@@ -83,7 +83,7 @@ export class Money {
 	 * @memberof Money
 	 */
 	public minus(value: Money): Money {
-		return Money.make(this.#value.subtract(this.toDinero(value)), this.#currency);
+		return Money.make(this.#value.subtract(this.#toDinero(value)), this.#currency);
 	}
 
 	/**
@@ -116,7 +116,7 @@ export class Money {
 	 * @memberof Money
 	 */
 	public isEqualTo(value: Money): boolean {
-		return this.#value.equalsTo(this.toDinero(value));
+		return this.#value.equalsTo(this.#toDinero(value));
 	}
 
 	/**
@@ -127,7 +127,7 @@ export class Money {
 	 * @memberof Money
 	 */
 	public isLessThan(value: Money): boolean {
-		return this.#value.lessThan(this.toDinero(value));
+		return this.#value.lessThan(this.#toDinero(value));
 	}
 
 	/**
@@ -138,7 +138,7 @@ export class Money {
 	 * @memberof Money
 	 */
 	public isLessThanOrEqual(value: Money): boolean {
-		return this.#value.lessThanOrEqual(this.toDinero(value));
+		return this.#value.lessThanOrEqual(this.#toDinero(value));
 	}
 
 	/**
@@ -149,7 +149,7 @@ export class Money {
 	 * @memberof Money
 	 */
 	public isGreaterThan(value: Money): boolean {
-		return this.#value.greaterThan(this.toDinero(value));
+		return this.#value.greaterThan(this.#toDinero(value));
 	}
 
 	/**
@@ -160,7 +160,7 @@ export class Money {
 	 * @memberof Money
 	 */
 	public isGreaterThanOrEqual(value: Money): boolean {
-		return this.#value.greaterThanOrEqual(this.toDinero(value));
+		return this.#value.greaterThanOrEqual(this.#toDinero(value));
 	}
 
 	/**
@@ -232,7 +232,7 @@ export class Money {
 	 * @returns {Dinero.Dinero}
 	 * @memberof Money
 	 */
-	private toDinero(value: Money): Dinero.Dinero {
+	#toDinero(value: Money): Dinero.Dinero {
 		return Dinero({ amount: value.getAmount(), currency: value.getCurrency() });
 	}
 }

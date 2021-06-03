@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-http-bent",
-	"version": "8.4.0",
+	"version": "8.7.0",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -25,7 +25,7 @@
 		"preset": "../../jest.coverage.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"bent": "^7.3"
 	},
 	"devDependencies": {

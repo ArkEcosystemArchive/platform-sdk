@@ -1,10 +1,11 @@
-import { Coins, Contracts, Helpers } from "@arkecosystem/platform-sdk";
+import { Coins, Helpers } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { UnspentTransaction } from "./transaction.models";
 
 const postGraphql = async (config: Coins.Config, query: string): Promise<Record<string, any>> => {
 	const response = await config
-		.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient)
+		.get<HttpClient>(Coins.ConfigKey.HttpClient)
 		.post(Helpers.randomHostFromConfig(config), { query });
 
 	const json = response.json();

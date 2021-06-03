@@ -20,7 +20,7 @@ export class Hash {
 	 * @memberof Hash
 	 */
 	public static ripemd160(buffer: Buffer | string): Buffer {
-		return RIPEMD160.digest(this.bufferize(buffer));
+		return RIPEMD160.digest(Hash.#bufferize(buffer));
 	}
 
 	/**
@@ -32,7 +32,7 @@ export class Hash {
 	 * @memberof Hash
 	 */
 	public static sha1(buffer: Buffer | string): Buffer {
-		return SHA1.digest(this.bufferize(buffer));
+		return SHA1.digest(Hash.#bufferize(buffer));
 	}
 
 	/**
@@ -56,7 +56,7 @@ export class Hash {
 			return sha256.final();
 		}
 
-		return SHA256.digest(this.bufferize(buffer));
+		return SHA256.digest(Hash.#bufferize(buffer));
 	}
 
 	/**
@@ -68,7 +68,7 @@ export class Hash {
 	 * @memberof Hash
 	 */
 	public static hash160(buffer: Buffer | string): Buffer {
-		return Hash160.digest(this.bufferize(buffer));
+		return Hash160.digest(Hash.#bufferize(buffer));
 	}
 
 	/**
@@ -80,7 +80,7 @@ export class Hash {
 	 * @memberof Hash
 	 */
 	public static hash256(buffer: Buffer | string): Buffer {
-		return Hash256.digest(this.bufferize(buffer));
+		return Hash256.digest(Hash.#bufferize(buffer));
 	}
 
 	/**
@@ -92,7 +92,7 @@ export class Hash {
 	 * @returns
 	 * @memberof Hash
 	 */
-	private static bufferize(buffer: Buffer | string) {
+	static #bufferize(buffer: Buffer | string) {
 		return buffer instanceof Buffer ? buffer : Buffer.from(buffer);
 	}
 }

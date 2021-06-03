@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { RippleAPI } from "ripple-lib";
 
@@ -7,14 +8,14 @@ import { SignedTransactionData } from "../dto";
 
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #ripple: RippleAPI;
 
 	private constructor(config: Coins.Config) {
 		super();
 
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#ripple = new RippleAPI();
 	}
 
@@ -31,7 +32,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
-			const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
 			const prepared = await this.#ripple.preparePayment(
 				input.signatory.address(),
 				{
@@ -47,7 +48,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				{ maxLedgerVersionOffset: 5 },
 			);
 
-			const { id, signedTransaction } = await this.post("sign", [
+			const { id, signedTransaction } = await this.#post("sign", [
 				{
 					tx_json: prepared.txJSON,
 					secret: input.signatory.signingKey(),
@@ -62,7 +63,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 	}
 
-	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
+	async #post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
 			await this.#http.post(Helpers.randomHostFromConfig(this.#config), {
 				jsonrpc: "2.0",

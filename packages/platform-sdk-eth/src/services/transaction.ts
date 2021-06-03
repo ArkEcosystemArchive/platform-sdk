@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Common from "@ethereumjs/common";
 import { Transaction } from "@ethereumjs/tx";
 import Web3 from "web3";
@@ -8,7 +9,7 @@ import { SignedTransactionData } from "../dto";
 import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #chain: string;
 	readonly #identity: IdentityService;
 	readonly #peer: string;
@@ -42,7 +43,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				privateKey = (await this.#identity.privateKey().fromMnemonic(input.signatory.signingKey())).privateKey;
 			}
 
-			const { nonce } = await this.get(`wallets/${senderData.address}`);
+			const { nonce } = await this.#get(`wallets/${senderData.address}`);
 
 			let data: object;
 
@@ -53,7 +54,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					gasLimit: Web3.utils.toHex(input.feeLimit!),
 					to: input.contract.address,
 					value: "0x0",
-					data: this.createContract(input.contract.address)
+					data: this.#createContract(input.contract.address)
 						.methods.transfer(input.data.to, input.data.amount)
 						.encodeABI(),
 				};
@@ -88,13 +89,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.get(`${this.#peer}/${path}`, query);
 
 		return response.json();
 	}
 
-	private createContract(contractAddress: string) {
+	#createContract(contractAddress: string) {
 		return new this.#web3.eth.Contract(
 			[
 				{

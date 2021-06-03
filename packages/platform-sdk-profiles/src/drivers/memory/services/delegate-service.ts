@@ -21,22 +21,22 @@ export class DelegateService implements IDelegateService {
 			);
 		}
 
-		return result.map((delegate) => this.mapDelegate(delegate));
+		return result.map((delegate) => this.#mapDelegate(delegate));
 	}
 
 	/** {@inheritDoc IDelegateService.findByAddress} */
 	public findByAddress(coin: string, network: string, address: string): IReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, network, "address", address);
+		return this.#findDelegateByAttribute(coin, network, "address", address);
 	}
 
 	/** {@inheritDoc IDelegateService.findByPublicKey} */
 	public findByPublicKey(coin: string, network: string, publicKey: string): IReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, network, "publicKey", publicKey);
+		return this.#findDelegateByAttribute(coin, network, "publicKey", publicKey);
 	}
 
 	/** {@inheritDoc IDelegateService.findByUsername} */
 	public findByUsername(coin: string, network: string, username: string): IReadOnlyWallet {
-		return this.findDelegateByAttribute(coin, network, "username", username);
+		return this.#findDelegateByAttribute(coin, network, "username", username);
 	}
 
 	/** {@inheritDoc IDelegateService.sync} */
@@ -103,7 +103,7 @@ export class DelegateService implements IDelegateService {
 			.filter(Boolean) as IReadOnlyWallet[];
 	}
 
-	private findDelegateByAttribute(coin: string, network: string, key: string, value: string): IReadOnlyWallet {
+	#findDelegateByAttribute(coin: string, network: string, key: string, value: string): IReadOnlyWallet {
 		const result = this.all(coin, network).find((delegate) => delegate[key]() === value);
 
 		if (result === undefined) {
@@ -113,7 +113,7 @@ export class DelegateService implements IDelegateService {
 		return result;
 	}
 
-	private mapDelegate(delegate: Record<string, any>): IReadOnlyWallet {
+	#mapDelegate(delegate: Record<string, any>): IReadOnlyWallet {
 		return new ReadOnlyWallet({
 			address: delegate.address,
 			publicKey: delegate.publicKey,

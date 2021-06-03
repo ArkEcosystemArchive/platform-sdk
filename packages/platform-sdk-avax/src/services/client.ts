@@ -1,4 +1,5 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { uniq } from "@arkecosystem/utils";
 import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
@@ -46,8 +47,8 @@ export class ClientService extends Services.AbstractClientService {
 		}).withDecimals(this.#decimals);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const { transactions } = await this.get("v2/transactions", {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+		const { transactions } = await this.#get("v2/transactions", {
 			chainID: this.#config.get("network.meta.blockchainId"),
 			limit: 100,
 			offset: query.cursor || 0,
@@ -76,10 +77,10 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
 		const validators: string[] = await this.#pchain.sampleValidators(10000);
 
-		return new Coins.WalletDataCollection(
+		return new Collections.WalletDataCollection(
 			uniq(validators).map((validator: string) => new WalletData({ address: validator, balance: 0 })),
 			{
 				prev: undefined,
@@ -114,15 +115,15 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (
 			await this.#config
-				.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient)
-				.get(`${this.host()}/${path}`, query?.searchParams)
+				.get<HttpClient>(Coins.ConfigKey.HttpClient)
+				.get(`${this.#host()}/${path}`, query?.searchParams)
 		).json();
 	}
 
-	private host(): string {
+	#host(): string {
 		return Helpers.randomHostFromConfig(this.#config, "archival");
 	}
 }

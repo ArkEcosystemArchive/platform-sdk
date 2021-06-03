@@ -73,12 +73,12 @@ export class Database {
 			`Storing block [${block.hash}] height ${block.height} with [${block.tx.length}] transaction(s)`,
 		);
 
-		await this.storeBlock(block);
+		await this.#storeBlock(block);
 
 		if (block.tx) {
 			for (const transaction of block.tx) {
 				this.#logger.info(`Storing transaction [${transaction.txid}]`);
-				await this.storeTransaction(block.height, transaction);
+				await this.#storeTransaction(block.height, transaction);
 			}
 		}
 	}
@@ -90,7 +90,7 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	private async storeBlock(block): Promise<void> {
+	async #storeBlock(block): Promise<void> {
 		try {
 			await this.#prisma.block.create({
 				data: {
@@ -112,7 +112,7 @@ export class Database {
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private async storeTransaction(blockId: number, transaction): Promise<void> {
+	async #storeTransaction(blockId: number, transaction): Promise<void> {
 		const amount: BigNumber = getAmount(transaction);
 		const outputs: Output[] = getOutputs(transaction);
 		const inputs = getInputs(transaction);

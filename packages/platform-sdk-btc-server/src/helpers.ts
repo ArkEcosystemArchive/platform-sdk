@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import Logger from "@ptkdev/logger";
 import sqlite3 from "better-sqlite3";
@@ -12,4 +12,4 @@ export const useDatabase = (flags: { coin: string; network: string; database: st
 
 export const useLogger = (): Logger => new Logger();
 
-export const useClient = (host: string): Contracts.HttpClient => new Request().baseUrl(host);
+export const useClient = (host: string): HttpClient => new Request().baseUrl(host);

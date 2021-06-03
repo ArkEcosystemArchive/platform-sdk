@@ -1,4 +1,4 @@
-import { RawTransactionData, SignedTransactionData } from "../contracts/coins/data";
+import { RawTransactionData, SignedTransactionData } from "../contracts";
 import { Signatory } from "../signatories";
 
 export interface TransactionService {

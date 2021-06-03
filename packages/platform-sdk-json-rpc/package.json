@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-json-rpc",
-	"version": "8.4.0",
+	"version": "8.7.0",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -30,6 +30,7 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-ark": "workspace:*",
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",

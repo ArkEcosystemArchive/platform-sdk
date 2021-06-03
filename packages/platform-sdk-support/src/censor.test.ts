@@ -8,6 +8,8 @@ beforeEach(() => (subject = new Censor()));
 test("#isBad", () => {
 	expect(subject.isBad("onion")).toBeTrue();
 	expect(subject.isBad("zyva.org")).toBeTrue();
+	expect(subject.isBad("tighturl.com")).toBeTrue(); // allow uppercase in code
+	expect(subject.isBad("ZYVA.ORG")).toBeTrue(); // allow uppercase in data
 	expect(subject.isBad("tree")).toBeFalse();
 	expect(subject.isBad("")).toBeFalse();
 });

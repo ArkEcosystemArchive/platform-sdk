@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-markets",
-	"version": "8.4.0",
+	"version": "8.7.0",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -26,9 +26,9 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
-		"@arkecosystem/platform-sdk-coincap": "workspace:*",
-		"@arkecosystem/platform-sdk-coingecko": "workspace:*",
-		"@arkecosystem/platform-sdk-cryptocompare": "workspace:*"
+		"@arkecosystem/platform-sdk-http": "workspace:*",
+		"@arkecosystem/platform-sdk-intl": "workspace:*",
+		"@arkecosystem/platform-sdk-support": "workspace:*"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",

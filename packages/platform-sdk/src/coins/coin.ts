@@ -1,4 +1,5 @@
 import { BadMethodDependencyException } from "../exceptions";
+import { Network, NetworkManifest, NetworkRepository } from "../networks";
 import {
 	ClientService,
 	DataTransferObjectService,
@@ -16,9 +17,6 @@ import {
 import { Config, ConfigKey } from "./config";
 import { CoinServices, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
-import { Network } from "./network";
-import { NetworkManifest } from "./network.models";
-import { NetworkRepository } from "./network-repository";
 
 export class Coin {
 	readonly #networks: NetworkRepository;
@@ -43,7 +41,7 @@ export class Coin {
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#specification = specification;
-		this.#network = this.createNetwork(specification, config);
+		this.#network = this.#createNetwork(specification, config);
 	}
 
 	public async __construct(): Promise<void> {
@@ -188,7 +186,7 @@ export class Coin {
 		return this.#services !== undefined;
 	}
 
-	private createNetwork(specification: CoinSpec, config: Config): Network {
+	#createNetwork(specification: CoinSpec, config: Config): Network {
 		const network = config.get<NetworkManifest>(ConfigKey.Network);
 
 		return new Network(specification.manifest, {
