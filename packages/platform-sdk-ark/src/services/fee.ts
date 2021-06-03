@@ -37,12 +37,7 @@ export class FeeService extends Services.AbstractFeeService {
 		};
 	}
 
-	#transform(
-		type: string,
-		typeGroup: number,
-		staticFees: object,
-		dynamicFees: object,
-	): Services.TransactionFee {
+	#transform(type: string, typeGroup: number, staticFees: object, dynamicFees: object): Services.TransactionFee {
 		const dynamicFee = dynamicFees[typeGroup][type];
 
 		return {

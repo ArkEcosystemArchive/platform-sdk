@@ -94,9 +94,9 @@ class Memory {
 		const { data, multisigAsset } = this.#transactions[storeId];
 
 		// removes indexes
-		this.#transactionIdsBySender[data.senderPublicKey!] = this.#transactionIdsBySender[data.senderPublicKey!].filter(
-			(id) => id !== storeId,
-		);
+		this.#transactionIdsBySender[data.senderPublicKey!] = this.#transactionIdsBySender[
+			data.senderPublicKey!
+		].filter((id) => id !== storeId);
 		for (const publicKey of multisigAsset.publicKeys) {
 			this.#transactionIdsByPublicKey[publicKey] = this.#transactionIdsByPublicKey[publicKey].filter(
 				(id) => id !== storeId,

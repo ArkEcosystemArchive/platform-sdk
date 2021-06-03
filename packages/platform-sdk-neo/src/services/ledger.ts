@@ -79,11 +79,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	 * modified from:
 	 * - https://github.com/CityOfZion/neon-js/blob/master/packages/neon-ledger/src/main.ts.ts
 	 */
-	async #neoSignTransaction(
-		transport: Services.LedgerTransport,
-		path: string,
-		payload: Buffer,
-	): Promise<string> {
+	async #neoSignTransaction(transport: Services.LedgerTransport, path: string, payload: Buffer): Promise<string> {
 		const chunks: string[] = payload.toString().match(/.{1,510}/g) || [];
 
 		for (let i = 0; i < chunks.length - 1; i++) {
