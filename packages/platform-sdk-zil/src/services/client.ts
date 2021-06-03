@@ -101,5 +101,5 @@ export class ClientService extends Services.AbstractClientService {
 		if (!isGasSufficient) {
 			throw new Exceptions.Exception(`Insufficient gas: ${gasPrice}, needed: ${minGasPrice}`);
 		}
-	};
+	}
 }
