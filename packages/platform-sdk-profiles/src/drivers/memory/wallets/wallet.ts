@@ -490,10 +490,10 @@ export class Wallet implements IReadWriteWallet {
 	/** {@inheritDoc IReadWriteWallet.actsWithMnemonic} */
 	public actsWithMnemonic(): boolean {
 		return [
-			WalletImportMethod.MnemonicBIP39,
-			WalletImportMethod.MnemonicBIP44,
-			WalletImportMethod.MnemonicBIP49,
-			WalletImportMethod.MnemonicBIP84,
+			WalletImportMethod.BIP39.MNEMONIC,
+			WalletImportMethod.BIP44.MNEMONIC,
+			WalletImportMethod.BIP49.MNEMONIC,
+			WalletImportMethod.BIP84.MNEMONIC,
 		].includes(this.data().get(WalletData.ImportMethod)!);
 	}
 
@@ -514,16 +514,21 @@ export class Wallet implements IReadWriteWallet {
 
 	/** {@inheritDoc IReadWriteWallet.actsWithAddressWithDerivationPath} */
 	public actsWithAddressWithDerivationPath(): boolean {
-		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.AddressWithDerivationPath;
+		return [
+			WalletImportMethod.BIP39.ADDRESS_WITH_DERIVATION,
+			WalletImportMethod.BIP44.ADDRESS_WITH_DERIVATION,
+			WalletImportMethod.BIP49.ADDRESS_WITH_DERIVATION,
+			WalletImportMethod.BIP84.ADDRESS_WITH_DERIVATION,
+		].includes(this.data().get(WalletData.ImportMethod)!);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.actsWithMnemonicWithEncryption} */
 	public actsWithMnemonicWithEncryption(): boolean {
 		return [
-			WalletImportMethod.MnemonicBIP39WithEncryption,
-			WalletImportMethod.MnemonicBIP44WithEncryption,
-			WalletImportMethod.MnemonicBIP49WithEncryption,
-			WalletImportMethod.MnemonicBIP84WithEncryption,
+			WalletImportMethod.BIP39.MNEMONIC_WITH_ENCRYPTION,
+			WalletImportMethod.BIP44.MNEMONIC_WITH_ENCRYPTION,
+			WalletImportMethod.BIP49.MNEMONIC_WITH_ENCRYPTION,
+			WalletImportMethod.BIP84.MNEMONIC_WITH_ENCRYPTION,
 		].includes(this.data().get(WalletData.ImportMethod)!);
 	}
 

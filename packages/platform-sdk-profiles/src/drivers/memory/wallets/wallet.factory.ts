@@ -44,7 +44,7 @@ export class WalletFactory implements IWalletFactory {
 	public async fromMnemonicWithBIP39({ coin, network, mnemonic, password }: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP39);
+		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP39.MNEMONIC);
 
 		await wallet.mutator().coin(coin, network);
 
@@ -59,7 +59,7 @@ export class WalletFactory implements IWalletFactory {
 		await wallet.mutator().identity(mnemonic);
 
 		if (password) {
-			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP39WithEncryption);
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP39.MNEMONIC_WITH_ENCRYPTION);
 
 			await this.#encryptWallet(
 				wallet,
@@ -75,7 +75,7 @@ export class WalletFactory implements IWalletFactory {
 	public async fromMnemonicWithBIP44({ coin, network, mnemonic }: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP44);
+		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP44.MNEMONIC);
 
 		await wallet.mutator().coin(coin, network);
 
@@ -161,8 +161,10 @@ export class WalletFactory implements IWalletFactory {
 		address,
 		path,
 	}: IAddressWithDerivationPathOptions): Promise<IReadWriteWallet> {
+		// @TODO: we should know here if it's bip44/49/84
+
 		const wallet: IReadWriteWallet = await this.fromAddress({ coin, network, address });
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.AddressWithDerivationPath);
+		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP44.ADDRESS_WITH_DERIVATION);
 
 		wallet.data().set(WalletData.DerivationPath, path);
 
