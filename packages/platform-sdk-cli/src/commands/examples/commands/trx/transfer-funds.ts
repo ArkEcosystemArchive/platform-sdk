@@ -14,7 +14,7 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 
 	// Create read-write wallet 1
 	const mnemonic1: string = "cabin fold parrot grunt tide exact spoon regular wait mercy very fame";
-	const wallet1 = await profile.walletFactory().fromMnemonic({
+	const wallet1 = await profile.walletFactory().fromMnemonicWithBIP39({
 		mnemonic: mnemonic1,
 		coin: "TRX",
 		network: "trx.testnet",

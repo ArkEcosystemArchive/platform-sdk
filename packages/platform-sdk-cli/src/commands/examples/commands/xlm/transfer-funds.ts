@@ -13,7 +13,7 @@ export const transferFundsWithXLM = async (env: Environment): Promise<void> => {
 
 	// Create read-write wallet 1
 	const mnemonic1: string = "stand adapt injury old donate champion sword slice exhibit mimic chair body";
-	const wallet1 = await profile.walletFactory().fromMnemonic({
+	const wallet1 = await profile.walletFactory().fromMnemonicWithBIP39({
 		mnemonic: mnemonic1,
 		coin: "XLM",
 		network: "xlm.testnet",
