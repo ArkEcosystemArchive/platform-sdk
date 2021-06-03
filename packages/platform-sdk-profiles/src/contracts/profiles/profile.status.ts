@@ -41,4 +41,11 @@ export interface IProfileStatus {
 	 * @memberof IProfileStatus
 	 */
 	reset(): void;
+
+	/**
+	 * Reset dirty status
+	 *
+	 * @memberof IProfileStatus
+	 */
+	resetDirty(): void;
 }
