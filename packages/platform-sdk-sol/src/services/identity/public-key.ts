@@ -17,7 +17,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.PublicKeyDataTransferObject> {
 		if (!BIP39.validate(mnemonic)) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
+			throw new Exceptions.InvalidArguments(this.constructor.name, this.fromMnemonic.name);
 		}
 
 		return {

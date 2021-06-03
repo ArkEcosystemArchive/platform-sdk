@@ -54,7 +54,7 @@ export class Coin {
 
 	public async __destruct(): Promise<void> {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "__destruct", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.__destruct.name, "__construct");
 		}
 
 		await Promise.all([
@@ -90,7 +90,7 @@ export class Coin {
 
 	public client(): ClientService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "client", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.client.name, "__construct");
 		}
 
 		return this.#services!.client;
@@ -98,7 +98,7 @@ export class Coin {
 
 	public dataTransferObject(): DataTransferObjectService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "dataTransferObject", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.dataTransferObject.name, "__construct");
 		}
 
 		return this.#services!.dataTransferObject;
@@ -106,7 +106,7 @@ export class Coin {
 
 	public fee(): FeeService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "fee", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.fee.name, "__construct");
 		}
 
 		return this.#services!.fee;
@@ -114,7 +114,7 @@ export class Coin {
 
 	public identity(): IdentityService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "identity", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.identity.name, "__construct");
 		}
 
 		return this.#services!.identity;
@@ -122,7 +122,7 @@ export class Coin {
 
 	public knownWallets(): KnownWalletService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "knownWallets", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.knownWallets.name, "__construct");
 		}
 
 		return this.#services!.knownWallets;
@@ -130,7 +130,7 @@ export class Coin {
 
 	public ledger(): LedgerService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "ledger", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.ledger.name, "__construct");
 		}
 
 		return this.#services!.ledger;
@@ -138,7 +138,7 @@ export class Coin {
 
 	public link(): LinkService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "link", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.link.name, "__construct");
 		}
 
 		return this.#services!.link;
@@ -146,7 +146,7 @@ export class Coin {
 
 	public message(): MessageService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "message", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.message.name, "__construct");
 		}
 
 		return this.#services!.message;
@@ -154,7 +154,7 @@ export class Coin {
 
 	public multiSignature(): MultiSignatureService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "multiSignature", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.multiSignature.name, "__construct");
 		}
 
 		return this.#services!.multiSignature;
@@ -162,7 +162,7 @@ export class Coin {
 
 	public signatory(): SignatoryService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "signatory", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.signatory.name, "__construct");
 		}
 
 		return this.#services!.signatory;
@@ -170,7 +170,7 @@ export class Coin {
 
 	public transaction(): TransactionService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "transaction", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.transaction.name, "__construct");
 		}
 
 		return this.#services!.transaction;
@@ -178,7 +178,7 @@ export class Coin {
 
 	public walletDiscovery(): WalletDiscoveryService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, "walletDiscovery", "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.walletDiscovery.name, "__construct");
 		}
 
 		return this.#services!.walletDiscovery;

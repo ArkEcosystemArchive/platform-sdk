@@ -189,7 +189,7 @@ export class Wallet implements IReadWriteWallet {
 	/** {@inheritDoc IReadWriteWallet.connect} */
 	public async connect(): Promise<void> {
 		if (!this.hasCoin()) {
-			throw new Exceptions.BadVariableDependencyException(this.constructor.name, "connect", "coin");
+			throw new Exceptions.BadVariableDependencyException(this.constructor.name, this.connect.name, "coin");
 		}
 
 		await this.#attributes.get<Coins.Coin>("coin").__construct();

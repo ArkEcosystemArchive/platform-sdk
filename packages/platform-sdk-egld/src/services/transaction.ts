@@ -28,19 +28,19 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "sign.mnemonic");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "sign.mnemonic");
 		}
 
 		if (input.fee === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "fee");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "fee");
 		}
 
 		if (input.feeLimit === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "feeLimit");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "feeLimit");
 		}
 
 		if (input.nonce === undefined) {
-			throw new Exceptions.MissingArgument(this.constructor.name, "transfer", "nonce");
+			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "nonce");
 		}
 
 		const unsignedTransaction = {

@@ -4,6 +4,6 @@ import { TransactionData } from "../transaction";
 
 export class IpfsData extends TransactionData implements Contracts.IpfsData {
 	public hash(): string {
-		throw new Exceptions.NotSupported(this.constructor.name, "hash");
+		throw new Exceptions.NotSupported(this.constructor.name, this.hash.name);
 	}
 }
