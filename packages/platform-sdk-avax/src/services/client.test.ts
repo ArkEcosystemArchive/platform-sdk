@@ -1,3 +1,5 @@
+import { Collections } from "@arkecosystem/platform-sdk";
+
 import { createConfig } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
