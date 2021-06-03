@@ -1,5 +1,5 @@
 import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
-import { BIP44, HDKey } from "@arkecosystem/platform-sdk-crypto";
+import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 
 import { WalletData } from "../dto";
