@@ -31,7 +31,7 @@ export class Database {
 		this.#database = sqlite3(databaseFile);
 		this.#logger = logger;
 
-		this.migrate();
+		this.#migrate();
 	}
 
 	/**
@@ -59,13 +59,13 @@ export class Database {
 	public storeBlockWithTransactions(block: { hash: string; transactions: { hash: string }[] }): void {
 		this.#logger.info(`Storing block [${block.hash}] with [${block.transactions.length}] transaction(s)`);
 
-		this.storeBlock(block);
+		this.#storeBlock(block);
 
 		if (block.transactions.length) {
 			for (const transaction of block.transactions) {
 				this.#logger.info(`Storing transaction [${transaction.hash}]`);
 
-				this.storeTransaction(transaction);
+				this.#storeTransaction(transaction);
 			}
 		}
 	}
@@ -77,7 +77,7 @@ export class Database {
 	 * @param {*} block
 	 * @memberof Database
 	 */
-	private storeBlock(block): void {
+	#storeBlock(block): void {
 		this.#database.prepare(`INSERT OR IGNORE INTO blocks (hash, number) VALUES (:hash, :number)`).run({
 			hash: block.hash,
 			number: block.number,
@@ -91,7 +91,7 @@ export class Database {
 	 * @param {*} transaction
 	 * @memberof Database
 	 */
-	private storeTransaction(transaction): void {
+	#storeTransaction(transaction): void {
 		this.#database
 			.prepare(
 				`INSERT OR IGNORE INTO transactions (hash, sender, recipient, amount, gas, gasPrice, input, nonce) VALUES (:hash, :sender, :recipient, :amount, :gas, :gasPrice, :input, :nonce)`,
@@ -114,7 +114,7 @@ export class Database {
 	 * @private
 	 * @memberof Database
 	 */
-	private migrate(): void {
+	#migrate(): void {
 		this.#database.exec(`
 			PRAGMA journal_mode = WAL;
 

@@ -44,7 +44,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	public async create(data: IContactAddressInput): Promise<IContactAddress> {
 		const id: string = uuidv4();
 
-		const address: IContactAddress = await this.createAddress({ id, ...data });
+		const address: IContactAddress = await this.#createAddress({ id, ...data });
 		await address.syncIdentity();
 
 		this.#data.set(id, address);
@@ -57,7 +57,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 	/** {@inheritDoc IContactAddressRepository.fill} */
 	public async fill(addresses: any[]): Promise<void> {
 		for (const address of addresses) {
-			const result = await this.createAddress(address);
+			const result = await this.#createAddress(address);
 			await result.syncIdentity();
 
 			this.#data.set(address.id, result);
@@ -77,17 +77,17 @@ export class ContactAddressRepository implements IContactAddressRepository {
 
 	/** {@inheritDoc IContactAddressRepository.findByAddress} */
 	public findByAddress(value: string): IContactAddress[] {
-		return this.findByColumn("address", value);
+		return this.#findByColumn("address", value);
 	}
 
 	/** {@inheritDoc IContactAddressRepository.findByCoin} */
 	public findByCoin(value: string): IContactAddress[] {
-		return this.findByColumn("coin", value);
+		return this.#findByColumn("coin", value);
 	}
 
 	/** {@inheritDoc IContactAddressRepository.findByNetwork} */
 	public findByNetwork(value: string): IContactAddress[] {
-		return this.findByColumn("network", value);
+		return this.#findByColumn("network", value);
 	}
 
 	/** {@inheritDoc IContactAddressRepository.update} */
@@ -135,7 +135,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 		return result;
 	}
 
-	private findByColumn(column: string, value: string): IContactAddress[] {
+	#findByColumn(column: string, value: string): IContactAddress[] {
 		const result: IContactAddress[] = [];
 
 		for (const _ of Object.values(this.all())) {
@@ -151,7 +151,7 @@ export class ContactAddressRepository implements IContactAddressRepository {
 		return result;
 	}
 
-	private async createAddress(data): Promise<ContactAddress> {
+	async #createAddress(data): Promise<ContactAddress> {
 		const instance: Coins.Coin = this.#profile.coins().get(data.coin, data.network);
 
 		// @TODO: get rid of this, the instance should already be synced by now

@@ -1,4 +1,4 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Networks } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
 import {
@@ -17,10 +17,10 @@ import { Identifiers } from "./container.models";
 import { CoinList, EnvironmentOptions, Storage, StorageData } from "./env.models";
 
 export class Environment {
-	private storage: StorageData | undefined;
+	#storage: StorageData | undefined;
 
 	public constructor(options: EnvironmentOptions) {
-		this.configureDriver(options);
+		this.#configureDriver(options);
 	}
 
 	/**
@@ -47,7 +47,7 @@ export class Environment {
 			throw new Error(`Terminating due to corrupted state: ${error}`);
 		}
 
-		this.storage = value;
+		this.#storage = value;
 	}
 
 	/**
@@ -60,16 +60,16 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	public async boot(): Promise<void> {
-		if (this.storage === undefined) {
+		if (this.#storage === undefined) {
 			throw new Error("Please call [verify] before booting the environment.");
 		}
 
-		if (Object.keys(this.storage.data).length > 0) {
-			this.data().fill(this.storage.data);
+		if (Object.keys(this.#storage.data).length > 0) {
+			this.data().fill(this.#storage.data);
 		}
 
-		if (Object.keys(this.storage.profiles).length > 0) {
-			this.profiles().fill(this.storage.profiles);
+		if (Object.keys(this.#storage.profiles).length > 0) {
+			this.profiles().fill(this.#storage.profiles);
 		}
 
 		/* istanbul ignore next */
@@ -197,17 +197,17 @@ export class Environment {
 	/**
 	 * Return a list of all available networks.
 	 *
-	 * @returns {Coins.Network[]}
+	 * @returns {Networks.Network[]}
 	 * @memberof Environment
 	 */
-	public availableNetworks(): Coins.Network[] {
+	public availableNetworks(): Networks.Network[] {
 		const coins: CoinList = container.get<CoinList>(Identifiers.Coins);
 
-		const result: Coins.Network[] = [];
+		const result: Networks.Network[] = [];
 
 		for (const coin of Object.values(coins)) {
 			for (const network of Object.values(coin.manifest.networks)) {
-				result.push(new Coins.Network(coin.manifest, network));
+				result.push(new Networks.Network(coin.manifest, network));
 			}
 		}
 
@@ -223,7 +223,7 @@ export class Environment {
 		container.flush();
 
 		if (options !== undefined) {
-			this.configureDriver(options);
+			this.#configureDriver(options);
 		}
 	}
 
@@ -244,7 +244,7 @@ export class Environment {
 	 *
 	 * @memberof Environment
 	 */
-	private configureDriver(options: EnvironmentOptions): void {
+	#configureDriver(options: EnvironmentOptions): void {
 		return DriverFactory.make("memory", container, options);
 	}
 }

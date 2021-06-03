@@ -22,9 +22,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
 
-		const transaction = await this.useClient()
+		const transaction = await this.#useClient()
 			.wallet(new MnemonicKey({ mnemonic: input.signatory.signingKey() }))
 			.createAndSignTx({
 				msgs: [new MsgSend(input.signatory.address(), input.data.to, { uluna: amount })],
@@ -34,7 +34,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return new SignedTransactionData(UUID.random(), transaction.toData(), transaction.toJSON());
 	}
 
-	private useClient(): LCDClient {
+	#useClient(): LCDClient {
 		return useClient(
 			`${Helpers.randomHostFromConfig(this.#config)}/api`,
 			this.#config.get("network.meta.networkId"),

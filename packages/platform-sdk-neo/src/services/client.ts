@@ -1,11 +1,12 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Neon, { api } from "@cityofzion/neon-js";
 
 import * as TransactionDTO from "../dto";
 import { WalletData } from "../dto";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #peer: string;
 	readonly #apiProvider;
 
@@ -33,17 +34,17 @@ export class ClientService extends Services.AbstractClientService {
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
-			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
-			network: config.get<Coins.NetworkManifest>("network").id.split(".")[1],
+			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
+			network: config.get<Networks.NetworkManifest>("network").id.split(".")[1],
 		});
 	}
 	// get_transaction/{txid}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const basePath = `get_address_abstracts/${query.address}`;
 		const basePage = (query.cursor as number) || 1;
 
-		const response = await this.get(`${basePath}/${basePage}`);
+		const response = await this.#get(`${basePath}/${basePage}`);
 
 		const prevPage = response.page_number > 1 ? basePage - 1 : undefined;
 		const nextPage = response.total_pages > 1 ? basePage + 1 : undefined;
@@ -61,7 +62,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const response = await this.get(`get_balance/${id}`);
+		const response = await this.#get(`get_balance/${id}`);
 
 		return new WalletData({
 			address: id,
@@ -115,13 +116,13 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.get(`${this.#peer}/${path}`, query);
 
 		return response.json();
 	}
 
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.post(`${this.#peer}/${path}`, body);
 
 		return response.json();

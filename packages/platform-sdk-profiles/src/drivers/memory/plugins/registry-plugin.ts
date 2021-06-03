@@ -22,7 +22,7 @@ export class RegistryPlugin implements IRegistryPlugin {
 
 	/** {@inheritDoc IRegistryPlugin.alias} */
 	public alias(): string {
-		return this.getMetaData("title");
+		return this.#getMetaData("title");
 	}
 
 	/** {@inheritDoc IRegistryPlugin.date} */
@@ -65,32 +65,32 @@ export class RegistryPlugin implements IRegistryPlugin {
 
 	/** {@inheritDoc IRegistryPlugin.logo} */
 	public logo(): string {
-		return this.getMetaData("logo");
+		return this.#getMetaData("logo");
 	}
 
 	/** {@inheritDoc IRegistryPlugin.images} */
 	public images(): string[] {
-		return this.getMetaData("images");
+		return this.#getMetaData("images");
 	}
 
 	/** {@inheritDoc IRegistryPlugin.categories} */
 	public categories(): string[] {
-		return this.getMetaData("categories");
+		return this.#getMetaData("categories");
 	}
 
 	/** {@inheritDoc IRegistryPlugin.permissions} */
 	public permissions(): string[] {
-		return this.getMetaData("permissions");
+		return this.#getMetaData("permissions");
 	}
 
 	/** {@inheritDoc IRegistryPlugin.urls} */
 	public urls(): string[] {
-		return this.getMetaData("urls");
+		return this.#getMetaData("urls");
 	}
 
 	/** {@inheritDoc IRegistryPlugin.minimumVersion} */
 	public minimumVersion(): string {
-		return this.getMetaData("minimumVersion");
+		return this.#getMetaData("minimumVersion");
 	}
 
 	/** {@inheritDoc IRegistryPlugin.toObject} */
@@ -128,7 +128,7 @@ export class RegistryPlugin implements IRegistryPlugin {
 		};
 	}
 
-	private getMetaData(key: string): any {
+	#getMetaData(key: string): any {
 		if (this.#package[key]) {
 			return this.#package[key];
 		}

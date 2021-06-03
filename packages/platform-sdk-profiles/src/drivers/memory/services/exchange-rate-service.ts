@@ -27,9 +27,9 @@ export class ExchangeRateService implements IExchangeRateService {
 
 		const exchangeCurrency: string = profile.settings().get(ProfileSetting.ExchangeCurrency) as string;
 
-		await this.fetchDailyRate(profile, currency, exchangeCurrency);
+		await this.#fetchDailyRate(profile, currency, exchangeCurrency);
 
-		if (this.hasFetchedHistoricalRates(currency, exchangeCurrency)) {
+		if (this.#hasFetchedHistoricalRates(currency, exchangeCurrency)) {
 			return;
 		}
 
@@ -56,7 +56,7 @@ export class ExchangeRateService implements IExchangeRateService {
 
 	/** {@inheritDoc IExchangeRateService.exchange} */
 	public exchange(currency: string, exchangeCurrency: string, date: DateTime, value: BigNumber): BigNumber {
-		const exchangeRate: BigNumber = this.rateByDate(currency, exchangeCurrency, date);
+		const exchangeRate: BigNumber = this.#rateByDate(currency, exchangeCurrency, date);
 
 		if (exchangeRate.isZero()) {
 			return exchangeRate;
@@ -65,7 +65,7 @@ export class ExchangeRateService implements IExchangeRateService {
 		return value.times(exchangeRate);
 	}
 
-	private rateByDate(currency: string, exchangeCurrency: string, date: DateTime): BigNumber {
+	#rateByDate(currency: string, exchangeCurrency: string, date: DateTime): BigNumber {
 		const result: number | undefined = this.#dataRepository.get(
 			`${currency}.${exchangeCurrency}.${date.format("YYYY-MM-DD")}`,
 		);
@@ -93,12 +93,12 @@ export class ExchangeRateService implements IExchangeRateService {
 		}
 	}
 
-	private hasFetchedHistoricalRates(currency: string, exchangeCurrency: string): boolean {
+	#hasFetchedHistoricalRates(currency: string, exchangeCurrency: string): boolean {
 		/* istanbul ignore next */
 		return Object.keys(this.#dataRepository.get(`${currency}.${exchangeCurrency}`) || {}).length > 1;
 	}
 
-	private async fetchDailyRate(profile: IProfile, currency: string, exchangeCurrency: string): Promise<void> {
+	async #fetchDailyRate(profile: IProfile, currency: string, exchangeCurrency: string): Promise<void> {
 		this.#dataRepository.set(
 			`${currency}.${exchangeCurrency}.${DateTime.make().format("YYYY-MM-DD")}`,
 			await MarketService.make(

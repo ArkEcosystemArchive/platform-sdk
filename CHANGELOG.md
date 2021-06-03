@@ -5,6 +5,59 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.8.0 - 2021-06-03
+
+### Added
+
+- **[PROFILES]** Implement `IReadWriteWallet#canWrite` (0fde8c44, @faustbrian)
+
+### Changed
+
+- **[SDK]** **[BREAKING]** Branch out HTTP contracts and functionality (02902a23, @faustbrian)
+- **[SDK]** **[BREAKING]** Separate `Coins` and `Networks` (6eeb6d9c, @faustbrian)
+
+## 8.7.0 - 2021-06-03
+
+### Changed
+
+- **[PROFILES]** **[BREAKING]** Replace `fromWIFWithEncryption` with a `password` argument for `fromWIF` (3e75a268, @faustbrian)
+- **[PROFILES]** **[BREAKING]** Turn `WalletImportMethod` into a constant with nested keys (2d2a5ee4, @faustbrian)
+
+### Fixed
+
+- **[PROFILES]** **[BREAKING]** Set address derivation method based on purpose (34196074, @faustbrian)
+
+## 8.6.0 - 2021-06-03
+
+### Changed
+
+- **[PROFILES]** **[BREAKING]** Replace `fromMnemonicWithEncryption` with a `password` argument for `fromMnemonicWithBIP39` (35330311, @faustbrian)
+
+## 8.5.0 - 2021-06-03
+
+### Changed
+
+- **[SDK]** Introduce `AbstractClientService` (f689f10b, @faustbrian)
+- **[SDK]** Introduce `AbstractLedgerService` (0e4c8fea, @faustbrian)
+- **[SDK]** Introduce `AbstractFeeService` (5b48e1e2, @faustbrian)
+- **[SDK]** Introduce `AbstractMultiSignatureService` (8ba482e9, @faustbrian)
+- **[SDK]** Introduce `AbstractMessageService` (1a79cb70, @faustbrian)
+- **[SDK]** Move `AbstractSignatoryService` from `Signatories` to `Services` namespace (c991554b, @faustbrian)
+- **[SDK]** Introduce `AbstractKnownWalletService` (83e99efb, @faustbrian)
+- **[SDK]** Introduce `AbstractDataTransferObjectService` (4109c3a7, @faustbrian)
+- **[SDK]** Update manifests (03443522, @faustbrian)
+- **[SDK]** Organise services and contracts more closely together (183f38ea, @faustbrian)
+- **[SDK]** Update to TypeScript 4.3.2 (129c5959, @faustbrian)
+- **[SDK]** Use method name property when throwing exception (cf108c4f, @axeldelamarre)
+- **[SDK]** Make private methods also private at runtime (1587d7f5, @faustbrian)
+- **[MARKETS]** **[BREAKING]** Merge all market drivers (b551568f, @faustbrian)
+- **[PROFILES]** Replace `LedgerPath` with `DerivationPath` (a3387e1f, @faustbrian)
+- **[PROFILES]** **[BREAKING]** Split `fromMnemonic` into multiple methods (1dee2a9e, @faustbrian)
+
+### Fixed
+
+- **[SUPPORT]** **[BREAKING]** Case insensitive censoring (b9f2e9ca, @axeldelamarre)
+
 ## 8.4.0 - 2021-06-02
 
 ### Added

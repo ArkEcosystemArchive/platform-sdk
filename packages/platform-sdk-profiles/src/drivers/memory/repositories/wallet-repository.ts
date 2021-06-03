@@ -262,7 +262,7 @@ export class WalletRepository implements IWalletRepository {
 	/** {@inheritDoc IWalletRepository.restore} */
 	public async restore(): Promise<void> {
 		const syncWallets = (wallets: object): Promise<IReadWriteWallet[]> =>
-			pqueue([...Object.values(wallets)].map((wallet) => () => this.restoreWallet(wallet)));
+			pqueue([...Object.values(wallets)].map((wallet) => () => this.#restoreWallet(wallet)));
 
 		const earlyWallets: Record<string, object> = {};
 		const laterWallets: Record<string, object> = {};
@@ -286,12 +286,12 @@ export class WalletRepository implements IWalletRepository {
 		await syncWallets(laterWallets);
 	}
 
-	private async restoreWallet({ id, data }): Promise<void> {
+	async #restoreWallet({ id, data }): Promise<void> {
 		const previousWallet: IReadWriteWallet = this.findById(id);
 
 		if (previousWallet.hasBeenPartiallyRestored()) {
 			try {
-				await this.syncWalletWithNetwork({
+				await this.#syncWalletWithNetwork({
 					coin: data[WalletData.Coin],
 					network: data[WalletData.Network],
 					address: data[WalletData.Address],
@@ -305,7 +305,7 @@ export class WalletRepository implements IWalletRepository {
 		}
 	}
 
-	private async syncWalletWithNetwork({
+	async #syncWalletWithNetwork({
 		address,
 		coin,
 		network,

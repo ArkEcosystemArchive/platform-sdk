@@ -1,7 +1,8 @@
+/* istanbul ignore file */
+
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { Entity, WalletBalance } from "../contracts/coins";
-import { KeyValuePair } from "../contracts/types";
+import { KeyValuePair, WalletBalance } from "../contracts";
 
 export abstract class AbstractWalletData {
 	public constructor(protected readonly data: KeyValuePair) {}
@@ -26,9 +27,6 @@ export abstract class AbstractWalletData {
 	abstract rank(): number | undefined;
 
 	abstract votes(): BigNumber | undefined;
-
-	// Entities
-	abstract entities(): Entity[];
 
 	// Flags
 	abstract isDelegate(): boolean;

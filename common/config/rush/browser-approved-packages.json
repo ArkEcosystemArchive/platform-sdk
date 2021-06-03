@@ -75,6 +75,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@arkecosystem/platform-sdk-http",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@arkecosystem/platform-sdk-http-got",
       "allowedCategories": [ "libraries" ]
     },

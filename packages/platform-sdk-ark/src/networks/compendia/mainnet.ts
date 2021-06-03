@@ -1,8 +1,8 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Networks } from "@arkecosystem/platform-sdk";
 
 import { transactions, importMethods, featureFlags } from "../shared";
 
-const network: Coins.NetworkManifest = {
+const network: Networks.NetworkManifest = {
 	id: "compendia.mainnet",
 	type: "live",
 	name: "Mainnet",
@@ -17,7 +17,7 @@ const network: Coins.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: "https://apis.compendia.org",
+			host: "https://apis.compendia.org/api",
 		},
 		{
 			type: "explorer",

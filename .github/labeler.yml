@@ -43,21 +43,9 @@ test:
     - packages/platform-sdk-cli/*
     - packages/platform-sdk-cli/**/*
 
-"Domain: CoinCap":
-    - packages/platform-sdk-coincap/*
-    - packages/platform-sdk-coincap/**/*
-
-"Domain: CoinGecko":
-    - packages/platform-sdk-coingecko/*
-    - packages/platform-sdk-coingecko/**/*
-
 "Domain: Crypto":
     - packages/platform-sdk-crypto/*
     - packages/platform-sdk-crypto/**/*
-
-"Domain: CryptoCompare":
-    - packages/platform-sdk-cryptocompare/*
-    - packages/platform-sdk-cryptocompare/**/*
 
 "Domain: DOT":
     - packages/platform-sdk-dot/*

@@ -1,10 +1,11 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #peer: string;
 
 	readonly #broadcastErrors: Record<string, string> = {
@@ -24,7 +25,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
-			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
+			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: `${Helpers.randomHostFromConfig(config)}/api`,
 		});
 	}
@@ -33,54 +34,54 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		const result = await this.get("transactions", { id });
+		const result = await this.#get("transactions", { id });
 
 		return Helpers.createTransactionDataWithType(result.data[0], TransactionDTO);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		// @ts-ignore
-		const result = await this.get("transactions", this.createSearchParams({ sort: "timestamp:desc", ...query }));
+		const result = await this.#get("transactions", this.#createSearchParams({ sort: "timestamp:desc", ...query }));
 
 		return Helpers.createTransactionDataCollectionWithType(
 			result.data,
-			this.createPagination(result.data, result.meta),
+			this.#createPagination(result.data, result.meta),
 			TransactionDTO,
 		);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const result = await this.get("accounts", { address: id });
+		const result = await this.#get("accounts", { address: id });
 
 		return new WalletData(result.data[0]);
 	}
 
-	public async wallets(query: Services.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
-		const result = await this.get("accounts", query);
+	public async wallets(query: Services.ClientWalletsInput): Promise<Collections.WalletDataCollection> {
+		const result = await this.#get("accounts", query);
 
-		return new Coins.WalletDataCollection(
+		return new Collections.WalletDataCollection(
 			result.data.map((wallet) => new WalletData(wallet)),
-			this.createPagination(result.data, result.meta),
+			this.#createPagination(result.data, result.meta),
 		);
 	}
 
 	public async delegate(id: string): Promise<Contracts.WalletData> {
-		const result = await this.get("delegates", { username: id });
+		const result = await this.#get("delegates", { username: id });
 
 		return new WalletData(result.data[0]);
 	}
 
-	public async delegates(query?: any): Promise<Coins.WalletDataCollection> {
-		const result = await this.get("delegates", this.createSearchParams({ limit: 101, ...query }));
+	public async delegates(query?: any): Promise<Collections.WalletDataCollection> {
+		const result = await this.#get("delegates", this.#createSearchParams({ limit: 101, ...query }));
 
-		return new Coins.WalletDataCollection(
+		return new Collections.WalletDataCollection(
 			result.data.map((wallet) => new WalletData(wallet)),
-			this.createPagination(result.data, result.meta),
+			this.#createPagination(result.data, result.meta),
 		);
 	}
 
 	public async votes(id: string): Promise<Services.VoteReport> {
-		const { data } = await this.get("votes", { address: id, limit: 101 });
+		const { data } = await this.#get("votes", { address: id, limit: 101 });
 
 		return {
 			used: data.votesUsed,
@@ -97,7 +98,7 @@ export class ClientService extends Services.AbstractClientService {
 		};
 
 		for (const transaction of transactions) {
-			const { data, errors } = await this.post("transactions", transaction.toBroadcast());
+			const { data, errors } = await this.#post("transactions", transaction.toBroadcast());
 
 			if (data) {
 				result.accepted.push(transaction.id());
@@ -121,19 +122,19 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.get(`${this.#peer}/${path}`, query);
 
 		return response.json();
 	}
 
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.post(`${this.#peer}/${path}`, body);
 
 		return response.json();
 	}
 
-	private createSearchParams(searchParams: Services.ClientTransactionsInput): object {
+	#createSearchParams(searchParams: Services.ClientTransactionsInput): object {
 		if (!searchParams) {
 			searchParams = {};
 		}
@@ -161,7 +162,7 @@ export class ClientService extends Services.AbstractClientService {
 		return searchParams;
 	}
 
-	private createPagination(data, meta): Services.MetaPagination {
+	#createPagination(data, meta): Services.MetaPagination {
 		const hasPreviousPage: boolean = data && data.length === meta.limit && meta.offset !== 0;
 		const hasNextPage: boolean = data && data.length === meta.limit;
 

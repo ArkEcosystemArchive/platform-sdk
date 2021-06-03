@@ -38,7 +38,7 @@ export class Client {
 	 * @memberof Client
 	 */
 	public async teams(symbol: string): Promise<any> {
-		return (await this.get("teams", { symbol })).results;
+		return (await this.#get("teams", { symbol })).results;
 	}
 
 	/**
@@ -48,7 +48,7 @@ export class Client {
 	 * @memberof Client
 	 */
 	public async signals(team: string, query?: { cursor?: number; limit?: number }): Promise<any> {
-		return this.get(`teams/${team}/signals`, query);
+		return this.#get(`teams/${team}/signals`, query);
 	}
 
 	/**
@@ -61,7 +61,7 @@ export class Client {
 	 * @returns {Promise<T>}
 	 * @memberof Client
 	 */
-	private async get<T = Record<string, any>>(path: string, query?: Record<string, any>): Promise<T> {
+	async #get<T = Record<string, any>>(path: string, query?: Record<string, any>): Promise<T> {
 		return (await this.#client.get(path, query)).json();
 	}
 }

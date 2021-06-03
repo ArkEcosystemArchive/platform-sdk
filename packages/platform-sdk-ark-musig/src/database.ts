@@ -4,17 +4,17 @@ import { ensureFileSync } from "fs-extra";
 import { IStoreTransaction } from "./contracts";
 
 export class Storage {
-	private readonly table: string = "transactions";
-	private database: BetterSqlite3.Database;
+	readonly #table: string = "transactions";
+	#database: BetterSqlite3.Database;
 
 	public connect(file: string) {
 		ensureFileSync(file);
 
-		this.database = new BetterSqlite3(file);
+		this.#database = new BetterSqlite3(file);
 
-		this.database.exec(`
+		this.#database.exec(`
       PRAGMA journal_mode=WAL;
-      CREATE TABLE IF NOT EXISTS ${this.table} (
+      CREATE TABLE IF NOT EXISTS ${this.#table} (
         "id" VARCHAR(64) PRIMARY KEY,
         "json" BLOB NOT NULL
       );
@@ -22,8 +22,8 @@ export class Storage {
 	}
 
 	public disconnect(): void {
-		this.database.close();
-		this.database = undefined;
+		this.#database.close();
+		this.#database = undefined;
 	}
 
 	public bulkAdd(data: IStoreTransaction[]): void {
@@ -31,21 +31,21 @@ export class Storage {
 			return;
 		}
 
-		const insertStatement: BetterSqlite3.Statement = this.database.prepare(
-			`INSERT INTO ${this.table} ` + "(id, json) VALUES " + "(:id, :json);",
+		const insertStatement: BetterSqlite3.Statement = this.#database.prepare(
+			`INSERT INTO ${this.#table} ` + "(id, json) VALUES " + "(:id, :json);",
 		);
 
 		try {
-			this.database.prepare("BEGIN;").run();
+			this.#database.prepare("BEGIN;").run();
 
 			for (const transaction of data) {
 				insertStatement.run({ id: transaction.id, json: JSON.stringify(transaction) });
 			}
 
-			this.database.prepare("COMMIT;").run();
+			this.#database.prepare("COMMIT;").run();
 		} finally {
-			if (this.database.inTransaction) {
-				this.database.prepare("ROLLBACK;").run();
+			if (this.#database.inTransaction) {
+				this.#database.prepare("ROLLBACK;").run();
 			}
 		}
 	}
@@ -55,22 +55,22 @@ export class Storage {
 			return;
 		}
 
-		const deleteStatement: BetterSqlite3.Statement = this.database.prepare(
-			`DELETE FROM ${this.table} WHERE id = :id;`,
+		const deleteStatement: BetterSqlite3.Statement = this.#database.prepare(
+			`DELETE FROM ${this.#table} WHERE id = :id;`,
 		);
 
-		this.database.prepare("BEGIN;").run();
+		this.#database.prepare("BEGIN;").run();
 
 		for (const id of ids) {
 			deleteStatement.run({ id });
 		}
 
-		this.database.prepare("COMMIT;").run();
+		this.#database.prepare("COMMIT;").run();
 	}
 
 	public loadAll(): IStoreTransaction[] {
-		const rows: Array<{ id: string; json: string }> = this.database
-			.prepare(`SELECT id, json FROM ${this.table};`)
+		const rows: Array<{ id: string; json: string }> = this.#database
+			.prepare(`SELECT id, json FROM ${this.#table};`)
 			.all();
 
 		const transactions: IStoreTransaction[] = [];
@@ -92,6 +92,6 @@ export class Storage {
 	}
 
 	public deleteAll(): void {
-		this.database.exec(`DELETE FROM ${this.table};`);
+		this.#database.exec(`DELETE FROM ${this.#table};`);
 	}
 }

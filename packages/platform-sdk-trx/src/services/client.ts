@@ -1,4 +1,5 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
@@ -8,7 +9,7 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
 	readonly #peer: string;
-	readonly #client: Contracts.HttpClient;
+	readonly #client: HttpClient;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -33,7 +34,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
-		this.#client = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#client = this.#config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -52,7 +53,7 @@ export class ClientService extends Services.AbstractClientService {
 		return Helpers.createTransactionDataWithType(result, TransactionDTO);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const payload: Record<string, boolean | number> = {
 			limit: query.limit || 15,
 		};
@@ -82,7 +83,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { data } = (await this.#client.get(`${this.getHost()}/v1/accounts/${id}`)).json();
+		const { data } = (await this.#client.get(`${this.#getHost()}/v1/accounts/${id}`)).json();
 
 		return new WalletData(data[0]);
 	}
@@ -96,7 +97,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		for (const transaction of transactions) {
 			const response = (
-				await this.#client.post(`${this.getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
+				await this.#client.post(`${this.#getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
 			).json();
 
 			if (response.result) {
@@ -121,7 +122,7 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private getHost(): string {
+	#getHost(): string {
 		return Helpers.randomHostFromConfig(this.#config);
 	}
 }

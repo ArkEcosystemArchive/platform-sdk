@@ -17,7 +17,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.KeyPairDataTransferObject> {
 		if (!BIP39.validate(mnemonic)) {
-			throw new Exceptions.InvalidArguments(this.constructor.name, "fromMnemonic");
+			throw new Exceptions.InvalidArguments(this.constructor.name, this.fromMnemonic.name);
 		}
 
 		const privateBuffer: Buffer = derivePrivateKey(

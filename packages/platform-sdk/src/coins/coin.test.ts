@@ -3,11 +3,10 @@ import "jest-extended";
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
 import { ARK } from "../../../platform-sdk-ark/src";
+import { Network, NetworkRepository } from "../networks";
 import { Coin } from "./coin";
 import { Config } from "./config";
 import { Manifest } from "./manifest";
-import { Network } from "./network";
-import { NetworkRepository } from "./network-repository";
 
 let subject: Coin;
 

@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-btc-server",
-	"version": "8.4.0",
+	"version": "8.8.2",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -30,6 +30,7 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@hapi/hapi": "^20.1.2",
 		"@konceiver/foreman": "^2.0.2",

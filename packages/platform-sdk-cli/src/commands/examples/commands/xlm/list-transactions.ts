@@ -1,4 +1,4 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Collections } from "@arkecosystem/platform-sdk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 import { createProfile, useLogger } from "../../helpers";
 
@@ -14,7 +14,7 @@ export const listTransactionsWithXLM = async (env: Environment): Promise<void> =
 
 	// Create read-write wallet 1
 	const mnemonic1: string = "stand adapt injury old donate champion sword slice exhibit mimic chair body";
-	const wallet1 = await profile.walletFactory().fromMnemonic({
+	const wallet1 = await profile.walletFactory().fromMnemonicWithBIP39({
 		mnemonic: mnemonic1,
 		coin: "XLM",
 		network: "xlm.testnet",
@@ -25,7 +25,7 @@ export const listTransactionsWithXLM = async (env: Environment): Promise<void> =
 	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
 
 	// Show transactions
-	const transactions: Coins.TransactionDataCollection = await wallet1
+	const transactions: Collections.TransactionDataCollection = await wallet1
 		.client()
 		.transactions({ address: wallet1.address() });
 

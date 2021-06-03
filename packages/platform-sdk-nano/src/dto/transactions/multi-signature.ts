@@ -4,10 +4,10 @@ import { TransactionData } from "../transaction";
 
 export class MultiSignatureData extends TransactionData implements Contracts.MultiSignatureData {
 	public publicKeys(): string[] {
-		throw new Exceptions.NotImplemented(this.constructor.name, "publicKeys");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.publicKeys.name);
 	}
 
 	public min(): number {
-		throw new Exceptions.NotImplemented(this.constructor.name, "min");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.min.name);
 	}
 }

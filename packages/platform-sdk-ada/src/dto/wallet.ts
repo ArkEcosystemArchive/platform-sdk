@@ -11,7 +11,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public publicKey(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "publicKey");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.publicKey.name);
 	}
 
 	public balance(): Contracts.WalletBalance {
@@ -22,31 +22,27 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public nonce(): BigNumber {
-		throw new Exceptions.NotImplemented(this.constructor.name, "nonce");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.nonce.name);
 	}
 
 	public secondPublicKey(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "secondPublicKey");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.secondPublicKey.name);
 	}
 
 	public username(): string | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "username");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.username.name);
 	}
 
 	public rank(): number | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "rank");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.rank.name);
 	}
 
 	public votes(): BigNumber | undefined {
-		throw new Exceptions.NotImplemented(this.constructor.name, "votes");
-	}
-
-	public entities(): Contracts.Entity[] {
-		return [];
+		throw new Exceptions.NotImplemented(this.constructor.name, this.votes.name);
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {
-		throw new Exceptions.NotImplemented(this.constructor.name, "multiSignature");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.multiSignature.name);
 	}
 
 	public isDelegate(): boolean {

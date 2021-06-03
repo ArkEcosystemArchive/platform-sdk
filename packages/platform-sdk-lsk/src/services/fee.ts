@@ -8,21 +8,21 @@ export class FeeService extends Services.AbstractFeeService {
 
 	public async all(): Promise<Services.TransactionFees> {
 		return {
-			transfer: this.transform("TRANSFER_FEE"),
-			secondSignature: this.transform("SIGNATURE_FEE"),
-			delegateRegistration: this.transform("DELEGATE_FEE"),
-			vote: this.transform("VOTE_FEE"),
-			multiSignature: this.transform("MULTISIGNATURE_FEE"),
-			ipfs: this.transform(0),
-			multiPayment: this.transform(0),
-			delegateResignation: this.transform(0),
-			htlcLock: this.transform(0),
-			htlcClaim: this.transform(0),
-			htlcRefund: this.transform(0),
+			transfer: this.#transform("TRANSFER_FEE"),
+			secondSignature: this.#transform("SIGNATURE_FEE"),
+			delegateRegistration: this.#transform("DELEGATE_FEE"),
+			vote: this.#transform("VOTE_FEE"),
+			multiSignature: this.#transform("MULTISIGNATURE_FEE"),
+			ipfs: this.#transform(0),
+			multiPayment: this.#transform(0),
+			delegateResignation: this.#transform(0),
+			htlcLock: this.#transform(0),
+			htlcClaim: this.#transform(0),
+			htlcRefund: this.#transform(0),
 		};
 	}
 
-	private transform(type: string | number): Services.TransactionFee {
+	#transform(type: string | number): Services.TransactionFee {
 		const fee: number = type === 0 ? 0 : constants[type];
 
 		return {

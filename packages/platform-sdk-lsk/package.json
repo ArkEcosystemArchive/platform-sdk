@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-lsk",
-	"version": "8.4.0",
+	"version": "8.8.2",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -26,6 +26,7 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",

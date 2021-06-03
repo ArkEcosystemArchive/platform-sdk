@@ -41,7 +41,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			let transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
-				Coins.toRawUnit(input.data.amount, this.#config).toString(),
+				Helpers.toRawUnit(input.data.amount, this.#config).toString(),
 				senderAddress,
 				1,
 			);

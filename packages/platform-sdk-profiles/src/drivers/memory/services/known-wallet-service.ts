@@ -31,25 +31,25 @@ export class KnownWalletService implements IKnownWalletService {
 
 	/** {@inheritDoc IKnownWalletService.network} */
 	public name(network: string, address: string): string | undefined {
-		return this.findByAddress(network, address)?.name;
+		return this.#findByAddress(network, address)?.name;
 	}
 
 	/** {@inheritDoc IKnownWalletService.network} */
 	public is(network: string, address: string): boolean {
-		return this.findByAddress(network, address) !== undefined;
+		return this.#findByAddress(network, address) !== undefined;
 	}
 
 	/** {@inheritDoc IKnownWalletService.network} */
 	public isExchange(network: string, address: string): boolean {
-		return this.hasType(network, address, "exchange");
+		return this.#hasType(network, address, "exchange");
 	}
 
 	/** {@inheritDoc IKnownWalletService.network} */
 	public isTeam(network: string, address: string): boolean {
-		return this.hasType(network, address, "team");
+		return this.#hasType(network, address, "team");
 	}
 
-	private findByAddress(network: string, address: string): Services.KnownWallet | undefined {
+	#findByAddress(network: string, address: string): Services.KnownWallet | undefined {
 		const registry: Services.KnownWallet[] = this.#registry[network];
 
 		if (registry === undefined) {
@@ -59,7 +59,7 @@ export class KnownWalletService implements IKnownWalletService {
 		return registry.find((wallet: Services.KnownWallet) => wallet.address === address);
 	}
 
-	private hasType(network: string, address: string, type: string): boolean {
-		return this.findByAddress(network, address)?.type === type;
+	#hasType(network: string, address: string, type: string): boolean {
+		return this.#findByAddress(network, address)?.type === type;
 	}
 }

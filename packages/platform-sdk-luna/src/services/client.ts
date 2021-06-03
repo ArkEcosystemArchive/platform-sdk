@@ -25,7 +25,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		for (const transaction of transactions) {
 			try {
-				const { txhash } = await this.useClient().tx.broadcast(transaction.toBroadcast());
+				const { txhash } = await this.#useClient().tx.broadcast(transaction.toBroadcast());
 
 				transaction.setAttributes({ identifier: txhash });
 
@@ -40,7 +40,7 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private useClient(): LCDClient {
+	#useClient(): LCDClient {
 		return useClient(
 			`${Helpers.randomHostFromConfig(this.#config)}/api`,
 			this.#config.get("network.meta.networkId"),

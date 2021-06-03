@@ -1,14 +1,15 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 export class FeeService extends Services.AbstractFeeService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 
 	private constructor(config: Coins.Config) {
 		super();
 
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<FeeService> {
@@ -16,34 +17,28 @@ export class FeeService extends Services.AbstractFeeService {
 	}
 
 	public async all(): Promise<Services.TransactionFees> {
-		const node = await this.get("node/fees");
-		const type = await this.get("transactions/fees");
+		const node = await this.#get("node/fees");
+		const type = await this.#get("transactions/fees");
 
 		const staticFees: object = type.data;
 		const dynamicFees: object = node.data;
 
 		return {
-			// Core
-			transfer: this.transform("transfer", 1, staticFees, dynamicFees),
-			secondSignature: this.transform("secondSignature", 1, staticFees, dynamicFees),
-			delegateRegistration: this.transform("delegateRegistration", 1, staticFees, dynamicFees),
-			vote: this.transform("vote", 1, staticFees, dynamicFees),
-			multiSignature: this.transform("multiSignature", 1, staticFees, dynamicFees),
-			ipfs: this.transform("ipfs", 1, staticFees, dynamicFees),
-			multiPayment: this.transform("multiPayment", 1, staticFees, dynamicFees),
-			delegateResignation: this.transform("delegateResignation", 1, staticFees, dynamicFees),
-			htlcLock: this.transform("htlcLock", 1, staticFees, dynamicFees),
-			htlcClaim: this.transform("htlcClaim", 1, staticFees, dynamicFees),
-			htlcRefund: this.transform("htlcRefund", 1, staticFees, dynamicFees),
+			transfer: this.#transform("transfer", 1, staticFees, dynamicFees),
+			secondSignature: this.#transform("secondSignature", 1, staticFees, dynamicFees),
+			delegateRegistration: this.#transform("delegateRegistration", 1, staticFees, dynamicFees),
+			vote: this.#transform("vote", 1, staticFees, dynamicFees),
+			multiSignature: this.#transform("multiSignature", 1, staticFees, dynamicFees),
+			ipfs: this.#transform("ipfs", 1, staticFees, dynamicFees),
+			multiPayment: this.#transform("multiPayment", 1, staticFees, dynamicFees),
+			delegateResignation: this.#transform("delegateResignation", 1, staticFees, dynamicFees),
+			htlcLock: this.#transform("htlcLock", 1, staticFees, dynamicFees),
+			htlcClaim: this.#transform("htlcClaim", 1, staticFees, dynamicFees),
+			htlcRefund: this.#transform("htlcRefund", 1, staticFees, dynamicFees),
 		};
 	}
 
-	private transform(
-		type: string,
-		typeGroup: number,
-		staticFees: object,
-		dynamicFees: object,
-	): Services.TransactionFee {
+	#transform(type: string, typeGroup: number, staticFees: object, dynamicFees: object): Services.TransactionFee {
 		const dynamicFee = dynamicFees[typeGroup][type];
 
 		return {
@@ -54,7 +49,7 @@ export class FeeService extends Services.AbstractFeeService {
 		};
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (await this.#http.get(`${Helpers.randomHostFromConfig(this.#config)}/${path}`, query)).json();
 	}
 }

@@ -18,6 +18,7 @@ import {
 	IReadWriteWallet,
 	WalletData,
 	WalletFlag,
+	WalletImportMethod,
 	WalletSetting,
 } from "../../../contracts";
 
@@ -479,6 +480,20 @@ it("should determine if the wallet has been partially restored", () => {
 	subject.markAsPartiallyRestored();
 
 	expect(subject.hasBeenPartiallyRestored()).toBeTrue();
+});
+
+it("should determine if the wallet can perform write actions", () => {
+	subject.data().set(WalletData.ImportMethod, WalletImportMethod.Address);
+
+	expect(subject.canWrite()).toBeFalse();
+
+	subject.data().set(WalletData.ImportMethod, WalletImportMethod.PublicKey);
+
+	expect(subject.canWrite()).toBeFalse();
+
+	subject.data().set(WalletData.ImportMethod, WalletImportMethod.PrivateKey);
+
+	expect(subject.canWrite()).toBeTrue();
 });
 
 it("should determine if the wallet acts with mnemonic", () => {

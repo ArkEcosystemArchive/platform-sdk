@@ -1,4 +1,4 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Networks, Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { IDataRepository } from "../repositories/data-repository";
 import { ISettingRepository } from "../repositories/setting-repository";
@@ -93,10 +93,10 @@ export interface IReadWriteWallet {
 	/**
 	 * Get the network data.
 	 *
-	 * @return {Coins.Network}
+	 * @return {Networks.Network}
 	 * @memberof IReadWriteWallet
 	 */
-	network(): Coins.Network;
+	network(): Networks.Network;
 
 	/**
 	 * Get the crypto currency.
@@ -423,7 +423,7 @@ export interface IReadWriteWallet {
 	 * @return {Coins.CoinTransactionTypes[]}
 	 * @memberof IReadWriteWallet
 	 */
-	transactionTypes(): Coins.CoinTransactionTypes[];
+	transactionTypes(): Networks.CoinTransactionTypes[];
 
 	/**
 	 * Get the explorer link.
@@ -550,6 +550,14 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	canVote(): boolean;
+
+	/**
+	 * Determine if the wallet can perform write actions.
+	 *
+	 * @return {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	canWrite(): boolean;
 
 	/**
 	 * Determines if the wallet has been imported with a mnemonic.

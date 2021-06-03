@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
@@ -17,7 +17,7 @@ export class ClientService extends Services.AbstractClientService {
 		return new ClientService(config);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const account = query.address || query.addresses![0];
 		const count = (query.limit || 15).toString();
 		const options = { head: query.cursor || undefined };

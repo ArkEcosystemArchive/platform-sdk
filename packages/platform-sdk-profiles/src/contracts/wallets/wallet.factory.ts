@@ -1,7 +1,5 @@
 import { IReadWriteWallet } from "./wallet";
 
-type BIP = 39 | 44 | 49 | 84;
-
 /**
  * Defines the options needed to generate a wallet.
  *
@@ -22,7 +20,7 @@ export interface IMnemonicOptions {
 	coin: string;
 	network: string;
 	mnemonic: string;
-	bip?: BIP;
+	password?: string;
 }
 
 /**
@@ -71,18 +69,6 @@ export interface IAddressWithDerivationPathOptions {
 }
 
 /**
- * Defines the options for an import with a mnemonic and password.
- *
- * @interface IMnemonicWithEncryptionOptions
- */
-export interface IMnemonicWithEncryptionOptions {
-	coin: string;
-	network: string;
-	mnemonic: string;
-	password: string;
-}
-
-/**
  * Defines the options for an import with a WIF.
  *
  * @interface IWifOptions
@@ -91,18 +77,7 @@ export interface IWifOptions {
 	coin: string;
 	network: string;
 	wif: string;
-}
-
-/**
- * Defines the options for an import with a WIF and password.
- *
- * @interface IWifWithEncryptionOptions
- */
-export interface IWifWithEncryptionOptions {
-	coin: string;
-	network: string;
-	wif: string;
-	password: string;
+	password?: string;
 }
 
 /**
@@ -122,13 +97,40 @@ export interface IWalletFactory {
 	generate(options: IGenerateOptions): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
 
 	/**
-	 * Imports a wallet from a mnemonic.
+	 * Imports a wallet from a mnemonic, using the BIP39 proposal.
 	 *
 	 * @param {IMnemonicOptions} options
 	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
-	fromMnemonic(options: IMnemonicOptions): Promise<IReadWriteWallet>;
+	fromMnemonicWithBIP39(options: IMnemonicOptions): Promise<IReadWriteWallet>;
+
+	/**
+	 * Imports a wallet from a mnemonic, using the BIP44 proposal.
+	 *
+	 * @param {IMnemonicOptions} options
+	 * @return {Promise<IReadWriteWallet>}
+	 * @memberof IWalletFactory
+	 */
+	fromMnemonicWithBIP44(options: IMnemonicOptions): Promise<IReadWriteWallet>;
+
+	/**
+	 * Imports a wallet from a mnemonic, using the BIP49 proposal.
+	 *
+	 * @param {IMnemonicOptions} options
+	 * @return {Promise<IReadWriteWallet>}
+	 * @memberof IWalletFactory
+	 */
+	fromMnemonicWithBIP49(options: IMnemonicOptions): Promise<IReadWriteWallet>;
+
+	/**
+	 * Imports a wallet from a mnemonic, using the BIP84 proposal.
+	 *
+	 * @param {IMnemonicOptions} options
+	 * @return {Promise<IReadWriteWallet>}
+	 * @memberof IWalletFactory
+	 */
+	fromMnemonicWithBIP84(options: IMnemonicOptions): Promise<IReadWriteWallet>;
 
 	/**
 	 * Imports a wallet from an address.
@@ -167,15 +169,6 @@ export interface IWalletFactory {
 	fromAddressWithDerivationPath(options: IAddressWithDerivationPathOptions): Promise<IReadWriteWallet>;
 
 	/**
-	 * Imports a wallet from a mnemonic with a password.
-	 *
-	 * @param {IMnemonicWithEncryptionOptions} options
-	 * @return {Promise<IReadWriteWallet>}
-	 * @memberof IWalletFactory
-	 */
-	fromMnemonicWithEncryption(options: IMnemonicWithEncryptionOptions): Promise<IReadWriteWallet>;
-
-	/**
 	 * Imports a wallet from a WIF.
 	 *
 	 * @param {IWifOptions} options
@@ -183,13 +176,4 @@ export interface IWalletFactory {
 	 * @memberof IWalletFactory
 	 */
 	fromWIF(options: IWifOptions): Promise<IReadWriteWallet>;
-
-	/**
-	 * Imports a wallet from a WIF with a password.
-	 *
-	 * @param {IWifWithEncryptionOptions} options
-	 * @return {Promise<IReadWriteWallet>}
-	 * @memberof IWalletFactory
-	 */
-	fromWIFWithEncryption(options: IWifWithEncryptionOptions): Promise<IReadWriteWallet>;
 }

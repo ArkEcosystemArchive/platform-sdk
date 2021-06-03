@@ -5,7 +5,7 @@ export class AddressService extends Services.AbstractAddressService {
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
+		throw new Exceptions.NotSupported(this.constructor.name, this.fromMnemonic.name);
 	}
 
 	public async validate(address: string): Promise<boolean> {
