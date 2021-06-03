@@ -178,14 +178,13 @@ export class WalletFactory implements IWalletFactory {
 		await wallet.mutator().coin(coin, network);
 
 		if (password) {
-			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIFWithEncryption);
-
 			const { compressed, privateKey } = decrypt(wif, password);
 
 			await wallet
 				.mutator()
 				.address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
 
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIFWithEncryption);
 			wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 		} else {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIF);
