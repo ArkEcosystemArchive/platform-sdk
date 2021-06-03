@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.7.0 - 2021-06-03
+
+### Changed
+
+- **[PROFILES]** **[BREAKING]** Replace `fromWIFWithEncryption` with a `password` argument for `fromWIF` (3e75a268, @faustbrian)
+- **[PROFILES]** **[BREAKING]** Turn `WalletImportMethod` into a constant with nested keys (2d2a5ee4, @faustbrian)
+
+### Fixed
+
+- **[PROFILES]** **[BREAKING]** Set address derivation method based on purpose (34196074, @faustbrian)
+
 ## 8.6.0 - 2021-06-03
 
 ### Changed
