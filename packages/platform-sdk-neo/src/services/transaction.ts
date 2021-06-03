@@ -14,7 +14,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService(config);
 	}
