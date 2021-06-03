@@ -557,7 +557,7 @@ export interface IReadWriteWallet {
 	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
-	 canWrite(): boolean;
+	canWrite(): boolean;
 
 	/**
 	 * Determines if the wallet has been imported with a mnemonic.
