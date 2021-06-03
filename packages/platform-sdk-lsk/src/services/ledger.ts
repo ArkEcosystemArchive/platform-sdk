@@ -67,6 +67,8 @@ export class LedgerService extends Services.AbstractLedgerService {
 		return signature.slice(0, 64).toString("hex");
 	}
 
+	// @TODO: send requests in parallel
+	// @TODO: discover wallets until they 404
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
@@ -75,42 +77,37 @@ export class LedgerService extends Services.AbstractLedgerService {
 		const addressCache: Record<string, { address: string; publicKey: string }> = {};
 		let wallets: Contracts.WalletData[] = [];
 
-		let hasMore = true;
-		do {
-			const addresses: string[] = [];
+		const addresses: string[] = [];
 
-			const path = `m/44'/${slip44}'/0'`;
-			let initialAddressIndex = 0;
+		const path = `m/44'/${slip44}'/0'`;
+		let initialAddressIndex = 0;
 
-			if (options?.startPath) {
-				initialAddressIndex = BIP44.parse(options.startPath).addressIndex + 1;
+		if (options?.startPath) {
+			initialAddressIndex = BIP44.parse(options.startPath).addressIndex + 1;
+		}
+
+		const compressedPublicKey = await this.getExtendedPublicKey(path);
+
+		for (const addressIndexIterator of createRange(page, pageSize)) {
+			const addressIndex = initialAddressIndex + addressIndexIterator;
+			const publicKey: string = HDKey.fromCompressedPublicKey(compressedPublicKey)
+				.derive(`m/0/${addressIndex}`)
+				.publicKey.toString("hex");
+
+			const { address } = await this.#identity.address().fromPublicKey(publicKey);
+
+			addresses.push(address);
+
+			addressCache[`${path}/0/${addressIndex}`] = { address, publicKey };
+		}
+
+		for (const address of addresses) {
+			try {
+				wallets.push(await this.#client.wallet(address));
+			} catch {
+				// Do nothing...
 			}
-
-			const compressedPublicKey = await this.getExtendedPublicKey(path);
-
-			for (const addressIndexIterator of createRange(page, pageSize)) {
-				const addressIndex = initialAddressIndex + addressIndexIterator;
-				const publicKey: string = HDKey.fromCompressedPublicKey(compressedPublicKey)
-					.derive(`m/0/${addressIndex}`)
-					.publicKey.toString("hex");
-
-				const { address } = await this.#identity.address().fromPublicKey(publicKey);
-
-				addresses.push(address);
-
-				addressCache[`${path}/0/${addressIndex}`] = { address, publicKey };
-			}
-
-			for (const address of addresses) {
-				try {
-					wallets.push(await this.#client.wallet(address));
-				} catch {
-					// Do nothing...
-				}
-			}
-
-			page++;
-		} while (hasMore);
+		}
 
 		// Create a mapping of paths and wallets that have been found.
 		const cold: Services.LedgerWalletList = {};
