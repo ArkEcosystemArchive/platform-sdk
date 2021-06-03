@@ -58,7 +58,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		const totalInput = BigNumber.sum(this.data.inputs.map(({value}) => value));
+		const totalInput = BigNumber.sum(this.data.inputs.map(({ value }) => value));
 
 		const changeOutput =
 			this.data.outputs <= 1
