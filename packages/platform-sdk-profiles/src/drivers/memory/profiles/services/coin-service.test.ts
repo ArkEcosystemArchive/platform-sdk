@@ -10,7 +10,7 @@ import { Profile } from "../profile";
 import { ICoinService, IDataRepository } from "../../../../contracts";
 import { CoinService } from "./coin-service";
 
-const NodeFeesFixture = require("../../../../test/fixtures/client/node-fees.json");
+const NodeFeesFixture = require("../../../../../test/fixtures/client/node-fees.json");
 
 let subject: ICoinService;
 
