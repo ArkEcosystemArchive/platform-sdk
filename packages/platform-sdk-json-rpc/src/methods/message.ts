@@ -10,7 +10,7 @@ export const registerMessage = () => [
 
 			return coin.message().sign({
 				...input,
-				signatory: await coin.signatory().mnemonic(input.mnemonic),
+				signatory: await coin.signatory().mnemonic(input.sign.mnemonic),
 			});
 		},
 		schema: Joi.object({
