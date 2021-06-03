@@ -1,4 +1,4 @@
-import { Contracts, Http } from "@arkecosystem/platform-sdk";
+import { AbstractRequest, HttpResponse, RequestOptions, Response } from "@arkecosystem/platform-sdk-http";
 import axios from "axios";
 
 /**
@@ -8,16 +8,12 @@ import axios from "axios";
  *
  * @export
  * @class Request
- * @extends {Http.Request}
+ * @extends {Request}
  */
-export class Request extends Http.Request {
-	/** {@inheritDoc Http.Request.send} */
-	protected async send(
-		method: string,
-		url: string,
-		data?: { query?: object; data?: any },
-	): Promise<Contracts.HttpResponse> {
-		const options: Http.RequestOptions = {
+export class Request extends AbstractRequest {
+	/** {@inheritDoc Request.send} */
+	protected async send(method: string, url: string, data?: { query?: object; data?: any }): Promise<HttpResponse> {
+		const options: RequestOptions = {
 			...this._options,
 		};
 
@@ -40,13 +36,13 @@ export class Request extends Http.Request {
 		try {
 			const response = await axios[method.toLowerCase()](url.replace(/^\/+/g, ""), options);
 
-			return new Http.Response({
+			return new Response({
 				body: JSON.stringify(response.data),
 				headers: response.headers,
 				statusCode: response.status,
 			});
 		} catch (error) {
-			return new Http.Response(
+			return new Response(
 				{
 					body: JSON.stringify(error.response.data),
 					headers: error.response.headers,

@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { RippleAPI } from "ripple-lib";
 
@@ -7,14 +8,14 @@ import { SignedTransactionData } from "../dto";
 
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #ripple: RippleAPI;
 
 	private constructor(config: Coins.Config) {
 		super();
 
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#ripple = new RippleAPI();
 	}
 

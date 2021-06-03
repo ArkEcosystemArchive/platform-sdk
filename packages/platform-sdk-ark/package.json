@@ -31,6 +31,7 @@
 		"@arkecosystem/multi-signature": "^0.1.5",
 		"@arkecosystem/platform-sdk": "workspace:*",
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"dot-prop": "^6.0.0",

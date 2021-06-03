@@ -1,4 +1,5 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import dotify from "node-dotify";
 
 import { WalletData } from "../dto";
@@ -12,14 +13,14 @@ interface BroadcastError {
 
 export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #network: string;
 
 	private constructor(config: Coins.Config) {
 		super();
 
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#network = config.get<string>("network.id");
 	}
 

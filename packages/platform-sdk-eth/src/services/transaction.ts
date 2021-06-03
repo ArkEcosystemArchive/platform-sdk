@@ -1,5 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Common from "@ethereumjs/common";
 import { Transaction } from "@ethereumjs/tx";
 import Web3 from "web3";
@@ -8,7 +9,7 @@ import { SignedTransactionData } from "../dto";
 import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #chain: string;
 	readonly #identity: IdentityService;
 	readonly #peer: string;

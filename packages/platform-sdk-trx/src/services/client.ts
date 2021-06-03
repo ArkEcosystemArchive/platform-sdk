@@ -1,4 +1,5 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
@@ -8,7 +9,7 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #connection: TronWeb;
 	readonly #peer: string;
-	readonly #client: Contracts.HttpClient;
+	readonly #client: HttpClient;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -33,7 +34,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#connection = new TronWeb({
 			fullHost: peer,
 		});
-		this.#client = this.#config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#client = this.#config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {

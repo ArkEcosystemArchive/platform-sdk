@@ -1,4 +1,5 @@
 import { Contracts, Data } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 import {
@@ -26,10 +27,10 @@ export class CryptoCompare implements PriceTracker {
 	/**
 	 * The HTTP client instance.
 	 *
-	 * @type {Contracts.HttpClient}
+	 * @type {HttpClient}
 	 * @memberof PriceTracker
 	 */
-	readonly #httpClient: Contracts.HttpClient;
+	readonly #httpClient: HttpClient;
 
 	/**
 	 * The host of the CryptoCompare API.
@@ -42,10 +43,10 @@ export class CryptoCompare implements PriceTracker {
 	/**
 	 * Creates an instance of PriceTracker.
 	 *
-	 * @param {Contracts.HttpClient} httpClient
+	 * @param {HttpClient} httpClient
 	 * @memberof PriceTracker
 	 */
-	public constructor(httpClient: Contracts.HttpClient) {
+	public constructor(httpClient: HttpClient) {
 		this.#httpClient = httpClient;
 	}
 

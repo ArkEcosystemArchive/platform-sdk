@@ -20,10 +20,6 @@ describe("WalletData", () => {
 		expect(subject.balance().available).toEqual(BigNumber.make(3050000));
 	});
 
-	it("#entities", () => {
-		expect(subject.entities()).toHaveLength(0);
-	});
-
 	it("#nonce", () => {
 		expect(subject.nonce()).toEqual(BigNumber.make(24242));
 	});

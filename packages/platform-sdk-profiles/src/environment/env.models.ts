@@ -1,4 +1,5 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Coins } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { Driver } from "../contracts";
 
@@ -14,7 +15,7 @@ export interface CoinType {
 export interface EnvironmentOptions {
 	coins: CoinList;
 	storage: string | Storage;
-	httpClient: Contracts.HttpClient;
+	httpClient: HttpClient;
 	driver?: string | Driver;
 	migrations?: Record<string, any>;
 }

@@ -82,4 +82,4 @@ export const WalletImportMethod = {
 	PublicKey: "PUBLIC_KEY",
 	WIF: "WIF",
 	WIFWithEncryption: "WIF_WITH_ENCRYPTION",
-}
+};

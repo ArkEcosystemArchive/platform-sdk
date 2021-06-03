@@ -1,4 +1,4 @@
-import { HttpResponse } from "../contracts";
+import { HttpResponse } from "./contracts";
 import { RequestException } from "./exceptions";
 
 interface ResponseInput {

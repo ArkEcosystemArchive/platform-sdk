@@ -1,4 +1,5 @@
 import { Contracts } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import {
 	HistoricalData,
 	HistoricalPriceOptions,
@@ -40,11 +41,11 @@ export class MarketService {
 	 *
 	 * @static
 	 * @param {string} name
-	 * @param {Contracts.HttpClient} httpClient
+	 * @param {HttpClient} httpClient
 	 * @returns {MarketService}
 	 * @memberof MarketService
 	 */
-	public static make(name: string, httpClient: Contracts.HttpClient): MarketService {
+	public static make(name: string, httpClient: HttpClient): MarketService {
 		return new MarketService(
 			{
 				coincap: new CoinCap(httpClient),

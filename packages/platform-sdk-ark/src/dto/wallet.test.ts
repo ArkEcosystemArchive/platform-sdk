@@ -116,20 +116,6 @@ describe("WalletData", () => {
 		test("#toObject", () => {
 			expect(subject.toObject()).toBeObject();
 		});
-
-		test("#entities", () => {
-			const response =
-				network === "devnet"
-					? {
-							hash: "QmRwgWaaEyYgGqp55196TsFDQLW4NZkyTnPwiSVhJ7NPRV",
-							id: "df520b0a278314e998dc93be1e20c72b8313950c19da23967a9db60eb4e990da",
-							name: "business2reg",
-							subType: 0,
-							type: 0,
-					  }
-					: undefined;
-			expect(subject.entities()[0]).toEqual(response);
-		});
 	});
 
 	test("#multiSignature", () => {

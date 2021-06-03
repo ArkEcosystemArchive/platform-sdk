@@ -2,6 +2,7 @@ import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
 
@@ -12,7 +13,7 @@ import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #identity: IdentityService;
 	readonly #peer: string;
 	readonly #multiSignatureSigner: MultiSignatureSigner;
@@ -35,7 +36,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		return new TransactionService({
 			config,
-			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
+			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Helpers.randomHostFromConfig(config),
 			identity: await IdentityService.__construct(config),
 			multiSignatureSigner: new MultiSignatureSigner(crypto, height),

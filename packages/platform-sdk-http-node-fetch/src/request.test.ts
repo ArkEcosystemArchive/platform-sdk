@@ -1,4 +1,4 @@
-import { Http } from "@arkecosystem/platform-sdk";
+import { RequestException } from "@arkecosystem/platform-sdk-http";
 import nock from "nock";
 
 import { Request } from "./request";
@@ -92,6 +92,6 @@ describe("Request", () => {
 	it("should handle 404s", async () => {
 		nock("http://httpbin.org/").get("/get").reply(404);
 
-		await expect(subject.get("http://httpbin.org/get")).rejects.toThrow(Http.RequestException);
+		await expect(subject.get("http://httpbin.org/get")).rejects.toThrow(RequestException);
 	});
 });

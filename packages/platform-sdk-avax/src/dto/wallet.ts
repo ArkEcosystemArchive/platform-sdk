@@ -45,10 +45,6 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return undefined;
 	}
 
-	public entities(): Contracts.Entity[] {
-		return [];
-	}
-
 	public multiSignature(): Contracts.WalletMultiSignature {
 		throw new Error("This wallet does not have a multi-signature registered.");
 	}

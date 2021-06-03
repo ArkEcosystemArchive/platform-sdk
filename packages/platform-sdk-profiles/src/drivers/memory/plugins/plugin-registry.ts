@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { Contracts } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { injectable } from "inversify";
 import semver from "semver";
 import { IPluginRegistry, IRegistryPlugin } from "../../../contracts";
@@ -11,10 +12,10 @@ import { RegistryPlugin } from "./registry-plugin";
 
 @injectable()
 export class PluginRegistry implements IPluginRegistry {
-	readonly #httpClient: Contracts.HttpClient;
+	readonly #httpClient: HttpClient;
 
 	public constructor() {
-		this.#httpClient = container.get<Contracts.HttpClient>(Identifiers.HttpClient);
+		this.#httpClient = container.get<HttpClient>(Identifiers.HttpClient);
 	}
 
 	/** {@inheritDoc IPluginRegistry.all} */

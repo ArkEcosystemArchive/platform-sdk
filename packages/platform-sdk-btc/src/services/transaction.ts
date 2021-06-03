@@ -1,4 +1,5 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { Transaction } from "bitcore-lib";
 
 import { UnspentTransaction } from "../contracts";
@@ -20,7 +21,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		const unspent: UnspentAggregator = new UnspentAggregator({
-			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
+			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Helpers.randomHostFromConfig(config),
 		});
 

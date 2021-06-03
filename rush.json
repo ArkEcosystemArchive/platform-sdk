@@ -132,6 +132,12 @@
 			"shouldPublish": true
 		},
 		{
+			"packageName": "@arkecosystem/platform-sdk-http",
+			"projectFolder": "packages/platform-sdk-http",
+			"reviewCategory": "libraries",
+			"shouldPublish": true
+		},
+		{
 			"packageName": "@arkecosystem/platform-sdk-http-axios",
 			"projectFolder": "packages/platform-sdk-http-axios",
 			"reviewCategory": "libraries",

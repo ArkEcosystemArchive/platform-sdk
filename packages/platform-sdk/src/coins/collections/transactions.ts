@@ -1,4 +1,4 @@
-import { TransactionDataType } from "../../contracts/coins/data";
+import { TransactionDataType } from "../../contracts";
 import { Paginator } from "./paginator";
 
 export class TransactionDataCollection extends Paginator<TransactionDataType> {

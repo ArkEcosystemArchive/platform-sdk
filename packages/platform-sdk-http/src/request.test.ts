@@ -2,14 +2,14 @@
 
 import "jest-extended";
 
-import { HttpResponse } from "../contracts";
-import { Request } from "./request";
+import { HttpResponse } from "./contracts";
+import { AbstractRequest } from "./request";
 import { Response } from "./response";
 
 let subject: Stub;
 let spy;
 
-class Stub extends Request {
+class Stub extends AbstractRequest {
 	public constructor(protected readonly spy) {
 		super();
 	}

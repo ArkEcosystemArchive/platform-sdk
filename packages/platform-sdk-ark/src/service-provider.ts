@@ -1,5 +1,6 @@
 import { Managers } from "@arkecosystem/crypto";
 import { Coins, Contracts, Helpers, IoC } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { container } from "./container";
 import { Bindings } from "./contracts";
@@ -13,7 +14,7 @@ export class ServiceProvider extends IoC.AbstractServiceProvider {
 	}
 
 	async #retrieveNetworkConfiguration(): Promise<void> {
-		const http: Contracts.HttpClient = this.config().get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		const http: HttpClient = this.config().get<HttpClient>(Coins.ConfigKey.HttpClient);
 
 		let peer: string = Helpers.randomHostFromConfig(this.config());
 
