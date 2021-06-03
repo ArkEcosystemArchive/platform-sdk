@@ -32,11 +32,9 @@ const network: Networks.NetworkManifest = {
 	],
 	transactions: {
 		...transactions,
-		...{
-			fees: {
-				type: "free",
-				ticker: "WBI",
-			},
+		fees: {
+			type: "free",
+			ticker: "WBI",
 		},
 	},
 	importMethods,

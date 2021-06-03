@@ -8,7 +8,7 @@ export const createConfig = (options?: object) => {
 	const config = new Coins.Config(
 		{
 			...(options || { network: "egld.testnet" }),
-			...{ httpClient: new Request() },
+			httpClient: new Request(),
 		},
 		schema,
 	);

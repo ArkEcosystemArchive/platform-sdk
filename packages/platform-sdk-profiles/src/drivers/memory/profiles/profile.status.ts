@@ -34,4 +34,9 @@ export class ProfileStatus implements IProfileStatus {
 		this.#isRestored = false;
 		this.#isDirty = false;
 	}
+
+	/** {@inheritDoc IAuthenticator.markAsClean} */
+	public markAsClean(): void {
+		this.#isDirty = false;
+	}
 }

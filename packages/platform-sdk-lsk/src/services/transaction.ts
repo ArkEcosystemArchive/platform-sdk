@@ -31,12 +31,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("transfer", {
 			...input,
-			...{
-				data: {
-					amount: Helpers.toRawUnit(input.data.amount, this.#config).toString(),
-					recipientId: input.data.to,
-					data: input.data.memo,
-				},
+			data: {
+				amount: Helpers.toRawUnit(input.data.amount, this.#config).toString(),
+				recipientId: input.data.to,
+				data: input.data.memo,
 			},
 		});
 	}
@@ -47,10 +45,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("registerSecondPassphrase", {
 			...input,
-			...{
-				data: {
-					secondMnemonic: BIP39.normalize(input.data.mnemonic),
-				},
+			data: {
+				secondMnemonic: BIP39.normalize(input.data.mnemonic),
 			},
 		});
 	}
@@ -75,12 +71,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("registerMultisignature", {
 			...input,
-			...{
-				data: {
-					keysgroup: input.data.publicKeys,
-					lifetime: input.data.lifetime,
-					minimum: input.data.min,
-				},
+			data: {
+				keysgroup: input.data.publicKeys,
+				lifetime: input.data.lifetime,
+				minimum: input.data.min,
 			},
 		});
 	}

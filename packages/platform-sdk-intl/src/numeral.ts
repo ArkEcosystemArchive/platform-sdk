@@ -68,7 +68,8 @@ export class Numeral {
 	public formatAsCurrency(value: number, currency: string): string {
 		return new Intl.NumberFormat(this.#locale, {
 			...this.#options,
-			...{ style: "currency", currency },
+			style: "currency",
+			currency,
 		}).format(value);
 	}
 
