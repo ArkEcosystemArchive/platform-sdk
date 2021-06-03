@@ -42,7 +42,7 @@ export class Updater {
 			this.doService(updaterName);
 		}
 
-		this.#project.save();
+		this.#project.saveSync();
 	}
 
 	figureOutImplemented(sourceFile: SourceFile, className, knownMethods) {
