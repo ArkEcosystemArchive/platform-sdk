@@ -137,7 +137,7 @@ export class ProfileRepository implements IProfileRepository {
 			profile.getAttributes().set("data", new ProfileExporter(profile).export());
 		}
 
-		profile.status().resetDirty();
+		profile.status().markAsClean();
 	}
 
 	/** {@inheritDoc IProfileRepository.has} */
