@@ -32,11 +32,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.data.raw_data.contract[0].parameter.value.amount).times(100);
+		return BigNumber.make(this.data.raw_data.contract[0].parameter.value.amount, this.decimals);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.ret[0].fee);
+		return BigNumber.make(this.data.ret[0].fee, this.decimals);
 	}
 
 	public memo(): string | undefined {

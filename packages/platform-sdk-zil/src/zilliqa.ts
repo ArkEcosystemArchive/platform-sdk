@@ -36,14 +36,6 @@ export const accountFromPrivateKey = async (wallet: Wallet, privateKey: string):
 	return wallet.accounts[address];
 };
 
-export const checkGasPrice = (gasPrice: string, minGasPrice = "0") => {
-	const isGasSufficient = new BN(gasPrice).gte(new BN(minGasPrice));
-
-	if (!isGasSufficient) {
-		throw new Exceptions.Exception(`Insufficient gas: ${gasPrice}, needed: ${minGasPrice}`);
-	}
-};
-
 export const convertQaToZil = (qa: string): string => units.fromQa(new BN(qa), units.Units.Zil);
 
 export const convertZilToQa = (zil: string | number): string => units.toQa(zil, units.Units.Zil).toString();

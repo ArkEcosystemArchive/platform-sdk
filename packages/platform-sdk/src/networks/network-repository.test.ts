@@ -412,7 +412,7 @@ test("#all", () => {
 		    },
 		    "hosts": Array [
 		      Object {
-		        "host": "https://apis.compendia.org",
+		        "host": "https://apis.compendia.org/api",
 		        "type": "full",
 		      },
 		      Object {
