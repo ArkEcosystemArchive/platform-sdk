@@ -9,12 +9,14 @@ import { broadcastErrors } from "./client.helpers";
 export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #http: HttpClient;
+	readonly #decimals: number;
 
 	private constructor(config: Coins.Config) {
 		super();
 
 		this.#config = config;
 		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#decimals = config.get<number>(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -32,7 +34,7 @@ export class ClientService extends Services.AbstractClientService {
 			},
 		]);
 
-		return Helpers.createTransactionDataWithType(transaction, TransactionDTO);
+		return Helpers.createTransactionDataWithType(transaction, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -52,6 +54,7 @@ export class ClientService extends Services.AbstractClientService {
 				last: undefined,
 			},
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 
