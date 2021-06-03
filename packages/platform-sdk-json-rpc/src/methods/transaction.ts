@@ -9,7 +9,7 @@ export const registerTransaction = () => [
 			const coin = await makeCoin(input.coin, input.network);
 			const signedTransaction = await coin.transaction().transfer({
 				...input,
-				signatory: await coin.signatory().mnemonic(input.mnemonic),
+				signatory: await coin.signatory().mnemonic(input.sign.mnemonic),
 			});
 
 			return {

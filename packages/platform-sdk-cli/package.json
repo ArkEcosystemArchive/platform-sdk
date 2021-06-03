@@ -50,7 +50,6 @@
 		"@arkecosystem/platform-sdk-xlm": "workspace:*",
 		"@arkecosystem/platform-sdk-xrp": "workspace:*",
 		"@ledgerhq/hw-transport-node-hid-singleton": "~5.50.0",
-		"@ptkdev/logger": "^1.7.2",
 		"better-sqlite3": "^7.1.5",
 		"boxen": "^5.0.1",
 		"cfonts": "^2.9.1",
