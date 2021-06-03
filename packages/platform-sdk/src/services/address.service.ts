@@ -6,30 +6,30 @@ import { IdentityOptions } from "./shared.contract";
 
 export abstract class AbstractAddressService implements AddressService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<AddressDataTransferObject> {
-		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
+		throw new NotImplemented(this.constructor.name, this.fromMultiSignature.name);
 	}
 
 	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<AddressDataTransferObject> {
-		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
+		throw new NotImplemented(this.constructor.name, this.fromMultiSignature.name);
 	}
 
 	public async fromPublicKey(publicKey: string, options?: IdentityOptions): Promise<AddressDataTransferObject> {
-		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
+		throw new NotImplemented(this.constructor.name, this.fromMultiSignature.name);
 	}
 
 	public async fromPrivateKey(privateKey: string, options?: IdentityOptions): Promise<AddressDataTransferObject> {
-		throw new NotImplemented(this.constructor.name, "fromPrivateKey");
+		throw new NotImplemented(this.constructor.name, this.fromPrivateKey.name);
 	}
 
 	public async fromWIF(wif: string): Promise<AddressDataTransferObject> {
-		throw new NotImplemented(this.constructor.name, "fromWIF");
+		throw new NotImplemented(this.constructor.name, this.fromWIF.name);
 	}
 
 	public async fromSecret(secret: string): Promise<AddressDataTransferObject> {
-		throw new NotImplemented(this.constructor.name, "fromSecret");
+		throw new NotImplemented(this.constructor.name, this.fromSecret.name);
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		throw new NotImplemented(this.constructor.name, "fromMultiSignature");
+		throw new NotImplemented(this.constructor.name, this.fromMultiSignature.name);
 	}
 }

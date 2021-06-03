@@ -20,11 +20,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public sender(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "sender");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.sender.name);
 	}
 
 	public recipient(): string {
-		throw new Exceptions.NotImplemented(this.constructor.name, "recipient");
+		throw new Exceptions.NotImplemented(this.constructor.name, this.recipient.name);
 	}
 
 	public recipients(): Contracts.MultiPaymentRecipient[] {

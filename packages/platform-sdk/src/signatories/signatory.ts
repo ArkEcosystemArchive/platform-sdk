@@ -35,11 +35,11 @@ export class Signatory {
 	public signingKey(): string {
 		// @TODO: deduplicate this
 		if (this.#signatory instanceof MultiMnemonicSignatory) {
-			throw new ForbiddenMethodCallException(this.constructor.name, "signingKey");
+			throw new ForbiddenMethodCallException(this.constructor.name, this.signingKey.name);
 		}
 
 		if (this.#signatory instanceof MultiSignatureSignatory) {
-			throw new ForbiddenMethodCallException(this.constructor.name, "signingKey");
+			throw new ForbiddenMethodCallException(this.constructor.name, this.signingKey.name);
 		}
 
 		return this.#signatory.signingKey();
@@ -55,7 +55,7 @@ export class Signatory {
 			return this.#signatory.signingKeys();
 		}
 
-		throw new ForbiddenMethodCallException(this.constructor.name, "signingKeys");
+		throw new ForbiddenMethodCallException(this.constructor.name, this.signingKeys.name);
 	}
 
 	public signingList(): MultiSignature {
@@ -63,7 +63,7 @@ export class Signatory {
 			return this.#signatory.signingList();
 		}
 
-		throw new ForbiddenMethodCallException(this.constructor.name, "signingList");
+		throw new ForbiddenMethodCallException(this.constructor.name, this.signingList.name);
 	}
 
 	public confirmKey(): string {
@@ -76,7 +76,7 @@ export class Signatory {
 			return this.#signatory.confirmKey();
 		}
 
-		throw new ForbiddenMethodCallException(this.constructor.name, "confirmKey");
+		throw new ForbiddenMethodCallException(this.constructor.name, this.confirmKey.name);
 	}
 
 	public identifier(): string {
@@ -84,12 +84,12 @@ export class Signatory {
 			return this.#signatory.identifier()!;
 		}
 
-		throw new ForbiddenMethodCallException(this.constructor.name, "identifier");
+		throw new ForbiddenMethodCallException(this.constructor.name, this.identifier.name);
 	}
 
 	public identifiers(): string[] {
 		if (!(this.#signatory instanceof MultiMnemonicSignatory)) {
-			throw new ForbiddenMethodCallException(this.constructor.name, "identifiers");
+			throw new ForbiddenMethodCallException(this.constructor.name, this.identifiers.name);
 		}
 
 		return this.#signatory.identifiers();
@@ -113,7 +113,7 @@ export class Signatory {
 			return this.#signatory.address();
 		}
 
-		throw new ForbiddenMethodCallException(this.constructor.name, "address");
+		throw new ForbiddenMethodCallException(this.constructor.name, this.address.name);
 	}
 
 	public publicKey(): string {
@@ -130,7 +130,7 @@ export class Signatory {
 			return this.#signatory.publicKey();
 		}
 
-		throw new ForbiddenMethodCallException(this.constructor.name, "publicKey");
+		throw new ForbiddenMethodCallException(this.constructor.name, this.publicKey.name);
 	}
 
 	public privateKey(): string {
@@ -147,7 +147,7 @@ export class Signatory {
 			return this.#signatory.privateKey();
 		}
 
-		throw new ForbiddenMethodCallException(this.constructor.name, "privateKey");
+		throw new ForbiddenMethodCallException(this.constructor.name, this.privateKey.name);
 	}
 
 	public actsWithMnemonic(): boolean {

@@ -5,6 +5,6 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {
-		throw new Exceptions.NotSupported(this.constructor.name, "fromMnemonic");
+		throw new Exceptions.NotSupported(this.constructor.name, this.fromMnemonic.name);
 	}
 }
