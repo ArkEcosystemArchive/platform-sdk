@@ -16,7 +16,6 @@ import {
 	IReadWriteWallet,
 	IWalletFactory,
 	IWifOptions,
-	IWifWithEncryptionOptions,
 	WalletData,
 	WalletImportMethod,
 } from "../../../contracts";
