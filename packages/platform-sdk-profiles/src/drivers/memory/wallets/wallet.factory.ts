@@ -10,7 +10,6 @@ import {
 	IAddressWithDerivationPathOptions,
 	IGenerateOptions,
 	IMnemonicOptions,
-	IMnemonicWithEncryptionOptions,
 	IPrivateKeyOptions,
 	IProfile,
 	IPublicKeyOptions,
@@ -43,7 +42,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromMnemonicWithBIP39} */
-	public async fromMnemonicWithBIP39({ coin, network, mnemonic }: IMnemonicOptions): Promise<IReadWriteWallet> {
+	public async fromMnemonicWithBIP39({ coin, network, mnemonic, password }: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP39);
@@ -59,6 +58,14 @@ export class WalletFactory implements IWalletFactory {
 		}
 
 		await wallet.mutator().identity(mnemonic);
+
+		if (password) {
+			await this.#encryptWallet(
+				wallet,
+				password,
+				async () => await wallet.coin().identity().wif().fromMnemonic(mnemonic),
+			);
+		}
 
 		return wallet;
 	}
@@ -153,29 +160,10 @@ export class WalletFactory implements IWalletFactory {
 		address,
 		path,
 	}: IAddressWithDerivationPathOptions): Promise<IReadWriteWallet> {
-		// @TODO: eventually handle the whole process from slip44 path to public key to address
-
 		const wallet: IReadWriteWallet = await this.fromAddress({ coin, network, address });
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.AddressWithDerivationPath);
 
 		wallet.data().set(WalletData.DerivationPath, path);
-
-		return wallet;
-	}
-
-	/** {@inheritDoc IWalletFactory.fromMnemonicWithEncryption} */
-	public async fromMnemonicWithEncryption({
-		coin,
-		network,
-		mnemonic,
-		password,
-	}: IMnemonicWithEncryptionOptions): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = await this.fromMnemonicWithBIP39({ coin, network, mnemonic });
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicWithEncryption);
-
-		const { compressed, privateKey } = decode((await wallet.coin().identity().wif().fromMnemonic(mnemonic)).wif);
-
-		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
 		return wallet;
 	}
@@ -232,5 +220,11 @@ export class WalletFactory implements IWalletFactory {
 	#allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
 		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip84);
+	}
+
+	async #encryptWallet(wallet: IReadWriteWallet, password: string, derive: Function): Promise<void> {
+		const { compressed, privateKey } = decode((await derive()).wif);
+
+		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 	}
 }

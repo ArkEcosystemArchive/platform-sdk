@@ -20,6 +20,7 @@ export interface IMnemonicOptions {
 	coin: string;
 	network: string;
 	mnemonic: string;
+	password?: string;
 }
 
 /**
@@ -65,18 +66,6 @@ export interface IAddressWithDerivationPathOptions {
 	network: string;
 	address: string;
 	path: string;
-}
-
-/**
- * Defines the options for an import with a mnemonic and password.
- *
- * @interface IMnemonicWithEncryptionOptions
- */
-export interface IMnemonicWithEncryptionOptions {
-	coin: string;
-	network: string;
-	mnemonic: string;
-	password: string;
 }
 
 /**
@@ -189,15 +178,6 @@ export interface IWalletFactory {
 	 * @memberof IWalletFactory
 	 */
 	fromAddressWithDerivationPath(options: IAddressWithDerivationPathOptions): Promise<IReadWriteWallet>;
-
-	/**
-	 * Imports a wallet from a mnemonic with a password.
-	 *
-	 * @param {IMnemonicWithEncryptionOptions} options
-	 * @return {Promise<IReadWriteWallet>}
-	 * @memberof IWalletFactory
-	 */
-	fromMnemonicWithEncryption(options: IMnemonicWithEncryptionOptions): Promise<IReadWriteWallet>;
 
 	/**
 	 * Imports a wallet from a WIF.
