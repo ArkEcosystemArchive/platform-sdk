@@ -47,5 +47,5 @@ export interface IProfileStatus {
 	 *
 	 * @memberof IProfileStatus
 	 */
-	resetDirty(): void;
+	markAsClean(): void;
 }
