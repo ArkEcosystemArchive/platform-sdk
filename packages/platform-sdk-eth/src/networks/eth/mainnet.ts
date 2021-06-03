@@ -1,7 +1,8 @@
 import { Networks } from "@arkecosystem/platform-sdk";
-import tokens from "./mainnet.tokens.json";
 
 import { transactions, importMethods, featureFlags } from "../shared";
+
+const tokens = require("./mainnet.tokens.json");
 
 const network: Networks.NetworkManifest = {
 	id: "eth.mainnet",

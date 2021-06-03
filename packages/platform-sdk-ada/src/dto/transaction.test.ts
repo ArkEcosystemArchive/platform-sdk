@@ -2,9 +2,9 @@ import "jest-extended";
 
 import { DTO } from "@arkecosystem/platform-sdk";
 
-import Fixture from "../../test/fixtures/client/transaction.json";
 import { TransactionData } from "./transaction";
 
+const Fixture = require("../../test/fixtures/client/transaction.json");
 const subject = new TransactionData(Fixture.data.transactions[0]);
 
 describe("TransactionData", () => {

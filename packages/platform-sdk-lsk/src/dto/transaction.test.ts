@@ -3,8 +3,9 @@ import "jest-extended";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import Fixture from "../../test/fixtures/client/transaction.json";
 import { TransactionData } from "./transaction";
+
+const Fixture = require("../../test/fixtures/client/transaction.json");
 
 let subject: TransactionData;
 
