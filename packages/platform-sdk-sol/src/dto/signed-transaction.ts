@@ -14,11 +14,11 @@ export class SignedTransactionData
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.amount);
+		return BigNumber.make(this.signedData.amount, this.decimals);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.signedData.fee);
+		return BigNumber.make(this.signedData.fee, this.decimals);
 	}
 
 	public timestamp(): DateTime {

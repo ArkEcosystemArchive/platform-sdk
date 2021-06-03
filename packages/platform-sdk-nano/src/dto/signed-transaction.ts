@@ -14,7 +14,7 @@ export class SignedTransactionData
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.amountRaw);
+		return BigNumber.make(this.signedData.amountRaw, this.decimals);
 	}
 
 	public fee(): BigNumber {

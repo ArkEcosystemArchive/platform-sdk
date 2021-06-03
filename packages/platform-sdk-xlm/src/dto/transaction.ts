@@ -32,12 +32,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make((this.data.amount || this.data.operation.amount) * 1e8);
+		const amount = BigNumber.powerOfTen(this.decimals!).times(this.data.amount || this.data.operation.amount);
+		return BigNumber.make(amount, this.decimals);
 	}
 
 	// todo: with the "transaction" method we get a nonce but with "transactions" it isn't available
 	public fee(): BigNumber {
-		return BigNumber.make((this.data.fee_charged || 0) * 1e8);
+		const fee = BigNumber.powerOfTen(this.decimals!).times(this.data.fee_charged || 0);
+		return BigNumber.make(fee, this.decimals);
 	}
 
 	public memo(): string | undefined {
