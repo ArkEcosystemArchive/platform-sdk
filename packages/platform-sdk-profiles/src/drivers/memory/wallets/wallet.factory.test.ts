@@ -55,9 +55,9 @@ beforeEach(async () => {
 		.persist();
 });
 
-describe("#fromMnemonic", () => {
+describe("#fromMnemonicWithBIP39", () => {
 	it("should create a wallet using BIP39", async () => {
-		const wallet = await subject.fromMnemonic({
+		const wallet = await subject.fromMnemonicWithBIP39({
 			coin: "ARK",
 			network: "ark.devnet",
 			mnemonic: "this is a top secret passphrase",
@@ -67,12 +67,23 @@ describe("#fromMnemonic", () => {
 		expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
 	});
 
+	it("should throw if BIP39 is requested but extended public keys are used", async () => {
+		await expect(
+			subject.fromMnemonicWithBIP39({
+				coin: "ADA",
+				network: "ada.testnet",
+				mnemonic: "this is a top secret passphrase",
+			}),
+		).rejects.toThrow("The configured network uses extended public keys with BIP44 for derivation.");
+	});
+});
+
+describe("#fromMnemonicWithBIP44", () => {
 	it("should create a wallet using BIP44 (passphrase > address)", async () => {
-		const wallet = await subject.fromMnemonic({
+		const wallet = await subject.fromMnemonicWithBIP44({
 			coin: "BTC",
 			network: "btc.testnet",
 			mnemonic: "this is a top secret passphrase",
-			bip: 44,
 		});
 
 		expect(wallet.address()).toBe("muJmwqMYzXinDoAxueuCBr5y3e3zca8MXY");
@@ -80,12 +91,11 @@ describe("#fromMnemonic", () => {
 	});
 
 	it("should create a wallet using BIP44 (passphrase > extended public key)", async () => {
-		const wallet = await subject.fromMnemonic({
+		const wallet = await subject.fromMnemonicWithBIP44({
 			coin: "ADA",
 			network: "ada.testnet",
 			mnemonic:
 				"excess behave track soul table wear ocean cash stay nature item turtle palm soccer lunch horror start stumble month panic right must lock dress",
-			bip: 44,
 		});
 
 		expect(wallet.address()).toBe(
@@ -93,18 +103,6 @@ describe("#fromMnemonic", () => {
 		);
 		expect(wallet.publicKey()).toBe(
 			"aec30330deaecdd7503195a0d730256faef87027022b1bdda7ca0a61bca0a55e4d575af5a93bdf4905a3702fadedf451ea584791d233ade90965d608bac57304",
-		);
-	});
-
-	it("should throw if BIP39 is requested but extended public keys are used", async () => {
-		await expect(
-			subject.fromMnemonic({
-				coin: "ADA",
-				network: "ada.testnet",
-				mnemonic: "this is a top secret passphrase",
-			}),
-		).rejects.toThrow(
-			"The configured network uses extended public keys for derivation. Please pass in BIP44 arguments.",
 		);
 	});
 });

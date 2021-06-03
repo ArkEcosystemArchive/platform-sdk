@@ -23,7 +23,12 @@ const generate = async (coin: string, network: string): Promise<IReadWriteWallet
 };
 
 const importByMnemonic = async (mnemonic: string, coin: string, network: string, bip): Promise<IReadWriteWallet> => {
-	const wallet = await factory.fromMnemonic({
+	const wallet = await factory[{
+		39: "fromMnemonicWithBIP39",
+		44: "fromMnemonicWithBIP44",
+		49: "fromMnemonicWithBIP49",
+		84: "fromMnemonicWithBIP84",
+	}[bip]]({
 		coin,
 		network,
 		mnemonic,

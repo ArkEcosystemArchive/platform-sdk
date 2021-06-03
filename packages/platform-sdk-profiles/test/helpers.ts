@@ -76,7 +76,7 @@ export const importByMnemonic = async (
 ): Promise<IReadWriteWallet> => {
 	const factory: WalletFactory = new WalletFactory(profile);
 
-	const wallet = await factory.fromMnemonic({
+	const wallet = await factory.fromMnemonicWithBIP39({
 		coin,
 		network,
 		mnemonic,

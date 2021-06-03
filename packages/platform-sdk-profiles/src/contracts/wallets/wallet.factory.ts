@@ -1,8 +1,4 @@
-/* istanbul ignore file */
-
 import { IReadWriteWallet } from "./wallet";
-
-type BIP = 39 | 44 | 49 | 84;
 
 /**
  * Defines the options needed to generate a wallet.
@@ -24,7 +20,6 @@ export interface IMnemonicOptions {
 	coin: string;
 	network: string;
 	mnemonic: string;
-	bip?: BIP;
 }
 
 /**
@@ -124,13 +119,40 @@ export interface IWalletFactory {
 	generate(options: IGenerateOptions): Promise<{ mnemonic: string; wallet: IReadWriteWallet }>;
 
 	/**
-	 * Imports a wallet from a mnemonic.
+	 * Imports a wallet from a mnemonic, using the BIP39 proposal.
 	 *
 	 * @param {IMnemonicOptions} options
 	 * @return {Promise<IReadWriteWallet>}
 	 * @memberof IWalletFactory
 	 */
-	fromMnemonic(options: IMnemonicOptions): Promise<IReadWriteWallet>;
+	fromMnemonicWithBIP39(options: IMnemonicOptions): Promise<IReadWriteWallet>;
+
+	/**
+	 * Imports a wallet from a mnemonic, using the BIP44 proposal.
+	 *
+	 * @param {IMnemonicOptions} options
+	 * @return {Promise<IReadWriteWallet>}
+	 * @memberof IWalletFactory
+	 */
+	fromMnemonicWithBIP44(options: IMnemonicOptions): Promise<IReadWriteWallet>;
+
+	/**
+	 * Imports a wallet from a mnemonic, using the BIP49 proposal.
+	 *
+	 * @param {IMnemonicOptions} options
+	 * @return {Promise<IReadWriteWallet>}
+	 * @memberof IWalletFactory
+	 */
+	fromMnemonicWithBIP49(options: IMnemonicOptions): Promise<IReadWriteWallet>;
+
+	/**
+	 * Imports a wallet from a mnemonic, using the BIP84 proposal.
+	 *
+	 * @param {IMnemonicOptions} options
+	 * @return {Promise<IReadWriteWallet>}
+	 * @memberof IWalletFactory
+	 */
+	fromMnemonicWithBIP84(options: IMnemonicOptions): Promise<IReadWriteWallet>;
 
 	/**
 	 * Imports a wallet from an address.
