@@ -10,6 +10,7 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #connection: TronWeb;
 	readonly #peer: string;
 	readonly #client: HttpClient;
+	readonly #decimals: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -26,22 +27,18 @@ export class ClientService extends Services.AbstractClientService {
 		OTHER_ERROR: "ERR_OTHER_ERROR",
 	};
 
-	private constructor({ config, peer }) {
+	private constructor({ config }) {
 		super();
 
 		this.#config = config;
-		this.#peer = peer;
-		this.#connection = new TronWeb({
-			fullHost: peer,
-		});
+		this.#peer = Helpers.randomHostFromConfig(config);
+		this.#connection = new TronWeb({ fullHost: this.#peer });
 		this.#client = this.#config.get<HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#decimals = this.#config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService({
-			config,
-			peer: Helpers.randomHostFromConfig(config),
-		});
+		return new ClientService({ config });
 	}
 
 	public async transaction(
@@ -50,7 +47,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.#connection.trx.getTransaction(id);
 
-		return Helpers.createTransactionDataWithType(result, TransactionDTO);
+		return Helpers.createTransactionDataWithType(result, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -79,6 +76,7 @@ export class ClientService extends Services.AbstractClientService {
 				last: undefined,
 			},
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 

@@ -58,6 +58,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				timestamp: DateTime.make(),
 			},
 			signedTransaction.toString("hex"),
+			this.#config.get(Coins.ConfigKey.CurrencyTicker),
 		);
 	}
 
