@@ -6,6 +6,7 @@ import * as TransactionDTO from "../dto";
 
 export class ClientService extends Services.AbstractClientService {
 	readonly #client;
+	readonly #decimals: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		op_malformed: "ERR_MALFORMED",
@@ -15,18 +16,20 @@ export class ClientService extends Services.AbstractClientService {
 		op_no_issuer: "ERR_NO_ISSUER",
 	};
 
-	private constructor(network: string) {
+	private constructor(config: Coins.Config) {
 		super();
 
+		const network = config.get<Networks.NetworkManifest>("network").id;
 		this.#client = new Stellar.Server(
 			{ mainnet: "https://horizon.stellar.org", testnet: "https://horizon-testnet.stellar.org" }[
 				network.split(".")[1]
 			],
 		);
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config.get<Networks.NetworkManifest>("network").id);
+		return new ClientService(config);
 	}
 
 	public async transaction(
@@ -39,10 +42,10 @@ export class ClientService extends Services.AbstractClientService {
 		return Helpers.createTransactionDataWithType(
 			{
 				...transaction,
-				...{ operation: operations.records[0] },
+				operation: operations.records[0],
 			},
 			TransactionDTO,
-		);
+		).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -57,6 +60,7 @@ export class ClientService extends Services.AbstractClientService {
 				last: undefined,
 			},
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 

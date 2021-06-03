@@ -9,7 +9,7 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #http: HttpClient;
 	readonly #peer: string;
 	readonly #apiProvider;
-	readonly #decimals: string;
+	readonly #decimals: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"Block or transaction already exists and cannot be sent repeatedly.": "ERR_DUPLICATE",

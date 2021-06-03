@@ -6,7 +6,7 @@ import { NanoClient } from "./rpc";
 
 export class ClientService extends Services.AbstractClientService {
 	readonly #client: NanoClient;
-	readonly #decimals: string;
+	readonly #decimals: number;
 
 	private constructor(config: Coins.Config) {
 		super();

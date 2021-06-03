@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { SignedTransactionData } from "../dto";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #decimals: string;
+	readonly #decimals: number;
 
 	public constructor(config: Coins.Config) {
 		super();

@@ -7,7 +7,7 @@ import * as TransactionDTO from "../dto";
 export class ClientService extends Services.AbstractClientService {
 	readonly #http: HttpClient;
 	readonly #peer: string;
-	readonly #decimals: string;
+	readonly #decimals: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"bad-txns-inputs-duplicate": "ERR_INPUTS_DUPLICATE",

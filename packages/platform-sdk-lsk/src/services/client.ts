@@ -7,7 +7,7 @@ import * as TransactionDTO from "../dto";
 export class ClientService extends Services.AbstractClientService {
 	readonly #http: HttpClient;
 	readonly #peer: string;
-	readonly #decimals: string;
+	readonly #decimals: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"Invalid sender publicKey": "ERR_INVALID_SENDER_PUBLICKEY",

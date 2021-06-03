@@ -12,7 +12,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #networkId: string;
 	readonly #peer: string;
 	readonly #ticker: string;
-	readonly #decimals: string;
+	readonly #decimals: number;
 
 	private constructor({ networkId, peer, ticker, decimals }) {
 		super();
