@@ -33,7 +33,8 @@
 		"@liskhq/lisk-client": "^2.0",
 		"@liskhq/lisk-cryptography": "^2.5",
 		"@liskhq/lisk-transactions": "^2.0",
-		"dpos-ledger-api": "^3.0.1"
+		"dpos-ledger-api": "^3.0.1",
+		"@ledgerhq/hw-transport-node-hid-singleton": "~5.50.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
