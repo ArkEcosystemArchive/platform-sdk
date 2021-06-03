@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { Coin } from "@arkecosystem/platform-sdk/dist/coins";
 import TronWeb from "tronweb";
 
 import { SignedTransactionData } from "../dto";
