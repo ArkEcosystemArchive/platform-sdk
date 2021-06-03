@@ -136,6 +136,8 @@ export class ProfileRepository implements IProfileRepository {
 		if (!profile.usesPassword()) {
 			profile.getAttributes().set("data", new ProfileExporter(profile).export());
 		}
+
+		profile.status().markAsClean();
 	}
 
 	/** {@inheritDoc IProfileRepository.has} */
