@@ -58,15 +58,18 @@ export enum WalletSetting {
  * @enum {number}
  */
 export enum WalletImportMethod {
-	MnemonicBIP39 = "MNEMONIC.BIP39",
-	MnemonicBIP44 = "MNEMONIC.BIP44",
-	MnemonicBIP49 = "MNEMONIC.BIP49",
-	MnemonicBIP84 = "MNEMONIC.BIP84",
 	Address = "ADDRESS",
-	PublicKey = "PUBLIC_KEY",
-	PrivateKey = "PRIVATE_KEY",
 	AddressWithDerivationPath = "ADDRESS_WITH_DERIVATION_PATH",
-	MnemonicWithEncryption = "MNEMONIC_WITH_ENCRYPTION",
+	MnemonicBIP39 = "MNEMONIC.BIP39",
+	MnemonicBIP39WithEncryption = "MNEMONIC.BIP39.ENCRYPTION",
+	MnemonicBIP44 = "MNEMONIC.BIP44",
+	MnemonicBIP44WithEncryption = "MNEMONIC.BIP44.ENCRYPTION",
+	MnemonicBIP49 = "MNEMONIC.BIP49",
+	MnemonicBIP49WithEncryption = "MNEMONIC.BIP49.ENCRYPTION",
+	MnemonicBIP84 = "MNEMONIC.BIP84",
+	MnemonicBIP84WithEncryption = "MNEMONIC.BIP84.ENCRYPTION",
+	PrivateKey = "PRIVATE_KEY",
+	PublicKey = "PUBLIC_KEY",
 	WIF = "WIF",
 	WIFWithEncryption = "WIF_WITH_ENCRYPTION",
 }
