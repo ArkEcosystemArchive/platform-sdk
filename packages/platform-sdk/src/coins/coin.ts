@@ -1,4 +1,5 @@
 import { BadMethodDependencyException } from "../exceptions";
+import { Network, NetworkManifest, NetworkRepository } from "../networks";
 import {
 	ClientService,
 	DataTransferObjectService,
@@ -16,9 +17,6 @@ import {
 import { Config, ConfigKey } from "./config";
 import { CoinServices, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
-import { Network } from "./network";
-import { NetworkManifest } from "./network.models";
-import { NetworkRepository } from "./network-repository";
 
 export class Coin {
 	readonly #networks: NetworkRepository;

@@ -1,6 +1,5 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Networks, Contracts } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import dot from "dot-prop";
 
 import { IReadWriteWallet, IWalletData, WalletData, WalletFlag } from "../../../../contracts";
 
@@ -26,7 +25,7 @@ export class WalletSerialiser {
 
 		this.#wallet.transaction().dump();
 
-		const network: Coins.NetworkManifest = this.#wallet.coin().network().toObject();
+		const network: Networks.NetworkManifest = this.#wallet.coin().network().toObject();
 
 		return {
 			id: this.#wallet.id(),

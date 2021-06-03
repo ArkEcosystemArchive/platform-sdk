@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { ARK } from "../../../platform-sdk-ark/src";
-import { FeatureFlag } from "./enums";
+import { FeatureFlag } from "../enums";
 import { Network } from "./network";
 
 let subject: Network;

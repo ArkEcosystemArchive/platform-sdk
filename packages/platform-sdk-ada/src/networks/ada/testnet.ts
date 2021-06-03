@@ -1,8 +1,8 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Networks } from "@arkecosystem/platform-sdk";
 
 import { constants, transactions, importMethods, featureFlags } from "../shared";
 
-const network: Coins.NetworkManifest = {
+const network: Networks.NetworkManifest = {
 	id: "ada.testnet",
 	type: "test",
 	name: "Testnet",

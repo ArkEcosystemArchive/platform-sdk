@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import dotify from "node-dotify";
 
@@ -37,7 +37,7 @@ export class ClientService extends Services.AbstractClientService {
 		return Helpers.createTransactionDataWithType(body.data, TransactionDTO);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const response = this.#isUpcoming()
 			? await this.#get("transactions", this.#createSearchParams(query))
 			: await this.#post("transactions/search", this.#createSearchParams(query));
@@ -55,12 +55,12 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(body.data);
 	}
 
-	public async wallets(query: Services.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
+	public async wallets(query: Services.ClientWalletsInput): Promise<Collections.WalletDataCollection> {
 		const response = this.#isUpcoming()
 			? await this.#get("wallets", this.#createSearchParams(query))
 			: await this.#post("wallets/search", this.#createSearchParams(query));
 
-		return new Coins.WalletDataCollection(
+		return new Collections.WalletDataCollection(
 			response.data.map((wallet) => new WalletData(wallet)),
 			this.#createMetaPagination(response),
 		);
@@ -72,10 +72,10 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(body.data);
 	}
 
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
+	public async delegates(query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
 		const body = await this.#get("delegates", this.#createSearchParams(query || {}));
 
-		return new Coins.WalletDataCollection(
+		return new Collections.WalletDataCollection(
 			body.data.map((wallet) => new WalletData(wallet)),
 			this.#createMetaPagination(body),
 		);
@@ -93,10 +93,10 @@ export class ClientService extends Services.AbstractClientService {
 		};
 	}
 
-	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Coins.WalletDataCollection> {
+	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
 		const body = await this.#get(`delegates/${id}/voters`, this.#createSearchParams(query || {}));
 
-		return new Coins.WalletDataCollection(
+		return new Collections.WalletDataCollection(
 			body.data.map((wallet) => new WalletData(wallet)),
 			this.#createMetaPagination(body),
 		);

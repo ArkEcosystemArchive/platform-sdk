@@ -1,4 +1,5 @@
-import { Contracts, Data } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { CURRENCIES } from "@arkecosystem/platform-sdk-intl";
 
 import { convertToCurrency } from "../utils";
 import {
@@ -48,7 +49,7 @@ export class MarketTransformer implements MarketTransformer {
 		const tokenId = options.token.toUpperCase();
 		const result = {};
 
-		for (const currency of Object.keys(options.currencies || Data.CURRENCIES)) {
+		for (const currency of Object.keys(options.currencies || CURRENCIES)) {
 			const { assets, rates } = this.data;
 
 			if (!assets[currency]) {

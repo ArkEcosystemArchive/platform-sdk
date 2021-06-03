@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Collections } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
@@ -109,7 +109,7 @@ describe("transaction-mapper", () => {
 			isMagistrate: () => true,
 		});
 
-		const collection = new Coins.TransactionDataCollection([transactionData], pagination);
+		const collection = new Collections.TransactionDataCollection([transactionData], pagination);
 
 		const transformedCollection = transformTransactionDataCollection(wallet, collection);
 		expect(transformedCollection).toBeInstanceOf(ExtendedTransactionDataCollection);

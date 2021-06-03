@@ -1,5 +1,5 @@
 import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 export class MultiSignatureService extends Services.AbstractMultiSignatureService {
@@ -155,7 +155,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	 * @memberof MultiSignatureService
 	 */
 	#getPeer(): string {
-		return Helpers.randomHost(this.#config.get<Coins.NetworkManifest>("network").hosts, "musig").host;
+		return Helpers.randomHost(this.#config.get<Networks.NetworkManifest>("network").hosts, "musig").host;
 	}
 
 	/**

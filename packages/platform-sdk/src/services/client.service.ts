@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { TransactionDataCollection, WalletDataCollection } from "../coins";
+import { TransactionDataCollection, WalletDataCollection } from "../collections";
 import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
 import {

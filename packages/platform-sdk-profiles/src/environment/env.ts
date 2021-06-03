@@ -1,4 +1,4 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Networks } from "@arkecosystem/platform-sdk";
 import Joi from "joi";
 
 import {
@@ -197,17 +197,17 @@ export class Environment {
 	/**
 	 * Return a list of all available networks.
 	 *
-	 * @returns {Coins.Network[]}
+	 * @returns {Networks.Network[]}
 	 * @memberof Environment
 	 */
-	public availableNetworks(): Coins.Network[] {
+	public availableNetworks(): Networks.Network[] {
 		const coins: CoinList = container.get<CoinList>(Identifiers.Coins);
 
-		const result: Coins.Network[] = [];
+		const result: Networks.Network[] = [];
 
 		for (const coin of Object.values(coins)) {
 			for (const network of Object.values(coin.manifest.networks)) {
-				result.push(new Coins.Network(coin.manifest, network));
+				result.push(new Networks.Network(coin.manifest, network));
 			}
 		}
 

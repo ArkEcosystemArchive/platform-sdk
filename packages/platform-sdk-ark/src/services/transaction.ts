@@ -127,7 +127,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiPayment", input, options, ({ transaction, data }) => {
 			for (const payment of data.payments) {
-				transaction.addPayment(payment.to, Coins.toRawUnit(payment.amount, this.#config).toString());
+				transaction.addPayment(payment.to, Helpers.toRawUnit(payment.amount, this.#config).toString());
 			}
 
 			if (data.memo) {
@@ -148,7 +148,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("htlcLock", input, options, ({ transaction, data }) => {
-			transaction.amount(Coins.toRawUnit(data.amount, this.#config).toString());
+			transaction.amount(Helpers.toRawUnit(data.amount, this.#config).toString());
 
 			transaction.recipientId(data.to);
 
@@ -272,11 +272,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.data && input.data.amount) {
-				transaction.amount(Coins.toRawUnit(input.data.amount, this.#config).toString());
+				transaction.amount(Helpers.toRawUnit(input.data.amount, this.#config).toString());
 			}
 
 			if (input.fee) {
-				transaction.fee(Coins.toRawUnit(input.fee, this.#config).toString());
+				transaction.fee(Helpers.toRawUnit(input.fee, this.#config).toString());
 			}
 
 			if (input.data && input.data.expiration) {

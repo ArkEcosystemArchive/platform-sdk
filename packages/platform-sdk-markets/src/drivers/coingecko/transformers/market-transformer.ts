@@ -1,4 +1,5 @@
-import { Contracts, Data } from "@arkecosystem/platform-sdk";
+import { Contracts } from "@arkecosystem/platform-sdk";
+import { CURRENCIES } from "@arkecosystem/platform-sdk-intl";
 
 import {
 	DailyAverageOptions,
@@ -36,7 +37,7 @@ export class MarketTransformer implements MarketTransformer {
 	public transform(options: Contracts.KeyValuePair): MarketDataCollection {
 		const result = {};
 
-		for (const currency of Object.keys(options.currencies || Data.CURRENCIES)) {
+		for (const currency of Object.keys(options.currencies || CURRENCIES)) {
 			const currencyLowerCase = currency.toLowerCase();
 
 			if (!this.data.current_price[currencyLowerCase]) {

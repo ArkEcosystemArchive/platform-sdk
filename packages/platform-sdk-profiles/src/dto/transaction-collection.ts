@@ -1,8 +1,8 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Collections } from "@arkecosystem/platform-sdk";
 
 import { ExtendedTransactionData } from "./transaction";
 
-export class ExtendedTransactionDataCollection extends Coins.Paginator<ExtendedTransactionData> {
+export class ExtendedTransactionDataCollection extends Collections.Paginator<ExtendedTransactionData> {
 	public findById(id: string): ExtendedTransactionData | undefined {
 		return this.#find("id", id);
 	}

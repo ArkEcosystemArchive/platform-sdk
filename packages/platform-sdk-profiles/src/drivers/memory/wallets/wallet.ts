@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Networks, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -93,7 +93,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.network} */
-	public network(): Coins.Network {
+	public network(): Networks.Network {
 		return this.coin().network();
 	}
 
@@ -405,8 +405,8 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.transactionTypes} */
-	public transactionTypes(): Coins.CoinTransactionTypes[] {
-		const manifest: Coins.NetworkManifest = this.coin().manifest().get<object>("networks")[this.networkId()];
+	public transactionTypes(): Networks.CoinTransactionTypes[] {
+		const manifest: Networks.NetworkManifest = this.coin().manifest().get<object>("networks")[this.networkId()];
 
 		return manifest.transactions.types;
 	}
