@@ -47,6 +47,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 			timestamp: DateTime.make(),
 		};
 
-		return new SignedTransactionData(transaction.hash.toHex(), signedData, transaction.toHex());
+		return new SignedTransactionData(transaction.hash.toHex(), signedData, transaction.toHex(), this.#config.get(Coins.ConfigKey.CurrencyDecimals));
 	}
 }
