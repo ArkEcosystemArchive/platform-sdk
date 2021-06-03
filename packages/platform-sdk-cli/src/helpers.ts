@@ -18,9 +18,8 @@ import { SOL } from "@arkecosystem/platform-sdk-sol";
 import cfonts from "cfonts";
 
 import { ConfStorage } from "./storage";
-import { Logger } from "./logger";
 
-export const useLogger = (): Logger => new Logger();
+export const useLogger = (): Console => console;
 
 export const useEnvironment = async (): Promise<Environment> => {
 	const env = new Environment({

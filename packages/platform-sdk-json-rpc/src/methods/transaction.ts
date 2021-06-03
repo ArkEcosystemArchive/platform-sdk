@@ -6,7 +6,11 @@ export const registerTransaction = () => [
 	{
 		name: "transaction.transfer",
 		async method(input) {
-			const signedTransaction = await (await makeCoin(input.coin, input.network)).transaction().transfer(input);
+			const coin = await makeCoin(input.coin, input.network);
+			const signedTransaction = await coin.transaction().transfer({
+				...input,
+				signatory: await coin.signatory().mnemonic(input.sign.mnemonic),
+			});
 
 			return {
 				id: signedTransaction.id(),
