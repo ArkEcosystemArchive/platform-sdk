@@ -60,6 +60,8 @@ export class WalletFactory implements IWalletFactory {
 		await wallet.mutator().identity(mnemonic);
 
 		if (password) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP39WithEncryption);
+
 			await this.#encryptWallet(
 				wallet,
 				password,
@@ -169,35 +171,26 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromWIF} */
-	public async fromWIF({ coin, network, wif }: IWifOptions): Promise<IReadWriteWallet> {
+	public async fromWIF({ coin, network, wif, password }: IWifOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIF);
-
-		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(await wallet.coin().identity().address().fromWIF(wif));
-
-		return wallet;
-	}
-
-	/** {@inheritDoc IWalletFactory.fromWIFWithEncryption} */
-	public async fromWIFWithEncryption({
-		coin,
-		network,
-		wif,
-		password,
-	}: IWifWithEncryptionOptions): Promise<IReadWriteWallet> {
-		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIFWithEncryption);
 
 		await wallet.mutator().coin(coin, network);
 
-		const { compressed, privateKey } = decrypt(wif, password);
+		if (password) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIFWithEncryption);
 
-		await wallet
-			.mutator()
-			.address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
+			const { compressed, privateKey } = decrypt(wif, password);
 
-		wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
+			await wallet
+				.mutator()
+				.address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
+
+			wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
+		} else {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIF);
+
+			await wallet.mutator().address(await wallet.coin().identity().address().fromWIF(wif));
+		}
 
 		return wallet;
 	}

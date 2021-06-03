@@ -77,18 +77,7 @@ export interface IWifOptions {
 	coin: string;
 	network: string;
 	wif: string;
-}
-
-/**
- * Defines the options for an import with a WIF and password.
- *
- * @interface IWifWithEncryptionOptions
- */
-export interface IWifWithEncryptionOptions {
-	coin: string;
-	network: string;
-	wif: string;
-	password: string;
+	password?: string;
 }
 
 /**
@@ -187,13 +176,4 @@ export interface IWalletFactory {
 	 * @memberof IWalletFactory
 	 */
 	fromWIF(options: IWifOptions): Promise<IReadWriteWallet>;
-
-	/**
-	 * Imports a wallet from a WIF with a password.
-	 *
-	 * @param {IWifWithEncryptionOptions} options
-	 * @return {Promise<IReadWriteWallet>}
-	 * @memberof IWalletFactory
-	 */
-	fromWIFWithEncryption(options: IWifWithEncryptionOptions): Promise<IReadWriteWallet>;
 }
