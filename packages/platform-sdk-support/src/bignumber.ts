@@ -277,6 +277,19 @@ export class BigNumber {
 	}
 
 	/**
+	 * Returns a BigNumber as expressed naturally in the given amount of decimals.
+	 *
+	 * @param {number} [decimals]
+	 * @returns {string}
+	 * @memberof BigNumber
+	 */
+	public denominated(decimals?: number): BigNumber {
+		decimals ??= this.#decimals;
+		return BigNumber.make(this.#value, decimals)
+			.divide(BigNumber.powerOfTen(decimals || 0));
+	}
+
+	/**
 	 * Divides the current value by one satoshi and rounds it to the given amount of decimals.
 	 *
 	 * @param {number} [decimals]
@@ -284,10 +297,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public toHuman(decimals?: number): string {
-		decimals ??= this.#decimals;
-		return BigNumber.make(this.#value, decimals)
-			.divide(BigNumber.powerOfTen(decimals || 0))
-			.toString();
+		return this.denominated(decimals).toString();
 	}
 
 	/**

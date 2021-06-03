@@ -54,8 +54,7 @@ export class Wallet implements IReadWriteWallet {
 	readonly #transactionIndex: ITransactionIndex;
 	readonly #walletImportFormat: IWalletImportFormat;
 	readonly #multiSignature: IMultiSignature;
-	readonly #decimals = 8; // TODO: use value from manifest
-	readonly #denomination = BigNumber.powerOfTen(this.#decimals);
+	readonly #decimals = 8; // TODO: use value from manifest?
 
 	public constructor(id: string, initialState: any, profile: IProfile) {
 		this.#profile = profile;
@@ -155,7 +154,7 @@ export class Wallet implements IReadWriteWallet {
 
 		return container
 			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
-			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().divide(this.#denomination));
+			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().denominated());
 	}
 
 	/** {@inheritDoc IReadWriteWallet.nonce} */

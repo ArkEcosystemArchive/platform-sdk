@@ -100,6 +100,12 @@ test("#isLessThanOrEqualTo", () => {
 	expect(subject.isLessThanOrEqualTo(BigNumber.make(0))).toBeFalse();
 });
 
+test("#denominated", () => {
+	expect(BigNumber.make(100).denominated().isEqualTo(BigNumber.make(100))).toBeTrue();
+	expect(BigNumber.make(100 * 1e8, 8).denominated().isEqualTo(BigNumber.make(100))).toBeTrue();
+	expect(BigNumber.make(100 * 1e8).denominated(8).isEqualTo(BigNumber.make(100))).toBeTrue();
+});
+
 test("#toHuman", () => {
 	expect(BigNumber.make(100 * 1e8, 8).toHuman()).toBe("100");
 	expect(BigNumber.make(123.456 * 1e8, 8).toHuman()).toBe("123.456");
