@@ -84,26 +84,8 @@
 			"shouldPublish": true
 		},
 		{
-			"packageName": "@arkecosystem/platform-sdk-coincap",
-			"projectFolder": "packages/platform-sdk-coincap",
-			"reviewCategory": "libraries",
-			"shouldPublish": true
-		},
-		{
-			"packageName": "@arkecosystem/platform-sdk-coingecko",
-			"projectFolder": "packages/platform-sdk-coingecko",
-			"reviewCategory": "libraries",
-			"shouldPublish": true
-		},
-		{
 			"packageName": "@arkecosystem/platform-sdk-crypto",
 			"projectFolder": "packages/platform-sdk-crypto",
-			"reviewCategory": "libraries",
-			"shouldPublish": true
-		},
-		{
-			"packageName": "@arkecosystem/platform-sdk-cryptocompare",
-			"projectFolder": "packages/platform-sdk-cryptocompare",
 			"reviewCategory": "libraries",
 			"shouldPublish": true
 		},

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { IReadWriteWallet } from "./wallet";
 
 type BIP = 39 | 44 | 49 | 84;

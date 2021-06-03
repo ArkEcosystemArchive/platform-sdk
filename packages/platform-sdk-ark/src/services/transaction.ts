@@ -115,7 +115,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.IpfsInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("ipfs", input, options, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
+		return this.#createFromData("ipfs", input, options, ({ transaction, data }) =>
+			transaction.ipfsAsset(data.hash),
+		);
 	}
 
 	public async multiPayment(

@@ -26,9 +26,8 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
-		"@arkecosystem/platform-sdk-coincap": "workspace:*",
-		"@arkecosystem/platform-sdk-coingecko": "workspace:*",
-		"@arkecosystem/platform-sdk-cryptocompare": "workspace:*"
+		"@arkecosystem/platform-sdk-intl": "workspace:*",
+		"@arkecosystem/platform-sdk-support": "workspace:*"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",

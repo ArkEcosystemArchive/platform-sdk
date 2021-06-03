@@ -269,7 +269,10 @@ export class TransactionService implements ITransactionService {
 	public canBeSigned(id: string): boolean {
 		this.#assertHasValidIdentifier(id);
 
-		return this.#wallet.coin().multiSignature().needsWalletSignature(this.transaction(id), this.#getPublicKey());
+		return this.#wallet
+			.coin()
+			.multiSignature()
+			.needsWalletSignature(this.transaction(id), this.#getPublicKey());
 	}
 
 	/** {@inheritDoc ITransactionService.canBeBroadcasted} */
@@ -427,6 +430,7 @@ export class TransactionService implements ITransactionService {
 	#getPublicKey(): string {
 		const publicKey: string | undefined = this.#wallet.publicKey();
 
+		/* istanbul ignore next */
 		if (publicKey === undefined) {
 			throw new Error(
 				"This wallet is lacking a public key. Please sync the wallet before interacting with transactions.",
@@ -437,7 +441,10 @@ export class TransactionService implements ITransactionService {
 	}
 
 	async #syncPendingMultiSignatures(): Promise<void> {
-		const transactions = await this.#wallet.coin().multiSignature().allWithPendingState(this.#getPublicKey());
+		const transactions = await this.#wallet
+			.coin()
+			.multiSignature()
+			.allWithPendingState(this.#getPublicKey());
 
 		this.#waitingForOurSignature = {};
 		this.#waitingForOtherSignatures = {};
@@ -460,7 +467,10 @@ export class TransactionService implements ITransactionService {
 	}
 
 	async #syncReadyMultiSignatures(): Promise<void> {
-		const transactions = await this.#wallet.coin().multiSignature().allWithReadyState(this.#getPublicKey());
+		const transactions = await this.#wallet
+			.coin()
+			.multiSignature()
+			.allWithReadyState(this.#getPublicKey());
 
 		for (const transaction of transactions) {
 			this.#signed[transaction.id] = new SignedTransactionData(
