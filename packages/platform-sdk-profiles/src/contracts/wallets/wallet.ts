@@ -552,6 +552,14 @@ export interface IReadWriteWallet {
 	canVote(): boolean;
 
 	/**
+	 * Determine if the wallet can perform write actions.
+	 *
+	 * @return {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	 canWrite(): boolean;
+
+	/**
 	 * Determines if the wallet has been imported with a mnemonic.
 	 *
 	 * @return {*}  {boolean}

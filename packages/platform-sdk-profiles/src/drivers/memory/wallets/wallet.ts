@@ -487,6 +487,19 @@ export class Wallet implements IReadWriteWallet {
 		return this.voting().available() > 0;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.canWrite} */
+	public canWrite(): boolean {
+		if (this.actsWithAddress()) {
+			return false;
+		}
+
+		if (this.actsWithPublicKey()) {
+			return false;
+		}
+
+		return true;
+	}
+
 	/** {@inheritDoc IReadWriteWallet.actsWithMnemonic} */
 	public actsWithMnemonic(): boolean {
 		return [
