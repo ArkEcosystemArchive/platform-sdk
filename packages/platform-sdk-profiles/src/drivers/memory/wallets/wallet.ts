@@ -54,6 +54,8 @@ export class Wallet implements IReadWriteWallet {
 	readonly #transactionIndex: ITransactionIndex;
 	readonly #walletImportFormat: IWalletImportFormat;
 	readonly #multiSignature: IMultiSignature;
+	readonly #decimals = 8; // TODO: use value from manifest
+	readonly #denomination = BigNumber.powerOfTen(this.#decimals);
 
 	public constructor(id: string, initialState: any, profile: IProfile) {
 		this.#profile = profile;
@@ -142,7 +144,7 @@ export class Wallet implements IReadWriteWallet {
 	public balance(): BigNumber {
 		const value: Contracts.WalletBalance | undefined = this.data().get(WalletData.Balance);
 
-		return BigNumber.make(value?.available || 0);
+		return BigNumber.make(value?.available || 0, this.#decimals);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.convertedBalance} */
@@ -153,7 +155,7 @@ export class Wallet implements IReadWriteWallet {
 
 		return container
 			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
-			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().divide(1e8));
+			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().divide(this.#denomination));
 	}
 
 	/** {@inheritDoc IReadWriteWallet.nonce} */
@@ -164,7 +166,7 @@ export class Wallet implements IReadWriteWallet {
 			return BigNumber.ZERO;
 		}
 
-		return BigNumber.make(value);
+		return BigNumber.make(value, this.#decimals);
 	}
 
 	/** {@inheritDoc IReadWriteWallet.avatar} */
@@ -561,13 +563,13 @@ export class Wallet implements IReadWriteWallet {
 
 		/* istanbul ignore next */
 		this.data().set(WalletData.Balance, {
-			available: BigNumber.make(balance?.available || 0),
-			fees: BigNumber.make(balance?.fees || 0),
+			available: BigNumber.make(balance?.available || 0, this.#decimals),
+			fees: BigNumber.make(balance?.fees || 0, this.#decimals),
 		});
 
 		this.data().set(
 			WalletData.Sequence,
-			BigNumber.make(this.data().get<string>(WalletData.Sequence) || BigNumber.ZERO),
+			BigNumber.make(this.data().get<string>(WalletData.Sequence) || BigNumber.ZERO, this.#decimals),
 		);
 	}
 }
