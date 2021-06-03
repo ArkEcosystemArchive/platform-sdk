@@ -285,8 +285,7 @@ export class BigNumber {
 	 */
 	public denominated(decimals?: number): BigNumber {
 		decimals ??= this.#decimals;
-		return BigNumber.make(this.#value, decimals)
-			.divide(BigNumber.powerOfTen(decimals || 0));
+		return BigNumber.make(this.#value, decimals).divide(BigNumber.powerOfTen(decimals || 0));
 	}
 
 	/**
