@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Data } from "@arkecosystem/platform-sdk";
+import { CURRENCIES } from "@arkecosystem/platform-sdk-intl";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
@@ -54,7 +54,7 @@ describe("CoinCap", () => {
 		const response = await subject.marketData(token);
 		const entries = Object.keys(response);
 		expect(entries).not.toBeEmpty();
-		expect(entries).toIncludeAllMembers(Object.keys(Data.CURRENCIES));
+		expect(entries).toIncludeAllMembers(Object.keys(CURRENCIES));
 
 		expect(response.USD.price).toBe(0.2169020395525734);
 	});

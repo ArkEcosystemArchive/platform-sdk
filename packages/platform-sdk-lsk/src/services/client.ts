@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { WalletData } from "../dto";
@@ -39,7 +39,7 @@ export class ClientService extends Services.AbstractClientService {
 		return Helpers.createTransactionDataWithType(result.data[0], TransactionDTO);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		// @ts-ignore
 		const result = await this.#get("transactions", this.#createSearchParams({ sort: "timestamp:desc", ...query }));
 
@@ -56,10 +56,10 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(result.data[0]);
 	}
 
-	public async wallets(query: Services.ClientWalletsInput): Promise<Coins.WalletDataCollection> {
+	public async wallets(query: Services.ClientWalletsInput): Promise<Collections.WalletDataCollection> {
 		const result = await this.#get("accounts", query);
 
-		return new Coins.WalletDataCollection(
+		return new Collections.WalletDataCollection(
 			result.data.map((wallet) => new WalletData(wallet)),
 			this.#createPagination(result.data, result.meta),
 		);
@@ -71,10 +71,10 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(result.data[0]);
 	}
 
-	public async delegates(query?: any): Promise<Coins.WalletDataCollection> {
+	public async delegates(query?: any): Promise<Collections.WalletDataCollection> {
 		const result = await this.#get("delegates", this.#createSearchParams({ limit: 101, ...query }));
 
-		return new Coins.WalletDataCollection(
+		return new Collections.WalletDataCollection(
 			result.data.map((wallet) => new WalletData(wallet)),
 			this.#createPagination(result.data, result.meta),
 		);

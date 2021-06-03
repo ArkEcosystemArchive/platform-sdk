@@ -32,7 +32,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
-			const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
 			const prepared = await this.#ripple.preparePayment(
 				input.signatory.address(),
 				{

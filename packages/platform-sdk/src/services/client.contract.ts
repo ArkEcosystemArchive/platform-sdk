@@ -1,4 +1,4 @@
-import { TransactionDataCollection, WalletDataCollection } from "../coins";
+import { TransactionDataCollection, WalletDataCollection } from "../collections";
 import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
 
 export type ClientPaginatorCursor = string | number | undefined;

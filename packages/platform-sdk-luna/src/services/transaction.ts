@@ -22,7 +22,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
 
 		const transaction = await this.#useClient()
 			.wallet(new MnemonicKey({ mnemonic: input.signatory.signingKey() }))

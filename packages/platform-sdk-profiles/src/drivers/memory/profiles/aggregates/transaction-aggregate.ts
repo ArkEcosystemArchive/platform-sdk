@@ -1,4 +1,4 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Services } from "@arkecosystem/platform-sdk";
 import { IProfile, IReadWriteWallet, ITransactionAggregate } from "../../../../contracts";
 import { ExtendedTransactionDataCollection } from "../../../../dto";
 
@@ -60,7 +60,7 @@ export class TransactionAggregate implements ITransactionAggregate {
 
 		const syncedWallets: IReadWriteWallet[] = this.#getWallets(query.addresses);
 
-		const requests: Record<string, Promise<Coins.TransactionDataCollection>> = {};
+		const requests: Record<string, Promise<Collections.TransactionDataCollection>> = {};
 
 		for (const syncedWallet of syncedWallets) {
 			requests[syncedWallet.id()] = new Promise((resolve, reject) => {

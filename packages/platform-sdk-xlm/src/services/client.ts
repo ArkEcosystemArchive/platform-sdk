@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { WalletData } from "../dto";
@@ -26,7 +26,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config.get<Coins.NetworkManifest>("network").id);
+		return new ClientService(config.get<Networks.NetworkManifest>("network").id);
 	}
 
 	public async transaction(
@@ -45,7 +45,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { records, next, prev } = await this.#client.payments().forAccount(query.address).call();
 
 		return Helpers.createTransactionDataCollectionWithType(

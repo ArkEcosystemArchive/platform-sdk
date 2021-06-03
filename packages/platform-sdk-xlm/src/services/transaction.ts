@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 import { v4 as uuidv4 } from "uuid";
 
@@ -25,7 +25,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	private constructor(config: Coins.Config, identity: IdentityService) {
 		super();
 
-		const networkConfig = config.get<Coins.NetworkManifest>("network");
+		const networkConfig = config.get<Networks.NetworkManifest>("network");
 		const network = this.#networks[networkConfig.id.split(".")[1]];
 
 		this.#config = config;
@@ -57,7 +57,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			const { publicKey, privateKey } = keyPair;
 
 			const account = await this.#client.loadAccount(publicKey);
-			const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
 
 			const transaction = new Stellar.TransactionBuilder(account, {
 				fee: input.fee || Stellar.BASE_FEE,

@@ -3,8 +3,9 @@
 import { formatString } from "@arkecosystem/utils";
 import { URL } from "url";
 
-import { Config, NetworkHost } from "../coins";
+import { Config } from "../coins";
 import { randomNetworkHostFromConfig } from "../helpers";
+import { NetworkHost } from "../networks";
 import { LinkService, LinkServiceSchema } from "./link.contract";
 
 export abstract class AbstractLinkService implements LinkService {

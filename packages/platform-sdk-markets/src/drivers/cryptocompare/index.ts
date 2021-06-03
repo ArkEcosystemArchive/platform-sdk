@@ -1,6 +1,5 @@
-import { Contracts, Data } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { CURRENCIES, DateTime } from "@arkecosystem/platform-sdk-intl";
 
 import {
 	DailyAverageOptions,
@@ -68,7 +67,7 @@ export class CryptoCompare implements PriceTracker {
 	public async marketData(token: string): Promise<MarketDataCollection> {
 		const body = await this.#get("data/pricemultifull", {
 			fsyms: token,
-			tsyms: Object.keys(Data.CURRENCIES).join(","),
+			tsyms: Object.keys(CURRENCIES).join(","),
 		});
 
 		return new MarketTransformer(body.RAW && body.RAW[token] ? body.RAW[token] : {}).transform({});

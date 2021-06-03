@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
@@ -38,7 +38,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 		}
 
-		const amount = Coins.toRawUnit(input.data.amount, this.#config).toString();
+		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
 		const keypair = this.#keyring.addFromMnemonic(input.signatory.signingKey());
 		const transaction = await this.#client.tx.balances.transfer(input.data.to, amount).signAsync(keypair);
 

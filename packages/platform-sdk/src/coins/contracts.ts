@@ -1,5 +1,6 @@
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
+import { CoinManifest } from "../networks/network.models";
 import {
 	ClientService,
 	DataTransferObjectService,
@@ -14,7 +15,6 @@ import {
 	TransactionService,
 	WalletDiscoveryService,
 } from "../services";
-import { CoinManifest } from "./network.models";
 
 export interface CoinSpec {
 	manifest: CoinManifest;

@@ -1,4 +1,4 @@
-import { Coins, Contracts } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts } from "@arkecosystem/platform-sdk";
 
 import { IReadWriteWallet } from "../contracts";
 import {
@@ -81,7 +81,7 @@ export const transformTransactionData = (
 
 export const transformTransactionDataCollection = (
 	wallet: IReadWriteWallet,
-	transactions: Coins.TransactionDataCollection,
+	transactions: Collections.TransactionDataCollection,
 ): ExtendedTransactionDataCollection =>
 	new ExtendedTransactionDataCollection(
 		transactions

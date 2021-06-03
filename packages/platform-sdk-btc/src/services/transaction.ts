@@ -50,14 +50,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 			const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
 
 			// 3. Compute the amount to be transfered
-			const amount = Coins.toRawUnit(input.data.amount, this.#config).toNumber();
+			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toNumber();
 
 			// 4. Build and sign the transaction
 			let transaction = new Transaction().from(unspent).to(input.data.to, amount).change(senderAddress);
 
 			// 5. Set a fee if configured. If none is set the fee will be estimated by bitcore-lib.
 			if (input.fee) {
-				const fee = Coins.toRawUnit(input.fee, this.#config).toNumber();
+				const fee = Helpers.toRawUnit(input.fee, this.#config).toNumber();
 				transaction = transaction.fee(fee);
 			}
 

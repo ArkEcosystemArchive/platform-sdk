@@ -1,5 +1,3 @@
-import { Coins } from "@arkecosystem/platform-sdk";
-
 import { createConfig } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
@@ -27,7 +25,7 @@ describe("ClientService", () => {
 
 	describe("#delegates", () => {
 		it("should succeed", async () => {
-			await expect(subject.delegates()).resolves.toBeInstanceOf(Coins.WalletDataCollection);
+			await expect(subject.delegates()).resolves.toBeInstanceOf(Collections.WalletDataCollection);
 		});
 	});
 });

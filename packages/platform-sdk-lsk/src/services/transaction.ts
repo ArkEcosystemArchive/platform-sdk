@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import {
 	castVotes,
@@ -33,7 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			...input,
 			...{
 				data: {
-					amount: Coins.toRawUnit(input.data.amount, this.#config).toString(),
+					amount: Helpers.toRawUnit(input.data.amount, this.#config).toString(),
 					recipientId: input.data.to,
 					data: input.data.memo,
 				},

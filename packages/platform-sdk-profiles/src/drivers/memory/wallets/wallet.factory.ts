@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { Coins, Exceptions } from "@arkecosystem/platform-sdk";
+import { Enums, Exceptions } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { decrypt, encrypt } from "bip38";
 import { v4 as uuidv4 } from "uuid";
@@ -210,23 +210,23 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	#allowsDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip39);
+		return wallet.gate().allows(Enums.FeatureFlag.IdentityAddressMnemonicBip39);
 	}
 
 	#allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip44);
+		return wallet.gate().allows(Enums.FeatureFlag.IdentityAddressMnemonicBip44);
 	}
 
 	/* istanbul ignore next */
 	#allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
-		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip49);
+		return wallet.gate().allows(Enums.FeatureFlag.IdentityAddressMnemonicBip49);
 	}
 
 	/* istanbul ignore next */
 	#allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
-		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip84);
+		return wallet.gate().allows(Enums.FeatureFlag.IdentityAddressMnemonicBip84);
 	}
 
 	async #encryptWallet(wallet: IReadWriteWallet, password: string, derive: Function): Promise<void> {

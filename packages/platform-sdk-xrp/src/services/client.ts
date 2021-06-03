@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
@@ -35,7 +35,7 @@ export class ClientService extends Services.AbstractClientService {
 		return Helpers.createTransactionDataWithType(transaction, TransactionDTO);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { transactions } = await this.#post("account_tx", [
 			{
 				account: query.address || query.addresses![0],

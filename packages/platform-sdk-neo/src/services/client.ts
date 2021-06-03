@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Neon, { api } from "@cityofzion/neon-js";
 
@@ -35,12 +35,12 @@ export class ClientService extends Services.AbstractClientService {
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
-			network: config.get<Coins.NetworkManifest>("network").id.split(".")[1],
+			network: config.get<Networks.NetworkManifest>("network").id.split(".")[1],
 		});
 	}
 	// get_transaction/{txid}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
+	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const basePath = `get_address_abstracts/${query.address}`;
 		const basePage = (query.cursor as number) || 1;
 
