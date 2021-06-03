@@ -17,7 +17,7 @@ const network: Networks.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: "https://apis.compendia.org",
+			host: "https://apis.compendia.org/api",
 		},
 		{
 			type: "explorer",
