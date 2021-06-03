@@ -289,6 +289,20 @@ describe("ProfileRepository", () => {
 		expect(profile.status().isRestored()).toBeTrue();
 	});
 
+	it("should persist profile and reset dirty status", async () => {
+		subject.flush();
+
+		const profile = subject.create("John");
+		profile.status().markAsRestored();
+		profile.status().markAsDirty();
+
+		expect(profile.status().isDirty()).toBeTrue();
+
+		subject.persist(profile);
+
+		expect(profile.status().isDirty()).toBeFalse();
+	});
+
 	it("should not save profile data if profile is not restored", async () => {
 		subject.flush();
 

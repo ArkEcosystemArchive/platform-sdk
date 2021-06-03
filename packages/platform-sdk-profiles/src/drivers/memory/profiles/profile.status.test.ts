@@ -32,3 +32,10 @@ it("should reset the status of the profile to the default values", async () => {
 	profile.status().reset();
 	expect(profile.status().isRestored()).toBeFalse();
 });
+
+it("should reset dirty status", async () => {
+	profile.status().markAsDirty();
+	expect(profile.status().isDirty()).toBeTrue();
+	profile.status().resetDirty();
+	expect(profile.status().isDirty()).toBeFalse();
+});
