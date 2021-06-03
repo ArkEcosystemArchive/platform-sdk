@@ -6,8 +6,17 @@ import { v4 as uuidv4 } from "uuid";
 import { SignedTransactionData } from "../dto";
 
 export class TransactionService extends Services.AbstractTransactionService {
+	readonly #decimals: string;
+
+	public constructor(config: Coins.Config) {
+		super();
+
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
+	}
+
+
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService();
+		return new TransactionService(config);
 	}
 
 	public async transfer(
@@ -25,7 +34,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const signedData = { ...signedTransaction, timestamp: DateTime.make() };
 
-			return new SignedTransactionData(uuidv4(), signedData, JSON.stringify(signedTransaction));
+			return new SignedTransactionData(uuidv4(), signedData, JSON.stringify(signedTransaction), this.#decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

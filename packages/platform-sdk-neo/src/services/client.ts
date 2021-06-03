@@ -9,6 +9,7 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #http: HttpClient;
 	readonly #peer: string;
 	readonly #apiProvider;
+	readonly #decimals: string;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"Block or transaction already exists and cannot be sent repeatedly.": "ERR_DUPLICATE",
@@ -19,7 +20,7 @@ export class ClientService extends Services.AbstractClientService {
 		"Unknown error.": "ERR_UNKNOWN",
 	};
 
-	private constructor({ http, network }) {
+	private constructor({ http, network, decimals }) {
 		super();
 
 		this.#http = http;
@@ -30,15 +31,16 @@ export class ClientService extends Services.AbstractClientService {
 		}[network];
 
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
+		this.#decimals = decimals;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			network: config.get<Networks.NetworkManifest>("network").id.split(".")[1],
+			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
 		});
 	}
-	// get_transaction/{txid}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const basePath = `get_address_abstracts/${query.address}`;
@@ -58,6 +60,7 @@ export class ClientService extends Services.AbstractClientService {
 				last: response.total_pages,
 			},
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 

@@ -9,11 +9,13 @@ import { NanoClient } from "./rpc";
 
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #client: NanoClient;
+	readonly #decimals: string;
 
 	public constructor(config: Coins.Config) {
 		super();
 
 		this.#client = new NanoClient(config);
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
@@ -39,6 +41,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const signedData = { ...data, timestamp: DateTime.make() };
 		const broadcastData = block.send(data, privateKey);
 
-		return new SignedTransactionData(broadcastData.signature, signedData, broadcastData);
+		return new SignedTransactionData(broadcastData.signature, signedData, broadcastData, this.#decimals);
 	}
 }

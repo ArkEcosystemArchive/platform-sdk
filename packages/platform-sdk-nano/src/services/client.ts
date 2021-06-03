@@ -6,11 +6,13 @@ import { NanoClient } from "./rpc";
 
 export class ClientService extends Services.AbstractClientService {
 	readonly #client: NanoClient;
+	readonly #decimals: string;
 
 	private constructor(config: Coins.Config) {
 		super();
 
 		this.#client = new NanoClient(config);
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -36,6 +38,7 @@ export class ClientService extends Services.AbstractClientService {
 				last: undefined,
 			},
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 
