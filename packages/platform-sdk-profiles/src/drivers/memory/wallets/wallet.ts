@@ -515,10 +515,9 @@ export class Wallet implements IReadWriteWallet {
 	/** {@inheritDoc IReadWriteWallet.actsWithAddressWithDerivationPath} */
 	public actsWithAddressWithDerivationPath(): boolean {
 		return [
-			WalletImportMethod.BIP39.ADDRESS_WITH_DERIVATION,
-			WalletImportMethod.BIP44.ADDRESS_WITH_DERIVATION,
-			WalletImportMethod.BIP49.ADDRESS_WITH_DERIVATION,
-			WalletImportMethod.BIP84.ADDRESS_WITH_DERIVATION,
+			WalletImportMethod.BIP44.DERIVATION_PATH,
+			WalletImportMethod.BIP49.DERIVATION_PATH,
+			WalletImportMethod.BIP84.DERIVATION_PATH,
 		].includes(this.data().get(WalletData.ImportMethod)!);
 	}
 

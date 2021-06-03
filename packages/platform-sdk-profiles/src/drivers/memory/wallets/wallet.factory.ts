@@ -161,10 +161,19 @@ export class WalletFactory implements IWalletFactory {
 		address,
 		path,
 	}: IAddressWithDerivationPathOptions): Promise<IReadWriteWallet> {
-		// @TODO: we should know here if it's bip44/49/84
-
 		const wallet: IReadWriteWallet = await this.fromAddress({ coin, network, address });
-		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP44.ADDRESS_WITH_DERIVATION);
+
+		if (path.startsWith("m/44")) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP44.DERIVATION_PATH);
+		}
+
+		if (path.startsWith("m/49")) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP49.DERIVATION_PATH);
+		}
+
+		if (path.startsWith("m/84")) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP84.DERIVATION_PATH);
+		}
 
 		wallet.data().set(WalletData.DerivationPath, path);
 
