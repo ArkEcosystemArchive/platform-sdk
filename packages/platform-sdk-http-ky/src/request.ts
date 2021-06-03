@@ -1,4 +1,4 @@
-import { Contracts, Http } from "@arkecosystem/platform-sdk";
+import { AbstractRequest, HttpResponse, RequestOptions, Response } from "@arkecosystem/platform-sdk-http";
 import ky from "ky-universal";
 
 /**
@@ -8,16 +8,12 @@ import ky from "ky-universal";
  *
  * @export
  * @class Request
- * @extends {Http.Request}
+ * @extends {Request}
  */
-export class Request extends Http.Request {
-	/** {@inheritDoc Http.Request.send} */
-	protected async send(
-		method: string,
-		url: string,
-		data?: { query?: object; data?: any },
-	): Promise<Contracts.HttpResponse> {
-		const options: Http.RequestOptions = {
+export class Request extends AbstractRequest {
+	/** {@inheritDoc Request.send} */
+	protected async send(method: string, url: string, data?: { query?: object; data?: any }): Promise<HttpResponse> {
+		const options: RequestOptions = {
 			...this._options,
 		};
 
@@ -38,7 +34,7 @@ export class Request extends Http.Request {
 		try {
 			const response = await ky[method.toLowerCase()](url.replace(/^\/+/g, ""), options);
 
-			return new Http.Response({
+			return new Response({
 				body: await response.text(),
 				headers: response.headers,
 				statusCode: response.status,
@@ -46,7 +42,7 @@ export class Request extends Http.Request {
 		} catch (error) {
 			const { response } = error;
 
-			return new Http.Response(
+			return new Response(
 				{
 					body: await response.text(),
 					headers: response.headers,

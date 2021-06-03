@@ -1,4 +1,5 @@
-import { HttpClient } from "../contracts/coins";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
+
 import {
 	ClientService,
 	DataTransferObjectService,

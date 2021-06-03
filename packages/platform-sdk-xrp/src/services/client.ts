@@ -1,5 +1,6 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
@@ -7,13 +8,13 @@ import { broadcastErrors } from "./client.helpers";
 
 export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 
 	private constructor(config: Coins.Config) {
 		super();
 
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {

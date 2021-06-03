@@ -1,4 +1,5 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Web3 from "web3";
 
 import { WalletData } from "../dto";
@@ -7,7 +8,7 @@ import * as TransactionDTO from "../dto";
 export class ClientService extends Services.AbstractClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
 
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #peer: string;
 
 	readonly #broadcastErrors: Record<string, string> = {
@@ -29,7 +30,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
-			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
+			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Helpers.randomHostFromConfig(config),
 		});
 	}

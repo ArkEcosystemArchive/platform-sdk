@@ -1,5 +1,6 @@
 import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 export class MultiSignatureService extends Services.AbstractMultiSignatureService {
 	/**
@@ -13,10 +14,10 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	/**
 	 * The HTTP client of the current instance.
 	 *
-	 * @type {Contracts.HttpClient}
+	 * @type {HttpClient}
 	 * @memberof MultiSignatureService
 	 */
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 
 	/**
 	 * Creates an instance of MultiSignatureService.
@@ -28,7 +29,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 		super();
 
 		this.#config = config;
-		this.#http = config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 	}
 
 	/** @inheritdoc */

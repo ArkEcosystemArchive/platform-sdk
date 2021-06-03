@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { BlockfolioResponse } from "./blockfolio.models";
 
@@ -12,18 +12,18 @@ export class Blockfolio {
 	/**
 	 * The HTTP client used for communication.
 	 *
-	 * @type {Contracts.HttpClient}
+	 * @type {HttpClient}
 	 * @memberof Blockfolio
 	 */
-	readonly #httpClient: Contracts.HttpClient;
+	readonly #httpClient: HttpClient;
 
 	/**
 	 * Creates an instance of Blockfolio.
 	 *
-	 * @param {Contracts.HttpClient} httpClient
+	 * @param {HttpClient} httpClient
 	 * @memberof Blockfolio
 	 */
-	public constructor(httpClient: Contracts.HttpClient) {
+	public constructor(httpClient: HttpClient) {
 		this.#httpClient = httpClient;
 	}
 

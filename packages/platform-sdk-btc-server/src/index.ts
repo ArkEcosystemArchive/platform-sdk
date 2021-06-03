@@ -1,4 +1,4 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Hapi from "@hapi/hapi";
 import Joi from "joi";
 import { v4 as uuidv4 } from "uuid";
@@ -21,7 +21,7 @@ export const subscribe = async (flags: {
 }): Promise<void> => {
 	const logger = useLogger();
 	const database = useDatabase(flags);
-	const client: Contracts.HttpClient = useClient(flags.rpc);
+	const client: HttpClient = useClient(flags.rpc);
 
 	const server = Hapi.server({
 		host: flags.host || "0.0.0.0",

@@ -41,7 +41,12 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromMnemonicWithBIP39} */
-	public async fromMnemonicWithBIP39({ coin, network, mnemonic, password }: IMnemonicOptions): Promise<IReadWriteWallet> {
+	public async fromMnemonicWithBIP39({
+		coin,
+		network,
+		mnemonic,
+		password,
+	}: IMnemonicOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP39.MNEMONIC);
@@ -52,7 +57,7 @@ export class WalletFactory implements IWalletFactory {
 			throw new Error("The configured network uses extended public keys with BIP44 for derivation.");
 		}
 
-		if (! this.#allowsDeriveWithBIP39(wallet)) {
+		if (!this.#allowsDeriveWithBIP39(wallet)) {
 			throw new Error("The configured network does not support BIP39.");
 		}
 
@@ -79,7 +84,7 @@ export class WalletFactory implements IWalletFactory {
 
 		await wallet.mutator().coin(coin, network);
 
-		if (! this.#allowsDeriveWithBIP44(wallet)) {
+		if (!this.#allowsDeriveWithBIP44(wallet)) {
 			throw new Error("The configured network does not support BIP44.");
 		}
 

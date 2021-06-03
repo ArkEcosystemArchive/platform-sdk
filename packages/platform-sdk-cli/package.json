@@ -29,6 +29,7 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-ada": "workspace:*",
 		"@arkecosystem/platform-sdk-ark": "workspace:*",
 		"@arkecosystem/platform-sdk-atom": "workspace:*",

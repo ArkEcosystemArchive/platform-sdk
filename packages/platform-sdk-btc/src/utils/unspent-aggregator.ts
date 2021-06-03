@@ -1,10 +1,10 @@
-import { Contracts } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { UnspentTransaction } from "../contracts";
 
 export class UnspentAggregator {
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #peer: string;
 
 	public constructor({ http, peer }) {

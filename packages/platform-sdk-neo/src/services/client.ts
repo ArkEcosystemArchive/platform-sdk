@@ -1,11 +1,12 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Neon, { api } from "@cityofzion/neon-js";
 
 import * as TransactionDTO from "../dto";
 import { WalletData } from "../dto";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #http: Contracts.HttpClient;
+	readonly #http: HttpClient;
 	readonly #peer: string;
 	readonly #apiProvider;
 
@@ -33,7 +34,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
-			http: config.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient),
+			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			network: config.get<Coins.NetworkManifest>("network").id.split(".")[1],
 		});
 	}

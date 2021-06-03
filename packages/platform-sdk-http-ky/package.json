@@ -25,7 +25,7 @@
 		"preset": "../../jest.coverage.js"
 	},
 	"dependencies": {
-		"@arkecosystem/platform-sdk": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"ky": "^0.25.0",
 		"ky-universal": "^0.8.2"
 	},
