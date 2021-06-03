@@ -101,14 +101,12 @@ export class LedgerService extends Services.AbstractLedgerService {
 				addressCache[`${path}/0/${addressIndex}`] = { address, publicKey };
 			}
 
-			const collections = await Promise.all(
-				chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
-			);
-
-			for (const collection of collections) {
-				wallets = wallets.concat(collection.items());
-
-				hasMore = collection.isNotEmpty();
+			for (const address of addresses) {
+				try {
+					wallets.push(await this.#client.wallet(address));
+				} catch {
+					// Do nothing...
+				}
 			}
 
 			page++;
