@@ -5,8 +5,8 @@
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
-		"lib": ["es2019", "dom"],
-		"module": "commonjs",
+		"lib": ["ES2019", "dom"],
+		"module": "ES2020",
 		"moduleResolution": "node",
 		"newLine": "lf",
 		"noEmitOnError": true,
@@ -24,7 +24,7 @@
 		"sourceMap": true,
 		"strict": true,
 		"stripInternal": true,
-		"target": "es2019",
+		"target": "ES2019", // Node.js 12
 		"typeRoots": ["./node_modules/@types"],
 		"useDefineForClassFields": true
 	},
