@@ -31,7 +31,6 @@
     },
     "dependencies": {
         "@arkecosystem/platform-sdk": "workspace:*",
-        "@arkecosystem/platform-sdk-http": "workspace:*",
         "@arkecosystem/platform-sdk-ada": "workspace:*",
         "@arkecosystem/platform-sdk-ark": "workspace:*",
         "@arkecosystem/platform-sdk-atom": "workspace:*",
@@ -42,6 +41,7 @@
         "@arkecosystem/platform-sdk-egld": "workspace:*",
         "@arkecosystem/platform-sdk-eos": "workspace:*",
         "@arkecosystem/platform-sdk-eth": "workspace:*",
+        "@arkecosystem/platform-sdk-http": "workspace:*",
         "@arkecosystem/platform-sdk-http-got": "workspace:*",
         "@arkecosystem/platform-sdk-lsk": "workspace:*",
         "@arkecosystem/platform-sdk-neo": "workspace:*",

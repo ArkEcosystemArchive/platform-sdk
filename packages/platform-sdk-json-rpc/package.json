@@ -32,9 +32,9 @@
     },
     "dependencies": {
         "@arkecosystem/platform-sdk": "workspace:*",
-        "@arkecosystem/platform-sdk-http": "workspace:*",
         "@arkecosystem/platform-sdk-ark": "workspace:*",
         "@arkecosystem/platform-sdk-crypto": "workspace:*",
+        "@arkecosystem/platform-sdk-http": "workspace:*",
         "@arkecosystem/platform-sdk-http-got": "workspace:*",
         "@hapi/hapi": "^20.1.2",
         "@konceiver/foreman": "^2.0.2",
