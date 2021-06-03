@@ -54,7 +54,7 @@ export class Wallet implements IReadWriteWallet {
 	readonly #transactionIndex: ITransactionIndex;
 	readonly #walletImportFormat: IWalletImportFormat;
 	readonly #multiSignature: IMultiSignature;
-	readonly #decimals = 8; // TODO: use value from manifest?
+	readonly #decimals: number;
 
 	public constructor(id: string, initialState: any, profile: IProfile) {
 		this.#profile = profile;
@@ -74,6 +74,8 @@ export class Wallet implements IReadWriteWallet {
 		this.#transactionIndex = new TransactionIndex(this);
 		this.#walletImportFormat = new WalletImportFormat(this);
 		this.#multiSignature = new MultiSignature(this);
+		this.#decimals = 8;
+		// this.#decimals = this.manifest().get(Coins.ConfigKey.CurrencyDecimals);
 
 		this.#restore();
 	}
