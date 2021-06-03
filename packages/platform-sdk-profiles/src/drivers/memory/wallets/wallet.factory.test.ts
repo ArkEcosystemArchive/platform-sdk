@@ -76,6 +76,24 @@ describe("#fromMnemonicWithBIP39", () => {
 			}),
 		).rejects.toThrow("The configured network uses extended public keys with BIP44 for derivation.");
 	});
+
+	it("should create a wallet using BIP39 with encryption", async () => {
+		const wallet = await subject.fromMnemonicWithBIP39({
+			coin: "ARK",
+			network: "ark.devnet",
+			mnemonic: "this is a top secret passphrase",
+			password: "password",
+		});
+
+		expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+		expect(wallet.data().get(WalletData.Bip38EncryptedKey)).toBeString();
+
+		// @ts-ignore
+		expect(decrypt(wallet.data().get(WalletData.Bip38EncryptedKey)!, "password").privateKey.toString("hex")).toBe(
+			"d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
+		);
+	});
 });
 
 describe("#fromMnemonicWithBIP44", () => {
@@ -158,24 +176,6 @@ test("#fromAddressWithDerivationPath", async () => {
 
 	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
 	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
-});
-
-test("#fromMnemonicWithEncryption", async () => {
-	const wallet = await subject.fromMnemonicWithEncryption({
-		coin: "ARK",
-		network: "ark.devnet",
-		mnemonic: "this is a top secret passphrase",
-		password: "password",
-	});
-
-	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
-	expect(wallet.data().get(WalletData.Bip38EncryptedKey)).toBeString();
-
-	// @ts-ignore
-	expect(decrypt(wallet.data().get(WalletData.Bip38EncryptedKey)!, "password").privateKey.toString("hex")).toBe(
-		"d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
-	);
 });
 
 test("#fromWIF", async () => {
