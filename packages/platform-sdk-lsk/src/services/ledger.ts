@@ -50,8 +50,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		const { publicKey } = await this.#transport.getPubKey(this.#getLedgerAccount(path));
-
+		const { publicKey } = await this.getPublicKeyAndAddress(path);
 		return publicKey;
 	}
 
@@ -79,26 +78,21 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 		const addresses: string[] = [];
 
-		const path = `m/44'/${slip44}'/0'`;
 		let initialAddressIndex = 0;
 
 		if (options?.startPath) {
 			initialAddressIndex = BIP44.parse(options.startPath).addressIndex + 1;
 		}
 
-		const compressedPublicKey = await this.getExtendedPublicKey(path);
-
 		for (const addressIndexIterator of createRange(page, pageSize)) {
 			const addressIndex = initialAddressIndex + addressIndexIterator;
-			const publicKey: string = HDKey.fromCompressedPublicKey(compressedPublicKey)
-				.derive(`m/0/${addressIndex}`)
-				.publicKey.toString("hex");
 
-			const { address } = await this.#identity.address().fromPublicKey(publicKey);
-
+			const path = `m/44'/${slip44}'/0'/0/${addressIndex}`;
+			const { publicKey, address } = await this.getPublicKeyAndAddress(path);
+			console.log("path", path, "publicKey", publicKey, "address", address);
 			addresses.push(address);
 
-			addressCache[`${path}/0/${addressIndex}`] = { address, publicKey };
+			addressCache[path] = { address, publicKey };
 		}
 
 		for (const address of addresses) {
@@ -134,6 +128,15 @@ export class LedgerService extends Services.AbstractLedgerService {
 		}
 
 		return { ...cold, ...used };
+	}
+
+	private async getPublicKeyAndAddress(
+		path: string,
+	): Promise<{
+		publicKey: string;
+		address: string;
+	}> {
+		return await this.#transport.getPubKey(this.#getLedgerAccount(path));
 	}
 
 	#getLedgerAccount(path: string): LedgerAccount {
