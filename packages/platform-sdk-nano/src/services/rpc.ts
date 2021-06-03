@@ -40,14 +40,14 @@ export class NanoClient {
 	}
 
 	public async accountBalance(account: string): Promise<{ balance: string; pending: string }> {
-		return this.post("account_balance", { account });
+		return this.#post("account_balance", { account });
 	}
 
 	public async accountInfo(
 		account: string,
 		options?: { representative?: boolean; pending?: boolean },
 	): Promise<AccountInfoResponse> {
-		return this.post("account_info", { account, ...options });
+		return this.#post("account_info", { account, ...options });
 	}
 
 	public async accountHistory(
@@ -55,17 +55,17 @@ export class NanoClient {
 		count: string,
 		options?: { head?: string | number },
 	): Promise<AccountHistoryResponse> {
-		return this.post("account_history", { account, count, ...options });
+		return this.#post("account_history", { account, count, ...options });
 	}
 
 	public async process(
 		subtype: "send" | "receive" | "open" | "change" | "epoch",
 		block: SignedBlock,
 	): Promise<{ hash: string }> {
-		return this.post("process", { json_block: "true", subtype, block });
+		return this.#post("process", { json_block: "true", subtype, block });
 	}
 
-	private async post<T = Record<string, any>>(action: string, params: Record<string, unknown>): Promise<T> {
+	async #post<T = Record<string, any>>(action: string, params: Record<string, unknown>): Promise<T> {
 		const result = (await this.#http.post("/", { action, ...params })).json();
 
 		if (result.error) {

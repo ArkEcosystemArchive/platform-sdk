@@ -23,17 +23,17 @@ export class TransactionAggregate implements ITransactionAggregate {
 
 	/** {@inheritDoc ITransactionAggregate.all} */
 	public async all(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("all", query);
+		return this.#aggregate("all", query);
 	}
 
 	/** {@inheritDoc ITransactionAggregate.sent} */
 	public async sent(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("sent", query);
+		return this.#aggregate("sent", query);
 	}
 
 	/** {@inheritDoc ITransactionAggregate.received} */
 	public async received(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
-		return this.aggregate("received", query);
+		return this.#aggregate("received", query);
 	}
 
 	/** {@inheritDoc ITransactionAggregate.hasMore} */
@@ -53,12 +53,12 @@ export class TransactionAggregate implements ITransactionAggregate {
 		this.#history = {};
 	}
 
-	private async aggregate(method: string, query: AggregateQuery): Promise<ExtendedTransactionDataCollection> {
+	async #aggregate(method: string, query: AggregateQuery): Promise<ExtendedTransactionDataCollection> {
 		if (!this.#history[method]) {
 			this.#history[method] = {};
 		}
 
-		const syncedWallets: IReadWriteWallet[] = this.getWallets(query.addresses);
+		const syncedWallets: IReadWriteWallet[] = this.#getWallets(query.addresses);
 
 		const requests: Record<string, Promise<Coins.TransactionDataCollection>> = {};
 
@@ -95,7 +95,7 @@ export class TransactionAggregate implements ITransactionAggregate {
 			}
 
 			for (const transaction of request.value.items()) {
-				result.push(transformTransactionData(this.getWallet(id), transaction));
+				result.push(transformTransactionData(this.#getWallet(id), transaction));
 			}
 
 			this.#history[method][id] = request.value;
@@ -109,11 +109,11 @@ export class TransactionAggregate implements ITransactionAggregate {
 		});
 	}
 
-	private getWallet(id: string): IReadWriteWallet {
+	#getWallet(id: string): IReadWriteWallet {
 		return this.#profile.wallets().findById(id);
 	}
 
-	private getWallets(addresses: string[] = []): IReadWriteWallet[] {
+	#getWallets(addresses: string[] = []): IReadWriteWallet[] {
 		return this.#profile
 			.wallets()
 			.values()

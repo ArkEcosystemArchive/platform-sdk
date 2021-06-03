@@ -47,7 +47,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("transfer", input, options, ({ transaction, data }) => {
+		return this.#createFromData("transfer", input, options, ({ transaction, data }) => {
 			transaction.recipientId(data.to);
 
 			if (data.memo) {
@@ -60,7 +60,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.SecondSignatureInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("secondSignature", input, options, ({ transaction, data }) =>
+		return this.#createFromData("secondSignature", input, options, ({ transaction, data }) =>
 			transaction.signatureAsset(BIP39.normalize(data.mnemonic)),
 		);
 	}
@@ -69,7 +69,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.DelegateRegistrationInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("delegateRegistration", input, options, ({ transaction, data }) =>
+		return this.#createFromData("delegateRegistration", input, options, ({ transaction, data }) =>
 			transaction.usernameAsset(data.username),
 		);
 	}
@@ -78,7 +78,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.VoteInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("vote", input, options, ({ transaction, data }) => {
+		return this.#createFromData("vote", input, options, ({ transaction, data }) => {
 			const votes: string[] = [];
 
 			if (Array.isArray(data.unvotes)) {
@@ -101,7 +101,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.MultiSignatureInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("multiSignature", input, options, ({ transaction, data }) => {
+		return this.#createFromData("multiSignature", input, options, ({ transaction, data }) => {
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,
 				min: data.min,
@@ -115,14 +115,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.IpfsInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("ipfs", input, options, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
+		return this.#createFromData("ipfs", input, options, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
 	}
 
 	public async multiPayment(
 		input: Services.MultiPaymentInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("multiPayment", input, options, ({ transaction, data }) => {
+		return this.#createFromData("multiPayment", input, options, ({ transaction, data }) => {
 			for (const payment of data.payments) {
 				transaction.addPayment(payment.to, Coins.toRawUnit(payment.amount, this.#config).toString());
 			}
@@ -137,14 +137,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.DelegateResignationInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("delegateResignation", input, options);
+		return this.#createFromData("delegateResignation", input, options);
 	}
 
 	public async htlcLock(
 		input: Services.HtlcLockInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("htlcLock", input, options, ({ transaction, data }) => {
+		return this.#createFromData("htlcLock", input, options, ({ transaction, data }) => {
 			transaction.amount(Coins.toRawUnit(data.amount, this.#config).toString());
 
 			transaction.recipientId(data.to);
@@ -160,7 +160,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.HtlcClaimInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("htlcClaim", input, options, ({ transaction, data }) =>
+		return this.#createFromData("htlcClaim", input, options, ({ transaction, data }) =>
 			transaction.htlcClaimAsset({
 				lockTransactionId: data.lockTransactionId,
 				unlockSecret: data.unlockSecret,
@@ -172,7 +172,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.HtlcRefundInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.createFromData("htlcRefund", input, options, ({ transaction, data }) =>
+		return this.#createFromData("htlcRefund", input, options, ({ transaction, data }) =>
 			transaction.htlcRefundAsset({
 				lockTransactionId: data.lockTransactionId,
 			}),
@@ -227,7 +227,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			.toString();
 	}
 
-	private async createFromData(
+	async #createFromData(
 		type: string,
 		input: Services.TransactionInputs,
 		options?: Services.TransactionOptions,

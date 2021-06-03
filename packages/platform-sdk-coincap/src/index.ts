@@ -52,7 +52,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	/** {@inheritDoc Contracts.PriceTracker.verifyToken} */
 	public async verifyToken(token: string): Promise<boolean> {
 		try {
-			const tokenData = await this.fetchTokenData(token);
+			const tokenData = await this.#fetchTokenData(token);
 
 			return !!tokenData.id;
 		} catch {
@@ -62,27 +62,27 @@ export class PriceTracker implements Contracts.PriceTracker {
 
 	/** {@inheritDoc Contracts.PriceTracker.marketData} */
 	public async marketData(token: string): Promise<Contracts.MarketDataCollection> {
-		const tokenId = await this.getTokenId(token);
+		const tokenId = await this.#getTokenId(token);
 
 		if (!tokenId) {
 			throw new Error("Failed to determine the token.");
 		}
 
-		const response = await this.getCurrencyData(token);
+		const response = await this.#getCurrencyData(token);
 
 		return new MarketTransformer(response).transform({ token: tokenId });
 	}
 
 	/** {@inheritDoc Contracts.PriceTracker.historicalPrice} */
 	public async historicalPrice(options: Contracts.HistoricalPriceOptions): Promise<Contracts.HistoricalData> {
-		const tokenId = await this.getTokenId(options.token);
+		const tokenId = await this.#getTokenId(options.token);
 
-		const { rates } = await this.getCurrencyData(options.token);
+		const { rates } = await this.#getCurrencyData(options.token);
 		const daysSubtract = options.days === 24 ? 1 : options.days;
 		const timeInterval = options.days === 24 ? "h1" : "h12";
 		const startDate = DateTime.make().subDays(daysSubtract).valueOf();
 		const endDate = DateTime.make().valueOf();
-		const body = await this.get(`assets/${tokenId}/history`, {
+		const body = await this.#get(`assets/${tokenId}/history`, {
 			interval: timeInterval,
 			start: startDate,
 			end: endDate,
@@ -103,12 +103,12 @@ export class PriceTracker implements Contracts.PriceTracker {
 
 	/** {@inheritDoc Contracts.PriceTracker.dailyAverage} */
 	public async dailyAverage(options: Contracts.DailyAverageOptions): Promise<number> {
-		const tokenId = await this.getTokenId(options.token);
+		const tokenId = await this.#getTokenId(options.token);
 
 		const start = DateTime.make(options.timestamp).startOf("day").valueOf();
 		const end = DateTime.make(start).addDay().valueOf();
 
-		const response = await this.get(`assets/${tokenId}/history`, {
+		const response = await this.#get(`assets/${tokenId}/history`, {
 			interval: "h1",
 			start,
 			end,
@@ -120,7 +120,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 
 		const priceUsd = response.data.reduce((acc, data) => acc + Number(data.priceUsd), 0) / response.data.length;
 
-		const { data } = await this.get("rates");
+		const { data } = await this.#get("rates");
 
 		return priceUsd * Number(data.find((rate: any) => rate.symbol === options.currency.toUpperCase()).rateUsd);
 	}
@@ -134,12 +134,12 @@ export class PriceTracker implements Contracts.PriceTracker {
 	 * @returns {Promise<string>}
 	 * @memberof PriceTracker
 	 */
-	private async getTokenId(token: string, limit = 1000): Promise<string> {
+	async #getTokenId(token: string, limit = 1000): Promise<string> {
 		if (Object.keys(this.tokenLookup).length > 0) {
 			return this.tokenLookup[token.toUpperCase()];
 		}
 
-		const body = await this.get("assets", { limit });
+		const body = await this.#get("assets", { limit });
 
 		for (const value of Object.values(body.data)) {
 			// @ts-ignore
@@ -157,10 +157,10 @@ export class PriceTracker implements Contracts.PriceTracker {
 	 * @returns {Promise<Contracts.KeyValuePair>}
 	 * @memberof PriceTracker
 	 */
-	private async fetchTokenData(token: string): Promise<Contracts.KeyValuePair> {
-		const tokenId = await this.getTokenId(token);
+	async #fetchTokenData(token: string): Promise<Contracts.KeyValuePair> {
+		const tokenId = await this.#getTokenId(token);
 
-		const body = await this.get(`assets/${tokenId}`);
+		const body = await this.#get(`assets/${tokenId}`);
 
 		return body.data;
 	}
@@ -173,10 +173,10 @@ export class PriceTracker implements Contracts.PriceTracker {
 	 * @returns {Promise<Contracts.KeyValuePair>}
 	 * @memberof PriceTracker
 	 */
-	private async getCurrencyData(token: string): Promise<Contracts.KeyValuePair> {
-		const body = await this.get("rates");
+	async #getCurrencyData(token: string): Promise<Contracts.KeyValuePair> {
+		const body = await this.#get("rates");
 		const { data, timestamp } = body;
-		const tokenData = await this.fetchTokenData(token);
+		const tokenData = await this.#fetchTokenData(token);
 
 		const response = {
 			assets: { [tokenData.symbol.toUpperCase()]: tokenData },
@@ -201,7 +201,7 @@ export class PriceTracker implements Contracts.PriceTracker {
 	 * @returns {Promise<any>}
 	 * @memberof PriceTracker
 	 */
-	private async get(path: string, query = {}): Promise<any> {
+	async #get(path: string, query = {}): Promise<any> {
 		const response = await this.#httpClient.get(`${this.#host}/${path}`, query);
 
 		return response.json();

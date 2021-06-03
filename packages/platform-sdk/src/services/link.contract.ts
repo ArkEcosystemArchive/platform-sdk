@@ -7,3 +7,9 @@ export interface LinkService {
 
 	wallet(id: string): string;
 }
+
+export interface LinkServiceSchema {
+	block: string;
+	transaction: string;
+	wallet: string;
+}

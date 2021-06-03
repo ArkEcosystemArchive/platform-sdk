@@ -5,13 +5,7 @@ import { URL } from "url";
 
 import { Config, NetworkHost } from "../coins";
 import { randomNetworkHostFromConfig } from "../helpers";
-import { LinkService } from "./link.contract";
-
-export interface LinkServiceSchema {
-	block: string;
-	transaction: string;
-	wallet: string;
-}
+import { LinkService, LinkServiceSchema } from "./link.contract";
 
 export abstract class AbstractLinkService implements LinkService {
 	readonly #host: NetworkHost;
@@ -27,18 +21,18 @@ export abstract class AbstractLinkService implements LinkService {
 	}
 
 	public block(id: string): string {
-		return this.buildURL(this.#schema.block, id);
+		return this.#buildURL(this.#schema.block, id);
 	}
 
 	public transaction(id: string): string {
-		return this.buildURL(this.#schema.transaction, id);
+		return this.#buildURL(this.#schema.transaction, id);
 	}
 
 	public wallet(id: string): string {
-		return this.buildURL(this.#schema.wallet, id);
+		return this.#buildURL(this.#schema.wallet, id);
 	}
 
-	private buildURL(schema: string, id: string): string {
+	#buildURL(schema: string, id: string): string {
 		const url: URL = new URL(formatString(schema, id), this.#host.host);
 
 		if (this.#host.query) {

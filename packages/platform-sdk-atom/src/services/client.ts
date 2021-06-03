@@ -55,7 +55,7 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		const response = await this.get(`txs/${id}`);
+		const response = await this.#get(`txs/${id}`);
 
 		return Helpers.createTransactionDataWithType(response, TransactionDTO);
 	}
@@ -63,7 +63,7 @@ export class ClientService extends Services.AbstractClientService {
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
 		const page = Number(query.cursor || 1);
 
-		const response = await this.get("txs", {
+		const response = await this.#get("txs", {
 			"message.action": "send",
 			"message.sender": query.address,
 			page,
@@ -83,8 +83,8 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { result: details } = await this.get(`auth/accounts/${id}`);
-		const { result: balance } = await this.get(`bank/balances/${id}`);
+		const { result: details } = await this.#get(`auth/accounts/${id}`);
+		const { result: balance } = await this.#get(`bank/balances/${id}`);
 
 		return new WalletData({
 			address: details.value.address,
@@ -102,7 +102,7 @@ export class ClientService extends Services.AbstractClientService {
 		};
 
 		for (const transaction of transactions) {
-			const { logs, txhash } = await this.post("txs", { mode: "block", tx: transaction });
+			const { logs, txhash } = await this.#post("txs", { mode: "block", tx: transaction });
 
 			transaction.setAttributes({ identifier: txhash });
 
@@ -130,13 +130,13 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.get(`${this.#peer}/${path}`, query);
 
 		return response.json();
 	}
 
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.post(`${this.#peer}/${path}`, body);
 
 		return response.json();

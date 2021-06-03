@@ -82,7 +82,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { data } = (await this.#client.get(`${this.getHost()}/v1/accounts/${id}`)).json();
+		const { data } = (await this.#client.get(`${this.#getHost()}/v1/accounts/${id}`)).json();
 
 		return new WalletData(data[0]);
 	}
@@ -96,7 +96,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		for (const transaction of transactions) {
 			const response = (
-				await this.#client.post(`${this.getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
+				await this.#client.post(`${this.#getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
 			).json();
 
 			if (response.result) {
@@ -121,7 +121,7 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private getHost(): string {
+	#getHost(): string {
 		return Helpers.randomHostFromConfig(this.#config);
 	}
 }

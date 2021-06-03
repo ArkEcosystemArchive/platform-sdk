@@ -71,14 +71,14 @@ export class URI {
 				method = "transfer";
 			}
 
-			const { error, value: result } = Joi.object(this.getSchema(method)).validate({ method, ...params });
+			const { error, value: result } = Joi.object(this.#getSchema(method)).validate({ method, ...params });
 
 			if (error !== undefined) {
 				throw error;
 			}
 
 			for (const [key, value] of Object.entries(result)) {
-				result[key] = this.decodeURIComponent(value);
+				result[key] = this.#decodeURIComponent(value);
 			}
 
 			return result;
@@ -95,7 +95,7 @@ export class URI {
 	 * @returns {string}
 	 * @memberof URI
 	 */
-	private decodeURIComponent(value): string {
+	#decodeURIComponent(value): string {
 		while (value !== decodeURIComponent(value)) {
 			value = decodeURIComponent(value);
 		}
@@ -111,7 +111,7 @@ export class URI {
 	 * @returns {object}
 	 * @memberof URI
 	 */
-	private getSchema(method: string): object {
+	#getSchema(method: string): object {
 		const baseSchema = {
 			method: Joi.string().pattern(/(transfer|vote|sign-message|register-delegate)/),
 			coin: Joi.string().default("ark"),

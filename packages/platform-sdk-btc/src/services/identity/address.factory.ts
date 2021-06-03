@@ -27,7 +27,7 @@ export class AddressFactory {
 			index: options?.bip44?.addressIndex,
 		};
 
-		return this.derive(
+		return this.#derive(
 			"bip44",
 			levels,
 			bitcoin.payments.p2pkh({
@@ -45,7 +45,7 @@ export class AddressFactory {
 			index: options?.bip49?.addressIndex,
 		};
 
-		return this.derive(
+		return this.#derive(
 			"bip49",
 			levels,
 			bitcoin.payments.p2sh({
@@ -66,7 +66,7 @@ export class AddressFactory {
 			index: options?.bip84?.addressIndex,
 		};
 
-		return this.derive(
+		return this.#derive(
 			"bip84",
 			levels,
 			bitcoin.payments.p2wpkh({
@@ -76,7 +76,7 @@ export class AddressFactory {
 		);
 	}
 
-	private derive(
+	#derive(
 		type: "bip44" | "bip49" | "bip84",
 		levels: Levels,
 		payment: bitcoin.payments.Payment,

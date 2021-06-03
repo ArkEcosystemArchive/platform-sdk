@@ -27,19 +27,19 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public secondPublicKey(): string | undefined {
-		return this.getProperty(["secondPublicKey", "attributes.secondPublicKey"]);
+		return this.#getProperty(["secondPublicKey", "attributes.secondPublicKey"]);
 	}
 
 	public username(): string | undefined {
-		return this.getProperty(["username", "attributes.delegate.username"]);
+		return this.#getProperty(["username", "attributes.delegate.username"]);
 	}
 
 	public rank(): number | undefined {
-		return this.getProperty(["rank", "attributes.delegate.rank"]);
+		return this.#getProperty(["rank", "attributes.delegate.rank"]);
 	}
 
 	public votes(): BigNumber | undefined {
-		const balance: string | undefined = this.getProperty(["votes", "attributes.delegate.voteBalance"]);
+		const balance: string | undefined = this.#getProperty(["votes", "attributes.delegate.voteBalance"]);
 
 		if (balance === undefined) {
 			return undefined;
@@ -63,7 +63,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 			throw new Error("This wallet does not have a multi-signature registered.");
 		}
 
-		return this.getProperty(["multiSignature", "attributes.multiSignature"]) as Contracts.WalletMultiSignature;
+		return this.#getProperty(["multiSignature", "attributes.multiSignature"]) as Contracts.WalletMultiSignature;
 	}
 
 	public isDelegate(): boolean {
@@ -71,22 +71,22 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 			return false;
 		}
 
-		return !!this.getProperty(["username", "attributes.delegate.username"]);
+		return !!this.#getProperty(["username", "attributes.delegate.username"]);
 	}
 
 	public isResignedDelegate(): boolean {
-		return !!this.getProperty(["isResigned", "attributes.delegate.resigned"]);
+		return !!this.#getProperty(["isResigned", "attributes.delegate.resigned"]);
 	}
 
 	public isMultiSignature(): boolean {
-		return !!this.getProperty(["multiSignature", "attributes.multiSignature"]);
+		return !!this.#getProperty(["multiSignature", "attributes.multiSignature"]);
 	}
 
 	public isSecondSignature(): boolean {
-		return !!this.getProperty(["secondPublicKey", "attributes.secondPublicKey"]);
+		return !!this.#getProperty(["secondPublicKey", "attributes.secondPublicKey"]);
 	}
 
-	private getProperty<T>(keys: string[]): T | undefined {
+	#getProperty<T>(keys: string[]): T | undefined {
 		for (const key of keys) {
 			if (has(this.data, key)) {
 				return get(this.data, key);

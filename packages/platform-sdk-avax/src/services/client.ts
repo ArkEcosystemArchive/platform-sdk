@@ -45,7 +45,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const { transactions } = await this.get("v2/transactions", {
+		const { transactions } = await this.#get("v2/transactions", {
 			chainID: this.#config.get("network.meta.blockchainId"),
 			limit: 100,
 			offset: query.cursor || 0,
@@ -111,15 +111,15 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (
 			await this.#config
 				.get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient)
-				.get(`${this.host()}/${path}`, query?.searchParams)
+				.get(`${this.#host()}/${path}`, query?.searchParams)
 		).json();
 	}
 
-	private host(): string {
+	#host(): string {
 		return Helpers.randomHostFromConfig(this.#config, "archival");
 	}
 }

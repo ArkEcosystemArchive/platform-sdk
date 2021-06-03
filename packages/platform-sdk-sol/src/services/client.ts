@@ -11,7 +11,7 @@ export class ClientService extends Services.AbstractClientService {
 		super();
 
 		this.#config = config;
-		this.#client = new Connection(this.host());
+		this.#client = new Connection(this.#host());
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -55,7 +55,7 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private host(): string {
+	#host(): string {
 		return Helpers.randomHostFromConfig(this.#config);
 	}
 }

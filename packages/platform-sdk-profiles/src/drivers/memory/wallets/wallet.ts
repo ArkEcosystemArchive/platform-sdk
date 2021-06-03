@@ -74,7 +74,7 @@ export class Wallet implements IReadWriteWallet {
 		this.#walletImportFormat = new WalletImportFormat(this);
 		this.#multiSignature = new MultiSignature(this);
 
-		this.restore();
+		this.#restore();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.profile} */
@@ -532,7 +532,7 @@ export class Wallet implements IReadWriteWallet {
 		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.WIFWithEncryption;
 	}
 
-	private restore(): void {
+	#restore(): void {
 		const balance: Contracts.WalletBalance | undefined = this.data().get<Contracts.WalletBalance>(
 			WalletData.Balance,
 		);

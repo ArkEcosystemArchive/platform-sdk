@@ -22,13 +22,13 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		const { data } = await this.get(`transaction/${id}`);
+		const { data } = await this.#get(`transaction/${id}`);
 
 		return Helpers.createTransactionDataWithType({ hash: id, ...data.transaction }, TransactionDTO);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const { data } = await this.get(`address/${Helpers.pluckAddress(query)}/transactions`);
+		const { data } = await this.#get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
 		return Helpers.createTransactionDataCollectionWithType(
 			data.transactions,
@@ -43,7 +43,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { data } = await this.get(`address/${id}`);
+		const { data } = await this.#get(`address/${id}`);
 
 		return new WalletData(data.account);
 	}
@@ -57,7 +57,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		for (const transaction of transactions) {
 			try {
-				const { txHash } = await this.post("transaction/send", transaction.toBroadcast());
+				const { txHash } = await this.#post("transaction/send", transaction.toBroadcast());
 
 				transaction.setAttributes({ identifier: txHash });
 
@@ -72,15 +72,15 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async get(path: string): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.host()}/v1.0/${path}`)).json();
+	async #get(path: string): Promise<Contracts.KeyValuePair> {
+		return (await this.#http.get(`${this.#host()}/v1.0/${path}`)).json();
 	}
 
-	private async post(path: string, data: object): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.post(`${this.host()}/v1.0/${path}`, data)).json();
+	async #post(path: string, data: object): Promise<Contracts.KeyValuePair> {
+		return (await this.#http.post(`${this.#host()}/v1.0/${path}`, data)).json();
 	}
 
-	private host(): string {
+	#host(): string {
 		return Helpers.randomHostFromConfig(this.#config);
 	}
 }

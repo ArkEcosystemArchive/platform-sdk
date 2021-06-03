@@ -54,7 +54,7 @@ export class TransactionData {
 	}
 
 	public convertedAmount(): BigNumber {
-		return this.convertAmount(this.amount().divide(1e8));
+		return this.#convertAmount(this.amount().divide(1e8));
 	}
 
 	public fee(): BigNumber {
@@ -62,7 +62,7 @@ export class TransactionData {
 	}
 
 	public convertedFee(): BigNumber {
-		return this.convertAmount(this.fee().divide(1e8));
+		return this.#convertAmount(this.fee().divide(1e8));
 	}
 
 	public memo(): string | undefined {
@@ -195,7 +195,7 @@ export class TransactionData {
 	}
 
 	public convertedTotal(): BigNumber {
-		return this.convertAmount(this.total().divide(1e8));
+		return this.#convertAmount(this.total().divide(1e8));
 	}
 
 	/**
@@ -217,7 +217,7 @@ export class TransactionData {
 		return (this.#data as unknown) as T;
 	}
 
-	private convertAmount(value: BigNumber): BigNumber {
+	#convertAmount(value: BigNumber): BigNumber {
 		const timestamp: DateTime | undefined = this.timestamp();
 
 		if (timestamp === undefined) {

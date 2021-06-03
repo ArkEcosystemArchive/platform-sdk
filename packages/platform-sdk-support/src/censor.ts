@@ -703,8 +703,8 @@ export class Censor {
 	 */
 	public process(value: string): string {
 		if (value) {
-			value = this.removeSpam(value);
-			value = this.removeBadWords(value);
+			value = this.#removeSpam(value);
+			value = this.#removeBadWords(value);
 		}
 
 		return value;
@@ -718,7 +718,7 @@ export class Censor {
 	 * @returns {string}
 	 * @memberof Censor
 	 */
-	private removeBadWords(value: string): string {
+	#removeBadWords(value: string): string {
 		const badwords = new BadWords();
 		badwords.addWords("pedo", "pedophile");
 
@@ -737,7 +737,7 @@ export class Censor {
 	 * @returns {string}
 	 * @memberof Censor
 	 */
-	private removeSpam(value: string): string {
+	#removeSpam(value: string): string {
 		return new Censorify().process(value);
 	}
 }

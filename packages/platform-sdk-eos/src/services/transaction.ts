@@ -39,7 +39,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
-			const { client, signatureProvider } = this.getClient(input.signatory.signingKey());
+			const { client, signatureProvider } = this.#getClient(input.signatory.signingKey());
 
 			const transfer = await client.transact(
 				{
@@ -91,7 +91,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 	}
 
-	private getClient(privateKey: string) {
+	#getClient(privateKey: string) {
 		const signatureProvider: JsSignatureProvider = new JsSignatureProvider([privateKey]);
 
 		return {
