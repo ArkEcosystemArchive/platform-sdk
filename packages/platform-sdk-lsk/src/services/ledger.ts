@@ -1,6 +1,7 @@
 import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 import { BIP44, HDKey } from "@arkecosystem/platform-sdk-crypto";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
+
 import { WalletData } from "../dto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
@@ -70,11 +71,11 @@ export class LedgerService extends Services.AbstractLedgerService {
 	// @TODO: discover wallets until they 404
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
-		let page = 0;
+		const page = 0;
 		const slip44 = this.#config.get<number>("network.constants.slip44");
 
 		const addressCache: Record<string, { address: string; publicKey: string }> = {};
-		let wallets: Contracts.WalletData[] = [];
+		const wallets: Contracts.WalletData[] = [];
 
 		const addresses: string[] = [];
 

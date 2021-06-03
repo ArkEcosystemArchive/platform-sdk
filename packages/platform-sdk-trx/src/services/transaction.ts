@@ -11,17 +11,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #address: AddressService;
 	readonly #privateKey: PrivateKeyService;
 
-	private constructor(config: Coins.Config, peer: string) {
+	private constructor(config: Coins.Config) {
 		super();
 
 		this.#config = config;
-		this.#connection = new TronWeb({ fullHost: peer });
+		this.#connection = new TronWeb({ fullHost: Helpers.randomHostFromConfig(config) });
 		this.#address = new AddressService(config);
 		this.#privateKey = new PrivateKeyService(config);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config, Helpers.randomHostFromConfig(config));
+		return new TransactionService(config);
 	}
 
 	public async transfer(
@@ -59,7 +59,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 				(await this.#privateKey.fromMnemonic(input.signatory.signingKey())).privateKey,
 			);
 
-			return new SignedTransactionData(response.txID, response, response);
+			const decimals = this.#config.get<number>(Coins.ConfigKey.CurrencyDecimals);
+			return new SignedTransactionData(response.txID, response, response, decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

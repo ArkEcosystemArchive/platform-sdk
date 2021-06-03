@@ -56,8 +56,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 			]);
 
 			const signedData = { ...signedTransaction, timestamp: DateTime.make() };
+			const decimals = this.#config.get<number>(Coins.ConfigKey.CurrencyDecimals);
 
-			return new SignedTransactionData(id, signedData, signedTransaction);
+			return new SignedTransactionData(id, signedData, signedTransaction, decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

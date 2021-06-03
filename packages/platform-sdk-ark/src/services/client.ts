@@ -15,6 +15,7 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #http: HttpClient;
 	readonly #network: string;
+	readonly #decimals: number;
 
 	private constructor(config: Coins.Config) {
 		super();
@@ -22,6 +23,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#config = config;
 		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#network = config.get<string>("network.id");
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -34,7 +36,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.#get(`transactions/${id}`);
 
-		return Helpers.createTransactionDataWithType(body.data, TransactionDTO);
+		return Helpers.createTransactionDataWithType(body.data, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -46,6 +48,7 @@ export class ClientService extends Services.AbstractClientService {
 			response.data,
 			this.#createMetaPagination(response),
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 

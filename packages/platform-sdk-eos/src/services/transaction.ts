@@ -1,5 +1,4 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { ConfigKey } from "@arkecosystem/platform-sdk/dist/coins";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { createHash } from "crypto";
 import { Api, JsonRpc } from "eosjs";
@@ -13,20 +12,23 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #networkId: string;
 	readonly #peer: string;
 	readonly #ticker: string;
+	readonly #decimals: number;
 
-	private constructor({ networkId, peer, ticker }) {
+	private constructor({ networkId, peer, ticker, decimals }) {
 		super();
 
 		this.#networkId = networkId;
 		this.#peer = peer;
 		this.#ticker = ticker;
+		this.#decimals = decimals;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<TransactionService> {
 		return new TransactionService({
 			networkId: config.get<string>("network.meta.networkId"),
 			peer: Helpers.randomHostFromConfig(config),
-			ticker: config.get<string>(ConfigKey.CurrencyTicker),
+			ticker: config.get<string>(Coins.ConfigKey.CurrencyTicker),
+			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
 		});
 	}
 
@@ -85,6 +87,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				createHash("sha256").update(transaction.serializedTransaction).digest("hex"),
 				{ ...transaction, timestamp: DateTime.make() },
 				transaction,
+				this.#decimals,
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

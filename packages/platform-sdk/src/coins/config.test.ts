@@ -74,6 +74,7 @@ test("ConfigKey", () => {
 	expect(ConfigKey).toMatchInlineSnapshot(`
 		Object {
 		  "Bech32": "network.constants.bech32",
+		  "CurrencyDecimals": "network.currency.decimals",
 		  "CurrencyTicker": "network.currency.ticker",
 		  "HttpClient": "httpClient",
 		  "KnownWallets": "network.knownWallets",
