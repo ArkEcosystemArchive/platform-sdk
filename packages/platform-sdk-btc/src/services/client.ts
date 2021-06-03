@@ -22,7 +22,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		this.#http = http;
 		this.#peer = peer;
-		this.#decimals = peer;
+		this.#decimals = decimals;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {

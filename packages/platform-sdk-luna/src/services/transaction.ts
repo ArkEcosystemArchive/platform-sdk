@@ -31,7 +31,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				memo: input.data.memo,
 			});
 
-		return new SignedTransactionData(UUID.random(), transaction.toData(), transaction.toJSON());
+		return new SignedTransactionData(UUID.random(), transaction.toData(), transaction.toJSON(), this.#config.get(Coins.ConfigKey.CurrencyDecimals));
 	}
 
 	#useClient(): LCDClient {

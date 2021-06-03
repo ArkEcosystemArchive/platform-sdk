@@ -4,7 +4,7 @@ import { KeyValuePair } from "@arkecosystem/platform-sdk/dist/contracts";
 import * as DTO from "../dto";
 
 export class DataTransferObjectService extends Services.AbstractDataTransferObjectService {
-	public constructor(private decimals?: number) {
+	public constructor(private decimals: string) {
 		super();
 	}
 
@@ -13,7 +13,7 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 	}
 
 	public signedTransaction(identifier: string, signedData: string): Contracts.SignedTransactionData {
-		return new DTO.SignedTransactionData(identifier, signedData, signedData);
+		return new DTO.SignedTransactionData(identifier, signedData, signedData, this.decimals);
 	}
 
 	public transaction(transaction: KeyValuePair): Contracts.TransactionDataType {

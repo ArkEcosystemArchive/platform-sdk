@@ -68,7 +68,7 @@ export const createTransactionDataCollectionWithType = (
 	transactions: unknown[],
 	meta: MetaPagination,
 	classes: Record<string, any>,
-	decimals?: number,
+	decimals?: number | string,
 ): TransactionDataCollection =>
 	new TransactionDataCollection(
 		transactions.map((transaction) => createTransactionDataWithType(transaction, classes).withDecimals(decimals)),
