@@ -47,7 +47,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				{ maxLedgerVersionOffset: 5 },
 			);
 
-			const { id, signedTransaction } = await this.post("sign", [
+			const { id, signedTransaction } = await this.#post("sign", [
 				{
 					tx_json: prepared.txJSON,
 					secret: input.signatory.signingKey(),
@@ -62,7 +62,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 	}
 
-	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
+	async #post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
 			await this.#http.post(Helpers.randomHostFromConfig(this.#config), {
 				jsonrpc: "2.0",

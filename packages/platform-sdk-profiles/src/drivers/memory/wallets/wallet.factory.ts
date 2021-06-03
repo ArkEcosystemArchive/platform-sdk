@@ -52,13 +52,13 @@ export class WalletFactory implements IWalletFactory {
 			);
 		}
 
-		if (bip === 39 && this.allowsDeriveWithBIP39(wallet)) {
+		if (bip === 39 && this.#allowsDeriveWithBIP39(wallet)) {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP39);
 
 			await wallet.mutator().identity(mnemonic);
 		}
 
-		if (bip === 44 && this.allowsDeriveWithBIP44(wallet)) {
+		if (bip === 44 && this.#allowsDeriveWithBIP44(wallet)) {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP44);
 
 			const { publicKey } = await wallet
@@ -88,7 +88,7 @@ export class WalletFactory implements IWalletFactory {
 		}
 
 		/* istanbul ignore next */
-		if (bip === 49 && this.allowsDeriveWithBIP49(wallet)) {
+		if (bip === 49 && this.#allowsDeriveWithBIP49(wallet)) {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP49);
 
 			/* istanbul ignore next */
@@ -96,7 +96,7 @@ export class WalletFactory implements IWalletFactory {
 		}
 
 		/* istanbul ignore next */
-		if (bip === 84 && this.allowsDeriveWithBIP84(wallet)) {
+		if (bip === 84 && this.#allowsDeriveWithBIP84(wallet)) {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.MnemonicBIP84);
 
 			/* istanbul ignore next */
@@ -207,22 +207,22 @@ export class WalletFactory implements IWalletFactory {
 		return wallet;
 	}
 
-	private allowsDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
+	#allowsDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
 		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip39);
 	}
 
-	private allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
+	#allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
 		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip44);
 	}
 
 	/* istanbul ignore next */
-	private allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
+	#allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
 		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip49);
 	}
 
 	/* istanbul ignore next */
-	private allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
+	#allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
 		return wallet.gate().allows(Coins.FeatureFlag.IdentityAddressMnemonicBip84);
 	}

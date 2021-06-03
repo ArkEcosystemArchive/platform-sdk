@@ -35,7 +35,7 @@ export class WalletSerialiser {
 				[WalletData.Network]: this.#wallet.networkId(),
 				[WalletData.Address]: this.#wallet.address(),
 				[WalletData.PublicKey]: this.#wallet.publicKey(),
-				[WalletData.Balance]: this.serializeBalance(),
+				[WalletData.Balance]: this.#serializeBalance(),
 				[WalletData.BroadcastedTransactions]: this.#wallet.data().get(WalletData.BroadcastedTransactions, []),
 				[WalletData.DerivationPath]: this.#wallet.data().get(WalletData.DerivationPath),
 				[WalletData.DerivationType]: this.#wallet.data().get(WalletData.DerivationType),
@@ -57,7 +57,7 @@ export class WalletSerialiser {
 		};
 	}
 
-	private serializeBalance(): SerializedBalance {
+	#serializeBalance(): SerializedBalance {
 		const balance = this.#wallet.data().get<Contracts.WalletBalance>(WalletData.Balance);
 
 		const serializedBalance: SerializedBalance = {

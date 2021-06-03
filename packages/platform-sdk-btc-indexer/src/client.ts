@@ -37,7 +37,7 @@ export class Client {
 	 * @memberof Client
 	 */
 	public async height(): Promise<number> {
-		return this.post<number>("getblockcount", []);
+		return this.#post<number>("getblockcount", []);
 	}
 
 	/**
@@ -48,7 +48,7 @@ export class Client {
 	 * @memberof Client
 	 */
 	public async blockWithTransactions(id: number): Promise<Record<string, any>> {
-		return this.post("getblockbyheight", [id, true, true]);
+		return this.#post("getblockbyheight", [id, true, true]);
 	}
 
 	/**
@@ -61,7 +61,7 @@ export class Client {
 	 * @returns {Promise<T>}
 	 * @memberof Client
 	 */
-	private async post<T = Record<string, any>>(method: string, params: any): Promise<T> {
+	async #post<T = Record<string, any>>(method: string, params: any): Promise<T> {
 		return (
 			await this.#client.post("/", {
 				jsonrpc: "1.0",

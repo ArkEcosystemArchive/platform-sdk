@@ -24,7 +24,7 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		const transaction = await this.post("tx", [
+		const transaction = await this.#post("tx", [
 			{
 				transaction: id,
 				binary: false,
@@ -35,7 +35,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		const { transactions } = await this.post("account_tx", [
+		const { transactions } = await this.#post("account_tx", [
 			{
 				account: query.address || query.addresses![0],
 				limit: query.limit || 15,
@@ -57,7 +57,7 @@ export class ClientService extends Services.AbstractClientService {
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(
 			(
-				await this.post("account_info", [
+				await this.#post("account_info", [
 					{
 						account: id,
 						strict: true,
@@ -76,7 +76,7 @@ export class ClientService extends Services.AbstractClientService {
 		};
 
 		for (const transaction of transactions) {
-			const { engine_result, tx_json } = await this.post("submit", [
+			const { engine_result, tx_json } = await this.#post("submit", [
 				{
 					tx_blob: transaction.toBroadcast(),
 				},
@@ -102,7 +102,7 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
+	async #post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
 			await this.#http.post(Helpers.randomHostFromConfig(this.#config), {
 				jsonrpc: "2.0",

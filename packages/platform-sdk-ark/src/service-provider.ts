@@ -7,12 +7,12 @@ import * as Services from "./services";
 
 export class ServiceProvider extends IoC.AbstractServiceProvider {
 	public async make(): Promise<Coins.CoinServices> {
-		await this.retrieveNetworkConfiguration();
+		await this.#retrieveNetworkConfiguration();
 
 		return this.compose(Services, container);
 	}
 
-	private async retrieveNetworkConfiguration(): Promise<void> {
+	async #retrieveNetworkConfiguration(): Promise<void> {
 		const http: Contracts.HttpClient = this.config().get<Contracts.HttpClient>(Coins.ConfigKey.HttpClient);
 
 		let peer: string = Helpers.randomHostFromConfig(this.config());

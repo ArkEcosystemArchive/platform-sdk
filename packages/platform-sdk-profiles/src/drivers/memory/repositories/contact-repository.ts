@@ -125,17 +125,17 @@ export class ContactRepository implements IContactRepository {
 
 	/** {@inheritDoc IContactRepository.findByAddress} */
 	public findByAddress(value: string): IContact[] {
-		return this.findByColumn("address", value);
+		return this.#findByColumn("address", value);
 	}
 
 	/** {@inheritDoc IContactRepository.findByCoin} */
 	public findByCoin(value: string): IContact[] {
-		return this.findByColumn("coin", value);
+		return this.#findByColumn("coin", value);
 	}
 
 	/** {@inheritDoc IContactRepository.findByNetwork} */
 	public findByNetwork(value: string): IContact[] {
-		return this.findByColumn("network", value);
+		return this.#findByColumn("network", value);
 	}
 
 	/** {@inheritDoc IContactRepository.toObject} */
@@ -169,7 +169,7 @@ export class ContactRepository implements IContactRepository {
 		await pqueue(promises);
 	}
 
-	private findByColumn(column: string, value: string): IContact[] {
+	#findByColumn(column: string, value: string): IContact[] {
 		const result: IContact[] = [];
 
 		for (const contact of Object.values(this.all())) {

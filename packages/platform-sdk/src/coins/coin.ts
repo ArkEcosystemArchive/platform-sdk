@@ -43,7 +43,7 @@ export class Coin {
 		this.#manifest = manifest;
 		this.#config = config;
 		this.#specification = specification;
-		this.#network = this.createNetwork(specification, config);
+		this.#network = this.#createNetwork(specification, config);
 	}
 
 	public async __construct(): Promise<void> {
@@ -188,7 +188,7 @@ export class Coin {
 		return this.#services !== undefined;
 	}
 
-	private createNetwork(specification: CoinSpec, config: Config): Network {
+	#createNetwork(specification: CoinSpec, config: Config): Network {
 		const network = config.get<NetworkManifest>(ConfigKey.Network);
 
 		return new Network(specification.manifest, {

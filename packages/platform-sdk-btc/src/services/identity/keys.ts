@@ -8,7 +8,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.KeyPairDataTransferObject> {
 		try {
-			return this.normalize(bitcoin.ECPair.fromPrivateKey(BIP32.fromMnemonic(mnemonic).privateKey!));
+			return this.#normalize(bitcoin.ECPair.fromPrivateKey(BIP32.fromMnemonic(mnemonic).privateKey!));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -16,7 +16,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
-			return this.normalize(bitcoin.ECPair.fromPrivateKey(Buffer.from(privateKey, "hex")));
+			return this.#normalize(bitcoin.ECPair.fromPrivateKey(Buffer.from(privateKey, "hex")));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -24,13 +24,13 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromWIF(wif: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
-			return this.normalize(bitcoin.ECPair.fromWIF(wif));
+			return this.#normalize(bitcoin.ECPair.fromWIF(wif));
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
-	private normalize(keyPair: bitcoin.ECPair.ECPairInterface): Services.KeyPairDataTransferObject {
+	#normalize(keyPair: bitcoin.ECPair.ECPairInterface): Services.KeyPairDataTransferObject {
 		try {
 			return {
 				publicKey: keyPair.publicKey.toString("hex"),

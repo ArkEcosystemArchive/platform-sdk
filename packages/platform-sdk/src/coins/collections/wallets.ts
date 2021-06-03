@@ -3,18 +3,18 @@ import { Paginator } from "./paginator";
 
 export class WalletDataCollection extends Paginator<WalletData> {
 	public findByAddress(address: string): WalletData | undefined {
-		return this.find("address", address);
+		return this.#find("address", address);
 	}
 
 	public findByPublicKey(publicKey: string): WalletData | undefined {
-		return this.find("publicKey", publicKey);
+		return this.#find("publicKey", publicKey);
 	}
 
 	public findByUsername(username: string): WalletData | undefined {
-		return this.find("username", username);
+		return this.#find("username", username);
 	}
 
-	private find(key: string, value: string): WalletData | undefined {
+	#find(key: string, value: string): WalletData | undefined {
 		return this.items().find((wallet: WalletData) => wallet[key]() === value);
 	}
 }

@@ -27,24 +27,24 @@ export class LedgerService extends Services.AbstractLedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		const { publicKey } = await this.#transport.getPubKey(this.getLedgerAccount(path));
+		const { publicKey } = await this.#transport.getPubKey(this.#getLedgerAccount(path));
 
 		return publicKey;
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
-		const signature: Buffer = await this.#transport.signTX(this.getLedgerAccount(path), payload);
+		const signature: Buffer = await this.#transport.signTX(this.#getLedgerAccount(path), payload);
 
 		return signature.toString("hex");
 	}
 
 	public async signMessage(path: string, payload: Buffer): Promise<string> {
-		const signature: Buffer = await this.#transport.signMSG(this.getLedgerAccount(path), payload);
+		const signature: Buffer = await this.#transport.signMSG(this.#getLedgerAccount(path), payload);
 
 		return signature.slice(0, 64).toString("hex");
 	}
 
-	private getLedgerAccount(path: string): LedgerAccount {
+	#getLedgerAccount(path: string): LedgerAccount {
 		return new LedgerAccount().coinIndex(SupportedCoin.LISK).account(BIP44.parse(path).account);
 	}
 }

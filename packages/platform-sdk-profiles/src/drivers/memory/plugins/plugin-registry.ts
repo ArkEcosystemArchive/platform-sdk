@@ -46,13 +46,13 @@ export class PluginRegistry implements IPluginRegistry {
 					continue;
 				}
 
-				results.push(this.expand(item.package));
+				results.push(this.#expand(item.package));
 			}
 
 			i++;
 		}
 
-		return this.applyWhitelist(await Promise.all(results));
+		return this.#applyWhitelist(await Promise.all(results));
 	}
 
 	/** {@inheritDoc IPluginRegistry.size} */
@@ -77,7 +77,7 @@ export class PluginRegistry implements IPluginRegistry {
 		return result;
 	}
 
-	private async applyWhitelist(plugins: IRegistryPlugin[]): Promise<IRegistryPlugin[]> {
+	async #applyWhitelist(plugins: IRegistryPlugin[]): Promise<IRegistryPlugin[]> {
 		const whitelist: Record<string, string> = (
 			await this.#httpClient.get(
 				"https://raw.githubusercontent.com/ArkEcosystem/common/master/desktop-wallet/whitelist.json",
@@ -101,7 +101,7 @@ export class PluginRegistry implements IPluginRegistry {
 		return result;
 	}
 
-	private async expand(pkg: any): Promise<IRegistryPlugin> {
+	async #expand(pkg: any): Promise<IRegistryPlugin> {
 		return new RegistryPlugin(
 			pkg,
 			(

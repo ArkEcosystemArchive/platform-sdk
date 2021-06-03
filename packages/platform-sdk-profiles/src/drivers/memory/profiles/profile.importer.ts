@@ -20,7 +20,7 @@ export class ProfileImporter implements IProfileImporter {
 
 	/** {@inheritDoc IProfileImporter.import} */
 	public async import(password?: string): Promise<void> {
-		let data: IProfileData | undefined = this.unpack(password);
+		let data: IProfileData | undefined = this.#unpack(password);
 
 		if (container.has(Identifiers.MigrationSchemas) && container.has(Identifiers.MigrationVersion)) {
 			await new Migrator(this.#profile).migrate(
@@ -45,7 +45,7 @@ export class ProfileImporter implements IProfileImporter {
 
 		this.#profile.contacts().fill(data.contacts);
 
-		this.gatherCoins(data);
+		this.#gatherCoins(data);
 	}
 
 	/**
@@ -56,7 +56,7 @@ export class ProfileImporter implements IProfileImporter {
 	 * @return {Promise<IProfileData>}
 	 * @memberof Profile
 	 */
-	private unpack(password?: string): IProfileData {
+	#unpack(password?: string): IProfileData {
 		let data: IProfileData | undefined;
 		let errorReason = "";
 
@@ -86,7 +86,7 @@ export class ProfileImporter implements IProfileImporter {
 	 * @param {IProfileData} data
 	 * @memberof ProfileImporter
 	 */
-	private gatherCoins(data: IProfileData): void {
+	#gatherCoins(data: IProfileData): void {
 		for (const wallet of Object.values(data.wallets)) {
 			this.#profile.coins().set(wallet.data[WalletData.Coin], wallet.data[WalletData.Network]);
 		}

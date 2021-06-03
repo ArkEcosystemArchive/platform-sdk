@@ -50,7 +50,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	private constructor(value?: DateTimeLike, locale?: any) {
-		this.#instance = this.toUTC(value);
+		this.#instance = this.#toUTC(value);
 		this.#locale = locale;
 
 		if (!locale) {
@@ -111,7 +111,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public isBefore(value: DateTimeLike): boolean {
-		return this.#instance.isBefore(this.toUTC(value));
+		return this.#instance.isBefore(this.#toUTC(value));
 	}
 
 	/**
@@ -122,7 +122,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public isSame(value: DateTimeLike): boolean {
-		return this.#instance.isSame(this.toUTC(value));
+		return this.#instance.isSame(this.#toUTC(value));
 	}
 
 	/**
@@ -133,7 +133,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public isAfter(value: DateTimeLike): boolean {
-		return this.#instance.isAfter(this.toUTC(value));
+		return this.#instance.isAfter(this.#toUTC(value));
 	}
 
 	/**
@@ -732,7 +732,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInMilliseconds(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "millisecond");
+		return this.#instance.diff(this.#toUTC(value), "millisecond");
 	}
 
 	/**
@@ -743,7 +743,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInSeconds(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "second");
+		return this.#instance.diff(this.#toUTC(value), "second");
 	}
 
 	/**
@@ -754,7 +754,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInMinutes(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "minute");
+		return this.#instance.diff(this.#toUTC(value), "minute");
 	}
 
 	/**
@@ -765,7 +765,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInHours(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "hour");
+		return this.#instance.diff(this.#toUTC(value), "hour");
 	}
 
 	/**
@@ -776,7 +776,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInDays(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "day");
+		return this.#instance.diff(this.#toUTC(value), "day");
 	}
 
 	/**
@@ -787,7 +787,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInWeeks(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "week");
+		return this.#instance.diff(this.#toUTC(value), "week");
 	}
 
 	/**
@@ -798,7 +798,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInMonths(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "month");
+		return this.#instance.diff(this.#toUTC(value), "month");
 	}
 
 	/**
@@ -809,7 +809,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInQuarters(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "quarter");
+		return this.#instance.diff(this.#toUTC(value), "quarter");
 	}
 
 	/**
@@ -820,7 +820,7 @@ export class DateTime {
 	 * @memberof DateTime
 	 */
 	public diffInYears(value: DateTimeLike): number {
-		return this.#instance.diff(this.toUTC(value), "year");
+		return this.#instance.diff(this.#toUTC(value), "year");
 	}
 
 	/**
@@ -962,7 +962,7 @@ export class DateTime {
 	 * @returns {dayjs.Dayjs}
 	 * @memberof DateTime
 	 */
-	private toUTC(value?: DateTimeLike): dayjs.Dayjs {
+	#toUTC(value?: DateTimeLike): dayjs.Dayjs {
 		if (value instanceof DateTime) {
 			return dayjs.utc(value.valueOf());
 		}

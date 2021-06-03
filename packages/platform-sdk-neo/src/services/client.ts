@@ -43,7 +43,7 @@ export class ClientService extends Services.AbstractClientService {
 		const basePath = `get_address_abstracts/${query.address}`;
 		const basePage = (query.cursor as number) || 1;
 
-		const response = await this.get(`${basePath}/${basePage}`);
+		const response = await this.#get(`${basePath}/${basePage}`);
 
 		const prevPage = response.page_number > 1 ? basePage - 1 : undefined;
 		const nextPage = response.total_pages > 1 ? basePage + 1 : undefined;
@@ -61,7 +61,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const response = await this.get(`get_balance/${id}`);
+		const response = await this.#get(`get_balance/${id}`);
 
 		return new WalletData({
 			address: id,
@@ -115,13 +115,13 @@ export class ClientService extends Services.AbstractClientService {
 		return result;
 	}
 
-	private async get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.get(`${this.#peer}/${path}`, query);
 
 		return response.json();
 	}
 
-	private async post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
+	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		const response = await this.#http.post(`${this.#peer}/${path}`, body);
 
 		return response.json();

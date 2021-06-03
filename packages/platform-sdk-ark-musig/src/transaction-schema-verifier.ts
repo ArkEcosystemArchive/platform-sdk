@@ -3,7 +3,7 @@ import { Enums, Interfaces, Transactions, Validation } from "@arkecosystem/crypt
 class TransactionSchemaVerifier {
 	public constructor() {
 		for (const schemaName of Object.keys(Transactions.schemas)) {
-			this.extendTransaction(Transactions.schemas[schemaName], schemaName);
+			this.#extendTransaction(Transactions.schemas[schemaName], schemaName);
 		}
 	}
 
@@ -23,7 +23,7 @@ class TransactionSchemaVerifier {
 		}
 	}
 
-	private extendTransaction(schema, schemaName?) {
+	#extendTransaction(schema, schemaName?) {
 		if (typeof schema !== "object" || !schema.properties.signatures.minItems || !schema.$id) {
 			return;
 		}

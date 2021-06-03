@@ -54,8 +54,8 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 					base: this.baseCurrency,
 					rates,
 				}),
-				marketCap: this.normalise(assets[tokenId].marketCapUsd, rates, currency),
-				volume: this.normalise(assets[tokenId].volumeUsd24Hr, rates, currency),
+				marketCap: this.#normalise(assets[tokenId].marketCapUsd, rates, currency),
+				volume: this.#normalise(assets[tokenId].volumeUsd24Hr, rates, currency),
 				date: new Date(this.data.timestamp),
 				change24h: null,
 			};
@@ -64,7 +64,7 @@ export class MarketTransformer implements Contracts.MarketTransformer {
 		return result;
 	}
 
-	private normalise(marketCapUsd: number, rates: object, currency: string): number {
+	#normalise(marketCapUsd: number, rates: object, currency: string): number {
 		return marketCapUsd * (rates[this.baseCurrency] / rates[currency]);
 	}
 }

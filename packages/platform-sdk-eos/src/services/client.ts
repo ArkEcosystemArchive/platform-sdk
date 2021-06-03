@@ -31,9 +31,6 @@ export class ClientService extends Services.AbstractClientService {
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-transaction-information
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-table-information
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Coins.TransactionDataCollection> {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.transactions.name);
-	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(await this.#rpc.get_account(id));

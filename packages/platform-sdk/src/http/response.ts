@@ -19,7 +19,7 @@ export class Response implements HttpResponse {
 		this._body = response.body;
 		this._error = error;
 
-		this.throw();
+		this.#throw();
 	}
 
 	public body(): string {
@@ -70,7 +70,7 @@ export class Response implements HttpResponse {
 		return this.status() >= 500;
 	}
 
-	private throw(): void {
+	#throw(): void {
 		if (this.serverError() || this.clientError()) {
 			throw new RequestException(this, this._error);
 		}

@@ -25,20 +25,20 @@ export class LedgerService extends Services.AbstractLedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		const parsedPath = this.parseDotPath(path);
+		const parsedPath = this.#parseDotPath(path);
 		const { pubKey } = await this.#transport.getAddress(parsedPath[2], parsedPath[3], parsedPath[4]);
 
 		return pubKey;
 	}
 
 	public async signTransaction(path: string, payload: Buffer): Promise<string> {
-		const parsedPath = this.parseDotPath(path);
+		const parsedPath = this.#parseDotPath(path);
 		const { signature } = await this.#transport.sign(parsedPath[2], parsedPath[3], parsedPath[4], payload);
 
 		return signature.toString("hex");
 	}
 
-	private parseDotPath(path: string): number[] {
+	#parseDotPath(path: string): number[] {
 		const HARDENING = 0x80000000;
 		const elements: number[] = [];
 

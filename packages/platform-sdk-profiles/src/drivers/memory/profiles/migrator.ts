@@ -11,10 +11,10 @@ export class Migrator implements IMigrator {
 
 	/** {@inheritDoc IMigrator.migrate} */
 	public async migrate(migrations: object, versionToMigrate: string): Promise<void> {
-		let previousMigratedVersion: string = this.getPreviousMigratedVersion("0.0.0");
+		let previousMigratedVersion: string = this.#getPreviousMigratedVersion("0.0.0");
 
 		const newerVersions: string[] = Object.keys(migrations).filter((candidateVersion) =>
-			this.shouldPerformMigration(candidateVersion, previousMigratedVersion, versionToMigrate),
+			this.#shouldPerformMigration(candidateVersion, previousMigratedVersion, versionToMigrate),
 		);
 
 		for (const version of newerVersions) {
@@ -23,7 +23,7 @@ export class Migrator implements IMigrator {
 
 				await migrations[version]({ profile: this.#profile });
 
-				this.set(version);
+				this.#set(version);
 
 				previousMigratedVersion = version;
 			} catch (error) {
@@ -36,23 +36,23 @@ export class Migrator implements IMigrator {
 		}
 
 		if (
-			this.isVersionInRangeFormat(previousMigratedVersion) ||
+			this.#isVersionInRangeFormat(previousMigratedVersion) ||
 			!semver.eq(previousMigratedVersion, versionToMigrate)
 		) {
-			this.set(versionToMigrate);
+			this.#set(versionToMigrate);
 		}
 	}
 
-	private isVersionInRangeFormat(version: string): boolean {
+	#isVersionInRangeFormat(version: string): boolean {
 		return semver.clean(version) === null;
 	}
 
-	private shouldPerformMigration(
+	#shouldPerformMigration(
 		candidateVersion: string,
 		previousMigratedVersion: string,
 		versionToMigrate: string,
 	): boolean {
-		if (this.isVersionInRangeFormat(candidateVersion)) {
+		if (this.#isVersionInRangeFormat(candidateVersion)) {
 			if (previousMigratedVersion !== "0.0.0" && semver.satisfies(previousMigratedVersion, candidateVersion)) {
 				return false;
 			}
@@ -71,11 +71,11 @@ export class Migrator implements IMigrator {
 		return true;
 	}
 
-	private set(migration: string): void {
+	#set(migration: string): void {
 		this.#profile.data().set(ProfileData.LatestMigration, migration);
 	}
 
-	private getPreviousMigratedVersion(defaultVersion: string): string {
+	#getPreviousMigratedVersion(defaultVersion: string): string {
 		return this.#profile.data().get(ProfileData.LatestMigration, defaultVersion) as string;
 	}
 }
