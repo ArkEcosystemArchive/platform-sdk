@@ -32,7 +32,6 @@
 		"@hapi/hapi": "^20.1.2",
 		"@konceiver/foreman": "^2.0.2",
 		"@konceiver/hapi-rate-limiter-flexible": "^1.0.3",
-		"@ptkdev/logger": "^1.7.2",
 		"better-sqlite3": "^7.1.5",
 		"env-paths": "^2.2.1",
 		"joi": "^17.4.0",
