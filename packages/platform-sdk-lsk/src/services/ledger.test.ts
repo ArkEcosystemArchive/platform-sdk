@@ -1,6 +1,8 @@
 import "jest-extended";
+import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
-import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
+import { createTransportRecorder, createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
+import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
 import { createConfig } from "../../test/helpers";
@@ -55,5 +57,52 @@ describe("signMessage", () => {
 		await expect(lsk.signMessage(ledger.bip44.path, Buffer.from(ledger.message.payload, "hex"))).resolves.toEqual(
 			ledger.message.result,
 		);
+	});
+});
+
+
+describe("scan", () => {
+	afterEach(() => nock.cleanAll());
+
+	beforeAll(() => nock.disableNetConnect());
+
+	const createMockService = async (recordStore: any) => {
+		const transport = await LedgerService.__construct(createConfig());
+
+		await transport.connect(createTransportRecorder(LedgerTransportNodeHID, recordStore));
+		return transport;
+	};
+
+
+	it("should return scanned wallet", async () => {
+		// nock(/.+/)
+		// 	.get(
+		// 		"/api/wallets?address=D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK%2CDFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ%2CDFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF%2CDTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV%2CDJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr",
+		// 	)
+		// 	.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets-page-0.json`))
+		// 	.get(
+		// 		"/api/wallets?address=DHnV81YdhYDkwCLD8pkxiXh53pGFw435GS%2CDGhLzafzQpBYjDAWP41U4cx5CKZ5BdSnS3%2CDLVXZyKFxLLdyuEtJRUvFoKcorSrnBnq48%2CDFZAfJ1i1LsvhkUk76Piw4v7oTgq12pX9Z%2CDGfNF9bGPss6YKLEqK5gwr4C1M7vgfenzn",
+		// 	)
+		// 	.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets-page-1.json`));
+		const recordStore = new RecordStore();
+
+		const lsk = await createMockService(recordStore);
+
+		const walletData = await lsk.scan({ useLegacy: true });
+
+		console.log(recordStore.toString());
+
+		expect(Object.keys(walletData)).toHaveLength(2);
+		expect(walletData).toMatchSnapshot();
+
+		for (const wallet of Object.values(walletData)) {
+			const publicKey: string | undefined = wallet.publicKey();
+
+			if (publicKey) {
+				// expect(Address.fromPublicKey(publicKey, { pubKeyHash: 30 })).toBe(wallet.address());
+			}
+
+			expect(wallet.toObject()).toMatchSnapshot();
+		}
 	});
 });
