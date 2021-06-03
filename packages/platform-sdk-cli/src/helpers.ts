@@ -15,10 +15,10 @@ import { LSK } from "@arkecosystem/platform-sdk-lsk";
 import { Environment } from "@arkecosystem/platform-sdk-profiles";
 // import { NEO } from "@arkecosystem/platform-sdk-neo";
 import { SOL } from "@arkecosystem/platform-sdk-sol";
-import Logger from "@ptkdev/logger";
 import cfonts from "cfonts";
 
 import { ConfStorage } from "./storage";
+import { Logger } from "./logger";
 
 export const useLogger = (): Logger => new Logger();
 
