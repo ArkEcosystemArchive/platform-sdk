@@ -5,7 +5,7 @@ module.exports = {
 	testEnvironment: "node",
 	testMatch: ["**/*.test.ts"],
 	transform: {
-		"^.+\\.tsx?$": "ts-jest",
+		"^.+\\.(t|j)sx?$": "ts-jest",
 	},
 	verbose: true,
 };
