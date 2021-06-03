@@ -14,7 +14,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitAny": false,
 		"noImplicitReturns": true,
-		"noImplicitOverride": true,
+		"noImplicitOverride": false,
 		"noPropertyAccessFromIndexSignature": false,
 		"noUncheckedIndexedAccess": false,
 		"noUnusedLocals": false,
