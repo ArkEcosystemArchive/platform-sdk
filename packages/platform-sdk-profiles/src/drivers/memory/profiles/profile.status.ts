@@ -29,13 +29,13 @@ export class ProfileStatus implements IProfileStatus {
 		return this.#isRestored;
 	}
 
-	/** {@inheritdoc iauthenticator.reset} */
+	/** {@inheritDoc IAuthenticator.reset} */
 	public reset(): void {
 		this.#isRestored = false;
 		this.#isDirty = false;
 	}
 
-	/** {@inheritdoc iauthenticator.resetDirty} */
+	/** {@inheritDoc IAuthenticator.resetDirty} */
 	public resetDirty(): void {
 		this.#isDirty = false;
 	}
