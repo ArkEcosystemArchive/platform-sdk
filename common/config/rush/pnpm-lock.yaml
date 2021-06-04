@@ -99,6 +99,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@emurgo/cardano-serialization-lib-nodejs': 7.0.0
@@ -136,6 +137,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -177,6 +179,7 @@ importers:
       '@arkecosystem/multi-signature': 0.1.5
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       dot-prop: 6.0.1
@@ -226,6 +229,7 @@ importers:
       '@arkecosystem/multi-signature': ^0.1.5
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -347,6 +351,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       bcrypto: 5.4.0
@@ -387,6 +392,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -427,6 +433,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@arkecosystem/utils': 1.3.0
@@ -471,6 +478,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -515,6 +523,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ledgerhq/hw-app-btc': 5.50.0
@@ -556,6 +565,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -598,7 +608,7 @@ importers:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@arkecosystem/utils': 1.3.0
       '@konceiver/foreman': 2.0.2
-      '@prisma/client': 2.24.0_prisma@2.24.0
+      '@prisma/client': 2.24.1_prisma@2.24.1
       better-sqlite3: 7.1.5
       env-paths: 2.2.1
       execa: 5.0.0
@@ -639,7 +649,7 @@ importers:
       nock: 13.0.11
       npm-check-updates: 11.5.9
       prettier: 2.2.1
-      prisma: 2.24.0
+      prisma: 2.24.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -648,7 +658,7 @@ importers:
       '@arkecosystem/utils': ^1.3.0
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ^2.24.0
+      '@prisma/client': ^2.24.1
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -685,7 +695,7 @@ importers:
       p-queue: ^6.6.2
       p-wait-for: ^3.2.0
       prettier: ^2.2.1
-      prisma: ^2.24.0
+      prisma: ^2.24.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -694,6 +704,7 @@ importers:
   ../../packages/platform-sdk-btc-server:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@hapi/hapi': 20.1.2
       '@konceiver/foreman': 2.0.2
@@ -740,6 +751,7 @@ importers:
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@hapi/hapi': ^20.1.2
       '@konceiver/foreman': ^2.0.2
@@ -796,6 +808,7 @@ importers:
       '@arkecosystem/platform-sdk-egld': link:../platform-sdk-egld
       '@arkecosystem/platform-sdk-eos': link:../platform-sdk-eos
       '@arkecosystem/platform-sdk-eth': link:../platform-sdk-eth
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@arkecosystem/platform-sdk-lsk': link:../platform-sdk-lsk
       '@arkecosystem/platform-sdk-neo': link:../platform-sdk-neo
@@ -862,6 +875,7 @@ importers:
       '@arkecosystem/platform-sdk-egld': workspace:*
       '@arkecosystem/platform-sdk-eos': workspace:*
       '@arkecosystem/platform-sdk-eth': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-lsk': workspace:*
       '@arkecosystem/platform-sdk-neo': workspace:*
@@ -1019,6 +1033,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@polkadot/api': 3.11.1
@@ -1065,6 +1080,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -1203,6 +1219,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@elrondnetwork/elrond-core-js': 2.1.0
@@ -1241,6 +1258,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -1279,6 +1297,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       bn.js: 5.1.3
@@ -1318,6 +1337,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-transport-mocker': ^5.50.0
@@ -1357,6 +1377,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ethereumjs/common': 2.2.0
@@ -1398,6 +1419,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -1616,9 +1638,6 @@ importers:
       uuid: ^8.3.2
       web3: ^1.3.4
   ../../packages/platform-sdk-http:
-    dependencies:
-      '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
-      '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
     devDependencies:
       '@sindresorhus/tsconfig': 1.0.2
       '@types/eslint': 7.2.10
@@ -1649,8 +1668,6 @@ importers:
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
     specifiers:
-      '@arkecosystem/platform-sdk-intl': workspace:*
-      '@arkecosystem/platform-sdk-support': workspace:*
       '@sindresorhus/tsconfig': ^1.0.2
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -1681,7 +1698,7 @@ importers:
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-axios:
     dependencies:
-      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       axios: 0.21.1
     devDependencies:
       '@types/eslint': 7.2.10
@@ -1712,7 +1729,7 @@ importers:
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
     specifiers:
-      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
@@ -1743,7 +1760,7 @@ importers:
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-bent:
     dependencies:
-      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       bent: 7.3.12
     devDependencies:
       '@types/bent': 7.3.2
@@ -1775,7 +1792,7 @@ importers:
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
     specifiers:
-      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@types/bent': ^7.3.2
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -1807,7 +1824,7 @@ importers:
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-got:
     dependencies:
-      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       form-data: 3.0.1
       got: 11.8.2
     devDependencies:
@@ -1840,7 +1857,7 @@ importers:
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
     specifiers:
-      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
@@ -1873,7 +1890,7 @@ importers:
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-ky:
     dependencies:
-      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       ky: 0.25.1
       ky-universal: 0.8.2_ky@0.25.1
     devDependencies:
@@ -1906,7 +1923,7 @@ importers:
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
     specifiers:
-      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
@@ -1939,7 +1956,7 @@ importers:
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-node-fetch:
     dependencies:
-      '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       node-fetch: 2.6.1
     devDependencies:
       '@types/eslint': 7.2.10
@@ -1971,7 +1988,7 @@ importers:
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
     specifiers:
-      '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
       '@types/fs-extra': ^9.0.11
@@ -2066,6 +2083,7 @@ importers:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-ark': link:../platform-sdk-ark
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@hapi/hapi': 20.1.2
       '@konceiver/foreman': 2.0.2
@@ -2106,6 +2124,7 @@ importers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-ark': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@hapi/hapi': ^20.1.2
       '@konceiver/foreman': ^2.0.2
@@ -2145,6 +2164,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ledgerhq/hw-transport-node-hid-singleton': 5.50.0
@@ -2185,6 +2205,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -2225,6 +2246,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@terra-money/terra.js': 1.7.0
@@ -2261,6 +2283,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -2296,6 +2319,7 @@ importers:
   ../../packages/platform-sdk-markets:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
     devDependencies:
@@ -2328,6 +2352,7 @@ importers:
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -2361,6 +2386,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       nanocurrency: 2.5.0
@@ -2399,6 +2425,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -2437,6 +2464,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@cityofzion/neon-js': 4.8.3
@@ -2475,6 +2503,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -2512,6 +2541,7 @@ importers:
   ../../packages/platform-sdk-news:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       rss-parser: 3.12.0
     devDependencies:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
@@ -2544,6 +2574,7 @@ importers:
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2578,7 +2609,7 @@ importers:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@arkecosystem/utils': 1.3.0
       '@konceiver/foreman': 2.0.2
-      '@prisma/client': 2.24.0_prisma@2.24.0
+      '@prisma/client': 2.24.1_prisma@2.24.1
       env-paths: 2.2.1
       execa: 5.0.0
       meow: 9.0.0
@@ -2613,7 +2644,7 @@ importers:
       nock: 13.0.11
       npm-check-updates: 11.5.9
       prettier: 2.2.1
-      prisma: 2.24.0
+      prisma: 2.24.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2622,7 +2653,7 @@ importers:
       '@arkecosystem/utils': ^1.3.0
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ^2.24.0
+      '@prisma/client': ^2.24.1
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2655,7 +2686,7 @@ importers:
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
-      prisma: ^2.24.0
+      prisma: ^2.24.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2664,7 +2695,7 @@ importers:
       '@hapi/hapi': 20.1.2
       '@konceiver/foreman': 2.0.2
       '@konceiver/hapi-rate-limiter-flexible': 1.0.3
-      '@prisma/client': 2.24.0_prisma@2.24.0
+      '@prisma/client': 2.24.1_prisma@2.24.1
       joi: 17.4.0
       meow: 9.0.0
       uuid: 8.3.2
@@ -2700,7 +2731,7 @@ importers:
       nock: 13.0.11
       npm-check-updates: 11.5.9
       prettier: 2.2.1
-      prisma: 2.24.0
+      prisma: 2.24.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2710,7 +2741,7 @@ importers:
       '@konceiver/foreman': ^2.0.2
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ^2.24.0
+      '@prisma/client': ^2.24.1
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2742,7 +2773,7 @@ importers:
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       prettier: ^2.2.1
-      prisma: ^2.24.0
+      prisma: ^2.24.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2751,6 +2782,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-markets': link:../platform-sdk-markets
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
@@ -2823,6 +2855,7 @@ importers:
       '@arkecosystem/platform-sdk-btc': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
       '@arkecosystem/platform-sdk-eth': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-markets': workspace:*
@@ -2887,6 +2920,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@solana/web3.js': 1.9.0
@@ -2926,6 +2960,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -3043,6 +3078,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ledgerhq/hw-app-trx': 5.50.0
@@ -3079,6 +3115,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -3115,6 +3152,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ledgerhq/hw-app-str': 5.50.0
@@ -3152,6 +3190,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
       '@ledgerhq/hw-app-str': ^5.50.0
@@ -3189,6 +3228,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@ledgerhq/hw-app-xrp': 5.50.0
@@ -3232,6 +3272,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -3275,6 +3316,7 @@ importers:
     dependencies:
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
+      '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
       '@arkecosystem/platform-sdk-intl': link:../platform-sdk-intl
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       '@zilliqa-js/account': 2.2.1
@@ -3312,6 +3354,7 @@ importers:
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
+      '@arkecosystem/platform-sdk-http': workspace:*
       '@arkecosystem/platform-sdk-http-got': workspace:*
       '@arkecosystem/platform-sdk-intl': workspace:*
       '@arkecosystem/platform-sdk-support': workspace:*
@@ -5472,10 +5515,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-6A/cteC0B3hm64/xG6DNG8qGsHAXJgAy9wjcB38qnoJGYl12hysIFjPeHD+V0W/LOl9payW6kpZzhisLlVOZpQ==
-  /@prisma/client/2.24.0_prisma@2.24.0:
+  /@prisma/client/2.24.1_prisma@2.24.1:
     dependencies:
-      '@prisma/engines-version': 2.24.0-30.f3e341280d96d0abc068f97e959ddf01f321a858
-      prisma: 2.24.0
+      '@prisma/engines-version': 2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4
+      prisma: 2.24.1
     dev: false
     engines:
       node: '>=10.16'
@@ -5486,16 +5529,16 @@ packages:
         optional: true
     requiresBuild: true
     resolution:
-      integrity: sha512-y3BbJJMB3bhSXWpbqOlnAvnhvK0UYQMZZC5gacS+nR1eZl4MovVgl9syk6En3FXIQaneLukoiWfFaIxfDVZArw==
-  /@prisma/engines-version/2.24.0-30.f3e341280d96d0abc068f97e959ddf01f321a858:
+      integrity: sha512-vllhf36g3oI98GF1Q5IPmnR5MYzBPeCcl/Xiz6EAi4DMOxE069o9ka5BAqYbUG2USx8JuKw09QdMnDrp3Kyn8g==
+  /@prisma/engines-version/2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4:
     dev: false
     resolution:
-      integrity: sha512-KHns2Puc38woxnx3MKoUUW0tfR5yftDCmT/df0rUHe6ZcREt1kwI3dgvsOBz+6n7stuSNeLiU7uEkc7Ga3PgNA==
-  /@prisma/engines/2.24.0-30.f3e341280d96d0abc068f97e959ddf01f321a858:
+      integrity: sha512-60Do+ByVfHnhJ2id5h/lXOZnDQNIf5pz3enkKWOmyr744Z2IxkBu65jRckFfMN5cPtmXDre/Ay/GKm0aoeLwrw==
+  /@prisma/engines/2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4:
     dev: true
     requiresBuild: true
     resolution:
-      integrity: sha512-rcMl4XgkLg1ki94EfRXX6t/Abzw5CMQFkfC6K+dkxuJ9gIo+moGSZHsyYLAD0ccdYhEW0QbP9TNg0VVe8thrNw==
+      integrity: sha512-29/xO9kqeQka+wN5Ev10l5L4XQXNVXdPToJs1M29VZ2imQsNsL4rtz26m3qGM54IoGWwwfTVdvuVRxKnDl2rig==
   /@protobufjs/aspromise/1.1.2:
     dev: false
     resolution:
@@ -13749,16 +13792,16 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ==
-  /prisma/2.24.0:
+  /prisma/2.24.1:
     dependencies:
-      '@prisma/engines': 2.24.0-30.f3e341280d96d0abc068f97e959ddf01f321a858
+      '@prisma/engines': 2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4
     dev: true
     engines:
       node: '>=10.4'
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-kZBYxAkThSFfAZzTGpsihaNqNbGQVzkPhQ0XklLDetN36EpQXeeOQhS05DrzlGSQ7rG7w8mt3m3iDF0S/RD/qw==
+      integrity: sha512-L+ykMpttbWzpTNsy+PPynnEX/mS1s5zs49euXBrMjxXh1M6/f9MYlTNAj+iP90O9ZSaURSpNa+1jzatPghqUcQ==
   /process-nextick-args/2.0.1:
     resolution:
       integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
