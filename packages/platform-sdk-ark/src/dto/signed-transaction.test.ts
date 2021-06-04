@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Joi from "joi";
@@ -25,21 +25,7 @@ beforeAll(() => {
 		"",
 	);
 
-	container.constant(IoC.ServiceKeys.BigNumberService, new Services.BigNumberService(
-		new Coins.Config({
-			network: {
-				currency: {
-					decimals: 1e8,
-				}
-			}
-		}, Joi.object({
-			network: Joi.object({
-				currency: Joi.object({
-					decimals: Joi.number(),
-				})
-			})
-		}))
-	));
+	container.constant(IoC.ServiceKeys.BigNumberService, new Services.BigNumberService(Test.createConfig()));
 });
 
 describe("SignedTransactionData", () => {

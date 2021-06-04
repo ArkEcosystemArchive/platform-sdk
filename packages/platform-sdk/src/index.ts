@@ -11,3 +11,4 @@ export * as IoC from "./ioc";
 export * as Networks from "./networks";
 export * as Services from "./services";
 export * as Signatories from "./signatories";
+export * as Test from "./test";
