@@ -54,7 +54,6 @@ export class Wallet implements IReadWriteWallet {
 	readonly #transactionIndex: ITransactionIndex;
 	readonly #walletImportFormat: IWalletImportFormat;
 	readonly #multiSignature: IMultiSignature;
-	readonly #decimals: number;
 
 	public constructor(id: string, initialState: any, profile: IProfile) {
 		this.#profile = profile;
@@ -74,8 +73,6 @@ export class Wallet implements IReadWriteWallet {
 		this.#transactionIndex = new TransactionIndex(this);
 		this.#walletImportFormat = new WalletImportFormat(this);
 		this.#multiSignature = new MultiSignature(this);
-		this.#decimals = 8;
-		// this.#decimals = this.manifest().get(Coins.ConfigKey.CurrencyDecimals);
 
 		this.#restore();
 	}
@@ -145,7 +142,7 @@ export class Wallet implements IReadWriteWallet {
 	public balance(): BigNumber {
 		const value: Contracts.WalletBalance | undefined = this.data().get(WalletData.Balance);
 
-		return BigNumber.make(value?.available || 0, this.#decimals);
+		return BigNumber.make(value?.available || 0, this.#decimals());
 	}
 
 	/** {@inheritDoc IReadWriteWallet.convertedBalance} */
@@ -167,7 +164,7 @@ export class Wallet implements IReadWriteWallet {
 			return BigNumber.ZERO;
 		}
 
-		return BigNumber.make(value, this.#decimals);
+		return BigNumber.make(value, this.#decimals());
 	}
 
 	/** {@inheritDoc IReadWriteWallet.avatar} */
@@ -564,13 +561,21 @@ export class Wallet implements IReadWriteWallet {
 
 		/* istanbul ignore next */
 		this.data().set(WalletData.Balance, {
-			available: BigNumber.make(balance?.available || 0, this.#decimals),
-			fees: BigNumber.make(balance?.fees || 0, this.#decimals),
+			available: BigNumber.make(balance?.available || 0, this.#decimals()),
+			fees: BigNumber.make(balance?.fees || 0, this.#decimals()),
 		});
 
 		this.data().set(
 			WalletData.Sequence,
-			BigNumber.make(this.data().get<string>(WalletData.Sequence) || BigNumber.ZERO, this.#decimals),
+			BigNumber.make(this.data().get<string>(WalletData.Sequence) || BigNumber.ZERO, this.#decimals()),
 		);
+	}
+
+	#decimals(): number {
+		try {
+			return this.manifest().get(Coins.ConfigKey.CurrencyDecimals);
+		} catch {
+			return 8;
+		}
 	}
 }
