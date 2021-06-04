@@ -4,9 +4,9 @@ import { Signatories, Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
+import { container } from "../container";
 import { SignedTransactionData } from "../dto";
 import { TransactionService } from "./transaction";
-import { container } from "../container";
 
 let subject: TransactionService;
 

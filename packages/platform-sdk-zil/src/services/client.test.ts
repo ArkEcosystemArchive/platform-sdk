@@ -6,9 +6,9 @@ import nock from "nock";
 
 import { createConfig } from "../../test/config";
 import { identity } from "../../test/fixtures/identity";
+import { container } from "../container";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
-import { container } from "../container";
 
 const fixtures = `${__dirname}/../../test/fixtures/client`;
 

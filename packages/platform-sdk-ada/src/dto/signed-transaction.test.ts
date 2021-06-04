@@ -1,10 +1,10 @@
 import "jest-extended";
 
+import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
-import { SignedTransactionData } from "./signed-transaction";
-import { Test } from "@arkecosystem/platform-sdk";
 import { container } from "../container";
+import { SignedTransactionData } from "./signed-transaction";
 
 let subject: SignedTransactionData;
 
