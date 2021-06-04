@@ -7,6 +7,7 @@ import { Network, NetworkRepository } from "../networks";
 import { Coin } from "./coin";
 import { Config } from "./config";
 import { Manifest } from "./manifest";
+import { BigNumberService } from "../../dist/services";
 
 let subject: Coin;
 
@@ -53,6 +54,15 @@ class ServiceProvider {
 		services.walletDiscovery.__construct();
 
 		return {
+			bigNumber: new BigNumberService(
+				// @ts-ignore
+				new Config(
+					{ network: "ark.mainnet" },
+					ValidatorSchema.object({
+						network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet"),
+					}),
+				),
+			),
 			client: services.client,
 			dataTransferObject: services.dataTransferObject,
 			fee: services.fee,
@@ -139,6 +149,16 @@ test("#manifest", () => {
 
 test("#config", () => {
 	expect(subject.config()).toBeInstanceOf(Config);
+});
+
+test("#bigNumber", async () => {
+	await subject.__construct();
+
+	expect(subject.bigNumber()).toBeObject();
+});
+
+test("#bigNumber with throw", async () => {
+	expect(() => subject.bigNumber()).toThrow();
 });
 
 test("#client", async () => {

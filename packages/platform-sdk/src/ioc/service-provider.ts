@@ -1,11 +1,13 @@
 /* istanbul ignore file */
 
 import { CoinServices, CoinSpec, Config } from "../coins";
+import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";
 
 export type ServiceList = Record<string, { __construct: Function }>;
 
 export const ServiceKeys = {
+	BigNumberService: Symbol("BigNumberService"),
 	ClientService: Symbol("ClientService"),
 	DataTransferObjectService: Symbol("DataTransferObjectService"),
 	FeeService: Symbol("FeeService"),
@@ -77,6 +79,7 @@ export abstract class AbstractServiceProvider {
 		]);
 
 		return {
+			bigNumber: new BigNumberService(this.#config),
 			client,
 			dataTransferObject,
 			fee,
@@ -93,6 +96,7 @@ export abstract class AbstractServiceProvider {
 	}
 
 	protected bindServices(services: CoinServices, container: Container): void {
+		container.constant(ServiceKeys.BigNumberService, services.bigNumber);
 		container.constant(ServiceKeys.ClientService, services.client);
 		container.constant(ServiceKeys.DataTransferObjectService, services.dataTransferObject);
 		container.constant(ServiceKeys.FeeService, services.fee);
