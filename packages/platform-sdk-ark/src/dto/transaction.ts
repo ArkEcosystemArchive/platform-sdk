@@ -2,6 +2,8 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { bigNumber } from "../container";
+
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
 		return this.data.id;
@@ -34,21 +36,21 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 		return this.data.asset.payments.map((payment: { recipientId: string; amount: string }) => ({
 			address: payment.recipientId,
-			amount: BigNumber.make(payment.amount, this.decimals),
+			amount: bigNumber(payment.amount),
 		}));
 	}
 
 	public amount(): BigNumber {
 		if (this.isMultiPayment()) {
 			const amount = BigNumber.sum(this.data.asset.payments.map(({ amount }) => amount));
-			return BigNumber.make(amount, this.decimals);
+			return bigNumber(amount);
 		}
 
-		return BigNumber.make(this.data.amount, this.decimals);
+		return bigNumber(this.data.amount);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee, this.decimals);
+		return bigNumber(this.data.fee);
 	}
 
 	public asset(): Record<string, unknown> {

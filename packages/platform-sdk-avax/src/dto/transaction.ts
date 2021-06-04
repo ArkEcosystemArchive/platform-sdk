@@ -2,6 +2,8 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { bigNumber } from "../container";
+
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
 		return this.data.id;
@@ -32,11 +34,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(Object.values(this.data.outputTotals)[0] as string, this.decimals);
+		return bigNumber(Object.values(this.data.outputTotals)[0] as string);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.txFee, this.decimals);
+		return bigNumber(this.data.txFee);
 	}
 
 	public asset(): Record<string, unknown> {
@@ -49,7 +51,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 				new DTO.UnspentTransactionData({
 					id: input.transactionID,
 					timestamp: DateTime.make(input.timestamp),
-					amount: BigNumber.make(input.amount, this.decimals),
+					amount: bigNumber(input.amount),
 					addresses: input.addresses,
 				}),
 		);
@@ -61,7 +63,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 				new DTO.UnspentTransactionData({
 					id: output.transactionID,
 					timestamp: DateTime.make(output.timestamp),
-					amount: BigNumber.make(output.amount, this.decimals),
+					amount: bigNumber(output.amount),
 					addresses: output.addresses,
 				}),
 		);

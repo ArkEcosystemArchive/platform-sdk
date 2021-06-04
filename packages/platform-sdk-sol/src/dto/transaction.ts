@@ -2,6 +2,8 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { bigNumber } from "../container";
+
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
 		return this.data.hash;
@@ -32,7 +34,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			.sort((a, b) => a.index - b.index)
 			.map((out) => ({
 				address: out.address,
-				amount: BigNumber.make(out.value, this.decimals),
+				amount: bigNumber(out.value),
 			}));
 	}
 
@@ -41,7 +43,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			(input: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
 					id: input.sourceTransaction.hash,
-					amount: BigNumber.make(input.value, this.decimals),
+					amount: bigNumber(input.value),
 					addresses: [input.address],
 				}),
 		);
@@ -51,7 +53,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.outputs.map(
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
-					amount: BigNumber.make(output.value, this.decimals),
+					amount: bigNumber(output.value),
 					addresses: [output.address],
 				}),
 		);
@@ -63,16 +65,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		const changeOutput =
 			this.data.outputs <= 1
 				? BigNumber.ZERO
-				: BigNumber.make(
-						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
-				  );
+				: bigNumber(this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value);
 
 		const netAmount = totalInput.minus(changeOutput).minus(this.fee());
-		return BigNumber.make(netAmount, this.decimals);
+		return bigNumber(netAmount);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee, this.decimals);
+		return bigNumber(this.data.fee);
 	}
 
 	public asset(): Record<string, unknown> {

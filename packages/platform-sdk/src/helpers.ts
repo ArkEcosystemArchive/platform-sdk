@@ -5,7 +5,8 @@ import { NetworkHost, NetworkHostType } from "./networks";
 import { TransactionDataCollection } from "./collections";
 import { TransactionDataType } from "./contracts";
 import { AbstractTransactionData } from "./dto";
-import { MetaPagination } from "./services";
+import { BigNumberService, MetaPagination } from "./services";
+import { Container, ServiceKeys } from "./ioc";
 
 export const createTransactionDataWithType = (
 	transaction: unknown,
@@ -116,3 +117,7 @@ export const toRawUnit = (value: NumberLike, config: Config) => {
 	const denomination = BigNumber.make(`1${"0".repeat(decimals)}`); // poor man's bigint exponentiation
 	return denomination.times(value);
 };
+
+/* istanbul ignore next */
+export const bigNumber = (value: NumberLike, container: Container): BigNumber =>
+	container.get<BigNumberService>(ServiceKeys.BigNumberService).make(value);
