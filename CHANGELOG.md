@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 8.8.6 - 2021-06-04
+
+### Changed
+
+- **[PROFILES]** Respect decimals for denominator in `BigNumber#toHuman` (d70f0e33, @axeldelamarre)
+
+### Fixed
+
+- **[JSON-RPC]** Use signatory instance to sign transactions (9f324a2f, @faustbrian)
+- **[PROFILES]** Use decimal-aware `BigNumber` instances in `IReadWriteWallet` (d83d6fee, @axeldelamarre)
+
+## 8.8.3 - 2021-06-03
+
+### Added
+
+- **[PROFILES]** Reset dirty status after persisting profile (c2c749a6, @goga-m)
+
+## 8.8.2 - 2021-06-03
+
+### Added
+
+- **[LSK]** Implement `LedgerService#scan` (8db9b06f, @faustbrian)
+
+## 8.8.1 - 2021-06-03
+
+### Fixed
+
+- **[ARK]** Update compendia mainnet peer (57a7e29c, @faustbrian)
+
 ## 8.8.0 - 2021-06-03
 
 ### Added
