@@ -45,7 +45,6 @@ import { ProfileInitialiser } from "./profile.initialiser";
 import { IPasswordManager } from "../../../contracts/profiles/services/password";
 import { PasswordManager } from "./services/password";
 import { ProfileStatus } from "./profile.status";
-import { ProfileExporter } from "./profile.exporter";
 
 export class Profile implements IProfile {
 	/**
