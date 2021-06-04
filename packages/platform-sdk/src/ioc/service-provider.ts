@@ -96,9 +96,11 @@ export abstract class AbstractServiceProvider {
 		}
 
 		for (const [key, value] of Object.entries(bindings)) {
-			if (container.missing(key)) {
-				container.constant(key, value);
+			if (container.has(key)) {
+				container.unbind(key);
 			}
+
+			container.constant(key, value);
 		}
 	}
 }

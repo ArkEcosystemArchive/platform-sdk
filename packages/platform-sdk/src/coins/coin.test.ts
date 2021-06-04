@@ -7,7 +7,7 @@ import { Network, NetworkRepository } from "../networks";
 import { Coin } from "./coin";
 import { Config } from "./config";
 import { Manifest } from "./manifest";
-import { BigNumberService } from "../../dist/services";
+import { BigNumberService } from "../services";
 
 let subject: Coin;
 
