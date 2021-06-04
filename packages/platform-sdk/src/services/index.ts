@@ -1,5 +1,6 @@
 export * from "./address.contract";
 export * from "./address.service";
+export * from "./big-number.service";
 export * from "./client.contract";
 export * from "./client.service";
 export * from "./data-transfer-object.contract";
@@ -26,6 +27,7 @@ export * from "./private-key.contract";
 export * from "./private-key.service";
 export * from "./public-key.contract";
 export * from "./public-key.service";
+export * from "./shared.contract";
 export * from "./signatory.contract";
 export * from "./signatory.service";
 export * from "./transaction.contract";
@@ -34,5 +36,3 @@ export * from "./wallet-discovery.contract";
 export * from "./wallet-discovery.service";
 export * from "./wif.contract";
 export * from "./wif.service";
-// @TODO: remove
-export * from "./shared.contract";
