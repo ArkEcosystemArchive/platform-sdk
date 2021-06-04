@@ -1,17 +1,18 @@
 export type ServiceList = Record<string, { __construct: Function }>;
 
+// @TODO: use symbols
 export const ServiceKeys = {
-	BigNumberService: Symbol("BigNumberService"),
-	ClientService: Symbol("ClientService"),
-	DataTransferObjectService: Symbol("DataTransferObjectService"),
-	FeeService: Symbol("FeeService"),
-	IdentityService: Symbol("IdentityService"),
-	KnownWalletService: Symbol("KnownWalletService"),
-	LedgerService: Symbol("LedgerService"),
-	LinkService: Symbol("LinkService"),
-	MessageService: Symbol("MessageService"),
-	MultiSignatureService: Symbol("MultiSignatureService"),
-	SignatoryService: Symbol("SignatoryService"),
-	TransactionService: Symbol("TransactionService"),
-	WalletDiscoveryService: Symbol("WalletDiscoveryService"),
+	BigNumberService: "BigNumberService",
+	ClientService: "ClientService",
+	DataTransferObjectService: "DataTransferObjectService",
+	FeeService: "FeeService",
+	IdentityService: "IdentityService",
+	KnownWalletService: "KnownWalletService",
+	LedgerService: "LedgerService",
+	LinkService: "LinkService",
+	MessageService: "MessageService",
+	MultiSignatureService: "MultiSignatureService",
+	SignatoryService: "SignatoryService",
+	TransactionService: "TransactionService",
+	WalletDiscoveryService: "WalletDiscoveryService",
 };
