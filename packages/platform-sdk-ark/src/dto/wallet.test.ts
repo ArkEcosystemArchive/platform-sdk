@@ -80,6 +80,10 @@ describe("WalletData", () => {
 	describe.each(["mainnet", "devnet"])("%s", (network) => {
 		beforeEach(() => (subject = new WalletData(WalletDataFixture[network])));
 
+		test("#primaryKey", () => {
+			expect(subject.primaryKey()).toBe("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
+		});
+
 		test("#address", () => {
 			expect(subject.address()).toBe("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
 		});
@@ -92,8 +96,31 @@ describe("WalletData", () => {
 			expect(subject.balance().available).toEqual(BigNumber.make("55827093444556"));
 		});
 
+		test("#nonce", () => {
+			expect(subject.nonce()).toEqual(BigNumber.make("111932"));
+		});
+
+		test("#secondPublicKey", () => {
+			expect(subject.secondPublicKey()).toBeUndefined();
+		});
+
+		test("#username", () => {
+			expect(subject.username()).toBe("arkx");
+		});
+
+		test("#rank", () => {
+			expect(subject.rank()).toBeUndefined();
+		});
+
+		test("#votes", () => {
+			expect(subject.votes()).toEqual(network === "devnet" ? BigNumber.make(0) : undefined);
+		});
+
 		test("#isDelegate", () => {
 			expect(subject.isDelegate()).toBeTrue();
+
+			subject = new WalletData({ ...WalletDataFixture.mainnet, isResigned: true});
+			expect(subject.isDelegate()).toBeFalse();
 		});
 
 		test("#isResignedDelegate", () => {
@@ -101,16 +128,11 @@ describe("WalletData", () => {
 		});
 
 		test("#isMultiSignature", () => {
-			const response = network === "devnet" ? true : false;
-			expect(subject.isMultiSignature()).toEqual(response);
+			expect(subject.isMultiSignature()).toEqual(network === "devnet");
 		});
 
 		test("#isSecondSignature", () => {
 			expect(subject.isSecondSignature()).toBeFalse();
-		});
-
-		test("#secondPublicKey", () => {
-			expect(subject.secondPublicKey()).toBeUndefined();
 		});
 
 		test("#toObject", () => {

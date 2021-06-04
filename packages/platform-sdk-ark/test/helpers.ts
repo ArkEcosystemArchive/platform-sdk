@@ -1,7 +1,6 @@
 import { Coins } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
-import { container } from "../src/container";
 import { Bindings } from "../src/contracts";
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";

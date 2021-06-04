@@ -51,4 +51,12 @@ describe("SignedTransactionData", () => {
 		const subject = new SignedTransactionData("", {}, "");
 		expect(subject.timestamp()).toBeInstanceOf(DateTime);
 	});
+
+	test("#isMultiSignature", () => {
+		expect(subject.isMultiSignature()).toBeFalse();
+	});
+
+	test("#isMultiSignatureRegistration", () => {
+		expect(subject.isMultiSignatureRegistration()).toBeFalse();
+	});
 });

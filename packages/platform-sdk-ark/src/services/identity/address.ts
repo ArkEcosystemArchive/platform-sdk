@@ -77,10 +77,6 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		try {
-			return BaseAddress.validate(address, this.#config);
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
-		}
+		return BaseAddress.validate(address, this.#config);
 	}
 }
