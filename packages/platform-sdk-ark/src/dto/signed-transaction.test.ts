@@ -1,13 +1,17 @@
 import "jest-extended";
 
+import { Coins } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import Joi from "joi";
 
 import { SignedTransactionData } from "./signed-transaction";
+import { container } from "../container";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 
 let subject: SignedTransactionData;
 
-beforeEach(() => {
+beforeAll(() => {
 	subject = new SignedTransactionData(
 		"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
 		{
@@ -20,6 +24,22 @@ beforeEach(() => {
 		},
 		"",
 	);
+
+	container.constant(IoC.ServiceKeys.BigNumberService, new Services.BigNumberService(
+		new Coins.Config({
+			network: {
+				currency: {
+					decimals: 1e8,
+				}
+			}
+		}, Joi.object({
+			network: Joi.object({
+				currency: Joi.object({
+					decimals: Joi.number(),
+				})
+			})
+		}))
+	));
 });
 
 describe("SignedTransactionData", () => {
