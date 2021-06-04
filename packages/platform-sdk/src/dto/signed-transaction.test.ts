@@ -6,13 +6,17 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { AbstractSignedTransactionData } from "./signed-transaction";
 
 test("#setAttributes", () => {
-	const transaction = new Transaction("id", { key: "value" }, "");
-
+	let transaction = new Transaction("id", { key: "value" }, "");
 	expect(transaction.id()).toBe("id");
 
 	transaction.setAttributes({ identifier: "new" });
-
 	expect(transaction.id()).toBe("new");
+
+	transaction = new Transaction("id", { key: "value" }, "", 2);
+	expect(transaction).toBeInstanceOf(Transaction);
+
+	transaction = new Transaction("id", { key: "value" }, "", "2");
+	expect(transaction).toBeInstanceOf(Transaction);
 });
 
 test("#id", () => {

@@ -1,6 +1,7 @@
 import "jest-extended";
 
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
+import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
 import { createConfig } from "../../test/helpers";
@@ -55,5 +56,39 @@ describe("signMessage", () => {
 		await expect(lsk.signMessage(ledger.bip44.path, Buffer.from(ledger.message.payload, "hex"))).resolves.toEqual(
 			ledger.message.result,
 		);
+	});
+});
+
+describe("scan", () => {
+	afterEach(() => nock.cleanAll());
+
+	beforeAll(() => nock.disableNetConnect());
+
+	it("should return scanned wallet", async () => {
+		nock("https://testnet.lisk.io:443")
+			.get("/api/accounts")
+			.query({ address: "7399986239080551550L" })
+			.reply(200, require("../../test/fixtures/client/wallet-0.json"));
+
+		nock("https://testnet.lisk.io:443")
+			.get("/api/accounts")
+			.query({ address: "11603034586667438647L" })
+			.reply(200, require("../../test/fixtures/client/wallet-1.json"));
+
+		nock("https://testnet.lisk.io:443")
+			.get("/api/accounts")
+			.query({ address: "8261766349562104742L" })
+			.reply(200, require("../../test/fixtures/client/wallet-2.json"));
+
+		nock("https://testnet.lisk.io:443")
+			.get("/api/accounts")
+			.reply(200, require("../../test/fixtures/client/wallet-3.json"));
+
+		const lsk = await createMockService(ledger.wallets.record);
+
+		const walletData = await lsk.scan();
+
+		expect(Object.keys(walletData)).toHaveLength(4);
+		expect(walletData).toMatchSnapshot();
 	});
 });

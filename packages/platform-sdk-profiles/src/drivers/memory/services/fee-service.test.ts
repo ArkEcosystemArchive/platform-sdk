@@ -65,7 +65,7 @@ describe("FeeService", () => {
 
 		expect(subject.findByType("ARK", "ark.devnet", "transfer")).toEqual({
 			avg: "71538139",
-			max: "663000000",
+			max: "10000000",
 			min: "357000",
 			static: "10000000",
 		});

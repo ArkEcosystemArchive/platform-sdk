@@ -15,6 +15,7 @@ import {
 	TransactionService,
 	WalletDiscoveryService,
 } from "../services";
+import { BigNumberService } from "../services/big-number.service";
 
 export interface CoinSpec {
 	manifest: CoinManifest;
@@ -28,6 +29,7 @@ export interface CoinOptions {
 }
 
 export interface CoinServices {
+	bigNumber: BigNumberService;
 	client: ClientService;
 	dataTransferObject: DataTransferObjectService;
 	fee: FeeService;

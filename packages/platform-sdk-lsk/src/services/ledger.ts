@@ -1,6 +1,7 @@
 import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
-import { BIP44, HDKey } from "@arkecosystem/platform-sdk-crypto";
+import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
+
 import { WalletData } from "../dto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
@@ -35,7 +36,6 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
-		// @ts-ignore
 		this.#transport = new DposLedger(new CommHandler(this.#ledger));
 	}
 
@@ -50,7 +50,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		const { publicKey } = await this.#transport.getPubKey(this.#getLedgerAccount(path));
+		const { publicKey } = await this.#getPublicKeyAndAddress(path);
 
 		return publicKey;
 	}
@@ -67,47 +67,46 @@ export class LedgerService extends Services.AbstractLedgerService {
 		return signature.slice(0, 64).toString("hex");
 	}
 
-	// @TODO: send requests in parallel
 	// @TODO: discover wallets until they 404
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
-		let page = 0;
+		const page = 0;
 		const slip44 = this.#config.get<number>("network.constants.slip44");
 
 		const addressCache: Record<string, { address: string; publicKey: string }> = {};
-		let wallets: Contracts.WalletData[] = [];
+		const wallets: Contracts.WalletData[] = [];
 
 		const addresses: string[] = [];
 
-		const path = `m/44'/${slip44}'/0'`;
-		let initialAddressIndex = 0;
+		let initialAccountIndex = 0;
 
 		if (options?.startPath) {
-			initialAddressIndex = BIP44.parse(options.startPath).addressIndex + 1;
+			initialAccountIndex = BIP44.parse(options.startPath).account + 1;
 		}
 
-		const compressedPublicKey = await this.getExtendedPublicKey(path);
+		// Scan Ledger
+		for (const accountIndexIterator of createRange(page, pageSize)) {
+			const accountIndex = initialAccountIndex + accountIndexIterator;
 
-		for (const addressIndexIterator of createRange(page, pageSize)) {
-			const addressIndex = initialAddressIndex + addressIndexIterator;
-			const publicKey: string = HDKey.fromCompressedPublicKey(compressedPublicKey)
-				.derive(`m/0/${addressIndex}`)
-				.publicKey.toString("hex");
-
-			const { address } = await this.#identity.address().fromPublicKey(publicKey);
+			const path = BIP44.stringify({
+				coinType: slip44,
+				account: accountIndex,
+			});
+			const { publicKey, address } = await this.#getPublicKeyAndAddress(path);
 
 			addresses.push(address);
 
-			addressCache[`${path}/0/${addressIndex}`] = { address, publicKey };
+			addressCache[path] = { address, publicKey };
 		}
 
+		// Scan Network
+		const promises: Promise<void>[] = [];
+
 		for (const address of addresses) {
-			try {
-				wallets.push(await this.#client.wallet(address));
-			} catch {
-				// Do nothing...
-			}
+			promises.push(this.#fetchWallet(address, wallets));
 		}
+
+		await Promise.all(promises);
 
 		// Create a mapping of paths and wallets that have been found.
 		const cold: Services.LedgerWalletList = {};
@@ -136,7 +135,28 @@ export class LedgerService extends Services.AbstractLedgerService {
 		return { ...cold, ...used };
 	}
 
+	async #getPublicKeyAndAddress(
+		path: string,
+	): Promise<{
+		publicKey: string;
+		address: string;
+	}> {
+		return this.#transport.getPubKey(this.#getLedgerAccount(path));
+	}
+
 	#getLedgerAccount(path: string): LedgerAccount {
 		return new LedgerAccount().coinIndex(SupportedCoin.LISK).account(BIP44.parse(path).account);
+	}
+
+	async #fetchWallet(address: string, wallets: Contracts.WalletData[]): Promise<void> {
+		try {
+			const wallet: Contracts.WalletData = await this.#client.wallet(address);
+
+			if (wallet.address()) {
+				wallets.push(wallet);
+			}
+		} catch {
+			return undefined;
+		}
 	}
 }

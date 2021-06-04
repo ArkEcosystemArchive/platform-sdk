@@ -8,7 +8,7 @@ export const createConfig = (options?: object, meta = {}) => {
 	const config = new Coins.Config(
 		{
 			...(options || { network: "avax.testnet" }),
-			...{ httpClient: new Request() },
+			httpClient: new Request(),
 		},
 		schema,
 	);

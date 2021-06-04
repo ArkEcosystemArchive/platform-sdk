@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scan should return scanned wallet 1`] = `
+Object {
+  "m/44'/134'/0'/0/0": WalletData {
+    "data": Object {
+      "address": "7399986239080551550L",
+      "asset": Object {},
+      "balance": "7370000000",
+      "publicKey": "d48522677df50defd175c85072309c7643dbc6bdc63c7665a302579ed2ccaedb",
+      "secondPublicKey": "",
+    },
+  },
+  "m/44'/134'/1'/0/0": WalletData {
+    "data": Object {
+      "address": "11603034586667438647L",
+      "asset": Object {},
+      "balance": "1180000000",
+      "publicKey": "635ec78f25eefe8dcb7b4e7f5685c5aad1fef54048c596ee4e74cdf5e7b0f37c",
+      "secondPublicKey": "",
+    },
+  },
+  "m/44'/134'/2'/0/0": WalletData {
+    "data": Object {
+      "address": "8261766349562104742L",
+      "asset": Object {},
+      "balance": "700000000",
+      "publicKey": "",
+      "secondPublicKey": "",
+    },
+  },
+  "m/44'/134'/3'/0/0": WalletData {
+    "data": Object {
+      "address": "10806468874187168404L",
+      "balance": 0,
+      "publicKey": "5c12c704e97b79a7abd0cdb36336e4bdc675fcec5b8844d1fc95380c1d5db052",
+    },
+  },
+}
+`;

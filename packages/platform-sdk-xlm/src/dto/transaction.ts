@@ -2,6 +2,8 @@ import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { bigNumber } from "../container";
+
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
 		return this.data.transaction_hash || this.data.id;
@@ -32,12 +34,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make((this.data.amount || this.data.operation.amount) * 1e8);
+		const amount = BigNumber.powerOfTen(this.decimals!).times(this.data.amount || this.data.operation.amount);
+		return bigNumber(amount);
 	}
 
 	// todo: with the "transaction" method we get a nonce but with "transactions" it isn't available
 	public fee(): BigNumber {
-		return BigNumber.make((this.data.fee_charged || 0) * 1e8);
+		const fee = BigNumber.powerOfTen(this.decimals!).times(this.data.fee_charged || 0);
+		return bigNumber(fee);
 	}
 
 	public memo(): string | undefined {

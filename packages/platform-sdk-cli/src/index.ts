@@ -25,7 +25,7 @@ export const main = async (): Promise<void> => {
 		});
 
 		if (command === "exit") {
-			logger.warning("Terminating...");
+			logger.warn("Terminating...");
 
 			process.exit(0);
 		}

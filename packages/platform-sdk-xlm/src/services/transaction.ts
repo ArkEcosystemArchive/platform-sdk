@@ -75,7 +75,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			transaction.sign(Stellar.Keypair.fromSecret(privateKey));
 
-			return new SignedTransactionData(uuidv4(), transaction, transaction);
+			const decimals = this.#config.get<number>(Coins.ConfigKey.CurrencyDecimals);
+			return new SignedTransactionData(uuidv4(), transaction, transaction, decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

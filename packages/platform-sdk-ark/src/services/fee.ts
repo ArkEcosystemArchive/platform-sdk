@@ -43,9 +43,9 @@ export class FeeService extends Services.AbstractFeeService {
 
 		return {
 			static: staticFees[typeGroup][type],
-			max: dynamicFee?.max || "0",
 			min: dynamicFee?.min || "0",
 			avg: dynamicFee?.avg || "0",
+			max: staticFees[typeGroup][type],
 		};
 	}
 

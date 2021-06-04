@@ -6,6 +6,11 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { MultiPaymentRecipient, UnspentTransactionData } from "../contracts";
 import { AbstractTransactionData } from "./transaction";
 
+test("#withDecimals", () => {
+	expect(new Transaction({ key: "value" }).withDecimals(2)).toBeInstanceOf(Transaction);
+	expect(new Transaction({ key: "value" }).withDecimals("2")).toBeInstanceOf(Transaction);
+});
+
 test("#id", () => {
 	expect(new Transaction({ key: "value" }).id()).toBe("id");
 });

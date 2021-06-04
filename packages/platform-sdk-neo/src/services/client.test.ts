@@ -1,10 +1,12 @@
 import "jest-extended";
 
+import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
+import { container } from "../container";
 import { SignedTransactionData } from "../dto";
 import { TransactionData } from "../dto/transaction";
 import { ClientService } from "./client";
@@ -15,7 +17,11 @@ beforeEach(async () => (subject = await ClientService.__construct(createConfig()
 
 afterEach(() => nock.cleanAll());
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	Test.bindBigNumberService(container);
+});
 
 describe("ClientService", () => {
 	describe("#transactions", () => {
@@ -51,7 +57,7 @@ describe("ClientService", () => {
 
 			expect(result).toBeObject();
 			expect(result.address()).toBe("Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF");
-			expect(result.balance().available).toEqual(BigNumber.make(9).times(BigNumber.SATOSHI));
+			expect(result.balance().available).toEqual(BigNumber.make(9).times(1e8));
 		});
 	});
 

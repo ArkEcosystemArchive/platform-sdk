@@ -3,13 +3,14 @@ import { Networks } from "@arkecosystem/platform-sdk";
 import { transactions, importMethods, featureFlags } from "../shared";
 
 const network: Networks.NetworkManifest = {
-	id: "compendia.mainnet",
+	id: "bind.mainnet",
 	type: "live",
 	name: "Mainnet",
 	coin: "Compendia",
 	currency: {
 		ticker: "BIND",
 		symbol: "ß",
+		decimals: 8,
 	},
 	constants: {
 		slip44: 543,
@@ -31,11 +32,9 @@ const network: Networks.NetworkManifest = {
 	},
 	transactions: {
 		...transactions,
-		...{
-			fees: {
-				type: "dynamic",
-				ticker: "BIND",
-			},
+		fees: {
+			type: "dynamic",
+			ticker: "BIND",
 		},
 	},
 	importMethods,

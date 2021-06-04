@@ -49,7 +49,7 @@ export const sendTransfer = async (wallet: Contracts.IReadWriteWallet): Promise<
 	}
 
 	await finaliseTransaction(wallet, mnemonic, "signTransfer", {
-		amount: BigNumber.make(amount).toSatoshi().toString(),
+		amount: BigNumber.make(amount).times(1e8).toString(),
 		to,
 		memo,
 	});

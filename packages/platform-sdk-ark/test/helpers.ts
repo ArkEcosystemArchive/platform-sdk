@@ -10,7 +10,7 @@ export const createConfig = (options?: object, meta = {}) => {
 	const config = new Coins.Config(
 		{
 			...(options || { network: "ark.devnet" }),
-			...{ httpClient: new Request() },
+			httpClient: new Request(),
 		},
 		schema,
 	);

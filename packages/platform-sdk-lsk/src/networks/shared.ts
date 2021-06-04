@@ -36,6 +36,7 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"privateKey.mnemonic.bip39",
 		"publicKey.mnemonic.bip39",
 	],
+	Ledger: ["getVersion", "getPublicKey"],
 	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
 	Transaction: ["delegateRegistration", "multiSignature", "secondSignature", "transfer", "vote"],

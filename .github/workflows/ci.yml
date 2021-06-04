@@ -42,6 +42,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -72,6 +74,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -102,6 +106,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -132,6 +138,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -162,6 +170,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -192,6 +202,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -222,6 +234,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -252,6 +266,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -282,6 +298,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -312,6 +330,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -342,6 +362,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -372,6 +394,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -402,6 +426,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -432,6 +458,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -462,6 +490,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -492,6 +522,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -522,6 +554,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -552,6 +586,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -582,6 +618,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -612,6 +650,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -642,6 +682,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -672,6 +714,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -702,6 +746,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -732,6 +778,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -792,6 +840,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -822,6 +872,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -852,6 +904,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -882,6 +936,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build
@@ -912,6 +968,8 @@ jobs:
               uses: pnpm/action-setup@v1.2.1
               with:
                   version: 5.18.1
+            - name: Install rimraf
+              run: pnpm install rimraf -g
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
             - name: Build

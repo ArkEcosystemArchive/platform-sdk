@@ -1,10 +1,12 @@
 import "jest-extended";
 
+import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
+import { container } from "../container";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 
@@ -14,7 +16,11 @@ beforeEach(async () => (subject = await ClientService.__construct(createConfig()
 
 afterEach(() => nock.cleanAll());
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	Test.bindBigNumberService(container);
+});
 
 describe("ClientService", () => {
 	describe("#transaction", () => {

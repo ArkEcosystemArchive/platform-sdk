@@ -28,11 +28,9 @@ const network: Networks.NetworkManifest = {
 	],
 	transactions: {
 		...transactions,
-		...{
-			fees: {
-				type: "static",
-				ticker: "MUON",
-			},
+		fees: {
+			type: "static",
+			ticker: "MUON",
 		},
 	},
 	importMethods,

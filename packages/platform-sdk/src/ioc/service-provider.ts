@@ -1,24 +1,9 @@
 /* istanbul ignore file */
 
 import { CoinServices, CoinSpec, Config } from "../coins";
+import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";
-
-export type ServiceList = Record<string, { __construct: Function }>;
-
-export const ServiceKeys = {
-	ClientService: Symbol("ClientService"),
-	DataTransferObjectService: Symbol("DataTransferObjectService"),
-	FeeService: Symbol("FeeService"),
-	IdentityService: Symbol("IdentityService"),
-	KnownWalletService: Symbol("KnownWalletService"),
-	LedgerService: Symbol("LedgerService"),
-	LinkService: Symbol("LinkService"),
-	MessageService: Symbol("MessageService"),
-	MultiSignatureService: Symbol("MultiSignatureService"),
-	SignatoryService: Symbol("SignatoryService"),
-	TransactionService: Symbol("TransactionService"),
-	WalletDiscoveryService: Symbol("WalletDiscoveryService"),
-};
+import { ServiceKeys, ServiceList } from "./service-provider.contract";
 
 export abstract class AbstractServiceProvider {
 	readonly #coin: CoinSpec;
@@ -77,6 +62,7 @@ export abstract class AbstractServiceProvider {
 		]);
 
 		return {
+			bigNumber: new BigNumberService(this.#config),
 			client,
 			dataTransferObject,
 			fee,
@@ -93,17 +79,28 @@ export abstract class AbstractServiceProvider {
 	}
 
 	protected bindServices(services: CoinServices, container: Container): void {
-		container.constant(ServiceKeys.ClientService, services.client);
-		container.constant(ServiceKeys.DataTransferObjectService, services.dataTransferObject);
-		container.constant(ServiceKeys.FeeService, services.fee);
-		container.constant(ServiceKeys.IdentityService, services.identity);
-		container.constant(ServiceKeys.KnownWalletService, services.knownWallets);
-		container.constant(ServiceKeys.LedgerService, services.ledger);
-		container.constant(ServiceKeys.LinkService, services.link);
-		container.constant(ServiceKeys.MessageService, services.message);
-		container.constant(ServiceKeys.MultiSignatureService, services.multiSignature);
-		container.constant(ServiceKeys.SignatoryService, services.signatory);
-		container.constant(ServiceKeys.TransactionService, services.transaction);
-		container.constant(ServiceKeys.WalletDiscoveryService, services.walletDiscovery);
+		const bindings: Record<symbol, any> = {
+			[ServiceKeys.BigNumberService]: services.bigNumber,
+			[ServiceKeys.ClientService]: services.client,
+			[ServiceKeys.DataTransferObjectService]: services.dataTransferObject,
+			[ServiceKeys.FeeService]: services.fee,
+			[ServiceKeys.IdentityService]: services.identity,
+			[ServiceKeys.KnownWalletService]: services.knownWallets,
+			[ServiceKeys.LedgerService]: services.ledger,
+			[ServiceKeys.LinkService]: services.link,
+			[ServiceKeys.MessageService]: services.message,
+			[ServiceKeys.MultiSignatureService]: services.multiSignature,
+			[ServiceKeys.SignatoryService]: services.signatory,
+			[ServiceKeys.TransactionService]: services.transaction,
+			[ServiceKeys.WalletDiscoveryService]: services.walletDiscovery,
+		};
+
+		for (const [key, value] of Object.entries(bindings)) {
+			if (container.has(key)) {
+				container.unbind(key);
+			}
+
+			container.constant(key, value);
+		}
 	}
 }

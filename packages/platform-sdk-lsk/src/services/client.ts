@@ -7,6 +7,7 @@ import * as TransactionDTO from "../dto";
 export class ClientService extends Services.AbstractClientService {
 	readonly #http: HttpClient;
 	readonly #peer: string;
+	readonly #decimals: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"Invalid sender publicKey": "ERR_INVALID_SENDER_PUBLICKEY",
@@ -16,17 +17,19 @@ export class ClientService extends Services.AbstractClientService {
 		"Sender is not a multisignature account": "ERR_MISSING_MULTISIGNATURE",
 	};
 
-	private constructor({ http, peer }) {
+	private constructor({ http, peer, decimals }) {
 		super();
 
 		this.#http = http;
 		this.#peer = peer;
+		this.#decimals = decimals;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: `${Helpers.randomHostFromConfig(config)}/api`,
+			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
 		});
 	}
 
@@ -36,7 +39,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.#get("transactions", { id });
 
-		return Helpers.createTransactionDataWithType(result.data[0], TransactionDTO);
+		return Helpers.createTransactionDataWithType(result.data[0], TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -47,6 +50,7 @@ export class ClientService extends Services.AbstractClientService {
 			result.data,
 			this.#createPagination(result.data, result.meta),
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 

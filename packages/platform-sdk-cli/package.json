@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-cli",
-	"version": "8.8.2",
+	"version": "8.9.6",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -29,7 +29,6 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
-		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-ada": "workspace:*",
 		"@arkecosystem/platform-sdk-ark": "workspace:*",
 		"@arkecosystem/platform-sdk-atom": "workspace:*",
@@ -40,6 +39,7 @@
 		"@arkecosystem/platform-sdk-egld": "workspace:*",
 		"@arkecosystem/platform-sdk-eos": "workspace:*",
 		"@arkecosystem/platform-sdk-eth": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@arkecosystem/platform-sdk-lsk": "workspace:*",
 		"@arkecosystem/platform-sdk-neo": "workspace:*",
@@ -50,7 +50,6 @@
 		"@arkecosystem/platform-sdk-xlm": "workspace:*",
 		"@arkecosystem/platform-sdk-xrp": "workspace:*",
 		"@ledgerhq/hw-transport-node-hid-singleton": "~5.50.0",
-		"@ptkdev/logger": "^1.7.2",
 		"better-sqlite3": "^7.1.5",
 		"boxen": "^5.0.1",
 		"cfonts": "^2.9.1",

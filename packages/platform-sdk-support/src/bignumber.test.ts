@@ -32,6 +32,13 @@ test("#sum", () => {
 	expect(BigNumber.sum([BigNumber.ONE, 1, "2", 3.0, 5]).valueOf()).toBe("12");
 });
 
+test("#powerOfTen", () => {
+	expect(BigNumber.powerOfTen(0).valueOf()).toBe("1");
+	expect(BigNumber.powerOfTen(1).valueOf()).toBe("10");
+	expect(BigNumber.powerOfTen(2).valueOf()).toBe("100");
+	expect(BigNumber.powerOfTen("2").valueOf()).toBe("100");
+});
+
 test("#isNaN", () => {
 	expect(BigNumber.make(NaN).isNaN()).toBeTrue();
 	expect(subject.isNaN()).toBeFalse();
@@ -93,15 +100,29 @@ test("#isLessThanOrEqualTo", () => {
 	expect(subject.isLessThanOrEqualTo(BigNumber.make(0))).toBeFalse();
 });
 
-test("#toHuman", () => {
-	expect(BigNumber.make(100 * 1e8).toHuman()).toBe("100.00000000");
-	expect(BigNumber.make(123.456 * 1e8).toHuman()).toBe("123.45600000");
-	expect(BigNumber.make(123.456789 * 1e8).toHuman()).toBe("123.45678900");
-	expect(BigNumber.make(1e8).times(1e8).toHuman()).toBe(`${1e8}.00000000`);
+test("#denominated", () => {
+	expect(BigNumber.make(100).denominated().isEqualTo(BigNumber.make(100))).toBeTrue();
+	expect(
+		BigNumber.make(100 * 1e8, 8)
+			.denominated()
+			.isEqualTo(BigNumber.make(100)),
+	).toBeTrue();
+	expect(
+		BigNumber.make(100 * 1e8)
+			.denominated(8)
+			.isEqualTo(BigNumber.make(100)),
+	).toBeTrue();
 });
 
-test("#toSatoshi", () => {
-	expect(subject.toSatoshi()).toEqual(BigNumber.make(100000000));
+test("#toHuman", () => {
+	expect(BigNumber.make(100 * 1e8, 8).toHuman()).toBe("100");
+	expect(BigNumber.make(123.456 * 1e8, 8).toHuman()).toBe("123.456");
+	expect(BigNumber.make(123.456789 * 1e8, 8).toHuman()).toBe("123.456789");
+	expect(BigNumber.make(1e8).times(1e8).toHuman(8)).toBe(`${1e8}`);
+	expect(BigNumber.make(123456).toHuman()).toBe("123456");
+	expect(BigNumber.make(123456).toHuman(0)).toBe("123456");
+	expect(BigNumber.make(123456).toHuman(1)).toBe("12345.6");
+	expect(BigNumber.make(123456).toHuman(6)).toBe("0.123456");
 });
 
 test("#toFixed", () => {
