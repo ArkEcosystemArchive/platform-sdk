@@ -1,9 +1,6 @@
 export type ServiceList = Record<string, { __construct: Function }>;
 
 export const ServiceKeys = {
-	// TODO
-	ConfigRepository: Symbol("ConfigRepository"),
-	// Coin Services
 	BigNumberService: Symbol("BigNumberService"),
 	ClientService: Symbol("ClientService"),
 	DataTransferObjectService: Symbol("DataTransferObjectService"),
