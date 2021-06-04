@@ -1,7 +1,7 @@
 import "jest-extended";
-import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
 import { createTransportRecorder, createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
+import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
@@ -60,7 +60,6 @@ describe("signMessage", () => {
 	});
 });
 
-
 describe("scan", () => {
 	afterEach(() => nock.cleanAll());
 
@@ -72,7 +71,6 @@ describe("scan", () => {
 		await transport.connect(createTransportRecorder(LedgerTransportNodeHID, recordStore));
 		return transport;
 	};
-
 
 	it("should return scanned wallet", async () => {
 		// nock(/.+/)
