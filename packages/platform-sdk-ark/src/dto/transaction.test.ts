@@ -1,12 +1,12 @@
 import "jest-extended";
 
+import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
-import { TransactionData } from "./transaction";
 import { container } from "../container";
-import { Test } from "@arkecosystem/platform-sdk";
+import { TransactionData } from "./transaction";
 
 let subject: TransactionData;
 

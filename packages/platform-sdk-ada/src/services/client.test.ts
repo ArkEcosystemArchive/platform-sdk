@@ -5,10 +5,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
+import { container } from "../container";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 import { TransactionService } from "./transaction";
-import { container } from "../container";
 
 let subject: ClientService;
 

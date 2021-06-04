@@ -5,8 +5,8 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
-import { TransactionData } from "./transaction";
 import { container } from "../container";
+import { TransactionData } from "./transaction";
 
 beforeAll(() => {
 	Test.bindBigNumberService(container);
