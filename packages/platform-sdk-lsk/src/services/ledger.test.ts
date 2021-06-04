@@ -2,8 +2,8 @@ import "jest-extended";
 
 import { createTransportRecorder, createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
-// import nock from "nock";
 
+// import nock from "nock";
 import { ledger } from "../../test/fixtures/ledger";
 import { createConfig } from "../../test/helpers";
 import { LedgerService } from "./ledger";
