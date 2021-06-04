@@ -79,18 +79,26 @@ export abstract class AbstractServiceProvider {
 	}
 
 	protected bindServices(services: CoinServices, container: Container): void {
-		container.constant(ServiceKeys.BigNumberService, services.bigNumber);
-		container.constant(ServiceKeys.ClientService, services.client);
-		container.constant(ServiceKeys.DataTransferObjectService, services.dataTransferObject);
-		container.constant(ServiceKeys.FeeService, services.fee);
-		container.constant(ServiceKeys.IdentityService, services.identity);
-		container.constant(ServiceKeys.KnownWalletService, services.knownWallets);
-		container.constant(ServiceKeys.LedgerService, services.ledger);
-		container.constant(ServiceKeys.LinkService, services.link);
-		container.constant(ServiceKeys.MessageService, services.message);
-		container.constant(ServiceKeys.MultiSignatureService, services.multiSignature);
-		container.constant(ServiceKeys.SignatoryService, services.signatory);
-		container.constant(ServiceKeys.TransactionService, services.transaction);
-		container.constant(ServiceKeys.WalletDiscoveryService, services.walletDiscovery);
+		const bindings: Record<symbol, any> = {
+			[ServiceKeys.BigNumberService]: services.bigNumber,
+			[ServiceKeys.ClientService]: services.client,
+			[ServiceKeys.DataTransferObjectService]: services.dataTransferObject,
+			[ServiceKeys.FeeService]: services.fee,
+			[ServiceKeys.IdentityService]: services.identity,
+			[ServiceKeys.KnownWalletService]: services.knownWallets,
+			[ServiceKeys.LedgerService]: services.ledger,
+			[ServiceKeys.LinkService]: services.link,
+			[ServiceKeys.MessageService]: services.message,
+			[ServiceKeys.MultiSignatureService]: services.multiSignature,
+			[ServiceKeys.SignatoryService]: services.signatory,
+			[ServiceKeys.TransactionService]: services.transaction,
+			[ServiceKeys.WalletDiscoveryService]: services.walletDiscovery,
+		}
+
+		for (const [key, value] of Object.entries(bindings)) {
+			if (container.missing(key)) {
+				container.constant(key, value);
+			}
+		}
 	}
 }
