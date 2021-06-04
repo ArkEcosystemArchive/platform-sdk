@@ -2,7 +2,7 @@ import "jest-extended";
 
 import { createTransportRecorder, createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
-import nock from "nock";
+// import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
 import { createConfig } from "../../test/helpers";
@@ -60,10 +60,10 @@ describe("signMessage", () => {
 	});
 });
 
-describe.only("scan", () => {
-	afterEach(() => nock.cleanAll());
+describe("scan", () => {
+	// afterEach(() => nock.cleanAll());
 
-	beforeAll(() => nock.disableNetConnect());
+	// beforeAll(() => nock.disableNetConnect());
 
 	const createMockService = async (recordStore: any) => {
 		const transport = await LedgerService.__construct(createConfig());
@@ -77,11 +77,11 @@ describe.only("scan", () => {
 
 		const lsk = await createMockService(recordStore);
 
-		const walletData = await lsk.scan({ useLegacy: true });
+		const walletData = await lsk.scan();
 
-		console.log(recordStore.toString());
+		// console.log(recordStore.toString());
 
-		expect(Object.keys(walletData)).toHaveLength(2);
+		expect(Object.keys(walletData)).toHaveLength(3); // Brian Nano X
 		expect(walletData).toMatchSnapshot();
 
 		for (const wallet of Object.values(walletData)) {

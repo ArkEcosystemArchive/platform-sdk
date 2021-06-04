@@ -50,7 +50,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	}
 
 	public async getPublicKey(path: string): Promise<string> {
-		const { publicKey } = await this.getPublicKeyAndAddress(path);
+		const { publicKey } = await this.#getPublicKeyAndAddress(path);
 
 		return publicKey;
 	}
@@ -67,7 +67,6 @@ export class LedgerService extends Services.AbstractLedgerService {
 		return signature.slice(0, 64).toString("hex");
 	}
 
-	// @TODO: send requests in parallel
 	// @TODO: discover wallets until they 404
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
@@ -79,31 +78,35 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 		const addresses: string[] = [];
 
-		let initialAddressIndex = 0;
+		let initialAccountIndex = 0;
 
 		if (options?.startPath) {
-			initialAddressIndex = BIP44.parse(options.startPath).addressIndex + 1;
+			initialAccountIndex = BIP44.parse(options.startPath).account + 1;
 		}
 
-		for (const addressIndexIterator of createRange(page, pageSize)) {
-			const addressIndex = initialAddressIndex + addressIndexIterator;
+		// Scan Ledger
+		for (const accountIndexIterator of createRange(page, pageSize)) {
+			const accountIndex = initialAccountIndex + accountIndexIterator;
 
-			// @TODO: the dpos-ledger-api seems to operate purely on the account index and always forces an account index of 0
-			const path = `m/44'/${slip44}'/${addressIndex}'/0/0`;
-			const { publicKey, address } = await this.getPublicKeyAndAddress(path);
-			console.log("path", path, "publicKey", publicKey, "address", address);
+			const path = BIP44.stringify({
+				coinType: slip44,
+				account: accountIndex,
+			});
+			const { publicKey, address } = await this.#getPublicKeyAndAddress(path);
+
 			addresses.push(address);
 
 			addressCache[path] = { address, publicKey };
 		}
 
+		// Scan Network
+		const promises: Promise<void>[] = [];
+
 		for (const address of addresses) {
-			try {
-				wallets.push(await this.#client.wallet(address));
-			} catch {
-				// Do nothing...
-			}
+			promises.push(this.#fetchWallet(address, wallets));
 		}
+
+		await Promise.all(promises);
 
 		// Create a mapping of paths and wallets that have been found.
 		const cold: Services.LedgerWalletList = {};
@@ -132,7 +135,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 		return { ...cold, ...used };
 	}
 
-	private async getPublicKeyAndAddress(
+	async #getPublicKeyAndAddress(
 		path: string,
 	): Promise<{
 		publicKey: string;
@@ -143,5 +146,17 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 	#getLedgerAccount(path: string): LedgerAccount {
 		return new LedgerAccount().coinIndex(SupportedCoin.LISK).account(BIP44.parse(path).account);
+	}
+
+	async #fetchWallet(address: string, wallets: Contracts.WalletData[]): Promise<void> {
+		try {
+			const wallet: Contracts.WalletData = await this.#client.wallet(address);
+
+			if (wallet.address()) {
+				wallets.push(wallet);
+			}
+		} catch {
+			return undefined;
+		}
 	}
 }
