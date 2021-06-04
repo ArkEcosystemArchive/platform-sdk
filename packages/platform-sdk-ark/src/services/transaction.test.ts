@@ -1,10 +1,11 @@
 import "jest-extended";
 
 import { Transactions } from "@arkecosystem/crypto";
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { Signatories, Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfigWithNetwork } from "../../test/helpers";
+import { container } from "../container";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
@@ -13,6 +14,8 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(async () => {
 	nock.disableNetConnect();
+
+	Test.bindBigNumberService(container);
 
 	subject = await TransactionService.__construct(createConfigWithNetwork());
 });

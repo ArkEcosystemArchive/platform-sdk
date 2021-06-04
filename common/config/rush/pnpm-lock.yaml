@@ -184,7 +184,6 @@ importers:
       '@arkecosystem/platform-sdk-support': link:../platform-sdk-support
       dot-prop: 6.0.1
       is-url-superb: 4.0.0
-      joi: 17.4.0
       lodash.orderby: 4.6.0
       node-dotify: 1.1.0
       semver: 7.3.5
@@ -262,7 +261,6 @@ importers:
       jest: ^26.6.3
       jest-extended: ^0.11.5
       jest-localstorage-mock: ^2.4.10
-      joi: ^17.4.0
       lodash.orderby: ^4.6.0
       nock: ^13.0.11
       node-dotify: ^1.0.2

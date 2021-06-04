@@ -1,9 +1,15 @@
 import "jest-extended";
 
+import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { TransactionData } from "./transaction";
+import { container } from "../container";
+
+beforeAll(() => {
+	Test.bindBigNumberService(container);
+});
 
 describe("TransactionData", () => {
 	it("should succeed", async () => {
