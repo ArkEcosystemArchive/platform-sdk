@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scan should return scanned wallet 1`] = `
+Object {
+  "m/44'/134'/0'/0/0": WalletData {
+    "data": Object {
+      "address": "7400984541200951401L",
+      "asset": Object {},
+      "balance": "9990000000",
+      "publicKey": "87cb49b41cd1b67a15041e8f93b08c6d5bb07a321f02e5c2ec8fc3e914b0d3dd",
+      "secondPublicKey": "",
+    },
+  },
+  "m/44'/134'/1'/0/0": WalletData {
+    "data": Object {
+      "address": "17760965386672155980L",
+      "asset": Object {},
+      "balance": "9990000000",
+      "publicKey": "057273dc5cd2d0fad5846bc1220257017697b5985702efdaea1273261642fe06",
+      "secondPublicKey": "",
+    },
+  },
+  "m/44'/134'/2'/0/0": WalletData {
+    "data": Object {
+      "address": "5060641145670072575L",
+      "balance": 0,
+      "publicKey": "36d5ac3d2de28861e7490804593d26ba4efee27309af13543dc55b10850c2501",
+    },
+  },
+}
+`;
+
+exports[`scan should return scanned wallet 2`] = `
+Object {
+  "address": "5060641145670072575L",
+  "balance": Object {
+    "available": BigNumber {},
+    "fees": BigNumber {},
+  },
+  "isDelegate": false,
+  "isMultiSignature": false,
+  "isResignedDelegate": false,
+  "isSecondSignature": false,
+  "nonce": BigNumber {},
+  "publicKey": "36d5ac3d2de28861e7490804593d26ba4efee27309af13543dc55b10850c2501",
+  "rank": undefined,
+  "username": undefined,
+  "votes": BigNumber {},
+}
+`;
+
+exports[`scan should return scanned wallet 3`] = `
+Object {
+  "address": "7400984541200951401L",
+  "balance": Object {
+    "available": BigNumber {},
+    "fees": BigNumber {},
+  },
+  "isDelegate": false,
+  "isMultiSignature": false,
+  "isResignedDelegate": false,
+  "isSecondSignature": false,
+  "nonce": BigNumber {},
+  "publicKey": "87cb49b41cd1b67a15041e8f93b08c6d5bb07a321f02e5c2ec8fc3e914b0d3dd",
+  "rank": undefined,
+  "username": undefined,
+  "votes": BigNumber {},
+}
+`;
+
+exports[`scan should return scanned wallet 4`] = `
+Object {
+  "address": "17760965386672155980L",
+  "balance": Object {
+    "available": BigNumber {},
+    "fees": BigNumber {},
+  },
+  "isDelegate": false,
+  "isMultiSignature": false,
+  "isResignedDelegate": false,
+  "isSecondSignature": false,
+  "nonce": BigNumber {},
+  "publicKey": "057273dc5cd2d0fad5846bc1220257017697b5985702efdaea1273261642fe06",
+  "rank": undefined,
+  "username": undefined,
+  "votes": BigNumber {},
+}
+`;

@@ -1,7 +1,9 @@
 import "jest-extended";
 
-import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
+import { createTransportRecorder, createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
+import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
+// import nock from "nock";
 import { ledger } from "../../test/fixtures/ledger";
 import { createConfig } from "../../test/helpers";
 import { LedgerService } from "./ledger";
@@ -55,5 +57,41 @@ describe("signMessage", () => {
 		await expect(lsk.signMessage(ledger.bip44.path, Buffer.from(ledger.message.payload, "hex"))).resolves.toEqual(
 			ledger.message.result,
 		);
+	});
+});
+
+describe.skip("scan", () => {
+	// afterEach(() => nock.cleanAll());
+
+	// beforeAll(() => nock.disableNetConnect());
+
+	const createMockService = async (recordStore: any) => {
+		const transport = await LedgerService.__construct(createConfig());
+
+		await transport.connect(createTransportRecorder(LedgerTransportNodeHID, recordStore));
+		return transport;
+	};
+
+	it("should return scanned wallet", async () => {
+		const recordStore = new RecordStore();
+
+		const lsk = await createMockService(recordStore);
+
+		const walletData = await lsk.scan();
+
+		// console.log(recordStore.toString());
+
+		expect(Object.keys(walletData)).toHaveLength(3); // Brian Nano X
+		expect(walletData).toMatchSnapshot();
+
+		for (const wallet of Object.values(walletData)) {
+			const publicKey: string | undefined = wallet.publicKey();
+
+			if (publicKey) {
+				// expect(Address.fromPublicKey(publicKey, { pubKeyHash: 30 })).toBe(wallet.address());
+			}
+
+			expect(wallet.toObject()).toMatchSnapshot();
+		}
 	});
 });
