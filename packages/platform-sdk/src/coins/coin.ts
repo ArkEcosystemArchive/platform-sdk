@@ -1,6 +1,7 @@
 import { BadMethodDependencyException } from "../exceptions";
 import { Network, NetworkManifest, NetworkRepository } from "../networks";
 import {
+	BigNumberService,
 	ClientService,
 	DataTransferObjectService,
 	FeeService,
@@ -84,6 +85,14 @@ export class Coin {
 
 	public config(): Config {
 		return this.#config;
+	}
+
+	public bigNumber(): BigNumberService {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, this.bigNumber.name, "__construct");
+		}
+
+		return this.#services!.bigNumber;
 	}
 
 	public client(): ClientService {
