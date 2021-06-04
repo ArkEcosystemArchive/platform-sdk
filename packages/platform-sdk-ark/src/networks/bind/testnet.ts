@@ -3,13 +3,14 @@ import { Networks } from "@arkecosystem/platform-sdk";
 import { transactions, importMethods, featureFlags } from "../shared";
 
 const network: Networks.NetworkManifest = {
-	id: "compendia.testnet",
+	id: "bind.testnet",
 	type: "test",
 	name: "Testnet",
 	coin: "Compendia",
 	currency: {
 		ticker: "TBIND",
 		symbol: "Tß",
+		decimals: 8,
 	},
 	constants: {
 		slip44: 1,

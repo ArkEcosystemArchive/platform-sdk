@@ -320,12 +320,13 @@ test("#all", () => {
 		    },
 		    "type": "live",
 		  },
-		  "compendia.mainnet": Object {
+		  "bind.mainnet": Object {
 		    "coin": "Compendia",
 		    "constants": Object {
 		      "slip44": 543,
 		    },
 		    "currency": Object {
+		      "decimals": 8,
 		      "symbol": "ß",
 		      "ticker": "BIND",
 		    },
@@ -420,7 +421,7 @@ test("#all", () => {
 		        "type": "explorer",
 		      },
 		    ],
-		    "id": "compendia.mainnet",
+		    "id": "bind.mainnet",
 		    "importMethods": Object {
 		      "address": Object {
 		        "default": false,
@@ -469,12 +470,13 @@ test("#all", () => {
 		    },
 		    "type": "live",
 		  },
-		  "compendia.testnet": Object {
+		  "bind.testnet": Object {
 		    "coin": "Compendia",
 		    "constants": Object {
 		      "slip44": 1,
 		    },
 		    "currency": Object {
+		      "decimals": 8,
 		      "symbol": "Tß",
 		      "ticker": "TBIND",
 		    },
@@ -569,7 +571,7 @@ test("#all", () => {
 		        "type": "explorer",
 		      },
 		    ],
-		    "id": "compendia.testnet",
+		    "id": "bind.testnet",
 		    "importMethods": Object {
 		      "address": Object {
 		        "default": false,
