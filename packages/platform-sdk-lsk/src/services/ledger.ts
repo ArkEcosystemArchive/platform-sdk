@@ -36,7 +36,6 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
-		// @ts-ignore
 		this.#transport = new DposLedger(new CommHandler(this.#ledger));
 	}
 
@@ -52,6 +51,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 	public async getPublicKey(path: string): Promise<string> {
 		const { publicKey } = await this.getPublicKeyAndAddress(path);
+
 		return publicKey;
 	}
 
@@ -88,7 +88,8 @@ export class LedgerService extends Services.AbstractLedgerService {
 		for (const addressIndexIterator of createRange(page, pageSize)) {
 			const addressIndex = initialAddressIndex + addressIndexIterator;
 
-			const path = `m/44'/${slip44}'/0'/0/${addressIndex}`;
+			// @TODO: the dpos-ledger-api seems to operate purely on the account index and always forces an account index of 0
+			const path = `m/44'/${slip44}'/${addressIndex}'/0/0`;
 			const { publicKey, address } = await this.getPublicKeyAndAddress(path);
 			console.log("path", path, "publicKey", publicKey, "address", address);
 			addresses.push(address);
@@ -137,7 +138,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 		publicKey: string;
 		address: string;
 	}> {
-		return await this.#transport.getPubKey(this.#getLedgerAccount(path));
+		return this.#transport.getPubKey(this.#getLedgerAccount(path));
 	}
 
 	#getLedgerAccount(path: string): LedgerAccount {
