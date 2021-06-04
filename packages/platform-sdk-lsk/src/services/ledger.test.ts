@@ -60,7 +60,7 @@ describe("signMessage", () => {
 	});
 });
 
-describe("scan", () => {
+describe.skip("scan", () => {
 	// afterEach(() => nock.cleanAll());
 
 	// beforeAll(() => nock.disableNetConnect());
