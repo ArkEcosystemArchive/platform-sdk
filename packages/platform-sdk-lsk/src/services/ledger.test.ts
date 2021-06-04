@@ -1,8 +1,8 @@
 import "jest-extended";
 
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
-
 import nock from "nock";
+
 import { ledger } from "../../test/fixtures/ledger";
 import { createConfig } from "../../test/helpers";
 import { LedgerService } from "./ledger";

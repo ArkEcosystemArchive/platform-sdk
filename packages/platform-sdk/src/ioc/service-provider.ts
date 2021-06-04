@@ -93,7 +93,7 @@ export abstract class AbstractServiceProvider {
 			[ServiceKeys.SignatoryService]: services.signatory,
 			[ServiceKeys.TransactionService]: services.transaction,
 			[ServiceKeys.WalletDiscoveryService]: services.walletDiscovery,
-		}
+		};
 
 		for (const [key, value] of Object.entries(bindings)) {
 			if (container.has(key)) {
