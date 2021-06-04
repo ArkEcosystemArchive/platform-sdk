@@ -2,8 +2,8 @@ import "jest-extended";
 
 import { DTO, Test } from "@arkecosystem/platform-sdk";
 
-import { TransactionData } from "./transaction";
 import { container } from "../container";
+import { TransactionData } from "./transaction";
 
 const Fixture = require("../../test/fixtures/client/transaction.json");
 const subject = new TransactionData(Fixture.data.transactions[0]);

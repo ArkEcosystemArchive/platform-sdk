@@ -7,10 +7,10 @@ import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
+import { container } from "../container";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 import { TransactionService } from "./transaction";
-import { container } from "../container";
 
 let subject: ClientService;
 

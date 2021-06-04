@@ -5,8 +5,8 @@ import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
 import { createConfig } from "../../test/helpers";
-import { TransactionService } from "./transaction";
 import { container } from "../container";
+import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 

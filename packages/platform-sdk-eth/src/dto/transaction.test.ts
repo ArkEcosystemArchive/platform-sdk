@@ -3,8 +3,8 @@ import "jest-extended";
 import { Test } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { TransactionData } from "./transaction";
 import { container } from "../container";
+import { TransactionData } from "./transaction";
 
 const Fixture = require("../../test/fixtures/client/transaction.json");
 

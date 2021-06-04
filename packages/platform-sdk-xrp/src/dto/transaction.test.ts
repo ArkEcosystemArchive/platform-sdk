@@ -4,8 +4,8 @@ import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { TransactionData } from "./transaction";
 import { container } from "../container";
+import { TransactionData } from "./transaction";
 
 beforeAll(() => {
 	Test.bindBigNumberService(container);

@@ -4,9 +4,9 @@ import { Signatories, Test } from "@arkecosystem/platform-sdk";
 
 import { createConfig } from "../../test/config";
 import { identity } from "../../test/fixtures/identity";
+import { container } from "../container";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { TransactionService } from "./transaction";
-import { container } from "../container";
 
 let subject: TransactionService;
 
