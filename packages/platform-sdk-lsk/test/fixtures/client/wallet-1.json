@@ -1,0 +1,16 @@
+{
+  "meta": {
+	"offset": 0,
+	"limit": 10
+  },
+  "data": [
+	{
+	  "address": "11603034586667438647L",
+	  "publicKey": "635ec78f25eefe8dcb7b4e7f5685c5aad1fef54048c596ee4e74cdf5e7b0f37c",
+	  "balance": "1180000000",
+	  "secondPublicKey": "",
+	  "asset": {}
+	}
+  ],
+  "links": {}
+}
