@@ -26,8 +26,8 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
-		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@arkecosystem/utils": "^1.3.0",

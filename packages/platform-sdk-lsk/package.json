@@ -26,15 +26,15 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
-		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
+		"@ledgerhq/hw-transport-node-hid-singleton": "~5.50.0",
 		"@liskhq/lisk-client": "^2.0",
 		"@liskhq/lisk-cryptography": "^2.5",
 		"@liskhq/lisk-transactions": "^2.0",
-		"dpos-ledger-api": "^3.0.1",
-		"@ledgerhq/hw-transport-node-hid-singleton": "~5.50.0"
+		"dpos-ledger-api": "^3.0.1"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
