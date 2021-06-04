@@ -1,5 +1,6 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { bigNumber } from "../container";
 
 export class FeeService extends Services.AbstractFeeService {
 	readonly #config: Coins.Config;
@@ -42,10 +43,10 @@ export class FeeService extends Services.AbstractFeeService {
 		const dynamicFee = dynamicFees[typeGroup][type];
 
 		return {
-			static: staticFees[typeGroup][type],
-			min: dynamicFee?.min || "0",
-			avg: dynamicFee?.avg || "0",
-			max: staticFees[typeGroup][type],
+			static: bigNumber(staticFees[typeGroup][type]),
+			min: bigNumber(dynamicFee?.min || "0"),
+			avg: bigNumber(dynamicFee?.avg || "0"),
+			max: bigNumber(staticFees[typeGroup][type]),
 		};
 	}
 

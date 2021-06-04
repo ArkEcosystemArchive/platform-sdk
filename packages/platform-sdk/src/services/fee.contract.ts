@@ -1,8 +1,10 @@
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
 export interface TransactionFee {
-	static: string;
-	max: string;
-	min: string;
-	avg: string;
+	static: BigNumber;
+	max: BigNumber;
+	min: BigNumber;
+	avg: BigNumber;
 }
 
 export interface TransactionFees {
