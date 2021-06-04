@@ -2,7 +2,7 @@ import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { convertQaToZil } from "../zilliqa";
+import { bigNumber } from "../container";
 
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
@@ -42,11 +42,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(convertQaToZil(this.data.amount));
+		return bigNumber(this.data.amount);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(convertQaToZil(this.data.gasUsed)).times(convertQaToZil(this.data.gasPrice));
+		return bigNumber(this.data.gasUsed).times(this.data.gasPrice);
 	}
 
 	public asset(): Record<string, unknown> {

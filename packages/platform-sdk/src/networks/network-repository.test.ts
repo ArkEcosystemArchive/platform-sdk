@@ -320,12 +320,13 @@ test("#all", () => {
 		    },
 		    "type": "live",
 		  },
-		  "compendia.mainnet": Object {
+		  "bind.mainnet": Object {
 		    "coin": "Compendia",
 		    "constants": Object {
 		      "slip44": 543,
 		    },
 		    "currency": Object {
+		      "decimals": 8,
 		      "symbol": "ß",
 		      "ticker": "BIND",
 		    },
@@ -412,7 +413,7 @@ test("#all", () => {
 		    },
 		    "hosts": Array [
 		      Object {
-		        "host": "https://apis.compendia.org",
+		        "host": "https://apis.compendia.org/api",
 		        "type": "full",
 		      },
 		      Object {
@@ -420,7 +421,7 @@ test("#all", () => {
 		        "type": "explorer",
 		      },
 		    ],
-		    "id": "compendia.mainnet",
+		    "id": "bind.mainnet",
 		    "importMethods": Object {
 		      "address": Object {
 		        "default": false,
@@ -468,6 +469,156 @@ test("#all", () => {
 		      ],
 		    },
 		    "type": "live",
+		  },
+		  "bind.testnet": Object {
+		    "coin": "Compendia",
+		    "constants": Object {
+		      "slip44": 1,
+		    },
+		    "currency": Object {
+		      "decimals": 8,
+		      "symbol": "Tß",
+		      "ticker": "TBIND",
+		    },
+		    "featureFlags": Object {
+		      "Client": Array [
+		        "transaction",
+		        "transactions",
+		        "wallet",
+		        "wallets",
+		        "delegate",
+		        "delegates",
+		        "votes",
+		        "voters",
+		        "configuration",
+		        "fees",
+		        "syncing",
+		        "broadcast",
+		      ],
+		      "Fee": Array [
+		        "all",
+		      ],
+		      "Identity": Array [
+		        "address.mnemonic.bip39",
+		        "address.multiSignature",
+		        "address.privateKey",
+		        "address.publicKey",
+		        "address.validate",
+		        "address.wif",
+		        "keyPair.mnemonic.bip39",
+		        "keyPair.privateKey",
+		        "keyPair.wif",
+		        "privateKey.mnemonic.bip39",
+		        "privateKey.wif",
+		        "publicKey.mnemonic.bip39",
+		        "publicKey.multiSignature",
+		        "publicKey.wif",
+		        "wif.mnemonic.bip39",
+		      ],
+		      "Ledger": Array [
+		        "getVersion",
+		        "getPublicKey",
+		        "signTransaction",
+		        "signMessage",
+		      ],
+		      "Link": Array [
+		        "block",
+		        "transaction",
+		        "wallet",
+		      ],
+		      "Message": Array [
+		        "sign",
+		        "verify",
+		      ],
+		      "Transaction": Array [
+		        "delegateRegistration",
+		        "delegateResignation",
+		        "ipfs.ledgerS",
+		        "ipfs.ledgerX",
+		        "ipfs.musig",
+		        "ipfs",
+		        "multiPayment.ledgerS",
+		        "multiPayment.ledgerX",
+		        "multiPayment.musig",
+		        "multiPayment",
+		        "multiSignature.ledgerS",
+		        "multiSignature.ledgerX",
+		        "multiSignature.musig",
+		        "multiSignature",
+		        "secondSignature",
+		        "transfer.ledgerS",
+		        "transfer.ledgerX",
+		        "transfer.musig",
+		        "transfer",
+		        "vote.ledgerS",
+		        "vote.ledgerX",
+		        "vote.musig",
+		        "vote",
+		      ],
+		    },
+		    "governance": Object {
+		      "delegateCount": 47,
+		      "votesPerTransaction": 1,
+		      "votesPerWallet": 1,
+		    },
+		    "hosts": Array [
+		      Object {
+		        "host": "http://apis-testnet.compendia.org/api",
+		        "type": "full",
+		      },
+		      Object {
+		        "host": "https://testnet.bindscan.io",
+		        "type": "explorer",
+		      },
+		    ],
+		    "id": "bind.testnet",
+		    "importMethods": Object {
+		      "address": Object {
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		        ],
+		      },
+		      "bip39": Object {
+		        "default": true,
+		        "permissions": Array [
+		          "read",
+		          "write",
+		        ],
+		      },
+		      "publicKey": Object {
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		        ],
+		      },
+		    },
+		    "meta": Object {
+		      "fastDelegateSync": true,
+		    },
+		    "name": "Testnet",
+		    "transactions": Object {
+		      "expirationType": "height",
+		      "fees": Object {
+		        "ticker": "TBIND",
+		        "type": "dynamic",
+		      },
+		      "memo": true,
+		      "types": Array [
+		        "delegate-registration",
+		        "delegate-resignation",
+		        "htlc-claim",
+		        "htlc-lock",
+		        "htlc-refund",
+		        "ipfs",
+		        "multi-payment",
+		        "multi-signature",
+		        "second-signature",
+		        "transfer",
+		        "vote",
+		      ],
+		    },
+		    "type": "test",
 		  },
 		}
 	`);

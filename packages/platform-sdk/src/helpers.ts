@@ -4,9 +4,14 @@ import { Config } from "./coins";
 import { NetworkHost, NetworkHostType } from "./networks";
 import { TransactionDataCollection } from "./collections";
 import { TransactionDataType } from "./contracts";
-import { MetaPagination } from "./services";
+import { AbstractTransactionData } from "./dto";
+import { BigNumberService, MetaPagination } from "./services";
+import { Container, ServiceKeys } from "./ioc";
 
-export const createTransactionDataWithType = (transaction: unknown, dtos: Record<string, any>): TransactionDataType => {
+export const createTransactionDataWithType = (
+	transaction: unknown,
+	dtos: Record<string, any>,
+): TransactionDataType & AbstractTransactionData => {
 	const instance: TransactionDataType = new dtos.TransactionData(transaction);
 
 	if (instance.isDelegateRegistration()) {
@@ -57,16 +62,17 @@ export const createTransactionDataWithType = (transaction: unknown, dtos: Record
 		return new dtos.VoteData(transaction);
 	}
 
-	return instance;
+	return instance as AbstractTransactionData;
 };
 
 export const createTransactionDataCollectionWithType = (
 	transactions: unknown[],
 	meta: MetaPagination,
 	classes: Record<string, any>,
+	decimals?: number | string,
 ): TransactionDataCollection =>
 	new TransactionDataCollection(
-		transactions.map((transaction) => createTransactionDataWithType(transaction, classes)),
+		transactions.map((transaction) => createTransactionDataWithType(transaction, classes).withDecimals(decimals)),
 		meta,
 	);
 
@@ -111,3 +117,7 @@ export const toRawUnit = (value: NumberLike, config: Config) => {
 	const denomination = BigNumber.make(`1${"0".repeat(decimals)}`); // poor man's bigint exponentiation
 	return denomination.times(value);
 };
+
+/* istanbul ignore next */
+export const bigNumber = (value: NumberLike, container: Container): BigNumber =>
+	container.get<BigNumberService>(ServiceKeys.BigNumberService).make(value);

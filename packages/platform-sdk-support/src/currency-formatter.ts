@@ -13,11 +13,11 @@ export class CurrencyFormatter {
 	}
 
 	public static subToUnit(value: NumberLike, decimals = 8): BigNumber {
-		return BigNumber.make(value, decimals).divide(1e8);
+		return BigNumber.make(value, decimals).denominated(decimals);
 	}
 
 	public static unitToSub(value: NumberLike, decimals = 8): BigNumber {
-		return BigNumber.make(value, decimals).toSatoshi();
+		return BigNumber.make(value, decimals).times(BigNumber.powerOfTen(decimals));
 	}
 
 	public static cryptoToCurrency(

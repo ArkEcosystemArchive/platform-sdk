@@ -17,12 +17,12 @@ export class SignedTransactionData
 
 	/** {@inheritDoc Contracts.SignedTransactionData.amount} */
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.amount);
+		return BigNumber.make(this.signedData.amount, this.decimals);
 	}
 
 	/** {@inheritDoc Contracts.SignedTransactionData.fee} */
 	public fee(): BigNumber {
-		return BigNumber.make(this.signedData.fee);
+		return BigNumber.make(this.signedData.fee, this.decimals);
 	}
 
 	/** {@inheritDoc Contracts.SignedTransactionData.fee} */

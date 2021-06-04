@@ -10,6 +10,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	readonly #http: HttpClient;
 	readonly #peer: string;
+	readonly #decimals: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"nonce too low": "ERR_NONCE_TOO_LOW",
@@ -21,17 +22,19 @@ export class ClientService extends Services.AbstractClientService {
 		"intrinsic gas too low": "ERR_INTRINSIC_GAS",
 	};
 
-	private constructor({ http, peer }) {
+	private constructor({ http, peer, decimals }) {
 		super();
 
 		this.#http = http;
 		this.#peer = peer;
+		this.#decimals = decimals;
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Helpers.randomHostFromConfig(config),
+			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
 		});
 	}
 
@@ -39,7 +42,10 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return Helpers.createTransactionDataWithType(await this.#get(`transactions/${id}`), TransactionDTO);
+		return Helpers.createTransactionDataWithType(
+			await this.#get(`transactions/${id}`),
+			TransactionDTO,
+		).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -55,6 +61,7 @@ export class ClientService extends Services.AbstractClientService {
 				last: undefined,
 			},
 			TransactionDTO,
+			this.#decimals,
 		);
 	}
 

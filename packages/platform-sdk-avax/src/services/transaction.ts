@@ -68,6 +68,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					timestamp: DateTime.make(),
 				},
 				signedTx.toString(),
+				this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -113,6 +114,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					fee: 0,
 				},
 				signedTx.toString(),
+				this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

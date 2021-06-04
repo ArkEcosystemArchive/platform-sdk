@@ -2,6 +2,8 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { bigNumber } from "../container";
+
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
@@ -14,11 +16,11 @@ export class SignedTransactionData
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.value.toString()).divide(1e18).times(1e8);
+		return bigNumber(this.signedData.value.toString());
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.signedData.gasUsed).times(this.signedData.gasPrice).divide(1e18).times(1e8);
+		return bigNumber(this.signedData.gasUsed).times(this.signedData.gasPrice);
 	}
 
 	public timestamp(): DateTime {

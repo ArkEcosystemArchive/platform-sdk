@@ -1,17 +1,18 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { Zilliqa } from "@zilliqa-js/zilliqa";
+import { BN, Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
-import { checkGasPrice } from "../zilliqa";
 
 export class ClientService extends Services.AbstractClientService {
 	readonly #zilliqa: Zilliqa;
+	readonly #decimals: number;
 
 	private constructor(config: Coins.Config) {
 		super();
 
 		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(config));
+		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.Config): Promise<ClientService> {
@@ -34,7 +35,7 @@ export class ClientService extends Services.AbstractClientService {
 			isConfirmed: transaction.isConfirmed(),
 			isSent: transaction.isPending(),
 		};
-		return Helpers.createTransactionDataWithType(data, TransactionDTO);
+		return Helpers.createTransactionDataWithType(data, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -68,7 +69,7 @@ export class ClientService extends Services.AbstractClientService {
 			const id = transaction.id();
 
 			try {
-				checkGasPrice(transaction.fee().toString(), minGasPrice);
+				this.#checkGasPrice(transaction.fee().toString(), minGasPrice);
 
 				const broadcastData = transaction.toBroadcast();
 				const hash = await this.#zilliqa.blockchain.createTransactionRaw(broadcastData);
@@ -93,5 +94,12 @@ export class ClientService extends Services.AbstractClientService {
 		}
 
 		return response;
+	}
+
+	#checkGasPrice(gasPrice: string, minGasPrice = "0") {
+		const isGasSufficient = new BN(gasPrice).gte(new BN(minGasPrice));
+		if (!isGasSufficient) {
+			throw new Exceptions.Exception(`Insufficient gas: ${gasPrice}, needed: ${minGasPrice}`);
+		}
 	}
 }

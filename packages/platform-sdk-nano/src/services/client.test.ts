@@ -1,9 +1,10 @@
 import "jest-extended";
 
-import { Collections } from "@arkecosystem/platform-sdk";
+import { Collections, Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";
+import { container } from "../container";
 import { WalletData } from "../dto";
 import { ClientService } from "./client";
 
@@ -13,7 +14,11 @@ beforeEach(async () => (subject = await ClientService.__construct(createConfig()
 
 afterEach(() => nock.cleanAll());
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	Test.bindBigNumberService(container);
+});
 
 describe("ClientService", () => {
 	test("#transactions", async () => {
@@ -34,7 +39,7 @@ describe("ClientService", () => {
 		expect(transaction.timestamp()!.toISOString()).toBe("2021-05-14T04:59:40.000Z");
 		expect(transaction.sender()).toBe("nano_37cyeqb7fwafs499i9k94sthkse1iq3k59efaknb5rpdbysgq8sb9fq46qd8");
 		expect(transaction.recipient()).toBe("nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3");
-		expect(transaction.amount().toString()).toBe("33653665000");
+		expect(transaction.amount().toString()).toBe("336536650000000000000000000000000");
 	});
 
 	test("#wallet", async () => {

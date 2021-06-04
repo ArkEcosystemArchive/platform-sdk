@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-ada",
-	"version": "8.8.3",
+	"version": "8.9.6",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -26,8 +26,8 @@
 	},
 	"dependencies": {
 		"@arkecosystem/platform-sdk": "workspace:*",
-		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
+		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@emurgo/cardano-serialization-lib-nodejs": "^7.0.0",
