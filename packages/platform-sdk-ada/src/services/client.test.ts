@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { DTO, Signatories } from "@arkecosystem/platform-sdk";
+import { DTO, Signatories, Test } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
@@ -8,6 +8,7 @@ import { createConfig } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 import { TransactionService } from "./transaction";
+import { container } from "../container";
 
 let subject: ClientService;
 
@@ -15,7 +16,11 @@ beforeEach(async () => (subject = await ClientService.__construct(createConfig()
 
 afterEach(() => nock.cleanAll());
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	Test.bindBigNumberService(container);
+});
 
 describe("ClientService", () => {
 	it("#wallet should succeed", async () => {

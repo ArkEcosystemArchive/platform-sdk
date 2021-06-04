@@ -1,15 +1,20 @@
 import "jest-extended";
 
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { Signatories, Test } from "@arkecosystem/platform-sdk";
 
 import { createConfig } from "../../test/config";
 import { identity } from "../../test/fixtures/identity";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { TransactionService } from "./transaction";
+import { container } from "../container";
 
 let subject: TransactionService;
 
 beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
+
+beforeAll(() => {
+	Test.bindBigNumberService(container);
+});
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {

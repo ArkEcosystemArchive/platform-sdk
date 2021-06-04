@@ -1,11 +1,16 @@
 import "jest-extended";
 
-import { DTO } from "@arkecosystem/platform-sdk";
+import { DTO, Test } from "@arkecosystem/platform-sdk";
 
 import { TransactionData } from "./transaction";
+import { container } from "../container";
 
 const Fixture = require("../../test/fixtures/client/transaction.json");
 const subject = new TransactionData(Fixture.data.transactions[0]);
+
+beforeAll(() => {
+	Test.bindBigNumberService(container);
+});
 
 describe("TransactionData", () => {
 	it("#id", () => {

@@ -1,14 +1,20 @@
 import "jest-extended";
 
+import { Test } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { TransactionData } from "./transaction";
+import { container } from "../container";
 
 const Fixture = require("../../test/fixtures/client/transaction.json");
 
 let subject: TransactionData;
 
 beforeEach(() => (subject = new TransactionData(Fixture)));
+
+beforeAll(() => {
+	Test.bindBigNumberService(container);
+});
 
 describe("TransactionData", () => {
 	test("#id", () => {

@@ -4,12 +4,18 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { TransactionData } from "./transaction";
+import { container } from "../container";
+import { Test } from "@arkecosystem/platform-sdk";
 
 const Fixture = require("../../test/fixtures/client/transaction.json");
 
 let subject: TransactionData;
 
-beforeEach(() => (subject = new TransactionData(Fixture.data)));
+beforeEach(() => {
+	subject = new TransactionData(Fixture.data);
+
+	Test.bindBigNumberService(container);
+});
 
 describe("TransactionData", () => {
 	test("#id", () => {

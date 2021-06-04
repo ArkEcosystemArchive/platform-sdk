@@ -117,7 +117,7 @@ it("should have a plugin registry", async () => {
 it("should have available networks", async () => {
 	await makeSubject();
 
-	expect(subject.availableNetworks()).toHaveLength(10);
+	expect(subject.availableNetworks()).toHaveLength(11);
 
 	for (const network of subject.availableNetworks()) {
 		expect(network.toObject()).toMatchSnapshot();

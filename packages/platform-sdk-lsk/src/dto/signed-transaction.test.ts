@@ -1,9 +1,11 @@
 import "jest-extended";
 
+import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "./signed-transaction";
+import { container } from "../container";
 
 let subject: SignedTransactionData;
 
@@ -33,6 +35,8 @@ beforeEach(() => {
 		},
 		"",
 	);
+
+	Test.bindBigNumberService(container);
 });
 
 describe("SignedTransactionData", () => {
