@@ -7,7 +7,7 @@ import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
 
 export const createConfig = (options?: object, meta = {}) => {
-	const config = new Coins.Config(
+	const config = new Coins.ConfigRepository(
 		{
 			...(options || { network: "ark.devnet" }),
 			httpClient: new Request(),

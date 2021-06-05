@@ -9,7 +9,7 @@ import { SignedTransactionData } from "./signed-transaction";
 
 let subject: SignedTransactionData;
 
-beforeEach(() => {
+beforeAll(() => {
 	subject = new SignedTransactionData(
 		"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
 		{

@@ -26,7 +26,13 @@ export const createConfig = (config?: object, schema?: Schema): ConfigRepository
 	);
 
 export const bindBigNumberService = (container: Container, config?: ConfigRepository): void => {
+	if (config) {
+		container.constant(BindingType.ConfigRepository, config);
+	} else {
+		container.constant(BindingType.ConfigRepository, createConfig());
+	}
+
 	if (container.missing(BindingType.BigNumberService)) {
-		container.constant(BindingType.BigNumberService, new BigNumberService(config || createConfig()));
+		container.singleton(BindingType.BigNumberService, BigNumberService);
 	}
 };
