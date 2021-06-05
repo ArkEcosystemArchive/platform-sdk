@@ -1,3 +1,6 @@
+import { CoinServices } from "../coins";
+import { Container } from "./container";
+
 export type ServiceList = Record<string, { __construct: Function }>;
 
 export const BINDING_TYPES = {
@@ -22,4 +25,8 @@ export const BINDING_TYPES = {
 	SignatoryService: Symbol.for("Coin<SignatoryService>"),
 	TransactionService: Symbol.for("Coin<TransactionService>"),
 	WalletDiscoveryService: Symbol.for("Coin<WalletDiscoveryService>"),
+}
+
+export interface IServiceProvider {
+	make(container: Container): Promise<CoinServices>;
 }

@@ -4,7 +4,6 @@ import { inject, injectable } from "inversify";
 
 import { CoinServices, CoinSpec, ConfigRepository } from "../coins";
 import { BigNumberService } from "../services/big-number.service";
-import { Container } from "./container";
 import { BINDING_TYPES, ServiceList } from "./service-provider.contract";
 
 @injectable()
@@ -13,8 +12,6 @@ export abstract class AbstractServiceProvider {
 
 	@inject(BINDING_TYPES.ConfigRepository)
 	private readonly configRepository!: ConfigRepository;
-
-	public abstract make(container: Container): Promise<CoinServices>;
 
 	protected coin(): CoinSpec {
 		return this.#coin;
