@@ -70,7 +70,6 @@ export class Coin {
 			this.#services!.ledger.__destruct(),
 			this.#services!.message.__destruct(),
 			this.#services!.multiSignature.__destruct(),
-			this.#services!.signatory.__destruct(),
 			this.#services!.transaction.__destruct(),
 		]);
 	}

@@ -2,8 +2,6 @@ import { Signatory } from "../signatories";
 import { IdentityOptions } from "./shared.contract";
 
 export interface SignatoryService {
-	__destruct(): Promise<void>;
-
 	mnemonic(mnemonic: string, options?: IdentityOptions): Promise<Signatory>;
 
 	secondaryMnemonic(primary: string, secondary: string, options?: IdentityOptions): Promise<Signatory>;

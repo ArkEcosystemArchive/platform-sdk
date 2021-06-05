@@ -23,10 +23,6 @@ export class AbstractSignatoryService implements SignatoryService {
 		this.#identity = identityService;
 	}
 
-	public async __destruct(): Promise<void> {
-		//
-	}
-
 	public async mnemonic(mnemonic: string, options?: IdentityOptions): Promise<Signatory> {
 		return new Signatory(
 			new MnemonicSignatory({
