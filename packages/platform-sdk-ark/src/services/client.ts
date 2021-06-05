@@ -1,4 +1,4 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import dotify from "node-dotify";
 
@@ -11,6 +11,7 @@ interface BroadcastError {
 	message: string;
 }
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.Config;
 	readonly #http: HttpClient;

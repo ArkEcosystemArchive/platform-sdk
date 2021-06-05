@@ -1,6 +1,7 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
+@IoC.injectable()
 export class KnownWalletService extends Services.AbstractKnownWalletService {
 	readonly #httpClient: HttpClient;
 	readonly #source: string | undefined;

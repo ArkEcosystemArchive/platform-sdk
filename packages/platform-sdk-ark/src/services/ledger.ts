@@ -1,5 +1,5 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44, HDKey } from "@arkecosystem/platform-sdk-crypto";
 
 import { WalletData } from "../dto";
@@ -22,6 +22,7 @@ type LedgerDerivationScheme = {
 
 const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
 	readonly #config: Coins.Config;
 	readonly #identity: IdentityService;

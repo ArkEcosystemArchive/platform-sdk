@@ -1,4 +1,5 @@
 import { BadMethodDependencyException } from "../exceptions";
+import { Container } from "../ioc";
 import { Network, NetworkManifest, NetworkRepository } from "../networks";
 import {
 	BigNumberService,
@@ -46,9 +47,17 @@ export class Coin {
 	}
 
 	public async __construct(): Promise<void> {
-		const serviceProvider = new this.#specification.ServiceProvider(this, this.#config);
+		const container = new Container();
+		container.constant("coin", this);
+		container.constant("config", this.#config);
+		container.constant("manifest", this.#manifest);
+		container.constant("network", this.#network);
+		container.constant("networks", this.#networks);
+		container.constant("specification", this.#specification);
 
-		this.#services = await serviceProvider.make(this, this.#config);
+		this.#services = await container
+			.resolve<any>(this.#specification.ServiceProvider)
+			.make(container);
 	}
 
 	public async __destruct(): Promise<void> {

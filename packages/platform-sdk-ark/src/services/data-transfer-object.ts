@@ -1,7 +1,8 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import * as DTO from "../dto";
 
+@IoC.injectable()
 export class DataTransferObjectService extends Services.AbstractDataTransferObjectService {
 	public constructor(private decimals: string) {
 		super();

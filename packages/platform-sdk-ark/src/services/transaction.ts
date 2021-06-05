@@ -1,6 +1,6 @@
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
@@ -11,6 +11,7 @@ import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 import { IdentityService } from "./identity";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.Config;
 	readonly #http: HttpClient;

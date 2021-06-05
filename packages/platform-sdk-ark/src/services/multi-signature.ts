@@ -1,7 +1,8 @@
 import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
+@IoC.injectable()
 export class MultiSignatureService extends Services.AbstractMultiSignatureService {
 	/**
 	 * The configuration of the current instance.
