@@ -6,6 +6,7 @@ import { container } from "./container";
 import { Bindings } from "./contracts";
 import * as Services from "./services";
 
+@IoC.injectable()
 export class ServiceProvider extends IoC.AbstractServiceProvider {
 	public async make(): Promise<Coins.CoinServices> {
 		await this.#retrieveNetworkConfiguration();
