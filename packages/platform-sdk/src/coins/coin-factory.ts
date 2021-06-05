@@ -3,7 +3,7 @@ import { Coin } from "./coin";
 import { ConfigRepository, ConfigKey } from "./config";
 import { CoinOptions, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
-import { Container, ServiceKeys } from "../ioc";
+import { Container, BINDING_TYPES } from "../ioc";
 import { Network, NetworkManifest } from "../networks";
 
 export class CoinFactory {
@@ -14,12 +14,12 @@ export class CoinFactory {
 
 		// Act
 		const container = new Container();
-		container.constant(ServiceKeys.ConfigRepository, configRepository);
-		container.constant(ServiceKeys.HttpClient, options.httpClient);
-		container.constant(ServiceKeys.Manifest, new Manifest(specification.manifest));
-		container.constant(ServiceKeys.Network, CoinFactory.#createNetwork(specification, configRepository));
-		container.constant(ServiceKeys.NetworkRepository, networkRepository);
-		container.constant(ServiceKeys.Specification, specification);
+		container.constant(BINDING_TYPES.ConfigRepository, configRepository);
+		container.constant(BINDING_TYPES.HttpClient, options.httpClient);
+		container.constant(BINDING_TYPES.Manifest, new Manifest(specification.manifest));
+		container.constant(BINDING_TYPES.Network, CoinFactory.#createNetwork(specification, configRepository));
+		container.constant(BINDING_TYPES.NetworkRepository, networkRepository);
+		container.constant(BINDING_TYPES.Specification, specification);
 
 		// @TODO: use container to resolve this and inject values
 		return new Coin(container);

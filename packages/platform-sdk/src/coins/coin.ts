@@ -1,5 +1,5 @@
 import { BadMethodDependencyException, BadStateException } from "../exceptions";
-import { Container, injectable, ServiceKeys } from "../ioc";
+import { Container, injectable, BINDING_TYPES } from "../ioc";
 import { Network, NetworkRepository } from "../networks";
 import {
 	BigNumberService,
@@ -34,26 +34,26 @@ export class Coin {
 		// @TODO: make this prettier (get rid of manual container passing?)
 
 		this.#services = await this.#container.resolve<any>(
-			this.#container.get<CoinSpec>(ServiceKeys.Specification).ServiceProvider,
+			this.#container.get<CoinSpec>(BINDING_TYPES.Specification).ServiceProvider,
 		).make(this.#container);
 
 		if (this.#services === undefined) {
 			throw new BadStateException(this.constructor.name, "Failed to initiate serices.");
 		}
 
-		this.#container.constant(ServiceKeys.BigNumberService, this.#services.bigNumber);
-		this.#container.constant(ServiceKeys.ClientService, this.#services.client);
-		this.#container.constant(ServiceKeys.DataTransferObjectService, this.#services.dataTransferObject);
-		this.#container.constant(ServiceKeys.FeeService, this.#services.fee);
-		this.#container.constant(ServiceKeys.IdentityService, this.#services.identity);
-		this.#container.constant(ServiceKeys.KnownWalletService, this.#services.knownWallets);
-		this.#container.constant(ServiceKeys.LedgerService, this.#services.ledger);
-		this.#container.constant(ServiceKeys.LinkService, this.#services.link);
-		this.#container.constant(ServiceKeys.MessageService, this.#services.message);
-		this.#container.constant(ServiceKeys.MultiSignatureService, this.#services.multiSignature);
-		this.#container.constant(ServiceKeys.SignatoryService, this.#services.signatory);
-		this.#container.constant(ServiceKeys.TransactionService, this.#services.transaction);
-		this.#container.constant(ServiceKeys.WalletDiscoveryService, this.#services.walletDiscovery);
+		this.#container.constant(BINDING_TYPES.BigNumberService, this.#services.bigNumber);
+		this.#container.constant(BINDING_TYPES.ClientService, this.#services.client);
+		this.#container.constant(BINDING_TYPES.DataTransferObjectService, this.#services.dataTransferObject);
+		this.#container.constant(BINDING_TYPES.FeeService, this.#services.fee);
+		this.#container.constant(BINDING_TYPES.IdentityService, this.#services.identity);
+		this.#container.constant(BINDING_TYPES.KnownWalletService, this.#services.knownWallets);
+		this.#container.constant(BINDING_TYPES.LedgerService, this.#services.ledger);
+		this.#container.constant(BINDING_TYPES.LinkService, this.#services.link);
+		this.#container.constant(BINDING_TYPES.MessageService, this.#services.message);
+		this.#container.constant(BINDING_TYPES.MultiSignatureService, this.#services.multiSignature);
+		this.#container.constant(BINDING_TYPES.SignatoryService, this.#services.signatory);
+		this.#container.constant(BINDING_TYPES.TransactionService, this.#services.transaction);
+		this.#container.constant(BINDING_TYPES.WalletDiscoveryService, this.#services.walletDiscovery);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -77,19 +77,19 @@ export class Coin {
 	}
 
 	public network(): Network {
-		return this.#container.get(ServiceKeys.Network);
+		return this.#container.get(BINDING_TYPES.Network);
 	}
 
 	public networks(): NetworkRepository {
-		return this.#container.get(ServiceKeys.NetworkRepository);
+		return this.#container.get(BINDING_TYPES.NetworkRepository);
 	}
 
 	public manifest(): Manifest {
-		return this.#container.get(ServiceKeys.Manifest);
+		return this.#container.get(BINDING_TYPES.Manifest);
 	}
 
 	public config(): ConfigRepository {
-		return this.#container.get(ServiceKeys.ConfigRepository);
+		return this.#container.get(BINDING_TYPES.ConfigRepository);
 	}
 
 	public bigNumber(): BigNumberService {
