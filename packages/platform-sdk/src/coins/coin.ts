@@ -55,9 +55,7 @@ export class Coin {
 		container.constant("networks", this.#networks);
 		container.constant("specification", this.#specification);
 
-		this.#services = await container
-			.resolve<any>(this.#specification.ServiceProvider)
-			.make(container);
+		this.#services = await container.resolve<any>(this.#specification.ServiceProvider).make(container);
 	}
 
 	public async __destruct(): Promise<void> {

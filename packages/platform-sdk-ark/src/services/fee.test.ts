@@ -1,6 +1,6 @@
-import { Contracts, Test } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
+import { Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig } from "../../test/helpers";

@@ -1,8 +1,9 @@
-import { Test } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
-import { container } from "../container";
+import { Test } from "@arkecosystem/platform-sdk";
+
 import { createConfig } from "../../test/helpers";
+import { container } from "../container";
 import { FeeService } from "./fee";
 
 let subject: FeeService;
