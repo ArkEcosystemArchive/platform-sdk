@@ -5,7 +5,7 @@ import { Container as Inversify, interfaces } from "inversify";
 export type ContainerKey = string | symbol;
 
 export class Container {
-	readonly #container = new Inversify();
+	readonly #container = new Inversify({ skipBaseClassChecks: true });
 
 	public get<T>(key: ContainerKey): T {
 		return this.#container.get(key);

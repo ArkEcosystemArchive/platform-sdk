@@ -1,7 +1,7 @@
-import { injectable, postConstruct } from "inversify";
+import { inject, injectable, postConstruct } from "inversify";
 
 export * from "./container";
 export * from "./service-provider";
 export * from "./service-provider.contract";
 
-export { injectable, postConstruct };
+export { inject, injectable, postConstruct };

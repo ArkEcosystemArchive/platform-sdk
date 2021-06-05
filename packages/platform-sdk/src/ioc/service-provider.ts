@@ -1,27 +1,31 @@
 /* istanbul ignore file */
 
+import { inject, injectable } from "inversify";
 import { CoinServices, CoinSpec, Config } from "../coins";
 import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";
 import { ServiceKeys, ServiceList } from "./service-provider.contract";
 
+@injectable()
 export abstract class AbstractServiceProvider {
-	readonly #coin: CoinSpec;
-	readonly #config: Config;
+	readonly #coin!: CoinSpec;
 
-	public constructor(coin: CoinSpec, config: Config) {
-		this.#coin = coin;
-		this.#config = config;
-	}
+	@inject("config")
+	private readonly _config!: Config;
 
-	public abstract make(): Promise<CoinServices>;
+	// public constructor(coin: CoinSpec, config: Config) {
+	// 	this.#coin = coin;
+	// 	this._config = config;
+	// }
+
+	public abstract make(container: Container): Promise<CoinServices>;
 
 	protected coin(): CoinSpec {
 		return this.#coin;
 	}
 
 	protected config(): Config {
-		return this.#config;
+		return this._config;
 	}
 
 	protected async compose(serviceList: ServiceList, container: Container): Promise<CoinServices> {
@@ -47,22 +51,22 @@ export abstract class AbstractServiceProvider {
 			transaction,
 			walletDiscovery,
 		] = await Promise.all<any>([
-			services.ClientService.__construct(this.#config),
-			services.DataTransferObjectService.__construct(this.#config),
-			services.FeeService.__construct(this.#config),
-			services.IdentityService.__construct(this.#config),
-			services.KnownWalletService.__construct(this.#config),
-			services.LedgerService.__construct(this.#config),
-			services.LinkService.__construct(this.#config),
-			services.MessageService.__construct(this.#config),
-			services.MultiSignatureService.__construct(this.#config),
-			services.SignatoryService.__construct(this.#config),
-			services.TransactionService.__construct(this.#config),
-			services.WalletDiscoveryService.__construct(this.#config),
+			services.ClientService.__construct(this._config),
+			services.DataTransferObjectService.__construct(this._config),
+			services.FeeService.__construct(this._config),
+			services.IdentityService.__construct(this._config),
+			services.KnownWalletService.__construct(this._config),
+			services.LedgerService.__construct(this._config),
+			services.LinkService.__construct(this._config),
+			services.MessageService.__construct(this._config),
+			services.MultiSignatureService.__construct(this._config),
+			services.SignatoryService.__construct(this._config),
+			services.TransactionService.__construct(this._config),
+			services.WalletDiscoveryService.__construct(this._config),
 		]);
 
 		return {
-			bigNumber: new BigNumberService(this.#config),
+			bigNumber: new BigNumberService(this._config),
 			client,
 			dataTransferObject,
 			fee,

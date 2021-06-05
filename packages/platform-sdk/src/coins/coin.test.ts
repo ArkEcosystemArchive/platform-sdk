@@ -9,6 +9,9 @@ import { BigNumberService } from "../services";
 import { Coin } from "./coin";
 import { Config } from "./config";
 import { Manifest } from "./manifest";
+import { CoinFactory } from "./coin-factory";
+import { AbstractClientService } from "../services";
+import { Request } from "../../../platform-sdk-http-got/src";
 
 let subject: Coin;
 
@@ -82,55 +85,88 @@ class ServiceProvider {
 }
 
 beforeEach(async () => {
-	subject = new Coin({
-		networks: new NetworkRepository(ARK.manifest.networks),
-		manifest: new Manifest(ARK.manifest),
+	// subject = new Coin({
+	// 	networks: new NetworkRepository(ARK.manifest.networks),
+	// 	manifest: new Manifest(ARK.manifest),
+	// 	// @ts-ignore
+	// 	config: new Config(
+	// 		{ network: "ark.mainnet" },
+	// 		ValidatorSchema.object({
+	// 			network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet"),
+	// 		}),
+	// 	),
+	// 	specification: {
+	// 		manifest: ARK.manifest,
+	// 		schema: ARK.schema,
+	// 		ServiceProvider,
+	// 	},
+	// });
+
+	subject = CoinFactory.make(ARK, {
+		network: "ark.devnet",
 		// @ts-ignore
-		config: new Config(
-			{ network: "ark.mainnet" },
-			ValidatorSchema.object({
-				network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet"),
-			}),
-		),
-		specification: {
-			manifest: ARK.manifest,
-			schema: ARK.schema,
-			ServiceProvider,
-		},
+		httpClient: new Request(),
 	});
 });
 
 test("#construct", async () => {
+	expect(() => subject.client()).toThrow(/being called first/);
+	expect(() => subject.dataTransferObject()).toThrow(/being called first/);
+	expect(() => subject.fee()).toThrow(/being called first/);
+	expect(() => subject.identity()).toThrow(/being called first/);
+	expect(() => subject.knownWallets()).toThrow(/being called first/);
+	expect(() => subject.ledger()).toThrow(/being called first/);
+	expect(() => subject.link()).toThrow(/being called first/);
+	expect(() => subject.message()).toThrow(/being called first/);
+	expect(() => subject.multiSignature()).toThrow(/being called first/);
+	expect(() => subject.signatory()).toThrow(/being called first/);
+	expect(() => subject.transaction()).toThrow(/being called first/);
+	expect(() => subject.walletDiscovery()).toThrow(/being called first/);
+
 	await subject.__construct();
 
-	expect(services.client.__construct).toHaveBeenCalledTimes(1);
-	expect(services.dataTransferObject.__construct).toHaveBeenCalledTimes(1);
-	expect(services.fee.__construct).toHaveBeenCalledTimes(1);
-	expect(services.identity.__construct).toHaveBeenCalledTimes(1);
-	expect(services.knownWallets.__construct).toHaveBeenCalledTimes(1);
-	expect(services.ledger.__construct).toHaveBeenCalledTimes(1);
-	expect(services.link.__construct).toHaveBeenCalledTimes(1);
-	expect(services.message.__construct).toHaveBeenCalledTimes(1);
-	expect(services.multiSignature.__construct).toHaveBeenCalledTimes(1);
-	expect(services.signatory.__construct).toHaveBeenCalledTimes(1);
-	expect(services.transaction.__construct).toHaveBeenCalledTimes(1);
+	expect(() => subject.client()).not.toThrow(/being called first/);
+	expect(() => subject.dataTransferObject()).not.toThrow(/being called first/);
+	expect(() => subject.fee()).not.toThrow(/being called first/);
+	expect(() => subject.identity()).not.toThrow(/being called first/);
+	expect(() => subject.knownWallets()).not.toThrow(/being called first/);
+	expect(() => subject.ledger()).not.toThrow(/being called first/);
+	expect(() => subject.link()).not.toThrow(/being called first/);
+	expect(() => subject.message()).not.toThrow(/being called first/);
+	expect(() => subject.multiSignature()).not.toThrow(/being called first/);
+	expect(() => subject.signatory()).not.toThrow(/being called first/);
+	expect(() => subject.transaction()).not.toThrow(/being called first/);
+	expect(() => subject.walletDiscovery()).not.toThrow(/being called first/);
 });
 
 test("#destruct", async () => {
 	await subject.__construct();
+
+	const clientSpy = jest.spyOn(subject.client(), '__destruct').mockImplementation(async () => {});
+	const dataTransferObjectSpy = jest.spyOn(subject.dataTransferObject(), '__destruct').mockImplementation(async () => {});
+	const feeSpy = jest.spyOn(subject.fee(), '__destruct').mockImplementation(async () => {});
+	const identitySpy = jest.spyOn(subject.identity(), '__destruct').mockImplementation(async () => {});
+	const knownWalletsSpy = jest.spyOn(subject.knownWallets(), '__destruct').mockImplementation(async () => {});
+	const ledgerSpy = jest.spyOn(subject.ledger(), '__destruct').mockImplementation(async () => {});
+	const linkSpy = jest.spyOn(subject.link(), '__destruct').mockImplementation(async () => {});
+	const messageSpy = jest.spyOn(subject.message(), '__destruct').mockImplementation(async () => {});
+	const multiSignatureSpy = jest.spyOn(subject.multiSignature(), '__destruct').mockImplementation(async () => {});
+	const signatorySpy = jest.spyOn(subject.signatory(), '__destruct').mockImplementation(async () => {});
+	const transactionSpy = jest.spyOn(subject.transaction(), '__destruct').mockImplementation(async () => {});
+
 	await subject.__destruct();
 
-	expect(services.client.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.dataTransferObject.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.fee.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.identity.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.knownWallets.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.ledger.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.link.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.message.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.multiSignature.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.signatory.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.transaction.__destruct).toHaveBeenCalledTimes(1);
+	expect(clientSpy).toHaveBeenCalledTimes(1);
+	expect(dataTransferObjectSpy).toHaveBeenCalledTimes(1);
+	expect(feeSpy).toHaveBeenCalledTimes(1);
+	expect(identitySpy).toHaveBeenCalledTimes(1);
+	expect(knownWalletsSpy).toHaveBeenCalledTimes(1);
+	expect(ledgerSpy).toHaveBeenCalledTimes(1);
+	expect(linkSpy).toHaveBeenCalledTimes(1);
+	expect(messageSpy).toHaveBeenCalledTimes(1);
+	expect(multiSignatureSpy).toHaveBeenCalledTimes(1);
+	expect(signatorySpy).toHaveBeenCalledTimes(1);
+	expect(transactionSpy).toHaveBeenCalledTimes(1);
 });
 
 test("#destruct with throw", async () => {

@@ -2,13 +2,12 @@ import { Managers } from "@arkecosystem/crypto";
 import { Coins, Helpers, IoC } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
-import { container } from "./container";
 import { Bindings } from "./contracts";
 import * as Services from "./services";
 
 @IoC.injectable()
 export class ServiceProvider extends IoC.AbstractServiceProvider {
-	public async make(): Promise<Coins.CoinServices> {
+	public async make(container: IoC.Container): Promise<Coins.CoinServices> {
 		await this.#retrieveNetworkConfiguration();
 
 		return this.compose(Services, container);
