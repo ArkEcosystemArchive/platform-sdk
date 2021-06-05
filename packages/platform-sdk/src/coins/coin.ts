@@ -1,6 +1,6 @@
-import { BadMethodDependencyException } from "../exceptions";
+import { BadMethodDependencyException, BadStateException } from "../exceptions";
 import { Container, injectable, ServiceKeys } from "../ioc";
-import { Network, NetworkManifest, NetworkRepository } from "../networks";
+import { Network, NetworkRepository } from "../networks";
 import {
 	BigNumberService,
 	ClientService,
@@ -32,9 +32,28 @@ export class Coin {
 	public async __construct(): Promise<void> {
 		// @TODO: add an IServiceProvider
 		// @TODO: make this prettier (get rid of manual container passing?)
+
 		this.#services = await this.#container.resolve<any>(
 			this.#container.get<CoinSpec>(ServiceKeys.Specification).ServiceProvider,
 		).make(this.#container);
+
+		if (this.#services === undefined) {
+			throw new BadStateException(this.constructor.name, "Failed to initiate serices.");
+		}
+
+		this.#container.constant(ServiceKeys.BigNumberService, this.#services.bigNumber);
+		this.#container.constant(ServiceKeys.ClientService, this.#services.client);
+		this.#container.constant(ServiceKeys.DataTransferObjectService, this.#services.dataTransferObject);
+		this.#container.constant(ServiceKeys.FeeService, this.#services.fee);
+		this.#container.constant(ServiceKeys.IdentityService, this.#services.identity);
+		this.#container.constant(ServiceKeys.KnownWalletService, this.#services.knownWallets);
+		this.#container.constant(ServiceKeys.LedgerService, this.#services.ledger);
+		this.#container.constant(ServiceKeys.LinkService, this.#services.link);
+		this.#container.constant(ServiceKeys.MessageService, this.#services.message);
+		this.#container.constant(ServiceKeys.MultiSignatureService, this.#services.multiSignature);
+		this.#container.constant(ServiceKeys.SignatoryService, this.#services.signatory);
+		this.#container.constant(ServiceKeys.TransactionService, this.#services.transaction);
+		this.#container.constant(ServiceKeys.WalletDiscoveryService, this.#services.walletDiscovery);
 	}
 
 	public async __destruct(): Promise<void> {

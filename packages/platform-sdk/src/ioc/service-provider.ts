@@ -2,22 +2,17 @@
 
 import { inject, injectable } from "inversify";
 
-import { CoinServices, CoinSpec, Config } from "../coins";
+import { CoinServices, CoinSpec, ConfigRepository } from "../coins";
 import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";
-import { ServiceKeys, ServiceList } from "./service-provider.contract";
+import { ServiceList } from "./service-provider.contract";
 
 @injectable()
 export abstract class AbstractServiceProvider {
 	readonly #coin!: CoinSpec;
 
 	@inject("config")
-	private readonly _config!: Config;
-
-	// public constructor(coin: CoinSpec, config: Config) {
-	// 	this.#coin = coin;
-	// 	this._config = config;
-	// }
+	private readonly _config!: ConfigRepository;
 
 	public abstract make(container: Container): Promise<CoinServices>;
 
@@ -25,19 +20,11 @@ export abstract class AbstractServiceProvider {
 		return this.#coin;
 	}
 
-	protected config(): Config {
+	protected config(): ConfigRepository {
 		return this._config;
 	}
 
-	protected async compose(serviceList: ServiceList, container: Container): Promise<CoinServices> {
-		const services: CoinServices = await this.makeServices(serviceList);
-
-		this.bindServices(services, container);
-
-		return services;
-	}
-
-	protected async makeServices(services: ServiceList): Promise<CoinServices> {
+	protected async compose(services: ServiceList): Promise<CoinServices> {
 		const [
 			client,
 			dataTransferObject,
@@ -81,32 +68,5 @@ export abstract class AbstractServiceProvider {
 			transaction,
 			walletDiscovery,
 		};
-	}
-
-	protected bindServices(services: CoinServices, container: Container): void {
-		const bindings: Record<symbol, any> = {
-			[ServiceKeys.BigNumberService]: services.bigNumber,
-			[ServiceKeys.ClientService]: services.client,
-			[ServiceKeys.DataTransferObjectService]: services.dataTransferObject,
-			[ServiceKeys.FeeService]: services.fee,
-			[ServiceKeys.IdentityService]: services.identity,
-			[ServiceKeys.KnownWalletService]: services.knownWallets,
-			[ServiceKeys.LedgerService]: services.ledger,
-			[ServiceKeys.LinkService]: services.link,
-			[ServiceKeys.MessageService]: services.message,
-			[ServiceKeys.MultiSignatureService]: services.multiSignature,
-			[ServiceKeys.SignatoryService]: services.signatory,
-			[ServiceKeys.TransactionService]: services.transaction,
-			[ServiceKeys.WalletDiscoveryService]: services.walletDiscovery,
-		};
-
-		// @TODO: we need to manually bind here because `entries` will return nothing for symbol keys
-		for (const [key, value] of Object.entries(bindings)) {
-			if (container.has(key)) {
-				container.unbind(key);
-			}
-
-			container.constant(key, value);
-		}
 	}
 }
