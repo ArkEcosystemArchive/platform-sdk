@@ -25,7 +25,9 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.#get(`transactions/${id}`);
 
-		return Helpers.createTransactionDataWithType(body.data, TransactionDTO).withDecimals(this.configRepository.get(Coins.ConfigKey.CurrencyDecimals));
+		return Helpers.createTransactionDataWithType(body.data, TransactionDTO).withDecimals(
+			this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
+		);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -114,7 +116,10 @@ export class ClientService extends Services.AbstractClientService {
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.httpClient.get(`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`, query?.searchParams)
+			await this.httpClient.get(
+				`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
+				query?.searchParams,
+			)
 		).json();
 	}
 

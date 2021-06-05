@@ -15,7 +15,7 @@ const createService = (config?: Coins.ConfigRepository) => {
 	container.bind(IoC.BindingType.HttpClient, new Request());
 
 	return container.resolve(ClientService);
-}
+};
 
 let subject: ClientService;
 
