@@ -5,14 +5,14 @@ import { inject, injectable } from "inversify";
 import { CoinServices, CoinSpec, ConfigRepository } from "../coins";
 import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";
-import { ServiceList } from "./service-provider.contract";
+import { BINDING_TYPES, ServiceList } from "./service-provider.contract";
 
 @injectable()
 export abstract class AbstractServiceProvider {
 	readonly #coin!: CoinSpec;
 
-	@inject("config")
-	private readonly _config!: ConfigRepository;
+	@inject(BINDING_TYPES.ConfigRepository)
+	private readonly configRepository!: ConfigRepository;
 
 	public abstract make(container: Container): Promise<CoinServices>;
 
@@ -21,7 +21,7 @@ export abstract class AbstractServiceProvider {
 	}
 
 	protected config(): ConfigRepository {
-		return this._config;
+		return this.configRepository;
 	}
 
 	protected async compose(services: ServiceList): Promise<CoinServices> {
@@ -39,22 +39,22 @@ export abstract class AbstractServiceProvider {
 			transaction,
 			walletDiscovery,
 		] = await Promise.all<any>([
-			services.ClientService.__construct(this._config),
-			services.DataTransferObjectService.__construct(this._config),
-			services.FeeService.__construct(this._config),
-			services.IdentityService.__construct(this._config),
-			services.KnownWalletService.__construct(this._config),
-			services.LedgerService.__construct(this._config),
-			services.LinkService.__construct(this._config),
-			services.MessageService.__construct(this._config),
-			services.MultiSignatureService.__construct(this._config),
-			services.SignatoryService.__construct(this._config),
-			services.TransactionService.__construct(this._config),
-			services.WalletDiscoveryService.__construct(this._config),
+			services.ClientService.__construct(this.configRepository),
+			services.DataTransferObjectService.__construct(this.configRepository),
+			services.FeeService.__construct(this.configRepository),
+			services.IdentityService.__construct(this.configRepository),
+			services.KnownWalletService.__construct(this.configRepository),
+			services.LedgerService.__construct(this.configRepository),
+			services.LinkService.__construct(this.configRepository),
+			services.MessageService.__construct(this.configRepository),
+			services.MultiSignatureService.__construct(this.configRepository),
+			services.SignatoryService.__construct(this.configRepository),
+			services.TransactionService.__construct(this.configRepository),
+			services.WalletDiscoveryService.__construct(this.configRepository),
 		]);
 
 		return {
-			bigNumber: new BigNumberService(this._config),
+			bigNumber: new BigNumberService(this.configRepository),
 			client,
 			dataTransferObject,
 			fee,
