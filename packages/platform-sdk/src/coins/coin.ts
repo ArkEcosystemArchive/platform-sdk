@@ -68,7 +68,6 @@ export class Coin {
 			this.#services!.identity.__destruct(),
 			this.#services!.knownWallets.__destruct(),
 			this.#services!.ledger.__destruct(),
-			this.#services!.link.__destruct(),
 			this.#services!.message.__destruct(),
 			this.#services!.multiSignature.__destruct(),
 			this.#services!.signatory.__destruct(),
