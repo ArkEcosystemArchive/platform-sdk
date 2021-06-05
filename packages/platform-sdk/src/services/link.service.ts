@@ -3,7 +3,7 @@
 import { formatString } from "@arkecosystem/utils";
 import { URL } from "url";
 
-import { Config } from "../coins";
+import { ConfigRepository } from "../coins";
 import { randomNetworkHostFromConfig } from "../helpers";
 import { NetworkHost } from "../networks";
 import { LinkService, LinkServiceSchema } from "./link.contract";
@@ -12,7 +12,7 @@ export abstract class AbstractLinkService implements LinkService {
 	readonly #host: NetworkHost;
 	readonly #schema: LinkServiceSchema;
 
-	public constructor(config: Config, schema: LinkServiceSchema) {
+	public constructor(config: ConfigRepository, schema: LinkServiceSchema) {
 		this.#host = randomNetworkHostFromConfig(config, "explorer");
 		this.#schema = schema;
 	}

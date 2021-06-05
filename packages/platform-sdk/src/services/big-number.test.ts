@@ -2,12 +2,12 @@ import "jest-extended";
 
 import Joi from "joi";
 
-import { Config } from "../coins";
+import { ConfigRepository } from "../coins";
 import { BigNumberService } from "./big-number.service";
 
 test.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])("#make(%s)", async (power) => {
 	const subject = new BigNumberService(
-		new Config(
+		new ConfigRepository(
 			{
 				network: {
 					currency: {
