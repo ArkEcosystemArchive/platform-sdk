@@ -40,12 +40,6 @@ export const subscribe = async (flags: {
 		},
 	});
 
-	// $transactions = $this->request('client.transactions', [
-	// 	'coin'      => $wallet->coin->name, // @FIXME
-	// 	'network'   => $wallet->coin->type, // @FIXME
-	// 	'recipient' => $wallet->address, // @FIXME
-	// ]);
-
 	await server.register({
 		plugin: require("@konceiver/hapi-json-rpc"),
 		options: {
