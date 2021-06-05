@@ -1,6 +1,6 @@
 import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 
-import { ConfigRepository, ConfigKey } from "../coins";
+import { ConfigKey, ConfigRepository } from "../coins";
 import { BINDING_TYPES, inject, injectable } from "../ioc";
 
 @injectable()

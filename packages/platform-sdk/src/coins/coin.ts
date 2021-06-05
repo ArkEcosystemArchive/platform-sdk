@@ -1,5 +1,5 @@
 import { BadMethodDependencyException, BadStateException } from "../exceptions";
-import { Container, injectable, BINDING_TYPES } from "../ioc";
+import { BINDING_TYPES, Container, injectable } from "../ioc";
 import { Network, NetworkRepository } from "../networks";
 import {
 	BigNumberService,
@@ -16,7 +16,7 @@ import {
 	TransactionService,
 	WalletDiscoveryService,
 } from "../services";
-import { ConfigRepository, ConfigKey } from "./config";
+import { ConfigRepository } from "./config";
 import { CoinServices, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 
@@ -33,9 +33,9 @@ export class Coin {
 		// @TODO: add an IServiceProvider
 		// @TODO: make this prettier (get rid of manual container passing?)
 
-		this.#services = await this.#container.resolve<any>(
-			this.#container.get<CoinSpec>(BINDING_TYPES.Specification).ServiceProvider,
-		).make(this.#container);
+		this.#services = await this.#container
+			.resolve<any>(this.#container.get<CoinSpec>(BINDING_TYPES.Specification).ServiceProvider)
+			.make(this.#container);
 
 		if (this.#services === undefined) {
 			throw new BadStateException(this.constructor.name, "Failed to initiate serices.");

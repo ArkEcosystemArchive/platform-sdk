@@ -27,7 +27,7 @@ export const BINDING_TYPES = {
 	SignatoryService: Symbol.for("Coin<SignatoryService>"),
 	TransactionService: Symbol.for("Coin<TransactionService>"),
 	WalletDiscoveryService: Symbol.for("Coin<WalletDiscoveryService>"),
-}
+};
 
 export interface IServiceProvider {
 	make(container: Container): Promise<CoinServices>;
