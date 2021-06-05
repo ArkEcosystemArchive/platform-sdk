@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 
 import { formatString } from "@arkecosystem/utils";
-import { URL } from "url";
 import onetime from "onetime";
+import { URL } from "url";
 
 import { ConfigRepository } from "../coins";
 import { randomNetworkHostFromConfig } from "../helpers";

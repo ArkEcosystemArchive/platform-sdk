@@ -57,4 +57,4 @@ export const createService = <T = any>(service: any, config?: Coins.ConfigReposi
 	}
 
 	return container.resolve(service);
-}
+};
