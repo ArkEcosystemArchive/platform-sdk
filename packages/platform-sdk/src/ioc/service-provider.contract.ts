@@ -1,7 +1,9 @@
+import { interfaces } from "inversify";
+
 import { CoinServices } from "../coins";
 import { Container } from "./container";
 
-export type ServiceList = Record<string, { __construct: Function }>;
+export type ServiceList = Record<string, interfaces.Newable<any>>;
 
 export const BINDING_TYPES = {
 	// [Coin] Internals

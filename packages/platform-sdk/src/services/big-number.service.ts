@@ -1,7 +1,9 @@
 import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 
-import { Config, ConfigKey } from "../coins";
+import { ConfigRepository, ConfigKey } from "../coins";
+import { injectable } from "../ioc";
 
+@injectable()
 export class BigNumberService {
 	readonly #config: Config;
 
