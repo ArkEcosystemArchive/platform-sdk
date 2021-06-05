@@ -32,7 +32,10 @@ describe("FeeService", () => {
 				"htlcRefund",
 			]);
 
-			expect(result.transfer).toEqual({ avg: "10000000", max: "10000000", min: "10000000", static: "10000000" });
+			expect(result.transfer.min.toString()).toBe("10000000");
+			expect(result.transfer.avg.toString()).toBe("10000000");
+			expect(result.transfer.max.toString()).toBe("10000000");
+			expect(result.transfer.static.toString()).toBe("10000000");
 		});
 	});
 });
