@@ -15,4 +15,11 @@ export const ServiceKeys = {
 	SignatoryService: "SignatoryService",
 	TransactionService: "TransactionService",
 	WalletDiscoveryService: "WalletDiscoveryService",
-};
+	// Coins
+	ConfigRepository: Symbol("ConfigRepository"),
+	HttpClient: Symbol("HttpClient"),
+	Manifest: Symbol("Manifest"),
+	Network: Symbol("Network"),
+	NetworkRepository: Symbol("NetworkRepository"),
+	Specification: Symbol("Specification"),
+}

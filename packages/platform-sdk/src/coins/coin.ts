@@ -1,5 +1,5 @@
 import { BadMethodDependencyException } from "../exceptions";
-import { Container } from "../ioc";
+import { Container, injectable, ServiceKeys } from "../ioc";
 import { Network, NetworkManifest, NetworkRepository } from "../networks";
 import {
 	BigNumberService,
@@ -16,46 +16,25 @@ import {
 	TransactionService,
 	WalletDiscoveryService,
 } from "../services";
-import { Config, ConfigKey } from "./config";
+import { ConfigRepository, ConfigKey } from "./config";
 import { CoinServices, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 
+@injectable()
 export class Coin {
-	readonly #networks: NetworkRepository;
-	readonly #manifest: Manifest;
-	readonly #config: Config;
-	readonly #specification: CoinSpec;
-	readonly #network: Network;
+	readonly #container: Container;
 	#services: CoinServices | undefined;
 
-	public constructor({
-		networks,
-		manifest,
-		config,
-		specification,
-	}: {
-		networks: NetworkRepository;
-		manifest: Manifest;
-		config: Config;
-		specification: CoinSpec;
-	}) {
-		this.#networks = networks;
-		this.#manifest = manifest;
-		this.#config = config;
-		this.#specification = specification;
-		this.#network = this.#createNetwork(specification, config);
+	public constructor(container: Container) {
+		this.#container = container;
 	}
 
 	public async __construct(): Promise<void> {
-		const container = new Container();
-		container.constant("coin", this);
-		container.constant("config", this.#config);
-		container.constant("manifest", this.#manifest);
-		container.constant("network", this.#network);
-		container.constant("networks", this.#networks);
-		container.constant("specification", this.#specification);
-
-		this.#services = await container.resolve<any>(this.#specification.ServiceProvider).make(container);
+		// @TODO: add an IServiceProvider
+		// @TODO: make this prettier (get rid of manual container passing?)
+		this.#services = await this.#container.resolve<any>(
+			this.#container.get<CoinSpec>(ServiceKeys.Specification).ServiceProvider,
+		).make(this.#container);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -79,19 +58,19 @@ export class Coin {
 	}
 
 	public network(): Network {
-		return this.#network;
+		return this.#container.get(ServiceKeys.Network);
 	}
 
 	public networks(): NetworkRepository {
-		return this.#networks;
+		return this.#container.get(ServiceKeys.NetworkRepository);
 	}
 
 	public manifest(): Manifest {
-		return this.#manifest;
+		return this.#container.get(ServiceKeys.Manifest);
 	}
 
-	public config(): Config {
-		return this.#config;
+	public config(): ConfigRepository {
+		return this.#container.get(ServiceKeys.ConfigRepository);
 	}
 
 	public bigNumber(): BigNumberService {
@@ -200,14 +179,5 @@ export class Coin {
 
 	public hasBeenSynchronized(): boolean {
 		return this.#services !== undefined;
-	}
-
-	#createNetwork(specification: CoinSpec, config: Config): Network {
-		const network = config.get<NetworkManifest>(ConfigKey.Network);
-
-		return new Network(specification.manifest, {
-			...specification.manifest.networks[network.id],
-			...config.get<NetworkManifest>(ConfigKey.Network),
-		});
 	}
 }

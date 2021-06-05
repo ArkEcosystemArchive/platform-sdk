@@ -100,6 +100,7 @@ export abstract class AbstractServiceProvider {
 			[ServiceKeys.WalletDiscoveryService]: services.walletDiscovery,
 		};
 
+		// @TODO: we need to manually bind here because `entries` will return nothing for symbol keys
 		for (const [key, value] of Object.entries(bindings)) {
 			if (container.has(key)) {
 				container.unbind(key);
