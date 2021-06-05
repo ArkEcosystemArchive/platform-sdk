@@ -1,5 +1,6 @@
 import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
+
 import { bigNumber } from "../container";
 
 export class FeeService extends Services.AbstractFeeService {
