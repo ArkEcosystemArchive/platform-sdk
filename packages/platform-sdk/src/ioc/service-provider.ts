@@ -19,13 +19,13 @@ import {
 } from "../services";
 import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";
-import { BINDING_TYPES, ServiceList } from "./service-provider.contract";
+import { BindingType, ServiceList } from "./service-provider.contract";
 
 @injectable()
 export abstract class AbstractServiceProvider {
 	readonly #coin!: CoinSpec;
 
-	@inject(BINDING_TYPES.ConfigRepository)
+	@inject(BindingType.ConfigRepository)
 	private readonly configRepository!: ConfigRepository;
 
 	protected coin(): CoinSpec {

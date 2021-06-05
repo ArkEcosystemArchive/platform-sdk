@@ -1,4 +1,4 @@
-import { BINDING_TYPES, Container } from "../ioc";
+import { BindingType, Container } from "../ioc";
 import { Network, NetworkManifest } from "../networks";
 import { NetworkRepository } from "../networks/network-repository";
 import { Coin } from "./coin";
@@ -14,12 +14,12 @@ export class CoinFactory {
 
 		// Act
 		const container = new Container();
-		container.constant(BINDING_TYPES.ConfigRepository, configRepository);
-		container.constant(BINDING_TYPES.HttpClient, options.httpClient);
-		container.constant(BINDING_TYPES.Manifest, new Manifest(specification.manifest));
-		container.constant(BINDING_TYPES.Network, CoinFactory.#createNetwork(specification, configRepository));
-		container.constant(BINDING_TYPES.NetworkRepository, networkRepository);
-		container.constant(BINDING_TYPES.Specification, specification);
+		container.constant(BindingType.ConfigRepository, configRepository);
+		container.constant(BindingType.HttpClient, options.httpClient);
+		container.constant(BindingType.Manifest, new Manifest(specification.manifest));
+		container.constant(BindingType.Network, CoinFactory.#createNetwork(specification, configRepository));
+		container.constant(BindingType.NetworkRepository, networkRepository);
+		container.constant(BindingType.Specification, specification);
 
 		// @TODO: use container to resolve this and inject values
 		return new Coin(container);

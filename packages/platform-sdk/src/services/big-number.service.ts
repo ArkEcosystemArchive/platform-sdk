@@ -1,11 +1,11 @@
 import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 
 import { ConfigKey, ConfigRepository } from "../coins";
-import { BINDING_TYPES, inject, injectable } from "../ioc";
+import { BindingType, inject, injectable } from "../ioc";
 
 @injectable()
 export class BigNumberService {
-	@inject(BINDING_TYPES.ConfigRepository)
+	@inject(BindingType.ConfigRepository)
 	private readonly configRepository!: ConfigRepository;
 
 	public make(value: NumberLike): BigNumber {

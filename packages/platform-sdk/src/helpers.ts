@@ -6,7 +6,7 @@ import { TransactionDataCollection } from "./collections";
 import { TransactionDataType } from "./contracts";
 import { AbstractTransactionData } from "./dto";
 import { BigNumberService, MetaPagination } from "./services";
-import { Container, BINDING_TYPES } from "./ioc";
+import { Container, BindingType } from "./ioc";
 
 export const createTransactionDataWithType = (
 	transaction: unknown,
@@ -120,4 +120,4 @@ export const toRawUnit = (value: NumberLike, config: ConfigRepository) => {
 
 /* istanbul ignore next */
 export const bigNumber = (value: NumberLike, container: Container): BigNumber =>
-	container.get<BigNumberService>(BINDING_TYPES.BigNumberService).make(value);
+	container.get<BigNumberService>(BindingType.BigNumberService).make(value);
