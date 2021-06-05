@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { inject, injectable } from "inversify";
+
 import { CoinServices, CoinSpec, Config } from "../coins";
 import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";

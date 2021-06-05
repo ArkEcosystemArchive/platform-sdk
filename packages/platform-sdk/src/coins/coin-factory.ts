@@ -1,10 +1,9 @@
+import { Request } from "../../../platform-sdk-http-got";
 import { NetworkRepository } from "../networks/network-repository";
 import { Coin } from "./coin";
 import { Config, ConfigKey } from "./config";
 import { CoinOptions, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
-
-import { Request } from "../../../platform-sdk-http-got";
 
 export class CoinFactory {
 	public static make(specification: CoinSpec, options: CoinOptions): Coin {

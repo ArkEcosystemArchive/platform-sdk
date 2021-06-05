@@ -4,14 +4,13 @@ import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 import { injectable } from "inversify";
 
 import { ARK } from "../../../platform-sdk-ark/src";
+import { Request } from "../../../platform-sdk-http-got/src";
 import { Network, NetworkRepository } from "../networks";
 import { BigNumberService } from "../services";
 import { Coin } from "./coin";
+import { CoinFactory } from "./coin-factory";
 import { Config } from "./config";
 import { Manifest } from "./manifest";
-import { CoinFactory } from "./coin-factory";
-import { AbstractClientService } from "../services";
-import { Request } from "../../../platform-sdk-http-got/src";
 
 let subject: Coin;
 
@@ -142,17 +141,19 @@ test("#construct", async () => {
 test("#destruct", async () => {
 	await subject.__construct();
 
-	const clientSpy = jest.spyOn(subject.client(), '__destruct').mockImplementation(async () => {});
-	const dataTransferObjectSpy = jest.spyOn(subject.dataTransferObject(), '__destruct').mockImplementation(async () => {});
-	const feeSpy = jest.spyOn(subject.fee(), '__destruct').mockImplementation(async () => {});
-	const identitySpy = jest.spyOn(subject.identity(), '__destruct').mockImplementation(async () => {});
-	const knownWalletsSpy = jest.spyOn(subject.knownWallets(), '__destruct').mockImplementation(async () => {});
-	const ledgerSpy = jest.spyOn(subject.ledger(), '__destruct').mockImplementation(async () => {});
-	const linkSpy = jest.spyOn(subject.link(), '__destruct').mockImplementation(async () => {});
-	const messageSpy = jest.spyOn(subject.message(), '__destruct').mockImplementation(async () => {});
-	const multiSignatureSpy = jest.spyOn(subject.multiSignature(), '__destruct').mockImplementation(async () => {});
-	const signatorySpy = jest.spyOn(subject.signatory(), '__destruct').mockImplementation(async () => {});
-	const transactionSpy = jest.spyOn(subject.transaction(), '__destruct').mockImplementation(async () => {});
+	const clientSpy = jest.spyOn(subject.client(), "__destruct").mockImplementation(async () => {});
+	const dataTransferObjectSpy = jest
+		.spyOn(subject.dataTransferObject(), "__destruct")
+		.mockImplementation(async () => {});
+	const feeSpy = jest.spyOn(subject.fee(), "__destruct").mockImplementation(async () => {});
+	const identitySpy = jest.spyOn(subject.identity(), "__destruct").mockImplementation(async () => {});
+	const knownWalletsSpy = jest.spyOn(subject.knownWallets(), "__destruct").mockImplementation(async () => {});
+	const ledgerSpy = jest.spyOn(subject.ledger(), "__destruct").mockImplementation(async () => {});
+	const linkSpy = jest.spyOn(subject.link(), "__destruct").mockImplementation(async () => {});
+	const messageSpy = jest.spyOn(subject.message(), "__destruct").mockImplementation(async () => {});
+	const multiSignatureSpy = jest.spyOn(subject.multiSignature(), "__destruct").mockImplementation(async () => {});
+	const signatorySpy = jest.spyOn(subject.signatory(), "__destruct").mockImplementation(async () => {});
+	const transactionSpy = jest.spyOn(subject.transaction(), "__destruct").mockImplementation(async () => {});
 
 	await subject.__destruct();
 
