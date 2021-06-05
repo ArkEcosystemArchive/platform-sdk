@@ -1,4 +1,4 @@
-import { Request } from "../../../platform-sdk-http-got";
+import { Request } from "../../../platform-sdk-http-got/src";
 import { NetworkRepository } from "../networks/network-repository";
 import { Coin } from "./coin";
 import { Config, ConfigKey } from "./config";
