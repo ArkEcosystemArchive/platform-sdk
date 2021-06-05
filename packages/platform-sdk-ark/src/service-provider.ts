@@ -1,5 +1,5 @@
 import { Managers } from "@arkecosystem/crypto";
-import { Coins, Contracts, Helpers, IoC } from "@arkecosystem/platform-sdk";
+import { Coins, Helpers, IoC } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { container } from "./container";

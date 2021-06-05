@@ -1,6 +1,7 @@
 import "jest-extended";
 
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
+import { injectable } from "inversify";
 
 import { ARK } from "../../../platform-sdk-ark/src";
 import { Network, NetworkRepository } from "../networks";
@@ -38,6 +39,7 @@ const services = {
 	walletDiscovery: { __construct: jest.fn(), __destruct: jest.fn() },
 };
 
+@injectable()
 class ServiceProvider {
 	public make() {
 		services.client.__construct();

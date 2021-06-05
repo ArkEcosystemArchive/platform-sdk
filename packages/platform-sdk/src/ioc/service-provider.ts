@@ -1,13 +1,10 @@
 /* istanbul ignore file */
 
-import { injectable } from "inversify";
-
 import { CoinServices, CoinSpec, Config } from "../coins";
 import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";
 import { ServiceKeys, ServiceList } from "./service-provider.contract";
 
-@injectable()
 export abstract class AbstractServiceProvider {
 	readonly #coin: CoinSpec;
 	readonly #config: Config;
