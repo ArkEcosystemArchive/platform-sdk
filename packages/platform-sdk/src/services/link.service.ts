@@ -5,39 +5,38 @@ import { URL } from "url";
 
 import { ConfigRepository } from "../coins";
 import { randomNetworkHostFromConfig } from "../helpers";
-import { NetworkHost } from "../networks";
+import { inject } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { LinkService, LinkServiceSchema } from "./link.contract";
 
 export abstract class AbstractLinkService implements LinkService {
-	readonly #host: NetworkHost;
-	readonly #schema: LinkServiceSchema;
-
-	public constructor(config: ConfigRepository, schema: LinkServiceSchema) {
-		this.#host = randomNetworkHostFromConfig(config, "explorer");
-		this.#schema = schema;
-	}
+	@inject(BindingType.ConfigRepository)
+	private readonly configRepository!: ConfigRepository;
 
 	public async __destruct(): Promise<void> {
 		//
 	}
 
 	public block(id: string): string {
-		return this.#buildURL(this.#schema.block, id);
+		return this.#buildURL(this.schema().block, id);
 	}
 
 	public transaction(id: string): string {
-		return this.#buildURL(this.#schema.transaction, id);
+		return this.#buildURL(this.schema().transaction, id);
 	}
 
 	public wallet(id: string): string {
-		return this.#buildURL(this.#schema.wallet, id);
+		return this.#buildURL(this.schema().wallet, id);
 	}
 
-	#buildURL(schema: string, id: string): string {
-		const url: URL = new URL(formatString(schema, id), this.#host.host);
+	protected abstract schema(): LinkServiceSchema;
 
-		if (this.#host.query) {
-			url.search = new URLSearchParams(this.#host.query).toString();
+	#buildURL(schema: string, id: string): string {
+		const { host, query } = randomNetworkHostFromConfig(this.configRepository, "explorer");
+		const url: URL = new URL(formatString(schema, id), host);
+
+		if (query) {
+			url.search = new URLSearchParams(query).toString();
 		}
 
 		return url.toString();

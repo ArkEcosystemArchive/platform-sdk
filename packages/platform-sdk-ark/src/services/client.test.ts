@@ -1,21 +1,12 @@
 import "jest-extended";
 
-import { Coins, IoC, Test } from "@arkecosystem/platform-sdk";
-import { Request } from "@arkecosystem/platform-sdk-http-got";
+import { Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
+import { createConfig, createService } from "../../test/helpers";
 import { container } from "../container";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
-
-const createService = (config?: Coins.ConfigRepository) => {
-	const container = new IoC.Container();
-	container.bind(IoC.BindingType.ConfigRepository, config || createConfig());
-	container.bind(IoC.BindingType.HttpClient, new Request());
-
-	return container.resolve(ClientService);
-}
 
 let subject: ClientService;
 
@@ -26,7 +17,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-	subject = createService();
+	subject = createService(ClientService);
 });
 
 afterEach(() => nock.cleanAll());
@@ -48,7 +39,7 @@ describe("ClientService", () => {
 
 	describe("#transactions", () => {
 		it("should work with Core 2.0", async () => {
-			subject = createService(createConfig({ network: "ark.mainnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.mainnet" }));
 
 			nock(/.+/)
 				.post("/api/transactions/search")
@@ -61,7 +52,7 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0", async () => {
-			subject = createService(createConfig({ network: "ark.devnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.devnet" }));
 
 			nock(/.+/)
 				.get("/api/transactions")
@@ -75,7 +66,7 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0 for advanced search", async () => {
-			subject = createService(createConfig({ network: "ark.devnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.devnet" }));
 
 			nock(/.+/)
 				.get("/api/transactions")
@@ -114,7 +105,7 @@ describe("ClientService", () => {
 
 	describe("#wallets", () => {
 		it("should work with Core 2.0", async () => {
-			subject = createService(createConfig({ network: "ark.mainnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.mainnet" }));
 
 			nock(/.+/)
 				.post("/api/wallets/search")
@@ -127,7 +118,7 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0", async () => {
-			subject = createService(createConfig({ network: "ark.devnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.devnet" }));
 
 			nock(/.+/)
 				.get("/api/wallets")

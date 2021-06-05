@@ -1,4 +1,4 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, IoC } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
 import { container } from "../src/container";
@@ -40,3 +40,21 @@ export const createConfigWithNetwork = (options?: object, meta = {}) => {
 };
 
 export const createNetworkConfig = () => require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data.network;
+
+export const createService = <T = any>(service: any, config?: Coins.ConfigRepository): T => {
+	config ??= createConfig();
+
+	const container = new IoC.Container();
+	container.bind(IoC.BindingType.ConfigRepository, config);
+	container.bind(IoC.BindingType.HttpClient, new Request());
+
+	if (config.missing(Bindings.Crypto)) {
+		config.set(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
+	}
+
+	if (config.missing(Bindings.Height)) {
+		config.set(Bindings.Height, require(`${__dirname}/fixtures/client/syncing.json`).data.height);
+	}
+
+	return container.resolve(service);
+}
