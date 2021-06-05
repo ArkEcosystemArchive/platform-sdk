@@ -4,6 +4,7 @@ import { inject, injectable } from "inversify";
 
 import { CoinServices, CoinSpec, ConfigRepository } from "../coins";
 import {
+	BigNumberService,
 	ClientService,
 	DataTransferObjectService,
 	FeeService,
@@ -17,7 +18,6 @@ import {
 	TransactionService,
 	WalletDiscoveryService,
 } from "../services";
-import { BigNumberService } from "../services/big-number.service";
 import { Container } from "./container";
 import { BindingType, ServiceList } from "./service-provider.contract";
 
@@ -54,9 +54,7 @@ export abstract class AbstractServiceProvider {
 			// @ts-ignore - @TODO: turn construct into a @postConstruct method
 			container.resolve<ClientService>(services.ClientService).__construct(this.configRepository),
 			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container
-				.resolve<DataTransferObjectService>(services.DataTransferObjectService)
-				.__construct(this.configRepository),
+			container.resolve<DataTransferObjectService>(services.DataTransferObjectService).__construct(this.configRepository),
 			// @ts-ignore - @TODO: turn construct into a @postConstruct method
 			container.resolve<FeeService>(services.FeeService).__construct(this.configRepository),
 			// @ts-ignore - @TODO: turn construct into a @postConstruct method
@@ -76,9 +74,7 @@ export abstract class AbstractServiceProvider {
 			// @ts-ignore - @TODO: turn construct into a @postConstruct method
 			container.resolve<TransactionService>(services.TransactionService).__construct(this.configRepository),
 			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container
-				.resolve<WalletDiscoveryService>(services.WalletDiscoveryService)
-				.__construct(this.configRepository),
+			container.resolve<WalletDiscoveryService>(services.WalletDiscoveryService).__construct(this.configRepository),
 		]);
 
 		return {

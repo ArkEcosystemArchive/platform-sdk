@@ -1,8 +1,5 @@
 import { interfaces } from "inversify";
 
-import { CoinServices } from "../coins";
-import { Container } from "./container";
-
 export type ServiceList = Record<string, interfaces.Newable<any>>;
 
 export const BindingType = {
@@ -30,5 +27,5 @@ export const BindingType = {
 };
 
 export interface IServiceProvider {
-	make(container: Container): Promise<CoinServices>;
+	make(container: any): Promise<any>;
 }
