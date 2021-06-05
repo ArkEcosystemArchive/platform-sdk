@@ -1,10 +1,10 @@
+import { BINDING_TYPES, Container } from "../ioc";
+import { Network, NetworkManifest } from "../networks";
 import { NetworkRepository } from "../networks/network-repository";
 import { Coin } from "./coin";
-import { ConfigRepository, ConfigKey } from "./config";
+import { ConfigKey, ConfigRepository } from "./config";
 import { CoinOptions, CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
-import { Container, BINDING_TYPES } from "../ioc";
-import { Network, NetworkManifest } from "../networks";
 
 export class CoinFactory {
 	public static make(specification: CoinSpec, options: CoinOptions): Coin {
