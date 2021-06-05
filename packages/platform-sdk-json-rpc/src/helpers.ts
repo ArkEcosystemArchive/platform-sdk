@@ -5,19 +5,22 @@ import Joi from "joi";
 
 const coins: Record<string, Coins.Coin> = {};
 
-export const makeCoin = async (coin: string, network: string): Promise<Coins.Coin> => {
-	const cacheKey = `${coin}.${network}`;
+export const makeCoin = async (input: Record<string, string>): Promise<Coins.Coin> => {
+	const cacheKey = `${input.coin}.${input.network}`;
 
 	if (coins[cacheKey]) {
 		return coins[cacheKey];
 	}
 
-	coins[cacheKey] = Coins.CoinFactory.make({ ARK }[coin]!, {
-		network,
+	coins[cacheKey] = Coins.CoinFactory.make({ ARK }[input.coin]!, {
+		network: input.network,
 		httpClient: new Request(),
 	});
 
 	await coins[cacheKey].__construct();
+
+	delete input.coin;
+	delete input.network;
 
 	return coins[cacheKey];
 };

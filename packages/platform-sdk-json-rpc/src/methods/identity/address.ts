@@ -6,14 +6,14 @@ export const registerAddress = () => [
 	{
 		name: "identity.address.fromMnemonic",
 		async method({ coin, network, mnemonic }) {
-			return (await makeCoin(coin, network)).identity().address().fromMnemonic(mnemonic);
+			return (await makeCoin({ coin, network })).identity().address().fromMnemonic(mnemonic);
 		},
 		schema: Joi.object({ ...baseSchema, mnemonic: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromMultiSignature",
 		async method({ coin, network, min, publicKeys }) {
-			return (await makeCoin(coin, network)).identity().address().fromMultiSignature(min, publicKeys);
+			return (await makeCoin({ coin, network })).identity().address().fromMultiSignature(min, publicKeys);
 		},
 		schema: Joi.object({
 			...baseSchema,
@@ -24,28 +24,28 @@ export const registerAddress = () => [
 	{
 		name: "identity.address.fromPublicKey",
 		async method({ coin, network, publicKey }) {
-			return (await makeCoin(coin, network)).identity().address().fromPublicKey(publicKey);
+			return (await makeCoin({ coin, network })).identity().address().fromPublicKey(publicKey);
 		},
 		schema: Joi.object({ ...baseSchema, publicKey: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromPrivateKey",
 		async method({ coin, network, privateKey }) {
-			return (await makeCoin(coin, network)).identity().address().fromPrivateKey(privateKey);
+			return (await makeCoin({ coin, network })).identity().address().fromPrivateKey(privateKey);
 		},
 		schema: Joi.object({ ...baseSchema, privateKey: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.fromWIF",
 		async method({ coin, network, wif }) {
-			return (await makeCoin(coin, network)).identity().address().fromWIF(wif);
+			return (await makeCoin({ coin, network })).identity().address().fromWIF(wif);
 		},
 		schema: Joi.object({ ...baseSchema, wif: Joi.string().required() }).required(),
 	},
 	{
 		name: "identity.address.validate",
 		async method({ coin, network, address }) {
-			return (await makeCoin(coin, network)).identity().address().validate(address);
+			return (await makeCoin({ coin, network })).identity().address().validate(address);
 		},
 		schema: Joi.object({ ...baseSchema, address: Joi.string().required() }).required(),
 	},

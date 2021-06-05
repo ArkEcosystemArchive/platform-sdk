@@ -6,7 +6,7 @@ export const registerMessage = () => [
 	{
 		name: "message.sign",
 		async method(input) {
-			const coin = await makeCoin(input.coin, input.network);
+			const coin = await makeCoin(input);
 
 			return coin.message().sign({
 				...input,
@@ -22,7 +22,7 @@ export const registerMessage = () => [
 	{
 		name: "message.verify",
 		async method(input) {
-			return (await makeCoin(input.coin, input.network)).message().verify(input);
+			return (await makeCoin(input)).message().verify(input);
 		},
 		schema: Joi.object({
 			...baseSchema,

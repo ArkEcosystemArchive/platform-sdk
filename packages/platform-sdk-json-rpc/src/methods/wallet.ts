@@ -7,7 +7,7 @@ export const registerWallet = () => [
 	{
 		name: "wallet.generate",
 		async method({ coin, network }) {
-			const instance = await makeCoin(coin, network);
+			const instance = await makeCoin({ coin, network });
 			const mnemonic = BIP39.generate();
 
 			return {
