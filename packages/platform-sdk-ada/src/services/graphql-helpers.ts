@@ -106,7 +106,10 @@ export const fetchNetworkTip = async (config: Coins.ConfigRepository): Promise<n
 	return parseInt((await postGraphql(config, query)).cardano.tip.slotNo);
 };
 
-export const fetchUsedAddressesData = async (config: Coins.ConfigRepository, addresses: string[]): Promise<string[]> => {
+export const fetchUsedAddressesData = async (
+	config: Coins.ConfigRepository,
+	addresses: string[],
+): Promise<string[]> => {
 	const query = `
 			{
 				transactions(

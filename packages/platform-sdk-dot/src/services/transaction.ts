@@ -4,7 +4,6 @@ import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
 import { waitReady } from "@polkadot/wasm-crypto";
 
-import { SignedTransactionData } from "../dto/signed-transaction";
 import { createRpcClient } from "../helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
@@ -51,7 +50,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 			transaction.hash.toHex(),
 			signedData,
 			transaction.toHex(),
-
 		);
 	}
 }

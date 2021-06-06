@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BinTools } from "avalanche";
 
 import { keyPairFromMnemonic, useKeychain } from "./helpers";

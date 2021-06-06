@@ -68,7 +68,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 					timestamp: DateTime.make(),
 				},
 				signedTx.toString(),
-
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -114,7 +113,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 					fee: 0,
 				},
 				signedTx.toString(),
-
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

@@ -3,7 +3,6 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { Account, Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { v4 as uuidv4 } from "uuid";
 
-import { SignedTransactionData } from "../dto";
 import { derivePrivateKey, derivePublicKey } from "./identity/helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {

@@ -12,8 +12,6 @@ import {
 	UserSigner,
 } from "@elrondnetwork/erdjs";
 
-import { SignedTransactionData } from "../dto";
-
 export class TransactionService extends Services.AbstractTransactionService {
 	private constructor(peer: string) {
 		super();
@@ -67,6 +65,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 		await signer.sign(transaction);
 
-		return this.dataTransferObjectService.signedTransaction(transaction.getSignature().hex(), unsignedTransaction, transaction);
+		return this.dataTransferObjectService.signedTransaction(
+			transaction.getSignature().hex(),
+			unsignedTransaction,
+			transaction,
+		);
 	}
 }

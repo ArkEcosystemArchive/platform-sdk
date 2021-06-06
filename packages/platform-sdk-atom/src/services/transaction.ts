@@ -1,7 +1,6 @@
 import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 
-import { SignedTransactionData } from "../dto";
 import { createSignedTransactionData } from "../utils/crypto";
 import { ClientService } from "./client";
 import { IdentityService } from "./identity";
@@ -80,7 +79,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 				keyPair,
 			);
 
-			return this.dataTransferObjectService.signedTransaction(uuidv4(), signedTransaction, signedTransaction, this.#decimals);
+			return this.dataTransferObjectService.signedTransaction(
+				uuidv4(),
+				signedTransaction,
+				signedTransaction,
+				this.#decimals,
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

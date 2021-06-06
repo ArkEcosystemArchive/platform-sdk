@@ -26,12 +26,17 @@ export class ClientService extends Services.AbstractClientService {
 
 		const assetId = cb58Decode(this.configRepository.get("network.meta.assetId"));
 
-		return this.dataTransferObjectService.transaction({
-			id,
-			amount: unsignedTransaction.getOutputTotal(assetId).toString(),
-			fee: unsignedTransaction.getBurn(assetId).toString(),
-			memo: baseTransaction.getMemo().toString("utf-8"),
-		}, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService
+			.transaction(
+				{
+					id,
+					amount: unsignedTransaction.getOutputTotal(assetId).toString(),
+					fee: unsignedTransaction.getBurn(assetId).toString(),
+					memo: baseTransaction.getMemo().toString("utf-8"),
+				},
+				TransactionDTO,
+			)
+			.withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {

@@ -3,8 +3,6 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { api, wallet } from "@cityofzion/neon-js";
 import { v4 as uuidv4 } from "uuid";
 
-import { SignedTransactionData } from "../dto";
-
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #decimals: number;
 
@@ -33,7 +31,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const signedData = { ...signedTransaction, timestamp: DateTime.make() };
 
-			return this.dataTransferObjectService.signedTransaction(uuidv4(), signedData, JSON.stringify(signedTransaction), this.#decimals);
+			return this.dataTransferObjectService.signedTransaction(
+				uuidv4(),
+				signedData,
+				JSON.stringify(signedTransaction),
+				this.#decimals,
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

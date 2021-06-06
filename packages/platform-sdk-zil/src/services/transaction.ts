@@ -2,7 +2,6 @@ import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/p
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BN, Long, units, Zilliqa } from "@zilliqa-js/zilliqa";
 
-import { SignedTransactionData } from "../dto";
 import { convertZilToQa, getZilliqaVersion } from "../zilliqa";
 
 export class TransactionService extends Services.AbstractTransactionService {

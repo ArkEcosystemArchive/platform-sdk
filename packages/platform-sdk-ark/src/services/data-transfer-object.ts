@@ -1,4 +1,4 @@
-import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { SignedTransactionData } from "../dto";
 
@@ -10,12 +10,7 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 		broadcastData: any,
 	): Contracts.SignedTransactionData {
 		const signedTransaction = this.container.resolve(SignedTransactionData);
-		signedTransaction.configure(
-			identifier,
-			signedData,
-			broadcastData,
-
-		);
+		signedTransaction.configure(identifier, signedData, broadcastData);
 
 		return signedTransaction;
 	}
