@@ -16,6 +16,9 @@ export class ClientService extends Services.AbstractClientService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	private readonly configRepository!: Coins.ConfigRepository;
 
+	@IoC.inject(IoC.BindingType.DataTransferObjectService)
+	private readonly dataTransferObjectService!: Services.DataTransferObjectService;
+
 	@IoC.inject(IoC.BindingType.HttpClient)
 	private readonly httpClient!: HttpClient;
 
@@ -25,7 +28,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.#get(`transactions/${id}`);
 
-		return Helpers.createTransactionDataWithType(body.data, TransactionDTO).withDecimals(
+		return this.dataTransferObjectService.transaction(body.data, TransactionDTO).withDecimals(
 			this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
 		);
 	}
@@ -35,7 +38,7 @@ export class ClientService extends Services.AbstractClientService {
 			? await this.#get("transactions", this.#createSearchParams(query))
 			: await this.#post("transactions/search", this.#createSearchParams(query));
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			response.data,
 			this.#createMetaPagination(response),
 			TransactionDTO,

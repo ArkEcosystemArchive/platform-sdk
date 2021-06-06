@@ -36,6 +36,8 @@ export abstract class AbstractTransactionData {
 
 	public configure(data: KeyValuePair) {
 		this.data = data;
+
+		return this;
 	}
 
 	public withDecimals(decimals?: number | string): this {
