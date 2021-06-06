@@ -88,7 +88,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData("id", "transactionPayload", "transactionPayload"),
+				createService(SignedTransactionData).configure("id", "transactionPayload", "transactionPayload"),
 			]);
 
 			expect(result).toEqual({
@@ -104,7 +104,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData("id", "transactionPayload", "transactionPayload"),
+				createService(SignedTransactionData).configure("id", "transactionPayload", "transactionPayload"),
 			]);
 
 			expect(result).toEqual({

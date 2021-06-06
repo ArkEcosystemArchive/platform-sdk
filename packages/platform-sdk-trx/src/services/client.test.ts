@@ -79,7 +79,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData(
+				createService(SignedTransactionData).configure(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
@@ -99,7 +99,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData(
+				createService(SignedTransactionData).configure(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),

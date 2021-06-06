@@ -116,7 +116,7 @@ describe("ClientService", () => {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new SignedTransactionData(
+		const transactionPayload = createService(SignedTransactionData).configure(
 			"5961193224963457718",
 			{
 				id: "5961193224963457718",
