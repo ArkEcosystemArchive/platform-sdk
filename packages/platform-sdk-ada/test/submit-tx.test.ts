@@ -1,5 +1,6 @@
 import "jest-extended";
-import { createConfig } from "./helpers";
+
+import { createService } from "../test/helpers";
 import { ClientService } from "../src/services";
 import { TransactionService } from "../src/services/transaction";
 import { Signatories } from "@arkecosystem/platform-sdk";
@@ -7,7 +8,7 @@ import { Signatories } from "@arkecosystem/platform-sdk";
 let subject: TransactionService;
 
 beforeEach(async () => {
-	subject = await TransactionService.__construct(createConfig());
+	subject = createService(TransactionService);
 });
 
 const data = [
@@ -149,8 +150,7 @@ const data = [
 ];
 
 it.skip(`can send a transfer`, async function () {
-	const config = createConfig();
-	const client = await ClientService.__construct(config);
+	const client = createService(ClientService);
 
 	const wallet = data[0]; // Simon's
 	const mnemonic = wallet.mnemonic;

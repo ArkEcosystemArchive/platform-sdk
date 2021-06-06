@@ -4,14 +4,13 @@ import { DTO } from "@arkecosystem/platform-sdk";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
 import { TransactionData } from "./transaction";
-
-const subject = new TransactionData(Fixture.data.transactions[0]);
+import { createService } from "../../test/helpers";
 
 let subject: TransactionData;
 
 beforeEach(() => {
 	subject = createService(TransactionData);
-	subject.configure(Fixture.data);
+	subject.configure(Fixture.data.transactions[0]);
 });
 
 describe("TransactionData", () => {

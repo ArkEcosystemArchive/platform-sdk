@@ -1,8 +1,9 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { bech32 } from "bech32";
 
 import { addressFromAccountExtPublicKey, addressFromMnemonic } from "./shelley";
 
+@IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;

@@ -3,6 +3,7 @@ import "jest-extended";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
 import { SignedTransactionData } from "./signed-transaction";
+import { createService } from "../../test/helpers";
 
 let subject: SignedTransactionData;
 

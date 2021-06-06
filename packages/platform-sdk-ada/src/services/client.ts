@@ -1,25 +1,24 @@
-import { Coins, Collections, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import * as TransactionDTO from "../dto";
 import { TransactionData, WalletData } from "../dto";
 import { fetchTransaction, fetchTransactions, fetchUtxosAggregate, submitTransaction } from "./graphql-helpers";
 import { usedAddressesForAccount } from "./helpers";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.ConfigRepository;
-	readonly #decimals: number;
+	#decimals!: number;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
-		this.#config = config;
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
+		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return new TransactionData(await fetchTransaction(id, this.#config)).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(await fetchTransaction(id, this.configRepository), TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -28,12 +27,12 @@ export class ClientService extends Services.AbstractClientService {
 		}
 
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
-			this.#config,
+			this.configRepository,
 			query.senderPublicKey,
 		);
 
 		const transactions = await fetchTransactions(
-			this.#config,
+			this.configRepository,
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
@@ -51,10 +50,10 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, id);
+		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.configRepository, id);
 
 		const balance = await fetchUtxosAggregate(
-			this.#config,
+			this.configRepository,
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
@@ -73,7 +72,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		for (const transaction of transactions) {
 			try {
-				await submitTransaction(this.#config, transaction.toBroadcast());
+				await submitTransaction(this.configRepository, transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {
