@@ -19,6 +19,8 @@ export abstract class AbstractSignedTransactionData {
 		this.signedData = signedData;
 		this.broadcastData = broadcastData;
 		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;
+
+		return this;
 	}
 
 	public setAttributes(attributes: { identifier: string }): void {

@@ -73,7 +73,9 @@ describe("ClientService", () => {
 				.post("/api/btc/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
-			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload", "")]);
+			const result = await subject.broadcast([
+				createService(SignedTransactionData).configure("id", "transactionPayload", ""),
+			]);
 
 			expect(result).toEqual({
 				accepted: ["id"],
@@ -87,7 +89,9 @@ describe("ClientService", () => {
 				.post("/api/btc/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
-			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload", "")]);
+			const result = await subject.broadcast([
+				createService(SignedTransactionData).configure("id", "transactionPayload", ""),
+			]);
 
 			expect(result).toEqual({
 				accepted: [],

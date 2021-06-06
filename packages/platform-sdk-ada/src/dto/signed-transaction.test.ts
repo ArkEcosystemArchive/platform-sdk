@@ -9,7 +9,9 @@ import { SignedTransactionData } from "./signed-transaction";
 let subject: SignedTransactionData;
 
 beforeEach(() => {
-	subject = new SignedTransactionData(
+	subject = createService(SignedTransactionData);
+
+	subject.configure(
 		"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
 		{
 			id: "3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
