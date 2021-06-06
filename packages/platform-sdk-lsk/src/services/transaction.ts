@@ -14,9 +14,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.ConfigRepository;
 	readonly #network: string;
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#network = config.get<string>("network.meta.networkId");
 	}

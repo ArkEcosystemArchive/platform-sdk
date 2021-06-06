@@ -1,23 +1,18 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BN, Long, units, Zilliqa } from "@zilliqa-js/zilliqa";
 
-import { SignedTransactionData } from "../dto";
 import { convertZilToQa, getZilliqaVersion } from "../zilliqa";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #zilliqa: Zilliqa;
-	readonly #version: number;
+	#zilliqa!: Zilliqa;
+	#version!: number;
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(config));
-		this.#version = getZilliqaVersion(config);
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
-		return new TransactionService(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(this.configRepository));
+		this.#version = getZilliqaVersion(this.configRepository);
 	}
 
 	public async transfer(

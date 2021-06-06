@@ -8,15 +8,10 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #client: NanoClient;
 	readonly #decimals: number;
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#client = new NanoClient(config);
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {

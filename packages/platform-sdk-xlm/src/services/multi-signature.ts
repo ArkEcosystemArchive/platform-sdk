@@ -1,7 +1,6 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 
+@IoC.injectable()
 export class MultiSignatureService extends Services.AbstractMultiSignatureService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<MultiSignatureService> {
-		return new MultiSignatureService();
-	}
+	//
 }

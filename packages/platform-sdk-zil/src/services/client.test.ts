@@ -6,6 +6,7 @@ import nock from "nock";
 import { identity } from "../../test/fixtures/identity";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { IoC } from "@arkecosystem/platform-sdk";
 
 const fixtures = `${__dirname}/../../test/fixtures/client`;
 

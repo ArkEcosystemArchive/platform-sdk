@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
-import { mockWallet } from "../../../test/config";
+import { mockWallet } from "../../test/config";
 import { AddressService } from "./address";
 
 let subject: AddressService;

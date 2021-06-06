@@ -1,7 +1,8 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Wallet } from "@zilliqa-js/account";
-import { accountFromMnemonic } from "../../zilliqa";
+import { accountFromMnemonic } from "../zilliqa";
 
+@IoC.injectable()
 export class PublicKeyService extends Services.AbstractPublicKeyService {
 	readonly #wallet: Wallet;
 

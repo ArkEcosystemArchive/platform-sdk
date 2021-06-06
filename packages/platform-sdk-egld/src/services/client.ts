@@ -8,15 +8,10 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.ConfigRepository;
 	readonly #http: HttpClient;
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async transaction(

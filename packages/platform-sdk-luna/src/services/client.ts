@@ -6,14 +6,9 @@ import { useClient } from "./helpers";
 export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.ConfigRepository;
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {

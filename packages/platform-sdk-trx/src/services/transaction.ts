@@ -11,9 +11,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #address: AddressService;
 	readonly #privateKey: PrivateKeyService;
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#connection = new TronWeb({ fullHost: Helpers.randomHostFromConfig(config) });
 		this.#address = new AddressService(config);

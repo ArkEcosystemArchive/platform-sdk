@@ -11,16 +11,11 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #http: HttpClient;
 	readonly #decimals: number;
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#decimals = config.get<number>(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async transaction(
