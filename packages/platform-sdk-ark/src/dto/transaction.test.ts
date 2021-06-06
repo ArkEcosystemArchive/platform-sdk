@@ -5,11 +5,13 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
 import { TransactionData } from "./transaction";
+import { createService } from "../../test/helpers";
 
 let subject: TransactionData;
 
 beforeEach(() => {
-	subject = new TransactionData(Fixture.data);
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data);
 });
 
 describe("TransactionData", () => {

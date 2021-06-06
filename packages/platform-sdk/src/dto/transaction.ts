@@ -32,7 +32,11 @@ export abstract class AbstractTransactionData {
 
 	protected decimals?: number;
 
-	public constructor(protected readonly data: KeyValuePair) {}
+	protected data!: KeyValuePair;
+
+	public configure(data: KeyValuePair) {
+		this.data = data;
+	}
 
 	public withDecimals(decimals?: number | string): this {
 		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;
