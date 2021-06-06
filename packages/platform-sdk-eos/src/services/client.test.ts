@@ -1,3 +1,4 @@
+import { IoC } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
 import nock from "nock";
@@ -5,6 +6,7 @@ import nock from "nock";
 import { createService } from "../../test/helpers";
 import { WalletData } from "../dto";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
