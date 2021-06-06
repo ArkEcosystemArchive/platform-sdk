@@ -1,7 +1,7 @@
 import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { Wallet } from "@zilliqa-js/account";
-import { BindingType } from "../constants";
 
+import { BindingType } from "../constants";
 import { accountFromMnemonic, accountFromPrivateKey } from "../zilliqa";
 
 @IoC.injectable()

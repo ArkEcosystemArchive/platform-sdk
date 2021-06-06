@@ -1,14 +1,14 @@
 import "jest-extended";
 
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { IoC } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
+import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 import { DataTransferObjectService } from "./data-transfer-object";
-import { createService } from "../../test/helpers";
 
 const fixtures = `${__dirname}/../../test/fixtures/client`;
 

@@ -1,4 +1,4 @@
-import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Mnemonic } from "@elrondnetwork/erdjs/out";
 import { getPublicKey, sign, verify } from "noble-ed25519";
 

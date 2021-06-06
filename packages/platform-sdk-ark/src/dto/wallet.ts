@@ -1,4 +1,4 @@
-import { Contracts, DTO, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { get, has } from "dot-prop";
 

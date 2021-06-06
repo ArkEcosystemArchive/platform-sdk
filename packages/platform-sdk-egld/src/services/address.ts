@@ -1,4 +1,4 @@
-import { Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 import { bech32 } from "bech32";
 
 import { makeAccount } from "./helpers";

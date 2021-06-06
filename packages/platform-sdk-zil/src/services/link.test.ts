@@ -1,7 +1,7 @@
 import "jest-extended";
 
-import { LinkService } from "./link";
 import { createService } from "../../test/helpers";
+import { LinkService } from "./link";
 
 let subject: LinkService;
 

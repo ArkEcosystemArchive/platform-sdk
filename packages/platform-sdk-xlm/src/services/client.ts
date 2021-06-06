@@ -34,13 +34,15 @@ export class ClientService extends Services.AbstractClientService {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
 
-		return this.dataTransferObjectService.transaction(
-			{
-				...transaction,
-				operation: operations.records[0],
-			},
-			TransactionDTO,
-		).withDecimals(this.#decimals);
+		return this.dataTransferObjectService
+			.transaction(
+				{
+					...transaction,
+					operation: operations.records[0],
+				},
+				TransactionDTO,
+			)
+			.withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {

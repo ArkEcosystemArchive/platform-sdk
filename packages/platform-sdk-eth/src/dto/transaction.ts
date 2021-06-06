@@ -1,4 +1,4 @@
-import { Contracts, DTO, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";

@@ -4,8 +4,8 @@ import { IoC } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
 import { createService, mockWallet } from "../../test/helpers";
-import { KeyPairService } from "./key-pair";
 import { BindingType } from "../constants";
+import { KeyPairService } from "./key-pair";
 
 let subject: KeyPairService;
 

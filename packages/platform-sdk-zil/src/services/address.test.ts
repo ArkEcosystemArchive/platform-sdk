@@ -3,9 +3,9 @@ import "jest-extended";
 import { IoC } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
-import { AddressService } from "./address";
 import { createService, mockWallet } from "../../test/helpers";
 import { BindingType } from "../constants";
+import { AddressService } from "./address";
 
 let subject: AddressService;
 
