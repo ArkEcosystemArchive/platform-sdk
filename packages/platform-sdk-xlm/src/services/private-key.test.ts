@@ -2,6 +2,7 @@ import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
 import { PrivateKeyService } from "./private-key";
+import { createService } from "../../test/helpers";
 
 let subject: PrivateKeyService;
 

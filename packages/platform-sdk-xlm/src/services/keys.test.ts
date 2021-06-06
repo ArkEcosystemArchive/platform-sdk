@@ -2,6 +2,7 @@ import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
 import { KeyPairService } from "./key-pair";
+import { createService } from "../../test/helpers";
 
 let subject: KeyPairService;
 
