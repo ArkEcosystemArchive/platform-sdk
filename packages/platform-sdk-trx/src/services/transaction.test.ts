@@ -1,10 +1,16 @@
 import "jest-extended";
 
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
 import { TransactionService } from "./transaction";
+import { AddressService } from "./address";
+import { DataTransferObjectService } from "./data-transfer-object";
+import { KeyPairService } from "./key-pair";
+import { PublicKeyService } from "./public-key";
+import { PrivateKeyService } from "./private-key";
+import { createService } from "../../test/helpers";
 
 let subject: TransactionService;
 
@@ -15,6 +21,7 @@ beforeAll(async () => {
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
+		container.singleton(IoC.BindingType.PrivateKeyService, PrivateKeyService);
 	});
 });
 
