@@ -3,7 +3,7 @@ import { Mnemonic } from "@elrondnetwork/erdjs/out";
 import { getPublicKey, sign, verify } from "noble-ed25519";
 
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
 		return new MessageService();
 	}
 

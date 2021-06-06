@@ -5,7 +5,11 @@ import Web3 from "web3";
 
 import { bigNumber } from "../container";
 
+@IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	private readonly bigNumberService!: Services.BigNumberService;
+
 	public id(): string {
 		return this.data.hash;
 	}
@@ -35,11 +39,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return bigNumber(Web3.utils.toBN(this.data.value).toString());
+		return this.bigNumberService.make(Web3.utils.toBN(this.data.value).toString());
 	}
 
 	public fee(): BigNumber {
-		return bigNumber(Web3.utils.toBN(this.data.gas).toString());
+		return this.bigNumberService.make(Web3.utils.toBN(this.data.gas).toString());
 	}
 
 	public memo(): string | undefined {

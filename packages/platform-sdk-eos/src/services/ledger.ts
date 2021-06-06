@@ -4,7 +4,7 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<LedgerService> {
 		return new LedgerService();
 	}
 

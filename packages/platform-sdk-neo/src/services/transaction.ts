@@ -8,13 +8,13 @@ import { SignedTransactionData } from "../dto";
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #decimals: number;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config);
 	}
 

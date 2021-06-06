@@ -1,7 +1,8 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
 import * as bitcoin from "bitcoinjs-lib";
 
+@IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
 		mnemonic: string,

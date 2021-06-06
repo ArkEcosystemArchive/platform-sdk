@@ -7,11 +7,11 @@ import { RippleAPI } from "ripple-lib";
 import { SignedTransactionData } from "../dto";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #http: HttpClient;
 	readonly #ripple: RippleAPI;
 
-	private constructor(config: Coins.Config) {
+	private constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
@@ -19,7 +19,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#ripple = new RippleAPI();
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config);
 	}
 

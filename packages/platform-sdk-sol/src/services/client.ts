@@ -4,17 +4,17 @@ import { Connection, PublicKey } from "@solana/web3.js";
 import { WalletData } from "../dto";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #client: Connection;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
 		this.#client = new Connection(this.#host());
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService(config);
 	}
 

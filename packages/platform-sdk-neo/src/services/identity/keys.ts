@@ -3,9 +3,9 @@ import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-s
 import { deriveKeyPair, deriveWallet } from "./utils";
 
 export class KeyPairService extends Services.AbstractKeyPairService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;

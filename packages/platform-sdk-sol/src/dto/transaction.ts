@@ -4,7 +4,11 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { bigNumber } from "../container";
 
+@IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	private readonly bigNumberService!: Services.BigNumberService;
+
 	public id(): string {
 		return this.data.hash;
 	}
@@ -34,7 +38,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			.sort((a, b) => a.index - b.index)
 			.map((out) => ({
 				address: out.address,
-				amount: bigNumber(out.value),
+				amount: this.bigNumberService.make(out.value),
 			}));
 	}
 
@@ -43,7 +47,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			(input: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
 					id: input.sourceTransaction.hash,
-					amount: bigNumber(input.value),
+					amount: this.bigNumberService.make(input.value),
 					addresses: [input.address],
 				}),
 		);
@@ -53,7 +57,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.outputs.map(
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
-					amount: bigNumber(output.value),
+					amount: this.bigNumberService.make(output.value),
 					addresses: [output.address],
 				}),
 		);
@@ -65,14 +69,14 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		const changeOutput =
 			this.data.outputs <= 1
 				? BigNumber.ZERO
-				: bigNumber(this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value);
+				: this.bigNumberService.make(this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value);
 
 		const netAmount = totalInput.minus(changeOutput).minus(this.fee());
-		return bigNumber(netAmount);
+		return this.bigNumberService.make(netAmount);
 	}
 
 	public fee(): BigNumber {
-		return bigNumber(this.data.fee);
+		return this.bigNumberService.make(this.data.fee);
 	}
 
 	public asset(): Record<string, unknown> {

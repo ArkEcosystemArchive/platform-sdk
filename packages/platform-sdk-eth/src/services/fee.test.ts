@@ -2,7 +2,7 @@ import "jest-extended";
 
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { FeeService } from "./fee";
 
 let subject: FeeService;

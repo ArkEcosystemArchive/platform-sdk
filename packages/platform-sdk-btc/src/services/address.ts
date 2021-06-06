@@ -1,19 +1,16 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import * as bitcoin from "bitcoinjs-lib";
 
 import { AddressFactory } from "./address.factory";
 import { getNetworkConfig } from "./helpers";
 
+@IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
-	readonly #factory: AddressFactory;
-	readonly #network: bitcoin.networks.Network;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#network = getNetworkConfig(config);
-		this.#factory = new AddressFactory(config);
-	}
+	#factory!: AddressFactory;
+	#network!: bitcoin.networks.Network;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -129,5 +126,11 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async validate(address: string): Promise<boolean> {
 		return address !== undefined;
+	}
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#network = getNetworkConfig(this.configRepository);
+		this.#factory = new AddressFactory(this.configRepository);
 	}
 }

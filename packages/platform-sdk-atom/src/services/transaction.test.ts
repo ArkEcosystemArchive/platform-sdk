@@ -3,7 +3,7 @@ import "jest-extended";
 import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;

@@ -16,7 +16,7 @@ export class ClientService extends Services.AbstractClientService {
 		op_no_issuer: "ERR_NO_ISSUER",
 	};
 
-	private constructor(config: Coins.Config) {
+	private constructor(config: Coins.ConfigRepository) {
 		super();
 
 		const network = config.get<Networks.NetworkManifest>("network").id;
@@ -28,7 +28,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService(config);
 	}
 

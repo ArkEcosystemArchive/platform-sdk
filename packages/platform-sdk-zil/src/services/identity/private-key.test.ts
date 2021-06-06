@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { identity } from "../../../test/fixtures/identity";
+import { identity } from "../../test/fixtures/identity";
 import { mockWallet } from "../../../test/config";
 import { PrivateKeyService } from "./private-key";
 

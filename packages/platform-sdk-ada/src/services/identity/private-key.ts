@@ -1,6 +1,6 @@
 import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
-import { KeyPairService } from "./keys";
+import { KeyPairService } from "./key-pair";
 
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	public async fromMnemonic(

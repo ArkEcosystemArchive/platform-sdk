@@ -6,7 +6,7 @@ import { derivePrivateKey } from "./helpers";
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	readonly #slip44: number;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#slip44 = config.get<number>("network.constants.slip44");

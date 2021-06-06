@@ -4,9 +4,9 @@ import { BinTools } from "avalanche";
 import { cb58Encode, keyPairFromMnemonic, useKeychain } from "../helpers";
 
 export class KeyPairService extends Services.AbstractKeyPairService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;

@@ -21,7 +21,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#decimals = opts.decimals;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService({
 			...config.all(),
 			client: await ClientService.__construct(config),

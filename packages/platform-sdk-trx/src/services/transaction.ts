@@ -6,12 +6,12 @@ import { AddressService } from "./identity/address";
 import { PrivateKeyService } from "./identity/private-key";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #connection: TronWeb;
 	readonly #address: AddressService;
 	readonly #privateKey: PrivateKeyService;
 
-	private constructor(config: Coins.Config) {
+	private constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
@@ -20,7 +20,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#privateKey = new PrivateKeyService(config);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config);
 	}
 

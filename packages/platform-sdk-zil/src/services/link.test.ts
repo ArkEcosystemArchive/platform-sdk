@@ -5,8 +5,8 @@ import { LinkService } from "./link";
 
 let subject: LinkService;
 
-beforeAll(async () => {
-	subject = await LinkService.__construct(createConfig());
+beforeEach(async () => {
+	subject = createService(LinkService);
 });
 
 it("should generate a link for a block", async () => {

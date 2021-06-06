@@ -12,7 +12,7 @@ const chunk = <T>(value: T[], size: number) =>
 const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
 export class LedgerService extends Services.AbstractLedgerService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #identity: Services.IdentityService;
 	readonly #client: Services.ClientService;
 	#ledger: Services.LedgerTransport;
@@ -26,7 +26,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 		this.#client = client;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<LedgerService> {
 		return new LedgerService(
 			config,
 			await IdentityService.__construct(config),

@@ -13,15 +13,6 @@ interface BroadcastError {
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	@IoC.inject(IoC.BindingType.ConfigRepository)
-	private readonly configRepository!: Coins.ConfigRepository;
-
-	@IoC.inject(IoC.BindingType.DataTransferObjectService)
-	private readonly dataTransferObjectService!: Services.DataTransferObjectService;
-
-	@IoC.inject(IoC.BindingType.HttpClient)
-	private readonly httpClient!: HttpClient;
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,

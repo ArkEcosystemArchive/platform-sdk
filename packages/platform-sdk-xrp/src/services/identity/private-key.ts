@@ -3,9 +3,9 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveKeypair } from "ripple-keypairs";
 
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;

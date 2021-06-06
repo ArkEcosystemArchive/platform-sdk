@@ -4,7 +4,7 @@ import { Ed25519Signature, PublicKey } from "@emurgo/cardano-serialization-lib-n
 import { deriveRootKey } from "./identity/shelley";
 
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
 		return new MessageService();
 	}
 

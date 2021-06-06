@@ -7,8 +7,11 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { container } from "../container";
 import { TransactionData } from "./transaction";
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
+let subject: TransactionData;
+
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data);
 });
 
 describe("TransactionData", () => {

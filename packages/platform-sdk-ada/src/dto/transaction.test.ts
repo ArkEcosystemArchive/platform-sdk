@@ -8,8 +8,11 @@ import { TransactionData } from "./transaction";
 
 const subject = new TransactionData(Fixture.data.transactions[0]);
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
+let subject: TransactionData;
+
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data);
 });
 
 describe("TransactionData", () => {

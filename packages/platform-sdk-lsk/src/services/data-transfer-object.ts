@@ -7,7 +7,7 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 		super();
 	}
 
-	public static async __construct(config: Coins.Config): Promise<DataTransferObjectService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<DataTransferObjectService> {
 		return new DataTransferObjectService(config.get(Coins.ConfigKey.CurrencyDecimals));
 	}
 

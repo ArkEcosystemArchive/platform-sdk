@@ -10,7 +10,9 @@ import { SignedTransactionData } from "./signed-transaction";
 let subject: SignedTransactionData;
 
 beforeEach(() => {
-	subject = new SignedTransactionData(
+	subject = createService(SignedTransactionData);
+
+	subject.configure(
 		"12385936261751136908",
 		{
 			id: "12385936261751136908",
@@ -35,8 +37,6 @@ beforeEach(() => {
 		},
 		"",
 	);
-
-	Test.bindBigNumberService(container);
 });
 
 describe("SignedTransactionData", () => {

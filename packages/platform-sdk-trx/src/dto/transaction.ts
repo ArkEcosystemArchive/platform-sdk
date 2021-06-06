@@ -4,7 +4,11 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { bigNumber } from "../container";
 
+@IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	private readonly bigNumberService!: Services.BigNumberService;
+
 	public id(): string {
 		return this.data.txID;
 	}
@@ -34,11 +38,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return bigNumber(this.data.raw_data.contract[0].parameter.value.amount);
+		return this.bigNumberService.make(this.data.raw_data.contract[0].parameter.value.amount);
 	}
 
 	public fee(): BigNumber {
-		return bigNumber(this.data.ret[0].fee);
+		return this.bigNumberService.make(this.data.ret[0].fee);
 	}
 
 	public memo(): string | undefined {

@@ -4,15 +4,15 @@ import { LCDClient } from "@terra-money/terra.js";
 import { useClient } from "./helpers";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	private constructor(config: Coins.Config) {
+	private constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService(config);
 	}
 

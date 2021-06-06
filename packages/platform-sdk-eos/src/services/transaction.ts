@@ -23,7 +23,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#decimals = decimals;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService({
 			networkId: config.get<string>("network.meta.networkId"),
 			peer: Helpers.randomHostFromConfig(config),

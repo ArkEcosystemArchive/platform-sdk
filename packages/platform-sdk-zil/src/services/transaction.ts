@@ -9,14 +9,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #zilliqa: Zilliqa;
 	readonly #version: number;
 
-	private constructor(config: Coins.Config) {
+	private constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(config));
 		this.#version = getZilliqaVersion(config);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config);
 	}
 

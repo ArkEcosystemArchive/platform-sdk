@@ -9,12 +9,12 @@ import * as TransactionDTO from "../dto";
 import { cb58Decode, usePChain, useXChain } from "./helpers";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #xchain: AVMAPI;
 	readonly #pchain: PlatformVMAPI;
 	readonly #decimals: number;
 
-	private constructor(config: Coins.Config) {
+	private constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
@@ -23,7 +23,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService(config);
 	}
 
