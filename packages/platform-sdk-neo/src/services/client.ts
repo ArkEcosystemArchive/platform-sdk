@@ -1,5 +1,4 @@
 import { Coins, Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Neon, { api } from "@cityofzion/neon-js";
 
 import * as TransactionDTO from "../dto";

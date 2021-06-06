@@ -1,5 +1,5 @@
-import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
-import * as nanocurrency from "nanocurrency";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
+import { deriveAddress, derivePublicKey } from "nanocurrency";
 import { tools } from "nanocurrency-web";
 
 import { deriveAccount } from "./helpers";
@@ -22,7 +22,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
-			address: nanocurrency.deriveAddress(publicKey),
+			address: deriveAddress(publicKey),
 		};
 	}
 
@@ -32,7 +32,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
-			address: nanocurrency.deriveAddress(nanocurrency.derivePublicKey(privateKey)),
+			address: deriveAddress(derivePublicKey(privateKey)),
 		};
 	}
 

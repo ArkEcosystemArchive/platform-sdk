@@ -4,8 +4,8 @@ import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
-import { MessageService } from "./message";
 import { KeyPairService } from "./key-pair";
+import { MessageService } from "./message";
 
 let subject: MessageService;
 

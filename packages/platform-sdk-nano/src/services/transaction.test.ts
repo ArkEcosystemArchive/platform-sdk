@@ -4,13 +4,13 @@ import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
+import { createService } from "../../test/helpers";
 import { SignedTransactionData } from "../dto/signed-transaction";
-import { TransactionService } from "./transaction";
 import { AddressService } from "./address";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
 import { PublicKeyService } from "./public-key";
-import { createService } from "../../test/helpers";
+import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 

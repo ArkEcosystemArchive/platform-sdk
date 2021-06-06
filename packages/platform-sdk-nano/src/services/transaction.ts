@@ -36,10 +36,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const signedData = { ...data, timestamp: DateTime.make() };
 		const broadcastData = block.send(data, privateKey);
 
-		return this.dataTransferObjectService.signedTransaction(
-			broadcastData.signature,
-			signedData,
-			broadcastData,
-		);
+		return this.dataTransferObjectService.signedTransaction(broadcastData.signature, signedData, broadcastData);
 	}
 }

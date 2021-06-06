@@ -4,7 +4,7 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 @IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
-	#bip44SessionPath: string = "";
+	#bip44SessionPath = "";
 
 	public static async __construct(config: Coins.ConfigRepository): Promise<LedgerService> {
 		return new LedgerService();
