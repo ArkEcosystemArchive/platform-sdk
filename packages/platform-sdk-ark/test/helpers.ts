@@ -1,7 +1,6 @@
 import { Coins, IoC } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
-import { container } from "../src/container";
 import { Bindings } from "../src/contracts";
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
@@ -25,36 +24,26 @@ export const createConfig = (options?: object, meta = {}) => {
 	return config;
 };
 
-export const createConfigWithNetwork = (options?: object, meta = {}) => {
-	const config = createConfig(options, meta);
-
-	if (config.missing(Bindings.Crypto)) {
-		config.set(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
-	}
-
-	if (config.missing(Bindings.Height)) {
-		config.set(Bindings.Height, require(`${__dirname}/fixtures/client/syncing.json`).data.height);
-	}
-
-	return config;
-};
-
 export const createNetworkConfig = () => require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data.network;
 
-export const createService = <T = any>(service: any, config?: Coins.ConfigRepository): T => {
+export const createService = <T = any>(service: any, config?: Coins.ConfigRepository, predicate?: Function): [IoC.Container, T] => {
 	config ??= createConfig();
 
 	const container = new IoC.Container();
 	container.bind(IoC.BindingType.ConfigRepository, config);
 	container.bind(IoC.BindingType.HttpClient, new Request());
 
-	if (config.missing(Bindings.Crypto)) {
-		config.set(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
+	if (container.missing(Bindings.Crypto)) {
+		container.constant(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
 	}
 
-	if (config.missing(Bindings.Height)) {
-		config.set(Bindings.Height, require(`${__dirname}/fixtures/client/syncing.json`).data.height);
+	if (container.missing(Bindings.Height)) {
+		container.constant(Bindings.Height, require(`${__dirname}/fixtures/client/syncing.json`).data.height);
 	}
 
-	return container.resolve(service);
+	if (predicate) {
+		predicate(container);
+	}
+
+	return [container, container.resolve(service)];
 };

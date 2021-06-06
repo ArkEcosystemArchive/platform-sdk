@@ -3,14 +3,14 @@ import "jest-extended";
 import { Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { container } from "../container";
 import { FeeService } from "./fee";
 
 let subject: FeeService;
 
 beforeEach(async () => {
-	subject = await FeeService.__construct(createConfig());
+	subject = createService(FeeService);
 
 	Test.bindBigNumberService(container);
 });

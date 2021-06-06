@@ -3,7 +3,8 @@
 import { ConfigRepository } from "../coins";
 import { SignedTransactionData, TransactionDataType } from "../contracts";
 import { NotImplemented } from "../exceptions";
-import { BindingType, inject, injectable } from "../ioc";
+import { inject, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 
 @injectable()

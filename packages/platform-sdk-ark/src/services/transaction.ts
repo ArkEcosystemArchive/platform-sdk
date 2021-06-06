@@ -227,8 +227,8 @@ export class TransactionService extends Services.AbstractTransactionService {
     @IoC.postConstruct()
     private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
-		// @ts-ignore - @TODO
-		this.#multiSignatureSigner = new MultiSignatureSigner(crypto, height);
+		// @ts-ignore
+		this.#multiSignatureSigner = new MultiSignatureSigner(this.packageCrypto, this.packageHeight);
 		this.#configCrypto = { crypto: this.packageCrypto, height: this.packageHeight };
     }
 

@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
-import { BindingType, inject, injectable } from "../ioc";
+import { inject, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import {
 	MnemonicSignatory,
 	MultiMnemonicSignatory,
