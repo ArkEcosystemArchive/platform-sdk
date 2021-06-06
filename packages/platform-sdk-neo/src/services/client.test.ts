@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
@@ -8,6 +9,7 @@ import { createService } from "../../test/helpers";
 import { SignedTransactionData } from "../dto";
 import { TransactionData } from "../dto/transaction";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 

@@ -1,6 +1,5 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { IdentityService } from "./identity";
-
+@IoC.injectable()
 export class SignatoryService extends Services.AbstractSignatoryService {	//
 }
