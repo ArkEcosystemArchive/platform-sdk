@@ -36,6 +36,7 @@
 		"node-fetch": "^2.6.1"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
 		"@types/bn.js": "4.11.6",
 		"@types/elliptic": "6.4.12",

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { createHash } from "crypto";
 import { Api, JsonRpc } from "eosjs";
@@ -6,28 +6,17 @@ import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
 import { TextDecoder, TextEncoder } from "util";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #networkId: string;
-	readonly #peer: string;
-	readonly #ticker: string;
-	readonly #decimals: number;
+	#networkId!: string;
+	#peer!: string;
+	#ticker!: string;
 
-	private constructor({ networkId, peer, ticker, decimals }) {
-		super();
-
-		this.#networkId = networkId;
-		this.#peer = peer;
-		this.#ticker = ticker;
-		this.#decimals = decimals;
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
-		return new TransactionService({
-			networkId: config.get<string>("network.meta.networkId"),
-			peer: Helpers.randomHostFromConfig(config),
-			ticker: config.get<string>(Coins.ConfigKey.CurrencyTicker),
-			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
-		});
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#networkId = this.configRepository.get<string>("network.meta.networkId");
+		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
+		this.#ticker = this.configRepository.get<string>(Coins.ConfigKey.CurrencyTicker);
 	}
 
 	public async transfer(
@@ -85,7 +74,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 				createHash("sha256").update(transaction.serializedTransaction).digest("hex"),
 				{ ...transaction, timestamp: DateTime.make() },
 				transaction,
-				this.#decimals,
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
