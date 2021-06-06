@@ -1,11 +1,12 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 
+@IoC.injectable()
 export class LinkService extends Services.AbstractLinkService {
-	public static async __construct(config: Coins.Config): Promise<LinkService> {
-		return new LinkService(config, {
+	protected schema(): Services.LinkServiceSchema {
+		return {
 			block: "explorer/block/{0}",
 			transaction: "explorer/block/{0}",
 			wallet: "explorer/account/{0}",
-		});
+		};
 	}
 }
