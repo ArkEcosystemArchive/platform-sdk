@@ -1,24 +1,11 @@
-import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { ECPair } from "bitcoinjs-lib";
 import { sign, verify } from "bitcoinjs-message";
 
-import { IdentityService } from "./identity";
-
 @IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	readonly #identity: IdentityService;
-
-	private constructor(identityService: IdentityService) {
-		super();
-
-		this.#identity = identityService;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
-		const identityService = await IdentityService.__construct(config);
-
-		return new MessageService(identityService);
-	}
+	@IoC.inject(IoC.BindingType.AddressService)
+	private readonly addressService!: Services.AddressService;
 
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
@@ -30,7 +17,7 @@ export class MessageService extends Services.AbstractMessageService {
 
 			return {
 				message: input.message,
-				signatory: (await this.#identity.address().fromWIF(input.signatory.signingKey())).address,
+				signatory: (await this.addressService.fromWIF(input.signatory.signingKey())).address,
 				signature: sign(input.message, privateKey, compressed).toString("base64"),
 			};
 		} catch (error) {

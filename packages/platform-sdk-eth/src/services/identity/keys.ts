@@ -5,9 +5,9 @@ import Wallet from "ethereumjs-wallet";
 import { createWallet } from "./utils";
 
 export class KeyPairService extends Services.AbstractKeyPairService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;

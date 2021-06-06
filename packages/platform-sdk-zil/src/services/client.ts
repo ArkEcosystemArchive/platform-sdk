@@ -8,14 +8,14 @@ export class ClientService extends Services.AbstractClientService {
 	readonly #zilliqa: Zilliqa;
 	readonly #decimals: number;
 
-	private constructor(config: Coins.Config) {
+	private constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(config));
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService(config);
 	}
 

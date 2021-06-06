@@ -6,15 +6,15 @@ import { SignedTransactionData } from "../dto";
 import { useClient } from "./helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config);
 	}
 

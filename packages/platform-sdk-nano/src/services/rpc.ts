@@ -34,7 +34,7 @@ interface AccountHistoryResponse {
 export class NanoClient {
 	readonly #http: HttpClient;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		const host = Helpers.randomHostFromConfig(config);
 
 		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient).baseUrl(host);

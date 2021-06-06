@@ -7,15 +7,15 @@ import { createHash } from "crypto";
 import { cb58Decode, cb58Encode, keyPairFromMnemonic } from "./helpers";
 
 export class MessageService extends Services.AbstractMessageService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
 		return new MessageService(config);
 	}
 

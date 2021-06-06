@@ -4,7 +4,11 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { bigNumber } from "../container";
 
+@IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	private readonly bigNumberService!: Services.BigNumberService;
+
 	public id(): string {
 		return this.data.transaction_hash || this.data.id;
 	}
@@ -35,13 +39,13 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public amount(): BigNumber {
 		const amount = BigNumber.powerOfTen(this.decimals!).times(this.data.amount || this.data.operation.amount);
-		return bigNumber(amount);
+		return this.bigNumberService.make(amount);
 	}
 
 	// todo: with the "transaction" method we get a nonce but with "transactions" it isn't available
 	public fee(): BigNumber {
 		const fee = BigNumber.powerOfTen(this.decimals!).times(this.data.fee_charged || 0);
-		return bigNumber(fee);
+		return this.bigNumberService.make(fee);
 	}
 
 	public memo(): string | undefined {

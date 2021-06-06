@@ -6,7 +6,7 @@ import { SignedTransactionData } from "../dto";
 import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #identity: IdentityService;
 	readonly #client;
 	readonly #networkPassphrase;
@@ -34,7 +34,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#networkPassphrase = network.networkPassphrase;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config, await IdentityService.__construct(config));
 	}
 

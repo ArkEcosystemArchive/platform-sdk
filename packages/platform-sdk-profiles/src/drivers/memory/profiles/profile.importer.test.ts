@@ -4,7 +4,7 @@ import "reflect-metadata";
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import nock from "nock";
 
-import { identity } from "../../../../test/fixtures/identity";
+import { identity } from "../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { Profile } from "./profile";
 import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";

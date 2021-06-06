@@ -21,7 +21,7 @@ export const submitTransaction = async (config: Coins.Config, toBroadcast: strin
 	return (await postGraphql(config, `mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`)).hash;
 };
 
-export const fetchTransaction = async (id: string, config: Coins.Config): Promise<object[]> => {
+export const fetchTransaction = async (id: string, config: Coins.ConfigRepository): Promise<object[]> => {
 	const query = `
 			{
 				transactions(
@@ -100,7 +100,7 @@ export const fetchTransactions = async (config: Coins.Config, addresses: string[
 	return (await postGraphql(config, query)).transactions;
 };
 
-export const fetchNetworkTip = async (config: Coins.Config): Promise<number> => {
+export const fetchNetworkTip = async (config: Coins.ConfigRepository): Promise<number> => {
 	const query = `{ cardano { tip { slotNo } } }`;
 
 	return parseInt((await postGraphql(config, query)).cardano.tip.slotNo);

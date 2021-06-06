@@ -2,9 +2,9 @@ import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-s
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
 export class WIFService extends Services.AbstractWIFService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;

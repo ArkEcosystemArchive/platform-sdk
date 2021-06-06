@@ -351,7 +351,7 @@ export interface IReadWriteWallet {
 	 * @return {Coins.Config}
 	 * @memberof IReadWriteWallet
 	 */
-	config(): Coins.Config;
+	config(): Coins.ConfigRepository;
 
 	/**
 	 * Get the client service instance.

@@ -2,7 +2,7 @@ import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import Neon, { wallet } from "@cityofzion/neon-js";
 
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
 		return new MessageService();
 	}
 

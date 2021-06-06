@@ -7,11 +7,11 @@ import { SignedTransactionData } from "../dto";
 import { derivePrivateKey, derivePublicKey } from "./identity/helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #client: Connection;
 	readonly #slip44: number;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
@@ -19,7 +19,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#slip44 = config.get<number>("network.constants.slip44");
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config);
 	}
 

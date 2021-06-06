@@ -8,7 +8,7 @@ import { SignedTransactionData } from "../dto/signed-transaction";
 import { createRpcClient } from "../helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #client: ApiPromise;
 	readonly #keyring: Keyring;
 
@@ -20,7 +20,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#keyring = new Keyring({ type: "sr25519" });
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		await waitReady();
 
 		return new TransactionService(config, await createRpcClient(config));

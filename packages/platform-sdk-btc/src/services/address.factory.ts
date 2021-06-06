@@ -12,10 +12,10 @@ interface Levels {
 }
 
 export class AddressFactory {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #network: bitcoin.networks.Network;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		this.#config = config;
 		this.#network = getNetworkConfig(config);
 	}

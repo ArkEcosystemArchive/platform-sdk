@@ -12,7 +12,7 @@ export class AddressService extends Services.AbstractAddressService {
 	readonly #factory: AddressFactory;
 	readonly #network: bitcoin.networks.Network;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#network = getNetworkConfig(config);

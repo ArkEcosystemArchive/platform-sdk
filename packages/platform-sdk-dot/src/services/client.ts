@@ -13,7 +13,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#client = client;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService(await createRpcClient(config));
 	}
 

@@ -14,7 +14,7 @@ export class MessageService extends Services.AbstractMessageService {
 		this.#identityService = opts.identityService;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
 		return new MessageService({ identityService: await IdentityService.__construct(config) });
 	}
 

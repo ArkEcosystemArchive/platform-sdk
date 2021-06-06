@@ -2,7 +2,7 @@ import "jest-extended";
 
 import { Test } from "@arkecosystem/platform-sdk";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { container } from "../container";
 import { FeeService } from "./fee";
 

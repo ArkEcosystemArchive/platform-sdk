@@ -2,7 +2,7 @@ import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/p
 import { Wallet, Account } from "@zilliqa-js/account";
 import { bytes, units, BN } from "@zilliqa-js/zilliqa";
 
-export const getZilliqaVersion = (config: Coins.Config) => {
+export const getZilliqaVersion = (config: Coins.ConfigRepository) => {
 	const id = config.get<string>("network.id");
 
 	let chainId: number | undefined;

@@ -193,11 +193,11 @@ test("#config", () => {
 test("#bigNumber", async () => {
 	await subject.__construct();
 
-	expect(subject.bigNumber()).toBeObject();
+	expect(subject.this.bigNumberService.make()).toBeObject();
 });
 
 test("#bigNumber with throw", async () => {
-	expect(() => subject.bigNumber()).toThrow();
+	expect(() => subject.this.bigNumberService.make()).toThrow();
 });
 
 test("#client", async () => {

@@ -4,9 +4,9 @@ import { bech32 } from "bech32";
 import { addressFromAccountExtPublicKey, addressFromMnemonic } from "./shelley";
 
 export class AddressService extends Services.AbstractAddressService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;

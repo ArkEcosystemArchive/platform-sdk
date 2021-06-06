@@ -95,7 +95,7 @@ export class Coin {
 		return this.#container.get(BindingType.ConfigRepository);
 	}
 
-	public bigNumber(): BigNumberService {
+	public this.bigNumberService.make(): BigNumberService {
 		if (!this.hasBeenSynchronized()) {
 			throw new BadMethodDependencyException(this.constructor.name, this.bigNumber.name, "__construct");
 		}

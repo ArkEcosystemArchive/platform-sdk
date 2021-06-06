@@ -3,7 +3,7 @@ import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
 		return new MessageService();
 	}
 

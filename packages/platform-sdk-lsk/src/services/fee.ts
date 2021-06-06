@@ -5,7 +5,7 @@ import { constants } from "@liskhq/lisk-transactions";
 import { bigNumber } from "../container";
 
 export class FeeService extends Services.AbstractFeeService {
-	public static async __construct(config: Coins.Config): Promise<FeeService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<FeeService> {
 		return new FeeService();
 	}
 
@@ -26,7 +26,7 @@ export class FeeService extends Services.AbstractFeeService {
 	}
 
 	#transform(type: string | number): Services.TransactionFee {
-		const fee: BigNumber = bigNumber(type === 0 ? 0 : constants[type]);
+		const fee: BigNumber = this.bigNumberService.make(type === 0 ? 0 : constants[type]);
 
 		return {
 			static: fee,

@@ -34,7 +34,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#decimals = decimals;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			network: config.get<Networks.NetworkManifest>("network").id.split(".")[1],

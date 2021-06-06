@@ -25,7 +25,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#web3 = new Web3(); // @TODO: provide a host
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config, await IdentityService.__construct(config));
 	}
 

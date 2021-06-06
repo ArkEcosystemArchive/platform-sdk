@@ -7,11 +7,11 @@ import * as TransactionDTO from "../dto";
 import { broadcastErrors } from "./client.helpers";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #http: HttpClient;
 	readonly #decimals: number;
 
-	private constructor(config: Coins.Config) {
+	private constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#config = config;
@@ -19,7 +19,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#decimals = config.get<number>(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService(config);
 	}
 

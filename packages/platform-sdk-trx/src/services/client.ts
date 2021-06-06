@@ -6,7 +6,7 @@ import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #connection: TronWeb;
 	readonly #peer: string;
 	readonly #client: HttpClient;
@@ -37,7 +37,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#decimals = this.#config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService({ config });
 	}
 

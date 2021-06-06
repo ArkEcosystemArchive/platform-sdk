@@ -6,7 +6,7 @@ import { createKeyMulti } from "@polkadot/util-crypto";
 export class AddressService extends Services.AbstractAddressService {
 	readonly #keyring: Keyring;
 
-	public constructor(config: Coins.Config) {
+	public constructor(config: Coins.ConfigRepository) {
 		super();
 
 		this.#keyring = new Keyring({ type: "sr25519" });

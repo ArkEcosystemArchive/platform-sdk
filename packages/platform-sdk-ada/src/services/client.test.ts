@@ -4,7 +4,7 @@ import { DTO, Signatories, Test } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { container } from "../container";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
@@ -12,7 +12,14 @@ import { TransactionService } from "./transaction";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
+});
 
 afterEach(() => nock.cleanAll());
 

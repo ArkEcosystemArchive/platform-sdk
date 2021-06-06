@@ -1,5 +1,5 @@
 import { ExtendedAddressService } from "./address-list";
-import { identity } from "../../../test/fixtures/identity";
+import { identity } from "../../test/fixtures/identity";
 
 describe("ExtendedAddressService", function () {
 	test("#fromMnemonic", async () => {

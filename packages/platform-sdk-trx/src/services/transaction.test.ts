@@ -4,7 +4,7 @@ import { Signatories, Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { container } from "../container";
 import { TransactionService } from "./transaction";
 
