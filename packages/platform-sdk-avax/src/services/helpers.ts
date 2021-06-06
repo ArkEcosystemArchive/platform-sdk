@@ -34,7 +34,7 @@ export const cb58Encode = (value: Buffer): string => BinTools.getInstance().cb58
 
 // Crypto
 export const keyPairFromMnemonic = (
-	config: Coins.Config,
+	config: Coins.ConfigRepository,
 	mnemonic: string,
 	options?: Services.IdentityOptions,
 ): { child: KeyPair; path: string } => {

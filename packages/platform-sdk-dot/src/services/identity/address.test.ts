@@ -2,7 +2,7 @@ import { cryptoWaitReady } from "@polkadot/util-crypto";
 import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../../test/helpers";
+import { createService } from "../../test/helpers";
 import { AddressService } from "./address";
 
 let subject: AddressService;

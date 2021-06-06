@@ -43,7 +43,7 @@ export class ClientService extends Services.AbstractClientService {
 	#useClient(): LCDClient {
 		return useClient(
 			`${Helpers.randomHostFromConfig(this.#config)}/api`,
-			this.#config.get("network.meta.networkId"),
+			this.configRepository.get("network.meta.networkId"),
 		);
 	}
 }

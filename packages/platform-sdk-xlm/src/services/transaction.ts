@@ -22,7 +22,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		},
 	};
 
-	private constructor(config: Coins.Config, identity: IdentityService) {
+	private constructor(config: Coins.ConfigRepository, identity: IdentityService) {
 		super();
 
 		const networkConfig = config.get<Networks.NetworkManifest>("network");
@@ -75,8 +75,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			transaction.sign(Stellar.Keypair.fromSecret(privateKey));
 
-			const decimals = this.#config.get<number>(Coins.ConfigKey.CurrencyDecimals);
-			return new SignedTransactionData(uuidv4(), transaction, transaction, decimals);
+			const decimals = this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals);
+			return this.dataTransferObjectService.signedTransaction(uuidv4(), transaction, transaction, decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

@@ -15,7 +15,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #peer: string;
 	readonly #web3: Web3;
 
-	private constructor(config: Coins.Config, identity: IdentityService) {
+	private constructor(config: Coins.ConfigRepository, identity: IdentityService) {
 		super();
 
 		this.#http = config.all().http;
@@ -79,7 +79,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			transaction.sign(Buffoon.fromHex(privateKey));
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				transaction.hash().toString("hex"),
 				"0x" + transaction.serialize().toString("hex"),
 				"0x" + transaction.serialize().toString("hex"),

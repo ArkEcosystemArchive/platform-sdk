@@ -83,7 +83,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				transaction.signatures = transaction.signatures.concat(signatures);
 			}
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				createHash("sha256").update(transaction.serializedTransaction).digest("hex"),
 				{ ...transaction, timestamp: DateTime.make() },
 				transaction,

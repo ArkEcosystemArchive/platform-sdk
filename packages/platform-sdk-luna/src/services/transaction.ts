@@ -6,13 +6,8 @@ import { SignedTransactionData } from "../dto";
 import { useClient } from "./helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config);
@@ -31,18 +26,18 @@ export class TransactionService extends Services.AbstractTransactionService {
 				memo: input.data.memo,
 			});
 
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			UUID.random(),
 			transaction.toData(),
 			transaction.toJSON(),
-			this.#config.get(Coins.ConfigKey.CurrencyDecimals),
+
 		);
 	}
 
 	#useClient(): LCDClient {
 		return useClient(
 			`${Helpers.randomHostFromConfig(this.#config)}/api`,
-			this.#config.get("network.meta.networkId"),
+			this.configRepository.get("network.meta.networkId"),
 		);
 	}
 }

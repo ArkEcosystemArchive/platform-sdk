@@ -1,22 +1,18 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BinTools } from "avalanche";
 
-import { keyPairFromMnemonic, useKeychain } from "../helpers";
+import { keyPairFromMnemonic, useKeychain } from "./helpers";
 
+@IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
-		const { child, path } = keyPairFromMnemonic(this.#config, mnemonic, options);
+		const { child, path } = keyPairFromMnemonic(this.configRepository, mnemonic, options);
 
 		return {
 			type: "bip44",
@@ -31,7 +27,7 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "bip44",
-			address: useKeychain(this.#config)
+			address: useKeychain(this.configRepository)
 				.importKey(BinTools.getInstance().cb58Decode(privateKey))
 				.getAddressString(),
 		};

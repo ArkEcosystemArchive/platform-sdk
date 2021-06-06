@@ -1,4 +1,4 @@
-import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BinTools, Buffer } from "avalanche";
 import { KeyPair } from "avalanche/dist/apis/avm";
 import { getPreferredHRP } from "avalanche/dist/utils";
@@ -6,22 +6,14 @@ import { createHash } from "crypto";
 
 import { cb58Decode, cb58Encode, keyPairFromMnemonic } from "./helpers";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
-		return new MessageService(config);
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
-			const { child } = keyPairFromMnemonic(this.#config, input.signatory.signingKey());
+			const { child } = keyPairFromMnemonic(this.configRepository, input.signatory.signingKey());
 
 			return {
 				message: input.message,
@@ -36,7 +28,7 @@ export class MessageService extends Services.AbstractMessageService {
 	public async verify(input: Services.SignedMessage): Promise<boolean> {
 		const bintools = BinTools.getInstance();
 
-		const hrp = getPreferredHRP(parseInt(this.#config.get("network.meta.networkId")));
+		const hrp = getPreferredHRP(parseInt(this.configRepository.get("network.meta.networkId")));
 		const keypair = new KeyPair(hrp, "X");
 		const signedBuff = cb58Decode(input.signature);
 		const pubKey = keypair.recover(this.#digestMessage(input.message), signedBuff);

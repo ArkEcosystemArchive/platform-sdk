@@ -77,6 +77,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const signedTransaction = await this.#zilliqa.wallet.signWith(transaction, address, true);
 		const broadcastData = JSON.stringify({ ...signedTransaction.payload, version: this.#version });
 
-		return new SignedTransactionData(signedTransaction.hash, signedData, broadcastData);
+		return this.dataTransferObjectService.signedTransaction(signedTransaction.hash, signedData, broadcastData);
 	}
 }

@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { createConfig } from "../../../test/helpers";
+import { createService } from "../../test/helpers";
 import { IdentityService } from ".";
 
 let subject: IdentityService;

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Hash } from "@arkecosystem/platform-sdk-crypto";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/utils";
@@ -7,9 +7,9 @@ import { AVMAPI } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 import { v4 as uuidv4 } from "uuid";
 
-import { SignedTransactionData } from "../dto";
 import { keyPairFromMnemonic, useKeychain, usePChain, useXChain } from "./helpers";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.ConfigRepository;
 	readonly #xchain: AVMAPI;
@@ -49,7 +49,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				await this.#xchain.buildBaseTx(
 					utxos,
 					new BN(amount),
-					this.#config.get("network.meta.assetId"),
+					this.configRepository.get("network.meta.assetId"),
 					[input.data.to],
 					keyPairAddresses,
 					keyPairAddresses,
@@ -57,7 +57,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				)
 			).sign(this.#keychain);
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				// @ts-ignore - feross/buffer should behave the same as nodejs/buffer
 				Hash.sha256(signedTx.toBuffer()).toString("hex"),
 				{
@@ -68,7 +68,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					timestamp: DateTime.make(),
 				},
 				signedTx.toString(),
-				this.#config.get(Coins.ConfigKey.CurrencyDecimals),
+
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -105,7 +105,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				)
 			).sign(this.#keychain);
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				uuidv4(),
 				{
 					sender: input.signatory.address(),
@@ -114,7 +114,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					fee: 0,
 				},
 				signedTx.toString(),
-				this.#config.get(Coins.ConfigKey.CurrencyDecimals),
+
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

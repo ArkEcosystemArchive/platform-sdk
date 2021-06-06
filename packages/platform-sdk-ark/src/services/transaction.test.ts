@@ -18,15 +18,13 @@ afterEach(() => nock.cleanAll());
 beforeAll(async () => {
 	nock.disableNetConnect();
 
-	const service = createService(TransactionService, undefined, (container) => {
+	subject = createService(TransactionService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
 	});
-
-	subject = service;
 });
 
 jest.setTimeout(10000);

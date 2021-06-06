@@ -2,20 +2,15 @@ import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-s
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
 export class PublicKeyService extends Services.AbstractPublicKeyService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PublicKeyDataTransferObject> {
 		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
-			coinType: this.#config.get(Coins.ConfigKey.Slip44),
+			coinType: this.configRepository.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,
 		});
 

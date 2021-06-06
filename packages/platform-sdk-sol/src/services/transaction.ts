@@ -49,7 +49,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			derivePrivateKey(input.signatory.signingKey(), 0, 0, this.#slip44),
 		);
 
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			uuidv4(),
 			{
 				from: input.signatory.address(),
@@ -58,7 +58,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				timestamp: DateTime.make(),
 			},
 			signedTransaction.toString("hex"),
-			this.#config.get(Coins.ConfigKey.CurrencyTicker),
+			this.configRepository.get(Coins.ConfigKey.CurrencyTicker),
 		);
 	}
 

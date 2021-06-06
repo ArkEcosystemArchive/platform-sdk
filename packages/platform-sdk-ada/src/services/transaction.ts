@@ -10,13 +10,8 @@ import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService(config);
@@ -33,7 +28,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			poolDeposit,
 			keyDeposit,
 			networkId,
-		} = this.#config.get<Contracts.KeyValuePair>("network.meta");
+		} = this.configRepository.get<Contracts.KeyValuePair>("network.meta");
 
 		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
@@ -120,7 +115,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		witnesses.set_vkeys(vkeyWitnesses);
 
 		// Build the signed transaction
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
 				// @TODO This doesn't make sense in Cardano, because there can be any many senders (all addresses from the same sender)
@@ -131,7 +126,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				timestamp: DateTime.make(),
 			},
 			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
-			this.#config.get(Coins.ConfigKey.CurrencyDecimals),
+
 		);
 	}
 

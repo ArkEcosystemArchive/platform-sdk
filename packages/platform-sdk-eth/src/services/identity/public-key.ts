@@ -5,13 +5,8 @@ import Wallet from "ethereumjs-wallet";
 import { PrivateKeyService } from "./private-key";
 
 export class PublicKeyService extends Services.AbstractPublicKeyService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,

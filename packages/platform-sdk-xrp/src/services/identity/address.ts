@@ -3,13 +3,8 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 
 export class AddressService extends Services.AbstractAddressService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -18,7 +13,7 @@ export class AddressService extends Services.AbstractAddressService {
 		// @TODO: return path
 		return this.fromPublicKey(
 			BIP44.deriveChild(mnemonic, {
-				coinType: this.#config.get(Coins.ConfigKey.Slip44),
+				coinType: this.configRepository.get(Coins.ConfigKey.Slip44),
 				index: options?.bip44?.addressIndex,
 			}).publicKey.toString("hex"),
 		);

@@ -12,7 +12,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #client: ApiPromise;
 	readonly #keyring: Keyring;
 
-	public constructor(config: Coins.Config, client: ApiPromise) {
+	public constructor(config: Coins.ConfigRepository, client: ApiPromise) {
 		super();
 
 		this.#config = config;
@@ -47,11 +47,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			timestamp: DateTime.make(),
 		};
 
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			transaction.hash.toHex(),
 			signedData,
 			transaction.toHex(),
-			this.#config.get(Coins.ConfigKey.CurrencyDecimals),
+
 		);
 	}
 }

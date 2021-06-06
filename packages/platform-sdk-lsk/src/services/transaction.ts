@@ -112,8 +112,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 				registerMultisignature,
 			}[type](struct);
 
-			const decimals = this.#config.get<string>(Coins.ConfigKey.CurrencyTicker);
-			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction, decimals);
+			const decimals = this.configRepository.get<string>(Coins.ConfigKey.CurrencyTicker);
+			return this.dataTransferObjectService.signedTransaction(signedTransaction.id, signedTransaction, signedTransaction, decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
