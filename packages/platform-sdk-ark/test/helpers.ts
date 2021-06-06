@@ -1,4 +1,4 @@
-import { Coins, IoC } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
 import { Bindings } from "../src/contracts";
@@ -26,12 +26,13 @@ export const createConfig = (options?: object, meta = {}) => {
 
 export const createNetworkConfig = () => require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data.network;
 
-export const createService = <T = any>(service: any, config?: Coins.ConfigRepository, predicate?: Function): [IoC.Container, T] => {
+export const createService = <T = any>(service: any, config?: Coins.ConfigRepository, predicate?: Function): T => {
 	config ??= createConfig();
 
 	const container = new IoC.Container();
 	container.bind(IoC.BindingType.ConfigRepository, config);
-	container.bind(IoC.BindingType.HttpClient, new Request());
+	container.constant(IoC.BindingType.HttpClient, new Request());
+	container.singleton(IoC.BindingType.BigNumberService, Services.BigNumberService);
 
 	if (container.missing(Bindings.Crypto)) {
 		container.constant(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
@@ -45,5 +46,5 @@ export const createService = <T = any>(service: any, config?: Coins.ConfigReposi
 		predicate(container);
 	}
 
-	return [container, container.resolve(service)];
+	return container.resolve(service);
 };

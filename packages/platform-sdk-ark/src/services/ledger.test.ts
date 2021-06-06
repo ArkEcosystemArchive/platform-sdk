@@ -5,12 +5,12 @@ import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-moc
 import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
-import { createConfigWithNetwork } from "../../test/helpers";
+import { createConfigWithNetwork, createService } from "../../test/helpers";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
 	const config = createConfigWithNetwork();
-	const transport = await LedgerService.__construct(config);
+	const transport = createService(LedgerService, config);
 
 	const fromString = RecordStore.fromString(record);
 	await transport.connect(createTransportReplayer(fromString));
@@ -20,7 +20,8 @@ const createMockService = async (record: string) => {
 
 describe("constructor", () => {
 	it("should pass with an empty configuration", async () => {
-		const transport = await LedgerService.__construct(
+		const transport = createService(
+			LedgerService,
 			createConfigWithNetwork({
 				services: {
 					ledger: {},

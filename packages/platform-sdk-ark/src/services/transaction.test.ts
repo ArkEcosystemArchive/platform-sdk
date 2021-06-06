@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { Transactions } from "@arkecosystem/crypto";
-import { IoC, Signatories, Test } from "@arkecosystem/platform-sdk";
+import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
@@ -17,13 +17,11 @@ afterEach(() => nock.cleanAll());
 beforeAll(async () => {
 	nock.disableNetConnect();
 
-	const [container, service] = createService(TransactionService, undefined, container => {
+	const service = createService(TransactionService, undefined, container => {
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
 	});
-
-	Test.bindBigNumberService(container);
 
 	subject = service;
 });
