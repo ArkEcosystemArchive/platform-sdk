@@ -1,12 +1,13 @@
-import { Coins, Collections, Contracts, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #client;
-	readonly #decimals: number;
+	#client;
+	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		op_malformed: "ERR_MALFORMED",
@@ -18,13 +19,13 @@ export class ClientService extends Services.AbstractClientService {
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
-		const network = config.get<Networks.NetworkManifest>("network").id;
+		const network = this.configRepository.get<Networks.NetworkManifest>("network").id;
 		this.#client = new Stellar.Server(
 			{ mainnet: "https://horizon.stellar.org", testnet: "https://horizon-testnet.stellar.org" }[
 				network.split(".")[1]
 			],
 		);
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
+		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(

@@ -1,8 +1,9 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { buildPath, deriveKeyPair } from "./helpers";
 
+@IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(
 		mnemonic: string,

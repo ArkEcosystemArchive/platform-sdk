@@ -1,22 +1,23 @@
 import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
-import { PrivateKeyService } from "./private-key";
+import { PublicKeyService } from "./public-key";
+import { createService } from "../../test/helpers";
 
-let subject: PrivateKeyService;
+let subject: PublicKeyService;
 
 beforeEach(async () => {
-	subject = createService(PrivateKeyService);
+	subject = createService(PublicKeyService);
 });
 
-describe("PrivateKey", () => {
+describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
 		expect(result).toMatchInlineSnapshot(`
 		Object {
 		  "path": "m/44'/148'/0'",
-		  "privateKey": "SCVPKP4VG6NDJHHGQ7OLDGWO6TZMZTUCKRMKUQ3KDGHCAJ7J5RG3L7WC",
+		  "publicKey": "GCGYSPQBSQCJKNDXDISBSXAM3THK7MACUVZGEMXF6XRZCPGAWCUGXVNC",
 		}
 	`);
 	});

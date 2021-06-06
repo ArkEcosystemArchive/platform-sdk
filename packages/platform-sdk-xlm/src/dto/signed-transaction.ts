@@ -6,9 +6,6 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
-	@IoC.inject(IoC.BindingType.BigNumberService)
-	private readonly bigNumberService!: Services.BigNumberService;
-
 	public sender(): string {
 		return this.signedData._source;
 	}

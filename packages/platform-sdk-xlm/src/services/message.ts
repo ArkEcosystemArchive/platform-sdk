@@ -1,12 +1,9 @@
-import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import Stellar from "stellar-sdk";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
-		return new MessageService();
-	}
-
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const source = Stellar.Keypair.fromSecret(input.signatory.privateKey());
