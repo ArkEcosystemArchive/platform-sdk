@@ -1,21 +1,10 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
+@IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {
-	readonly #http: HttpClient;
-
-	private constructor(http: HttpClient) {
-		super();
-
-		this.#http = http;
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<FeeService> {
-		return new FeeService(config.get<HttpClient>(Coins.ConfigKey.HttpClient));
-	}
-
 	public async all(): Promise<Services.TransactionFees> {
-		const { slow, normal, fast, instant } = (await this.#http.get("https://ethgas.watch/api/gas")).json();
+		const { slow, normal, fast, instant } = (await this.httpClient.get("https://ethgas.watch/api/gas")).json();
 
 		const fees = {
 			static: instant.gwei.toString(),
