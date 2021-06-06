@@ -33,7 +33,7 @@ export const createService = <T = any>({
 	}
 
 	const container = new Container();
-	container.bind(BindingType.ConfigRepository, config);
+	container.constant(BindingType.ConfigRepository, config);
 	container.constant(BindingType.HttpClient, httpClient);
 	container.singleton(BindingType.BigNumberService, BigNumberService);
 

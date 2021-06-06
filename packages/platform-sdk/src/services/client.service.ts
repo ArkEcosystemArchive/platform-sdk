@@ -6,7 +6,8 @@ import { ConfigRepository } from "../coins";
 import { TransactionDataCollection, WalletDataCollection } from "../collections";
 import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
-import { BindingType, inject } from "../ioc";
+import { inject } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import {
 	BroadcastResponse,
 	ClientService,
