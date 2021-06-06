@@ -8,6 +8,7 @@ import { TransactionData, WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 import { cb58Decode, usePChain, useXChain } from "./helpers";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.ConfigRepository;
 	readonly #xchain: AVMAPI;
@@ -37,7 +38,7 @@ export class ClientService extends Services.AbstractClientService {
 		const unsignedTransaction = transaction.getUnsignedTx();
 		const baseTransaction = unsignedTransaction.getTransaction();
 
-		const assetId = cb58Decode(this.#config.get("network.meta.assetId"));
+		const assetId = cb58Decode(this.configRepository.get("network.meta.assetId"));
 
 		return new TransactionData({
 			id,
@@ -49,7 +50,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { transactions } = await this.#get("v2/transactions", {
-			chainID: this.#config.get("network.meta.blockchainId"),
+			chainID: this.configRepository.get("network.meta.blockchainId"),
 			limit: 100,
 			offset: query.cursor || 0,
 			address: query.address,
@@ -69,7 +70,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get("network.meta.assetId"));
+		const { balance }: any = await this.#xchain.getBalance(id, this.configRepository.get("network.meta.assetId"));
 
 		return new WalletData({
 			address: id,

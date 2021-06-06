@@ -71,7 +71,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		const page = 0;
-		const slip44 = this.#config.get<number>("network.constants.slip44");
+		const slip44 = this.configRepository.get<number>("network.constants.slip44");
 
 		const addressCache: Record<string, { address: string; publicKey: string }> = {};
 		const wallets: Contracts.WalletData[] = [];

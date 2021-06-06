@@ -33,8 +33,8 @@ export class ClientService extends Services.AbstractClientService {
 		this.#config = config;
 		this.#peer = Helpers.randomHostFromConfig(config);
 		this.#connection = new TronWeb({ fullHost: this.#peer });
-		this.#client = this.#config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-		this.#decimals = this.#config.get(Coins.ConfigKey.CurrencyDecimals);
+		this.#client = this.configRepository.get<HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {

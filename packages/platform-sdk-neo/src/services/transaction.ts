@@ -33,7 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const signedData = { ...signedTransaction, timestamp: DateTime.make() };
 
-			return new SignedTransactionData(uuidv4(), signedData, JSON.stringify(signedTransaction), this.#decimals);
+			return this.dataTransferObjectService.signedTransaction(uuidv4(), signedData, JSON.stringify(signedTransaction), this.#decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

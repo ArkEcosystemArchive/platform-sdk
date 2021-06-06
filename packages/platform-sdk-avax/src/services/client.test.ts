@@ -1,14 +1,13 @@
-import { Collections } from "@arkecosystem/platform-sdk";
+import { Collections, IoC } from "@arkecosystem/platform-sdk";
 
 import { createService } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
 beforeAll(() => {
-	nock.disableNetConnect();
-
 	subject = createService(ClientService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);

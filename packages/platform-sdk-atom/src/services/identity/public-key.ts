@@ -3,13 +3,8 @@ import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-s
 import { KeyPairService } from "./key-pair";
 
 export class PublicKeyService extends Services.AbstractPublicKeyService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,

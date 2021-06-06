@@ -5,9 +5,7 @@ import { constants } from "@liskhq/lisk-transactions";
 import { bigNumber } from "../container";
 
 export class FeeService extends Services.AbstractFeeService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<FeeService> {
-		return new FeeService();
-	}
+	//
 
 	public async all(): Promise<Services.TransactionFees> {
 		return {

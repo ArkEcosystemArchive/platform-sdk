@@ -3,20 +3,15 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import TronWeb from "tronweb";
 
 export class AddressService extends Services.AbstractAddressService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
 		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
-			coinType: this.#config.get(Coins.ConfigKey.Slip44),
+			coinType: this.configRepository.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,
 		});
 

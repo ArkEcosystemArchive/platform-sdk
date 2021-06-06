@@ -1,7 +1,6 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<LedgerService> {
-		return new LedgerService();
-	}
+	//
 }

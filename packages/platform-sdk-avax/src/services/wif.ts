@@ -1,5 +1,6 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
+@IoC.injectable()
 export class WIFService extends Services.AbstractWIFService {
 	//
 }

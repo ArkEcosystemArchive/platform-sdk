@@ -33,7 +33,7 @@ export class ClientService extends Services.AbstractClientService {
 			response.data,
 			this.#createMetaPagination(response),
 			TransactionDTO,
-			this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
+
 		);
 	}
 

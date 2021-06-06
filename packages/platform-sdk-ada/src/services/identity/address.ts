@@ -4,13 +4,8 @@ import { bech32 } from "bech32";
 import { addressFromAccountExtPublicKey, addressFromMnemonic } from "./shelley";
 
 export class AddressService extends Services.AbstractAddressService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -23,7 +18,7 @@ export class AddressService extends Services.AbstractAddressService {
 				options?.bip44?.account || 0,
 				false,
 				options?.bip44?.addressIndex || 0,
-				this.#config.get("network.meta.networkId"),
+				this.configRepository.get("network.meta.networkId"),
 			),
 		};
 	}
@@ -38,7 +33,7 @@ export class AddressService extends Services.AbstractAddressService {
 				Buffer.from(publicKey, "hex"),
 				false,
 				options?.bip44?.addressIndex || 0,
-				this.#config.get("network.meta.networkId"),
+				this.configRepository.get("network.meta.networkId"),
 			),
 		};
 	}

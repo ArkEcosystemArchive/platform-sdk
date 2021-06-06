@@ -3,13 +3,8 @@ import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-s
 import { deriveKeyPair, deriveWallet } from "./utils";
 
 export class KeyPairService extends Services.AbstractKeyPairService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -18,7 +13,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		try {
 			const { publicKey, privateKey } = deriveWallet(
 				mnemonic,
-				this.#config.get<number>("network.constants.slip44"),
+				this.configRepository.get<number>("network.constants.slip44"),
 				options?.bip44?.account || 0,
 				options?.bip44?.change || 0,
 				options?.bip44?.addressIndex || 0,

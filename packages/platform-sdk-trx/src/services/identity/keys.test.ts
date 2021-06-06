@@ -6,7 +6,9 @@ import { KeyPairService } from "./key-pair";
 
 let subject: KeyPairService;
 
-beforeEach(async () => (subject = new KeyPairService(createConfig())));
+beforeEach(async () => {
+	subject = createService(KeyPairService);
+});
 
 describe("Keys", () => {
 	describe("#fromMnemonic", () => {

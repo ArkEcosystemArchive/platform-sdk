@@ -79,7 +79,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			transaction.sign(Buffoon.fromHex(privateKey));
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				transaction.hash().toString("hex"),
 				"0x" + transaction.serialize().toString("hex"),
 				"0x" + transaction.serialize().toString("hex"),

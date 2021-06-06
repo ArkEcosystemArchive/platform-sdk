@@ -6,7 +6,9 @@ import { WIFService } from "./wif";
 
 let subject: WIFService;
 
-beforeEach(async () => (subject = new WIFService(createConfig())));
+beforeEach(async () => {
+	subject = createService(WIFService);
+});
 
 describe("WIF", () => {
 	describe("#fromMnemonic", () => {

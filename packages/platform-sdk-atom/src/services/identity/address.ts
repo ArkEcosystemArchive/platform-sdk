@@ -3,13 +3,8 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { bech32 } from "bech32";
 
 export class AddressService extends Services.AbstractAddressService {
-	readonly #config: Coins.ConfigRepository;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -17,13 +12,13 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
-				coinType: this.#config.get(Coins.ConfigKey.Slip44),
+				coinType: this.configRepository.get(Coins.ConfigKey.Slip44),
 				index: options?.bip44?.addressIndex,
 			});
 
 			return {
 				type: "bip44",
-				address: bech32.encode(this.#config.get(Coins.ConfigKey.Bech32), bech32.toWords(child.identifier)),
+				address: bech32.encode(this.configRepository.get(Coins.ConfigKey.Bech32), bech32.toWords(child.identifier)),
 				path,
 			};
 		} catch (error) {
