@@ -1,7 +1,8 @@
-import { Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { makeAccount } from "../helpers";
+import { makeAccount } from "./helpers";
 
+@IoC.injectable()
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	public async fromMnemonic(
 		mnemonic: string,

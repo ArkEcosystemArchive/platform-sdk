@@ -1,19 +1,11 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.ConfigRepository;
-	readonly #http: HttpClient;
-
-	@IoC.postConstruct()
-	private onPostConstruct(): void {
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-	}
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
@@ -69,14 +61,14 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.#host()}/v1.0/${path}`)).json();
+		return (await this.httpClient.get(`${this.#host()}/v1.0/${path}`)).json();
 	}
 
 	async #post(path: string, data: object): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.post(`${this.#host()}/v1.0/${path}`, data)).json();
+		return (await this.httpClient.post(`${this.#host()}/v1.0/${path}`, data)).json();
 	}
 
 	#host(): string {
-		return Helpers.randomHostFromConfig(this.#config);
+		return Helpers.randomHostFromConfig(this.configRepository);
 	}
 }
