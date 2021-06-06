@@ -1,16 +1,17 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { container } from "../container";
 import { SignedTransactionData } from "./signed-transaction";
+import { createService } from "../../test/helpers";
 
 let subject: SignedTransactionData;
 
 beforeAll(() => {
-	subject = new SignedTransactionData(
+	subject = createService(SignedTransactionData);
+
+	subject.configure(
 		"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
 		{
 			id: "3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
@@ -21,9 +22,7 @@ beforeAll(() => {
 			recipientId: "D6Z26L69gdk9qYmTv5uzk3uGepigtHY4ax",
 		},
 		"",
-	);
-
-	Test.bindBigNumberService(container);
+	)
 });
 
 describe("SignedTransactionData", () => {
@@ -52,7 +51,8 @@ describe("SignedTransactionData", () => {
 	});
 
 	test("#timestamp missing", () => {
-		const subject = new SignedTransactionData("", {}, "");
+		const subject = createService(SignedTransactionData);
+		subject.configure("", {}, "");
 		expect(subject.timestamp()).toBeInstanceOf(DateTime);
 	});
 });

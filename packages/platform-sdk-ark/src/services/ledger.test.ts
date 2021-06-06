@@ -5,33 +5,23 @@ import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-moc
 import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
-import { createConfigWithNetwork, createService } from "../../test/helpers";
+import { createService } from "../../test/helpers";
+import { AddressService } from "./address";
+import { ClientService } from "./client";
 import { LedgerService } from "./ledger";
+import { IoC } from "@arkecosystem/platform-sdk";
 
 const createMockService = async (record: string) => {
-	const config = createConfigWithNetwork();
-	const transport = createService(LedgerService, config);
+	const transport = createService(LedgerService, undefined, container => {
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.ClientService, ClientService);
+	});
 
 	const fromString = RecordStore.fromString(record);
 	await transport.connect(createTransportReplayer(fromString));
 
 	return transport;
 };
-
-describe("constructor", () => {
-	it("should pass with an empty configuration", async () => {
-		const transport = createService(
-			LedgerService,
-			createConfigWithNetwork({
-				services: {
-					ledger: {},
-				},
-			}),
-		);
-
-		expect(transport).toBeInstanceOf(LedgerService);
-	});
-});
 
 describe("destruct", () => {
 	it("should pass with a resolved transport closure", async () => {
@@ -99,7 +89,7 @@ describe("scan", () => {
 		expect(Object.keys(walletData)).toHaveLength(2);
 		expect(walletData).toMatchSnapshot();
 
-		for (const wallet of Object.values(walletData)) {
+		for (const wallet of Object.values(walletData) as any) {
 			const publicKey: string | undefined = wallet.publicKey();
 
 			if (publicKey) {
