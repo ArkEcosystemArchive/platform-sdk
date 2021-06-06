@@ -3,17 +3,14 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
+import { createService } from "../../test/helpers";
 import { TransactionData } from "./transaction";
-
-let subject: TransactionData;
-
-beforeEach(() => (subject = new TransactionData(Fixture)));
 
 let subject: TransactionData;
 
 beforeEach(() => {
 	subject = createService(TransactionData);
-	subject.configure(Fixture.data);
+	subject.configure(Fixture);
 });
 
 describe("TransactionData", () => {

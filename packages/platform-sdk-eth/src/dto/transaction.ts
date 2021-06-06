@@ -5,9 +5,6 @@ import Web3 from "web3";
 
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	@IoC.inject(IoC.BindingType.BigNumberService)
-	private readonly bigNumberService!: Services.BigNumberService;
-
 	public id(): string {
 		return this.data.hash;
 	}

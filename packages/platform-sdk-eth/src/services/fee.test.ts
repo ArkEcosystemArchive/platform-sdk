@@ -1,12 +1,15 @@
 import "jest-extended";
 
 import nock from "nock";
+import { createService } from "../../test/helpers";
 
 import { FeeService } from "./fee";
 
 let subject: FeeService;
 
-beforeEach(async () => (subject = await FeeService.__construct(createConfig())));
+beforeEach(async () => {
+	subject = createService(FeeService);
+});
 
 afterEach(() => nock.cleanAll());
 

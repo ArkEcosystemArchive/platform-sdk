@@ -1,19 +1,18 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import Wallet from "ethereumjs-wallet";
 
-import { PrivateKeyService } from "./private-key";
-
+@IoC.injectable()
 export class PublicKeyService extends Services.AbstractPublicKeyService {
-	@IoC.inject(IoC.BindingType.ConfigRepository)
-	protected readonly configRepository!: Coins.ConfigRepository;
+	@IoC.inject(IoC.BindingType.PrivateKeyService)
+	protected readonly privateKeyService!: Services.PrivateKeyService;
 
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PublicKeyDataTransferObject> {
 		try {
-			const { privateKey } = await new PrivateKeyService(this.#config).fromMnemonic(mnemonic, options);
+			const { privateKey } = await this.privateKeyService.fromMnemonic(mnemonic, options);
 			const keyPair = Wallet.fromPrivateKey(Buffoon.fromHex(privateKey));
 
 			return { publicKey: keyPair.getPublicKey().toString("hex") };
