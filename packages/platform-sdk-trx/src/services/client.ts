@@ -47,7 +47,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.#connection.trx.getTransaction(id);
 
-		return Helpers.createTransactionDataWithType(result, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(result, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {

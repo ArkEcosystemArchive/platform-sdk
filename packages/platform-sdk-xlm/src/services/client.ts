@@ -34,7 +34,7 @@ export class ClientService extends Services.AbstractClientService {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
 
-		return Helpers.createTransactionDataWithType(
+		return this.dataTransferObjectService.transaction(
 			{
 				...transaction,
 				operation: operations.records[0],

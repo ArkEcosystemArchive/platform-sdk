@@ -29,7 +29,7 @@ export class ClientService extends Services.AbstractClientService {
 			},
 		]);
 
-		return Helpers.createTransactionDataWithType(transaction, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(transaction, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {

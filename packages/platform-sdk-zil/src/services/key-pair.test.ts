@@ -1,12 +1,19 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
+
 import { identity } from "../../test/fixtures/identity";
-import { mockWallet } from "../../../test/config";
+import { createService, mockWallet } from "../../test/helpers";
 import { KeyPairService } from "./key-pair";
+import { BindingType } from "../constants";
 
 let subject: KeyPairService;
 
-beforeEach(async () => (subject = new KeyPairService(mockWallet())));
+beforeEach(async () => {
+	subject = createService(KeyPairService, undefined, (container: IoC.Container) => {
+		container.constant(BindingType.Wallet, mockWallet());
+	});
+});
 
 describe("Keys", () => {
 	it("should generate an output from a mnemonic", async () => {

@@ -1,12 +1,14 @@
 import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { IoC } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
-import { IoC } from "@arkecosystem/platform-sdk";
+import { DataTransferObjectService } from "./data-transfer-object";
+import { createService } from "../../test/helpers";
 
 const fixtures = `${__dirname}/../../test/fixtures/client`;
 
@@ -75,7 +77,7 @@ describe("ClientService", () => {
 			};
 
 			const broadcastData = JSON.stringify(require(`${fixtures}/broadcast-request-payload.json`));
-			const transaction = new SignedTransactionData("id", signedData, broadcastData);
+			const transaction = createService(SignedTransactionData).configure("id", signedData, broadcastData);
 			const result = await subject.broadcast([transaction]);
 
 			expect(result).toEqual({
@@ -100,7 +102,7 @@ describe("ClientService", () => {
 			};
 
 			const broadcastData = JSON.stringify(require(`${fixtures}/broadcast-request-payload.json`));
-			const transaction = new SignedTransactionData("id", signedData, broadcastData);
+			const transaction = createService(SignedTransactionData).configure("id", signedData, broadcastData);
 			const result = await subject.broadcast([transaction]);
 
 			expect(result).toEqual({

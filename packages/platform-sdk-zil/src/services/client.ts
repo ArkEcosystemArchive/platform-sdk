@@ -31,7 +31,7 @@ export class ClientService extends Services.AbstractClientService {
 			isConfirmed: transaction.isConfirmed(),
 			isSent: transaction.isPending(),
 		};
-		return Helpers.createTransactionDataWithType(data, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(data, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {

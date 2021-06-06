@@ -14,7 +14,7 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 			identifier,
 			signedData,
 			broadcastData,
-
+			this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals),
 		);
 
 		return signedTransaction;
