@@ -1,12 +1,13 @@
+import { Interfaces } from "@arkecosystem/crypto";
 import { Keys as BaseKeys } from "@arkecosystem/crypto-identities";
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { Bindings, CryptoConfig } from "../contracts";
+import { Bindings } from "../contracts";
 
 @IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
 	@IoC.inject(Bindings.Crypto)
-	private readonly config!: CryptoConfig;
+	private readonly config!: Interfaces.NetworkConfig;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -23,7 +24,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 
 	public async fromWIF(wif: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
-			const { publicKey, privateKey } = BaseKeys.fromWIF(wif, this.config);
+			const { publicKey, privateKey } = BaseKeys.fromWIF(wif, this.config.network);
 
 			return { publicKey, privateKey };
 		} catch (error) {
