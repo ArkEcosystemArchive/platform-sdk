@@ -25,7 +25,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#decimals = decimals;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: `${Helpers.randomHostFromConfig(config)}/api`,
@@ -39,14 +39,14 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.#get("transactions", { id });
 
-		return Helpers.createTransactionDataWithType(result.data[0], TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(result.data[0], TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		// @ts-ignore
 		const result = await this.#get("transactions", this.#createSearchParams({ sort: "timestamp:desc", ...query }));
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			result.data,
 			this.#createPagination(result.data, result.meta),
 			TransactionDTO,

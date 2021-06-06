@@ -4,23 +4,16 @@ import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { RippleAPI } from "ripple-lib";
 
-import { SignedTransactionData } from "../dto";
-
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #http: HttpClient;
 	readonly #ripple: RippleAPI;
 
-	private constructor(config: Coins.Config) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#ripple = new RippleAPI();
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
 	}
 
 	public async transfer(
@@ -56,9 +49,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 			]);
 
 			const signedData = { ...signedTransaction, timestamp: DateTime.make() };
-			const decimals = this.#config.get<number>(Coins.ConfigKey.CurrencyDecimals);
+			const decimals = this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals);
 
-			return new SignedTransactionData(id, signedData, signedTransaction, decimals);
+			return this.dataTransferObjectService.signedTransaction(id, signedData, signedTransaction, decimals);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

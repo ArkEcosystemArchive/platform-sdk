@@ -30,7 +30,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#decimals = decimals;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService({
 			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
 			peer: Helpers.randomHostFromConfig(config),
@@ -42,16 +42,15 @@ export class ClientService extends Services.AbstractClientService {
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return Helpers.createTransactionDataWithType(
-			await this.#get(`transactions/${id}`),
-			TransactionDTO,
-		).withDecimals(this.#decimals);
+		return this.dataTransferObjectService
+			.transaction(await this.#get(`transactions/${id}`), TransactionDTO)
+			.withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const transactions: unknown[] = (await this.#get(`wallets/${query.address}/transactions`)) as any;
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions,
 			// TODO: implement pagination on server
 			{

@@ -1,4 +1,4 @@
-import { Coins, Collections, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import * as TransactionDTO from "../dto";
 import { TransactionData, WalletData } from "../dto";
@@ -6,18 +6,13 @@ import { fetchTransaction, fetchTransactions, fetchUtxosAggregate, submitTransac
 import { usedAddressesForAccount } from "./helpers";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #decimals: number;
 
-	private constructor(config: Coins.Config) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async transaction(
@@ -42,7 +37,7 @@ export class ClientService extends Services.AbstractClientService {
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions,
 			{
 				prev: undefined,

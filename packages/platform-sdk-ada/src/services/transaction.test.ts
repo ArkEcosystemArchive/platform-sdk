@@ -1,23 +1,27 @@
 import "jest-extended";
 
-import { Signatories, Test } from "@arkecosystem/platform-sdk";
+import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
 import { SignedTransactionData } from "../dto";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
+beforeAll(async () => {
+	subject = createService(TransactionService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
+	});
+});
 
 afterEach(() => nock.cleanAll());
 
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
 
 jest.setTimeout(10000);

@@ -1,20 +1,22 @@
 import "jest-extended";
 
-import { Signatories, Test } from "@arkecosystem/platform-sdk";
+import { Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
+beforeAll(async () => {
+	subject = createService(TransactionService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
+	});
 });
-
-beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
 
 jest.setTimeout(10000);
 

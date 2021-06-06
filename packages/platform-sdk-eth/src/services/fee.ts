@@ -10,7 +10,7 @@ export class FeeService extends Services.AbstractFeeService {
 		this.#http = http;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<FeeService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<FeeService> {
 		return new FeeService(config.get<HttpClient>(Coins.ConfigKey.HttpClient));
 	}
 

@@ -7,7 +7,7 @@ import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 import HDKey from "hdkey";
 import urlParseLax from "url-parse-lax";
 
-export const useAvalanche = (config: Coins.Config): Avalanche => {
+export const useAvalanche = (config: Coins.ConfigRepository): Avalanche => {
 	const { hostname: host, port, protocol } = urlParseLax(Helpers.randomHostFromConfig(config));
 
 	return new Avalanche(
@@ -19,14 +19,14 @@ export const useAvalanche = (config: Coins.Config): Avalanche => {
 	);
 };
 
-export const useInfo = (config: Coins.Config): InfoAPI => useAvalanche(config).Info();
+export const useInfo = (config: Coins.ConfigRepository): InfoAPI => useAvalanche(config).Info();
 
-export const useXChain = (config: Coins.Config): AVMAPI => useAvalanche(config).XChain();
+export const useXChain = (config: Coins.ConfigRepository): AVMAPI => useAvalanche(config).XChain();
 
-export const usePChain = (config: Coins.Config): PlatformVMAPI => useAvalanche(config).PChain();
+export const usePChain = (config: Coins.ConfigRepository): PlatformVMAPI => useAvalanche(config).PChain();
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const useKeychain = (config: Coins.Config) => useXChain(config).keyChain();
+export const useKeychain = (config: Coins.ConfigRepository) => useXChain(config).keyChain();
 
 export const cb58Decode = (value: string): Buffer => BinTools.getInstance().cb58Decode(value);
 
@@ -34,7 +34,7 @@ export const cb58Encode = (value: Buffer): string => BinTools.getInstance().cb58
 
 // Crypto
 export const keyPairFromMnemonic = (
-	config: Coins.Config,
+	config: Coins.ConfigRepository,
 	mnemonic: string,
 	options?: Services.IdentityOptions,
 ): { child: KeyPair; path: string } => {

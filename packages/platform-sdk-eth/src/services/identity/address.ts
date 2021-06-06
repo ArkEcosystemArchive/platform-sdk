@@ -5,13 +5,8 @@ import Wallet from "ethereumjs-wallet";
 import { createWallet, getAddress } from "./utils";
 
 export class AddressService extends Services.AbstractAddressService {
-	readonly #config: Coins.Config;
-
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -23,7 +18,7 @@ export class AddressService extends Services.AbstractAddressService {
 				address: getAddress(
 					createWallet(
 						mnemonic,
-						this.#config.get(Coins.ConfigKey.Slip44),
+						this.configRepository.get(Coins.ConfigKey.Slip44),
 						options?.bip44?.account || 0,
 						options?.bip44?.change || 0,
 						options?.bip44?.addressIndex || 0,

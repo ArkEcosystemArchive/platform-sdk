@@ -4,16 +4,11 @@ import { LCDClient } from "@terra-money/terra.js";
 import { useClient } from "./helpers";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 
-	private constructor(config: Coins.Config) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
@@ -43,7 +38,7 @@ export class ClientService extends Services.AbstractClientService {
 	#useClient(): LCDClient {
 		return useClient(
 			`${Helpers.randomHostFromConfig(this.#config)}/api`,
-			this.#config.get("network.meta.networkId"),
+			this.configRepository.get("network.meta.networkId"),
 		);
 	}
 }

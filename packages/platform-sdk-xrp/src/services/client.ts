@@ -7,20 +7,15 @@ import * as TransactionDTO from "../dto";
 import { broadcastErrors } from "./client.helpers";
 
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #http: HttpClient;
 	readonly #decimals: number;
 
-	private constructor(config: Coins.Config) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#decimals = config.get<number>(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async transaction(
@@ -34,7 +29,7 @@ export class ClientService extends Services.AbstractClientService {
 			},
 		]);
 
-		return Helpers.createTransactionDataWithType(transaction, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(transaction, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -45,7 +40,7 @@ export class ClientService extends Services.AbstractClientService {
 			},
 		]);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions.map(({ tx }) => tx),
 			{
 				prev: undefined,

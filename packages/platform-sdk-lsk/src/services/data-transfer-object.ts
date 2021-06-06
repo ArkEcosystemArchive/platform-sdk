@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
 
 import * as DTO from "../dto";
 
@@ -7,7 +7,7 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 		super();
 	}
 
-	public static async __construct(config: Coins.Config): Promise<DataTransferObjectService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<DataTransferObjectService> {
 		return new DataTransferObjectService(config.get(Coins.ConfigKey.CurrencyDecimals));
 	}
 
@@ -16,6 +16,6 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 	}
 
 	public transaction(transaction: unknown): Contracts.TransactionDataType {
-		return Helpers.createTransactionDataWithType(transaction, DTO).withDecimals(this.decimals);
+		return this.dataTransferObjectService.transaction(transaction, DTO).withDecimals(this.decimals);
 	}
 }

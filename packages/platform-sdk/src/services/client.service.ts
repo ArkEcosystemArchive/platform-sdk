@@ -1,10 +1,13 @@
 /* istanbul ignore file */
 
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
+
 import { ConfigRepository } from "../coins";
 import { TransactionDataCollection, WalletDataCollection } from "../collections";
 import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
-import { BindingType, inject } from "../ioc";
+import { inject } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import {
 	BroadcastResponse,
 	ClientService,
@@ -13,10 +16,17 @@ import {
 	TransactionDetailInput,
 	VoteReport,
 } from "./client.contract";
+import { DataTransferObjectService } from "./data-transfer-object.contract";
 
 export abstract class AbstractClientService implements ClientService {
 	@inject(BindingType.ConfigRepository)
 	protected readonly configRepository!: ConfigRepository;
+
+	@inject(BindingType.DataTransferObjectService)
+	protected readonly dataTransferObjectService!: DataTransferObjectService;
+
+	@inject(BindingType.HttpClient)
+	protected readonly httpClient!: HttpClient;
 
 	public async __destruct(): Promise<void> {
 		//

@@ -1,12 +1,14 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { bigNumber } from "../container";
-
+@IoC.injectable()
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	private readonly bigNumberService!: Services.BigNumberService;
+
 	public sender(): string {
 		return this.signedData.raw_data.contract[0].parameter.value.owner_address;
 	}
@@ -16,7 +18,7 @@ export class SignedTransactionData
 	}
 
 	public amount(): BigNumber {
-		return bigNumber(this.signedData.raw_data.contract[0].parameter.value.amount);
+		return this.bigNumberService.make(this.signedData.raw_data.contract[0].parameter.value.amount);
 	}
 
 	public fee(): BigNumber {

@@ -1,35 +1,20 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { Transaction } from "bitcore-lib";
 
 import { UnspentTransaction } from "../contracts";
 import { UnspentAggregator } from "../utils/unspent-aggregator";
-import { IdentityService } from "./identity";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-	readonly #identity;
-	readonly #unspent;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
-	private constructor(opts: Contracts.KeyValuePair) {
-		super();
+	@IoC.inject(IoC.BindingType.AddressService)
+	private readonly addressService!: Services.AddressService;
 
-		this.#config = opts.config;
-		this.#identity = opts.identity;
-		this.#unspent = opts.unspent;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		const unspent: UnspentAggregator = new UnspentAggregator({
-			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
-			peer: Helpers.randomHostFromConfig(config),
-		});
-
-		return new TransactionService({
-			identity: await IdentityService.__construct(config),
-			unspent,
-		});
-	}
+	// @TODO: bind via service provider and inject
+	#unspent;
 
 	public async transfer(
 		input: Services.TransferInput,
@@ -43,21 +28,21 @@ export class TransactionService extends Services.AbstractTransactionService {
 			// NOTE: this is a WIF/PrivateKey - should probably be passed in as wif instead of mnemonic
 
 			// 1. Derive the sender address
-			const senderAddress: string = await this.#identity.address().fromWIF(input.signatory.signingKey());
+			const { address } = await this.addressService.fromWIF(input.signatory.signingKey());
 			// ({ wif: input.signatory.signingKey() });
 
 			// 2. Aggregate the unspent transactions
-			const unspent: UnspentTransaction[] = await this.#unspent.aggregate(senderAddress);
+			const unspent: UnspentTransaction[] = await this.#unspent.aggregate(address);
 
 			// 3. Compute the amount to be transfered
-			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toNumber();
+			const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toNumber();
 
 			// 4. Build and sign the transaction
-			let transaction = new Transaction().from(unspent).to(input.data.to, amount).change(senderAddress);
+			let transaction = new Transaction().from(unspent).to(input.data.to, amount).change(address);
 
 			// 5. Set a fee if configured. If none is set the fee will be estimated by bitcore-lib.
 			if (input.fee) {
-				const fee = Helpers.toRawUnit(input.fee, this.#config).toNumber();
+				const fee = Helpers.toRawUnit(input.fee, this.configRepository).toNumber();
 				transaction = transaction.fee(fee);
 			}
 
@@ -65,5 +50,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
+	}
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#unspent = new UnspentAggregator({
+			http: this.configRepository.get<HttpClient>(Coins.ConfigKey.HttpClient),
+			peer: Helpers.randomHostFromConfig(this.configRepository),
+		});
 	}
 }

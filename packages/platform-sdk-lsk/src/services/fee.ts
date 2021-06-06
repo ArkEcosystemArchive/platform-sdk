@@ -1,13 +1,9 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { constants } from "@liskhq/lisk-transactions";
 
-import { bigNumber } from "../container";
-
 export class FeeService extends Services.AbstractFeeService {
-	public static async __construct(config: Coins.Config): Promise<FeeService> {
-		return new FeeService();
-	}
+	//
 
 	public async all(): Promise<Services.TransactionFees> {
 		return {
@@ -26,7 +22,7 @@ export class FeeService extends Services.AbstractFeeService {
 	}
 
 	#transform(type: string | number): Services.TransactionFee {
-		const fee: BigNumber = bigNumber(type === 0 ? 0 : constants[type]);
+		const fee: BigNumber = this.bigNumberService.make(type === 0 ? 0 : constants[type]);
 
 		return {
 			static: fee,

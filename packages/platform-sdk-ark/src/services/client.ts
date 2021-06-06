@@ -1,5 +1,4 @@
 import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import dotify from "node-dotify";
 
 import { WalletData } from "../dto";
@@ -13,15 +12,6 @@ interface BroadcastError {
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	@IoC.inject(IoC.BindingType.ConfigRepository)
-	private readonly configRepository!: Coins.ConfigRepository;
-
-	@IoC.inject(IoC.BindingType.DataTransferObjectService)
-	private readonly dataTransferObjectService!: Services.DataTransferObjectService;
-
-	@IoC.inject(IoC.BindingType.HttpClient)
-	private readonly httpClient!: HttpClient;
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
@@ -42,7 +32,6 @@ export class ClientService extends Services.AbstractClientService {
 			response.data,
 			this.#createMetaPagination(response),
 			TransactionDTO,
-			this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
 		);
 	}
 

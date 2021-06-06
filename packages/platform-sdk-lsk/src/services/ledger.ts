@@ -12,13 +12,17 @@ const chunk = <T>(value: T[], size: number) =>
 const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
 export class LedgerService extends Services.AbstractLedgerService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #identity: Services.IdentityService;
 	readonly #client: Services.ClientService;
 	#ledger: Services.LedgerTransport;
 	#transport!: DposLedger;
 
-	private constructor(config: Coins.Config, identity: Services.IdentityService, client: Services.ClientService) {
+	private constructor(
+		config: Coins.ConfigRepository,
+		identity: Services.IdentityService,
+		client: Services.ClientService,
+	) {
 		super();
 
 		this.#config = config;
@@ -26,7 +30,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 		this.#client = client;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<LedgerService> {
 		return new LedgerService(
 			config,
 			await IdentityService.__construct(config),
@@ -71,7 +75,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		const page = 0;
-		const slip44 = this.#config.get<number>("network.constants.slip44");
+		const slip44 = this.configRepository.get<number>("network.constants.slip44");
 
 		const addressCache: Record<string, { address: string; publicKey: string }> = {};
 		const wallets: Contracts.WalletData[] = [];

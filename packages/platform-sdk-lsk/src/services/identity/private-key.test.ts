@@ -1,11 +1,13 @@
 import "jest-extended";
 
-import { identity } from "../../../test/fixtures/identity";
+import { identity } from "../../test/fixtures/identity";
 import { PrivateKeyService } from "./private-key";
 
 let subject: PrivateKeyService;
 
-beforeEach(async () => (subject = new PrivateKeyService()));
+beforeEach(async () => {
+	subject = createService(PrivateKeyService);
+});
 
 describe("PrivateKey", () => {
 	it("should generate an output from a mnemonic", async () => {

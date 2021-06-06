@@ -1,16 +1,16 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
-	readonly #connection: TronWeb;
-	readonly #peer: string;
-	readonly #client: HttpClient;
-	readonly #decimals: number;
+	#connection!: TronWeb;
+	#peer!: string;
+	#client!: HttpClient;
+	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -27,18 +27,12 @@ export class ClientService extends Services.AbstractClientService {
 		OTHER_ERROR: "ERR_OTHER_ERROR",
 	};
 
-	private constructor({ config }) {
-		super();
-
-		this.#config = config;
-		this.#peer = Helpers.randomHostFromConfig(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
 		this.#connection = new TronWeb({ fullHost: this.#peer });
-		this.#client = this.#config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-		this.#decimals = this.#config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService({ config });
+		this.#client = this.configRepository.get<HttpClient>(Coins.ConfigKey.HttpClient);
+		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
@@ -47,7 +41,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.#connection.trx.getTransaction(id);
 
-		return Helpers.createTransactionDataWithType(result, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(result, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -67,7 +61,7 @@ export class ClientService extends Services.AbstractClientService {
 			await this.#client.get(`${this.#peer}/v1/accounts/${Helpers.pluckAddress(query)}/transactions`, payload)
 		).json();
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			response.data.filter(({ raw_data }) => raw_data.contract[0].type === "TransferContract"),
 			{
 				prev: undefined,
@@ -121,6 +115,6 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	#getHost(): string {
-		return Helpers.randomHostFromConfig(this.#config);
+		return Helpers.randomHostFromConfig(this.configRepository);
 	}
 }

@@ -25,7 +25,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
 		return new ClientService(Helpers.randomHostFromConfig(config));
 	}
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-transaction-information

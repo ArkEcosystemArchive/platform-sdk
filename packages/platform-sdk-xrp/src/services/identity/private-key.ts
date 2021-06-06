@@ -3,20 +3,15 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveKeypair } from "ripple-keypairs";
 
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
-	readonly #config: Coins.Config;
-
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {
 		const { child, path } = BIP44.deriveChildWithPath(mnemonic, {
-			coinType: this.#config.get(Coins.ConfigKey.Slip44),
+			coinType: this.configRepository.get(Coins.ConfigKey.Slip44),
 			index: options?.bip44?.addressIndex,
 		});
 

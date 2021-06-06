@@ -1,17 +1,16 @@
 import { Coins, Services } from "@arkecosystem/platform-sdk";
 
-import { AddressFactory } from "./identity/address.factory";
+import { AddressFactory } from "./address.factory";
 
 export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryService {
 	readonly #factory: AddressFactory;
 
-	public constructor(config: Coins.Config) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#factory = new AddressFactory(config);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<WalletDiscoveryService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<WalletDiscoveryService> {
 		return new WalletDiscoveryService(config);
 	}
 

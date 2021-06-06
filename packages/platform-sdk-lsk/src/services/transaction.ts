@@ -8,21 +8,14 @@ import {
 	transfer,
 } from "@liskhq/lisk-transactions";
 
-import { SignedTransactionData } from "../dto/signed-transaction";
-
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
+	readonly #config: Coins.ConfigRepository;
 	readonly #network: string;
 
-	private constructor(config: Coins.Config) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#network = config.get<string>("network.meta.networkId");
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
 	}
 
 	public async transfer(
@@ -112,8 +105,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 				registerMultisignature,
 			}[type](struct);
 
-			const decimals = this.#config.get<string>(Coins.ConfigKey.CurrencyTicker);
-			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction, decimals);
+			const decimals = this.configRepository.get<string>(Coins.ConfigKey.CurrencyTicker);
+			return this.dataTransferObjectService.signedTransaction(
+				signedTransaction.id,
+				signedTransaction,
+				signedTransaction,
+				decimals,
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

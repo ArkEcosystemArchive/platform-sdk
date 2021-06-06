@@ -5,7 +5,7 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { bootContainer } from "../../../../test/helpers";
-import { identity } from "../../../../test/fixtures/identity";
+import { identity } from "../../../test/fixtures/identity";
 import { Profile } from "../profiles/profile";
 import { Wallet } from "../wallets/wallet";
 import { DelegateService } from "./delegate-service";

@@ -7,14 +7,13 @@ import { waitReady } from "@polkadot/wasm-crypto";
 export class MessageService extends Services.AbstractMessageService {
 	readonly #keyring: Keyring;
 
-	public constructor(config: Coins.Config) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#keyring = new Keyring({ type: "sr25519" });
 		this.#keyring.setSS58Format(config.get("network.meta.networkId"));
 	}
 
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
 		await waitReady();
 
 		return new MessageService(config);

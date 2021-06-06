@@ -6,7 +6,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
-import { identity } from "../../../../test/fixtures/identity";
+import { identity } from "../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
@@ -177,7 +177,7 @@ it("should have a manifest service", () => {
 });
 
 it("should have a config service", () => {
-	expect(subject.config()).toBeInstanceOf(Coins.Config);
+	expect(subject.config()).toBeInstanceOf(Coins.ConfigRepository);
 });
 
 it("should have a client service", () => {

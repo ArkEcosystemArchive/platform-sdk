@@ -3,12 +3,19 @@ import "jest-extended";
 import { Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../test/helpers";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
+beforeAll(async () => {
+	subject = createService(TransactionService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
+	});
+});
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {

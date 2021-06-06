@@ -3,7 +3,7 @@ import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { UnspentTransaction } from "./transaction.models";
 
-const postGraphql = async (config: Coins.Config, query: string): Promise<Record<string, any>> => {
+const postGraphql = async (config: Coins.ConfigRepository, query: string): Promise<Record<string, any>> => {
 	const response = await config
 		.get<HttpClient>(Coins.ConfigKey.HttpClient)
 		.post(Helpers.randomHostFromConfig(config), { query });
@@ -17,11 +17,11 @@ const postGraphql = async (config: Coins.Config, query: string): Promise<Record<
 	return json.data;
 };
 
-export const submitTransaction = async (config: Coins.Config, toBroadcast: string): Promise<string> => {
+export const submitTransaction = async (config: Coins.ConfigRepository, toBroadcast: string): Promise<string> => {
 	return (await postGraphql(config, `mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`)).hash;
 };
 
-export const fetchTransaction = async (id: string, config: Coins.Config): Promise<object[]> => {
+export const fetchTransaction = async (id: string, config: Coins.ConfigRepository): Promise<object[]> => {
 	const query = `
 			{
 				transactions(
@@ -52,7 +52,7 @@ export const fetchTransaction = async (id: string, config: Coins.Config): Promis
 	return (await postGraphql(config, query)).transactions[0];
 };
 
-export const fetchTransactions = async (config: Coins.Config, addresses: string[]): Promise<object[]> => {
+export const fetchTransactions = async (config: Coins.ConfigRepository, addresses: string[]): Promise<object[]> => {
 	const query = `
 			{
 				transactions(
@@ -100,13 +100,16 @@ export const fetchTransactions = async (config: Coins.Config, addresses: string[
 	return (await postGraphql(config, query)).transactions;
 };
 
-export const fetchNetworkTip = async (config: Coins.Config): Promise<number> => {
+export const fetchNetworkTip = async (config: Coins.ConfigRepository): Promise<number> => {
 	const query = `{ cardano { tip { slotNo } } }`;
 
 	return parseInt((await postGraphql(config, query)).cardano.tip.slotNo);
 };
 
-export const fetchUsedAddressesData = async (config: Coins.Config, addresses: string[]): Promise<string[]> => {
+export const fetchUsedAddressesData = async (
+	config: Coins.ConfigRepository,
+	addresses: string[],
+): Promise<string[]> => {
 	const query = `
 			{
 				transactions(
@@ -147,7 +150,7 @@ export const fetchUsedAddressesData = async (config: Coins.Config, addresses: st
 };
 
 export const listUnspentTransactions = async (
-	config: Coins.Config,
+	config: Coins.ConfigRepository,
 	addresses: string[],
 ): Promise<UnspentTransaction[]> => {
 	return (
@@ -174,7 +177,7 @@ export const listUnspentTransactions = async (
 	).utxos;
 };
 
-export const fetchUtxosAggregate = async (config: Coins.Config, addresses: string[]): Promise<string> => {
+export const fetchUtxosAggregate = async (config: Coins.ConfigRepository, addresses: string[]): Promise<string> => {
 	const query = `
 			{
 				utxos_aggregate(

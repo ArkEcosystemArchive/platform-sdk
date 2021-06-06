@@ -2,21 +2,11 @@ import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk"
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { LCDClient, MnemonicKey, MsgSend } from "@terra-money/terra.js";
 
-import { SignedTransactionData } from "../dto";
 import { useClient } from "./helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
 	public async transfer(
 		input: Services.TransferInput,
@@ -31,18 +21,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 				memo: input.data.memo,
 			});
 
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			UUID.random(),
 			transaction.toData(),
 			transaction.toJSON(),
-			this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 		);
 	}
 
 	#useClient(): LCDClient {
 		return useClient(
 			`${Helpers.randomHostFromConfig(this.#config)}/api`,
-			this.#config.get("network.meta.networkId"),
+			this.configRepository.get("network.meta.networkId"),
 		);
 	}
 }

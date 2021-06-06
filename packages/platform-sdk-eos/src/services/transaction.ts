@@ -6,8 +6,6 @@ import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
 import { TextDecoder, TextEncoder } from "util";
 
-import { SignedTransactionData } from "../dto";
-
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #networkId: string;
 	readonly #peer: string;
@@ -23,7 +21,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#decimals = decimals;
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
+	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
 		return new TransactionService({
 			networkId: config.get<string>("network.meta.networkId"),
 			peer: Helpers.randomHostFromConfig(config),
@@ -83,7 +81,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				transaction.signatures = transaction.signatures.concat(signatures);
 			}
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				createHash("sha256").update(transaction.serializedTransaction).digest("hex"),
 				{ ...transaction, timestamp: DateTime.make() },
 				transaction,

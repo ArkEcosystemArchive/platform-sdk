@@ -1,17 +1,11 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
-
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
 import { FeeService } from "./fee";
 
 let subject: FeeService;
 
 beforeEach(async () => {
 	subject = await FeeService.__construct(createConfig());
-
-	Test.bindBigNumberService(container);
 });
 
 describe("FeeService", () => {

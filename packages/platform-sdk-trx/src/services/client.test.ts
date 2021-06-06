@@ -1,21 +1,26 @@
 import "jest-extended";
 
-import { Collections, Test } from "@arkecosystem/platform-sdk";
+import { Collections, IoC } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
+import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
-
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
 
 beforeAll(() => {
 	nock.disableNetConnect();
 
-	Test.bindBigNumberService(container);
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
+});
+
+beforeAll(() => {
+	nock.disableNetConnect();
 });
 
 describe("ClientService", () => {
@@ -75,7 +80,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData(
+				createService(SignedTransactionData).configure(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
@@ -95,7 +100,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData(
+				createService(SignedTransactionData).configure(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
