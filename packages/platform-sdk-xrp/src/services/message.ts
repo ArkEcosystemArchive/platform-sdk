@@ -1,12 +1,9 @@
-import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
-		return new MessageService();
-	}
-
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const { publicKey, privateKey } = deriveKeypair(input.signatory.signingKey());

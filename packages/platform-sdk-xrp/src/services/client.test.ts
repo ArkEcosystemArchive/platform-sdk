@@ -6,15 +6,19 @@ import nock from "nock";
 
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { createService } from "../../test/helpers";
+import { IoC } from "@arkecosystem/platform-sdk";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
 jest.setTimeout(30000);
 
 beforeAll(async () => {
-	// nock.disableNetConnect();
-
-	subject = await ClientService.__construct(createConfig());
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
 });
 
 afterEach(() => nock.cleanAll());
