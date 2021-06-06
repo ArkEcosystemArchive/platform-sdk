@@ -10,7 +10,7 @@ import CardanoWasm, {
 import { Buffer } from "buffer";
 
 import { fetchUsedAddressesData } from "./graphql-helpers";
-import { addressFromAccountExtPublicKey, deriveAddress, deriveChangeKey, deriveSpendKey } from "./identity/shelley";
+import { addressFromAccountExtPublicKey, deriveAddress, deriveChangeKey, deriveSpendKey } from "./shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 

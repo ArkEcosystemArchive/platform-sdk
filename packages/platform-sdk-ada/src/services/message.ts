@@ -1,13 +1,10 @@
-import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Ed25519Signature, PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { deriveRootKey } from "./identity/shelley";
+import { deriveRootKey } from "./shelley";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
-		return new MessageService();
-	}
-
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const privateKey = deriveRootKey(input.signatory.signingKey());

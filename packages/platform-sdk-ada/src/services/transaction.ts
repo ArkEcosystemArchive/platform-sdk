@@ -1,17 +1,15 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { fetchNetworkTip, listUnspentTransactions } from "./graphql-helpers";
 import { addUtxoInput, deriveAddressesAndSigningKeys, usedAddressesForAccount } from "./helpers";
-import { deriveAccountKey, deriveAddress, deriveRootKey } from "./identity/shelley";
+import { deriveAccountKey, deriveAddress, deriveRootKey } from "./shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	@IoC.inject(IoC.BindingType.ConfigRepository)
-	protected readonly configRepository!: Coins.ConfigRepository;
-
 	public async transfer(
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,
@@ -42,17 +40,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// Gather all **used** spend and change addresses of the account
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
-			this.#config,
+			this.configRepository,
 			Buffer.from(publicKey.as_bytes()).toString("hex"),
 		);
 		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
 
 		// Now get utxos for those addresses
-		const utxos: UnspentTransaction[] = await listUnspentTransactions(this.#config, usedAddresses); // when more that one utxo, they seem to be ordered by amount descending
+		const utxos: UnspentTransaction[] = await listUnspentTransactions(this.configRepository, usedAddresses); // when more that one utxo, they seem to be ordered by amount descending
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];
-		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
+		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 		const requestedAmount: BigNum = BigNum.from_str(amount);
 		let totalTxAmount: BigNum = BigNum.from_str("0");
 		let totalFeesAmount: BigNum = BigNum.from_str("0");
@@ -125,7 +123,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string | undefined> {
-		const tip: number = await fetchNetworkTip(this.#config);
+		const tip: number = await fetchNetworkTip(this.configRepository);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
 		return (tip + ttl).toString();
