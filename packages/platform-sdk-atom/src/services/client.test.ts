@@ -1,12 +1,10 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
-import { container } from "../container";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 

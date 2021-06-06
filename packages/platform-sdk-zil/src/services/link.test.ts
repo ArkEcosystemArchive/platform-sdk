@@ -1,6 +1,5 @@
 import "jest-extended";
 
-import { createConfig } from "../../test/config";
 import { LinkService } from "./link";
 
 let subject: LinkService;

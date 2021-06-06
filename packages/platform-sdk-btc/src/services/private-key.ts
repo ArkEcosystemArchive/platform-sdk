@@ -1,6 +1,6 @@
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
-import * as bitcoin from "bitcoinjs-lib";
+import { ECPair } from "bitcoinjs-lib";
 
 @IoC.injectable()
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
@@ -17,7 +17,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 
 	public async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
-			const { privateKey } = bitcoin.ECPair.fromWIF(wif);
+			const { privateKey } = ECPair.fromWIF(wif);
 
 			if (!privateKey) {
 				throw new Error(`Failed to derive private key for [${wif}].`);

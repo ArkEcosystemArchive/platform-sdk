@@ -1,10 +1,8 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
-import { container } from "../container";
 import { TransactionData } from "./transaction";
 
 let subject: TransactionData;

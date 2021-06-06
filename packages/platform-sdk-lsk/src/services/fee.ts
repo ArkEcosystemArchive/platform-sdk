@@ -2,8 +2,6 @@ import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { constants } from "@liskhq/lisk-transactions";
 
-import { bigNumber } from "../container";
-
 export class FeeService extends Services.AbstractFeeService {
 	public static async __construct(config: Coins.ConfigRepository): Promise<FeeService> {
 		return new FeeService();

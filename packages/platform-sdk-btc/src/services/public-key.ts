@@ -1,6 +1,6 @@
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP32 } from "@arkecosystem/platform-sdk-crypto";
-import * as bitcoin from "bitcoinjs-lib";
+import { ECPair } from "bitcoinjs-lib";
 
 @IoC.injectable()
 export class PublicKeyService extends Services.AbstractPublicKeyService {
@@ -18,7 +18,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 	public async fromWIF(wif: string): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
-				publicKey: bitcoin.ECPair.fromWIF(wif).publicKey.toString("hex"),
+				publicKey: ECPair.fromWIF(wif).publicKey.toString("hex"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

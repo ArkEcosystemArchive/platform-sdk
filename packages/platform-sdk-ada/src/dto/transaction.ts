@@ -2,8 +2,6 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { bigNumber } from "../container";
-
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	@IoC.inject(IoC.BindingType.BigNumberService)
@@ -69,7 +67,9 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		const changeOutput =
 			this.data.outputs <= 1
 				? BigNumber.ZERO
-				: this.bigNumberService.make(this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value);
+				: this.bigNumberService.make(
+						this.data.outputs.sort((a, b) => a.index - b.index)[this.data.outputs.length - 1].value,
+				  );
 
 		const netAmount = totalInput.minus(changeOutput).minus(this.fee());
 		return this.bigNumberService.make(netAmount);

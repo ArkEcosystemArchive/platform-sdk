@@ -1,10 +1,8 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { container } from "../container";
 import { TransactionData } from "./transaction";
 
 let subject: TransactionData;

@@ -7,7 +7,7 @@ import { createService } from "../../test/helpers";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
-		const transport = createService(LedgerService, undefined, (container) => {
+	const transport = createService(LedgerService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.ClientService, ClientService);

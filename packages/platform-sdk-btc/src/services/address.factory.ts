@@ -1,6 +1,7 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import * as bitcoin from "bitcoinjs-lib";
+
 import { getNetworkConfig } from "./helpers";
 
 interface Levels {

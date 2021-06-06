@@ -1,11 +1,9 @@
 import "jest-extended";
 
-import { Signatories, Test } from "@arkecosystem/platform-sdk";
+import { Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { identity } from "../../test/fixtures/identity";
-import { createService } from "../../test/helpers";
-import { container } from "../container";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;

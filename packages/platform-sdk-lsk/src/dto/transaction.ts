@@ -2,7 +2,6 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { bigNumber } from "../container";
 import { normalizeTimestamp } from "./timestamps";
 
 @IoC.injectable()

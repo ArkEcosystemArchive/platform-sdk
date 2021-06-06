@@ -3,8 +3,6 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
-import { bigNumber } from "../container";
-
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	@IoC.inject(IoC.BindingType.BigNumberService)
