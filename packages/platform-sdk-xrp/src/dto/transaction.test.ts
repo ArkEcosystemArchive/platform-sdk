@@ -8,6 +8,13 @@ import { result as fixture } from "../../test/fixtures/client/transaction.json";
 import { container } from "../container";
 import { TransactionData } from "./transaction";
 
+let subject: TransactionData;
+
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data);
+});
+
 describe("TransactionData", () => {
 	it("should succeed", async () => {
 		const result = new TransactionData(fixture);

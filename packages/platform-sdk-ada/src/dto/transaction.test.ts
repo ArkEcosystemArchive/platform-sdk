@@ -8,6 +8,13 @@ import { TransactionData } from "./transaction";
 
 const subject = new TransactionData(Fixture.data.transactions[0]);
 
+let subject: TransactionData;
+
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data);
+});
+
 describe("TransactionData", () => {
 	it("#id", () => {
 		expect(subject.id()).toEqual("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");

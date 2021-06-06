@@ -7,6 +7,13 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { container } from "../container";
 import { TransactionData } from "./transaction";
 
+let subject: TransactionData;
+
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data);
+});
+
 describe("TransactionData", () => {
 	it("should succeed", async () => {
 		const result = new TransactionData({

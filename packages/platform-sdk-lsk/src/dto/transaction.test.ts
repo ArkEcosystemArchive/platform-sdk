@@ -14,6 +14,13 @@ beforeEach(() => {
 	subject = new TransactionData(Fixture.data[0]);
 });
 
+let subject: TransactionData;
+
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data);
+});
+
 describe("TransactionData", () => {
 	test("#id", () => {
 		expect(subject.id()).toBe("15210966682544220710");
