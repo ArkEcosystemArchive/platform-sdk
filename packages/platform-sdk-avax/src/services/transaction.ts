@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Hash } from "@arkecosystem/platform-sdk-crypto";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/utils";
@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { keyPairFromMnemonic, useKeychain, usePChain, useXChain } from "./helpers";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.ConfigRepository;
 	readonly #xchain: AVMAPI;
