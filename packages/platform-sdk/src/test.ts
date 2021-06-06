@@ -2,8 +2,9 @@
 
 import Joi, { Schema } from "joi";
 
-import { ConfigRepository } from "./coins";
+import { ConfigKey, ConfigRepository } from "./coins";
 import { Container, BindingType } from "./ioc";
+import { NetworkManifest } from "./networks";
 import { BigNumberService } from "./services";
 
 export const createConfig = (config?: object, schema?: Schema): ConfigRepository =>
@@ -25,13 +26,39 @@ export const createConfig = (config?: object, schema?: Schema): ConfigRepository
 			}),
 	);
 
-export const createService = <T = any>(service: any, config?: ConfigRepository, predicate?: Function): T => {
-	config ??= createConfig();
+export const createService = <T = any>({
+	config,
+	httpClient,
+	manifest,
+	meta,
+	predicate,
+	schema,
+	service,
+}: {
+	config?: ConfigRepository;
+	httpClient: any;
+	manifest: NetworkManifest;
+	meta?: any;
+	predicate: any;
+	schema: any;
+	service: any;
+}): T => {
+	config ??= new ConfigRepository(
+		{ network: manifest.id, httpClient },
+		schema,
+	);
+
+	config.set(ConfigKey.Network, manifest);
+
+	if (meta) {
+		for (const [key, value] of Object.entries(meta)) {
+			config.set(key, value);
+		}
+	}
 
 	const container = new Container();
 	container.bind(BindingType.ConfigRepository, config);
-	// @TODO
-	// container.constant(BindingType.HttpClient, new Request());
+	container.constant(BindingType.HttpClient, httpClient);
 	container.singleton(BindingType.BigNumberService, BigNumberService);
 
 	if (predicate) {
@@ -40,23 +67,3 @@ export const createService = <T = any>(service: any, config?: ConfigRepository, 
 
 	return container.resolve(service);
 };
-
-// @TODO: make this easy to use for each coin by passing in network manifests
-// export const createConfig = (options?: object, meta = {}) => {
-// 	const config = new Coins.ConfigRepository(
-// 		{
-// 			...(options || { network: "ark.devnet" }),
-// 			httpClient: new Request(),
-// 		},
-// 		schema,
-// 	);
-
-// 	// @ts-ignore
-// 	config.set(Coins.ConfigKey.Network, manifest.networks[options?.network || "ark.devnet"]);
-
-// 	for (const [key, value] of Object.entries(meta)) {
-// 		config.set(key, value);
-// 	}
-
-// 	return config;
-// };
