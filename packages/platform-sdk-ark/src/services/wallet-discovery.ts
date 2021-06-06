@@ -1,8 +1,7 @@
-import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 
+// @TODO: make default implementations optional to further reduce noise
 @IoC.injectable()
 export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryService {
-	public static async __construct(config: Coins.Config): Promise<WalletDiscoveryService> {
-		return new WalletDiscoveryService();
-	}
+	//
 }

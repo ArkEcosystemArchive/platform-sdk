@@ -5,19 +5,11 @@ import { bigNumber } from "../container";
 
 @IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {
-	readonly #config: Coins.Config;
-	readonly #http: HttpClient;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<FeeService> {
-		return new FeeService(config);
-	}
+	@IoC.inject(IoC.BindingType.HttpClient)
+	private readonly httpClient!: HttpClient;
 
 	public async all(): Promise<Services.TransactionFees> {
 		const node = await this.#get("node/fees");
@@ -53,6 +45,6 @@ export class FeeService extends Services.AbstractFeeService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${Helpers.randomHostFromConfig(this.#config)}/${path}`, query)).json();
+		return (await this.httpClient.get(`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`, query)).json();
 	}
 }

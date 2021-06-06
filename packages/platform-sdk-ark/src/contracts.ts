@@ -4,6 +4,6 @@ export interface CryptoConfig {
 }
 
 export const Bindings = {
-	Crypto: "Crypto",
-	Height: "Height",
+	Crypto: Symbol("ARK<Crypto>"),
+	Height: Symbol("ARK<Height>"),
 };

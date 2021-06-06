@@ -4,19 +4,24 @@ import { inject, injectable } from "inversify";
 
 import { CoinServices, CoinSpec, ConfigRepository } from "../coins";
 import {
+	AddressService,
 	BigNumberService,
 	ClientService,
 	DataTransferObjectService,
+	ExtendedAddressService,
 	FeeService,
-	IdentityService,
+	KeyPairService,
 	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
 	MultiSignatureService,
+	PrivateKeyService,
+	PublicKeyService,
 	SignatoryService,
 	TransactionService,
 	WalletDiscoveryService,
+	WIFService,
 } from "../services";
 import { Container } from "./container";
 import { BindingType, ServiceList } from "./service-provider.contract";
@@ -26,7 +31,7 @@ export abstract class AbstractServiceProvider {
 	readonly #coin!: CoinSpec;
 
 	@inject(BindingType.ConfigRepository)
-	private readonly configRepository!: ConfigRepository;
+	protected readonly configRepository!: ConfigRepository;
 
 	protected coin(): CoinSpec {
 		return this.#coin;
@@ -38,63 +43,62 @@ export abstract class AbstractServiceProvider {
 
 	protected async compose(services: ServiceList, container: Container): Promise<CoinServices> {
 		const [
+			address,
 			client,
 			dataTransferObject,
+			extendedAddress,
 			fee,
-			identity,
+			keyPair,
 			knownWallets,
 			ledger,
 			link,
 			message,
 			multiSignature,
+			privateKey,
+			publicKey,
 			signatory,
 			transaction,
 			walletDiscovery,
+			wif,
 		] = await Promise.all<any>([
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<ClientService>(services.ClientService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container
-				.resolve<DataTransferObjectService>(services.DataTransferObjectService)
-				.__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<FeeService>(services.FeeService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<IdentityService>(services.IdentityService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<KnownWalletService>(services.KnownWalletService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<LedgerService>(services.LedgerService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<LinkService>(services.LinkService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<MessageService>(services.MessageService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<MultiSignatureService>(services.MultiSignatureService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<SignatoryService>(services.SignatoryService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container.resolve<TransactionService>(services.TransactionService).__construct(this.configRepository),
-			// @ts-ignore - @TODO: turn construct into a @postConstruct method
-			container
-				.resolve<WalletDiscoveryService>(services.WalletDiscoveryService)
-				.__construct(this.configRepository),
+			container.resolve<AddressService>(services.AddressService),
+			container.resolve<ClientService>(services.ClientService),
+			container.resolve<DataTransferObjectService>(services.DataTransferObjectService),
+			container.resolve<ExtendedAddressService>(services.ExtendedAddressService),
+			container.resolve<FeeService>(services.FeeService),
+			container.resolve<KeyPairService>(services.KeyPairService),
+			container.resolve<KnownWalletService>(services.KnownWalletService),
+			container.resolve<LedgerService>(services.LedgerService),
+			container.resolve<LinkService>(services.LinkService),
+			container.resolve<MessageService>(services.MessageService),
+			container.resolve<MultiSignatureService>(services.MultiSignatureService),
+			container.resolve<PrivateKeyService>(services.PrivateKeyService),
+			container.resolve<PublicKeyService>(services.PublicKeyService),
+			container.resolve<SignatoryService>(services.SignatoryService),
+			container.resolve<TransactionService>(services.TransactionService),
+			container.resolve<WalletDiscoveryService>(services.WalletDiscoveryService),
+			container.resolve<WIFService>(services.WIFService),
 		]);
 
 		return {
+			address,
 			bigNumber: container.resolve(BigNumberService),
 			client,
 			dataTransferObject,
+			extendedAddress,
 			fee,
-			identity,
+			keyPair,
 			knownWallets,
 			ledger,
 			link,
 			message,
 			multiSignature,
+			privateKey,
+			publicKey,
 			signatory,
 			transaction,
 			walletDiscovery,
+			wif,
 		};
 	}
 }

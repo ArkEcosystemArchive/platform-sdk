@@ -11,19 +11,24 @@ export const BindingType = {
 	NetworkRepository: Symbol.for("Coin<NetworkRepository>"),
 	Specification: Symbol.for("Coin<Specification>"),
 	// [Coin] Services
+	AddressService: Symbol.for("Coin<AddressService>"),
 	BigNumberService: Symbol.for("Coin<BigNumberService>"),
 	ClientService: Symbol.for("Coin<ClientService>"),
 	DataTransferObjectService: Symbol.for("Coin<DataTransferObjectService>"),
+	ExtendedAddressService: Symbol.for("Coin<ExtendedAddressService>"),
 	FeeService: Symbol.for("Coin<FeeService>"),
-	IdentityService: Symbol.for("Coin<IdentityService>"),
+	KeyPairService: Symbol.for("Coin<KeyPairService>"),
 	KnownWalletService: Symbol.for("Coin<KnownWalletService>"),
 	LedgerService: Symbol.for("Coin<LedgerService>"),
 	LinkService: Symbol.for("Coin<LinkService>"),
 	MessageService: Symbol.for("Coin<MessageService>"),
 	MultiSignatureService: Symbol.for("Coin<MultiSignatureService>"),
+	PrivateKeyService: Symbol.for("Coin<PrivateKeyService>"),
+	PublicKeyService: Symbol.for("Coin<PublicKeyService>"),
 	SignatoryService: Symbol.for("Coin<SignatoryService>"),
 	TransactionService: Symbol.for("Coin<TransactionService>"),
 	WalletDiscoveryService: Symbol.for("Coin<WalletDiscoveryService>"),
+	WIFService: Symbol.for("Coin<WIFService>"),
 };
 
 export interface IServiceProvider {

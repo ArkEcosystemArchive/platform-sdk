@@ -4,39 +4,11 @@ import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 @IoC.injectable()
 export class MultiSignatureService extends Services.AbstractMultiSignatureService {
-	/**
-	 * The configuration of the current instance.
-	 *
-	 * @type {Coins.Config}
-	 * @memberof MultiSignatureService
-	 */
-	readonly #config: Coins.Config;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
-	/**
-	 * The HTTP client of the current instance.
-	 *
-	 * @type {HttpClient}
-	 * @memberof MultiSignatureService
-	 */
-	readonly #http: HttpClient;
-
-	/**
-	 * Creates an instance of MultiSignatureService.
-	 *
-	 * @param {Coins.Config} config
-	 * @memberof MultiSignatureService
-	 */
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-	}
-
-	/** @inheritdoc */
-	public static async __construct(config: Coins.Config): Promise<MultiSignatureService> {
-		return new MultiSignatureService(config);
-	}
+	@IoC.inject(IoC.BindingType.HttpClient)
+	private readonly httpClient!: HttpClient;
 
 	/** @inheritdoc */
 	public async allWithPendingState(publicKey: string): Promise<Services.MultiSignatureTransaction[]> {
@@ -119,7 +91,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	 * @memberof MultiSignatureService
 	 */
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.#getPeer()}/${path}`, query)).json();
+		return (await this.httpClient.get(`${this.#getPeer()}/${path}`, query)).json();
 	}
 
 	/**
@@ -132,7 +104,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	 * @memberof MultiSignatureService
 	 */
 	async #delete(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.delete(`${this.#getPeer()}/${path}`, query)).json();
+		return (await this.httpClient.delete(`${this.#getPeer()}/${path}`, query)).json();
 	}
 
 	/**
@@ -145,7 +117,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	 * @memberof MultiSignatureService
 	 */
 	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.post(`${this.#getPeer()}/${path}`, body)).json();
+		return (await this.httpClient.post(`${this.#getPeer()}/${path}`, body)).json();
 	}
 
 	/**
@@ -156,7 +128,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	 * @memberof MultiSignatureService
 	 */
 	#getPeer(): string {
-		return Helpers.randomHost(this.#config.get<Networks.NetworkManifest>("network").hosts, "musig").host;
+		return Helpers.randomHost(this.configRepository.get<Networks.NetworkManifest>("network").hosts, "musig").host;
 	}
 
 	/**

@@ -1,16 +1,12 @@
 import { Address as BaseAddress, Keys } from "@arkecosystem/crypto-identities";
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { CryptoConfig } from "../../contracts";
+import { Bindings, CryptoConfig } from "../contracts";
 
+@IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
-	readonly #config: CryptoConfig;
-
-	public constructor(config: CryptoConfig) {
-		super();
-
-		this.#config = config;
-	}
+	@IoC.inject(Bindings.Crypto)
+	private readonly config!: CryptoConfig;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -19,7 +15,7 @@ export class AddressService extends Services.AbstractAddressService {
 		try {
 			return {
 				type: "bip39",
-				address: BaseAddress.fromPassphrase(mnemonic, this.#config),
+				address: BaseAddress.fromPassphrase(mnemonic, this.config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -30,7 +26,7 @@ export class AddressService extends Services.AbstractAddressService {
 		try {
 			return {
 				type: "bip39",
-				address: BaseAddress.fromMultiSignatureAsset({ min, publicKeys }, this.#config),
+				address: BaseAddress.fromMultiSignatureAsset({ min, publicKeys }, this.config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -44,7 +40,7 @@ export class AddressService extends Services.AbstractAddressService {
 		try {
 			return {
 				type: "bip39",
-				address: BaseAddress.fromPublicKey(publicKey, this.#config),
+				address: BaseAddress.fromPublicKey(publicKey, this.config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -58,7 +54,7 @@ export class AddressService extends Services.AbstractAddressService {
 		try {
 			return {
 				type: "bip39",
-				address: BaseAddress.fromPrivateKey(Keys.fromPrivateKey(privateKey), this.#config),
+				address: BaseAddress.fromPrivateKey(Keys.fromPrivateKey(privateKey), this.config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -69,7 +65,7 @@ export class AddressService extends Services.AbstractAddressService {
 		try {
 			return {
 				type: "bip39",
-				address: BaseAddress.fromWIF(wif, this.#config),
+				address: BaseAddress.fromWIF(wif, this.config),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -78,7 +74,7 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async validate(address: string): Promise<boolean> {
 		try {
-			return BaseAddress.validate(address, this.#config);
+			return BaseAddress.validate(address, this.config);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

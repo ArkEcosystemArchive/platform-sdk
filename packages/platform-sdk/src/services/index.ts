@@ -9,8 +9,6 @@ export * from "./extended-address.contract";
 export * from "./extended-address.service";
 export * from "./fee.contract";
 export * from "./fee.service";
-export * from "./identity.contract";
-export * from "./identity.service";
 export * from "./key-pair.contract";
 export * from "./key-pair.service";
 export * from "./known-wallet.contract";

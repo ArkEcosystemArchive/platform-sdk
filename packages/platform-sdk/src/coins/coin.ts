@@ -2,19 +2,24 @@ import { BadMethodDependencyException, BadStateException } from "../exceptions";
 import { BindingType, Container, injectable } from "../ioc";
 import { Network, NetworkRepository } from "../networks";
 import {
+	AddressService,
 	BigNumberService,
 	ClientService,
 	DataTransferObjectService,
+	ExtendedAddressService,
 	FeeService,
-	IdentityService,
+	KeyPairService,
 	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
 	MultiSignatureService,
+	PrivateKeyService,
+	PublicKeyService,
 	SignatoryService,
 	TransactionService,
 	WalletDiscoveryService,
+	WIFService,
 } from "../services";
 import { ConfigRepository } from "./config";
 import { CoinServices, CoinSpec } from "./contracts";
@@ -41,19 +46,24 @@ export class Coin {
 			throw new BadStateException(this.constructor.name, "Failed to initiate serices.");
 		}
 
+		this.#container.constant(BindingType.AddressService, this.#services.address);
 		this.#container.constant(BindingType.BigNumberService, this.#services.bigNumber);
 		this.#container.constant(BindingType.ClientService, this.#services.client);
 		this.#container.constant(BindingType.DataTransferObjectService, this.#services.dataTransferObject);
+		this.#container.constant(BindingType.ExtendedAddressService, this.#services.extendedAddress);
 		this.#container.constant(BindingType.FeeService, this.#services.fee);
-		this.#container.constant(BindingType.IdentityService, this.#services.identity);
+		this.#container.constant(BindingType.KeyPairService, this.#services.keyPair);
 		this.#container.constant(BindingType.KnownWalletService, this.#services.knownWallets);
 		this.#container.constant(BindingType.LedgerService, this.#services.ledger);
 		this.#container.constant(BindingType.LinkService, this.#services.link);
 		this.#container.constant(BindingType.MessageService, this.#services.message);
 		this.#container.constant(BindingType.MultiSignatureService, this.#services.multiSignature);
+		this.#container.constant(BindingType.PrivateKeyService, this.#services.privateKey);
+		this.#container.constant(BindingType.PublicKeyService, this.#services.publicKey);
 		this.#container.constant(BindingType.SignatoryService, this.#services.signatory);
 		this.#container.constant(BindingType.TransactionService, this.#services.transaction);
 		this.#container.constant(BindingType.WalletDiscoveryService, this.#services.walletDiscovery);
+		this.#container.constant(BindingType.WIFService, this.#services.wif);
 	}
 
 	public async __destruct(): Promise<void> {
@@ -63,12 +73,7 @@ export class Coin {
 
 		await Promise.all([
 			this.#services!.client.__destruct(),
-			this.#services!.dataTransferObject.__destruct(),
-			this.#services!.fee.__destruct(),
-			this.#services!.identity.__destruct(),
-			this.#services!.knownWallets.__destruct(),
 			this.#services!.ledger.__destruct(),
-			this.#services!.message.__destruct(),
 			this.#services!.multiSignature.__destruct(),
 			this.#services!.transaction.__destruct(),
 		]);
@@ -122,12 +127,52 @@ export class Coin {
 		return this.#services!.fee;
 	}
 
-	public identity(): IdentityService {
+	public address(): AddressService {
 		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.identity.name, "__construct");
+			throw new BadMethodDependencyException(this.constructor.name, this.address.name, "__construct");
 		}
 
-		return this.#services!.identity;
+		return this.#services!.address;
+	}
+
+	public extendedAddress(): ExtendedAddressService {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, this.extendedAddress.name, "__construct");
+		}
+
+		return this.#services!.extendedAddress;
+	}
+
+	public keyPair(): KeyPairService {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, this.keyPair.name, "__construct");
+		}
+
+		return this.#services!.keyPair;
+	}
+
+	public privateKey(): PrivateKeyService {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, this.privateKey.name, "__construct");
+		}
+
+		return this.#services!.privateKey;
+	}
+
+	public publicKey(): PublicKeyService {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, this.publicKey.name, "__construct");
+		}
+
+		return this.#services!.publicKey;
+	}
+
+	public wif(): WIFService {
+		if (!this.hasBeenSynchronized()) {
+			throw new BadMethodDependencyException(this.constructor.name, this.wif.name, "__construct");
+		}
+
+		return this.#services!.wif;
 	}
 
 	public knownWallets(): KnownWalletService {
