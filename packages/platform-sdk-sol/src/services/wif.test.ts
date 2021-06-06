@@ -1,8 +1,8 @@
 import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
-import { WIFService } from "./wif";
 import { createService } from "../../test/helpers";
+import { WIFService } from "./wif";
 
 let subject: WIFService;
 
