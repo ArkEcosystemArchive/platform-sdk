@@ -5,9 +5,8 @@ import { AddressFactory } from "./address.factory";
 export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryService {
 	readonly #factory: AddressFactory;
 
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#factory = new AddressFactory(config);
 	}
 

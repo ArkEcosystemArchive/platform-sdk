@@ -1,15 +1,18 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
 import { derivePrivateKey, derivePublicKey } from "./helpers";
 
+@IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
-	readonly #slip44: number;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
-	public constructor(config: Coins.ConfigRepository) {
-		super();
+	#slip44!: number;
 
-		this.#slip44 = config.get<number>("network.constants.slip44");
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#slip44 = this.configRepository.get<number>("network.constants.slip44");
 	}
 
 	public async fromMnemonic(

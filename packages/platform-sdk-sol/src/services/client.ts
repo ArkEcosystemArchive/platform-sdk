@@ -1,15 +1,15 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Connection, PublicKey } from "@solana/web3.js";
 
 import { WalletData } from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	readonly #config: Coins.ConfigRepository;
 	readonly #client: Connection;
 
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#client = new Connection(this.#host());
 	}

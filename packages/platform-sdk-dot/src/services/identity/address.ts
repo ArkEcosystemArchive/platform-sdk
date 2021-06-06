@@ -6,9 +6,8 @@ import { createKeyMulti } from "@polkadot/util-crypto";
 export class AddressService extends Services.AbstractAddressService {
 	readonly #keyring: Keyring;
 
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#keyring = new Keyring({ type: "sr25519" });
 		this.#keyring.setSS58Format(config.get("network.meta.networkId"));
 	}

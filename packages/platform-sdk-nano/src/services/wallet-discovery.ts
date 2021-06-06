@@ -2,10 +2,7 @@ import { Coins, Services } from "@arkecosystem/platform-sdk";
 
 import { deriveAccount, deriveLegacyAccount } from "./identity/helpers";
 
-export class WalletDiscoveryService implements Services.AbstractWalletDiscoveryService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<WalletDiscoveryService> {
-		return new WalletDiscoveryService();
-	}
+export class WalletDiscoveryService implements Services.AbstractWalletDiscoveryService {	//
 
 	public async fromMnemonic(
 		mnemonic: string,
