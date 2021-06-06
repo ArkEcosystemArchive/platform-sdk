@@ -1,9 +1,11 @@
-import { Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { constants } from "@liskhq/lisk-transactions";
 
+@IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {
-	//
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	protected readonly bigNumberService!: Services.BigNumberService;
 
 	public async all(): Promise<Services.TransactionFees> {
 		return {

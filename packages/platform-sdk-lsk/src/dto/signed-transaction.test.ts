@@ -4,6 +4,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { SignedTransactionData } from "./signed-transaction";
+import { createService } from "../../test/helpers";
 
 let subject: SignedTransactionData;
 
