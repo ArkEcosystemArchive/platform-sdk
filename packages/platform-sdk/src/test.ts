@@ -25,14 +25,38 @@ export const createConfig = (config?: object, schema?: Schema): ConfigRepository
 			}),
 	);
 
-export const bindBigNumberService = (container: Container, config?: ConfigRepository): void => {
-	if (config) {
-		container.constant(BindingType.ConfigRepository, config);
-	} else {
-		container.constant(BindingType.ConfigRepository, createConfig());
+export const createService = <T = any>(service: any, config?: ConfigRepository, predicate?: Function): T => {
+	config ??= createConfig();
+
+	const container = new Container();
+	container.bind(BindingType.ConfigRepository, config);
+	// @TODO
+	// container.constant(BindingType.HttpClient, new Request());
+	container.singleton(BindingType.BigNumberService, BigNumberService);
+
+	if (predicate) {
+		predicate(container);
 	}
 
-	if (container.missing(BindingType.BigNumberService)) {
-		container.singleton(BindingType.BigNumberService, BigNumberService);
-	}
+	return container.resolve(service);
 };
+
+// @TODO: make this easy to use for each coin by passing in network manifests
+// export const createConfig = (options?: object, meta = {}) => {
+// 	const config = new Coins.ConfigRepository(
+// 		{
+// 			...(options || { network: "ark.devnet" }),
+// 			httpClient: new Request(),
+// 		},
+// 		schema,
+// 	);
+
+// 	// @ts-ignore
+// 	config.set(Coins.ConfigKey.Network, manifest.networks[options?.network || "ark.devnet"]);
+
+// 	for (const [key, value] of Object.entries(meta)) {
+// 		config.set(key, value);
+// 	}
+
+// 	return config;
+// };
