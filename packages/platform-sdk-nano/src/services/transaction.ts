@@ -10,9 +10,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #client: NanoClient;
 	readonly #decimals: number;
 
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#client = new NanoClient(config);
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}

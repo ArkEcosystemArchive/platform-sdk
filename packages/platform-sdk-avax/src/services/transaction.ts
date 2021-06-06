@@ -16,9 +16,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #pchain: PlatformVMAPI;
 	readonly #keychain;
 
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#xchain = useXChain(config);
 		this.#pchain = usePChain(config);

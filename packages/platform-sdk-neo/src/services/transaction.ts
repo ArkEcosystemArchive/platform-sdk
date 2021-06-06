@@ -6,9 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #decimals: number;
 
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
