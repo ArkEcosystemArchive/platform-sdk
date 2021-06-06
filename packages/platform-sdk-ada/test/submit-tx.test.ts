@@ -150,8 +150,7 @@ const data = [
 ];
 
 it.skip(`can send a transfer`, async function () {
-	const config = createConfig();
-	const client = await ClientService.__construct(config);
+	const client = createService(ClientService);
 
 	const wallet = data[0]; // Simon's
 	const mnemonic = wallet.mnemonic;

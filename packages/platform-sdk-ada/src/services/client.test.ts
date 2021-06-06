@@ -8,6 +8,7 @@ import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 import { TransactionService } from "./transaction";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
@@ -157,7 +158,10 @@ describe("ClientService", () => {
 				.post("/")
 				.reply(201, require(`${__dirname}/../../test/fixtures/transaction/submit-tx.json`));
 
-			const txService = await TransactionService.__construct(createConfig());
+			const txService = createService(TransactionService, undefined, (container) => {
+				container.constant(IoC.BindingType.Container, container);
+				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+			});
 
 			const transfer = await txService.transfer({
 				signatory: new Signatories.Signatory(
