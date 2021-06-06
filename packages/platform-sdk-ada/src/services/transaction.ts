@@ -2,7 +2,6 @@ import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk"
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { SignedTransactionData } from "../dto";
 import { fetchNetworkTip, listUnspentTransactions } from "./graphql-helpers";
 import { addUtxoInput, deriveAddressesAndSigningKeys, usedAddressesForAccount } from "./helpers";
 import { deriveAccountKey, deriveAddress, deriveRootKey } from "./identity/shelley";
@@ -126,7 +125,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 				timestamp: DateTime.make(),
 			},
 			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
-
 		);
 	}
 

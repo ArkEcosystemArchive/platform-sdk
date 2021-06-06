@@ -1,7 +1,6 @@
 import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
 import TronWeb from "tronweb";
 
-import { SignedTransactionData } from "../dto";
 import { AddressService } from "./identity/address";
 import { PrivateKeyService } from "./identity/private-key";
 

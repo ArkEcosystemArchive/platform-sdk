@@ -6,8 +6,6 @@ import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
 import fetch from "node-fetch";
 import { TextDecoder, TextEncoder } from "util";
 
-import { SignedTransactionData } from "../dto";
-
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #networkId: string;
 	readonly #peer: string;

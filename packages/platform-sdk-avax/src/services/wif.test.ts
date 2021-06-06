@@ -1,6 +1,6 @@
 import "jest-extended";
-import { createService } from "../../../platform-sdk-btc/test/helpers";
 
+import { createService } from "../../../platform-sdk-btc/test/helpers";
 import { identity } from "../../test/fixtures/identity";
 import { WIFService } from "./wif";
 

@@ -2,7 +2,6 @@ import { Coins, Contracts, Exceptions, Helpers, Networks, Services } from "@arke
 import Stellar from "stellar-sdk";
 import { v4 as uuidv4 } from "uuid";
 
-import { SignedTransactionData } from "../dto";
 import { IdentityService } from "./identity";
 
 export class TransactionService extends Services.AbstractTransactionService {

@@ -2,7 +2,6 @@ import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk"
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { LCDClient, MnemonicKey, MsgSend } from "@terra-money/terra.js";
 
-import { SignedTransactionData } from "../dto";
 import { useClient } from "./helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
@@ -30,7 +29,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 			UUID.random(),
 			transaction.toData(),
 			transaction.toJSON(),
-
 		);
 	}
 

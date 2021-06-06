@@ -4,8 +4,6 @@ import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { RippleAPI } from "ripple-lib";
 
-import { SignedTransactionData } from "../dto";
-
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.ConfigRepository;
 	readonly #http: HttpClient;

@@ -3,7 +3,6 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
 import { block, tools } from "nanocurrency-web";
 
-import { SignedTransactionData } from "../dto";
 import { deriveAccount } from "./identity/helpers";
 import { NanoClient } from "./rpc";
 
@@ -41,6 +40,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const signedData = { ...data, timestamp: DateTime.make() };
 		const broadcastData = block.send(data, privateKey);
 
-		return this.dataTransferObjectService.signedTransaction(broadcastData.signature, signedData, broadcastData, this.#decimals);
+		return this.dataTransferObjectService.signedTransaction(
+			broadcastData.signature,
+			signedData,
+			broadcastData,
+			this.#decimals,
+		);
 	}
 }

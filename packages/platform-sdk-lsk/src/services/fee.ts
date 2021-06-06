@@ -1,4 +1,4 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { constants } from "@liskhq/lisk-transactions";
 

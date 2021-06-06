@@ -8,8 +8,6 @@ import {
 	transfer,
 } from "@liskhq/lisk-transactions";
 
-import { SignedTransactionData } from "../dto/signed-transaction";
-
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.ConfigRepository;
 	readonly #network: string;
@@ -112,7 +110,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}[type](struct);
 
 			const decimals = this.configRepository.get<string>(Coins.ConfigKey.CurrencyTicker);
-			return this.dataTransferObjectService.signedTransaction(signedTransaction.id, signedTransaction, signedTransaction, decimals);
+			return this.dataTransferObjectService.signedTransaction(
+				signedTransaction.id,
+				signedTransaction,
+				signedTransaction,
+				decimals,
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
