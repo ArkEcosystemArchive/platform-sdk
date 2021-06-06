@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { Transaction } from "bitcore-lib";
 
@@ -6,6 +6,7 @@ import { UnspentTransaction } from "../contracts";
 import { UnspentAggregator } from "../utils/unspent-aggregator";
 import { IdentityService } from "./identity";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
 	readonly #config: Coins.Config;
 	readonly #identity;

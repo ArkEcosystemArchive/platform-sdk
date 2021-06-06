@@ -4,6 +4,7 @@ import * as bitcoin from "bitcoinjs-lib";
 import { AddressFactory } from "./address.factory";
 import { getNetworkConfig } from "./helpers";
 
+@IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;

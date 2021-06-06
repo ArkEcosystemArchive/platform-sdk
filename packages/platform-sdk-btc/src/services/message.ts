@@ -1,9 +1,10 @@
-import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { ECPair } from "bitcoinjs-lib";
 import { sign, verify } from "bitcoinjs-message";
 
 import { IdentityService } from "./identity";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
 	readonly #identity: IdentityService;
 

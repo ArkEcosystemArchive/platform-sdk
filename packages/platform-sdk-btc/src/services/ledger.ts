@@ -1,8 +1,9 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import Bitcoin from "@ledgerhq/hw-app-btc";
 import { getAppAndVersion } from "@ledgerhq/hw-app-btc/lib/getAppAndVersion";
 import { serializeTransactionOutputs } from "@ledgerhq/hw-app-btc/lib/serializeTransaction";
 
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport!: Bitcoin;
