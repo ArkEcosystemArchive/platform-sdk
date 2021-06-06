@@ -9,15 +9,8 @@ export class AddressService extends Services.AbstractAddressService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	readonly #factory: AddressFactory;
-	readonly #network: bitcoin.networks.Network;
-
-	public constructor(config: Coins.ConfigRepository) {
-		super();
-
-		this.#network = getNetworkConfig(config);
-		this.#factory = new AddressFactory(config);
-	}
+	#factory!: AddressFactory;
+	#network!: bitcoin.networks.Network;
 
 	public async fromMnemonic(
 		mnemonic: string,
@@ -133,5 +126,11 @@ export class AddressService extends Services.AbstractAddressService {
 
 	public async validate(address: string): Promise<boolean> {
 		return address !== undefined;
+	}
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#network = getNetworkConfig(this.configRepository);
+		this.#factory = new AddressFactory(this.configRepository);
 	}
 }
