@@ -18,6 +18,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.HttpClient)
 	private readonly httpClient!: HttpClient;
 
+	@IoC.inject(IoC.BindingType.DataTransferObjectService)
+	private readonly dataTransferObjectService!: Services.DataTransferObjectService;
+
 	@IoC.inject(IoC.BindingType.AddressService)
 	private readonly addressService!: Services.AddressService;
 
@@ -208,7 +211,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			compressed: true,
 		});
 
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			transactionWithSignature.id!,
 			transactionWithSignature,
 			transactionWithSignature,
@@ -309,7 +312,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					excludeSecondSignature: true,
 				}).toString("hex");
 
-				return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
+				return this.dataTransferObjectService.signedTransaction(uuidv4(), signedTransaction, signedTransaction);
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
@@ -318,7 +321,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					input.signatory.signingList(),
 				);
 
-				return new SignedTransactionData(
+				return this.dataTransferObjectService.signedTransaction(
 					transactionWithSignature.id!,
 					transactionWithSignature,
 					transactionWithSignature,
@@ -369,11 +372,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const signedTransaction = transaction.build().toJson();
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				signedTransaction.id,
 				signedTransaction,
 				signedTransaction,
-				this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

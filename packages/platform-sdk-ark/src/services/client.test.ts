@@ -1,10 +1,8 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createConfig, createService } from "../../test/helpers";
-import { container } from "../container";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 
@@ -12,8 +10,6 @@ let subject: ClientService;
 
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
 
 beforeEach(async () => {

@@ -6,6 +6,7 @@ import nock from "nock";
 
 import { createService } from "../../test/helpers";
 import { AddressService } from "./address";
+import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
 import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
@@ -18,7 +19,9 @@ beforeAll(async () => {
 	nock.disableNetConnect();
 
 	const service = createService(TransactionService, undefined, container => {
+		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
 	});

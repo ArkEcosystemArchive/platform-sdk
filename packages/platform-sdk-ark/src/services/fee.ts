@@ -1,8 +1,6 @@
 import { Coins, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
-import { bigNumber } from "../container";
-
 @IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
@@ -10,6 +8,9 @@ export class FeeService extends Services.AbstractFeeService {
 
 	@IoC.inject(IoC.BindingType.HttpClient)
 	private readonly httpClient!: HttpClient;
+
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	private readonly bigNumberService!: Services.BigNumberService;
 
 	public async all(): Promise<Services.TransactionFees> {
 		const node = await this.#get("node/fees");
@@ -37,10 +38,10 @@ export class FeeService extends Services.AbstractFeeService {
 		const dynamicFee = dynamicFees[typeGroup][type];
 
 		return {
-			static: bigNumber(staticFees[typeGroup][type]),
-			min: bigNumber(dynamicFee?.min || "0"),
-			avg: bigNumber(dynamicFee?.avg || "0"),
-			max: bigNumber(staticFees[typeGroup][type]),
+			static: this.bigNumberService.make(staticFees[typeGroup][type]),
+			min: this.bigNumberService.make(dynamicFee?.min || "0"),
+			avg: this.bigNumberService.make(dynamicFee?.avg || "0"),
+			max: this.bigNumberService.make(staticFees[typeGroup][type]),
 		};
 	}
 

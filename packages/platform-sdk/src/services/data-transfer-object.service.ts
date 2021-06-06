@@ -12,7 +12,7 @@ export abstract class AbstractDataTransferObjectService implements DataTransferO
 	@inject(BindingType.ConfigRepository)
 	protected readonly configRepository!: ConfigRepository;
 
-	public signedTransaction(identifier: string, signedData: string): SignedTransactionData {
+	public signedTransaction(identifier: string, signedData: string, broadcastData: any): SignedTransactionData {
 		throw new NotImplemented(this.constructor.name, this.signedTransaction.name);
 	}
 

@@ -4,6 +4,7 @@ export type ServiceList = Record<string, interfaces.Newable<any>>;
 
 export const BindingType = {
 	// [Coin] Internals
+	Container: Symbol.for("Coin<Container>"),
 	ConfigRepository: Symbol.for("Coin<ConfigRepository>"),
 	HttpClient: Symbol.for("Coin<HttpClient>"),
 	Manifest: Symbol.for("Coin<Manifest>"),

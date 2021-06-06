@@ -14,6 +14,7 @@ export class CoinFactory {
 
 		// Act
 		const container = new Container();
+		container.constant(BindingType.Container, container);
 		container.constant(BindingType.ConfigRepository, configRepository);
 		container.constant(BindingType.HttpClient, options.httpClient);
 		container.constant(BindingType.Manifest, new Manifest(specification.manifest));

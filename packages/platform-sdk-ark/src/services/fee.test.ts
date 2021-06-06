@@ -1,18 +1,14 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
-import { container } from "../container";
 import { FeeService } from "./fee";
 
 let subject: FeeService;
 
 beforeEach(async () => {
 	subject = createService(FeeService);
-
-	Test.bindBigNumberService(container);
 });
 
 afterEach(() => nock.cleanAll());
