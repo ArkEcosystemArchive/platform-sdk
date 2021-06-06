@@ -2,8 +2,13 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { RawTransactionData } from "../contracts";
+import { BindingType, inject } from "../ioc";
+import { BigNumberService } from "../services";
 
 export abstract class AbstractSignedTransactionData {
+	@inject(BindingType.BigNumberService)
+	protected readonly bigNumberService!: BigNumberService;
+
 	protected identifier!: string;
 	protected signedData!: RawTransactionData;
 	protected broadcastData!: any;

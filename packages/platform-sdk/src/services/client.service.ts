@@ -1,8 +1,10 @@
 /* istanbul ignore file */
 
+import { ConfigRepository } from "../coins";
 import { TransactionDataCollection, WalletDataCollection } from "../collections";
 import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
+import { BindingType, inject } from "../ioc";
 import {
 	BroadcastResponse,
 	ClientService,
@@ -13,6 +15,9 @@ import {
 } from "./client.contract";
 
 export abstract class AbstractClientService implements ClientService {
+	@inject(BindingType.ConfigRepository)
+	protected readonly configRepository!: ConfigRepository;
+
 	public async __destruct(): Promise<void> {
 		//
 	}
