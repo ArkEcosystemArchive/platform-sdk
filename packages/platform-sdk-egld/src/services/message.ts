@@ -1,12 +1,9 @@
-import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Mnemonic } from "@elrondnetwork/erdjs/out";
 import { getPublicKey, sign, verify } from "noble-ed25519";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
-		return new MessageService();
-	}
-
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const privateKey = Mnemonic.fromString(input.signatory.signingKey()).deriveKey(0).hex();

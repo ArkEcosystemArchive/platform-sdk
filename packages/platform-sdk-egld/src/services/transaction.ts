@@ -13,14 +13,6 @@ import {
 } from "@elrondnetwork/erdjs";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	private constructor(peer: string) {
-		super();
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
-		return new TransactionService(Helpers.randomHostFromConfig(config));
-	}
-
 	public async transfer(
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,
