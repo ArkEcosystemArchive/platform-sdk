@@ -1,11 +1,15 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
 import { createService } from "../../test/helpers";
 import { LedgerService } from "./ledger";
+import { AddressService } from "./address";
+import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 const createMockService = async (record: string) => {
 	const transport = createService(LedgerService, undefined, (container) => {

@@ -1,11 +1,12 @@
 import "jest-extended";
+import { createService } from "../../test/helpers";
 
 import { FeeService } from "./fee";
 
 let subject: FeeService;
 
 beforeEach(async () => {
-	subject = await FeeService.__construct(createConfig());
+	subject = createService(FeeService);
 });
 
 describe("FeeService", () => {
