@@ -2,7 +2,8 @@
 
 import { HttpClient } from "../../../platform-sdk-http/dist";
 import { NotImplemented } from "../exceptions";
-import { BindingType, inject } from "../ioc";
+import { inject } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { FeeService, TransactionFees } from "./fee.contract";
 
 export abstract class AbstractFeeService implements FeeService {
