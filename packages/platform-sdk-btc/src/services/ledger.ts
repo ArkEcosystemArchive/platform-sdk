@@ -8,10 +8,6 @@ export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport!: Bitcoin;
 
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService();
-	}
-
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.create();
 		this.#transport = new Bitcoin(this.#ledger);
