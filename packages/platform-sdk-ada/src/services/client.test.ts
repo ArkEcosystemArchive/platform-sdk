@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { DTO, Signatories } from "@arkecosystem/platform-sdk";
+import { DTO, IoC, Signatories } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
