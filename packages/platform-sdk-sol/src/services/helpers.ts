@@ -1,7 +1,6 @@
 import { Coins, Helpers } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
-
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { derivePath, getPublicKey } from "ed25519-hd-key";
 
 export const postGraphql = async (config: Coins.ConfigRepository, query: string): Promise<Record<string, any>> =>

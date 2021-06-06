@@ -1,8 +1,9 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 
 import { deriveAccount, deriveLegacyAccount } from "./identity/helpers";
 
-export class WalletDiscoveryService implements Services.AbstractWalletDiscoveryService {	//
+export class WalletDiscoveryService implements Services.AbstractWalletDiscoveryService {
+	//
 
 	public async fromMnemonic(
 		mnemonic: string,
