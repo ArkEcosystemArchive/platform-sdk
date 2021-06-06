@@ -1,19 +1,15 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Test } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
 
-export const createConfig = (options?: object) => {
-	const config = new Coins.Config(
-		{
-			...(options || { network: "dot.mainnet" }),
-			httpClient: new Request(),
-		},
+export const createService = <T = any>(service: any, network: string = "dot.mainnet", predicate?: Function): T => {
+	return Test.createService({
+		httpClient: new Request(),
+		manifest: manifest.networks[network],
+		predicate,
 		schema,
-	);
-
-	config.set(Coins.ConfigKey.Network, manifest.networks["dot.mainnet"]);
-
-	return config;
+		service,
+	});
 };
