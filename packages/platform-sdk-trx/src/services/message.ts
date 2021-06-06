@@ -1,32 +1,31 @@
-import { Coins, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Buffer } from "buffer";
 import TronWeb from "tronweb";
 
-import { IdentityService } from "./identity";
-
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	readonly #identityService: IdentityService;
-	readonly #connection: TronWeb;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
-	private constructor(identityService: IdentityService, peer: string) {
-		super();
+	@IoC.inject(IoC.BindingType.AddressService)
+	private readonly addressService!: Services.AddressService;
 
-		this.#identityService = identityService;
+	@IoC.inject(IoC.BindingType.KeyPairService)
+	private readonly keyPairService!: Services.KeyPairService;
+
+	#connection!: TronWeb;
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#connection = new TronWeb({
-			fullHost: peer,
+			fullHost: Helpers.randomHostFromConfig(this.configRepository),
 		});
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
-		return new MessageService(await IdentityService.__construct(config), Helpers.randomHostFromConfig(config));
 	}
 
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
-			const keys: Services.KeyPairDataTransferObject = await this.#identityService
-				.keyPair()
-				.fromMnemonic(input.signatory.signingKey());
-			const { address } = await this.#identityService.address().fromMnemonic(input.signatory.signingKey());
+			const keys: Services.KeyPairDataTransferObject = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
+			const { address } = await this.addressService.fromMnemonic(input.signatory.signingKey());
 
 			if (keys.privateKey === undefined) {
 				throw new Error("Failed to retrieve the private key for the signatory wallet.");
