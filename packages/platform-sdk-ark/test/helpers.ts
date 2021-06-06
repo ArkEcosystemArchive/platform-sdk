@@ -11,7 +11,10 @@ export const createService = <T = any>(service: any, network: string = "ark.devn
 		manifest: manifest.networks[network],
 		predicate: (container: IoC.Container) => {
 			if (container.missing(Bindings.Crypto)) {
-				container.constant(Bindings.Crypto, require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data);
+				container.constant(
+					Bindings.Crypto,
+					require(`${__dirname}/fixtures/client/cryptoConfiguration.json`).data,
+				);
 			}
 
 			if (container.missing(Bindings.Height)) {

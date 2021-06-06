@@ -13,7 +13,7 @@ let subject: ClientService;
 beforeAll(() => {
 	nock.disableNetConnect();
 
-	subject = createService(ClientService, undefined, container => {
+	subject = createService(ClientService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 	});
@@ -38,7 +38,7 @@ describe("ClientService", () => {
 
 	describe("#transactions", () => {
 		it("should work with Core 2.0", async () => {
-			subject = createService(ClientService, "ark.mainnet", container => {
+			subject = createService(ClientService, "ark.mainnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
 				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 			});
@@ -54,7 +54,7 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0", async () => {
-			subject = createService(ClientService, "ark.devnet", container => {
+			subject = createService(ClientService, "ark.devnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
 				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 			});
@@ -71,7 +71,7 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0 for advanced search", async () => {
-			subject = createService(ClientService, "ark.devnet", container => {
+			subject = createService(ClientService, "ark.devnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
 				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 			});
@@ -113,7 +113,7 @@ describe("ClientService", () => {
 
 	describe("#wallets", () => {
 		it("should work with Core 2.0", async () => {
-			subject = createService(ClientService, "ark.mainnet", container => {
+			subject = createService(ClientService, "ark.mainnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
 				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 			});
@@ -129,7 +129,7 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0", async () => {
-			subject = createService(ClientService, "ark.devnet", container => {
+			subject = createService(ClientService, "ark.devnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
 				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 			});

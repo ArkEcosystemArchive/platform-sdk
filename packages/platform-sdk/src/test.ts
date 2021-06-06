@@ -22,10 +22,7 @@ export const createService = <T = any>({
 	schema: any;
 	service: any;
 }): T => {
-	config ??= new ConfigRepository(
-		{ network: manifest.id, httpClient },
-		schema,
-	);
+	config ??= new ConfigRepository({ network: manifest.id, httpClient }, schema);
 
 	config.set(ConfigKey.Network, manifest);
 
