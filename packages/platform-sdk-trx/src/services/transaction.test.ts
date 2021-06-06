@@ -14,8 +14,6 @@ beforeEach(async () => (subject = await TransactionService.__construct(createCon
 
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
 
 describe("TransactionService", () => {

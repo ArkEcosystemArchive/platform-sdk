@@ -18,8 +18,6 @@ beforeAll(async () => {
 	// nock.disableNetConnect();
 
 	subject = await ClientService.__construct(createConfig());
-
-	Test.bindBigNumberService(container);
 });
 
 afterEach(() => nock.cleanAll());

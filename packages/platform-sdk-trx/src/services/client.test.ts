@@ -21,8 +21,6 @@ beforeAll(() => {
 
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
 
 describe("ClientService", () => {

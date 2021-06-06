@@ -10,8 +10,6 @@ let subject: FeeService;
 
 beforeEach(async () => {
 	subject = await FeeService.__construct(createConfig());
-
-	Test.bindBigNumberService(container);
 });
 
 describe("FeeService", () => {

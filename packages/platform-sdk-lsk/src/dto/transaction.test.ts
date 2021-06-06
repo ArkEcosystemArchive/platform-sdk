@@ -12,8 +12,6 @@ let subject: TransactionData;
 
 beforeEach(() => {
 	subject = new TransactionData(Fixture.data[0]);
-
-	Test.bindBigNumberService(container);
 });
 
 describe("TransactionData", () => {

@@ -41,8 +41,6 @@ beforeEach(() => {
 		},
 		"",
 	);
-
-	Test.bindBigNumberService(container);
 });
 
 describe("SignedTransactionData", () => {

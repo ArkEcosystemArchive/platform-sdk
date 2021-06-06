@@ -16,8 +16,6 @@ afterEach(() => nock.cleanAll());
 
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
 
 describe("TransactionService", () => {
