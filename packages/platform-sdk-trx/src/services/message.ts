@@ -24,7 +24,9 @@ export class MessageService extends Services.AbstractMessageService {
 
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
-			const keys: Services.KeyPairDataTransferObject = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
+			const keys: Services.KeyPairDataTransferObject = await this.keyPairService.fromMnemonic(
+				input.signatory.signingKey(),
+			);
 			const { address } = await this.addressService.fromMnemonic(input.signatory.signingKey());
 
 			if (keys.privateKey === undefined) {

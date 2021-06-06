@@ -1,4 +1,4 @@
-import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import Tron from "@ledgerhq/hw-app-trx";
 
 @IoC.injectable()
