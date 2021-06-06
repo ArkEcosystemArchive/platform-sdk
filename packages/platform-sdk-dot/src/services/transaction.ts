@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
@@ -6,15 +6,14 @@ import { waitReady } from "@polkadot/wasm-crypto";
 
 import { createRpcClient } from "../helpers";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.ConfigRepository;
 	readonly #client: ApiPromise;
 	readonly #keyring: Keyring;
 
 	public constructor(config: Coins.ConfigRepository, client: ApiPromise) {
 		super();
 
-		this.#config = config;
 		this.#client = client;
 		this.#keyring = new Keyring({ type: "sr25519" });
 	}
@@ -37,7 +36,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 		}
 
-		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
+		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 		const keypair = this.#keyring.addFromMnemonic(input.signatory.signingKey());
 		const transaction = await this.#client.tx.balances.transfer(input.data.to, amount).signAsync(keypair);
 

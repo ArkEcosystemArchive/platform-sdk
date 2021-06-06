@@ -6,10 +6,6 @@ export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#bip44SessionPath = "";
 
-	public static async __construct(config: Coins.ConfigRepository): Promise<LedgerService> {
-		return new LedgerService();
-	}
-
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.create();
 	}

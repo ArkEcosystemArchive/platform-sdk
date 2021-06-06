@@ -1,13 +1,10 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { newPolkadotApp } from "@zondax/ledger-polkadot";
 
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport;
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<LedgerService> {
-		return new LedgerService();
-	}
 
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.create();
