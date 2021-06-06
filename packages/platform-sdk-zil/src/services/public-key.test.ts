@@ -1,12 +1,18 @@
+import { IoC } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
-import { mockWallet } from "../../../test/config";
+import { createService, mockWallet } from "../../test/helpers";
+import { BindingType } from "../constants";
 import { PublicKeyService } from "./public-key";
 
 let subject: PublicKeyService;
 
-beforeEach(async () => (subject = new PublicKeyService(mockWallet())));
+beforeEach(async () => {
+	subject = createService(PublicKeyService, undefined, (container: IoC.Container) => {
+		container.constant(BindingType.Wallet, mockWallet());
+	});
+});
 
 describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {

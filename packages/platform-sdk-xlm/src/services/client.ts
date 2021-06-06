@@ -16,9 +16,8 @@ export class ClientService extends Services.AbstractClientService {
 		op_no_issuer: "ERR_NO_ISSUER",
 	};
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		const network = config.get<Networks.NetworkManifest>("network").id;
 		this.#client = new Stellar.Server(
 			{ mainnet: "https://horizon.stellar.org", testnet: "https://horizon-testnet.stellar.org" }[
@@ -28,10 +27,6 @@ export class ClientService extends Services.AbstractClientService {
 		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
-		return new ClientService(config);
-	}
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
@@ -39,7 +34,7 @@ export class ClientService extends Services.AbstractClientService {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
 
-		return Helpers.createTransactionDataWithType(
+		return this.dataTransferObjectService.transaction(
 			{
 				...transaction,
 				operation: operations.records[0],

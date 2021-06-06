@@ -1,12 +1,19 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
+
 import { identity } from "../../test/fixtures/identity";
-import { mockWallet } from "../../../test/config";
 import { AddressService } from "./address";
+import { createService, mockWallet } from "../../test/helpers";
+import { BindingType } from "../constants";
 
 let subject: AddressService;
 
-beforeEach(async () => (subject = new AddressService(mockWallet())));
+beforeEach(async () => {
+	subject = createService(AddressService, undefined, (container: IoC.Container) => {
+		container.constant(BindingType.Wallet, mockWallet());
+	});
+});
 
 describe("Address", () => {
 	it("should generate an output from a mnemonic", async () => {

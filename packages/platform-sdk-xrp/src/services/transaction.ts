@@ -9,9 +9,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #http: HttpClient;
 	readonly #ripple: RippleAPI;
 
-	private constructor(config: Coins.ConfigRepository) {
-		super();
-
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#config = config;
 		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#ripple = new RippleAPI();

@@ -14,10 +14,6 @@ export class ClientService extends Services.AbstractClientService {
 		this.#client = new Connection(this.#host());
 	}
 
-	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
-		return new ClientService(config);
-	}
-
 	public async wallet(id: string): Promise<Contracts.WalletData> {
 		const response = await this.#client.getAccountInfo(new PublicKey(id));
 

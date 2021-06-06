@@ -10,7 +10,12 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 		broadcastData: any,
 	): Contracts.SignedTransactionData {
 		const signedTransaction = this.container.resolve(SignedTransactionData);
-		signedTransaction.configure(identifier, signedData, broadcastData);
+		signedTransaction.configure(
+			identifier,
+			signedData,
+			broadcastData,
+			this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals),
+		);
 
 		return signedTransaction;
 	}
