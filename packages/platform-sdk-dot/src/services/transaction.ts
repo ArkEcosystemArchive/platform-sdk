@@ -8,20 +8,14 @@ import { createRpcClient } from "../helpers";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #client: ApiPromise;
-	readonly #keyring: Keyring;
+	#client!: ApiPromise;
+	#keyring!: Keyring;
 
-	public constructor(config: Coins.ConfigRepository, client: ApiPromise) {
-		super();
-
-		this.#client = client;
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		// @TODO
+		// this.#client = await createRpcClient(this.configRepository);
 		this.#keyring = new Keyring({ type: "sr25519" });
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
-		await waitReady();
-
-		return new TransactionService(config, await createRpcClient(config));
 	}
 
 	public async __destruct(): Promise<void> {

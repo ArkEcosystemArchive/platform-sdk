@@ -1,6 +1,7 @@
 import "jest-extended";
 
 import { IoC, Signatories } from "@arkecosystem/platform-sdk";
+import { waitReady } from "@polkadot/wasm-crypto";
 
 import { identity } from "../../test/fixtures/identity";
 import { SignedTransactionData } from "../dto/signed-transaction";
@@ -14,6 +15,8 @@ import { createService } from "../../test/helpers";
 let subject: TransactionService;
 
 beforeAll(async () => {
+	await waitReady();
+
 	subject = createService(TransactionService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
