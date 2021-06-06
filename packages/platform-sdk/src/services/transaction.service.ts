@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 
+import { HttpClient } from "../../../platform-sdk-http/dist";
 import { ConfigRepository } from "../coins";
 import { RawTransactionData, SignedTransactionData } from "../contracts";
 import { NotImplemented } from "../exceptions";
@@ -29,6 +30,9 @@ export abstract class AbstractTransactionService implements Contract {
 
 	@inject(BindingType.DataTransferObjectService)
 	protected readonly dataTransferObjectService!: DataTransferObjectService;
+
+	@inject(BindingType.HttpClient)
+	protected readonly httpClient!: HttpClient;
 
 	public async __destruct(): Promise<void> {
 		//

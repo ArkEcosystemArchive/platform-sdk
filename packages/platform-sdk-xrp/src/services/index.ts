@@ -1,7 +1,6 @@
 export * from "./address";
 export * from "./client";
 export * from "./data-transfer-object";
-export * from "./extended-address";
 export * from "./fee";
 export * from "./key-pair";
 export * from "./known-wallets";

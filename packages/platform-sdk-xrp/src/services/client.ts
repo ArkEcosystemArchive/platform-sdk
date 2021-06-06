@@ -1,4 +1,4 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
@@ -6,16 +6,13 @@ import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 import { broadcastErrors } from "./client.helpers";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.ConfigRepository;
-	readonly #http: HttpClient;
-	readonly #decimals: number;
+	#decimals!: number;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-		this.#decimals = config.get<number>(Coins.ConfigKey.CurrencyDecimals);
+		this.#decimals = this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
@@ -103,7 +100,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	async #post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.post(Helpers.randomHostFromConfig(this.#config), {
+			await this.httpClient.post(Helpers.randomHostFromConfig(this.configRepository), {
 				jsonrpc: "2.0",
 				id: UUID.random(),
 				method,
