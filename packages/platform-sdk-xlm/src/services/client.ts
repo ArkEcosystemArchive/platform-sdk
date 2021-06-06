@@ -1,4 +1,4 @@
-import { Coins, Collections, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { WalletData } from "../dto";

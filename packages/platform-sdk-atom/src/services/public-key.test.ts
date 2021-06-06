@@ -1,10 +1,11 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
+
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
-import { PublicKeyService } from "./public-key";
 import { KeyPairService } from "./key-pair";
-import { IoC } from "@arkecosystem/platform-sdk";
+import { PublicKeyService } from "./public-key";
 
 let subject: PublicKeyService;
 

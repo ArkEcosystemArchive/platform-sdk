@@ -1,6 +1,4 @@
-import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
-
-import { KeyPairService } from "./key-pair";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 @IoC.injectable()
 export class PublicKeyService extends Services.AbstractPublicKeyService {

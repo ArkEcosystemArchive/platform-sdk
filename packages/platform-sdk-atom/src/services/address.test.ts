@@ -1,5 +1,6 @@
-import { IoC } from "@arkecosystem/platform-sdk";
 import "jest-extended";
+
+import { IoC } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";

@@ -1,5 +1,4 @@
-import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
@@ -116,13 +115,19 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.httpClient.get(`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`, query);
+		const response = await this.httpClient.get(
+			`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
+			query,
+		);
 
 		return response.json();
 	}
 
 	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.httpClient.post(`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`, body);
+		const response = await this.httpClient.post(
+			`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
+			body,
+		);
 
 		return response.json();
 	}

@@ -1,4 +1,4 @@
-import { Coins, Collections, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Networks, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Neon, { api } from "@cityofzion/neon-js";
 

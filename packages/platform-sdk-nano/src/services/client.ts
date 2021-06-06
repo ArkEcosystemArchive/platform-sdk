@@ -1,4 +1,4 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
