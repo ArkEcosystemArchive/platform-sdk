@@ -1,12 +1,11 @@
 import { Arr } from "@arkecosystem/platform-sdk-support";
 import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
-import { Config } from "./coins";
+import { ConfigRepository } from "./coins";
 import { NetworkHost, NetworkHostType } from "./networks";
 import { TransactionDataCollection } from "./collections";
 import { TransactionDataType } from "./contracts";
 import { AbstractTransactionData } from "./dto";
-import { BigNumberService, MetaPagination } from "./services";
-import { Container, ServiceKeys } from "./ioc";
+import { MetaPagination } from "./services";
 
 export const createTransactionDataWithType = (
 	transaction: unknown,
@@ -83,13 +82,13 @@ export const randomHost = (hosts: NetworkHost[], type: NetworkHostType): Network
 	Arr.randomElement(filterHosts(hosts, type));
 
 // DRY helpers for coin implementations
-export const filterHostsFromConfig = (config: Config, type: NetworkHostType): NetworkHost[] =>
+export const filterHostsFromConfig = (config: ConfigRepository, type: NetworkHostType): NetworkHost[] =>
 	filterHosts(config.get<NetworkHost[]>("network.hosts"), type);
 
-export const randomNetworkHostFromConfig = (config: Config, type: NetworkHostType = "full"): NetworkHost =>
+export const randomNetworkHostFromConfig = (config: ConfigRepository, type: NetworkHostType = "full"): NetworkHost =>
 	randomHost(config.get<NetworkHost[]>("network.hosts"), type);
 
-export const randomHostFromConfig = (config: Config, type: NetworkHostType = "full"): string =>
+export const randomHostFromConfig = (config: ConfigRepository, type: NetworkHostType = "full"): string =>
 	randomNetworkHostFromConfig(config, type).host;
 
 export const pluckAddress = (query): string => {
@@ -112,12 +111,8 @@ export const pluckAddress = (query): string => {
 	throw new Error("Failed to pluck any address.");
 };
 
-export const toRawUnit = (value: NumberLike, config: Config) => {
+export const toRawUnit = (value: NumberLike, config: ConfigRepository) => {
 	const decimals = config.get<number>("network.currency.decimals");
 	const denomination = BigNumber.make(`1${"0".repeat(decimals)}`); // poor man's bigint exponentiation
 	return denomination.times(value);
 };
-
-/* istanbul ignore next */
-export const bigNumber = (value: NumberLike, container: Container): BigNumber =>
-	container.get<BigNumberService>(ServiceKeys.BigNumberService).make(value);

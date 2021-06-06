@@ -2,12 +2,12 @@
 
 import Joi, { Schema } from "joi";
 
-import { Config } from "./coins";
-import { Container, ServiceKeys } from "./ioc";
+import { ConfigRepository } from "./coins";
+import { Container, BindingType } from "./ioc";
 import { BigNumberService } from "./services";
 
-export const createConfig = (config?: object, schema?: Schema): Config =>
-	new Config(
+export const createConfig = (config?: object, schema?: Schema): ConfigRepository =>
+	new ConfigRepository(
 		config || {
 			network: {
 				currency: {
@@ -25,8 +25,14 @@ export const createConfig = (config?: object, schema?: Schema): Config =>
 			}),
 	);
 
-export const bindBigNumberService = (container: Container, config?: Config): void => {
-	if (container.missing(ServiceKeys.BigNumberService)) {
-		container.constant(ServiceKeys.BigNumberService, new BigNumberService(config || createConfig()));
+export const bindBigNumberService = (container: Container, config?: ConfigRepository): void => {
+	if (config) {
+		container.constant(BindingType.ConfigRepository, config);
+	} else {
+		container.constant(BindingType.ConfigRepository, createConfig());
+	}
+
+	if (container.missing(BindingType.BigNumberService)) {
+		container.singleton(BindingType.BigNumberService, BigNumberService);
 	}
 };

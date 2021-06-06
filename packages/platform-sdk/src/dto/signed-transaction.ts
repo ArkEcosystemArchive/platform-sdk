@@ -4,15 +4,20 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { RawTransactionData } from "../contracts";
 
 export abstract class AbstractSignedTransactionData {
-	protected readonly decimals?: number;
+	protected identifier!: string;
+	protected signedData!: RawTransactionData;
+	protected broadcastData!: any;
+	protected decimals!: number | undefined;
 
-	public constructor(
-		protected identifier: string,
-		protected readonly signedData: RawTransactionData,
-		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-		protected readonly broadcastData: any,
+	public configure(
+		identifier: string,
+		signedData: RawTransactionData,
+		broadcastData: any,
 		decimals?: number | string,
 	) {
+		this.identifier = identifier;
+		this.signedData = signedData;
+		this.broadcastData = broadcastData;
 		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;
 	}
 

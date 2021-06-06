@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Config } from "./coins";
+import { ConfigRepository } from "./coins";
 import { TransactionDataCollection } from "./collections";
 import {
 	createTransactionDataCollectionWithType,
@@ -152,7 +152,7 @@ const configMock = ({
 			host: "https://explorer.ark.io",
 		},
 	],
-} as unknown) as Config;
+} as unknown) as ConfigRepository;
 
 test("filterHostsFromConfig", () => {
 	expect(filterHostsFromConfig(configMock, "explorer")).toEqual([
@@ -204,7 +204,7 @@ describe("pluckAddress", () => {
 });
 
 test("#toRawUnit", () => {
-	const configMock = ({ get: () => 8 } as unknown) as Config;
+	const configMock = ({ get: () => 8 } as unknown) as ConfigRepository;
 
 	expect(toRawUnit(42, configMock).toNumber()).toBe(4_200_000_000);
 });

@@ -1,106 +1,104 @@
 /* istanbul ignore file */
 
-import { CoinServices, CoinSpec, Config } from "../coins";
-import { BigNumberService } from "../services/big-number.service";
+import { inject, injectable } from "inversify";
+
+import { CoinServices, CoinSpec, ConfigRepository } from "../coins";
+import {
+	AddressService,
+	BigNumberService,
+	ClientService,
+	DataTransferObjectService,
+	ExtendedAddressService,
+	FeeService,
+	KeyPairService,
+	KnownWalletService,
+	LedgerService,
+	LinkService,
+	MessageService,
+	MultiSignatureService,
+	PrivateKeyService,
+	PublicKeyService,
+	SignatoryService,
+	TransactionService,
+	WalletDiscoveryService,
+	WIFService,
+} from "../services";
 import { Container } from "./container";
-import { ServiceKeys, ServiceList } from "./service-provider.contract";
+import { BindingType, ServiceList } from "./service-provider.contract";
 
+@injectable()
 export abstract class AbstractServiceProvider {
-	readonly #coin: CoinSpec;
-	readonly #config: Config;
+	readonly #coin!: CoinSpec;
 
-	public constructor(coin: CoinSpec, config: Config) {
-		this.#coin = coin;
-		this.#config = config;
-	}
-
-	public abstract make(): Promise<CoinServices>;
+	@inject(BindingType.ConfigRepository)
+	protected readonly configRepository!: ConfigRepository;
 
 	protected coin(): CoinSpec {
 		return this.#coin;
 	}
 
-	protected config(): Config {
-		return this.#config;
+	protected config(): ConfigRepository {
+		return this.configRepository;
 	}
 
-	protected async compose(serviceList: ServiceList, container: Container): Promise<CoinServices> {
-		const services: CoinServices = await this.makeServices(serviceList);
-
-		this.bindServices(services, container);
-
-		return services;
-	}
-
-	protected async makeServices(services: ServiceList): Promise<CoinServices> {
+	protected async compose(services: ServiceList, container: Container): Promise<CoinServices> {
 		const [
+			address,
 			client,
 			dataTransferObject,
+			extendedAddress,
 			fee,
-			identity,
+			keyPair,
 			knownWallets,
 			ledger,
 			link,
 			message,
 			multiSignature,
+			privateKey,
+			publicKey,
 			signatory,
 			transaction,
 			walletDiscovery,
+			wif,
 		] = await Promise.all<any>([
-			services.ClientService.__construct(this.#config),
-			services.DataTransferObjectService.__construct(this.#config),
-			services.FeeService.__construct(this.#config),
-			services.IdentityService.__construct(this.#config),
-			services.KnownWalletService.__construct(this.#config),
-			services.LedgerService.__construct(this.#config),
-			services.LinkService.__construct(this.#config),
-			services.MessageService.__construct(this.#config),
-			services.MultiSignatureService.__construct(this.#config),
-			services.SignatoryService.__construct(this.#config),
-			services.TransactionService.__construct(this.#config),
-			services.WalletDiscoveryService.__construct(this.#config),
+			container.resolve<AddressService>(services.AddressService),
+			container.resolve<ClientService>(services.ClientService),
+			container.resolve<DataTransferObjectService>(services.DataTransferObjectService),
+			container.resolve<ExtendedAddressService>(services.ExtendedAddressService),
+			container.resolve<FeeService>(services.FeeService),
+			container.resolve<KeyPairService>(services.KeyPairService),
+			container.resolve<KnownWalletService>(services.KnownWalletService),
+			container.resolve<LedgerService>(services.LedgerService),
+			container.resolve<LinkService>(services.LinkService),
+			container.resolve<MessageService>(services.MessageService),
+			container.resolve<MultiSignatureService>(services.MultiSignatureService),
+			container.resolve<PrivateKeyService>(services.PrivateKeyService),
+			container.resolve<PublicKeyService>(services.PublicKeyService),
+			container.resolve<SignatoryService>(services.SignatoryService),
+			container.resolve<TransactionService>(services.TransactionService),
+			container.resolve<WalletDiscoveryService>(services.WalletDiscoveryService),
+			container.resolve<WIFService>(services.WIFService),
 		]);
 
 		return {
-			bigNumber: new BigNumberService(this.#config),
+			address,
+			bigNumber: container.resolve(BigNumberService),
 			client,
 			dataTransferObject,
+			extendedAddress,
 			fee,
-			identity,
+			keyPair,
 			knownWallets,
 			ledger,
 			link,
 			message,
 			multiSignature,
+			privateKey,
+			publicKey,
 			signatory,
 			transaction,
 			walletDiscovery,
+			wif,
 		};
-	}
-
-	protected bindServices(services: CoinServices, container: Container): void {
-		const bindings: Record<symbol, any> = {
-			[ServiceKeys.BigNumberService]: services.bigNumber,
-			[ServiceKeys.ClientService]: services.client,
-			[ServiceKeys.DataTransferObjectService]: services.dataTransferObject,
-			[ServiceKeys.FeeService]: services.fee,
-			[ServiceKeys.IdentityService]: services.identity,
-			[ServiceKeys.KnownWalletService]: services.knownWallets,
-			[ServiceKeys.LedgerService]: services.ledger,
-			[ServiceKeys.LinkService]: services.link,
-			[ServiceKeys.MessageService]: services.message,
-			[ServiceKeys.MultiSignatureService]: services.multiSignature,
-			[ServiceKeys.SignatoryService]: services.signatory,
-			[ServiceKeys.TransactionService]: services.transaction,
-			[ServiceKeys.WalletDiscoveryService]: services.walletDiscovery,
-		};
-
-		for (const [key, value] of Object.entries(bindings)) {
-			if (container.has(key)) {
-				container.unbind(key);
-			}
-
-			container.constant(key, value);
-		}
 	}
 }

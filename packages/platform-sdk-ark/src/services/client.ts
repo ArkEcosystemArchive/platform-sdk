@@ -1,4 +1,4 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import dotify from "node-dotify";
 
@@ -11,24 +11,16 @@ interface BroadcastError {
 	message: string;
 }
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
-	readonly #http: HttpClient;
-	readonly #network: string;
-	readonly #decimals: number;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
-	private constructor(config: Coins.Config) {
-		super();
+	@IoC.inject(IoC.BindingType.DataTransferObjectService)
+	private readonly dataTransferObjectService!: Services.DataTransferObjectService;
 
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-		this.#network = config.get<string>("network.id");
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
-	}
+	@IoC.inject(IoC.BindingType.HttpClient)
+	private readonly httpClient!: HttpClient;
 
 	public async transaction(
 		id: string,
@@ -36,7 +28,9 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.#get(`transactions/${id}`);
 
-		return Helpers.createTransactionDataWithType(body.data, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(body.data, TransactionDTO).withDecimals(
+			this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
+		);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -44,11 +38,11 @@ export class ClientService extends Services.AbstractClientService {
 			? await this.#get("transactions", this.#createSearchParams(query))
 			: await this.#post("transactions/search", this.#createSearchParams(query));
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			response.data,
 			this.#createMetaPagination(response),
 			TransactionDTO,
-			this.#decimals,
+			this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
 		);
 	}
 
@@ -125,14 +119,17 @@ export class ClientService extends Services.AbstractClientService {
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.get(`${Helpers.randomHostFromConfig(this.#config)}/${path}`, query?.searchParams)
+			await this.httpClient.get(
+				`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
+				query?.searchParams,
+			)
 		).json();
 	}
 
 	async #post(path: string, { body, searchParams }: { body; searchParams? }): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.post(
-				`${Helpers.randomHostFromConfig(this.#config)}/${path}`,
+			await this.httpClient.post(
+				`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
 				body,
 				searchParams || undefined,
 			)
@@ -245,6 +242,6 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	#isUpcoming(): boolean {
-		return this.#network === "ark.devnet";
+		return this.configRepository.get<string>("network.id") === "ark.devnet";
 	}
 }

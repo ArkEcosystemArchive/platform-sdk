@@ -18,6 +18,7 @@ importers:
       inversify: 5.1.1
       joi: 17.4.0
       node-emoji: 1.10.0
+      onetime: 5.0.0
       reflect-metadata: 0.1.13
       type-fest: 1.0.2
     devDependencies:
@@ -89,6 +90,7 @@ importers:
       nock: ^13.0.11
       node-emoji: ^1.10.0
       npm-check-updates: ^11.5.6
+      onetime: ~5.0.0
       prettier: ^2.2.1
       reflect-metadata: ~0.1.13
       rimraf: ^3.0.2
@@ -13164,6 +13166,14 @@ packages:
       wrappy: 1.0.2
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
+  /onetime/5.0.0:
+    dependencies:
+      mimic-fn: 2.1.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-0RaJAdwj6KznGJJdJNHmjCUmtsURmC1SLoTzoa9qI5LY8hODas/vjVlEUL19xaSSZfualrMh4myK0dNhVSgDJA==
   /onetime/5.1.2:
     dependencies:
       mimic-fn: 2.1.0

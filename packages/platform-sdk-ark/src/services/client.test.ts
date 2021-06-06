@@ -1,24 +1,27 @@
+import { IoC } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
+import { createConfig, createService } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
-
-afterEach(() => nock.cleanAll());
-
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
+
+beforeEach(async () => {
+	subject = createService(ClientService, undefined, container => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
+});
+
+afterEach(() => nock.cleanAll());
 
 describe("ClientService", () => {
 	describe("#transaction", () => {
@@ -37,7 +40,10 @@ describe("ClientService", () => {
 
 	describe("#transactions", () => {
 		it("should work with Core 2.0", async () => {
-			subject = await ClientService.__construct(createConfig({ network: "ark.mainnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.mainnet" }), container => {
+				container.constant(IoC.BindingType.Container, container);
+				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+			});
 
 			nock(/.+/)
 				.post("/api/transactions/search")
@@ -50,7 +56,10 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0", async () => {
-			subject = await ClientService.__construct(createConfig({ network: "ark.devnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.devnet" }), container => {
+				container.constant(IoC.BindingType.Container, container);
+				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+			});
 
 			nock(/.+/)
 				.get("/api/transactions")
@@ -64,7 +73,10 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0 for advanced search", async () => {
-			subject = await ClientService.__construct(createConfig({ network: "ark.devnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.devnet" }), container => {
+				container.constant(IoC.BindingType.Container, container);
+				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+			});
 
 			nock(/.+/)
 				.get("/api/transactions")
@@ -103,7 +115,10 @@ describe("ClientService", () => {
 
 	describe("#wallets", () => {
 		it("should work with Core 2.0", async () => {
-			subject = await ClientService.__construct(createConfig({ network: "ark.mainnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.mainnet" }), container => {
+				container.constant(IoC.BindingType.Container, container);
+				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+			});
 
 			nock(/.+/)
 				.post("/api/wallets/search")
@@ -116,7 +131,10 @@ describe("ClientService", () => {
 		});
 
 		it("should work with Core 3.0", async () => {
-			subject = await ClientService.__construct(createConfig({ network: "ark.devnet" }));
+			subject = createService(ClientService, createConfig({ network: "ark.devnet" }), container => {
+				container.constant(IoC.BindingType.Container, container);
+				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+			});
 
 			nock(/.+/)
 				.get("/api/wallets")

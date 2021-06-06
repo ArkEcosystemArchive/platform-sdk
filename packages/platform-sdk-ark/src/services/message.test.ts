@@ -3,13 +3,13 @@ import "jest-extended";
 import { Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfigWithNetwork } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { MessageService } from "./message";
 
 let subject: MessageService;
 
 beforeEach(async () => {
-	subject = await MessageService.__construct(createConfigWithNetwork());
+	subject = createService(MessageService);
 });
 
 describe("MessageService", () => {

@@ -1,7 +1,7 @@
 import { get, has, set } from "dot-prop";
 import { Schema } from "joi";
 
-export class Config {
+export class ConfigRepository {
 	readonly #config: Record<string, any>;
 
 	public constructor(config: object, schema: Schema) {
