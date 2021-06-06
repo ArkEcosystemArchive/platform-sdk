@@ -12,7 +12,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	readonly #client: ApiPromise;
 	readonly #keyring: Keyring;
 
-	public constructor(config: Coins.Config, client: ApiPromise) {
+	public constructor(config: Coins.ConfigRepository, client: ApiPromise) {
 		super();
 
 		this.#config = config;

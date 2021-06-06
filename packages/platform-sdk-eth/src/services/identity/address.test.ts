@@ -1,7 +1,7 @@
 import "jest-extended";
 import { AddressService } from "./address";
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../../test/helpers";
+import { createService } from "../../test/helpers";
 
 let subject: AddressService;
 

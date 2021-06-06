@@ -22,7 +22,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		},
 	};
 
-	private constructor(config: Coins.Config, identity: IdentityService) {
+	private constructor(config: Coins.ConfigRepository, identity: IdentityService) {
 		super();
 
 		const networkConfig = config.get<Networks.NetworkManifest>("network");

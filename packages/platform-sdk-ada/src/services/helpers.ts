@@ -14,7 +14,7 @@ import { addressFromAccountExtPublicKey, deriveAddress, deriveChangeKey, deriveS
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 
-export const usedAddressesForAccount = async (config: Coins.Config, accountPublicKey: string) => {
+export const usedAddressesForAccount = async (config: Coins.ConfigRepository, accountPublicKey: string) => {
 	const networkId: string = config.get<string>("network.meta.networkId");
 	const usedSpendAddresses: Set<string> = new Set<string>();
 	const usedChangeAddresses: Set<string> = new Set<string>();

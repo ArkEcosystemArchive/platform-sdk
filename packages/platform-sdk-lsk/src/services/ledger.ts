@@ -18,7 +18,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport!: DposLedger;
 
-	private constructor(config: Coins.Config, identity: Services.IdentityService, client: Services.ClientService) {
+	private constructor(config: Coins.ConfigRepository, identity: Services.IdentityService, client: Services.ClientService) {
 		super();
 
 		this.#config = config;
