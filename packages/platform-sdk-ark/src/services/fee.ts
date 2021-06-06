@@ -46,6 +46,8 @@ export class FeeService extends Services.AbstractFeeService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.httpClient.get(`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`, query)).json();
+		return (
+			await this.httpClient.get(`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`, query)
+		).json();
 	}
 }

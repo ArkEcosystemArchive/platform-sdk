@@ -7,7 +7,6 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
 
 import { Bindings } from "../contracts";
-import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
 
 @IoC.injectable()
@@ -227,13 +226,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 			.toString();
 	}
 
-    @IoC.postConstruct()
-    private onPostConstruct(): void {
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
 		// @ts-ignore
 		this.#multiSignatureSigner = new MultiSignatureSigner(this.packageCrypto, this.packageHeight);
 		this.#configCrypto = { crypto: this.packageCrypto, height: this.packageHeight };
-    }
+	}
 
 	async #createFromData(
 		type: string,
@@ -341,8 +340,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				).map(({ publicKey }) => publicKey);
 
 				transaction.senderPublicKey(
-					(await this.publicKeyService.fromMultiSignature(signingKeys.length, senderPublicKeys))
-						.publicKey,
+					(await this.publicKeyService.fromMultiSignature(signingKeys.length, senderPublicKeys)).publicKey,
 				);
 
 				for (let i = 0; i < signingKeys.length; i++) {

@@ -3,8 +3,8 @@ import "jest-extended";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { SignedTransactionData } from "./signed-transaction";
 import { createService } from "../../test/helpers";
+import { SignedTransactionData } from "./signed-transaction";
 
 let subject: SignedTransactionData;
 
@@ -22,7 +22,7 @@ beforeAll(() => {
 			recipientId: "D6Z26L69gdk9qYmTv5uzk3uGepigtHY4ax",
 		},
 		"",
-	)
+	);
 });
 
 describe("SignedTransactionData", () => {

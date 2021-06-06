@@ -1,6 +1,6 @@
-import { Coins, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import * as DTO from "../dto";
+import { SignedTransactionData } from "../dto";
 
 @IoC.injectable()
 export class DataTransferObjectService extends Services.AbstractDataTransferObjectService {
@@ -9,8 +9,13 @@ export class DataTransferObjectService extends Services.AbstractDataTransferObje
 		signedData: Contracts.RawTransactionData,
 		broadcastData: any,
 	): Contracts.SignedTransactionData {
-		const signedTransaction = this.container.resolve(DTO.SignedTransactionData)
-		signedTransaction.configure(identifier, signedData, broadcastData, this.configRepository.get(Coins.ConfigKey.CurrencyDecimals));
+		const signedTransaction = this.container.resolve(SignedTransactionData);
+		signedTransaction.configure(
+			identifier,
+			signedData,
+			broadcastData,
+			this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
+		);
 
 		return signedTransaction;
 	}

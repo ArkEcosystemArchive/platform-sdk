@@ -29,8 +29,8 @@ export class KnownWalletService extends Services.AbstractKnownWalletService {
 		}
 	}
 
-    @IoC.postConstruct()
-    private onPostConstruct(): void {
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#source = this.configRepository.getLoose<string>(Coins.ConfigKey.KnownWallets);
 	}
 }

@@ -23,10 +23,7 @@ export abstract class AbstractDataTransferObjectService implements DataTransferO
 		throw new NotImplemented(this.constructor.name, this.signedTransaction.name);
 	}
 
-	public transaction(
-		transaction: unknown,
-		dtos: Record<string, any>,
-	): TransactionDataType & AbstractTransactionData {
+	public transaction(transaction: unknown, dtos: Record<string, any>): TransactionDataType & AbstractTransactionData {
 		const instance: TransactionDataType = this.container.resolve<any>(dtos.TransactionData).configure(transaction);
 
 		if (instance.isDelegateRegistration()) {

@@ -28,9 +28,9 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.#get(`transactions/${id}`);
 
-		return this.dataTransferObjectService.transaction(body.data, TransactionDTO).withDecimals(
-			this.configRepository.get(Coins.ConfigKey.CurrencyDecimals),
-		);
+		return this.dataTransferObjectService
+			.transaction(body.data, TransactionDTO)
+			.withDecimals(this.configRepository.get(Coins.ConfigKey.CurrencyDecimals));
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
