@@ -1,13 +1,17 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 
 import { ledger } from "../../test/fixtures/ledger";
 import { createService } from "../../test/helpers";
+import { AddressService } from "./address";
+import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
-		const transport = createService(LedgerService, undefined, (container) => {
+	const transport = createService(LedgerService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.ClientService, ClientService);

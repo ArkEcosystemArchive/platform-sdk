@@ -8,10 +8,6 @@ import { result as fixture } from "../../test/fixtures/client/transaction.json";
 import { container } from "../container";
 import { TransactionData } from "./transaction";
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
-});
-
 describe("TransactionData", () => {
 	it("should succeed", async () => {
 		const result = new TransactionData(fixture);

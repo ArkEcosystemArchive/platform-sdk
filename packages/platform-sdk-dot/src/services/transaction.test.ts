@@ -10,10 +10,6 @@ import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
-});
-
 beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
 
 jest.setTimeout(10000);

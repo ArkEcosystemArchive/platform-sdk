@@ -12,10 +12,6 @@ let subject: TransactionService;
 
 beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
-});
-
 describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it("should sign transaction", async () => {

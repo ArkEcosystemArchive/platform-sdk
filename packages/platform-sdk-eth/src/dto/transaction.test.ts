@@ -11,10 +11,6 @@ let subject: TransactionData;
 
 beforeEach(() => (subject = new TransactionData(Fixture)));
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
-});
-
 describe("TransactionData", () => {
 	test("#id", () => {
 		expect(subject.id()).toBe("0xf6ad7f16653a2070f36c5f9c243acb30109da76658b54712745136d8e8236eae");
