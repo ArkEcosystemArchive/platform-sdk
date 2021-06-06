@@ -1,21 +1,18 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { ApiPromise } from "@polkadot/api";
 
 import { WalletData } from "../dto";
 import { createRpcClient } from "../helpers";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #client: ApiPromise;
+	#client!: ApiPromise;
 
-	private constructor(client: ApiPromise) {
-		super();
-
-		this.#client = client;
+	@IoC.postConstruct()
+	private async onPostConstruct(): Promise<void> {
+		this.#client = await createRpcClient(this.configRepository);
 	}
 
-	public static async __construct(config: Coins.ConfigRepository): Promise<ClientService> {
-		return new ClientService(await createRpcClient(config));
-	}
 
 	public async __destruct(): Promise<void> {
 		await this.#client.disconnect();

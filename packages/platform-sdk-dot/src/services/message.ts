@@ -1,22 +1,19 @@
-import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Keyring } from "@polkadot/keyring";
 import { hexToU8a, stringToU8a, u8aToHex } from "@polkadot/util";
 import { signatureVerify } from "@polkadot/util-crypto";
-import { waitReady } from "@polkadot/wasm-crypto";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	readonly #keyring: Keyring;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
+
+	#keyring!: Keyring;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#keyring = new Keyring({ type: "sr25519" });
-		this.#keyring.setSS58Format(config.get("network.meta.networkId"));
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
-		await waitReady();
-
-		return new MessageService(config);
+		this.#keyring.setSS58Format(this.configRepository.get("network.meta.networkId"));
 	}
 
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {

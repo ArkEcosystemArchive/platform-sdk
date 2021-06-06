@@ -1,15 +1,19 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { decodeAddress, encodeAddress, Keyring } from "@polkadot/keyring";
 import { hexToU8a, isHex } from "@polkadot/util";
 import { createKeyMulti } from "@polkadot/util-crypto";
 
+@IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
-	readonly #keyring: Keyring;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
+
+	#keyring!: Keyring;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#keyring = new Keyring({ type: "sr25519" });
-		this.#keyring.setSS58Format(config.get("network.meta.networkId"));
+		this.#keyring.setSS58Format(this.configRepository.get("network.meta.networkId"));
 	}
 
 	public async fromMnemonic(

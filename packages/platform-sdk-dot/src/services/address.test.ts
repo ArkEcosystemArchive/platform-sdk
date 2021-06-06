@@ -10,7 +10,7 @@ let subject: AddressService;
 beforeEach(async () => {
 	await cryptoWaitReady();
 
-	subject = new AddressService(createConfig());
+	subject = createService(AddressService);
 });
 
 describe("Address", () => {

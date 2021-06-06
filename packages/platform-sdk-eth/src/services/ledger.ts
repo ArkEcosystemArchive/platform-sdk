@@ -5,10 +5,6 @@ export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport!: Ethereum;
 
-	public static async __construct(config: Coins.ConfigRepository): Promise<LedgerService> {
-		return new LedgerService();
-	}
-
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
 		this.#transport = new Ethereum(this.#ledger);
