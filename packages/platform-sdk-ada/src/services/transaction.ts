@@ -12,10 +12,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
-		return new TransactionService(config);
-	}
-
 	public async transfer(
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,

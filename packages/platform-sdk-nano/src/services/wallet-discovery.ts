@@ -1,7 +1,8 @@
-import { Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { deriveAccount, deriveLegacyAccount } from "./identity/helpers";
+import { deriveAccount, deriveLegacyAccount } from "./helpers";
 
+@IoC.injectable()
 export class WalletDiscoveryService implements Services.AbstractWalletDiscoveryService {
 	//
 

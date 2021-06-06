@@ -1,9 +1,10 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import * as nanocurrency from "nanocurrency";
 import { tools } from "nanocurrency-web";
 
 import { deriveAccount } from "./helpers";
 
+@IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(
 		mnemonic: string,

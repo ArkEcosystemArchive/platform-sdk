@@ -24,10 +24,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#keychain = useKeychain(config);
 	}
 
-	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
-		return new TransactionService(config);
-	}
-
 	public async transfer(
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,

@@ -1,6 +1,7 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { deriveAccount } from "./helpers";
 
+@IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
 	public async fromMnemonic(
 		mnemonic: string,
