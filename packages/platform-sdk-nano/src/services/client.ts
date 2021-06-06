@@ -20,7 +20,7 @@ export class ClientService extends Services.AbstractClientService {
 		const options = { head: query.cursor || undefined };
 		const { history, previous } = await this.#client.accountHistory(account, count, options);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			Object.values(history).map((transaction: any) => {
 				transaction._origin = account;
 

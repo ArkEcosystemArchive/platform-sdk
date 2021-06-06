@@ -18,7 +18,7 @@ export class ClientService extends Services.AbstractClientService {
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { data } = await this.#get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			data.transactions,
 			{
 				prev: undefined,

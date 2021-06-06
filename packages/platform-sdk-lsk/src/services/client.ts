@@ -46,7 +46,7 @@ export class ClientService extends Services.AbstractClientService {
 		// @ts-ignore
 		const result = await this.#get("transactions", this.#createSearchParams({ sort: "timestamp:desc", ...query }));
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			result.data,
 			this.#createPagination(result.data, result.meta),
 			TransactionDTO,

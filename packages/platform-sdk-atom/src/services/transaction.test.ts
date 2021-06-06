@@ -1,9 +1,15 @@
 import "jest-extended";
 
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
+import { AddressService } from "./address";
+import { DataTransferObjectService } from "./data-transfer-object";
+import { KeyPairService } from "./key-pair";
+import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
+import { ClientService } from "./client";
+import { createService } from "../../test/helpers";
 
 let subject: TransactionService;
 
@@ -11,6 +17,7 @@ beforeAll(async () => {
 	subject = createService(TransactionService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.ClientService, ClientService);
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);

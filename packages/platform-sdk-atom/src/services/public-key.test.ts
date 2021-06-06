@@ -2,39 +2,29 @@ import "jest-extended";
 
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
-import { AddressService } from "./address";
+import { PublicKeyService } from "./public-key";
+import { KeyPairService } from "./key-pair";
+import { IoC } from "@arkecosystem/platform-sdk";
 
-let subject: AddressService;
+let subject: PublicKeyService;
 
 beforeEach(async () => {
-	subject = createService(AddressService);
+	subject = createService(PublicKeyService, undefined, (container: IoC.Container) => {
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+	});
 });
 
-describe("Address", () => {
+describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toMatchInlineSnapshot(`
-		Object {
-		  "address": "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
-		  "path": "m/44'/118'/0'/0/0",
-		  "type": "bip44",
-		}
-	`);
+		expect(result).toEqual({ publicKey: identity.publicKey });
 	});
 
 	it("should generate an output from a multiSignature", async () => {
 		await expect(
 			subject.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
 		).rejects.toThrow(/is not implemented/);
-	});
-
-	it("should generate an output from a publicKey", async () => {
-		await expect(subject.fromPublicKey(identity.publicKey)).rejects.toThrow(/is not implemented/);
-	});
-
-	it("should generate an output from a privateKey", async () => {
-		await expect(subject.fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not implemented/);
 	});
 
 	it("should generate an output from a wif", async () => {

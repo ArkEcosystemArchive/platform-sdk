@@ -46,7 +46,7 @@ export class ClientService extends Services.AbstractClientService {
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { records, next, prev } = await this.#client.payments().forAccount(query.address).call();
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			records.filter((transaction) => transaction.type === "payment"),
 			{
 				prev,

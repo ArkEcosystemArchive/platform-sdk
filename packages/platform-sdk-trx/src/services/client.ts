@@ -67,7 +67,7 @@ export class ClientService extends Services.AbstractClientService {
 			await this.#client.get(`${this.#peer}/v1/accounts/${Helpers.pluckAddress(query)}/transactions`, payload)
 		).json();
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			response.data.filter(({ raw_data }) => raw_data.contract[0].type === "TransferContract"),
 			{
 				prev: undefined,

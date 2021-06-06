@@ -51,7 +51,7 @@ export class ClientService extends Services.AbstractClientService {
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const transactions: unknown[] = (await this.#get(`wallets/${query.address}/transactions`)) as any;
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions,
 			// TODO: implement pagination on server
 			{
