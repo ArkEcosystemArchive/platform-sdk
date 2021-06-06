@@ -1,5 +1,5 @@
-import { Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 
-export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryService {
-	//
+@IoC.injectable()
+export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryService {	//
 }

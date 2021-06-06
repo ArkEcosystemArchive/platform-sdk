@@ -1,7 +1,8 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { deriveKeyPair, deriveWallet } from "./utils";
 
+@IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;

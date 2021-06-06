@@ -1,20 +1,10 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { api, wallet } from "@cityofzion/neon-js";
 import { v4 as uuidv4 } from "uuid";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #decimals: number;
-
-	@IoC.postConstruct()
-	private onPostConstruct(): void {
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
-		return new TransactionService(config);
-	}
-
 	public async transfer(
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,
@@ -34,7 +24,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 				uuidv4(),
 				signedData,
 				JSON.stringify(signedTransaction),
-				this.#decimals,
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

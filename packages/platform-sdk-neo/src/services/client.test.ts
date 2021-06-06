@@ -1,5 +1,6 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
@@ -8,6 +9,7 @@ import { createService } from "../../test/helpers";
 import { SignedTransactionData } from "../dto";
 import { TransactionData } from "../dto/transaction";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
@@ -72,7 +74,7 @@ describe("ClientService", () => {
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
-			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload", "")]);
+			const result = await subject.broadcast([createService(SignedTransactionData).configure("id", "transactionPayload", "")]);
 
 			expect(result).toEqual({
 				accepted: ["0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652"],
@@ -86,7 +88,7 @@ describe("ClientService", () => {
 				.post("/api/transactions")
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
-			const result = await subject.broadcast([new SignedTransactionData("id", "transactionPayload", "")]);
+			const result = await subject.broadcast([createService(SignedTransactionData).configure("id", "transactionPayload", "")]);
 
 			expect(result).toEqual({
 				accepted: [],

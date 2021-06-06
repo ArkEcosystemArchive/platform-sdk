@@ -1,7 +1,8 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { deriveWallet } from "./utils";
 
+@IoC.injectable()
 export class WIFService extends Services.AbstractWIFService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
