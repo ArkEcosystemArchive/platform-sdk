@@ -51,7 +51,7 @@ export class ClientService extends Services.AbstractClientService {
 		const prevPage = response.page_number > 1 ? basePage - 1 : undefined;
 		const nextPage = response.total_pages > 1 ? basePage + 1 : undefined;
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			response.entries,
 			{
 				prev: `${this.#peer}/${basePath}/${prevPage}`,

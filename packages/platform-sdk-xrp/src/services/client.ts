@@ -40,7 +40,7 @@ export class ClientService extends Services.AbstractClientService {
 			},
 		]);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions.map(({ tx }) => tx),
 			{
 				prev: undefined,

@@ -1,4 +1,4 @@
-import { Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { SignedTransactionData } from "../dto";
 

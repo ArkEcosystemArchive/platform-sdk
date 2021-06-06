@@ -1,28 +1,17 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { secp256k1 } from "bcrypto";
 
 import { HashAlgorithms } from "../utils/hash";
-import { IdentityService } from "./identity";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	readonly #identityService: IdentityService;
-
-	public constructor(opts: Contracts.KeyValuePair) {
-		super();
-
-		this.#identityService = opts.identityService;
-	}
-
-	public static async __construct(config: Coins.ConfigRepository): Promise<MessageService> {
-		return new MessageService({ identityService: await IdentityService.__construct(config) });
-	}
+	@IoC.inject(IoC.BindingType.KeyPairService)
+	protected readonly keyPairService!: Services.KeyPairService;
 
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
-			const { publicKey, privateKey } = await this.#identityService
-				.keyPair()
-				.fromMnemonic(input.signatory.signingKey());
+			const { publicKey, privateKey } = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
 
 			return {
 				message: input.message,

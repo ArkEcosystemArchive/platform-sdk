@@ -1,7 +1,6 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 
+@IoC.injectable()
 export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryService {
-	public static async __construct(config: Coins.ConfigRepository): Promise<WalletDiscoveryService> {
-		return new WalletDiscoveryService();
-	}
+	//
 }

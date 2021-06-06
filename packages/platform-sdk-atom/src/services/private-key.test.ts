@@ -3,11 +3,15 @@ import "jest-extended";
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
 import { PrivateKeyService } from "./private-key";
+import { KeyPairService } from "./key-pair";
+import { IoC } from "@arkecosystem/platform-sdk";
 
 let subject: PrivateKeyService;
 
 beforeEach(async () => {
-	subject = createService(PrivateKeyService);
+	subject = createService(PrivateKeyService, undefined, (container: IoC.Container) => {
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+	});
 });
 
 describe("PrivateKey", () => {

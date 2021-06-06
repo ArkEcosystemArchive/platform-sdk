@@ -1,18 +1,21 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { KeyPairService } from "./key-pair";
 
+@IoC.injectable()
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
+
+	@IoC.inject(IoC.BindingType.KeyPairService)
+	protected readonly keyPairService!: Services.KeyPairService;
 
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
-			const keys = new KeyPairService(this.#config);
-			const { privateKey } = await keys.fromMnemonic(mnemonic);
+			const { privateKey } = await this.keyPairService.fromMnemonic(mnemonic);
 
 			if (!privateKey) {
 				throw new Error("Failed to derive the private key.");

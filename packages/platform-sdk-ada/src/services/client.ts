@@ -37,7 +37,7 @@ export class ClientService extends Services.AbstractClientService {
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions,
 			{
 				prev: undefined,

@@ -1,33 +1,21 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 
 import { createSignedTransactionData } from "../utils/crypto";
-import { ClientService } from "./client";
-import { IdentityService } from "./identity";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #client;
-	readonly #identity;
-	readonly #networkId;
-	readonly #decimals;
+	@IoC.inject(IoC.BindingType.ClientService)
+	protected readonly clientService!: Services.ClientService;
 
-	private constructor(opts: Contracts.KeyValuePair) {
-		super();
+	@IoC.inject(IoC.BindingType.AddressService)
+	protected readonly addressService!: Services.AddressService;
 
-		this.#client = opts.client;
-		this.#identity = opts.identity;
-		this.#networkId = opts.network.meta.networkId;
-		this.#decimals = opts.decimals;
-	}
+	@IoC.inject(IoC.BindingType.KeyPairService)
+	protected readonly keyPairService!: Services.KeyPairService;
 
-	public static async __construct(config: Coins.ConfigRepository): Promise<TransactionService> {
-		return new TransactionService({
-			...config.all(),
-			client: await ClientService.__construct(config),
-			identity: await IdentityService.__construct(config),
-			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
-		});
-	}
+	#networkId;
+	#decimals;
 
 	public async transfer(
 		input: Services.TransferInput,
@@ -38,12 +26,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 				throw new Error("No mnemonic provided.");
 			}
 
-			const { address: senderAddress } = await this.#identity
-				.address()
-				.fromMnemonic(input.signatory.signingKey());
-			const keyPair = await this.#identity.keyPair().fromMnemonic(input.signatory.signingKey());
+			const { address: senderAddress } = await this.addressService.fromMnemonic(input.signatory.signingKey());
+			const keyPair = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
 
-			const { account_number, sequence } = (await this.#client.wallet(senderAddress)).raw();
+			// @ts-ignore
+			const { account_number, sequence } = (await this.clientService.wallet(senderAddress)).raw();
 
 			const signedTransaction = createSignedTransactionData(
 				{
@@ -83,10 +70,15 @@ export class TransactionService extends Services.AbstractTransactionService {
 				uuidv4(),
 				signedTransaction,
 				signedTransaction,
-				this.#decimals,
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
+	}
+
+	@IoC.postConstruct()
+	private onPostConstruct() {
+		this.#networkId = this.configRepository.get<number>("network.meta.networkId");
+		this.#decimals = this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals);
 	}
 }
