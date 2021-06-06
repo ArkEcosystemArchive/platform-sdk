@@ -19,9 +19,9 @@ import { ExtendedAddressService } from "./extended-address.contract";
 import { KeyPairService } from "./key-pair.contract";
 import { PrivateKeyService } from "./private-key.contract";
 import { PublicKeyService } from "./public-key.contract";
-import { WIFService } from "./wif.contract";
 import { IdentityOptions } from "./shared.contract";
 import { SignatoryService } from "./signatory.contract";
+import { WIFService } from "./wif.contract";
 
 @injectable()
 export class AbstractSignatoryService implements SignatoryService {
@@ -75,9 +75,7 @@ export class AbstractSignatoryService implements SignatoryService {
 			new MultiMnemonicSignatory(
 				mnemonics,
 				(
-					await Promise.all(
-						mnemonics.map((mnemonic: string) => this.publicKeyService.fromMnemonic(mnemonic)),
-					)
+					await Promise.all(mnemonics.map((mnemonic: string) => this.publicKeyService.fromMnemonic(mnemonic)))
 				).map(({ publicKey }) => publicKey),
 			),
 		);

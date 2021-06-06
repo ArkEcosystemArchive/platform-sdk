@@ -18,7 +18,7 @@ afterEach(() => nock.cleanAll());
 beforeAll(async () => {
 	nock.disableNetConnect();
 
-	const service = createService(TransactionService, undefined, container => {
+	const service = createService(TransactionService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
