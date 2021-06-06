@@ -1,10 +1,13 @@
-import { Coins, Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import * as bitcoin from "bitcoinjs-lib";
 
 import { AddressFactory } from "./address.factory";
 import { getNetworkConfig } from "./helpers";
 
 export class AddressService extends Services.AbstractAddressService {
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
+
 	readonly #factory: AddressFactory;
 	readonly #network: bitcoin.networks.Network;
 
