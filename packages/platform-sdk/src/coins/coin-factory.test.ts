@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
@@ -10,7 +11,7 @@ test("#make", async () => {
 		CoinFactory.make(
 			{
 				manifest: {
-					name: "ARK",
+				name: "ARK",
 					networks: {
 						// @ts-ignore
 						"ark.mainnet": {},
