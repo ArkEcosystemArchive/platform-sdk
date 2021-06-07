@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import Fixture from "../../test/fixtures/client/wallet.json";
+const Fixture = require( "../../test/fixtures/client/wallet.json");
 import { WalletData } from "./wallet";
 
 describe("WalletData", () => {

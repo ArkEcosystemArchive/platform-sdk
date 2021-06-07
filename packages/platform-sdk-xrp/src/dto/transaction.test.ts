@@ -3,7 +3,7 @@ import "jest-extended";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { result as fixture } from "../../test/fixtures/client/transaction.json";
+const { result: fixture } = require("../../test/fixtures/client/transaction.json");
 import { createService } from "../../test/helpers";
 import { TransactionData } from "./transaction";
 

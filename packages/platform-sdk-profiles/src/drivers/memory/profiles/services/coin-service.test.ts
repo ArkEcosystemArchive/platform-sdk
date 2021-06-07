@@ -6,7 +6,7 @@ import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { bootContainer } from "../../../../../test/helpers";
-import NodeFeesFixture from "../../../../../test/fixtures/client/node-fees.json";
+const NodeFeesFixture = require("../../../../../test/fixtures/client/node-fees.json");
 import { Profile } from "../profile";
 import { ICoinService, IDataRepository } from "../../../../contracts";
 import { CoinService } from "./coin-service";

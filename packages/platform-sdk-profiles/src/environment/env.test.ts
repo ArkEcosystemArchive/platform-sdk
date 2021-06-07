@@ -9,7 +9,7 @@ import { removeSync } from "fs-extra";
 import nock from "nock";
 import { resolve } from "path";
 
-import storageData from "../../test/fixtures/env-storage.json";
+const storageData = require("../../test/fixtures/env-storage.json");
 import { identity } from "../../test/fixtures/identity";
 import { importByMnemonic } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";

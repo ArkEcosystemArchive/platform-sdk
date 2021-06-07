@@ -1,4 +1,4 @@
-[
+export const tokens = [
 	{
 		"name": "Wrapped Ethereum",
 		"symbol": "WETH",
@@ -1673,4 +1673,4 @@
 		"address": "0xfffffffFf15AbF397dA76f1dcc1A1604F45126DB",
 		"decimals": 18
 	}
-]
+];
