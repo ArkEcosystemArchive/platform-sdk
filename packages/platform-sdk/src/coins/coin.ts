@@ -46,7 +46,7 @@ export class Coin {
 
 	public async __destruct(): Promise<void> {
 		/* istanbul ignore next */
-		if (! this.hasBeenSynchronized()) {
+		if (!this.hasBeenSynchronized()) {
 			/* istanbul ignore next */
 			return;
 		}
