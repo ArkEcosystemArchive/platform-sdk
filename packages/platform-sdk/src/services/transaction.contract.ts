@@ -2,8 +2,6 @@ import { RawTransactionData, SignedTransactionData } from "../contracts";
 import { Signatory } from "../signatories";
 
 export interface TransactionService {
-	__destruct(): Promise<void>;
-
 	// Core
 	transfer(input: TransferInput, options?: TransactionOptions): Promise<SignedTransactionData>;
 	secondSignature(input: SecondSignatureInput, options?: TransactionOptions): Promise<SignedTransactionData>;

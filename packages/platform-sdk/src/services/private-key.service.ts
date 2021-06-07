@@ -1,10 +1,12 @@
 /* istanbul ignore file */
 
 import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 import { PrivateKeyDataTransferObject, PrivateKeyService } from "./private-key.contract";
 import { IdentityOptions } from "./shared.contract";
 
-export abstract class AbstractPrivateKeyService implements PrivateKeyService {
+@injectable()
+export class AbstractPrivateKeyService implements PrivateKeyService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<PrivateKeyDataTransferObject> {
 		throw new NotImplemented(this.constructor.name, this.fromMnemonic.name);
 	}

@@ -1,9 +1,11 @@
 /* istanbul ignore file */
 
 import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 import { LedgerService, LedgerTransport, LedgerWalletList } from "./ledger.contract";
 
-export abstract class AbstractLedgerService implements LedgerService {
+@injectable()
+export class AbstractLedgerService implements LedgerService {
 	public async __destruct(): Promise<void> {
 		await this.disconnect();
 	}

@@ -4,7 +4,7 @@ import { HttpClient } from "../../../platform-sdk-http/dist";
 import { ConfigRepository } from "../coins";
 import { RawTransactionData, SignedTransactionData } from "../contracts";
 import { NotImplemented } from "../exceptions";
-import { inject } from "../ioc";
+import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 import {
@@ -24,7 +24,8 @@ import {
 	VoteInput,
 } from "./transaction.contract";
 
-export abstract class AbstractTransactionService implements Contract {
+@injectable()
+export class AbstractTransactionService implements Contract {
 	@inject(BindingType.ConfigRepository)
 	protected readonly configRepository!: ConfigRepository;
 
@@ -33,10 +34,6 @@ export abstract class AbstractTransactionService implements Contract {
 
 	@inject(BindingType.HttpClient)
 	protected readonly httpClient!: HttpClient;
-
-	public async __destruct(): Promise<void> {
-		//
-	}
 
 	public async transfer(input: TransferInput, options?: TransactionOptions): Promise<SignedTransactionData> {
 		throw new NotImplemented(this.constructor.name, this.transfer.name);

@@ -11,6 +11,11 @@ Object {
     "symbol": "DѦ",
     "ticker": "DARK",
   },
+  "explorer": Object {
+    "block": "block/{0}",
+    "transaction": "transaction/{0}",
+    "wallet": "wallets/{0}",
+  },
   "featureFlags": Object {
     "Client": Array [
       "transaction",

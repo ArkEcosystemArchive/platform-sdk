@@ -1,8 +1,6 @@
 import { Signatory } from "../signatories";
 
 export interface MessageService {
-	__destruct(): Promise<void>;
-
 	sign(input: MessageInput): Promise<SignedMessage>;
 
 	verify(input: SignedMessage): Promise<boolean>;

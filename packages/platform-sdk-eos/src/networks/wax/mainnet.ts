@@ -1,6 +1,6 @@
 import { Networks } from "@arkecosystem/platform-sdk";
 
-import { transactions, importMethods, featureFlags } from "../shared";
+import { explorer, transactions, importMethods, featureFlags } from "../shared";
 
 const network: Networks.NetworkManifest = {
 	id: "wax.mainnet",
@@ -35,6 +35,7 @@ const network: Networks.NetworkManifest = {
 	},
 	importMethods,
 	featureFlags,
+	explorer,
 	meta: {
 		// @TODO
 		networkId: "1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4",

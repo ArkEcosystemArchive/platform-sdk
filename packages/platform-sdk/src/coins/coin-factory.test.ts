@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 

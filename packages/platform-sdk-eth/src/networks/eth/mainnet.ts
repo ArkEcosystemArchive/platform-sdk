@@ -29,6 +29,7 @@ const network: Networks.NetworkManifest = {
 	transactions,
 	importMethods,
 	featureFlags,
+	explorer,
 	tokens,
 	meta: {
 		// @TODO
