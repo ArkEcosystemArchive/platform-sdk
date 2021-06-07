@@ -12,10 +12,6 @@ jobs:
     conflicts:
         runs-on: ubuntu-latest
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - name: Checkout code
               uses: actions/checkout@v2
               with:
@@ -28,11 +24,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-sdk
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -64,11 +59,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-ada
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -100,11 +94,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-ark
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -136,11 +129,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-atom
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -172,11 +164,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-avax
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -208,11 +199,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-btc
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -244,11 +234,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-crypto
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -280,11 +269,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-dot
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -316,11 +304,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-egld
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -352,11 +339,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-eos
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -388,11 +374,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-eth
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -424,11 +409,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-http-axios
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -460,11 +444,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-http-bent
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -496,11 +479,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-http-got
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -532,11 +514,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-http-ky
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -568,11 +549,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-http-node-fetch
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -604,11 +584,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-intl
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -640,11 +619,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-lsk
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -676,11 +654,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-markets
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -712,11 +689,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-nano
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -748,11 +724,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-neo
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -784,11 +759,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-news
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -820,11 +794,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-profiles
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -856,11 +829,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-sol
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -886,47 +858,16 @@ jobs:
               run: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-sol/ && pnpm run test -- --coverage
-    # json-rpc:
-    #     needs: [conflicts]
-    #     runs-on: ubuntu-latest
-    #     strategy:
-    #         matrix:
-    #             node-version: [14.x]
-    #     steps:
-    #         - uses: actions/checkout@v2
-    #         - name: Use Node.js ${{ matrix.node-version }}
-    #           uses: actions/setup-node@v1
-    #           with:
-    #               node-version: ${{ matrix.node-version }}
-    #         - name: Cache pnpm modules
-    #           uses: actions/cache@v2
-    #           env:
-    #               cache-name: cache-pnpm-modules
-    #           with:
-    #               path: ~/.pnpm-store
-    #               key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
-    #               restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-    #         - name: Install pnpm
-    #           uses: pnpm/action-setup@v1.2.1
-    #           with:
-    #               version: 5.18.1
-    #         - name: Install dependencies
-    #           run: node common/scripts/install-run-rush.js install
-    #         - name: Build
-    #           run: node common/scripts/install-run-rush.js rebuild --verbose
-    #         - name: Test
-    #           run: cd packages/platform-sdk-json-rpc/ && pnpm run test -- --coverage
     support:
         needs: [conflicts]
         runs-on: ubuntu-latest
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-support
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -958,11 +899,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-trx
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -994,11 +934,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-xlm
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -1030,11 +969,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-xrp
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -1066,11 +1004,10 @@ jobs:
         strategy:
             matrix:
                 node-version: [14.x]
+        concurrency:
+            group: ${{ github.head_ref }}-zil
+            cancel-in-progress: true
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.9.0
-              with:
-                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
