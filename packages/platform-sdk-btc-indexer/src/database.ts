@@ -2,7 +2,7 @@ import { BigNumber } from "@arkecosystem/utils";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
-import { PrismaClient } from "../prisma/generated";
+import { Prisma, PrismaClient } from "../prisma/generated";
 import { Logger } from "./logger";
 import { getAmount, getFees, getInputs, getOutputs } from "./tx-parsing-helpers";
 import { Flags, Input, Output } from "./types";
@@ -177,9 +177,16 @@ export class Database {
 					},
 				},
 			});
-		} catch {
-			// Ignore, there's nothing to update if already exists
-			// We could query for existence before creation, but it doesn't really make sense
+		} catch (e) {
+			if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") {
+				// Unique contraint validation. Ignore, there's nothing to update if already exists
+				// We could query for existence before creation, but it doesn't really make sense
+				this.#logger.info(`Ignoring transaction ${transaction.txid} from block ${blockId} as it already exists`);
+			} else {
+				// If there's an error, we don't want to proceed, as this will affect future utxos
+				// It means there's a programming error and we need to fix it
+				throw e;
+			}
 		}
 
 		await this.#prisma.$transaction(utxoUpdates);
