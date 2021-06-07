@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"contributors": [],
 	"type": "module",
-	"exports": "./index.js",
+	"exports": "./dist/index.js",
 	"main": "dist/index",
 	"types": "dist/index",
 	"bin": {
