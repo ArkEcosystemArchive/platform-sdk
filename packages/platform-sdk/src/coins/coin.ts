@@ -34,6 +34,7 @@ export class Coin {
 
 	public async __construct(): Promise<void> {
 		if (this.hasBeenSynchronized()) {
+			/* istanbul ignore next */
 			return;
 		}
 
@@ -44,6 +45,7 @@ export class Coin {
 
 	public async __destruct(): Promise<void> {
 		if (! this.hasBeenSynchronized()) {
+			/* istanbul ignore next */
 			return;
 		}
 
