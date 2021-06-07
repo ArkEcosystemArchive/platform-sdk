@@ -6,11 +6,12 @@ import { URL } from "url";
 
 import { ConfigRepository } from "../coins";
 import { randomNetworkHostFromConfig } from "../helpers";
-import { inject } from "../ioc";
+import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import { LinkService, LinkServiceSchema } from "./link.contract";
 
-export abstract class AbstractLinkService implements LinkService {
+@injectable()
+export class AbstractLinkService implements LinkService {
 	@inject(BindingType.ConfigRepository)
 	private readonly configRepository!: ConfigRepository;
 
@@ -26,7 +27,13 @@ export abstract class AbstractLinkService implements LinkService {
 		return this.#buildURL(this.schema().wallet, id);
 	}
 
-	protected abstract schema(): LinkServiceSchema;
+	protected schema(): LinkServiceSchema {
+		return {
+			block: "",
+			transaction: "",
+			wallet: "",
+		};
+	}
 
 	#buildURL(schema: string, id: string): string {
 		const { host, query } = onetime(() => randomNetworkHostFromConfig(this.configRepository, "explorer"))();

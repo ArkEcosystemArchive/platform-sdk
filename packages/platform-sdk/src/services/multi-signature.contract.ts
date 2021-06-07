@@ -10,14 +10,6 @@ export type MultiSignatureTransaction = Record<string, any>;
  */
 export interface MultiSignatureService {
 	/**
-	 * Destroy the MultiSignatureService instance.
-	 *
-	 * @returns {Promise<void>}
-	 * @memberof MultiSignatureService
-	 */
-	__destruct(): Promise<void>;
-
-	/**
 	 * Retrieve all multi-signature transactions that are awaiting for a signature from the given public key.
 	 *
 	 * @param {string} publicKey
