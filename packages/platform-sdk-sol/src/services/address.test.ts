@@ -18,12 +18,6 @@ describe("Address", () => {
 		});
 	});
 
-	it("should fail to generate an output from a multiSignature", async () => {
-		await expect(
-			subject.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
-		).rejects.toThrow(/is not implemented/);
-	});
-
 	it("should fail to generate an output from a privateKey", async () => {
 		await expect(subject.fromPrivateKey(identity.privateKey)).resolves.toEqual({
 			type: "bip44",
@@ -36,10 +30,6 @@ describe("Address", () => {
 			type: "bip44",
 			address: identity.address,
 		});
-	});
-
-	it("should fail to generate an output from a wif", async () => {
-		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not implemented/);
 	});
 
 	it("should validate an address", async () => {

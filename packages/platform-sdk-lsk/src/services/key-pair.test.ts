@@ -19,8 +19,4 @@ describe("Keys", () => {
 			publicKey: identity.publicKey,
 		});
 	});
-
-	it("should generate an output from a wif", async () => {
-		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not implemented/);
-	});
 });
