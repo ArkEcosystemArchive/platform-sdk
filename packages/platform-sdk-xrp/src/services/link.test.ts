@@ -1,6 +1,7 @@
 import "jest-extended";
 
 import { Services } from "@arkecosystem/platform-sdk";
+
 import { createService } from "../../test/helpers";
 
 let subject: Services.AbstractLinkService;

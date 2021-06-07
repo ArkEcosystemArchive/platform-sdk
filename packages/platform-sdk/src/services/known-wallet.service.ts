@@ -1,8 +1,10 @@
 /* istanbul ignore file */
 
+import { injectable } from "../ioc";
 import { KnownWallet, KnownWalletService } from "./known-wallet.contract";
 
-export abstract class AbstractKnownWalletService implements KnownWalletService {
+@injectable()
+export class AbstractKnownWalletService implements KnownWalletService {
 	public async __destruct(): Promise<void> {}
 
 	public async all(): Promise<KnownWallet[]> {

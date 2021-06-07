@@ -26,22 +26,22 @@ import { WIFService } from "./wif.contract";
 @injectable()
 export class AbstractSignatoryService implements SignatoryService {
 	@inject(BindingType.AddressService)
-	private readonly addressService!: AddressService;
+	protected readonly addressService!: AddressService;
 
 	@inject(BindingType.ExtendedAddressService)
-	private readonly extendedAddressService!: ExtendedAddressService;
+	protected readonly extendedAddressService!: ExtendedAddressService;
 
 	@inject(BindingType.KeyPairService)
-	private readonly keyPairService!: KeyPairService;
+	protected readonly keyPairService!: KeyPairService;
 
 	@inject(BindingType.PrivateKeyService)
-	private readonly privateKeyService!: PrivateKeyService;
+	protected readonly privateKeyService!: PrivateKeyService;
 
 	@inject(BindingType.PublicKeyService)
-	private readonly publicKeyService!: PublicKeyService;
+	protected readonly publicKeyService!: PublicKeyService;
 
 	@inject(BindingType.WIFService)
-	private readonly wifService!: WIFService;
+	protected readonly wifService!: WIFService;
 
 	public async mnemonic(mnemonic: string, options?: IdentityOptions): Promise<Signatory> {
 		return new Signatory(

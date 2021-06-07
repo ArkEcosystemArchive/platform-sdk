@@ -20,6 +20,11 @@ test("#all", () => {
 		      "symbol": "DѦ",
 		      "ticker": "DARK",
 		    },
+		    "explorer": Object {
+		      "block": "block/{0}",
+		      "transaction": "transaction/{0}",
+		      "wallet": "wallets/{0}",
+		    },
 		    "featureFlags": Object {
 		      "Client": Array [
 		        "transaction",
@@ -174,6 +179,11 @@ test("#all", () => {
 		      "decimals": 8,
 		      "symbol": "Ѧ",
 		      "ticker": "ARK",
+		    },
+		    "explorer": Object {
+		      "block": "block/{0}",
+		      "transaction": "transaction/{0}",
+		      "wallet": "wallets/{0}",
 		    },
 		    "featureFlags": Object {
 		      "Client": Array [
@@ -330,6 +340,11 @@ test("#all", () => {
 		      "symbol": "ß",
 		      "ticker": "BIND",
 		    },
+		    "explorer": Object {
+		      "block": "block/{0}",
+		      "transaction": "transaction/{0}",
+		      "wallet": "wallets/{0}",
+		    },
 		    "featureFlags": Object {
 		      "Client": Array [
 		        "transaction",
@@ -479,6 +494,11 @@ test("#all", () => {
 		      "decimals": 8,
 		      "symbol": "Tß",
 		      "ticker": "TBIND",
+		    },
+		    "explorer": Object {
+		      "block": "block/{0}",
+		      "transaction": "transaction/{0}",
+		      "wallet": "wallets/{0}",
 		    },
 		    "featureFlags": Object {
 		      "Client": Array [

@@ -18,7 +18,7 @@ import {
 } from "./client.contract";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 
-export abstract class AbstractClientService implements ClientService {
+export class AbstractClientService implements ClientService {
 	@inject(BindingType.ConfigRepository)
 	protected readonly configRepository!: ConfigRepository;
 
@@ -27,10 +27,6 @@ export abstract class AbstractClientService implements ClientService {
 
 	@inject(BindingType.HttpClient)
 	protected readonly httpClient!: HttpClient;
-
-	public async __destruct(): Promise<void> {
-		//
-	}
 
 	public async transaction(id: string, input?: TransactionDetailInput): Promise<TransactionDataType> {
 		throw new NotImplemented(this.constructor.name, this.transaction.name);

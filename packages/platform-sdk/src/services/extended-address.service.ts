@@ -1,9 +1,11 @@
 /* istanbul ignore file */
 
 import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 import { ExtendedAddressDataTransferObject, ExtendedAddressService } from "./extended-address.contract";
 
-export abstract class AbstractExtendedAddressService implements ExtendedAddressService {
+@injectable()
+export class AbstractExtendedAddressService implements ExtendedAddressService {
 	public async fromMnemonic(mnemonic: string, pageSize: number): Promise<ExtendedAddressDataTransferObject[]> {
 		throw new NotImplemented(this.constructor.name, this.fromMnemonic.name);
 	}

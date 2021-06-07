@@ -1,10 +1,12 @@
 /* istanbul ignore file */
 
 import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 import { AddressDataTransferObject, AddressService } from "./address.contract";
 import { IdentityOptions } from "./shared.contract";
 
-export abstract class AbstractAddressService implements AddressService {
+@injectable()
+export class AbstractAddressService implements AddressService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<AddressDataTransferObject> {
 		throw new NotImplemented(this.constructor.name, this.fromMultiSignature.name);
 	}

@@ -11,7 +11,7 @@ import { MetaPagination } from "./client.contract";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 
 @injectable()
-export abstract class AbstractDataTransferObjectService implements DataTransferObjectService {
+export class AbstractDataTransferObjectService implements DataTransferObjectService {
 	// @TODO: rework so that the container is not needed, this is a weird setup
 	@inject(BindingType.Container)
 	protected readonly container!: Container;
