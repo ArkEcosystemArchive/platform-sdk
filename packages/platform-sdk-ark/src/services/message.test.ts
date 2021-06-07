@@ -8,9 +8,7 @@ import { MessageService } from "./message";
 
 let subject: MessageService;
 
-beforeEach(async () => {
-	subject = await MessageService.__construct(createConfigWithNetwork());
-});
+beforeEach(async () => subject = await MessageService.__construct(createConfigWithNetwork()));
 
 describe("MessageService", () => {
 	it("should sign and verify a message", async () => {

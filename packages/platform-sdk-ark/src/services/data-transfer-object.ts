@@ -4,7 +4,7 @@ import { KeyValuePair } from "@arkecosystem/platform-sdk/dist/contracts";
 import * as DTO from "../dto";
 
 export class DataTransferObjectService extends Services.AbstractDataTransferObjectService {
-	public constructor(private decimals: string) {
+	public constructor(private decimals: number) {
 		super();
 	}
 

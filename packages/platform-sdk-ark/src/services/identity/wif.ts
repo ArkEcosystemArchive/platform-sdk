@@ -1,5 +1,5 @@
 import { WIF as BaseWIF } from "@arkecosystem/crypto-identities";
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, Services } from "@arkecosystem/platform-sdk";
 
 import { CryptoConfig } from "../../contracts";
 
