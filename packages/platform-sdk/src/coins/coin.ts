@@ -33,12 +33,20 @@ export class Coin {
 	}
 
 	public async __construct(): Promise<void> {
+		if (this.hasBeenSynchronized()) {
+			return;
+		}
+
 		await this.#container
 			.resolve<any>(this.#container.get<CoinSpec>(BindingType.Specification).ServiceProvider)
 			.make(this.#container);
 	}
 
 	public async __destruct(): Promise<void> {
+		if (! this.hasBeenSynchronized()) {
+			return;
+		}
+
 		this.#container.unbind(BindingType.AddressService);
 		this.#container.unbind(BindingType.BigNumberService);
 		this.#container.unbind(BindingType.ClientService);
