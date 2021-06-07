@@ -4,14 +4,13 @@ import { Test } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { container } from "../container";
+import { result as fixture } from "../../test/fixtures/client/transaction.json";
 import { TransactionData } from "./transaction";
+import { container } from "../container";
 
 beforeAll(() => {
 	Test.bindBigNumberService(container);
 });
-
-const { result: fixture } = require("../../test/fixtures/client/transaction.json");
 
 describe("TransactionData", () => {
 	it("should succeed", async () => {
