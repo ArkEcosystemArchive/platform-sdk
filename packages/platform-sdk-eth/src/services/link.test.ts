@@ -1,12 +1,12 @@
 import "jest-extended";
 
+import { Services } from "@arkecosystem/platform-sdk";
 import { createService } from "../../test/helpers";
-import { LinkService } from "./link";
 
-let subject: LinkService;
+let subject: Services.AbstractLinkService;
 
-beforeEach(async () => {
-	subject = createService(LinkService);
+beforeAll(async () => {
+	subject = createService(Services.AbstractLinkService);
 });
 
 it("should generate a link for a block", async () => {

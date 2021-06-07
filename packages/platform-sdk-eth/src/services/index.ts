@@ -5,7 +5,6 @@ export * from "./fee";
 export * from "./key-pair";
 export * from "./known-wallets";
 export * from "./ledger";
-export * from "./link";
 export * from "./message";
 export * from "./multi-signature";
 export * from "./private-key";
