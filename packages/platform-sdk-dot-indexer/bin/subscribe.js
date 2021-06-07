@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const meow = require("meow");
-const { subscribe } = require("../dist");
+const { subscribe } = require("../dist/index.js");
 
 const { flags } = meow(
 	`

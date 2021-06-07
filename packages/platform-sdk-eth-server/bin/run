@@ -2,7 +2,7 @@
 
 const { Foreman } = require("@konceiver/foreman");
 const { resolve } = require("path");
-const { subscribe } = require("../dist");
+const { subscribe } = require("../dist/index.js");
 
 const { flags, input } = require("./meow");
 
