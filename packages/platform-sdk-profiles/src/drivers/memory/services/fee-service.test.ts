@@ -7,7 +7,7 @@ import { bootContainer } from "../../../../test/helpers";
 import { FeeService } from "./fee-service";
 
 let subject: FeeService;
-const NodeFeesFixture = require("../../../../../test/fixtures/client/node-fees.json");
+const NodeFeesFixture = require("../../../../test/fixtures/client/node-fees.json");
 import { Profile } from "../profiles/profile";
 
 let profile: Profile;
