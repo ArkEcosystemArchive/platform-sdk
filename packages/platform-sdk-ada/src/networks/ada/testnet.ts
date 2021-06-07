@@ -1,6 +1,6 @@
 import { Networks } from "@arkecosystem/platform-sdk";
 
-import { constants, transactions, importMethods, featureFlags } from "../shared";
+import { explorer, constants, transactions, importMethods, featureFlags } from "../shared";
 
 const network: Networks.NetworkManifest = {
 	id: "ada.testnet",
@@ -26,6 +26,7 @@ const network: Networks.NetworkManifest = {
 	transactions,
 	importMethods,
 	featureFlags,
+	explorer,
 	meta: {
 		minFeeA: 44,
 		minFeeB: 155381,
