@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.0.4 - 2021-06-07
+
+### Fixed
+
+- **[SDK]** Only unbind if binding exists (15f872f8, @faustbrian)
+
 ## 9.0.3 - 2021-06-07
 
 ### Changed
