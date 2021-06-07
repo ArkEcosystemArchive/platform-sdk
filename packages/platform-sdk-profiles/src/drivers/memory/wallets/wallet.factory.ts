@@ -66,11 +66,7 @@ export class WalletFactory implements IWalletFactory {
 		if (password) {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.BIP39.MNEMONIC_WITH_ENCRYPTION);
 
-			await this.#encryptWallet(
-				wallet,
-				password,
-				async () => await wallet.coin().identity().wif().fromMnemonic(mnemonic),
-			);
+			await this.#encryptWallet(wallet, password, async () => await wallet.coin().wif().fromMnemonic(mnemonic));
 		}
 
 		return wallet;
@@ -90,7 +86,7 @@ export class WalletFactory implements IWalletFactory {
 
 		const { publicKey } = await wallet
 			.coin()
-			.identity()
+
 			.publicKey()
 			// @TODO: the account index should be configurable
 			.fromMnemonic(mnemonic, { bip44: { account: 0 } });
@@ -143,7 +139,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.PublicKey);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(await wallet.coin().identity().address().fromPublicKey(publicKey));
+		await wallet.mutator().address(await wallet.coin().address().fromPublicKey(publicKey));
 
 		return wallet;
 	}
@@ -154,7 +150,7 @@ export class WalletFactory implements IWalletFactory {
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.PrivateKey);
 
 		await wallet.mutator().coin(coin, network);
-		await wallet.mutator().address(await wallet.coin().identity().address().fromPrivateKey(privateKey));
+		await wallet.mutator().address(await wallet.coin().address().fromPrivateKey(privateKey));
 
 		return wallet;
 	}
@@ -194,16 +190,14 @@ export class WalletFactory implements IWalletFactory {
 		if (password) {
 			const { compressed, privateKey } = decrypt(wif, password);
 
-			await wallet
-				.mutator()
-				.address(await wallet.coin().identity().address().fromPrivateKey(privateKey.toString("hex")));
+			await wallet.mutator().address(await wallet.coin().address().fromPrivateKey(privateKey.toString("hex")));
 
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIFWithEncryption);
 			wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 		} else {
 			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.WIF);
 
-			await wallet.mutator().address(await wallet.coin().identity().address().fromWIF(wif));
+			await wallet.mutator().address(await wallet.coin().address().fromWIF(wif));
 		}
 
 		return wallet;

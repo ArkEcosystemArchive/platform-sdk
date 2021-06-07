@@ -1,37 +1,23 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
-	readonly #http: HttpClient;
-
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
-	}
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const { data } = await this.#get(`transaction/${id}`);
 
-		return Helpers.createTransactionDataWithType({ hash: id, ...data.transaction }, TransactionDTO);
+		return this.dataTransferObjectService.transaction({ hash: id, ...data.transaction }, TransactionDTO);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { data } = await this.#get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			data.transactions,
 			{
 				prev: undefined,
@@ -74,14 +60,14 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.#host()}/v1.0/${path}`)).json();
+		return (await this.httpClient.get(`${this.#host()}/v1.0/${path}`)).json();
 	}
 
 	async #post(path: string, data: object): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.post(`${this.#host()}/v1.0/${path}`, data)).json();
+		return (await this.httpClient.post(`${this.#host()}/v1.0/${path}`, data)).json();
 	}
 
 	#host(): string {
-		return Helpers.randomHostFromConfig(this.#config);
+		return Helpers.randomHostFromConfig(this.configRepository);
 	}
 }

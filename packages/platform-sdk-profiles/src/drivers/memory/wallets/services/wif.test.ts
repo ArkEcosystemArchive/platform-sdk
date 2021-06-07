@@ -87,9 +87,7 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 it("should decrypt the WIF", async () => {
-	const { compressed, privateKey } = decode(
-		(await subject.coin().identity().wif().fromMnemonic(identity.mnemonic)).wif,
-	);
+	const { compressed, privateKey } = decode((await subject.coin().wif().fromMnemonic(identity.mnemonic)).wif);
 
 	subject.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, "password"));
 

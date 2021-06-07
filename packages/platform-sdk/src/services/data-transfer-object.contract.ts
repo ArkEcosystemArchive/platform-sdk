@@ -1,9 +1,17 @@
+import { TransactionDataCollection } from "../collections";
 import { SignedTransactionData, TransactionDataType } from "../contracts";
+import { AbstractTransactionData } from "../dto";
+import { MetaPagination } from "./client.contract";
 
 export interface DataTransferObjectService {
-	__destruct(): Promise<void>;
+	signedTransaction(identifier: string, signedData: any, broadcastData: any): SignedTransactionData;
 
-	signedTransaction(identifier: string, signedData: string): SignedTransactionData;
+	transaction(transaction: unknown, dtos: Record<string, any>): TransactionDataType & AbstractTransactionData;
 
-	transaction(transaction: unknown): TransactionDataType;
+	transactions(
+		transactions: unknown[],
+		meta: MetaPagination,
+		classes: Record<string, any>,
+		decimals?: number | string,
+	): TransactionDataCollection;
 }

@@ -1,206 +1,153 @@
-import { BadMethodDependencyException } from "../exceptions";
-import { Network, NetworkManifest, NetworkRepository } from "../networks";
+import { BindingType, Container, injectable } from "../ioc";
+import { Network, NetworkRepository } from "../networks";
 import {
+	AddressService,
 	BigNumberService,
 	ClientService,
 	DataTransferObjectService,
+	ExtendedAddressService,
 	FeeService,
-	IdentityService,
+	KeyPairService,
 	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
 	MultiSignatureService,
+	PrivateKeyService,
+	PublicKeyService,
 	SignatoryService,
 	TransactionService,
 	WalletDiscoveryService,
+	WIFService,
 } from "../services";
-import { Config, ConfigKey } from "./config";
-import { CoinServices, CoinSpec } from "./contracts";
+import { ConfigRepository } from "./config";
+import { CoinSpec } from "./contracts";
 import { Manifest } from "./manifest";
 
+@injectable()
 export class Coin {
-	readonly #networks: NetworkRepository;
-	readonly #manifest: Manifest;
-	readonly #config: Config;
-	readonly #specification: CoinSpec;
-	readonly #network: Network;
-	#services: CoinServices | undefined;
+	readonly #container: Container;
 
-	public constructor({
-		networks,
-		manifest,
-		config,
-		specification,
-	}: {
-		networks: NetworkRepository;
-		manifest: Manifest;
-		config: Config;
-		specification: CoinSpec;
-	}) {
-		this.#networks = networks;
-		this.#manifest = manifest;
-		this.#config = config;
-		this.#specification = specification;
-		this.#network = this.#createNetwork(specification, config);
+	public constructor(container: Container) {
+		this.#container = container;
 	}
 
 	public async __construct(): Promise<void> {
-		const serviceProvider = new this.#specification.ServiceProvider(this, this.#config);
-
-		this.#services = await serviceProvider.make(this, this.#config);
+		await this.#container
+			.resolve<any>(this.#container.get<CoinSpec>(BindingType.Specification).ServiceProvider)
+			.make(this.#container);
 	}
 
 	public async __destruct(): Promise<void> {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.__destruct.name, "__construct");
-		}
-
-		await Promise.all([
-			this.#services!.client.__destruct(),
-			this.#services!.dataTransferObject.__destruct(),
-			this.#services!.fee.__destruct(),
-			this.#services!.identity.__destruct(),
-			this.#services!.knownWallets.__destruct(),
-			this.#services!.ledger.__destruct(),
-			this.#services!.link.__destruct(),
-			this.#services!.message.__destruct(),
-			this.#services!.multiSignature.__destruct(),
-			this.#services!.signatory.__destruct(),
-			this.#services!.transaction.__destruct(),
-		]);
-	}
-
-	public network(): Network {
-		return this.#network;
-	}
-
-	public networks(): NetworkRepository {
-		return this.#networks;
-	}
-
-	public manifest(): Manifest {
-		return this.#manifest;
-	}
-
-	public config(): Config {
-		return this.#config;
-	}
-
-	public bigNumber(): BigNumberService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.bigNumber.name, "__construct");
-		}
-
-		return this.#services!.bigNumber;
-	}
-
-	public client(): ClientService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.client.name, "__construct");
-		}
-
-		return this.#services!.client;
-	}
-
-	public dataTransferObject(): DataTransferObjectService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.dataTransferObject.name, "__construct");
-		}
-
-		return this.#services!.dataTransferObject;
-	}
-
-	public fee(): FeeService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.fee.name, "__construct");
-		}
-
-		return this.#services!.fee;
-	}
-
-	public identity(): IdentityService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.identity.name, "__construct");
-		}
-
-		return this.#services!.identity;
-	}
-
-	public knownWallets(): KnownWalletService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.knownWallets.name, "__construct");
-		}
-
-		return this.#services!.knownWallets;
-	}
-
-	public ledger(): LedgerService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.ledger.name, "__construct");
-		}
-
-		return this.#services!.ledger;
-	}
-
-	public link(): LinkService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.link.name, "__construct");
-		}
-
-		return this.#services!.link;
-	}
-
-	public message(): MessageService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.message.name, "__construct");
-		}
-
-		return this.#services!.message;
-	}
-
-	public multiSignature(): MultiSignatureService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.multiSignature.name, "__construct");
-		}
-
-		return this.#services!.multiSignature;
-	}
-
-	public signatory(): SignatoryService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.signatory.name, "__construct");
-		}
-
-		return this.#services!.signatory;
-	}
-
-	public transaction(): TransactionService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.transaction.name, "__construct");
-		}
-
-		return this.#services!.transaction;
-	}
-
-	public walletDiscovery(): WalletDiscoveryService {
-		if (!this.hasBeenSynchronized()) {
-			throw new BadMethodDependencyException(this.constructor.name, this.walletDiscovery.name, "__construct");
-		}
-
-		return this.#services!.walletDiscovery;
+		this.#container.unbind(BindingType.AddressService);
+		this.#container.unbind(BindingType.BigNumberService);
+		this.#container.unbind(BindingType.ClientService);
+		this.#container.unbind(BindingType.DataTransferObjectService);
+		this.#container.unbind(BindingType.ExtendedAddressService);
+		this.#container.unbind(BindingType.FeeService);
+		this.#container.unbind(BindingType.KeyPairService);
+		this.#container.unbind(BindingType.KnownWalletService);
+		this.#container.unbind(BindingType.LedgerService);
+		this.#container.unbind(BindingType.LinkService);
+		this.#container.unbind(BindingType.MessageService);
+		this.#container.unbind(BindingType.MultiSignatureService);
+		this.#container.unbind(BindingType.PrivateKeyService);
+		this.#container.unbind(BindingType.PublicKeyService);
+		this.#container.unbind(BindingType.SignatoryService);
+		this.#container.unbind(BindingType.TransactionService);
+		this.#container.unbind(BindingType.WalletDiscoveryService);
+		this.#container.unbind(BindingType.WIFService);
 	}
 
 	public hasBeenSynchronized(): boolean {
-		return this.#services !== undefined;
+		return this.#container.has(BindingType.AddressService);
 	}
 
-	#createNetwork(specification: CoinSpec, config: Config): Network {
-		const network = config.get<NetworkManifest>(ConfigKey.Network);
+	public network(): Network {
+		return this.#container.get(BindingType.Network);
+	}
 
-		return new Network(specification.manifest, {
-			...specification.manifest.networks[network.id],
-			...config.get<NetworkManifest>(ConfigKey.Network),
-		});
+	public networks(): NetworkRepository {
+		return this.#container.get(BindingType.NetworkRepository);
+	}
+
+	public manifest(): Manifest {
+		return this.#container.get(BindingType.Manifest);
+	}
+
+	public config(): ConfigRepository {
+		return this.#container.get(BindingType.ConfigRepository);
+	}
+
+	public address(): AddressService {
+		return this.#container.get(BindingType.AddressService);
+	}
+
+	public bigNumber(): BigNumberService {
+		return this.#container.get(BindingType.BigNumberService);
+	}
+
+	public client(): ClientService {
+		return this.#container.get(BindingType.ClientService);
+	}
+
+	public dataTransferObject(): DataTransferObjectService {
+		return this.#container.get(BindingType.DataTransferObjectService);
+	}
+
+	public extendedAddress(): ExtendedAddressService {
+		return this.#container.get(BindingType.ExtendedAddressService);
+	}
+
+	public fee(): FeeService {
+		return this.#container.get(BindingType.FeeService);
+	}
+
+	public keyPair(): KeyPairService {
+		return this.#container.get(BindingType.KeyPairService);
+	}
+
+	public knownWallet(): KnownWalletService {
+		return this.#container.get(BindingType.KnownWalletService);
+	}
+
+	public ledger(): LedgerService {
+		return this.#container.get(BindingType.LedgerService);
+	}
+
+	public link(): LinkService {
+		return this.#container.get(BindingType.LinkService);
+	}
+
+	public message(): MessageService {
+		return this.#container.get(BindingType.MessageService);
+	}
+
+	public multiSignature(): MultiSignatureService {
+		return this.#container.get(BindingType.MultiSignatureService);
+	}
+
+	public privateKey(): PrivateKeyService {
+		return this.#container.get(BindingType.PrivateKeyService);
+	}
+
+	public publicKey(): PublicKeyService {
+		return this.#container.get(BindingType.PublicKeyService);
+	}
+
+	public signatory(): SignatoryService {
+		return this.#container.get(BindingType.SignatoryService);
+	}
+
+	public transaction(): TransactionService {
+		return this.#container.get(BindingType.TransactionService);
+	}
+
+	public walletDiscovery(): WalletDiscoveryService {
+		return this.#container.get(BindingType.WalletDiscoveryService);
+	}
+
+	public wif(): WIFService {
+		return this.#container.get(BindingType.WIFService);
 	}
 }

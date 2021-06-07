@@ -1,48 +1,34 @@
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
 import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { v4 as uuidv4 } from "uuid";
 
 import { Bindings } from "../contracts";
-import { SignedTransactionData } from "../dto/signed-transaction";
 import { applyCryptoConfiguration } from "./helpers";
-import { IdentityService } from "./identity";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-	readonly #http: HttpClient;
-	readonly #identity: IdentityService;
-	readonly #peer: string;
-	readonly #multiSignatureSigner: MultiSignatureSigner;
-	readonly #configCrypto: { crypto: Interfaces.NetworkConfig; height: number };
+	@IoC.inject(IoC.BindingType.AddressService)
+	private readonly addressService!: Services.AddressService;
 
-	private constructor({ config, http, identity, peer, multiSignatureSigner, configCrypto }) {
-		super();
+	@IoC.inject(IoC.BindingType.KeyPairService)
+	private readonly keyPairService!: Services.KeyPairService;
 
-		this.#config = config;
-		this.#http = http;
-		this.#identity = identity;
-		this.#peer = peer;
-		this.#multiSignatureSigner = multiSignatureSigner;
-		this.#configCrypto = configCrypto;
-	}
+	@IoC.inject(IoC.BindingType.PublicKeyService)
+	private readonly publicKeyService!: Services.PublicKeyService;
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		const crypto = config.get<Interfaces.NetworkConfig>(Bindings.Crypto);
-		const height = config.get<number>(Bindings.Height);
+	@IoC.inject(Bindings.Crypto)
+	private readonly packageCrypto!: Interfaces.NetworkConfig;
 
-		return new TransactionService({
-			config,
-			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
-			peer: Helpers.randomHostFromConfig(config),
-			identity: await IdentityService.__construct(config),
-			multiSignatureSigner: new MultiSignatureSigner(crypto, height),
-			configCrypto: { crypto, height },
-		});
-	}
+	@IoC.inject(Bindings.Height)
+	private readonly packageHeight!: number;
+
+	// @TODO: remove or inject
+	#peer!: string;
+	#multiSignatureSigner!: MultiSignatureSigner;
+	#configCrypto!: { crypto: Interfaces.NetworkConfig; height: number };
 
 	public async transfer(
 		input: Services.TransferInput,
@@ -127,7 +113,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiPayment", input, options, ({ transaction, data }) => {
 			for (const payment of data.payments) {
-				transaction.addPayment(payment.to, Helpers.toRawUnit(payment.amount, this.#config).toString());
+				transaction.addPayment(payment.to, Helpers.toRawUnit(payment.amount, this.configRepository).toString());
 			}
 
 			if (data.memo) {
@@ -148,7 +134,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("htlcLock", input, options, ({ transaction, data }) => {
-			transaction.amount(Helpers.toRawUnit(data.amount, this.#config).toString());
+			transaction.amount(Helpers.toRawUnit(data.amount, this.configRepository).toString());
 
 			transaction.recipientId(data.to);
 
@@ -197,11 +183,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 		let keys: Services.KeyPairDataTransferObject | undefined;
 
 		if (input.signatory.actsWithMnemonic()) {
-			keys = await this.#identity.keyPair().fromMnemonic(input.signatory.signingKey());
+			keys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
 		}
 
 		if (input.signatory.actsWithWif()) {
-			keys = await this.#identity.keyPair().fromWIF(input.signatory.signingKey());
+			keys = await this.keyPairService.fromWIF(input.signatory.signingKey());
 		}
 
 		if (!keys) {
@@ -214,7 +200,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			compressed: true,
 		});
 
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			transactionWithSignature.id!,
 			transactionWithSignature,
 			transactionWithSignature,
@@ -222,12 +208,20 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string | undefined> {
-		const { data: blockchain } = (await this.#http.get(`${this.#peer}/blockchain`)).json();
-		const { data: configuration } = (await this.#http.get(`${this.#peer}/node/configuration`)).json();
+		const { data: blockchain } = (await this.httpClient.get(`${this.#peer}/blockchain`)).json();
+		const { data: configuration } = (await this.httpClient.get(`${this.#peer}/node/configuration`)).json();
 
 		return BigNumber.make(blockchain.block.height)
 			.plus(value || 5 * configuration.constants.activeDelegates)
 			.toString();
+	}
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
+		// @ts-ignore
+		this.#multiSignatureSigner = new MultiSignatureSigner(this.packageCrypto, this.packageHeight);
+		this.#configCrypto = { crypto: this.packageCrypto, height: this.packageHeight };
 	}
 
 	async #createFromData(
@@ -242,11 +236,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			let address: string | undefined;
 
 			if (input.signatory.actsWithMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
-				address = (await this.#identity.address().fromMnemonic(input.signatory.signingKey())).address;
+				address = (await this.addressService.fromMnemonic(input.signatory.signingKey())).address;
 			}
 
 			if (input.signatory.actsWithWif()) {
-				address = (await this.#identity.address().fromWIF(input.signatory.signingKey())).address;
+				address = (await this.addressService.fromWIF(input.signatory.signingKey())).address;
 			}
 
 			const transaction = Transactions.BuilderFactory[type]().version(2);
@@ -258,7 +252,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.signatory.actsWithSignature()) {
-				address = (await this.#identity.address().fromPublicKey(input.signatory.publicKey())).address;
+				address = (await this.addressService.fromPublicKey(input.signatory.publicKey())).address;
 
 				transaction.senderPublicKey(input.signatory.publicKey());
 			}
@@ -266,17 +260,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 			if (input.nonce) {
 				transaction.nonce(input.nonce);
 			} else {
-				const { data } = (await this.#http.get(`${this.#peer}/wallets/${address}`)).json();
+				const { data } = (await this.httpClient.get(`${this.#peer}/wallets/${address}`)).json();
 
 				transaction.nonce(BigNumber.make(data.nonce).plus(1).toFixed());
 			}
 
 			if (input.data && input.data.amount) {
-				transaction.amount(Helpers.toRawUnit(input.data.amount, this.#config).toString());
+				transaction.amount(Helpers.toRawUnit(input.data.amount, this.configRepository).toString());
 			}
 
 			if (input.fee) {
-				transaction.fee(Helpers.toRawUnit(input.fee, this.#config).toString());
+				transaction.fee(Helpers.toRawUnit(input.fee, this.configRepository).toString());
 			}
 
 			if (input.data && input.data.expiration) {
@@ -307,7 +301,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					excludeSecondSignature: true,
 				}).toString("hex");
 
-				return new SignedTransactionData(uuidv4(), signedTransaction, signedTransaction);
+				return this.dataTransferObjectService.signedTransaction(uuidv4(), signedTransaction, signedTransaction);
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
@@ -316,7 +310,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 					input.signatory.signingList(),
 				);
 
-				return new SignedTransactionData(
+				return this.dataTransferObjectService.signedTransaction(
 					transactionWithSignature.id!,
 					transactionWithSignature,
 					transactionWithSignature,
@@ -331,13 +325,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 				const senderPublicKeys: string[] = (
 					await Promise.all(
-						signingKeys.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
+						signingKeys.map((mnemonic: string) => this.publicKeyService.fromMnemonic(mnemonic)),
 					)
 				).map(({ publicKey }) => publicKey);
 
 				transaction.senderPublicKey(
-					(await this.#identity.publicKey().fromMultiSignature(signingKeys.length, senderPublicKeys))
-						.publicKey,
+					(await this.publicKeyService.fromMultiSignature(signingKeys.length, senderPublicKeys)).publicKey,
 				);
 
 				for (let i = 0; i < signingKeys.length; i++) {
@@ -367,11 +360,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const signedTransaction = transaction.build().toJson();
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				signedTransaction.id,
 				signedTransaction,
 				signedTransaction,
-				this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

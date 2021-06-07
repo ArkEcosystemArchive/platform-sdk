@@ -1,30 +1,26 @@
-import { Coins, Collections, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import * as TransactionDTO from "../dto";
-import { TransactionData, WalletData } from "../dto";
+import { WalletData } from "../dto";
 import { fetchTransaction, fetchTransactions, fetchUtxosAggregate, submitTransaction } from "./graphql-helpers";
 import { usedAddressesForAccount } from "./helpers";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
-	readonly #decimals: number;
+	#decimals!: number;
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return new TransactionData(await fetchTransaction(id, this.#config)).withDecimals(this.#decimals);
+		return this.dataTransferObjectService
+			.transaction(await fetchTransaction(id, this.configRepository, this.httpClient), TransactionDTO)
+			.withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -33,16 +29,18 @@ export class ClientService extends Services.AbstractClientService {
 		}
 
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
-			this.#config,
+			this.configRepository,
+			this.httpClient,
 			query.senderPublicKey,
 		);
 
 		const transactions = await fetchTransactions(
-			this.#config,
+			this.configRepository,
+			this.httpClient,
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions,
 			{
 				prev: undefined,
@@ -56,10 +54,15 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(this.#config, id);
+		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
+			this.configRepository,
+			this.httpClient,
+			id,
+		);
 
 		const balance = await fetchUtxosAggregate(
-			this.#config,
+			this.configRepository,
+			this.httpClient,
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
@@ -78,7 +81,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		for (const transaction of transactions) {
 			try {
-				await submitTransaction(this.#config, transaction.toBroadcast());
+				await submitTransaction(this.configRepository, this.httpClient, transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {

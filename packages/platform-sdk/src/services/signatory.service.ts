@@ -1,5 +1,7 @@
 /* istanbul ignore file */
 
+import { inject, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import {
 	MnemonicSignatory,
 	MultiMnemonicSignatory,
@@ -12,28 +14,42 @@ import {
 	SignatureSignatory,
 	WIFSignatory,
 } from "../signatories";
-import { IdentityService } from "./identity.contract";
+import { AddressService } from "./address.contract";
+import { ExtendedAddressService } from "./extended-address.contract";
+import { KeyPairService } from "./key-pair.contract";
+import { PrivateKeyService } from "./private-key.contract";
+import { PublicKeyService } from "./public-key.contract";
 import { IdentityOptions } from "./shared.contract";
 import { SignatoryService } from "./signatory.contract";
+import { WIFService } from "./wif.contract";
 
+@injectable()
 export class AbstractSignatoryService implements SignatoryService {
-	readonly #identity: IdentityService;
+	@inject(BindingType.AddressService)
+	private readonly addressService!: AddressService;
 
-	public constructor(identityService: IdentityService) {
-		this.#identity = identityService;
-	}
+	@inject(BindingType.ExtendedAddressService)
+	private readonly extendedAddressService!: ExtendedAddressService;
 
-	public async __destruct(): Promise<void> {
-		//
-	}
+	@inject(BindingType.KeyPairService)
+	private readonly keyPairService!: KeyPairService;
+
+	@inject(BindingType.PrivateKeyService)
+	private readonly privateKeyService!: PrivateKeyService;
+
+	@inject(BindingType.PublicKeyService)
+	private readonly publicKeyService!: PublicKeyService;
+
+	@inject(BindingType.WIFService)
+	private readonly wifService!: WIFService;
 
 	public async mnemonic(mnemonic: string, options?: IdentityOptions): Promise<Signatory> {
 		return new Signatory(
 			new MnemonicSignatory({
 				signingKey: mnemonic,
-				address: (await this.#identity.address().fromMnemonic(mnemonic, options)).address,
-				publicKey: (await this.#identity.publicKey().fromMnemonic(mnemonic, options)).publicKey,
-				privateKey: (await this.#identity.privateKey().fromMnemonic(mnemonic, options)).privateKey,
+				address: (await this.addressService.fromMnemonic(mnemonic, options)).address,
+				publicKey: (await this.publicKeyService.fromMnemonic(mnemonic, options)).publicKey,
+				privateKey: (await this.privateKeyService.fromMnemonic(mnemonic, options)).privateKey,
 			}),
 		);
 	}
@@ -47,9 +63,9 @@ export class AbstractSignatoryService implements SignatoryService {
 			new SecondaryMnemonicSignatory({
 				signingKey,
 				confirmKey,
-				address: (await this.#identity.address().fromMnemonic(signingKey, options)).address,
-				publicKey: (await this.#identity.publicKey().fromMnemonic(signingKey, options)).publicKey,
-				privateKey: (await this.#identity.privateKey().fromMnemonic(signingKey, options)).privateKey,
+				address: (await this.addressService.fromMnemonic(signingKey, options)).address,
+				publicKey: (await this.publicKeyService.fromMnemonic(signingKey, options)).publicKey,
+				privateKey: (await this.privateKeyService.fromMnemonic(signingKey, options)).privateKey,
 			}),
 		);
 	}
@@ -59,9 +75,7 @@ export class AbstractSignatoryService implements SignatoryService {
 			new MultiMnemonicSignatory(
 				mnemonics,
 				(
-					await Promise.all(
-						mnemonics.map((mnemonic: string) => this.#identity.publicKey().fromMnemonic(mnemonic)),
-					)
+					await Promise.all(mnemonics.map((mnemonic: string) => this.publicKeyService.fromMnemonic(mnemonic)))
 				).map(({ publicKey }) => publicKey),
 			),
 		);
@@ -71,9 +85,9 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new WIFSignatory({
 				signingKey: primary,
-				address: (await this.#identity.address().fromWIF(primary)).address,
-				publicKey: (await this.#identity.publicKey().fromWIF(primary)).publicKey,
-				privateKey: (await this.#identity.privateKey().fromWIF(primary)).privateKey,
+				address: (await this.addressService.fromWIF(primary)).address,
+				publicKey: (await this.publicKeyService.fromWIF(primary)).publicKey,
+				privateKey: (await this.privateKeyService.fromWIF(primary)).privateKey,
 			}),
 		);
 	}
@@ -83,9 +97,9 @@ export class AbstractSignatoryService implements SignatoryService {
 			new SecondaryWIFSignatory({
 				signingKey,
 				confirmKey,
-				address: (await this.#identity.address().fromWIF(signingKey)).address,
-				publicKey: (await this.#identity.publicKey().fromWIF(signingKey)).publicKey,
-				privateKey: (await this.#identity.privateKey().fromWIF(signingKey)).privateKey,
+				address: (await this.addressService.fromWIF(signingKey)).address,
+				publicKey: (await this.publicKeyService.fromWIF(signingKey)).publicKey,
+				privateKey: (await this.privateKeyService.fromWIF(signingKey)).privateKey,
 			}),
 		);
 	}
@@ -94,7 +108,7 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new PrivateKeySignatory({
 				signingKey: privateKey,
-				address: (await this.#identity.address().fromPrivateKey(privateKey, options)).address,
+				address: (await this.addressService.fromPrivateKey(privateKey, options)).address,
 			}),
 		);
 	}
@@ -103,7 +117,7 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new SignatureSignatory({
 				signingKey: signature,
-				address: (await this.#identity.address().fromPublicKey(senderPublicKey)).address,
+				address: (await this.addressService.fromPublicKey(senderPublicKey)).address,
 				publicKey: senderPublicKey,
 			}),
 		);
@@ -113,7 +127,7 @@ export class AbstractSignatoryService implements SignatoryService {
 		return new Signatory(
 			new SenderPublicKeySignatory({
 				signingKey: publicKey,
-				address: (await this.#identity.address().fromPublicKey(publicKey, options)).address,
+				address: (await this.addressService.fromPublicKey(publicKey, options)).address,
 				publicKey,
 			}),
 		);

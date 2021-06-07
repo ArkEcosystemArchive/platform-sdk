@@ -1,38 +1,24 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 
 import { WalletData } from "../dto";
-import { ClientService } from "./client";
-import { IdentityService } from "./identity";
 
 const chunk = <T>(value: T[], size: number) =>
 	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
 
 const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
-	readonly #config: Coins.Config;
-	readonly #identity: Services.IdentityService;
-	readonly #client: Services.ClientService;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
+
+	@IoC.inject(IoC.BindingType.ClientService)
+	private readonly clientService!: Services.ClientService;
+
 	#ledger: Services.LedgerTransport;
 	#transport!: DposLedger;
-
-	private constructor(config: Coins.Config, identity: Services.IdentityService, client: Services.ClientService) {
-		super();
-
-		this.#config = config;
-		this.#identity = identity;
-		this.#client = client;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService(
-			config,
-			await IdentityService.__construct(config),
-			await ClientService.__construct(config),
-		);
-	}
 
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
@@ -71,7 +57,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		const page = 0;
-		const slip44 = this.#config.get<number>("network.constants.slip44");
+		const slip44 = this.configRepository.get<number>("network.constants.slip44");
 
 		const addressCache: Record<string, { address: string; publicKey: string }> = {};
 		const wallets: Contracts.WalletData[] = [];
@@ -150,7 +136,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 	async #fetchWallet(address: string, wallets: Contracts.WalletData[]): Promise<void> {
 		try {
-			const wallet: Contracts.WalletData = await this.#client.wallet(address);
+			const wallet: Contracts.WalletData = await this.clientService.wallet(address);
 
 			if (wallet.address()) {
 				wallets.push(wallet);

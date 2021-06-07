@@ -1,28 +1,15 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 import { LCDClient, MnemonicKey, MsgSend } from "@terra-money/terra.js";
 
-import { SignedTransactionData } from "../dto";
 import { useClient } from "./helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
-	}
-
 	public async transfer(
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
+		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 
 		const transaction = await this.#useClient()
 			.wallet(new MnemonicKey({ mnemonic: input.signatory.signingKey() }))
@@ -31,18 +18,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 				memo: input.data.memo,
 			});
 
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			UUID.random(),
 			transaction.toData(),
 			transaction.toJSON(),
-			this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 		);
 	}
 
 	#useClient(): LCDClient {
 		return useClient(
-			`${Helpers.randomHostFromConfig(this.#config)}/api`,
-			this.#config.get("network.meta.networkId"),
+			`${Helpers.randomHostFromConfig(this.configRepository)}/api`,
+			this.configRepository.get("network.meta.networkId"),
 		);
 	}
 }

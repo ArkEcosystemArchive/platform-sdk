@@ -48,7 +48,7 @@ export class WalletMutator implements IWalletMutator {
 
 	/** {@inheritDoc IWalletMutator.identity} */
 	public async identity(mnemonic: string, options?: Services.IdentityOptions): Promise<void> {
-		const { type, address, path } = await this.#wallet.coin().identity().address().fromMnemonic(mnemonic, options);
+		const { type, address, path } = await this.#wallet.coin().address().fromMnemonic(mnemonic, options);
 
 		/* istanbul ignore next */
 		if (type) {
@@ -66,7 +66,7 @@ export class WalletMutator implements IWalletMutator {
 			.data()
 			.set(
 				WalletData.PublicKey,
-				(await this.#wallet.coin().identity().publicKey().fromMnemonic(mnemonic, options)).publicKey,
+				(await this.#wallet.coin().publicKey().fromMnemonic(mnemonic, options)).publicKey,
 			);
 
 		return this.address({ type, address, path });
@@ -78,7 +78,7 @@ export class WalletMutator implements IWalletMutator {
 		options: { syncIdentity: boolean; validate: boolean } = { syncIdentity: true, validate: true },
 	): Promise<void> {
 		if (options.validate && address) {
-			const isValidAddress: boolean = await this.#wallet.coin().identity().address().validate(address!);
+			const isValidAddress: boolean = await this.#wallet.coin().address().validate(address!);
 
 			if (!isValidAddress) {
 				throw new Error(`Failed to retrieve information for ${address} because it is invalid.`);
@@ -111,7 +111,7 @@ export class WalletMutator implements IWalletMutator {
 		this.#wallet.data().set(WalletData.PublicKey, publicKey);
 
 		if (options.syncIdentity) {
-			await this.#wallet.synchroniser().identity();
+			await this.#wallet.synchroniser();
 		}
 
 		this.avatar(Avatar.make(this.#wallet.address()));

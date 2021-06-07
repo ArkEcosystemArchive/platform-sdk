@@ -1,6 +1,6 @@
 import "jest-extended";
-import { createConfig } from "./helpers";
-import { ClientService, IdentityService } from "../src/services";
+import { createService } from "./helpers";
+import { ClientService, AddressService, PrivateKeyService, PublicKeyService, KeyPairService } from "../src/services";
 import {
 	addressFromAccountExtPublicKey,
 	addressFromMnemonic,
@@ -8,7 +8,7 @@ import {
 	SHELLEY_COIN_PURPOSE,
 	SHELLEY_COIN_TYPE,
 	SHELLEY_DERIVATION_SCHEME,
-} from "../src/services/identity/shelley";
+} from "../src/services/shelley";
 import lib from "cardano-crypto.js";
 import { Buffer } from "buffer";
 
@@ -265,22 +265,18 @@ const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: st
 
 describe.each(data)("Addresses from", (wallet) => {
 	it.skip(`Identity Service ${wallet.from}'s Wallet`, async function () {
-		const config = createConfig();
-		const identityService = await IdentityService.__construct(config);
-
-		const privateKey = await identityService.privateKey().fromMnemonic(wallet.mnemonic);
+		const privateKey = createService(PrivateKeyService).fromMnemonic(wallet.mnemonic);
 		expect(privateKey).toBe(wallet.rootPrivateKey);
 
-		const publicKey = await identityService.publicKey().fromMnemonic(wallet.mnemonic);
+		const publicKey = createService(PublicKeyService).fromMnemonic(wallet.mnemonic);
 		expect(publicKey).toBe(wallet.rootPublicKey);
 
-		const keys = await identityService.keyPair().fromMnemonic(wallet.mnemonic);
+		const keys = createService(KeyPairService).fromMnemonic(wallet.mnemonic);
 		expect(keys).toStrictEqual({ publicKey: wallet.rootPublicKey, privateKey: wallet.rootPrivateKey });
 	});
 
 	it.skip(`Client Service ${wallet.from}'s Wallet`, async function () {
-		const config = createConfig();
-		const client = await ClientService.__construct(config);
+		const client = createService(ClientService);
 
 		const walletData = await client.wallet(wallet.walletId);
 		expect(walletData).toBe(wallet.address);

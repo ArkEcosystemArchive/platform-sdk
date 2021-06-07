@@ -1,21 +1,15 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Connection, PublicKey } from "@solana/web3.js";
 
 import { WalletData } from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
-	readonly #client: Connection;
+	#client!: Connection;
 
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#client = new Connection(this.#host());
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -56,6 +50,6 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	#host(): string {
-		return Helpers.randomHostFromConfig(this.#config);
+		return Helpers.randomHostFromConfig(this.configRepository);
 	}
 }

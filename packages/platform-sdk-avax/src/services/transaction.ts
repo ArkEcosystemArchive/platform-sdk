@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Hash } from "@arkecosystem/platform-sdk-crypto";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/utils";
@@ -7,26 +7,19 @@ import { AVMAPI } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 import { v4 as uuidv4 } from "uuid";
 
-import { SignedTransactionData } from "../dto";
 import { keyPairFromMnemonic, useKeychain, usePChain, useXChain } from "./helpers";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-	readonly #xchain: AVMAPI;
-	readonly #pchain: PlatformVMAPI;
-	readonly #keychain;
+	#xchain!: AVMAPI;
+	#pchain!: PlatformVMAPI;
+	#keychain;
 
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#xchain = useXChain(config);
-		this.#pchain = usePChain(config);
-		this.#keychain = useKeychain(config);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#xchain = useXChain(this.configRepository);
+		this.#pchain = usePChain(this.configRepository);
+		this.#keychain = useKeychain(this.configRepository);
 	}
 
 	public async transfer(
@@ -39,17 +32,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		try {
 			const { child } = this.#keychain.importKey(
-				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).child.getPrivateKey(),
+				keyPairFromMnemonic(this.configRepository, input.signatory.signingKey()).child.getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#xchain.getUTXOs(child.getAddressString());
-			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
+			const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 
 			const signedTx = (
 				await this.#xchain.buildBaseTx(
 					utxos,
 					new BN(amount),
-					this.#config.get("network.meta.assetId"),
+					this.configRepository.get("network.meta.assetId"),
 					[input.data.to],
 					keyPairAddresses,
 					keyPairAddresses,
@@ -57,7 +50,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				)
 			).sign(this.#keychain);
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				// @ts-ignore - feross/buffer should behave the same as nodejs/buffer
 				Hash.sha256(signedTx.toBuffer()).toString("hex"),
 				{
@@ -68,7 +61,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 					timestamp: DateTime.make(),
 				},
 				signedTx.toString(),
-				this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
@@ -85,7 +77,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		try {
 			const { child } = this.#keychain.importKey(
-				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).child.getPrivateKey(),
+				keyPairFromMnemonic(this.configRepository, input.signatory.signingKey()).child.getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#pchain.getUTXOs(child.getAddressString());
@@ -105,7 +97,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				)
 			).sign(this.#keychain);
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				uuidv4(),
 				{
 					sender: input.signatory.address(),
@@ -114,7 +106,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 					fee: 0,
 				},
 				signedTx.toString(),
-				this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

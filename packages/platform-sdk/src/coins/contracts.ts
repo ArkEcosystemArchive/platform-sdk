@@ -2,18 +2,23 @@ import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { CoinManifest } from "../networks/network.models";
 import {
+	AddressService,
 	ClientService,
 	DataTransferObjectService,
+	ExtendedAddressService,
 	FeeService,
-	IdentityService,
+	KeyPairService,
 	KnownWalletService,
 	LedgerService,
 	LinkService,
 	MessageService,
 	MultiSignatureService,
+	PrivateKeyService,
+	PublicKeyService,
 	SignatoryService,
 	TransactionService,
 	WalletDiscoveryService,
+	WIFService,
 } from "../services";
 import { BigNumberService } from "../services/big-number.service";
 
@@ -33,7 +38,12 @@ export interface CoinServices {
 	client: ClientService;
 	dataTransferObject: DataTransferObjectService;
 	fee: FeeService;
-	identity: IdentityService;
+	address: AddressService;
+	extendedAddress: ExtendedAddressService;
+	keyPair: KeyPairService;
+	privateKey: PrivateKeyService;
+	publicKey: PublicKeyService;
+	wif: WIFService;
 	knownWallets: KnownWalletService;
 	ledger: LedgerService;
 	link: LinkService;

@@ -1,25 +1,30 @@
 import "jest-extended";
 
-import { DTO, Signatories, Test } from "@arkecosystem/platform-sdk";
+import { DTO, IoC, Signatories } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
+import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 import { TransactionService } from "./transaction";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
+});
 
 afterEach(() => nock.cleanAll());
 
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
 
 describe("ClientService", () => {
@@ -153,7 +158,10 @@ describe("ClientService", () => {
 				.post("/")
 				.reply(201, require(`${__dirname}/../../test/fixtures/transaction/submit-tx.json`));
 
-			const txService = await TransactionService.__construct(createConfig());
+			const txService = createService(TransactionService, undefined, (container) => {
+				container.constant(IoC.BindingType.Container, container);
+				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+			});
 
 			const transfer = await txService.transfer({
 				signatory: new Signatories.Signatory(
@@ -187,7 +195,7 @@ describe("ClientService", () => {
 				.reply(201, require(`${__dirname}/../../test/fixtures/transaction/submit-tx-failed.json`));
 
 			const transactions = [
-				new SignedTransactionData(
+				createService(SignedTransactionData).configure(
 					"35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f",
 					{
 						sender:

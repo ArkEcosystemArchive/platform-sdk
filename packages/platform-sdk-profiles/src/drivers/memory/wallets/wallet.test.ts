@@ -177,15 +177,35 @@ it("should have a manifest service", () => {
 });
 
 it("should have a config service", () => {
-	expect(subject.config()).toBeInstanceOf(Coins.Config);
+	expect(subject.config()).toBeInstanceOf(Coins.ConfigRepository);
 });
 
 it("should have a client service", () => {
 	expect(subject.client()).toBeObject();
 });
 
-it("should have a identity service", () => {
-	expect(subject.identity()).toBeObject();
+it("should have a address service", () => {
+	expect(subject.addressService()).toBeObject();
+});
+
+it("should have a extended address service", () => {
+	expect(subject.extendedAddressService()).toBeObject();
+});
+
+it("should have a key pair service", () => {
+	expect(subject.keyPairService()).toBeObject();
+});
+
+it("should have a private key service", () => {
+	expect(subject.privateKeyService()).toBeObject();
+});
+
+it("should have a public key service", () => {
+	expect(subject.publicKeyService()).toBeObject();
+});
+
+it("should have a wif service", () => {
+	expect(subject.wifService()).toBeObject();
 });
 
 it("should have a ledger service", () => {

@@ -1,12 +1,9 @@
-import { Coins, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { privateToPublic, sign, verify } from "../crypto";
 
+@IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public static async __construct(config: Coins.Config): Promise<MessageService> {
-		return new MessageService();
-	}
-
 	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			return {

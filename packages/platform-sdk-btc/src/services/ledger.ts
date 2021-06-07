@@ -1,15 +1,12 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import Bitcoin from "@ledgerhq/hw-app-btc";
 import { getAppAndVersion } from "@ledgerhq/hw-app-btc/lib/getAppAndVersion";
 import { serializeTransactionOutputs } from "@ledgerhq/hw-app-btc/lib/serializeTransaction";
 
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport!: Bitcoin;
-
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService();
-	}
 
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.create();

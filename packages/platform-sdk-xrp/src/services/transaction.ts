@@ -1,26 +1,15 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { RippleAPI } from "ripple-lib";
 
-import { SignedTransactionData } from "../dto";
-
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-	readonly #http: HttpClient;
-	readonly #ripple: RippleAPI;
+	#ripple!: RippleAPI;
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#ripple = new RippleAPI();
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
 	}
 
 	public async transfer(
@@ -32,7 +21,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
-			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
+			const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 			const prepared = await this.#ripple.preparePayment(
 				input.signatory.address(),
 				{
@@ -56,9 +45,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 			]);
 
 			const signedData = { ...signedTransaction, timestamp: DateTime.make() };
-			const decimals = this.#config.get<number>(Coins.ConfigKey.CurrencyDecimals);
 
-			return new SignedTransactionData(id, signedData, signedTransaction, decimals);
+			return this.dataTransferObjectService.signedTransaction(id, signedData, signedTransaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -66,7 +54,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	async #post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.post(Helpers.randomHostFromConfig(this.#config), {
+			await this.httpClient.post(Helpers.randomHostFromConfig(this.configRepository), {
 				jsonrpc: "2.0",
 				id: UUID.random(),
 				method,

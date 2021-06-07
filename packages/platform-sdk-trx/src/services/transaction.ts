@@ -1,27 +1,19 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import TronWeb from "tronweb";
 
-import { SignedTransactionData } from "../dto";
-import { AddressService } from "./identity/address";
-import { PrivateKeyService } from "./identity/private-key";
-
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-	readonly #connection: TronWeb;
-	readonly #address: AddressService;
-	readonly #privateKey: PrivateKeyService;
+	@IoC.inject(IoC.BindingType.AddressService)
+	private readonly addressService!: Services.AddressService;
 
-	private constructor(config: Coins.Config) {
-		super();
+	@IoC.inject(IoC.BindingType.PrivateKeyService)
+	private readonly privateKeyService!: Services.PrivateKeyService;
 
-		this.#config = config;
-		this.#connection = new TronWeb({ fullHost: Helpers.randomHostFromConfig(config) });
-		this.#address = new AddressService(config);
-		this.#privateKey = new PrivateKeyService(config);
-	}
+	#connection!: TronWeb;
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#connection = new TronWeb({ fullHost: Helpers.randomHostFromConfig(this.configRepository) });
 	}
 
 	public async transfer(
@@ -33,7 +25,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 			}
 
-			const { address: senderAddress } = await this.#address.fromMnemonic(input.signatory.signingKey());
+			const { address: senderAddress } = await this.addressService.fromMnemonic(input.signatory.signingKey());
 
 			if (senderAddress === input.data.to) {
 				throw new Exceptions.InvalidRecipientException("Cannot transfer TRX to the same account.");
@@ -41,7 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			let transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
-				Helpers.toRawUnit(input.data.amount, this.#config).toString(),
+				Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
 				senderAddress,
 				1,
 			);
@@ -56,11 +48,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const response = await this.#connection.trx.sign(
 				transaction,
-				(await this.#privateKey.fromMnemonic(input.signatory.signingKey())).privateKey,
+				(await this.privateKeyService.fromMnemonic(input.signatory.signingKey())).privateKey,
 			);
 
-			const decimals = this.#config.get<number>(Coins.ConfigKey.CurrencyDecimals);
-			return new SignedTransactionData(response.txID, response, response, decimals);
+			const decimals = this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals);
+			return this.dataTransferObjectService.signedTransaction(response.txID, response, response);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

@@ -351,7 +351,7 @@ export interface IReadWriteWallet {
 	 * @return {Coins.Config}
 	 * @memberof IReadWriteWallet
 	 */
-	config(): Coins.Config;
+	config(): Coins.ConfigRepository;
 
 	/**
 	 * Get the client service instance.
@@ -375,7 +375,47 @@ export interface IReadWriteWallet {
 	 * @return {Services.IdentityService}
 	 * @memberof IReadWriteWallet
 	 */
-	identity(): Services.IdentityService;
+	addressService(): Services.AddressService;
+
+	/**
+	 * Get the identity service instance.
+	 *
+	 * @return {Services.IdentityService}
+	 * @memberof IReadWriteWallet
+	 */
+	extendedAddressService(): Services.ExtendedAddressService;
+
+	/**
+	 * Get the identity service instance.
+	 *
+	 * @return {Services.IdentityService}
+	 * @memberof IReadWriteWallet
+	 */
+	keyPairService(): Services.KeyPairService;
+
+	/**
+	 * Get the identity service instance.
+	 *
+	 * @return {Services.IdentityService}
+	 * @memberof IReadWriteWallet
+	 */
+	privateKeyService(): Services.PrivateKeyService;
+
+	/**
+	 * Get the identity service instance.
+	 *
+	 * @return {Services.IdentityService}
+	 * @memberof IReadWriteWallet
+	 */
+	publicKeyService(): Services.PublicKeyService;
+
+	/**
+	 * Get the identity service instance.
+	 *
+	 * @return {Services.IdentityService}
+	 * @memberof IReadWriteWallet
+	 */
+	wifService(): Services.WIFService;
 
 	/**
 	 * Get the ledger service instance.

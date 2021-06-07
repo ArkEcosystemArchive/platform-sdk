@@ -1,7 +1,12 @@
 /* istanbul ignore file */
 
+import { HttpClient } from "../../../platform-sdk-http/dist";
+import { ConfigRepository } from "../coins";
 import { RawTransactionData, SignedTransactionData } from "../contracts";
 import { NotImplemented } from "../exceptions";
+import { inject } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
+import { DataTransferObjectService } from "./data-transfer-object.contract";
 import {
 	DelegateRegistrationInput,
 	DelegateResignationInput,
@@ -20,6 +25,15 @@ import {
 } from "./transaction.contract";
 
 export abstract class AbstractTransactionService implements Contract {
+	@inject(BindingType.ConfigRepository)
+	protected readonly configRepository!: ConfigRepository;
+
+	@inject(BindingType.DataTransferObjectService)
+	protected readonly dataTransferObjectService!: DataTransferObjectService;
+
+	@inject(BindingType.HttpClient)
+	protected readonly httpClient!: HttpClient;
+
 	public async __destruct(): Promise<void> {
 		//
 	}

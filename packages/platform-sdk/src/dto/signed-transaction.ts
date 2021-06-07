@@ -2,18 +2,30 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { RawTransactionData } from "../contracts";
+import { BindingType, inject } from "../ioc";
+import { BigNumberService } from "../services";
 
 export abstract class AbstractSignedTransactionData {
-	protected readonly decimals?: number;
+	@inject(BindingType.BigNumberService)
+	protected readonly bigNumberService!: BigNumberService;
 
-	public constructor(
-		protected identifier: string,
-		protected readonly signedData: RawTransactionData,
-		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-		protected readonly broadcastData: any,
+	protected identifier!: string;
+	protected signedData!: RawTransactionData;
+	protected broadcastData!: any;
+	protected decimals!: number | undefined;
+
+	public configure(
+		identifier: string,
+		signedData: RawTransactionData,
+		broadcastData: any,
 		decimals?: number | string,
 	) {
+		this.identifier = identifier;
+		this.signedData = signedData;
+		this.broadcastData = broadcastData;
 		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;
+
+		return this;
 	}
 
 	public setAttributes(attributes: { identifier: string }): void {

@@ -1,26 +1,19 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { Account, Connection, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { v4 as uuidv4 } from "uuid";
 
-import { SignedTransactionData } from "../dto";
-import { derivePrivateKey, derivePublicKey } from "./identity/helpers";
+import { derivePrivateKey, derivePublicKey } from "./helpers";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-	readonly #client: Connection;
-	readonly #slip44: number;
+	#client!: Connection;
+	#slip44!: number;
 
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
 		this.#client = new Connection(this.#host());
-		this.#slip44 = config.get<number>("network.constants.slip44");
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
+		this.#slip44 = this.configRepository.get<number>("network.constants.slip44");
 	}
 
 	public async transfer(
@@ -30,7 +23,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "signatory");
 		}
-		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toNumber();
+		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toNumber();
 
 		const transaction = new Transaction();
 		transaction.recentBlockhash = (await this.#client.getRecentBlockhash()).blockhash;
@@ -49,7 +42,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			derivePrivateKey(input.signatory.signingKey(), 0, 0, this.#slip44),
 		);
 
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			uuidv4(),
 			{
 				from: input.signatory.address(),
@@ -58,7 +51,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 				timestamp: DateTime.make(),
 			},
 			signedTransaction.toString("hex"),
-			this.#config.get(Coins.ConfigKey.CurrencyTicker),
 		);
 	}
 
@@ -69,6 +61,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	#host(): string {
-		return `${Helpers.randomHostFromConfig(this.#config)}/api`;
+		return `${Helpers.randomHostFromConfig(this.configRepository)}/api`;
 	}
 }
