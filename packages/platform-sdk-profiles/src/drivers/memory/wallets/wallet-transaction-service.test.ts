@@ -11,7 +11,6 @@ import { Wallet } from "./wallet";
 import { TransactionService } from "./wallet-transaction-service";
 import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";
 import { Signatories } from "@arkecosystem/platform-sdk";
-import { MnemonicSignatory } from "@arkecosystem/platform-sdk/dist/signatories";
 
 let profile: IProfile;
 let wallet: IReadWriteWallet;
@@ -126,7 +125,7 @@ describe("signatures", () => {
 		await subject.addSignature(
 			"a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
 			new Signatories.Signatory(
-				new MnemonicSignatory({
+				new Signatories.MnemonicSignatory({
 					signingKey: "this is a top secret passphrase 1",
 					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 					publicKey: "publicKey",
@@ -158,6 +157,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "100000000",
 		    "expiration": 0,
@@ -211,6 +213,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "asset": Object {
@@ -270,6 +275,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "asset": Object {
@@ -330,6 +338,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "asset": Object {
@@ -394,6 +405,9 @@ describe("signatures", () => {
 		expect(subject.waitingForOtherSignatures()).toContainKey(id);
 		expect(subject.waitingForOtherSignatures()[id]).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "asset": Object {
@@ -472,6 +486,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "asset": Object {
@@ -531,6 +548,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "asset": Object {
@@ -609,6 +629,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "fee": "2500000000",
@@ -664,6 +687,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "100000000",
 		    "asset": Object {
@@ -734,6 +760,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "asset": Object {
@@ -795,6 +824,9 @@ describe("signatures", () => {
 		expect(subject.signed()).toContainKey(id);
 		expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "0",
 		    "asset": Object {
@@ -921,6 +953,9 @@ it("#pending", async () => {
 	expect(subject.signed()).toContainKey(id);
 	expect(subject.transaction(id)).toMatchInlineSnapshot(`
 		SignedTransactionData {
+		  "bigNumberService": BigNumberService {
+		    "configRepository": ConfigRepository {},
+		  },
 		  "broadcastData": Object {
 		    "amount": "100000000",
 		    "expiration": 0,

@@ -1,6 +1,6 @@
 import { Networks } from "@arkecosystem/platform-sdk";
 
-import { transactions, importMethods, featureFlags } from "../shared";
+import { explorer, transactions, importMethods, featureFlags } from "../shared";
 
 const network: Networks.NetworkManifest = {
 	id: "worbli.testnet",
@@ -39,6 +39,7 @@ const network: Networks.NetworkManifest = {
 	},
 	importMethods,
 	featureFlags,
+	explorer,
 	meta: {
 		// @TODO
 		networkId: "0d1ba39b44e70e9c36b74d60677ef3b686bd4347ade092b816886a6a35ddb6f7",

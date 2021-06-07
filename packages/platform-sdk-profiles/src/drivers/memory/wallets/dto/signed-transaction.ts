@@ -1,4 +1,4 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
@@ -17,12 +17,12 @@ export class SignedTransactionData
 
 	/** {@inheritDoc Contracts.SignedTransactionData.amount} */
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.amount);
+		return BigNumber.make(this.signedData.amount, this.decimals);
 	}
 
 	/** {@inheritDoc Contracts.SignedTransactionData.fee} */
 	public fee(): BigNumber {
-		return BigNumber.make(this.signedData.fee);
+		return BigNumber.make(this.signedData.fee, this.decimals);
 	}
 
 	/** {@inheritDoc Contracts.SignedTransactionData.fee} */

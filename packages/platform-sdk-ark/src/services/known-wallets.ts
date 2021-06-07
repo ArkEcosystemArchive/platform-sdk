@@ -1,20 +1,15 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
+@IoC.injectable()
 export class KnownWalletService extends Services.AbstractKnownWalletService {
-	readonly #httpClient: HttpClient;
-	readonly #source: string | undefined;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
-	private constructor(config: Coins.Config) {
-		super();
+	@IoC.inject(IoC.BindingType.HttpClient)
+	private readonly httpClient!: HttpClient;
 
-		this.#httpClient = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-		this.#source = config.getLoose<string>(Coins.ConfigKey.KnownWallets);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<KnownWalletService> {
-		return new KnownWalletService(config);
-	}
+	#source: string | undefined;
 
 	public async all(): Promise<Services.KnownWallet[]> {
 		if (!this.#source) {
@@ -22,7 +17,7 @@ export class KnownWalletService extends Services.AbstractKnownWalletService {
 		}
 
 		try {
-			const results = (await this.#httpClient.get(this.#source)).json();
+			const results = (await this.httpClient.get(this.#source)).json();
 
 			if (Array.isArray(results)) {
 				return results;
@@ -32,5 +27,10 @@ export class KnownWalletService extends Services.AbstractKnownWalletService {
 		} catch (error) {
 			return [];
 		}
+	}
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#source = this.configRepository.getLoose<string>(Coins.ConfigKey.KnownWallets);
 	}
 }

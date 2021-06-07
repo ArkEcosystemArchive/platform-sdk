@@ -1,10 +1,12 @@
 /* istanbul ignore file */
 
 import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 import { KeyPairDataTransferObject, KeyPairService } from "./key-pair.contract";
 import { IdentityOptions } from "./shared.contract";
 
-export abstract class AbstractKeyPairService implements KeyPairService {
+@injectable()
+export class AbstractKeyPairService implements KeyPairService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<KeyPairDataTransferObject> {
 		throw new NotImplemented(this.constructor.name, this.fromMnemonic.name);
 	}

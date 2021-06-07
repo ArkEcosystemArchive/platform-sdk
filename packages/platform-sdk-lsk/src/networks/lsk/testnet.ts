@@ -1,6 +1,6 @@
 import { Networks } from "@arkecosystem/platform-sdk";
 
-import { transactions, importMethods, featureFlags } from "../shared";
+import { explorer, transactions, importMethods, featureFlags } from "../shared";
 
 const network: Networks.NetworkManifest = {
 	id: "lsk.testnet",
@@ -33,6 +33,7 @@ const network: Networks.NetworkManifest = {
 	transactions,
 	importMethods,
 	featureFlags,
+	explorer,
 	meta: {
 		// @TODO
 		networkId: "da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba",

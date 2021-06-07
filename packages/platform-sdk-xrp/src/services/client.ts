@@ -1,26 +1,17 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";
 import { broadcastErrors } from "./client.helpers";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
-	readonly #http: HttpClient;
-	readonly #decimals: number;
+	#decimals!: number;
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-		this.#decimals = config.get<number>(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#decimals = this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
@@ -34,7 +25,7 @@ export class ClientService extends Services.AbstractClientService {
 			},
 		]);
 
-		return Helpers.createTransactionDataWithType(transaction, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(transaction, TransactionDTO).withDecimals(this.#decimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -45,7 +36,7 @@ export class ClientService extends Services.AbstractClientService {
 			},
 		]);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions.map(({ tx }) => tx),
 			{
 				prev: undefined,
@@ -108,7 +99,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	async #post(method: string, params: any[]): Promise<Contracts.KeyValuePair> {
 		return (
-			await this.#http.post(Helpers.randomHostFromConfig(this.#config), {
+			await this.httpClient.post(Helpers.randomHostFromConfig(this.configRepository), {
 				jsonrpc: "2.0",
 				id: UUID.random(),
 				method,

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import {
 	castVotes,
@@ -8,21 +8,13 @@ import {
 	transfer,
 } from "@liskhq/lisk-transactions";
 
-import { SignedTransactionData } from "../dto/signed-transaction";
-
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-	readonly #network: string;
+	#network!: string;
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#network = config.get<string>("network.meta.networkId");
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#network = this.configRepository.get<string>("network.meta.networkId");
 	}
 
 	public async transfer(
@@ -32,7 +24,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return this.#createFromData("transfer", {
 			...input,
 			data: {
-				amount: Helpers.toRawUnit(input.data.amount, this.#config).toString(),
+				amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
 				recipientId: input.data.to,
 				data: input.data.memo,
 			},
@@ -112,8 +104,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 				registerMultisignature,
 			}[type](struct);
 
-			const decimals = this.#config.get<string>(Coins.ConfigKey.CurrencyTicker);
-			return new SignedTransactionData(signedTransaction.id, signedTransaction, signedTransaction, decimals);
+			const decimals = this.configRepository.get<string>(Coins.ConfigKey.CurrencyTicker);
+			return this.dataTransferObjectService.signedTransaction(
+				signedTransaction.id,
+				signedTransaction,
+				signedTransaction,
+			);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

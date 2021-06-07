@@ -1,11 +1,15 @@
 /* istanbul ignore file */
 
-import { Container as Inversify } from "inversify";
+import { Container as Inversify, interfaces } from "inversify";
 
 export type ContainerKey = string | symbol;
 
 export class Container {
-	readonly #container = new Inversify();
+	readonly #container: Inversify;
+
+	public constructor() {
+		this.#container = new Inversify({ skipBaseClassChecks: true });
+	}
 
 	public get<T>(key: ContainerKey): T {
 		return this.#container.get(key);
@@ -34,6 +38,10 @@ export class Container {
 
 	public has(key: ContainerKey): boolean {
 		return this.#container.isBound(key);
+	}
+
+	public resolve<T>(constructorFunction: interfaces.Newable<T>): T {
+		return this.#container.resolve(constructorFunction);
 	}
 
 	public missing(key: ContainerKey): boolean {

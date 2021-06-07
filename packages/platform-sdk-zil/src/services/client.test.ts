@@ -1,22 +1,33 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { createConfig } from "../../test/config";
 import { identity } from "../../test/fixtures/identity";
+import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 const fixtures = `${__dirname}/../../test/fixtures/client`;
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
+});
 
 afterEach(() => nock.cleanAll());
 
-beforeAll(() => nock.disableNetConnect());
+beforeAll(() => {
+	nock.disableNetConnect();
+});
 
 describe("ClientService", () => {
 	test("#transaction", async () => {
@@ -66,7 +77,7 @@ describe("ClientService", () => {
 			};
 
 			const broadcastData = JSON.stringify(require(`${fixtures}/broadcast-request-payload.json`));
-			const transaction = new SignedTransactionData("id", signedData, broadcastData);
+			const transaction = createService(SignedTransactionData).configure("id", signedData, broadcastData);
 			const result = await subject.broadcast([transaction]);
 
 			expect(result).toEqual({
@@ -91,7 +102,7 @@ describe("ClientService", () => {
 			};
 
 			const broadcastData = JSON.stringify(require(`${fixtures}/broadcast-request-payload.json`));
-			const transaction = new SignedTransactionData("id", signedData, broadcastData);
+			const transaction = createService(SignedTransactionData).configure("id", signedData, broadcastData);
 			const result = await subject.broadcast([transaction]);
 
 			expect(result).toEqual({

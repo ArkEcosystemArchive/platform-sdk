@@ -1,7 +1,8 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, IoC } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+@IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
 		return "TODO";
@@ -44,7 +45,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.data.fee, this.decimals);
+		return this.bigNumberService.make(this.data.fee);
 	}
 
 	public asset(): Record<string, unknown> {

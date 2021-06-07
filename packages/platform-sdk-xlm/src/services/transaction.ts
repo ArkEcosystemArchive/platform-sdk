@@ -1,15 +1,14 @@
-import { Coins, Contracts, Exceptions, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 import { v4 as uuidv4 } from "uuid";
 
-import { SignedTransactionData } from "../dto";
-import { IdentityService } from "./identity";
-
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-	readonly #identity: IdentityService;
-	readonly #client;
-	readonly #networkPassphrase;
+	@IoC.inject(IoC.BindingType.KeyPairService)
+	private readonly keyPairService!: Services.KeyPairService;
+
+	#client;
+	#networkPassphrase;
 
 	readonly #networks = {
 		mainnet: {
@@ -22,20 +21,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		},
 	};
 
-	private constructor(config: Coins.Config, identity: IdentityService) {
-		super();
-
-		const networkConfig = config.get<Networks.NetworkManifest>("network");
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		const networkConfig = this.configRepository.get<Networks.NetworkManifest>("network");
 		const network = this.#networks[networkConfig.id.split(".")[1]];
 
-		this.#config = config;
-		this.#identity = identity;
 		this.#client = new Stellar.Server(network.host);
 		this.#networkPassphrase = network.networkPassphrase;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config, await IdentityService.__construct(config));
 	}
 
 	public async transfer(
@@ -49,15 +41,15 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			let keyPair: Services.KeyPairDataTransferObject;
 			if (input.signatory.actsWithPrivateKey()) {
-				keyPair = await this.#identity.keyPair().fromPrivateKey(input.signatory.signingKey());
+				keyPair = await this.keyPairService.fromPrivateKey(input.signatory.signingKey());
 			} else {
-				keyPair = await this.#identity.keyPair().fromMnemonic(input.signatory.signingKey());
+				keyPair = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
 			}
 
 			const { publicKey, privateKey } = keyPair;
 
 			const account = await this.#client.loadAccount(publicKey);
-			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
+			const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 
 			const transaction = new Stellar.TransactionBuilder(account, {
 				fee: input.fee || Stellar.BASE_FEE,
@@ -75,8 +67,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			transaction.sign(Stellar.Keypair.fromSecret(privateKey));
 
-			const decimals = this.#config.get<number>(Coins.ConfigKey.CurrencyDecimals);
-			return new SignedTransactionData(uuidv4(), transaction, transaction, decimals);
+			return this.dataTransferObjectService.signedTransaction(uuidv4(), transaction, transaction);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

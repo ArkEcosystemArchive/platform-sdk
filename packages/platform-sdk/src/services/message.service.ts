@@ -1,13 +1,11 @@
 /* istanbul ignore file */
 
 import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 import { MessageInput, MessageService, SignedMessage } from "./message.contract";
 
-export abstract class AbstractMessageService implements MessageService {
-	public async __destruct(): Promise<void> {
-		//
-	}
-
+@injectable()
+export class AbstractMessageService implements MessageService {
 	public async sign(input: MessageInput): Promise<SignedMessage> {
 		throw new NotImplemented(this.constructor.name, this.sign.name);
 	}

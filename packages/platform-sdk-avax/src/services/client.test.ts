@@ -1,12 +1,18 @@
-import { Collections } from "@arkecosystem/platform-sdk";
+import { Collections, IoC } from "@arkecosystem/platform-sdk";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
+beforeAll(() => {
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
+});
 
 describe("ClientService", () => {
 	describe("#transaction", () => {

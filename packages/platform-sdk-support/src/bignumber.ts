@@ -289,6 +289,18 @@ export class BigNumber {
 	}
 
 	/**
+	 * Returns a BigNumber expressed in the smallest unit
+	 *
+	 * @param {number} [decimals]
+	 * @returns {string}
+	 * @memberof BigNumber
+	 */
+	public toSatoshi(decimals?: number): BigNumber {
+		decimals ??= this.#decimals;
+		return BigNumber.make(this.#value, decimals).times(BigNumber.powerOfTen(decimals || 0));
+	}
+
+	/**
 	 * Divides the current value by one satoshi and rounds it to the given amount of decimals.
 	 *
 	 * @param {number} [decimals]

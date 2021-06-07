@@ -1,10 +1,11 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { constants } from "@liskhq/lisk-transactions";
 
+@IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {
-	public static async __construct(config: Coins.Config): Promise<FeeService> {
-		return new FeeService();
-	}
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	protected readonly bigNumberService!: Services.BigNumberService;
 
 	public async all(): Promise<Services.TransactionFees> {
 		return {
@@ -23,13 +24,13 @@ export class FeeService extends Services.AbstractFeeService {
 	}
 
 	#transform(type: string | number): Services.TransactionFee {
-		const fee: number = type === 0 ? 0 : constants[type];
+		const fee: BigNumber = this.bigNumberService.make(type === 0 ? 0 : constants[type]);
 
 		return {
-			static: `${fee}`,
-			max: `${fee}`,
-			min: `${fee}`,
-			avg: `${fee}`,
+			static: fee,
+			max: fee,
+			min: fee,
+			avg: fee,
 		};
 	}
 }

@@ -1,13 +1,15 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Test } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
 import { manifest } from "../src/manifest";
 import { schema } from "../src/schema";
 
-export const createConfig = (options?: object) => {
-	const config = new Coins.Config({ ...(options || { network: "btc.livenet" }), httpClient: new Request() }, schema);
-
-	config.set(Coins.ConfigKey.Network, manifest.networks["btc.livenet"]);
-
-	return config;
+export const createService = <T = any>(service: any, network: string = "btc.livenet", predicate?: Function): T => {
+	return Test.createService({
+		httpClient: new Request(),
+		manifest: manifest.networks[network],
+		predicate,
+		schema,
+		service,
+	});
 };

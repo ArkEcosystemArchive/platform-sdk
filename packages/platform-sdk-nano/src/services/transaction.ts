@@ -1,25 +1,20 @@
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
 import { block, tools } from "nanocurrency-web";
 
-import { SignedTransactionData } from "../dto";
-import { deriveAccount } from "./identity/helpers";
+import { deriveAccount } from "./helpers";
 import { NanoClient } from "./rpc";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #client: NanoClient;
-	readonly #decimals: number;
+	#client!: NanoClient;
+	#decimals!: number;
 
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#client = new NanoClient(config);
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#client = new NanoClient(this.configRepository, this.httpClient);
+		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transfer(
@@ -41,6 +36,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const signedData = { ...data, timestamp: DateTime.make() };
 		const broadcastData = block.send(data, privateKey);
 
-		return new SignedTransactionData(broadcastData.signature, signedData, broadcastData, this.#decimals);
+		return this.dataTransferObjectService.signedTransaction(broadcastData.signature, signedData, broadcastData);
 	}
 }

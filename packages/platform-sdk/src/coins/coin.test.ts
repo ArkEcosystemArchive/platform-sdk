@@ -1,138 +1,119 @@
 import "jest-extended";
-
-import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
+import "reflect-metadata";
 
 import { ARK } from "../../../platform-sdk-ark/src";
+import { Request } from "../../../platform-sdk-http-got/src";
 import { Network, NetworkRepository } from "../networks";
 import { Coin } from "./coin";
-import { Config } from "./config";
+import { CoinFactory } from "./coin-factory";
+import { ConfigRepository } from "./config";
 import { Manifest } from "./manifest";
-import { BigNumberService } from "../../dist/services";
 
 let subject: Coin;
 
-const services = {
-	// @ts-ignore
-	client: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	dataTransferObject: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	fee: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	identity: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	knownWallets: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	ledger: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	link: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	message: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	multiSignature: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	signatory: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	transaction: { __construct: jest.fn(), __destruct: jest.fn() },
-	// @ts-ignore
-	walletDiscovery: { __construct: jest.fn(), __destruct: jest.fn() },
-};
-
-class ServiceProvider {
-	public make() {
-		services.client.__construct();
-		services.dataTransferObject.__construct();
-		services.fee.__construct();
-		services.identity.__construct();
-		services.knownWallets.__construct();
-		services.ledger.__construct();
-		services.link.__construct();
-		services.message.__construct();
-		services.multiSignature.__construct();
-		services.signatory.__construct();
-		services.transaction.__construct();
-		services.walletDiscovery.__construct();
-
-		return {
-			bigNumber: new BigNumberService(
-				// @ts-ignore
-				new Config(
-					{ network: "ark.mainnet" },
-					ValidatorSchema.object({
-						network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet"),
-					}),
-				),
-			),
-			client: services.client,
-			dataTransferObject: services.dataTransferObject,
-			fee: services.fee,
-			identity: services.identity,
-			knownWallets: services.knownWallets,
-			ledger: services.ledger,
-			link: services.link,
-			message: services.message,
-			multiSignature: services.multiSignature,
-			signatory: services.signatory,
-			transaction: services.transaction,
-			walletDiscovery: services.walletDiscovery,
-		};
-	}
-}
-
 beforeEach(async () => {
-	subject = new Coin({
-		networks: new NetworkRepository(ARK.manifest.networks),
-		manifest: new Manifest(ARK.manifest),
-		// @ts-ignore
-		config: new Config(
-			{ network: "ark.mainnet" },
-			ValidatorSchema.object({
-				network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet"),
-			}),
-		),
-		specification: {
-			manifest: ARK.manifest,
-			schema: ARK.schema,
-			ServiceProvider,
-		},
+	subject = CoinFactory.make(ARK, {
+		network: "ark.devnet",
+		httpClient: new Request(),
 	});
 });
 
 test("#construct", async () => {
+	expect(() => subject.address()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.bigNumber()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.client()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.dataTransferObject()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.extendedAddress()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.fee()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.keyPair()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.knownWallet()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.ledger()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.link()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.message()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.multiSignature()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.privateKey()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.publicKey()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.signatory()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.transaction()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.walletDiscovery()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.wif()).toThrow(/No matching bindings found for serviceIdentifier/);
+
 	await subject.__construct();
 
-	expect(services.client.__construct).toHaveBeenCalledTimes(1);
-	expect(services.dataTransferObject.__construct).toHaveBeenCalledTimes(1);
-	expect(services.fee.__construct).toHaveBeenCalledTimes(1);
-	expect(services.identity.__construct).toHaveBeenCalledTimes(1);
-	expect(services.knownWallets.__construct).toHaveBeenCalledTimes(1);
-	expect(services.ledger.__construct).toHaveBeenCalledTimes(1);
-	expect(services.link.__construct).toHaveBeenCalledTimes(1);
-	expect(services.message.__construct).toHaveBeenCalledTimes(1);
-	expect(services.multiSignature.__construct).toHaveBeenCalledTimes(1);
-	expect(services.signatory.__construct).toHaveBeenCalledTimes(1);
-	expect(services.transaction.__construct).toHaveBeenCalledTimes(1);
+	expect(() => subject.address()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.bigNumber()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.client()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.dataTransferObject()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.extendedAddress()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.fee()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.keyPair()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.knownWallet()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.ledger()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.link()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.message()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.multiSignature()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.privateKey()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.publicKey()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.signatory()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.transaction()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.walletDiscovery()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.wif()).not.toThrow(/No matching bindings found for serviceIdentifier/);
 });
 
-test("#destruct", async () => {
+test("#__destruct", async () => {
 	await subject.__construct();
+
+	expect(() => subject.address()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.bigNumber()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.client()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.dataTransferObject()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.extendedAddress()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.fee()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.keyPair()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.knownWallet()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.ledger()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.link()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.message()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.multiSignature()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.privateKey()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.publicKey()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.signatory()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.transaction()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.walletDiscovery()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.wif()).not.toThrow(/No matching bindings found for serviceIdentifier/);
+
 	await subject.__destruct();
 
-	expect(services.client.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.dataTransferObject.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.fee.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.identity.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.knownWallets.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.ledger.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.link.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.message.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.multiSignature.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.signatory.__destruct).toHaveBeenCalledTimes(1);
-	expect(services.transaction.__destruct).toHaveBeenCalledTimes(1);
+	expect(() => subject.address()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.bigNumber()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.client()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.dataTransferObject()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.extendedAddress()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.fee()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.keyPair()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.knownWallet()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.ledger()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.link()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.message()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.multiSignature()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.privateKey()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.publicKey()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.signatory()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.transaction()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.walletDiscovery()).toThrow(/No matching bindings found for serviceIdentifier/);
+	expect(() => subject.wif()).toThrow(/No matching bindings found for serviceIdentifier/);
 });
 
-test("#destruct with throw", async () => {
-	await expect(subject.__destruct()).rejects.toThrow();
+test("#hasBeenSynchronized", async () => {
+	expect(subject.hasBeenSynchronized()).toBeFalse();
+
+	await subject.__construct();
+
+	expect(subject.hasBeenSynchronized()).toBeTrue();
+
+	await subject.__destruct();
+
+	expect(subject.hasBeenSynchronized()).toBeFalse();
 });
 
 test("#network", () => {
@@ -148,135 +129,36 @@ test("#manifest", () => {
 });
 
 test("#config", () => {
-	expect(subject.config()).toBeInstanceOf(Config);
+	expect(subject.config()).toBeInstanceOf(ConfigRepository);
 });
 
-test("#bigNumber", async () => {
-	await subject.__construct();
+describe.each([
+	"address",
+	"bigNumber",
+	"client",
+	"dataTransferObject",
+	"extendedAddress",
+	"fee",
+	"keyPair",
+	"knownWallet",
+	"ledger",
+	"link",
+	"message",
+	"multiSignature",
+	"privateKey",
+	"publicKey",
+	"signatory",
+	"transaction",
+	"walletDiscovery",
+	"wif",
+])("#%s", () => {
+	test("should throw if coin has not been fully set up", async () => {
+		expect(() => subject.fee()).toThrow();
+	});
 
-	expect(subject.bigNumber()).toBeObject();
-});
+	test("should not throw if coin has not been fully set up", async () => {
+		await subject.__construct();
 
-test("#bigNumber with throw", async () => {
-	expect(() => subject.bigNumber()).toThrow();
-});
-
-test("#client", async () => {
-	await subject.__construct();
-
-	expect(subject.client()).toBeObject();
-});
-
-test("#client with throw", async () => {
-	expect(() => subject.client()).toThrow();
-});
-
-test("#dataTransferObject", async () => {
-	await subject.__construct();
-
-	expect(subject.dataTransferObject()).toBeObject();
-});
-
-test("#dataTransferObject with throw", async () => {
-	expect(() => subject.dataTransferObject()).toThrow();
-});
-
-test("#fee", async () => {
-	await subject.__construct();
-
-	expect(subject.fee()).toBeObject();
-});
-
-test("#fee with throw", async () => {
-	expect(() => subject.fee()).toThrow();
-});
-
-test("#identity", async () => {
-	await subject.__construct();
-
-	expect(subject.identity()).toBeObject();
-});
-
-test("#identity with throw", async () => {
-	expect(() => subject.identity()).toThrow();
-});
-
-test("#knownWallets", async () => {
-	await subject.__construct();
-
-	expect(subject.knownWallets()).toBeObject();
-});
-
-test("#knownWallets with throw", async () => {
-	expect(() => subject.knownWallets()).toThrow();
-});
-
-test("#ledger", async () => {
-	await subject.__construct();
-
-	expect(subject.ledger()).toBeObject();
-});
-
-test("#ledger with throw", async () => {
-	expect(() => subject.ledger()).toThrow();
-});
-
-test("#link", async () => {
-	await subject.__construct();
-
-	expect(subject.link()).toBeObject();
-});
-
-test("#link with throw", async () => {
-	expect(() => subject.link()).toThrow();
-});
-
-test("#message", async () => {
-	await subject.__construct();
-
-	expect(subject.message()).toBeObject();
-});
-
-test("#message with throw", async () => {
-	expect(() => subject.message()).toThrow();
-});
-
-test("#multiSignature", async () => {
-	await subject.__construct();
-
-	expect(subject.multiSignature()).toBeObject();
-});
-
-test("#multiSignature with throw", async () => {
-	expect(() => subject.multiSignature()).toThrow();
-});
-
-test("#signatory", async () => {
-	await subject.__construct();
-
-	expect(subject.signatory()).toBeObject();
-});
-
-test("#signatory with throw", async () => {
-	expect(() => subject.signatory()).toThrow();
-});
-
-test("#transaction", async () => {
-	await subject.__construct();
-
-	expect(subject.transaction()).toBeObject();
-});
-
-test("#transaction with throw", async () => {
-	expect(() => subject.transaction()).toThrow();
-});
-
-test("#walletDiscovery", async () => {
-	await subject.__construct();
-
-	expect(subject.walletDiscovery()).toBeObject();
-});
-
-test("#walletDiscovery with throw", async () => {
-	expect(() => subject.walletDiscovery()).toThrow();
+		expect(subject.fee()).toBeObject();
+	});
 });

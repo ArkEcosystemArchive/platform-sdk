@@ -3,14 +3,16 @@ import "jest-extended";
 
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { KnownWalletService } from "./known-wallets";
 
 let subject: KnownWalletService;
 
 beforeAll(() => nock.disableNetConnect());
 
-beforeEach(async () => (subject = await KnownWalletService.__construct(createConfig())));
+beforeEach(async () => {
+	subject = createService(KnownWalletService);
+});
 
 afterEach(() => nock.cleanAll());
 
@@ -53,7 +55,7 @@ describe("KnownWalletService", () => {
 	});
 
 	it("should return an empty list if the source is empty", async () => {
-		subject = await KnownWalletService.__construct(createConfig(undefined, { [Coins.ConfigKey.KnownWallets]: "" }));
+		subject = createService(KnownWalletService, createConfig(undefined, { [Coins.ConfigKey.KnownWallets]: "" }));
 
 		await expect(subject.all()).resolves.toEqual([]);
 	});

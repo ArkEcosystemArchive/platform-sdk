@@ -1,20 +1,12 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Coins, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
+@IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {
-	readonly #config: Coins.Config;
-	readonly #http: HttpClient;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<FeeService> {
-		return new FeeService(config);
-	}
+	@IoC.inject(IoC.BindingType.BigNumberService)
+	private readonly bigNumberService!: Services.BigNumberService;
 
 	public async all(): Promise<Services.TransactionFees> {
 		const node = await this.#get("node/fees");
@@ -42,14 +34,16 @@ export class FeeService extends Services.AbstractFeeService {
 		const dynamicFee = dynamicFees[typeGroup][type];
 
 		return {
-			static: staticFees[typeGroup][type],
-			max: dynamicFee?.max || "0",
-			min: dynamicFee?.min || "0",
-			avg: dynamicFee?.avg || "0",
+			static: this.bigNumberService.make(staticFees[typeGroup][type]),
+			min: this.bigNumberService.make(dynamicFee?.min || "0"),
+			avg: this.bigNumberService.make(dynamicFee?.avg || "0"),
+			max: this.bigNumberService.make(staticFees[typeGroup][type]),
 		};
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${Helpers.randomHostFromConfig(this.#config)}/${path}`, query)).json();
+		return (
+			await this.httpClient.get(`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`, query)
+		).json();
 	}
 }

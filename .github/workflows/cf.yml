@@ -10,6 +10,9 @@ jobs:
         strategy:
             matrix:
                 node-version: [12.x]
+        concurrency:
+            group: ${{ github.head_ref }}-prettier
+            cancel-in-progress: true
         steps:
             - uses: actions/checkout@v2
               with:

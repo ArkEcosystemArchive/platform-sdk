@@ -1,11 +1,13 @@
 import "jest-extended";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { FeeService } from "./fee";
 
 let subject: FeeService;
 
-beforeEach(async () => (subject = await FeeService.__construct(createConfig())));
+beforeEach(async () => {
+	subject = createService(FeeService);
+});
 
 describe("FeeService", () => {
 	describe("#all", () => {
@@ -26,7 +28,10 @@ describe("FeeService", () => {
 				"htlcRefund",
 			]);
 
-			expect(result.transfer).toEqual({ avg: "10000000", max: "10000000", min: "10000000", static: "10000000" });
+			expect(result.transfer.min.toString()).toBe("10000000");
+			expect(result.transfer.avg.toString()).toBe("10000000");
+			expect(result.transfer.max.toString()).toBe("10000000");
+			expect(result.transfer.static.toString()).toBe("10000000");
 		});
 	});
 });

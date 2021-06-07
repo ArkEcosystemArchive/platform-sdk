@@ -1,22 +1,22 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { KeyValuePair } from "@arkecosystem/platform-sdk/dist/contracts";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import * as DTO from "../dto";
+import { SignedTransactionData } from "../dto";
 
+@IoC.injectable()
 export class DataTransferObjectService extends Services.AbstractDataTransferObjectService {
-	public constructor(private decimals: number) {
-		super();
-	}
+	public signedTransaction(
+		identifier: string,
+		signedData: Contracts.RawTransactionData,
+		broadcastData: any,
+	): Contracts.SignedTransactionData {
+		const signedTransaction = this.container.resolve(SignedTransactionData);
+		signedTransaction.configure(
+			identifier,
+			signedData,
+			broadcastData,
+			this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals),
+		);
 
-	public static async __construct(config: Coins.Config): Promise<DataTransferObjectService> {
-		return new DataTransferObjectService(config.get(Coins.ConfigKey.CurrencyDecimals));
-	}
-
-	public signedTransaction(identifier: string, signedData: string): Contracts.SignedTransactionData {
-		return new DTO.SignedTransactionData(identifier, signedData, signedData, this.decimals);
-	}
-
-	public transaction(transaction: KeyValuePair): Contracts.TransactionDataType {
-		return Helpers.createTransactionDataWithType(transaction, DTO).withDecimals(this.decimals);
+		return signedTransaction;
 	}
 }

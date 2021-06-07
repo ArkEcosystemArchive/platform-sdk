@@ -41,3 +41,9 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Message: ["sign", "verify"],
 	Transaction: ["delegateRegistration", "multiSignature", "secondSignature", "transfer", "vote"],
 };
+
+export const explorer: Networks.NetworkManifestExplorer = {
+	block: "block/{0}",
+	transaction: "tx/{0}",
+	wallet: "address/{0}",
+};

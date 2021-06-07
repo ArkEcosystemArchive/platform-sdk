@@ -3,12 +3,14 @@ import "jest-extended";
 import { Exceptions, Services, Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfigWithNetwork } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { MessageService } from "./message";
 
 let subject: MessageService;
 
-beforeEach(async () => subject = await MessageService.__construct(createConfigWithNetwork()));
+beforeEach(async () => {
+	subject = createService(MessageService);
+});
 
 describe("MessageService", () => {
 	it("should sign and verify a message", async () => {

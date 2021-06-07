@@ -1,10 +1,12 @@
 /* istanbul ignore file */
 
 import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 import { IdentityOptions } from "./shared.contract";
 import { WIFDataTransferObject, WIFService } from "./wif.contract";
 
-export abstract class AbstractWIFService implements WIFService {
+@injectable()
+export class AbstractWIFService implements WIFService {
 	public async fromMnemonic(mnemonic: string, options?: IdentityOptions): Promise<WIFDataTransferObject> {
 		throw new NotImplemented(this.constructor.name, this.fromPrivateKey.name);
 	}

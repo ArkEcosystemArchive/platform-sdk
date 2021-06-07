@@ -367,7 +367,8 @@ export class TransactionService implements ITransactionService {
 			for (const [id, transaction] of Object.entries(transactions)) {
 				this.#assertHasValidIdentifier(id);
 
-				storage[id] = this.#wallet.dataTransferObject().signedTransaction(id, transaction);
+				// @TODO: 3rd argument is optional
+				storage[id] = this.#wallet.dataTransferObject().signedTransaction(id, transaction, undefined);
 			}
 		};
 
@@ -451,11 +452,10 @@ export class TransactionService implements ITransactionService {
 
 		for (const transaction of transactions) {
 			const transactionId: string = transaction.id;
-			const signedTransaction = new SignedTransactionData(
-				transactionId,
-				transaction,
-				JSON.stringify(transaction),
-			);
+			const signedTransaction = this.#wallet
+				.coin()
+				.dataTransferObject()
+				.signedTransaction(transactionId, transaction, JSON.stringify(transaction));
 
 			this.#waitingForOurSignature[transactionId] = signedTransaction;
 			this.#waitingForOtherSignatures[transactionId] = signedTransaction;
@@ -473,11 +473,10 @@ export class TransactionService implements ITransactionService {
 			.allWithReadyState(this.#getPublicKey());
 
 		for (const transaction of transactions) {
-			this.#signed[transaction.id] = new SignedTransactionData(
-				transaction.id,
-				transaction,
-				JSON.stringify(transaction),
-			);
+			this.#signed[transaction.id] = this.#wallet
+				.coin()
+				.dataTransferObject()
+				.signedTransaction(transaction.id, transaction, JSON.stringify(transaction));
 		}
 	}
 }

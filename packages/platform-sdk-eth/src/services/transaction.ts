@@ -1,32 +1,26 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Common from "@ethereumjs/common";
 import { Transaction } from "@ethereumjs/tx";
 import Web3 from "web3";
 
-import { SignedTransactionData } from "../dto";
-import { IdentityService } from "./identity";
-
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #http: HttpClient;
-	readonly #chain: string;
-	readonly #identity: IdentityService;
-	readonly #peer: string;
-	readonly #web3: Web3;
+	@IoC.inject(IoC.BindingType.AddressService)
+	private readonly addressService!: Services.AddressService;
 
-	private constructor(config: Coins.Config, identity: IdentityService) {
-		super();
+	@IoC.inject(IoC.BindingType.PrivateKeyService)
+	private readonly privateKeyService!: Services.PrivateKeyService;
 
-		this.#http = config.all().http;
-		this.#chain = config.all().network;
-		this.#identity = identity;
-		this.#peer = Helpers.randomHostFromConfig(config);
+	#chain!: string;
+	#peer!: string;
+	#web3!: Web3;
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#chain = this.configRepository.get("network");
+		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
 		this.#web3 = new Web3(); // @TODO: provide a host
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config, await IdentityService.__construct(config));
 	}
 
 	public async transfer(
@@ -34,13 +28,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
-			const senderData = await this.#identity.address().fromMnemonic(input.signatory.signingKey());
+			const senderData = await this.addressService.fromMnemonic(input.signatory.signingKey());
 
 			let privateKey: string;
 			if (input.signatory.actsWithPrivateKey()) {
 				privateKey = input.signatory.signingKey();
 			} else {
-				privateKey = (await this.#identity.privateKey().fromMnemonic(input.signatory.signingKey())).privateKey;
+				privateKey = (await this.privateKeyService.fromMnemonic(input.signatory.signingKey())).privateKey;
 			}
 
 			const { nonce } = await this.#get(`wallets/${senderData.address}`);
@@ -79,7 +73,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			transaction.sign(Buffoon.fromHex(privateKey));
 
-			return new SignedTransactionData(
+			return this.dataTransferObjectService.signedTransaction(
 				transaction.hash().toString("hex"),
 				"0x" + transaction.serialize().toString("hex"),
 				"0x" + transaction.serialize().toString("hex"),
@@ -90,7 +84,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query);
+		const response = await this.httpClient.get(`${this.#peer}/${path}`, query);
 
 		return response.json();
 	}

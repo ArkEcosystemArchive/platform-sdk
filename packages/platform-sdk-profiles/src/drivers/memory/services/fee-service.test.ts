@@ -63,11 +63,11 @@ describe("FeeService", () => {
 
 		await subject.syncAll(profile);
 
-		expect(subject.findByType("ARK", "ark.devnet", "transfer")).toEqual({
-			avg: "71538139",
-			max: "663000000",
-			min: "357000",
-			static: "10000000",
-		});
+		const fees = subject.findByType("ARK", "ark.devnet", "transfer");
+
+		expect(fees.min.toString()).toEqual("357000");
+		expect(fees.avg.toString()).toEqual("71538139");
+		expect(fees.max.toString()).toEqual("10000000");
+		expect(fees.static.toString()).toEqual("10000000");
 	});
 });

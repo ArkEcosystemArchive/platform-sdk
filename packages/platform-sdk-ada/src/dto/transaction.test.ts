@@ -3,9 +3,15 @@ import "jest-extended";
 import { DTO } from "@arkecosystem/platform-sdk";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
+import { createService } from "../../test/helpers";
 import { TransactionData } from "./transaction";
 
-const subject = new TransactionData(Fixture.data.transactions[0]);
+let subject: TransactionData;
+
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data.transactions[0]);
+});
 
 describe("TransactionData", () => {
 	it("#id", () => {

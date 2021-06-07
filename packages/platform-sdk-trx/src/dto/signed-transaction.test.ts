@@ -2,12 +2,15 @@ import "jest-extended";
 
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 
+import { createService } from "../../test/helpers";
 import { SignedTransactionData } from "./signed-transaction";
 
 let subject: SignedTransactionData;
 
 beforeEach(() => {
-	subject = new SignedTransactionData(
+	subject = createService(SignedTransactionData);
+
+	subject.configure(
 		"214e690d9a630013826a5ad002c254740028ae3b8f4230949fd04148e3d26b42",
 		{
 			visible: false,

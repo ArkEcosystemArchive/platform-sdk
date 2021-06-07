@@ -5,12 +5,16 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
 import MultipaymentFixtures from "../../test/fixtures/client/transactions.json";
+import { createService } from "../../test/helpers";
 import VoteFixtures from "../../test/fixtures/client/votes.json";
 import { TransactionData } from "./transaction";
 
 let subject: TransactionData;
 
-beforeEach(() => (subject = new TransactionData(Fixture.data)));
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data);
+});
 
 describe("TransactionData", () => {
 	test("#id", () => {

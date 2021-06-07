@@ -1,8 +1,9 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, IoC } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
+@IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
 	public id(): string {
 		return this.data.hash;
@@ -17,7 +18,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public confirmations(): BigNumber {
-		return BigNumber.make(0);
+		return BigNumber.ZERO;
 	}
 
 	public sender(): string {
@@ -33,11 +34,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(Web3.utils.toBN(this.data.value).toString(), this.decimals);
+		return this.bigNumberService.make(Web3.utils.toBN(this.data.value).toString());
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(Web3.utils.toBN(this.data.gas).toString(), this.decimals);
+		return this.bigNumberService.make(Web3.utils.toBN(this.data.gas).toString());
 	}
 
 	public memo(): string | undefined {

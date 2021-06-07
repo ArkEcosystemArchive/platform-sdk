@@ -3,6 +3,8 @@ import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
 import emoji from "node-emoji";
 
 import { KeyValuePair, MultiPaymentRecipient, TransactionDataMeta, UnspentTransactionData } from "../contracts";
+import { BindingType, inject } from "../ioc";
+import { BigNumberService } from "../services";
 
 export abstract class AbstractTransactionData {
 	/**
@@ -32,7 +34,16 @@ export abstract class AbstractTransactionData {
 
 	protected decimals?: number;
 
-	public constructor(protected readonly data: KeyValuePair) {}
+	protected data!: KeyValuePair;
+
+	@inject(BindingType.BigNumberService)
+	protected readonly bigNumberService!: BigNumberService;
+
+	public configure(data: KeyValuePair) {
+		this.data = data;
+
+		return this;
+	}
 
 	public withDecimals(decimals?: number | string): this {
 		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;

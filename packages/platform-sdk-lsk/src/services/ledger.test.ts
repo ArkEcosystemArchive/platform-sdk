@@ -1,15 +1,23 @@
 import "jest-extended";
 
-import { createTransportRecorder, createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
-import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
+import { IoC } from "@arkecosystem/platform-sdk";
+import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
+import nock from "nock";
 
-// import nock from "nock";
 import { ledger } from "../../test/fixtures/ledger";
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
+import { AddressService } from "./address";
+import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
-	const transport = await LedgerService.__construct(createConfig());
+	const transport = createService(LedgerService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.ClientService, ClientService);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
 
 	await transport.connect(createTransportReplayer(RecordStore.fromString(record)));
 
@@ -60,38 +68,36 @@ describe("signMessage", () => {
 	});
 });
 
-describe.skip("scan", () => {
-	// afterEach(() => nock.cleanAll());
+describe("scan", () => {
+	afterEach(() => nock.cleanAll());
 
-	// beforeAll(() => nock.disableNetConnect());
-
-	const createMockService = async (recordStore: any) => {
-		const transport = await LedgerService.__construct(createConfig());
-
-		await transport.connect(createTransportRecorder(LedgerTransportNodeHID, recordStore));
-		return transport;
-	};
+	beforeAll(() => nock.disableNetConnect());
 
 	it("should return scanned wallet", async () => {
-		const recordStore = new RecordStore();
+		nock("https://testnet.lisk.io:443")
+			.get("/api/accounts")
+			.query({ address: "7399986239080551550L" })
+			.reply(200, require("../../test/fixtures/client/wallet-0.json"));
 
-		const lsk = await createMockService(recordStore);
+		nock("https://testnet.lisk.io:443")
+			.get("/api/accounts")
+			.query({ address: "11603034586667438647L" })
+			.reply(200, require("../../test/fixtures/client/wallet-1.json"));
+
+		nock("https://testnet.lisk.io:443")
+			.get("/api/accounts")
+			.query({ address: "8261766349562104742L" })
+			.reply(200, require("../../test/fixtures/client/wallet-2.json"));
+
+		nock("https://testnet.lisk.io:443")
+			.get("/api/accounts")
+			.reply(200, require("../../test/fixtures/client/wallet-3.json"));
+
+		const lsk = await createMockService(ledger.wallets.record);
 
 		const walletData = await lsk.scan();
 
-		// console.log(recordStore.toString());
-
-		expect(Object.keys(walletData)).toHaveLength(3); // Brian Nano X
+		expect(Object.keys(walletData)).toHaveLength(4);
 		expect(walletData).toMatchSnapshot();
-
-		for (const wallet of Object.values(walletData)) {
-			const publicKey: string | undefined = wallet.publicKey();
-
-			if (publicKey) {
-				// expect(Address.fromPublicKey(publicKey, { pubKeyHash: 30 })).toBe(wallet.address());
-			}
-
-			expect(wallet.toObject()).toMatchSnapshot();
-		}
 	});
 });

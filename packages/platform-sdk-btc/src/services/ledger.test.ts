@@ -1,32 +1,27 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 
 import { ledger } from "../../test/fixtures/ledger";
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
+import { AddressService } from "./address";
+import { ClientService } from "./client";
+import { DataTransferObjectService } from "./data-transfer-object";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
-	const transport = await LedgerService.__construct(createConfig());
+	const transport = createService(LedgerService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.ClientService, ClientService);
+		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+	});
 
 	await transport.connect(createTransportReplayer(RecordStore.fromString(record)));
 
 	return transport;
 };
-
-describe("constructor", () => {
-	it("should pass with an empty configuration", async () => {
-		const transport = await LedgerService.__construct(
-			createConfig({
-				services: {
-					ledger: {},
-				},
-			}),
-		);
-
-		expect(transport).toBeInstanceOf(LedgerService);
-	});
-});
 
 describe("destruct", () => {
 	it("should pass with a resolved transport closure", async () => {

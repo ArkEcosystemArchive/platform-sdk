@@ -1,6 +1,6 @@
 import { Networks } from "@arkecosystem/platform-sdk";
 
-import { transactions, importMethods, featureFlags } from "../shared";
+import { explorer, transactions, importMethods, featureFlags } from "../shared";
 
 const network: Networks.NetworkManifest = {
 	id: "telos.testnet",
@@ -47,6 +47,7 @@ const network: Networks.NetworkManifest = {
 	},
 	importMethods,
 	featureFlags,
+	explorer,
 	meta: {
 		// @TODO
 		networkId: "e17615decaecd202a365f4c029f206eee98511979de8a5756317e2469f2289e3",

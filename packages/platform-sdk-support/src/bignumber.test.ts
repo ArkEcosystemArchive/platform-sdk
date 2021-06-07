@@ -114,6 +114,11 @@ test("#denominated", () => {
 	).toBeTrue();
 });
 
+test("#toSatoshi", () => {
+	expect(BigNumber.make(100).toSatoshi().toString()).toEqual("100");
+	expect(BigNumber.make(100).toSatoshi(10).toString()).toEqual("1000000000000");
+});
+
 test("#toHuman", () => {
 	expect(BigNumber.make(100 * 1e8, 8).toHuman()).toBe("100");
 	expect(BigNumber.make(123.456 * 1e8, 8).toHuman()).toBe("123.456");

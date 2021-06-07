@@ -1,15 +1,14 @@
-import { Coins, Collections, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Coins, Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Neon, { api } from "@cityofzion/neon-js";
 
 import * as TransactionDTO from "../dto";
 import { WalletData } from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #http: HttpClient;
-	readonly #peer: string;
-	readonly #apiProvider;
-	readonly #decimals: number;
+	#peer!: string;
+	#apiProvider;
+	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"Block or transaction already exists and cannot be sent repeatedly.": "ERR_DUPLICATE",
@@ -20,26 +19,17 @@ export class ClientService extends Services.AbstractClientService {
 		"Unknown error.": "ERR_UNKNOWN",
 	};
 
-	private constructor({ http, network, decimals }) {
-		super();
-
-		this.#http = http;
+	@IoC.postConstruct()
+	private onPostConstruct() {
+		const network: string = this.configRepository.get<Networks.NetworkManifest>("network").id.split(".")[1];
 
 		this.#peer = {
 			mainnet: "https://api.neoscan.io/api/main_net/v1",
 			testnet: "https://neoscan-testnet.io/api/test_net/v1",
-		}[network];
+		}[network]!;
 
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
-		this.#decimals = decimals;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService({
-			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
-			network: config.get<Networks.NetworkManifest>("network").id.split(".")[1],
-			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
-		});
+		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -51,7 +41,7 @@ export class ClientService extends Services.AbstractClientService {
 		const prevPage = response.page_number > 1 ? basePage - 1 : undefined;
 		const nextPage = response.total_pages > 1 ? basePage + 1 : undefined;
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			response.entries,
 			{
 				prev: `${this.#peer}/${basePath}/${prevPage}`,
@@ -120,13 +110,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query);
-
-		return response.json();
-	}
-
-	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.post(`${this.#peer}/${path}`, body);
+		const response = await this.httpClient.get(`${this.#peer}/${path}`, query);
 
 		return response.json();
 	}

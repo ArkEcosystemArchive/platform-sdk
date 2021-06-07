@@ -1,8 +1,9 @@
 import { Identities } from "@arkecosystem/crypto";
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, IoC } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+@IoC.injectable()
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
@@ -15,11 +16,11 @@ export class SignedTransactionData
 	}
 
 	public amount(): BigNumber {
-		return BigNumber.make(this.signedData.amount, this.decimals);
+		return this.bigNumberService.make(this.signedData.amount);
 	}
 
 	public fee(): BigNumber {
-		return BigNumber.make(this.signedData.fee, this.decimals);
+		return this.bigNumberService.make(this.signedData.fee);
 	}
 
 	public timestamp(): DateTime {

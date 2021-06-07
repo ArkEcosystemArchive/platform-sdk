@@ -38,3 +38,9 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Message: ["sign", "verify"],
 	Transaction: ["transfer"],
 };
+
+export const explorer: Networks.NetworkManifestExplorer = {
+	block: "blocks/{0}",
+	transaction: "transactions/{0}",
+	wallet: "account/{0}",
+};

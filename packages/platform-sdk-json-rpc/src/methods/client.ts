@@ -6,7 +6,7 @@ export const registerClient = () => [
 	{
 		name: "client.transaction",
 		async method({ coin, network, id }) {
-			return (await (await makeCoin(coin, network)).client().transaction(id)).toObject();
+			return (await (await makeCoin({ coin, network })).client().transaction(id)).toObject();
 		},
 		schema: Joi.object({
 			...baseSchema,
@@ -16,7 +16,7 @@ export const registerClient = () => [
 	{
 		name: "client.transactions",
 		async method(input) {
-			const coin = await makeCoin(input.coin, input.network);
+			const coin = await makeCoin(input);
 			const transactions = await coin.client().transactions(input);
 
 			return {
@@ -51,7 +51,7 @@ export const registerClient = () => [
 	{
 		name: "client.wallet",
 		async method({ coin, network, id }) {
-			return (await (await makeCoin(coin, network)).client().wallet(id)).toObject();
+			return (await (await makeCoin({ coin, network })).client().wallet(id)).toObject();
 		},
 		schema: Joi.object({
 			...baseSchema,
@@ -61,7 +61,7 @@ export const registerClient = () => [
 	{
 		name: "client.delegate",
 		async method({ coin, network, id }) {
-			return (await (await makeCoin(coin, network)).client().delegate(id)).toObject();
+			return (await (await makeCoin({ coin, network })).client().delegate(id)).toObject();
 		},
 		schema: Joi.object({
 			...baseSchema,
@@ -71,7 +71,7 @@ export const registerClient = () => [
 	{
 		name: "client.broadcast",
 		async method({ coin, network, id, data }) {
-			return (await makeCoin(coin, network)).client().broadcast([
+			return (await makeCoin({ coin, network })).client().broadcast([
 				// @ts-ignore
 				{
 					id: () => id,
