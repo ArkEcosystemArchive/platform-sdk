@@ -33,12 +33,41 @@ export class Coin {
 	}
 
 	public async __construct(): Promise<void> {
+		/* istanbul ignore next */
+		if (this.hasBeenSynchronized()) {
+			/* istanbul ignore next */
+			return;
+		}
+
 		await this.#container
 			.resolve<any>(this.#container.get<CoinSpec>(BindingType.Specification).ServiceProvider)
 			.make(this.#container);
 	}
 
 	public async __destruct(): Promise<void> {
+		/* istanbul ignore next */
+		if (! this.hasBeenSynchronized()) {
+			/* istanbul ignore next */
+			return;
+		}
+
+		this.#container.unbind(BindingType.AddressService);
+		this.#container.unbind(BindingType.BigNumberService);
+		this.#container.unbind(BindingType.ClientService);
+		this.#container.unbind(BindingType.DataTransferObjectService);
+		this.#container.unbind(BindingType.ExtendedAddressService);
+		this.#container.unbind(BindingType.FeeService);
+		this.#container.unbind(BindingType.KeyPairService);
+		this.#container.unbind(BindingType.KnownWalletService);
+		this.#container.unbind(BindingType.LedgerService);
+		this.#container.unbind(BindingType.LinkService);
+		this.#container.unbind(BindingType.MessageService);
+		this.#container.unbind(BindingType.MultiSignatureService);
+		this.#container.unbind(BindingType.PrivateKeyService);
+		this.#container.unbind(BindingType.PublicKeyService);
+		this.#container.unbind(BindingType.SignatoryService);
+		this.#container.unbind(BindingType.TransactionService);
+		this.#container.unbind(BindingType.WalletDiscoveryService);
 		this.#container.unbind(BindingType.WIFService);
 		this.#container.unbind(BindingType.WalletDiscoveryService);
 		this.#container.unbind(BindingType.TransactionService);
