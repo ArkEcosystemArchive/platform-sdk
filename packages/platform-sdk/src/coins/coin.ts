@@ -33,12 +33,24 @@ export class Coin {
 	}
 
 	public async __construct(): Promise<void> {
+		/* istanbul ignore next */
+		if (this.hasBeenSynchronized()) {
+			/* istanbul ignore next */
+			return;
+		}
+
 		await this.#container
 			.resolve<any>(this.#container.get<CoinSpec>(BindingType.Specification).ServiceProvider)
 			.make(this.#container);
 	}
 
 	public async __destruct(): Promise<void> {
+		/* istanbul ignore next */
+		if (! this.hasBeenSynchronized()) {
+			/* istanbul ignore next */
+			return;
+		}
+
 		this.#container.unbind(BindingType.AddressService);
 		this.#container.unbind(BindingType.BigNumberService);
 		this.#container.unbind(BindingType.ClientService);
