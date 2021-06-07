@@ -1,10 +1,14 @@
 import "jest-extended";
+import { createService } from "../../../test/helpers";
 
 import { IpfsData } from "./ipfs";
 
 let subject: IpfsData;
 
-beforeEach(() => (subject = new IpfsData({ asset: { ipfs: "123456789" }})));
+beforeEach(() => {
+	subject = createService(IpfsData);
+	subject.configure({ asset: { ipfs: "123456789" }})
+});
 
 describe("IpfsData", () => {
 	test("#lockTransactionId", () => {

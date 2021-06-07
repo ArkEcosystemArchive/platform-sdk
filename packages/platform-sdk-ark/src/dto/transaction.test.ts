@@ -46,14 +46,16 @@ describe("TransactionData", () => {
 	test("#recipients", () => {
 		expect(subject.recipients()).toEqual([]);
 
-		subject = new TransactionData(MultipaymentFixtures.data[0])
+		subject = createService(TransactionData);
+		subject.configure(MultipaymentFixtures.data[0]);
 		expect(subject.recipients()).toBeArrayOfSize(9);
 	});
 
 	test("#amount", () => {
 		expect(subject.amount()).toEqual(BigNumber.make("12500000000000000"));
 
-		subject = new TransactionData(MultipaymentFixtures.data[0])
+		subject = createService(TransactionData);
+		subject.configure(MultipaymentFixtures.data[0]);
 		expect(subject.amount()).toEqual(BigNumber.make("12500000000000000"));
 	});
 
@@ -101,7 +103,8 @@ describe("TransactionData", () => {
 		expect(subject.isVoteCombination()).toBeFalse()
 
 		const data = VoteFixtures.data[0];
-		subject = new TransactionData({ ...data, asset: { votes: [...data.asset.votes, "-X"]} })
+		subject = createService(TransactionData);
+		subject.configure({ ...data, asset: { votes: [...data.asset.votes, "-X"]} });
 		expect(subject.isVoteCombination()).toBeTrue();
 	});
 

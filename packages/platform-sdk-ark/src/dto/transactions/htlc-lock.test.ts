@@ -1,22 +1,26 @@
 import "jest-extended";
+import { createService } from "../../../test/helpers";
 
 import { HtlcLockData } from "./htlc-lock";
 
 let subject: HtlcLockData;
 
-beforeEach(() => (subject = new HtlcLockData({
-	asset: {
-		lock: {
-			amount: 1,
-			to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-			secretHash: "0f128d401958b1b30ad0d10406f47f9489321017b4614e6cb993fc63913c5454",
-			expiration: {
-				type: 1,
-				value: 123456789,
+beforeEach(() => {
+	subject = createService(HtlcLockData);
+	subject.configure({
+		asset: {
+			lock: {
+				amount: 1,
+				to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+				secretHash: "0f128d401958b1b30ad0d10406f47f9489321017b4614e6cb993fc63913c5454",
+				expiration: {
+					type: 1,
+					value: 123456789,
+				},
 			},
 		},
-	},
-})));
+	})
+});
 
 describe("HtlcLockData", () => {
 	test("#secretHash", () => {

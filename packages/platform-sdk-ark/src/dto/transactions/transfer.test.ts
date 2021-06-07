@@ -1,10 +1,14 @@
 import "jest-extended";
+import { createService } from "../../../test/helpers";
 
 import { TransferData } from "./transfer";
 
 let subject: TransferData;
 
-beforeEach(() => (subject = new TransferData({ vendorField: "X" })));
+beforeEach(() => {
+	subject = createService(TransferData);
+	subject.configure({ vendorField: "X" })
+});
 
 describe("TransferData", () => {
 	test("#memo", () => {

@@ -1,17 +1,21 @@
 import "jest-extended";
+import { createService } from "../../../test/helpers";
 
 import { MultiSignatureData } from "./multi-signature";
 
 let subject: MultiSignatureData;
 
-beforeEach(() => (subject = new MultiSignatureData({
+beforeEach(() => {
+	subject = createService(MultiSignatureData);
+	subject.configure({
 	asset: {
 		multiSignature: {
 			min: 1,
 			publicKeys: ["2", "3"],
 		}
 	}
-})));
+})
+});
 
 describe("MultiSignatureData", () => {
 	test("#publicKeys", () => {

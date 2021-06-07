@@ -1,10 +1,13 @@
 import "jest-extended";
+import { createService } from "../../../test/helpers";
 
 import { MultiPaymentData } from "./multi-payment";
 
 let subject: MultiPaymentData;
 
-beforeEach(() => (subject = new MultiPaymentData({
+beforeEach(() => {
+	subject = createService(MultiPaymentData);
+	subject.configure({
 	asset: {
 		payments: [
 			{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
@@ -12,8 +15,8 @@ beforeEach(() => (subject = new MultiPaymentData({
 			{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
 		],
 	}
-})));
-
+})
+});
 
 describe("MultiPaymentData", () => {
 	test("#memo", () => {

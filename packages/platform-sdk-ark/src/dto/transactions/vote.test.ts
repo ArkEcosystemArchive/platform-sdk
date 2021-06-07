@@ -1,10 +1,14 @@
 import "jest-extended";
+import { createService } from "../../../test/helpers";
 
 import { VoteData } from "./vote";
 
 let subject: VoteData;
 
-beforeEach(() => (subject = new VoteData({ asset: { votes: ["+A", "-B"] } })));
+beforeEach(() => {
+	subject = createService(VoteData);
+	subject.configure({ asset: { votes: ["+A", "-B"] } })
+});
 
 describe("VoteData", () => {
 	test("#votes", () => {

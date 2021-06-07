@@ -1,10 +1,14 @@
 import "jest-extended";
+import { createService } from "../../../test/helpers";
 
 import { HtlcClaimData } from "./htlc-claim";
 
 let subject: HtlcClaimData;
 
-beforeEach(() => (subject = new HtlcClaimData({ asset: { lock: { lockTransactionId: "1", unlockSecret: "2"}}})));
+beforeEach(() => {
+	subject = createService(HtlcClaimData);
+	subject.configure({ asset: { lock: { lockTransactionId: "1", unlockSecret: "2"}}});
+});
 
 describe("HtlcClaimData", () => {
 	test("#lockTransactionId", () => {

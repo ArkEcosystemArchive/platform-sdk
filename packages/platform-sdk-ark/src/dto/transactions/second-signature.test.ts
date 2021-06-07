@@ -1,10 +1,14 @@
 import "jest-extended";
+import { createService } from "../../../test/helpers";
 
 import { SecondSignatureData } from "./second-signature";
 
 let subject: SecondSignatureData;
 
-beforeEach(() => (subject = new SecondSignatureData({ asset: { signature: { publicKey: "1" } } })));
+beforeEach(() => {
+	subject = createService(SecondSignatureData);
+	subject.configure({ asset: { signature: { publicKey: "1" } } })
+});
 
 describe("SecondSignatureData", () => {
 	test("#publicKeys", () => {
