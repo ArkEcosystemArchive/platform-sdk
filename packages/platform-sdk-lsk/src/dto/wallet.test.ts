@@ -1,7 +1,8 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-const Fixture = require( "../../test/fixtures/client/wallet.json");
 import { WalletData } from "./wallet";
+
+const Fixture = require("../../test/fixtures/client/wallet.json");
 
 let subject: WalletData;
 

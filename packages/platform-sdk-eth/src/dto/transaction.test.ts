@@ -2,9 +2,10 @@ import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-const Fixture = require( "../../test/fixtures/client/transaction.json");
 import { createService } from "../../test/helpers";
 import { TransactionData } from "./transaction";
+
+const Fixture = require("../../test/fixtures/client/transaction.json");
 
 let subject: TransactionData;
 

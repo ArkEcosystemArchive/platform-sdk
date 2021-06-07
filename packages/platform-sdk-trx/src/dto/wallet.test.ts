@@ -2,8 +2,9 @@ import "jest-extended";
 
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-const { data } = require("../../test/fixtures/client/wallet.json");
 import { WalletData } from "./wallet";
+
+const { data } = require("../../test/fixtures/client/wallet.json");
 
 let subject: WalletData;
 

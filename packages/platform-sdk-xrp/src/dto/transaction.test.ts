@@ -3,9 +3,10 @@ import "jest-extended";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-const { result: fixture } = require("../../test/fixtures/client/transaction.json");
 import { createService } from "../../test/helpers";
 import { TransactionData } from "./transaction";
+
+const { result: fixture } = require("../../test/fixtures/client/transaction.json");
 
 let subject: TransactionData;
 
