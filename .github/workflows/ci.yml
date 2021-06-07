@@ -12,6 +12,10 @@ jobs:
     conflicts:
         runs-on: ubuntu-latest
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - name: Checkout code
               uses: actions/checkout@v2
               with:
@@ -25,6 +29,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -57,6 +65,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -89,6 +101,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -121,6 +137,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -153,6 +173,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -185,6 +209,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -217,6 +245,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -249,6 +281,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -281,6 +317,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -313,6 +353,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -345,6 +389,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -377,6 +425,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -409,6 +461,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -441,6 +497,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -473,6 +533,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -505,6 +569,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -537,6 +605,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -569,6 +641,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -601,6 +677,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -633,6 +713,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -665,6 +749,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -697,6 +785,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -729,6 +821,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -761,6 +857,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -823,6 +923,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -855,6 +959,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -887,6 +995,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -919,6 +1031,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -951,6 +1067,10 @@ jobs:
             matrix:
                 node-version: [14.x]
         steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.9.0
+              with:
+                  access_token: ${{ github.token }}
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
