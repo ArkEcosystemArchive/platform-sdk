@@ -14,7 +14,7 @@ describe("DataTransferObjectService", () => {
 		expect(result).toBeInstanceOf(DTO.SignedTransactionData);
 	});
 
-	it("should create a transaction", async () => {
+	it("should create a transaction", () => {
 		const result = subject.transaction({foo: 123});
 		expect(result).toBeInstanceOf(DTO.TransactionData);
 	})

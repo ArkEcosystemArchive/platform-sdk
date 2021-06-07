@@ -56,6 +56,14 @@ describe("getPublicKey", () => {
 	});
 });
 
+describe("getExtendedPublicKey", () => {
+	it("should pass with a compressed publicKey", async () => {
+		const ark = await createMockService(ledger.publicKey.record);
+
+		await expect(ark.getExtendedPublicKey(ledger.bip44.path)).rejects.toThrow();
+	});
+});
+
 describe("signTransaction", () => {
 	it("should pass with a schnorr signature", async () => {
 		const ark = await createMockService(ledger.transaction.schnorr.record);
@@ -107,5 +115,7 @@ describe("scan", () => {
 
 			expect(wallet.toObject()).toMatchSnapshot();
 		}
+
+		await expect(ark.scan({ useLegacy: false })).rejects.toThrow(); // TODO: update test once it works
 	});
 });

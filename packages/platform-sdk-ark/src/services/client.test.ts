@@ -1,3 +1,4 @@
+import { SignedTransactionData } from "@arkecosystem/platform-sdk/dist/contracts";
 import "jest-extended";
 
 import nock from "nock";
@@ -35,9 +36,10 @@ describe("ClientService", () => {
 
 			nock(/.+/)
 				.post("/api/transactions/search")
+				.query({ page: "0" })
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
-			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
+			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"], cursor: "0" });
 
 			expect(result).toBeObject();
 			expect(result.items()[0]).toBeInstanceOf(TransactionData);
@@ -150,10 +152,12 @@ describe("ClientService", () => {
 	});
 
 	describe("#votes", () => {
+		const fixture = require(`${__dirname}/../../test/fixtures/client/wallet.json`);
+
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/wallets/arkx")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
+				.reply(200, fixture);
 
 			const result = await subject.votes("arkx");
 
@@ -161,6 +165,49 @@ describe("ClientService", () => {
 			expect(result.used).toBe(1);
 			expect(result.available).toBe(0);
 			expect(result.publicKeys).toHaveLength(1);
+		});
+
+		it("should succeed without vote", async () => {
+			const fixtureWithoutVote = {
+				data: {
+					...fixture.data,
+					attributes: {
+						...fixture.data.attributes,
+						vote: undefined,
+					}
+				}
+			};
+
+			nock(/.+/)
+				.get("/api/wallets/arkx")
+				.reply(200, fixtureWithoutVote);
+
+			const result = await subject.votes("arkx");
+
+			expect(result).toBeObject();
+			expect(result.used).toBe(0);
+			expect(result.available).toBe(1);
+			expect(result.publicKeys).toHaveLength(0);
+		});
+
+		it("should succeed without attributes", async () => {
+			const fixtureWithoutVote = {
+				data: {
+					...fixture.data,
+					attributes: undefined,
+				}
+			};
+
+			nock(/.+/)
+				.get("/api/wallets/arkx")
+				.reply(200, fixtureWithoutVote);
+
+			const result = await subject.votes("arkx");
+
+			expect(result).toBeObject();
+			expect(result.used).toBe(0);
+			expect(result.available).toBe(1);
+			expect(result.publicKeys).toHaveLength(0);
 		});
 	});
 
@@ -178,12 +225,15 @@ describe("ClientService", () => {
 	});
 
 	describe("#broadcast", () => {
+		const fixture = require(`${__dirname}/../../test/fixtures/client/broadcast.json`);
+
 		it("should accept 1 transaction and reject 1 transaction", async () => {
 			nock(/.+/)
 				.post("/api/transactions")
-				.reply(422, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
+				.reply(422, fixture);
 
-			const result = await subject.broadcast([]);
+			const mock = { toBroadcast: () => "" } as SignedTransactionData;
+			const result = await subject.broadcast([mock]);
 
 			expect(result).toEqual({
 				accepted: ["e4311204acf8a86ba833e494f5292475c6e9e0913fc455a12601b4b6b55818d8"],
@@ -193,5 +243,29 @@ describe("ClientService", () => {
 				},
 			});
 		});
-	});
+
+		it("should read errors in non-array format", async () => {
+			const errorId = Object.keys(fixture.errors)[0];
+			const nonArrayFixture = {
+				data: fixture.data,
+				errors: { [errorId]: fixture.errors[errorId][0] },
+			};
+
+			nock(/.+/)
+				.post("/api/transactions")
+				.reply(422, nonArrayFixture);
+
+			const mock = { toBroadcast: () => ""} as SignedTransactionData;
+			const result = await subject.broadcast([mock]);
+
+			expect(result).toEqual({
+				accepted: ["e4311204acf8a86ba833e494f5292475c6e9e0913fc455a12601b4b6b55818d8"],
+				rejected: ["d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216"],
+				errors: {
+					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216: ["ERR_UNKNOWN"],
+				},
+			});
+		});
+
+	})
 });
