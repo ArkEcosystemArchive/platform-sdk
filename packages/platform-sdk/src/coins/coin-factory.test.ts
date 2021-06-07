@@ -11,7 +11,7 @@ test("#make", async () => {
 		CoinFactory.make(
 			{
 				manifest: {
-				name: "ARK",
+					name: "ARK",
 					networks: {
 						// @ts-ignore
 						"ark.mainnet": {},
