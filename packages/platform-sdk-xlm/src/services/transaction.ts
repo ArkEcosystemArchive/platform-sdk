@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 import { v4 as uuidv4 } from "uuid";
 

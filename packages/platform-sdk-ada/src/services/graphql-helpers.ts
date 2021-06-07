@@ -3,10 +3,12 @@ import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { UnspentTransaction } from "./transaction.models";
 
-const postGraphql = async (config: Coins.ConfigRepository, query: string): Promise<Record<string, any>> => {
-	const response = await config
-		.get<HttpClient>(Coins.ConfigKey.HttpClient)
-		.post(Helpers.randomHostFromConfig(config), { query });
+const postGraphql = async (
+	config: Coins.ConfigRepository,
+	httpClient: HttpClient,
+	query: string,
+): Promise<Record<string, any>> => {
+	const response = await httpClient.post(Helpers.randomHostFromConfig(config), { query });
 
 	const json = response.json();
 
@@ -17,11 +19,21 @@ const postGraphql = async (config: Coins.ConfigRepository, query: string): Promi
 	return json.data;
 };
 
-export const submitTransaction = async (config: Coins.ConfigRepository, toBroadcast: string): Promise<string> => {
-	return (await postGraphql(config, `mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`)).hash;
+export const submitTransaction = async (
+	config: Coins.ConfigRepository,
+	httpClient: HttpClient,
+	toBroadcast: string,
+): Promise<string> => {
+	return (
+		await postGraphql(config, httpClient, `mutation { submitTransaction(transaction: "${toBroadcast}") { hash } }`)
+	).hash;
 };
 
-export const fetchTransaction = async (id: string, config: Coins.ConfigRepository): Promise<object[]> => {
+export const fetchTransaction = async (
+	id: string,
+	config: Coins.ConfigRepository,
+	httpClient: HttpClient,
+): Promise<object[]> => {
 	const query = `
 			{
 				transactions(
@@ -49,10 +61,14 @@ export const fetchTransaction = async (id: string, config: Coins.ConfigRepositor
 				}
 			}`;
 
-	return (await postGraphql(config, query)).transactions[0];
+	return (await postGraphql(config, httpClient, query)).transactions[0];
 };
 
-export const fetchTransactions = async (config: Coins.ConfigRepository, addresses: string[]): Promise<object[]> => {
+export const fetchTransactions = async (
+	config: Coins.ConfigRepository,
+	httpClient: HttpClient,
+	addresses: string[],
+): Promise<object[]> => {
 	const query = `
 			{
 				transactions(
@@ -97,17 +113,18 @@ export const fetchTransactions = async (config: Coins.ConfigRepository, addresse
 				}
 			}`;
 
-	return (await postGraphql(config, query)).transactions;
+	return (await postGraphql(config, httpClient, query)).transactions;
 };
 
-export const fetchNetworkTip = async (config: Coins.ConfigRepository): Promise<number> => {
+export const fetchNetworkTip = async (config: Coins.ConfigRepository, httpClient: HttpClient): Promise<number> => {
 	const query = `{ cardano { tip { slotNo } } }`;
 
-	return parseInt((await postGraphql(config, query)).cardano.tip.slotNo);
+	return parseInt((await postGraphql(config, httpClient, query)).cardano.tip.slotNo);
 };
 
 export const fetchUsedAddressesData = async (
 	config: Coins.ConfigRepository,
+	httpClient: HttpClient,
 	addresses: string[],
 ): Promise<string[]> => {
 	const query = `
@@ -144,18 +161,20 @@ export const fetchUsedAddressesData = async (
 					}
 				}
 			}`;
-	return (await postGraphql(config, query)).transactions
+	return (await postGraphql(config, httpClient, query)).transactions
 		.flatMap((tx) => tx.inputs.map((i) => i.address).concat(tx.outputs.map((o) => o.address)))
 		.sort();
 };
 
 export const listUnspentTransactions = async (
 	config: Coins.ConfigRepository,
+	httpClient: HttpClient,
 	addresses: string[],
 ): Promise<UnspentTransaction[]> => {
 	return (
 		await postGraphql(
 			config,
+			httpClient,
 			`{
 				utxos(
 				  where: {
@@ -177,7 +196,11 @@ export const listUnspentTransactions = async (
 	).utxos;
 };
 
-export const fetchUtxosAggregate = async (config: Coins.ConfigRepository, addresses: string[]): Promise<string> => {
+export const fetchUtxosAggregate = async (
+	config: Coins.ConfigRepository,
+	httpClient: HttpClient,
+	addresses: string[],
+): Promise<string> => {
 	const query = `
 			{
 				utxos_aggregate(
@@ -196,5 +219,5 @@ export const fetchUtxosAggregate = async (config: Coins.ConfigRepository, addres
 					}
 				}
 			}`;
-	return (await postGraphql(config, query)).utxos_aggregate.aggregate.sum.value;
+	return (await postGraphql(config, httpClient, query)).utxos_aggregate.aggregate.sum.value;
 };

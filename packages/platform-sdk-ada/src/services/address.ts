@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { bech32 } from "bech32";
 
 import { addressFromAccountExtPublicKey, addressFromMnemonic } from "./shelley";

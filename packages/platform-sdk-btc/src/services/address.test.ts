@@ -1,13 +1,19 @@
 import "jest-extended";
 
+import { IoC } from "@arkecosystem/platform-sdk";
+
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
+import { BindingType } from "../constants";
 import { AddressService } from "./address";
+import { AddressFactory } from "./address.factory";
 
 let subject: AddressService;
 
 beforeEach(async () => {
-	subject = createService(AddressService);
+	subject = createService(AddressService, undefined, async (container: IoC.Container) => {
+		container.singleton(BindingType.AddressFactory, AddressFactory);
+	});
 });
 
 describe("Address", () => {

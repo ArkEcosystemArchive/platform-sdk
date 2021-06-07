@@ -1,6 +1,5 @@
 import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { WalletData } from "../dto";
 import * as TransactionDTO from "../dto";

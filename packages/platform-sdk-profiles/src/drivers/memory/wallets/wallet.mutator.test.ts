@@ -6,7 +6,7 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "wif";
 
-import { identity } from "../../../test/fixtures/identity";
+import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer } from "../../../../test/helpers";
 import { container } from "../../../environment/container";
 import { Identifiers } from "../../../environment/container.models";
@@ -125,7 +125,7 @@ describe("#setCoin", () => {
 
 describe("#identity", () => {
 	it("should mutate the address with a path", async () => {
-		jest.spyOn(subject.coin().identity().address(), "fromMnemonic").mockImplementation(async () => ({
+		jest.spyOn(subject.coin().address(), "fromMnemonic").mockImplementation(async () => ({
 			type: "bip39",
 			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			path: "path",

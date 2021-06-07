@@ -3,7 +3,7 @@ import "reflect-metadata";
 
 import nock from "nock";
 
-import { identity } from "../../../test/fixtures/identity";
+import { identity } from "../../../../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../../../../test/helpers";
 import { StubStorage } from "../../../../test/stubs/storage";
 import { IProfile, IReadWriteWallet, ProfileSetting, WalletData } from "../../../contracts";

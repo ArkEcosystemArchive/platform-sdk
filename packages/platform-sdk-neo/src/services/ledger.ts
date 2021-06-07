@@ -1,4 +1,4 @@
-import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 
 @IoC.injectable()

@@ -1,5 +1,4 @@
 import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
@@ -9,7 +8,6 @@ import * as TransactionDTO from "../dto";
 export class ClientService extends Services.AbstractClientService {
 	#connection!: TronWeb;
 	#peer!: string;
-	#client!: HttpClient;
 	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
@@ -31,7 +29,6 @@ export class ClientService extends Services.AbstractClientService {
 	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
 		this.#connection = new TronWeb({ fullHost: this.#peer });
-		this.#client = this.configRepository.get<HttpClient>(Coins.ConfigKey.HttpClient);
 		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
@@ -58,7 +55,7 @@ export class ClientService extends Services.AbstractClientService {
 		}
 
 		const response = (
-			await this.#client.get(`${this.#peer}/v1/accounts/${Helpers.pluckAddress(query)}/transactions`, payload)
+			await this.httpClient.get(`${this.#peer}/v1/accounts/${Helpers.pluckAddress(query)}/transactions`, payload)
 		).json();
 
 		return this.dataTransferObjectService.transactions(
@@ -75,7 +72,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { data } = (await this.#client.get(`${this.#getHost()}/v1/accounts/${id}`)).json();
+		const { data } = (await this.httpClient.get(`${this.#getHost()}/v1/accounts/${id}`)).json();
 
 		return new WalletData(data[0]);
 	}
@@ -89,7 +86,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		for (const transaction of transactions) {
 			const response = (
-				await this.#client.post(`${this.#getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
+				await this.httpClient.post(`${this.#getHost()}/wallet/broadcasttransaction`, transaction.toBroadcast())
 			).json();
 
 			if (response.result) {

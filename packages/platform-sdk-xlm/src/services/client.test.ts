@@ -9,9 +9,9 @@ import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
 import { TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
-import { TransactionService } from "./transaction";
-import { KeyPairService } from "./key-pair";
 import { DataTransferObjectService } from "./data-transfer-object";
+import { KeyPairService } from "./key-pair";
+import { TransactionService } from "./transaction";
 
 let subject: ClientService;
 

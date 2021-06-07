@@ -7,14 +7,14 @@ import * as Services from "./services";
 
 @IoC.injectable()
 export class ServiceProvider extends IoC.AbstractServiceProvider implements IoC.IServiceProvider {
-	public async make(container: IoC.Container): Promise<Coins.CoinServices> {
+	public async make(container: IoC.Container): Promise<void> {
 		await this.#retrieveNetworkConfiguration(container);
 
 		return this.compose(Services, container);
 	}
 
 	async #retrieveNetworkConfiguration(container: IoC.Container): Promise<void> {
-		const http: HttpClient = container.get<HttpClient>(Coins.ConfigKey.HttpClient);
+		const http: HttpClient = container.get<HttpClient>(IoC.BindingType.HttpClient);
 
 		let peer: string = Helpers.randomHostFromConfig(this.configRepository);
 
@@ -26,7 +26,7 @@ export class ServiceProvider extends IoC.AbstractServiceProvider implements IoC.
 		const dataCrypto = crypto.json().data;
 		const dataStatus = status.json().data;
 
-		if (dataCrypto.network.client.token !== container.get(Coins.ConfigKey.CurrencyTicker)) {
+		if (dataCrypto.network.client.token !== this.configRepository.get(Coins.ConfigKey.CurrencyTicker)) {
 			throw new Error(`Failed to connect to ${peer} because it is on another network.`);
 		}
 

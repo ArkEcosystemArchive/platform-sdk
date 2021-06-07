@@ -1,5 +1,5 @@
-import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
-import * as cryptography from "@liskhq/lisk-cryptography";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { getPrivateAndPublicKeyFromPassphrase } from "@liskhq/lisk-cryptography";
 
 @IoC.injectable()
 export class PublicKeyService extends Services.AbstractPublicKeyService {
@@ -9,7 +9,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 	): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
-				publicKey: cryptography.getPrivateAndPublicKeyFromPassphrase(mnemonic).publicKey,
+				publicKey: getPrivateAndPublicKeyFromPassphrase(mnemonic).publicKey,
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

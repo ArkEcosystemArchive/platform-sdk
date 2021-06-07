@@ -11,7 +11,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
-		this.#client = new NanoClient(this.configRepository);
+		this.#client = new NanoClient(this.configRepository, this.httpClient);
 		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 

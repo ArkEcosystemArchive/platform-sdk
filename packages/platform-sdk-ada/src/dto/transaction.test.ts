@@ -3,8 +3,8 @@ import "jest-extended";
 import { DTO } from "@arkecosystem/platform-sdk";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
-import { TransactionData } from "./transaction";
 import { createService } from "../../test/helpers";
+import { TransactionData } from "./transaction";
 
 let subject: TransactionData;
 

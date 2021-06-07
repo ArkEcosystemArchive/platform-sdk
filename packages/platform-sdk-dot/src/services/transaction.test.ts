@@ -4,20 +4,28 @@ import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import { waitReady } from "@polkadot/wasm-crypto";
 
 import { identity } from "../../test/fixtures/identity";
+import { createServiceAsync } from "../../test/helpers";
+import { BindingType } from "../constants";
 import { SignedTransactionData } from "../dto/signed-transaction";
-import { TransactionService } from "./transaction";
+import { createApiPromise, createKeyring } from "../helpers";
 import { AddressService } from "./address";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
 import { PublicKeyService } from "./public-key";
-import { createService } from "../../test/helpers";
+import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
 beforeAll(async () => {
 	await waitReady();
 
-	subject = createService(TransactionService, undefined, (container) => {
+	subject = await createServiceAsync(TransactionService, undefined, async (container: IoC.Container) => {
+		const apiPromise = await createApiPromise(container.get(IoC.BindingType.ConfigRepository));
+		const keyring = createKeyring(container.get(IoC.BindingType.ConfigRepository));
+
+		container.constant(BindingType.ApiPromise, apiPromise);
+		container.constant(BindingType.Keyring, keyring);
+
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);

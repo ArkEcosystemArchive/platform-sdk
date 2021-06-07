@@ -1,25 +1,20 @@
-import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { ApiPromise } from "@polkadot/api";
 
+import { BindingType } from "../constants";
 import { WalletData } from "../dto";
-import { createRpcClient } from "../helpers";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	#client!: ApiPromise;
-
-	@IoC.postConstruct()
-	private async onPostConstruct(): Promise<void> {
-		this.#client = await createRpcClient(this.configRepository);
-	}
-
+	@IoC.inject(BindingType.ApiPromise)
+	protected readonly client!: ApiPromise;
 
 	public async __destruct(): Promise<void> {
-		await this.#client.disconnect();
+		await this.client.disconnect();
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { data: balances, nonce } = await this.#client.query.system.account(id);
+		const { data: balances, nonce } = await this.client.query.system.account(id);
 
 		return new WalletData({
 			address: id,
@@ -37,7 +32,7 @@ export class ClientService extends Services.AbstractClientService {
 
 		for (const transaction of transactions) {
 			try {
-				await this.#client.rpc.author.submitExtrinsic(transaction.toBroadcast());
+				await this.client.rpc.author.submitExtrinsic(transaction.toBroadcast());
 
 				result.accepted.push(transaction.id());
 			} catch (error) {

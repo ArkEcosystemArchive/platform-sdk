@@ -1,4 +1,4 @@
-import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Ed25519Signature, PublicKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { deriveRootKey } from "./shelley";

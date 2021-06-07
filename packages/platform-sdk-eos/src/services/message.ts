@@ -1,4 +1,4 @@
-import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { privateToPublic, sign, verify } from "../crypto";
 

@@ -1,5 +1,4 @@
 import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import Web3 from "web3";
 
 import { WalletData } from "../dto";

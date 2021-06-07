@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { identity } from "../../../test/fixtures/identity";
+import { identity } from "../../../../test/fixtures/identity";
 import { ReadOnlyWallet } from "./read-only-wallet";
 
 let subject: ReadOnlyWallet;

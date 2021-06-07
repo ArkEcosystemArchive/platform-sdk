@@ -1,4 +1,4 @@
 export const BindingType = {
-	Client: Symbol("ZIL<Client>"),
-	Wallet: Symbol("ZIL<Wallet>"),
+	Client: Symbol.for("ZIL<Client>"),
+	Wallet: Symbol.for("ZIL<Wallet>"),
 };

@@ -3,7 +3,7 @@ import "reflect-metadata";
 
 import nock from "nock";
 
-import { identity } from "../../../test/fixtures/identity";
+import { identity } from "../../../../test/fixtures/identity";
 import {
 	bootContainer,
 	importByAddressWithDerivationPath,

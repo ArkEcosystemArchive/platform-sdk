@@ -1,8 +1,12 @@
-import { cryptoWaitReady } from "@polkadot/util-crypto";
 import "jest-extended";
+
+import { IoC } from "@arkecosystem/platform-sdk";
+import { cryptoWaitReady } from "@polkadot/util-crypto";
 
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
+import { BindingType } from "../constants";
+import { createKeyring } from "../helpers";
 import { AddressService } from "./address";
 
 let subject: AddressService;
@@ -10,7 +14,9 @@ let subject: AddressService;
 beforeEach(async () => {
 	await cryptoWaitReady();
 
-	subject = createService(AddressService);
+	subject = createService(AddressService, undefined, async (container: IoC.Container) => {
+		container.constant(BindingType.Keyring, createKeyring(container.get(IoC.BindingType.ConfigRepository)));
+	});
 });
 
 describe("Address", () => {

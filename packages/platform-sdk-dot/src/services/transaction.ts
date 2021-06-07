@@ -1,25 +1,20 @@
-import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { ApiPromise } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
-import { waitReady } from "@polkadot/wasm-crypto";
 
-import { createRpcClient } from "../helpers";
+import { BindingType } from "../constants";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	#client!: ApiPromise;
-	#keyring!: Keyring;
+	@IoC.inject(BindingType.ApiPromise)
+	protected readonly client!: ApiPromise;
 
-	@IoC.postConstruct()
-	private onPostConstruct(): void {
-		// @TODO
-		// this.#client = await createRpcClient(this.configRepository);
-		this.#keyring = new Keyring({ type: "sr25519" });
-	}
+	@IoC.inject(BindingType.Keyring)
+	protected readonly keyring!: Keyring;
 
 	public async __destruct(): Promise<void> {
-		await this.#client.disconnect();
+		await this.client.disconnect();
 	}
 
 	public async transfer(
@@ -31,8 +26,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 
 		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
-		const keypair = this.#keyring.addFromMnemonic(input.signatory.signingKey());
-		const transaction = await this.#client.tx.balances.transfer(input.data.to, amount).signAsync(keypair);
+		const keypair = this.keyring.addFromMnemonic(input.signatory.signingKey());
+		const transaction = await this.client.tx.balances.transfer(input.data.to, amount).signAsync(keypair);
 
 		const signedData = {
 			...JSON.parse(transaction.toString()),

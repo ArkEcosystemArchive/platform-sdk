@@ -1,5 +1,4 @@
 import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { uniq } from "@arkecosystem/utils";
 import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
@@ -108,11 +107,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (
-			await this.configRepository
-				.get<HttpClient>(Coins.ConfigKey.HttpClient)
-				.get(`${this.#host()}/${path}`, query?.searchParams)
-		).json();
+		return (await this.httpClient.get(`${this.#host()}/${path}`, query?.searchParams)).json();
 	}
 
 	#host(): string {

@@ -1,6 +1,7 @@
 import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import * as bitcoin from "bitcoinjs-lib";
 
+import { BindingType } from "../constants";
 import { AddressFactory } from "./address.factory";
 import { getNetworkConfig } from "./helpers";
 
@@ -9,7 +10,9 @@ export class AddressService extends Services.AbstractAddressService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	#factory!: AddressFactory;
+	@IoC.inject(BindingType.AddressFactory)
+	protected readonly addressFactory!: AddressFactory;
+
 	#network!: bitcoin.networks.Network;
 
 	public async fromMnemonic(
@@ -18,14 +21,14 @@ export class AddressService extends Services.AbstractAddressService {
 	): Promise<Services.AddressDataTransferObject> {
 		try {
 			if (options?.bip44) {
-				return this.#factory.bip44(mnemonic, options);
+				return this.addressFactory.bip44(mnemonic, options);
 			}
 
 			if (options?.bip49) {
-				return this.#factory.bip49(mnemonic, options);
+				return this.addressFactory.bip49(mnemonic, options);
 			}
 
-			return this.#factory.bip84(mnemonic, options);
+			return this.addressFactory.bip84(mnemonic, options);
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -131,6 +134,5 @@ export class AddressService extends Services.AbstractAddressService {
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#network = getNetworkConfig(this.configRepository);
-		this.#factory = new AddressFactory(this.configRepository);
 	}
 }

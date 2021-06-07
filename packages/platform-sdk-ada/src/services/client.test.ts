@@ -7,8 +7,8 @@ import nock from "nock";
 import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
-import { TransactionService } from "./transaction";
 import { DataTransferObjectService } from "./data-transfer-object";
+import { TransactionService } from "./transaction";
 
 let subject: ClientService;
 

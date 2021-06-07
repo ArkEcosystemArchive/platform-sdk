@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Hash } from "@arkecosystem/platform-sdk-crypto";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/utils";
@@ -11,17 +11,15 @@ import { keyPairFromMnemonic, useKeychain, usePChain, useXChain } from "./helper
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.ConfigRepository;
-	readonly #xchain: AVMAPI;
-	readonly #pchain: PlatformVMAPI;
-	readonly #keychain;
+	#xchain!: AVMAPI;
+	#pchain!: PlatformVMAPI;
+	#keychain;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
-		this.#config = config;
-		this.#xchain = useXChain(config);
-		this.#pchain = usePChain(config);
-		this.#keychain = useKeychain(config);
+		this.#xchain = useXChain(this.configRepository);
+		this.#pchain = usePChain(this.configRepository);
+		this.#keychain = useKeychain(this.configRepository);
 	}
 
 	public async transfer(
@@ -34,11 +32,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		try {
 			const { child } = this.#keychain.importKey(
-				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).child.getPrivateKey(),
+				keyPairFromMnemonic(this.configRepository, input.signatory.signingKey()).child.getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#xchain.getUTXOs(child.getAddressString());
-			const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
+			const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 
 			const signedTx = (
 				await this.#xchain.buildBaseTx(
@@ -79,7 +77,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		try {
 			const { child } = this.#keychain.importKey(
-				keyPairFromMnemonic(this.#config, input.signatory.signingKey()).child.getPrivateKey(),
+				keyPairFromMnemonic(this.configRepository, input.signatory.signingKey()).child.getPrivateKey(),
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#pchain.getUTXOs(child.getAddressString());

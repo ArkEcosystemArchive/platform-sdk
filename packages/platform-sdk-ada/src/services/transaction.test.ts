@@ -3,13 +3,13 @@ import "jest-extended";
 import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { SignedTransactionData } from "../dto";
 import { createService } from "../../test/helpers";
-import { TransactionService } from "./transaction";
+import { SignedTransactionData } from "../dto";
 import { AddressService } from "./address";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
 import { PublicKeyService } from "./public-key";
+import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 

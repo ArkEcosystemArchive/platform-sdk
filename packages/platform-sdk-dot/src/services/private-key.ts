@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { u8aToHex } from "@polkadot/util";
 import { mnemonicToMiniSecret, naclKeypairFromSeed } from "@polkadot/util-crypto";
 

@@ -1,13 +1,9 @@
 import { Coins, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 @IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	private readonly configRepository!: Coins.ConfigRepository;
-
-	@IoC.inject(IoC.BindingType.HttpClient)
-	private readonly httpClient!: HttpClient;
 
 	@IoC.inject(IoC.BindingType.BigNumberService)
 	private readonly bigNumberService!: Services.BigNumberService;

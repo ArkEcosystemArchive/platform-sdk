@@ -12,6 +12,8 @@ export class CoinFactory {
 		const configRepository: ConfigRepository = new ConfigRepository(options, specification.schema);
 		const networkRepository: NetworkRepository = new NetworkRepository(specification.manifest.networks);
 
+		configRepository.set(ConfigKey.Network, networkRepository.get(options.network));
+
 		// Act
 		const container = new Container();
 		container.constant(BindingType.Container, container);
@@ -26,8 +28,8 @@ export class CoinFactory {
 		return new Coin(container);
 	}
 
-	static #createNetwork(specification: CoinSpec, config: ConfigRepository): Network {
-		const network: NetworkManifest = config.get<NetworkManifest>(ConfigKey.Network);
+	static #createNetwork(specification: CoinSpec, configRepository: ConfigRepository): Network {
+		const network: NetworkManifest = configRepository.get<NetworkManifest>(ConfigKey.Network);
 
 		return new Network(specification.manifest, {
 			...specification.manifest.networks[network.id],

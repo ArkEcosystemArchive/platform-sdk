@@ -1,5 +1,4 @@
-import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 
 @IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {

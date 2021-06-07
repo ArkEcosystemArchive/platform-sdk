@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { deriveKeyPair } from "./helpers";

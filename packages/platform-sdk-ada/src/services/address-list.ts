@@ -1,7 +1,7 @@
 import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { deriveAccountKey, deriveRootKey, deriveSpendKey, deriveChangeKey, deriveStakeKey } from "./shelley";
+import { deriveAccountKey, deriveChangeKey, deriveRootKey, deriveSpendKey, deriveStakeKey } from "./shelley";
 
 @IoC.injectable()
 export class ExtendedAddressService extends Services.AbstractExtendedAddressService {

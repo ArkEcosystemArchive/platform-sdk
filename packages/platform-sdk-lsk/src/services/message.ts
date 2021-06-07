@@ -1,4 +1,4 @@
-import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { signMessageWithPassphrase, verifyMessageWithPublicKey } from "@liskhq/lisk-cryptography";
 
 @IoC.injectable()

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
@@ -41,12 +41,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 		// Gather all **used** spend and change addresses of the account
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
 			this.configRepository,
+			this.httpClient,
 			Buffer.from(publicKey.as_bytes()).toString("hex"),
 		);
 		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
 
 		// Now get utxos for those addresses
-		const utxos: UnspentTransaction[] = await listUnspentTransactions(this.configRepository, usedAddresses); // when more that one utxo, they seem to be ordered by amount descending
+		const utxos: UnspentTransaction[] = await listUnspentTransactions(
+			this.configRepository,
+			this.httpClient,
+			usedAddresses,
+		); // when more that one utxo, they seem to be ordered by amount descending
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];
@@ -123,7 +128,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async estimateExpiration(value?: string): Promise<string | undefined> {
-		const tip: number = await fetchNetworkTip(this.configRepository);
+		const tip: number = await fetchNetworkTip(this.configRepository, this.httpClient);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
 		return (tip + ttl).toString();

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { deriveAddress, deriveKeypair } from "ripple-keypairs";
 

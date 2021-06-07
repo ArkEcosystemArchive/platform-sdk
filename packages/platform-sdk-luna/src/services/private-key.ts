@@ -1,4 +1,5 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, Services } from "@arkecosystem/platform-sdk";
+
 import { deriveKey } from "./helpers";
 
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {

@@ -13,3 +13,17 @@ export const createService = <T = any>(service: any, network: string = "dot.main
 		service,
 	});
 };
+
+export const createServiceAsync = async <T = any>(
+	service: any,
+	network: string = "dot.mainnet",
+	predicate?: Function,
+): Promise<T> => {
+	return Test.createServiceAsync({
+		httpClient: new Request(),
+		manifest: manifest.networks[network],
+		predicate,
+		schema,
+		service,
+	});
+};

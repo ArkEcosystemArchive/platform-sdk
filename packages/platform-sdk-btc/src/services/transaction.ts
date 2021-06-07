@@ -1,5 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Transaction } from "bitcore-lib";
 
 import { UnspentTransaction } from "../contracts";
@@ -7,9 +6,6 @@ import { UnspentAggregator } from "../utils/unspent-aggregator";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	@IoC.inject(IoC.BindingType.ConfigRepository)
-	private readonly configRepository!: Coins.ConfigRepository;
-
 	@IoC.inject(IoC.BindingType.AddressService)
 	private readonly addressService!: Services.AddressService;
 
@@ -55,7 +51,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#unspent = new UnspentAggregator({
-			http: this.configRepository.get<HttpClient>(Coins.ConfigKey.HttpClient),
+			http: this.httpClient,
 			peer: Helpers.randomHostFromConfig(this.configRepository),
 		});
 	}

@@ -1,4 +1,4 @@
-import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import Ripple from "@ledgerhq/hw-app-xrp";
 
 @IoC.injectable()

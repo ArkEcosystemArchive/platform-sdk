@@ -1,4 +1,4 @@
-import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Buffoon } from "@arkecosystem/platform-sdk-crypto";
 import { deriveKeypair, sign, verify } from "ripple-keypairs";
 

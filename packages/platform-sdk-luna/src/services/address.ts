@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
+import { Services } from "@arkecosystem/platform-sdk";
 
 import { deriveKey } from "./helpers";
 

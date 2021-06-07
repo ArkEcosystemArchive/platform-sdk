@@ -1,12 +1,6 @@
 import "jest-extended";
 import { createService } from "./helpers";
-import {
-	ClientService,
-	AddressService,
-	PrivateKeyService,
-	PublicKeyService,
-	KeyPairService,
-} from "../src/services";
+import { ClientService, AddressService, PrivateKeyService, PublicKeyService, KeyPairService } from "../src/services";
 import {
 	addressFromAccountExtPublicKey,
 	addressFromMnemonic,

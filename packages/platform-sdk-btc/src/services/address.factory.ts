@@ -1,4 +1,4 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import * as bitcoin from "bitcoinjs-lib";
 
@@ -12,13 +12,16 @@ interface Levels {
 	index?: number;
 }
 
+@IoC.injectable()
 export class AddressFactory {
-	readonly #config: Coins.ConfigRepository;
-	readonly #network: bitcoin.networks.Network;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public constructor(config: Coins.ConfigRepository) {
-		this.#config = config;
-		this.#network = getNetworkConfig(config);
+	#network!: bitcoin.networks.Network;
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#network = getNetworkConfig(this.configRepository);
 	}
 
 	public bip44(mnemonic: string, options?: Services.IdentityOptions): Services.AddressDataTransferObject {

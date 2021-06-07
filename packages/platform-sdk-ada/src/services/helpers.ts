@@ -9,12 +9,17 @@ import CardanoWasm, {
 } from "@emurgo/cardano-serialization-lib-nodejs";
 import { Buffer } from "buffer";
 
+import { HttpClient } from "../../../platform-sdk-http/dist";
 import { fetchUsedAddressesData } from "./graphql-helpers";
 import { addressFromAccountExtPublicKey, deriveAddress, deriveChangeKey, deriveSpendKey } from "./shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 
-export const usedAddressesForAccount = async (config: Coins.ConfigRepository, accountPublicKey: string) => {
+export const usedAddressesForAccount = async (
+	config: Coins.ConfigRepository,
+	httpClient: HttpClient,
+	accountPublicKey: string,
+) => {
 	const networkId: string = config.get<string>("network.meta.networkId");
 	const usedSpendAddresses: Set<string> = new Set<string>();
 	const usedChangeAddresses: Set<string> = new Set<string>();
@@ -26,7 +31,7 @@ export const usedAddressesForAccount = async (config: Coins.ConfigRepository, ac
 		const changeAddresses: string[] = await addressesChunk(networkId, accountPublicKey, true, offset);
 
 		const allAddresses = spendAddresses.concat(changeAddresses);
-		const usedAddresses: string[] = await fetchUsedAddressesData(config, allAddresses);
+		const usedAddresses: string[] = await fetchUsedAddressesData(config, httpClient, allAddresses);
 
 		spendAddresses
 			.filter((sa) => usedAddresses.find((ua) => ua === sa) !== undefined)

@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
 @IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {

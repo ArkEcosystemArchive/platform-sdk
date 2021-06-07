@@ -4,7 +4,9 @@ import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
+import { BindingType } from "../constants";
 import { AddressService } from "./address";
+import { AddressFactory } from "./address.factory";
 import { MessageService } from "./message";
 
 let subject: MessageService;
@@ -12,6 +14,7 @@ let subject: MessageService;
 beforeEach(async () => {
 	subject = createService(MessageService, undefined, (container) => {
 		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(BindingType.AddressFactory, AddressFactory);
 	});
 });
 

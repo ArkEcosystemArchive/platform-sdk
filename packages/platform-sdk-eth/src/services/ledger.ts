@@ -1,4 +1,4 @@
-import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import Ethereum from "@ledgerhq/hw-app-eth";
 
 @IoC.injectable()
