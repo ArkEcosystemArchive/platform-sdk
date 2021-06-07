@@ -23,12 +23,4 @@ describe("Keys", () => {
 	it("should fail from an invalid mnemonic", async () => {
 		await expect(subject.fromMnemonic(identity.mnemonic.slice(0, 10))).rejects.toThrowError();
 	});
-
-	it("should generate an output from a privateKey", async () => {
-		await expect(subject.fromPrivateKey(identity.privateKey)).rejects.toThrow(/is not implemented/);
-	});
-
-	it("should generate an output from a wif", async () => {
-		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not implemented/);
-	});
 });

@@ -20,14 +20,4 @@ describe("PublicKey", () => {
 	it("should fail to generate an output from an invalid mnemonic", async () => {
 		await expect(subject.fromMnemonic(identity.mnemonic.slice(0, 10))).rejects.toThrowError();
 	});
-
-	it("should fail to generate an output from a multiSignature", async () => {
-		await expect(
-			subject.fromMultiSignature(identity.multiSignature.min, identity.multiSignature.publicKeys),
-		).rejects.toThrow(/is not implemented/);
-	});
-
-	it("should fail to generate an output from a wif", async () => {
-		await expect(subject.fromWIF(identity.wif)).rejects.toThrow(/is not implemented/);
-	});
 });
