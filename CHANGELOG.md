@@ -5,6 +5,81 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.0.0 - 2021-06-07
+
+### Changed
+
+- **[SDK]** **[BREAKING CHANGE]** Migrate coin architecture to make use of IoC/DI (8e9655cc, @faustbrian)
+- **[SDK]** **[BREAKING CHANGE]** Store explorer path schemas in manifest (0ad2fbc1, @faustbrian)
+- **[SDK]** **[BREAKING CHANGE]** Provide default implementations of services (4c92e04e, @faustbrian)
+
+## 8.9.9 - 2021-06-04
+
+### Changed
+
+- **[SDK]** Return fees as `BigNumber` instances (0b0c1fa5, @faustbrian)
+
+### Fixed
+
+- **[JSON-RPC]** Remove `coin` and `network` parameters after consuming them (e74a86b4, @faustbrian)
+
+## 8.9.7 - 2021-06-04
+
+### Added
+
+- **[INTL]** Implement `BigNumber#toSatoshi` (89c2b629, @goga-m)
+
+## 8.9.6 - 2021-06-04
+
+### Fixed
+
+- **[SDK]** Use strings as service keys (e87a2322, @faustbrian)
+
+## 8.9.5 - 2021-06-04
+
+### Changed
+
+- **[SDK]** Unbind if service binding exists and then rebind (3fdf3d2d, @faustbrian)
+
+### Fixed
+
+- **[SKD]** Do not import from `dist` (2f2a93bb, @faustbrian)
+
+## 8.9.3 - 2021-06-04
+
+### Changed
+
+- **[ARK]** Store `compendia` as `bind` (e8416363, @faustbrian)
+
+### Fixed
+
+- **[SDK]** Only add container binding if it does not already exist (131395c3, @faustbrian)
+
+## 8.9.1 - 2021-06-04
+
+### Changed
+
+- **[ARK]** Store `compendia` as `bind` (e8416363, @faustbrian)
+
+## 8.9.0 - 2021-06-04
+
+### Added
+
+- **[SDK]** Implement `BigNumberService` (145fc8d2, @faustbrian)
+
+### Changed
+
+- **[SDK]** Implement `bigNumber` helper for coin-specific instantiation (91715c93, @faustbrian)
+- **[ARK]** Cap `max` fee at `static` value (026db89b, @faustbrian)
+- **[ARK]** Add `compendia.testnet` network (efe11793, @faustbrian)
+- **[ARK]** Store `compendia` as `bind` (e8416363, @faustbrian)
+
+## 8.8.7 - 2021-06-04
+
+### Added
+
+- **[LSK]** Derive addresses and public keys from ledger (9bcc7900, @marianogoldman)
+
 ## 8.8.6 - 2021-06-04
 
 ### Changed
