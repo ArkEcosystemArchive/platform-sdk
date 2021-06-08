@@ -23,7 +23,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 
 	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
 
-	logger.info(`Starting at block ${localHeight}...`);
+	logger.info(`Starting at block height ${localHeight}.`);
 
 	const alreadyDownloaded: Set<number> = new Set();
 	(await database.alreadyDownloadedBlocks(localHeight, remoteHeight)).forEach((downloaded) =>
