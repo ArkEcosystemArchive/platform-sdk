@@ -1,5 +1,9 @@
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
-import { getLisk32AddressFromPassphrase, getLisk32AddressFromPublicKey, validateLisk32Address } from "@liskhq/lisk-cryptography";
+import {
+	getLisk32AddressFromPassphrase,
+	getLisk32AddressFromPublicKey,
+	validateLisk32Address,
+} from "@liskhq/lisk-cryptography";
 
 @IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {

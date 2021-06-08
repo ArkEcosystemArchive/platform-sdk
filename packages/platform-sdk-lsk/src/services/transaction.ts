@@ -1,16 +1,7 @@
-import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
-import {
-	convertLSKToBeddows,
-	getSigningBytes,
-	signTransaction,
-	castVotes,
-	registerDelegate,
-	registerMultisignature,
-	registerSecondPassphrase,
-	transfer,
-} from "@liskhq/lisk-transactions";
 import { getNetworkIdentifier, hexToBuffer } from "@liskhq/lisk-cryptography";
+import { convertLSKToBeddows, getSigningBytes, signTransaction } from "@liskhq/lisk-transactions";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
@@ -99,10 +90,15 @@ export class TransactionService extends Services.AbstractTransactionService {
 			let signedTransaction;
 
 			if (input.signatory.signingKey()) {
-				signTransaction(asset, struct, getNetworkIdentifier(
-					hexToBuffer(this.configRepository.get("meta.genesisBlockPayloadHash")),
-					this.configRepository.get("meta.communityIdentifier"),
-				  ), input.signatory.signingKey());
+				signTransaction(
+					asset,
+					struct,
+					getNetworkIdentifier(
+						hexToBuffer(this.configRepository.get("meta.genesisBlockPayloadHash")),
+						this.configRepository.get("meta.communityIdentifier"),
+					),
+					input.signatory.signingKey(),
+				);
 			}
 
 			// @TODO
