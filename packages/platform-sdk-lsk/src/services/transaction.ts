@@ -7,12 +7,17 @@ import {
 	registerSecondPassphrase,
 	TransactionJSON,
 	transfer,
-	utils,
+	utils
 } from "@liskhq/lisk-transactions";
+import { LedgerService } from "./ledger";
+import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
 	#network!: string;
+
+	@IoC.inject(IoC.BindingType.LedgerService)
+	private readonly ledgerService!: LedgerService;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
@@ -118,6 +123,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				if (input.signatory.actsWithSenderPublicKey()) {
 					// @ts-ignore - LSK uses JS so they don't encounter these type errors
 					structTransaction.senderPublicKey = input.signatory.signingKey();
+					// TODO This one should actually come from the ledger not what the user asks
 				}
 
 				const signedTransaction = utils.getTransactionBytes(structTransaction).toString("hex");
@@ -145,6 +151,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 				struct.senderPublicKey = input.signatory.publicKey();
 
 				return this.dataTransferObjectService.signedTransaction(struct.id, struct, struct);
+			}
+
+			if (input.signatory.actsWithSenderPublicKey()) {
+				await this.ledgerService.connect(LedgerTransportNodeHID);
+				const path: string = "m/44'/134'/0'/0/0"; // TODO Need to get this in the signatory or as a param somewhere
+				const buffer: Buffer = utils.getTransactionBytes(transactionSigner(struct as any) as TransactionJSON);
+				struct.signature = await this.ledgerService.signTransaction(path, buffer);
+				await this.ledgerService.disconnect();
 			}
 
 			const signedTransaction = transactionSigner(struct as any);
