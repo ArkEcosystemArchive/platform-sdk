@@ -2,7 +2,7 @@ import { BigNumber } from "@arkecosystem/utils";
 import envPaths from "env-paths";
 import { ensureFileSync } from "fs-extra";
 
-import { PrismaClient } from "../prisma/generated";
+import { Prisma, PrismaClient } from "../prisma/generated";
 import { Logger } from "./logger";
 import { getAmount, getFees, getInputs, getOutputs } from "./tx-parsing-helpers";
 import { Flags, Input, Output } from "./types";
@@ -91,17 +91,18 @@ export class Database {
 	 * @memberof Database
 	 */
 	async #storeBlock(block): Promise<void> {
-		try {
-			await this.#prisma.block.create({
-				data: {
-					hash: block.hash,
-					height: block.height,
-				},
-			});
-		} catch {
-			// Ignore, there's nothing to update if already exists
-			// We could query for existence before creation, but it doesn't really make sense
-		}
+		await this.#prisma.block.upsert({
+			where: {
+				height: block.height,
+			},
+			create: {
+				hash: block.hash,
+				height: block.height,
+			},
+			update: {
+				hash: block.hash,
+			},
+		});
 	}
 
 	/**
@@ -161,8 +162,11 @@ export class Database {
 		);
 
 		try {
-			await this.#prisma.transaction.create({
-				data: {
+			await this.#prisma.transaction.upsert({
+				where: {
+					hash: transaction.txid,
+				},
+				create: {
 					block_id: blockId,
 					hash: transaction.txid,
 					time: transaction.time,
@@ -176,10 +180,45 @@ export class Database {
 						})),
 					},
 				},
+				update: {
+					block_id: blockId,
+					hash: transaction.txid,
+					time: transaction.time,
+					amount: BigInt(amount.toString()),
+					fee: BigInt(fee.toString()),
+					transaction_parts: {
+						upsert: outputs.map((output) => {
+							const outputData = {
+								output_idx: output.idx,
+								amount: BigInt(output.amount.toString()),
+								address: JSON.stringify(output.addresses),
+							};
+							return {
+								where: {
+									output_hash_output_idx: {
+										output_hash: transaction.txid,
+										output_idx: output.idx,
+									},
+								},
+								create: outputData,
+								update: outputData,
+							};
+						}),
+					},
+				},
 			});
-		} catch {
-			// Ignore, there's nothing to update if already exists
-			// We could query for existence before creation, but it doesn't really make sense
+		} catch (e) {
+			if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") {
+				// Unique contraint validation. Ignore, there's nothing to update if already exists
+				// We could query for existence before creation, but it doesn't really make sense
+				this.#logger.info(
+					`Ignoring transaction ${transaction.txid} from block ${blockId} as it already exists`,
+				);
+			} else {
+				// If there's an error, we don't want to proceed, as this will affect future utxos
+				// It means there's a programming error and we need to fix it
+				throw e;
+			}
 		}
 
 		await this.#prisma.$transaction(utxoUpdates);

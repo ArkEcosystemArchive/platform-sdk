@@ -32,9 +32,8 @@ export abstract class AbstractServiceProvider {
 	protected readonly configRepository!: ConfigRepository;
 
 	protected async compose(services: ServiceList, container: Container): Promise<void> {
-		container.singleton(BindingType.BigNumberService, BigNumberService);
-
 		container.singleton(BindingType.AddressService, services.AddressService || AbstractAddressService);
+		container.singleton(BindingType.BigNumberService, BigNumberService);
 		container.singleton(BindingType.ClientService, services.ClientService || AbstractClientService);
 		container.singleton(
 			BindingType.DataTransferObjectService,
