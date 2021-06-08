@@ -69,10 +69,10 @@ describe("TransactionService", () => {
 
 			let result;
 			console.log(
-				result = await createService(ClientService, undefined, (container) => {
+				(result = await createService(ClientService, undefined, (container) => {
 					container.constant(IoC.BindingType.Container, container);
 					container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
-				}).broadcast([signed]),
+				}).broadcast([signed])),
 			);
 
 			expect(result).toBeObject();

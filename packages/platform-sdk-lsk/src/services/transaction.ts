@@ -1,5 +1,6 @@
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39, UUID } from "@arkecosystem/platform-sdk-crypto";
+import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import {
 	castVotes,
 	registerDelegate,
@@ -7,10 +8,10 @@ import {
 	registerSecondPassphrase,
 	TransactionJSON,
 	transfer,
-	utils
+	utils,
 } from "@liskhq/lisk-transactions";
+
 import { LedgerService } from "./ledger";
-import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
@@ -155,7 +156,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			if (input.signatory.actsWithSenderPublicKey()) {
 				await this.ledgerService.connect(LedgerTransportNodeHID);
-				const path: string = "m/44'/134'/0'/0/0"; // TODO Need to get this in the signatory or as a param somewhere
+				const path = "m/44'/134'/0'/0/0"; // TODO Need to get this in the signatory or as a param somewhere
 				const buffer: Buffer = utils.getTransactionBytes(transactionSigner(struct as any) as TransactionJSON);
 				struct.signature = await this.ledgerService.signTransaction(path, buffer);
 				await this.ledgerService.disconnect();
