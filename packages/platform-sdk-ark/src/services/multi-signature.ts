@@ -163,6 +163,6 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 				publicKey,
 				state,
 			})
-		).map(this.#normalizeTransaction);
+		).map((transaction) => this.#normalizeTransaction(transaction));
 	}
 }
