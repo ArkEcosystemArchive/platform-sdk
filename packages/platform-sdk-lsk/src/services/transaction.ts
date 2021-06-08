@@ -1,11 +1,13 @@
-import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { BIP39, UUID } from "@arkecosystem/platform-sdk-crypto";
 import {
 	castVotes,
 	registerDelegate,
 	registerMultisignature,
 	registerSecondPassphrase,
+	TransactionJSON,
 	transfer,
+	utils,
 } from "@liskhq/lisk-transactions";
 
 @IoC.injectable()
@@ -86,6 +88,21 @@ export class TransactionService extends Services.AbstractTransactionService {
 				callback({ struct });
 			}
 
+			const transactionSigner = {
+				transfer,
+				registerSecondPassphrase,
+				registerDelegate,
+				castVotes,
+				registerMultisignature,
+			}[type]!;
+
+			if (options && options.unsignedBytes === true) {
+				const structTransaction = transactionSigner(struct as any) as unknown as TransactionJSON;
+				const signedTransaction = utils.getTransactionBytes(structTransaction).toString("hex");
+
+				return this.dataTransferObjectService.signedTransaction(UUID.random(), signedTransaction, signedTransaction);
+			}
+
 			// todo: support multisignature
 
 			if (input.signatory.signingKey()) {
@@ -96,16 +113,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 				struct.secondPassphrase = input.signatory.confirmKey();
 			}
 
-			const signedTransaction = {
-				transfer,
-				registerSecondPassphrase,
-				registerDelegate,
-				castVotes,
-				registerMultisignature,
-			}[type](struct);
+			const signedTransaction = transactionSigner(struct as any);
 
-			const decimals = this.configRepository.get<string>(Coins.ConfigKey.CurrencyTicker);
+			console.log(signedTransaction)
+
 			return this.dataTransferObjectService.signedTransaction(
+				// @ts-ignore
 				signedTransaction.id,
 				signedTransaction,
 				signedTransaction,
