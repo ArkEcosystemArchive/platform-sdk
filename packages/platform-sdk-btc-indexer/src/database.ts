@@ -69,7 +69,6 @@ export class Database {
 				height: block.height,
 			},
 			create: {
-				hash: block.hash,
 				height: block.height,
 				payload: block,
 			},
