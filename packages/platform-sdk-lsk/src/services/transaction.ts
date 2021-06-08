@@ -136,8 +136,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 
 		if (input.signatory.actsWithSignature()) {
-			console.log(struct);
-
 			struct.signature = input.signatory.signingKey();
 			struct.id = utils.getTransactionId(struct as any);
 			struct.senderPublicKey = input.signatory.publicKey();
