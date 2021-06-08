@@ -35,6 +35,6 @@ describe("Keys", () => {
 	});
 
 	it("should fail to generate an output from an invalid wif", async () => {
-		expect(subject.fromWIF(undefined!)).rejects.toThrow(Exceptions.CryptoException);
+		await expect(subject.fromWIF(undefined!)).rejects.toThrow(Exceptions.CryptoException);
 	});
 });
