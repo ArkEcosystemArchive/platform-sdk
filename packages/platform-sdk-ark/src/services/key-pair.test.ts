@@ -22,7 +22,7 @@ describe("Keys", () => {
 	});
 
 	it("should fail to generate an output from an invalid mnemonic", async () => {
-		expect(subject.fromMnemonic(undefined!)).rejects.toThrow(Exceptions.CryptoException);
+		await expect(subject.fromMnemonic(undefined!)).rejects.toThrow(Exceptions.CryptoException);
 	});
 
 	it("should generate an output from a wif", async () => {
