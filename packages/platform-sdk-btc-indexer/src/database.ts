@@ -161,48 +161,50 @@ export class Database {
 			}),
 		);
 
-		await this.#prisma.transaction.upsert({
-			where: {
-				hash: transaction.txid,
-			},
-			create: {
-				block_id: blockId,
-				hash: transaction.txid,
-				time: transaction.time,
-				amount: BigInt(amount.toString()),
-				fee: BigInt(fee.toString()),
-				transaction_parts: {
-					create: outputs.map((output) => ({
-						output_idx: output.idx,
-						amount: BigInt(output.amount.toString()),
-						address: JSON.stringify(output.addresses),
-					})),
+		try {
+			await this.#prisma.transaction.upsert({
+				where: {
+					hash: transaction.txid,
 				},
-			},
-			update: {
-				block_id: blockId,
-				hash: transaction.txid,
-				time: transaction.time,
-				amount: BigInt(amount.toString()),
-				fee: BigInt(fee.toString()),
-				transaction_parts: {
-					upsert: outputs.map((output) => {
-						const outputData = {
+				create: {
+					block_id: blockId,
+					hash: transaction.txid,
+					time: transaction.time,
+					amount: BigInt(amount.toString()),
+					fee: BigInt(fee.toString()),
+					transaction_parts: {
+						create: outputs.map((output) => ({
 							output_idx: output.idx,
 							amount: BigInt(output.amount.toString()),
 							address: JSON.stringify(output.addresses),
-						};
-						return {
-							where: {
-								output_hash_output_idx: {
-									output_hash: transaction.txid,
-									output_idx: output.idx,
+						})),
+					},
+				},
+				update: {
+					block_id: blockId,
+					hash: transaction.txid,
+					time: transaction.time,
+					amount: BigInt(amount.toString()),
+					fee: BigInt(fee.toString()),
+					transaction_parts: {
+						upsert: outputs.map((output) => {
+							const outputData = {
+								output_idx: output.idx,
+								amount: BigInt(output.amount.toString()),
+								address: JSON.stringify(output.addresses),
+							};
+							return {
+								where: {
+									output_hash_output_idx: {
+										output_hash: transaction.txid,
+										output_idx: output.idx,
+									},
 								},
-							},
-							create: outputData,
-							update: outputData,
-						};
-					}),
+								create: outputData,
+								update: outputData,
+							};
+						}),
+					},
 				},
 			});
 		} catch (e) {
