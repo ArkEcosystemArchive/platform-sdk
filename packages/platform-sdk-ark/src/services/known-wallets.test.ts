@@ -1,4 +1,4 @@
-import { Coins } from "@arkecosystem/platform-sdk";
+import { Coins, IoC } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
 import nock from "nock";
@@ -55,7 +55,9 @@ describe("KnownWalletService", () => {
 	});
 
 	it("should return an empty list if the source is empty", async () => {
-		subject = createService(KnownWalletService, createConfig(undefined, { [Coins.ConfigKey.KnownWallets]: "" }));
+		subject = createService(KnownWalletService, undefined, async (container: IoC.Container) => {
+            container.get<Coins.ConfigRepository>(IoC.BindingType.ConfigRepository).forget(Coins.ConfigKey.KnownWallets);
+        });
 
 		await expect(subject.all()).resolves.toEqual([]);
 	});
