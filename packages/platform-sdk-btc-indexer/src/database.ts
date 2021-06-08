@@ -89,6 +89,18 @@ export class Database {
 		}
 	}
 
+	public async alreadyDownloadedBlocks(min: number, max: number): Promise<{ height: number }[]> {
+		return this.#prisma.pendingBlock.findMany({
+			where: {
+				height: {
+					gte: min,
+					lte: max,
+				},
+			},
+			select: { height: true},
+		});
+	}
+
 	/**
 	 * Stores a block and all of its transactions.
 	 *

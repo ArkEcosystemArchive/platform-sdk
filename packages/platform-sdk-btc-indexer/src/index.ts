@@ -25,11 +25,15 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 
 	logger.info(`Starting at block ${localHeight}...`);
 
+	const alreadyDownloaded = await database.alreadyDownloadedBlocks(localHeight, remoteHeight);
+
 	const range = [...Array(remoteHeight + 1).keys()]
 		.filter(value => remoteHeight >= value && localHeight <= value );
 
 	for (const blockHeight of range) {
-		downloadQueue.add(async () => database.storePendingBlock(await client.blockWithTransactions(blockHeight)));
+		if (alreadyDownloaded.find(ah => ah.height === blockHeight) === undefined) {
+			downloadQueue.add(async () => database.storePendingBlock(await client.blockWithTransactions(blockHeight)));
+		}
 	}
 
 	setInterval(async () => processPendingBlocks(logger, database), 60000); // Every 60 seconds
