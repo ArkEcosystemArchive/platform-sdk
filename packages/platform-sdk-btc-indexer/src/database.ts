@@ -44,7 +44,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	public async lastBlockNumber(): Promise<number> {
-		const lastBlockHeight = await this.#prisma.pendingBlock.aggregate({
+		const lastBlockHeight = await this.#prisma.block.aggregate({
 			_max: {
 				height: true,
 			},
