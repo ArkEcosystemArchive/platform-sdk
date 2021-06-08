@@ -23,7 +23,12 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 
 	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
 
-	for (const blockHeight of [...Array(Math.abs(localHeight - (remoteHeight + 1))).keys()]) {
+	logger.info(`Starting at block ${localHeight}...`);
+
+	const range = [...Array(remoteHeight + 1).keys()]
+		.filter(value => remoteHeight >= value && localHeight <= value );
+
+	for (const blockHeight of range) {
 		downloadQueue.add(async () => database.storePendingBlock(await client.blockWithTransactions(blockHeight)));
 	}
 
