@@ -20,12 +20,6 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	const client = useClient(flags);
 
 	const downloadQueue = new PQueue({ concurrency: flags.batchSize });
-	// downloadQueue.on("add", () =>
-	// 	logger.debug(`Task is added. Size: ${downloadQueue.size} | Pending: ${downloadQueue.pending}`),
-	// );
-	// downloadQueue.on("next", () =>
-	// 	logger.debug(`Task is completed. Size: ${downloadQueue.size} | Pending: ${downloadQueue.pending}`),
-	// );
 
 	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
 
