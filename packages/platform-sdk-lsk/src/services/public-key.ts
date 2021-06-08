@@ -9,7 +9,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 	): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
-				publicKey: getPrivateAndPublicKeyFromPassphrase(mnemonic).publicKey,
+				publicKey: getPrivateAndPublicKeyFromPassphrase(mnemonic).publicKey.toString("hex"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

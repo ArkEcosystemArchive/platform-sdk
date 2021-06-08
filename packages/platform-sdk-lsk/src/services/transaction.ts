@@ -1,12 +1,16 @@
-import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import {
+	convertLSKToBeddows,
+	getSigningBytes,
+	signTransaction,
 	castVotes,
 	registerDelegate,
 	registerMultisignature,
 	registerSecondPassphrase,
 	transfer,
 } from "@liskhq/lisk-transactions";
+import { getNetworkIdentifier, hexToBuffer } from "@liskhq/lisk-cryptography";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
@@ -24,7 +28,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return this.#createFromData("transfer", {
 			...input,
 			data: {
-				amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
+				amount: convertLSKToBeddows(input.data.amount.toString()),
 				recipientId: input.data.to,
 				data: input.data.memo,
 			},
@@ -86,25 +90,26 @@ export class TransactionService extends Services.AbstractTransactionService {
 				callback({ struct });
 			}
 
-			// todo: support multisignature
-
-			if (input.signatory.signingKey()) {
-				struct.passphrase = input.signatory.signingKey();
+			if (options && options.unsignedBytes === true) {
+				return getSigningBytes(asset, transaction);
 			}
 
+			// todo: support multisignature
+
+			let signedTransaction;
+
+			if (input.signatory.signingKey()) {
+				signTransaction(asset, struct, getNetworkIdentifier(
+					hexToBuffer(this.configRepository.get("meta.genesisBlockPayloadHash")),
+					this.configRepository.get("meta.communityIdentifier"),
+				  ), input.signatory.signingKey());
+			}
+
+			// @TODO
 			if (input.signatory.actsWithSecondaryMnemonic()) {
 				struct.secondPassphrase = input.signatory.confirmKey();
 			}
 
-			const signedTransaction = {
-				transfer,
-				registerSecondPassphrase,
-				registerDelegate,
-				castVotes,
-				registerMultisignature,
-			}[type](struct);
-
-			const decimals = this.configRepository.get<string>(Coins.ConfigKey.CurrencyTicker);
 			return this.dataTransferObjectService.signedTransaction(
 				signedTransaction.id,
 				signedTransaction,

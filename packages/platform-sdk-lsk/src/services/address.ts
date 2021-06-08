@@ -1,6 +1,5 @@
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
-import { getAddressFromPassphrase, getAddressFromPublicKey } from "@liskhq/lisk-cryptography";
-import { utils } from "@liskhq/lisk-transactions";
+import { getLisk32AddressFromPassphrase, getLisk32AddressFromPublicKey, validateLisk32Address } from "@liskhq/lisk-cryptography";
 
 @IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
@@ -9,7 +8,7 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
 		try {
-			return { type: "bip39", address: getAddressFromPassphrase(mnemonic) };
+			return { type: "bip39", address: getLisk32AddressFromPassphrase(mnemonic) };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
@@ -20,19 +19,13 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
 		try {
-			return { type: "bip39", address: getAddressFromPublicKey(publicKey) };
+			return { type: "bip39", address: getLisk32AddressFromPublicKey(Buffer.from(publicKey, "hex")) };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
 	}
 
 	public async validate(address: string): Promise<boolean> {
-		try {
-			utils.validateAddress(address);
-
-			return true;
-		} catch {
-			return false;
-		}
+		return validateLisk32Address(address);
 	}
 }
