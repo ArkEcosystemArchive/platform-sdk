@@ -115,8 +115,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const signedTransaction = transactionSigner(struct as any);
 
-			console.log(signedTransaction)
-
 			return this.dataTransferObjectService.signedTransaction(
 				// @ts-ignore
 				signedTransaction.id,
