@@ -244,7 +244,11 @@ it("should have a display name (username)", () => {
 it("should have a display name (knownName)", () => {
 	const usernameSpy = jest.spyOn(subject, "username").mockReturnValue(undefined);
 
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		name: (a, b) => "knownWallet",
 	});
 
@@ -264,7 +268,11 @@ it("should have an avatar", () => {
 });
 
 it("should have a known name", () => {
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		name: (a, b) => "arkx",
 	});
 
@@ -312,7 +320,11 @@ it("should respond on whether it is a resigned delegate or not", () => {
 });
 
 it("should respond on whether it is known", () => {
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		is: (a, b) => false,
 	});
 
@@ -320,7 +332,11 @@ it("should respond on whether it is known", () => {
 });
 
 it("should respond on whether it is owned by exchange", () => {
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		isExchange: (a, b) => false,
 	});
 
@@ -328,7 +344,11 @@ it("should respond on whether it is owned by exchange", () => {
 });
 
 it("should respond on whether it is owned by a team", () => {
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		isTeam: (a, b) => false,
 	});
 

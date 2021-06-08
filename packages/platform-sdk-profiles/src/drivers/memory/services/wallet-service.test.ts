@@ -76,7 +76,11 @@ beforeEach(async () => {
 
 	const profileRepository = new ProfileRepository();
 
-	container.rebind(Identifiers.ProfileRepository, profileRepository);
+	if (container.has(Identifiers.ProfileRepository)) {
+		container.unbind(Identifiers.ProfileRepository);
+	}
+
+	container.constant(Identifiers.ProfileRepository, profileRepository);
 
 	profile = profileRepository.create("John Doe");
 

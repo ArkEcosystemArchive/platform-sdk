@@ -49,8 +49,17 @@ beforeEach(async () => {
 	const profileRepository = new ProfileRepository();
 	subject = new ExchangeRateService();
 
-	container.rebind(Identifiers.ProfileRepository, profileRepository);
-	container.rebind(Identifiers.ExchangeRateService, subject);
+	if (container.has(Identifiers.ProfileRepository)) {
+		container.unbind(Identifiers.ProfileRepository);
+	}
+
+	container.constant(Identifiers.ProfileRepository, profileRepository);
+
+	if (container.has(Identifiers.ExchangeRateService)) {
+		container.unbind(Identifiers.ExchangeRateService);
+	}
+
+	container.constant(Identifiers.ExchangeRateService, subject);
 
 	profile = profileRepository.create("John Doe");
 
