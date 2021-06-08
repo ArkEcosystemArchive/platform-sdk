@@ -3,15 +3,14 @@ import "jest-extended";
 import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
-import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
 import { AddressService } from "./address";
 import { ClientService } from "./client";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
+import { LedgerService } from "./ledger";
 import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
-import { LedgerService } from "./ledger";
 
 let subject: TransactionService;
 
@@ -43,22 +42,25 @@ describe("TransactionService", () => {
 			await ledger.connect(LedgerTransportNodeHID);
 
 			const path = "m/44'/134'/0'/0/0";
-			console.log(await ledger.getPublicKey(path))
+			console.log(await ledger.getPublicKey(path));
 
-			const unsigned = await subject.transfer({
-				signatory: new Signatories.Signatory(
-					new Signatories.SenderPublicKeySignatory({
-						signingKey: "03fb37de0c41c0c956abbc22f473e58993925c06675a12aee98d60a94094ca36",
-						address: "10395663885515626348L",
-						publicKey: "03fb37de0c41c0c956abbc22f473e58993925c06675a12aee98d60a94094ca36",
-					}),
-				),
-				data: {
-					amount: 1,
-					to: "10395663885515626348L",
-					memo: "sent from ledger",
+			const unsigned = await subject.transfer(
+				{
+					signatory: new Signatories.Signatory(
+						new Signatories.SenderPublicKeySignatory({
+							signingKey: "03fb37de0c41c0c956abbc22f473e58993925c06675a12aee98d60a94094ca36",
+							address: "10395663885515626348L",
+							publicKey: "03fb37de0c41c0c956abbc22f473e58993925c06675a12aee98d60a94094ca36",
+						}),
+					),
+					data: {
+						amount: 1,
+						to: "10395663885515626348L",
+						memo: "sent from ledger",
+					},
 				},
-			}, { unsignedBytes: true, unsignedJson: false });
+				{ unsignedBytes: true, unsignedJson: false },
+			);
 
 			const signed = await subject.transfer({
 				signatory: new Signatories.Signatory(
@@ -78,8 +80,8 @@ describe("TransactionService", () => {
 				await createService(ClientService, undefined, (container) => {
 					container.constant(IoC.BindingType.Container, container);
 					container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
-				}).broadcast([signed])
-			)
+				}).broadcast([signed]),
+			);
 
 			// expect(result).toBeObject();
 		});

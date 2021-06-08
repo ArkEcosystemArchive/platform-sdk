@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39, UUID } from "@arkecosystem/platform-sdk-crypto";
 import {
 	castVotes,
@@ -23,27 +23,35 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.TransferInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("transfer", {
-			...input,
-			// @ts-ignore
-			data: input.data.ledger || {
-				amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
-				recipientId: input.data.to,
-				data: input.data.memo,
+		return this.#createFromData(
+			"transfer",
+			{
+				...input,
+				// @ts-ignore
+				data: input.data.ledger || {
+					amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
+					recipientId: input.data.to,
+					data: input.data.memo,
+				},
 			},
-		}, options);
+			options,
+		);
 	}
 
 	public async secondSignature(
 		input: Services.SecondSignatureInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("registerSecondPassphrase", {
-			...input,
-			data: {
-				secondMnemonic: BIP39.normalize(input.data.mnemonic),
+		return this.#createFromData(
+			"registerSecondPassphrase",
+			{
+				...input,
+				data: {
+					secondMnemonic: BIP39.normalize(input.data.mnemonic),
+				},
 			},
-		}, options);
+			options,
+		);
 	}
 
 	public async delegateRegistration(
@@ -64,14 +72,18 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.MultiSignatureInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("registerMultisignature", {
-			...input,
-			data: {
-				keysgroup: input.data.publicKeys,
-				lifetime: input.data.lifetime,
-				minimum: input.data.min,
+		return this.#createFromData(
+			"registerMultisignature",
+			{
+				...input,
+				data: {
+					keysgroup: input.data.publicKeys,
+					lifetime: input.data.lifetime,
+					minimum: input.data.min,
+				},
 			},
-		}, options);
+			options,
+		);
 	}
 
 	async #createFromData(
@@ -97,7 +109,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}[type]!;
 
 		if (options && options.unsignedBytes === true) {
-			const structTransaction = transactionSigner(struct as any) as unknown as TransactionJSON;
+			const structTransaction = (transactionSigner(struct as any) as unknown) as TransactionJSON;
 
 			if (input.signatory.actsWithSenderPublicKey()) {
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors
@@ -106,7 +118,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const signedTransaction = utils.getTransactionBytes(structTransaction).toString("hex");
 
-			return this.dataTransferObjectService.signedTransaction(UUID.random(), signedTransaction, structTransaction);
+			return this.dataTransferObjectService.signedTransaction(
+				UUID.random(),
+				signedTransaction,
+				structTransaction,
+			);
 		}
 
 		// todo: support multisignature
@@ -120,17 +136,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 
 		if (input.signatory.actsWithSignature()) {
-			console.log(struct)
+			console.log(struct);
 
 			struct.signature = input.signatory.signingKey();
 			struct.id = utils.getTransactionId(struct as any);
 			struct.senderPublicKey = input.signatory.publicKey();
 
-			return this.dataTransferObjectService.signedTransaction(
-				struct.id,
-				struct,
-				struct,
-			);;
+			return this.dataTransferObjectService.signedTransaction(struct.id, struct, struct);
 		}
 
 		const signedTransaction = transactionSigner(struct as any);
