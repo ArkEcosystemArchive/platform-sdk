@@ -7,7 +7,7 @@ let subject: IpfsData;
 
 beforeEach(() => {
 	subject = createService(IpfsData);
-	subject.configure({ asset: { ipfs: "123456789" }})
+	subject.configure({ asset: { ipfs: "123456789" } });
 });
 
 describe("IpfsData", () => {

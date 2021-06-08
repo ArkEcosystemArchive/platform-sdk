@@ -7,7 +7,7 @@ let subject: HtlcRefundData;
 
 beforeEach(() => {
 	subject = createService(HtlcRefundData);
-	subject.configure({ asset: { refund: { lockTransactionId: "1", unlockSecret: "2"}}})
+	subject.configure({ asset: { refund: { lockTransactionId: "1", unlockSecret: "2" } } });
 });
 
 describe("HtlcRefundData", () => {

@@ -8,14 +8,14 @@ let subject: MultiPaymentData;
 beforeEach(() => {
 	subject = createService(MultiPaymentData);
 	subject.configure({
-	asset: {
-		payments: [
-			{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
-			{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
-			{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
-		],
-	}
-})
+		asset: {
+			payments: [
+				{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
+				{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
+				{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
+			],
+		},
+	});
 });
 
 describe("MultiPaymentData", () => {

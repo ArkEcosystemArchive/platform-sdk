@@ -48,7 +48,10 @@ describe("ClientService", () => {
 				.query({ page: "0" })
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
 
-			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"], cursor: "0" });
+			const result = await subject.transactions({
+				addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"],
+				cursor: "0",
+			});
 
 			expect(result).toBeObject();
 			expect(result.items()[0]).toBeInstanceOf(TransactionData);
@@ -176,9 +179,7 @@ describe("ClientService", () => {
 		const fixture = require(`${__dirname}/../../test/fixtures/client/wallet.json`);
 
 		it("should succeed", async () => {
-			nock(/.+/)
-				.get("/api/wallets/arkx")
-				.reply(200, fixture);
+			nock(/.+/).get("/api/wallets/arkx").reply(200, fixture);
 
 			const result = await subject.votes("arkx");
 
@@ -195,13 +196,11 @@ describe("ClientService", () => {
 					attributes: {
 						...fixture.data.attributes,
 						vote: undefined,
-					}
-				}
+					},
+				},
 			};
 
-			nock(/.+/)
-				.get("/api/wallets/arkx")
-				.reply(200, fixtureWithoutVote);
+			nock(/.+/).get("/api/wallets/arkx").reply(200, fixtureWithoutVote);
 
 			const result = await subject.votes("arkx");
 
@@ -216,12 +215,10 @@ describe("ClientService", () => {
 				data: {
 					...fixture.data,
 					attributes: undefined,
-				}
+				},
 			};
 
-			nock(/.+/)
-				.get("/api/wallets/arkx")
-				.reply(200, fixtureWithoutVote);
+			nock(/.+/).get("/api/wallets/arkx").reply(200, fixtureWithoutVote);
 
 			const result = await subject.votes("arkx");
 
@@ -249,9 +246,7 @@ describe("ClientService", () => {
 		const fixture = require(`${__dirname}/../../test/fixtures/client/broadcast.json`);
 
 		it("should accept 1 transaction and reject 1 transaction", async () => {
-			nock(/.+/)
-				.post("/api/transactions")
-				.reply(422, fixture);
+			nock(/.+/).post("/api/transactions").reply(422, fixture);
 
 			const mock = { toBroadcast: () => "" } as SignedTransactionData;
 			const result = await subject.broadcast([mock]);
@@ -272,11 +267,9 @@ describe("ClientService", () => {
 				errors: { [errorId]: fixture.errors[errorId][0] },
 			};
 
-			nock(/.+/)
-				.post("/api/transactions")
-				.reply(422, nonArrayFixture);
+			nock(/.+/).post("/api/transactions").reply(422, nonArrayFixture);
 
-			const mock = { toBroadcast: () => ""} as SignedTransactionData;
+			const mock = { toBroadcast: () => "" } as SignedTransactionData;
 			const result = await subject.broadcast([mock]);
 
 			expect(result).toEqual({
@@ -287,6 +280,5 @@ describe("ClientService", () => {
 				},
 			});
 		});
-
-	})
+	});
 });

@@ -19,7 +19,7 @@ beforeEach(() => {
 				},
 			},
 		},
-	})
+	});
 });
 
 describe("HtlcLockData", () => {

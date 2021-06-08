@@ -7,7 +7,7 @@ let subject: TransferData;
 
 beforeEach(() => {
 	subject = createService(TransferData);
-	subject.configure({ vendorField: "X" })
+	subject.configure({ vendorField: "X" });
 });
 
 describe("TransferData", () => {

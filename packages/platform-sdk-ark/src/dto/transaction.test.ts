@@ -76,15 +76,15 @@ describe("TransactionData", () => {
 	});
 
 	test("#isConfirmed", () => {
-		expect(subject.isConfirmed()).toBeTrue()
+		expect(subject.isConfirmed()).toBeTrue();
 	});
 
 	test("#isSent", () => {
-		expect(subject.isSent()).toBeFalse()
+		expect(subject.isSent()).toBeFalse();
 	});
 
 	test("#isReceived", () => {
-		expect(subject.isReceived()).toBeFalse()
+		expect(subject.isReceived()).toBeFalse();
 	});
 
 	test("#isTransfer", () => {
@@ -92,36 +92,36 @@ describe("TransactionData", () => {
 	});
 
 	test("#isSecondSignature", () => {
-		expect(subject.isSecondSignature()).toBeFalse()
+		expect(subject.isSecondSignature()).toBeFalse();
 	});
 
 	test("#isDelegateRegistration", () => {
-		expect(subject.isDelegateRegistration()).toBeFalse()
+		expect(subject.isDelegateRegistration()).toBeFalse();
 	});
 
 	test("#isVoteCombination", () => {
-		expect(subject.isVoteCombination()).toBeFalse()
+		expect(subject.isVoteCombination()).toBeFalse();
 
 		const data = VoteFixtures.data[0];
 		subject = createService(TransactionData);
-		subject.configure({ ...data, asset: { votes: [...data.asset.votes, "-X"]} });
+		subject.configure({ ...data, asset: { votes: [...data.asset.votes, "-X"] } });
 		expect(subject.isVoteCombination()).toBeTrue();
 	});
 
 	test("#isVote", () => {
-		expect(subject.isVote()).toBeFalse()
+		expect(subject.isVote()).toBeFalse();
 	});
 
 	test("#isUnvote", () => {
-		expect(subject.isUnvote()).toBeFalse()
+		expect(subject.isUnvote()).toBeFalse();
 	});
 
 	test("#isMultiSignature", () => {
-		expect(subject.isMultiSignature()).toBeFalse()
+		expect(subject.isMultiSignature()).toBeFalse();
 	});
 
 	test("#isIpfs", () => {
-		expect(subject.isIpfs()).toBeFalse()
+		expect(subject.isIpfs()).toBeFalse();
 	});
 
 	test("#isMultiPayment", () => {
@@ -129,23 +129,23 @@ describe("TransactionData", () => {
 	});
 
 	test("#isDelegateResignation", () => {
-		expect(subject.isDelegateResignation()).toBeFalse()
+		expect(subject.isDelegateResignation()).toBeFalse();
 	});
 
 	test("#isHtlcLock", () => {
-		expect(subject.isHtlcLock()).toBeFalse()
+		expect(subject.isHtlcLock()).toBeFalse();
 	});
 
 	test("#isHtlcClaim", () => {
-		expect(subject.isHtlcClaim()).toBeFalse()
+		expect(subject.isHtlcClaim()).toBeFalse();
 	});
 
 	test("#isHtlcRefund", () => {
-		expect(subject.isHtlcRefund()).toBeFalse()
+		expect(subject.isHtlcRefund()).toBeFalse();
 	});
 
 	test("#isMagistrate", () => {
-		expect(subject.isMagistrate()).toBeFalse()
+		expect(subject.isMagistrate()).toBeFalse();
 	});
 
 	test("#toObject", () => {

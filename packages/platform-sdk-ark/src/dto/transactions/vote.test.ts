@@ -7,7 +7,7 @@ let subject: VoteData;
 
 beforeEach(() => {
 	subject = createService(VoteData);
-	subject.configure({ asset: { votes: ["+A", "-B"] } })
+	subject.configure({ asset: { votes: ["+A", "-B"] } });
 });
 
 describe("VoteData", () => {

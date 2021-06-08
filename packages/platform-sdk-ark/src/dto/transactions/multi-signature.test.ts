@@ -8,13 +8,13 @@ let subject: MultiSignatureData;
 beforeEach(() => {
 	subject = createService(MultiSignatureData);
 	subject.configure({
-	asset: {
-		multiSignature: {
-			min: 1,
-			publicKeys: ["2", "3"],
-		}
-	}
-})
+		asset: {
+			multiSignature: {
+				min: 1,
+				publicKeys: ["2", "3"],
+			},
+		},
+	});
 });
 
 describe("MultiSignatureData", () => {

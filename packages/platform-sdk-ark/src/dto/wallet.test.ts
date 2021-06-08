@@ -119,7 +119,7 @@ describe("WalletData", () => {
 		test("#isDelegate", () => {
 			expect(subject.isDelegate()).toBeTrue();
 
-			subject = new WalletData({ ...WalletDataFixture.mainnet, isResigned: true});
+			subject = new WalletData({ ...WalletDataFixture.mainnet, isResigned: true });
 			expect(subject.isDelegate()).toBeFalse();
 		});
 

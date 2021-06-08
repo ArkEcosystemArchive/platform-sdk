@@ -56,8 +56,10 @@ describe("KnownWalletService", () => {
 
 	it("should return an empty list if the source is empty", async () => {
 		subject = createService(KnownWalletService, undefined, async (container: IoC.Container) => {
-            container.get<Coins.ConfigRepository>(IoC.BindingType.ConfigRepository).forget(Coins.ConfigKey.KnownWallets);
-        });
+			container
+				.get<Coins.ConfigRepository>(IoC.BindingType.ConfigRepository)
+				.forget(Coins.ConfigKey.KnownWallets);
+		});
 
 		await expect(subject.all()).resolves.toEqual([]);
 	});

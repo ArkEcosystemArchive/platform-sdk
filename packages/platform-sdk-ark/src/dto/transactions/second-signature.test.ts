@@ -7,7 +7,7 @@ let subject: SecondSignatureData;
 
 beforeEach(() => {
 	subject = createService(SecondSignatureData);
-	subject.configure({ asset: { signature: { publicKey: "1" } } })
+	subject.configure({ asset: { signature: { publicKey: "1" } } });
 });
 
 describe("SecondSignatureData", () => {

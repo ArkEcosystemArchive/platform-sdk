@@ -32,5 +32,5 @@ describe("MessageService", () => {
 
 	it("shouldn't sign and verify a invalid message", async () => {
 		await expect(subject.sign({} as Services.MessageInput)).rejects.toThrow(Exceptions.CryptoException);
-	})
+	});
 });
