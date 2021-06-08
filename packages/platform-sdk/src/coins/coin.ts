@@ -27,30 +27,27 @@ import { Manifest } from "./manifest";
 @injectable()
 export class Coin {
 	readonly #container: Container;
+	#hasBeenSynchronized: boolean = false;
 
 	public constructor(container: Container) {
 		this.#container = container;
 	}
 
 	public async __construct(): Promise<void> {
-		/* istanbul ignore next */
 		if (this.hasBeenSynchronized()) {
-			/* istanbul ignore next */
 			return;
 		}
+
+		this.#hasBeenSynchronized = false;
 
 		await this.#container
 			.resolve<any>(this.#container.get<CoinSpec>(BindingType.Specification).ServiceProvider)
 			.make(this.#container);
+
+		this.#hasBeenSynchronized = true;
 	}
 
 	public async __destruct(): Promise<void> {
-		/* istanbul ignore next */
-		if (!this.hasBeenSynchronized()) {
-			/* istanbul ignore next */
-			return;
-		}
-
 		this.#unbind(BindingType.AddressService);
 		this.#unbind(BindingType.BigNumberService);
 		this.#unbind(BindingType.ClientService);
@@ -86,10 +83,12 @@ export class Coin {
 		this.#unbind(BindingType.ClientService);
 		this.#unbind(BindingType.BigNumberService);
 		this.#unbind(BindingType.AddressService);
+
+		this.#hasBeenSynchronized = false;
 	}
 
 	public hasBeenSynchronized(): boolean {
-		return this.#container.has(BindingType.AddressService);
+		return this.#hasBeenSynchronized;
 	}
 
 	public network(): Network {
