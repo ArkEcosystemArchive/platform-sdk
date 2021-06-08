@@ -1,4 +1,4 @@
-import { Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39, UUID } from "@arkecosystem/platform-sdk-crypto";
 import {
 	castVotes,
