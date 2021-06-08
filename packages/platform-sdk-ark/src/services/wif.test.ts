@@ -29,6 +29,6 @@ describe("WIF", () => {
 	})
 
 	it("should fail to generate an output from an invalid private key", async () => {
-		expect(subject.fromPrivateKey(undefined!)).rejects.toThrow(Exceptions.CryptoException);
+		await expect(subject.fromPrivateKey(undefined!)).rejects.toThrow(Exceptions.CryptoException);
 	});
 });
