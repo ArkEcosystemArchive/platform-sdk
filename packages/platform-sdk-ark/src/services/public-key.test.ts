@@ -42,6 +42,6 @@ describe("PublicKey", () => {
 	});
 
 	it("should fail to generate an output from a wif", async () => {
-		expect(subject.fromWIF(undefined!)).rejects.toThrow(Exceptions.CryptoException);
+		await expect(subject.fromWIF(undefined!)).rejects.toThrow(Exceptions.CryptoException);
 	});
 });
