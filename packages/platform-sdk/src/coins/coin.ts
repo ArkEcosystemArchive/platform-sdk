@@ -56,6 +56,12 @@ export class Coin {
 	}
 
 	public async __destruct(): Promise<void> {
+		/* istanbul ignore next */
+		if (!this.hasBeenSynchronized()) {
+			/* istanbul ignore next */
+			return;
+		}
+
 		this.#unbind(BindingType.AddressService);
 		this.#unbind(BindingType.BigNumberService);
 		this.#unbind(BindingType.ClientService);
