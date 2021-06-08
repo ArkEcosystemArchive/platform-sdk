@@ -35,7 +35,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 		.filter((value) => !alreadyDownloaded.has(value));
 
 	for (const blockHeight of range) {
-		downloadQueue.add(async () => database.storePendingBlock(await client.blockWithTransactions(blockHeight)));
+		void downloadQueue.add(async () => database.storePendingBlock(await client.blockWithTransactions(blockHeight)));
 	}
 
 	let busy = false;

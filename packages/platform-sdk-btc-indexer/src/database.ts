@@ -96,7 +96,7 @@ export class Database {
 					lte: max,
 				},
 			},
-			select: { height: true},
+			select: { height: true },
 		});
 	}
 
