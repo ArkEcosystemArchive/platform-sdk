@@ -5,8 +5,8 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
 import MultipaymentFixtures from "../../test/fixtures/client/transactions.json";
-import { createService } from "../../test/helpers";
 import VoteFixtures from "../../test/fixtures/client/votes.json";
+import { createService } from "../../test/helpers";
 import { TransactionData } from "./transaction";
 
 let subject: TransactionData;

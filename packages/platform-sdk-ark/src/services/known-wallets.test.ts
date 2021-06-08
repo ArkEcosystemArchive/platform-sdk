@@ -1,6 +1,6 @@
-import { Coins, IoC } from "@arkecosystem/platform-sdk";
 import "jest-extended";
 
+import { Coins, IoC } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";

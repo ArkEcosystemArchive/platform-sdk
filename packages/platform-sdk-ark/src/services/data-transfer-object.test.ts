@@ -3,8 +3,8 @@ import "jest-extended";
 import { IoC } from "@arkecosystem/platform-sdk";
 
 import { createService } from "../../test/helpers";
+import { SignedTransactionData } from "../dto";
 import { DataTransferObjectService } from "./data-transfer-object";
-import * as DTO from "../dto";
 
 let subject: DataTransferObjectService;
 
@@ -18,6 +18,6 @@ beforeEach(() => {
 describe("DataTransferObjectService", () => {
 	it("should create a signed transaction", () => {
 		const result = subject.signedTransaction("123", "{}", "");
-		expect(result).toBeInstanceOf(DTO.SignedTransactionData);
+		expect(result).toBeInstanceOf(SignedTransactionData);
 	});
 });
