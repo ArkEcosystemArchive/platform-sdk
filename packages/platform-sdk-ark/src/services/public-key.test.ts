@@ -32,7 +32,7 @@ describe("PublicKey", () => {
 	});
 
 	it("should fail to generate an output from a multiSignature", async () => {
-		expect(subject.fromMultiSignature(-1, [])).rejects.toThrow(Exceptions.CryptoException);
+		await expect(subject.fromMultiSignature(-1, [])).rejects.toThrow(Exceptions.CryptoException);
 	});
 
 	it("should generate an output from a wif", async () => {
