@@ -1,6 +1,4 @@
 import { BigNumber } from "@arkecosystem/utils";
-import envPaths from "env-paths";
-import { ensureFileSync } from "fs-extra";
 
 import { Prisma, PrismaClient } from "../prisma/generated";
 import { Logger } from "./logger";
@@ -32,13 +30,6 @@ export class Database {
 	 * @memberof Database
 	 */
 	public constructor(flags: Flags, logger: Logger) {
-		const databaseFile =
-			flags.database || `${envPaths(require("../package.json").name).data}/btc/${flags.network}.db`;
-
-		ensureFileSync(databaseFile);
-
-		logger.debug(`Using [${databaseFile}] as database`);
-
 		this.#prisma = new PrismaClient({
 			log: ["info", "warn", "error"],
 		});
@@ -53,13 +44,49 @@ export class Database {
 	 * @memberof Database
 	 */
 	public async lastBlockNumber(): Promise<number> {
-		const lastBlockHeight = await this.#prisma.block.aggregate({
+		const lastBlockHeight = await this.#prisma.pendingBlock.aggregate({
 			_max: {
 				height: true,
 			},
 		});
 
 		return lastBlockHeight["_max"]?.height || 1;
+	}
+
+	public async allPendingBlocks(): Promise<any[]> {
+		return this.#prisma.pendingBlock.findMany({
+			skip: 0,
+			take: 10000,
+			orderBy: {
+				height: "asc",
+			},
+		});
+	}
+
+	public async storePendingBlock(block: any): Promise<void> {
+		await this.#prisma.pendingBlock.upsert({
+			where: {
+				height: block.height,
+			},
+			create: {
+				hash: block.hash,
+				height: block.height,
+				payload: block,
+			},
+			update: {
+				payload: block.payload,
+			},
+		});
+	}
+
+	public async deletePendingBlock(height: number): Promise<void> {
+		try {
+			await this.#prisma.pendingBlock.delete({
+				where: { height },
+			});
+		} catch {
+			// If we end up here the record is most likely already gone.
+		}
 	}
 
 	/**
