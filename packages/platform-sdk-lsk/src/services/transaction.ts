@@ -25,12 +25,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("transfer", {
 			...input,
-			data: {
+			// @ts-ignore
+			data: input.data.ledger || {
 				amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
 				recipientId: input.data.to,
 				data: input.data.memo,
 			},
-		});
+		}, options);
 	}
 
 	public async secondSignature(
@@ -42,21 +43,21 @@ export class TransactionService extends Services.AbstractTransactionService {
 			data: {
 				secondMnemonic: BIP39.normalize(input.data.mnemonic),
 			},
-		});
+		}, options);
 	}
 
 	public async delegateRegistration(
 		input: Services.DelegateRegistrationInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("registerDelegate", input);
+		return this.#createFromData("registerDelegate", input, options);
 	}
 
 	public async vote(
 		input: Services.VoteInput,
 		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("castVotes", input);
+		return this.#createFromData("castVotes", input, options);
 	}
 
 	public async multiSignature(
@@ -70,7 +71,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 				lifetime: input.data.lifetime,
 				minimum: input.data.min,
 			},
-		});
+		}, options);
 	}
 
 	async #createFromData(
@@ -79,56 +80,67 @@ export class TransactionService extends Services.AbstractTransactionService {
 		options?: Services.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
-		try {
-			const struct: Contracts.KeyValuePair = { ...input.data };
+		const struct: Contracts.KeyValuePair = { ...input.data };
 
-			struct.networkIdentifier = this.#network;
+		struct.networkIdentifier = this.#network;
 
-			if (callback) {
-				callback({ struct });
-			}
-
-			const transactionSigner = {
-				transfer,
-				registerSecondPassphrase,
-				registerDelegate,
-				castVotes,
-				registerMultisignature,
-			}[type]!;
-
-			if (options && options.unsignedBytes === true) {
-				const structTransaction = transactionSigner(struct as any) as unknown as TransactionJSON;
-				const signedTransaction = utils.getTransactionBytes(structTransaction).toString("hex");
-
-				return this.dataTransferObjectService.signedTransaction(UUID.random(), signedTransaction, signedTransaction);
-			}
-
-			// todo: support multisignature
-
-			if (input.signatory.signingKey()) {
-				struct.passphrase = input.signatory.signingKey();
-			}
-
-			if (input.signatory.actsWithSecondaryMnemonic()) {
-				struct.secondPassphrase = input.signatory.confirmKey();
-			}
-
-			if (input.signatory.actsWithSignature()) {
-				struct.signature = input.signatory.signingKey();
-				struct.id = utils.getTransactionId(struct as any);
-				struct.senderPublicKey = input.signatory.publicKey();
-			}
-
-			const signedTransaction = transactionSigner(struct as any);
-
-			return this.dataTransferObjectService.signedTransaction(
-				// @ts-ignore
-				signedTransaction.id,
-				signedTransaction,
-				signedTransaction,
-			);
-		} catch (error) {
-			throw new Exceptions.CryptoException(error);
+		if (callback) {
+			callback({ struct });
 		}
+
+		const transactionSigner = {
+			transfer,
+			registerSecondPassphrase,
+			registerDelegate,
+			castVotes,
+			registerMultisignature,
+		}[type]!;
+
+		if (options && options.unsignedBytes === true) {
+			const structTransaction = transactionSigner(struct as any) as unknown as TransactionJSON;
+
+			if (input.signatory.actsWithSenderPublicKey()) {
+				// @ts-ignore - LSK uses JS so they don't encounter these type errors
+				structTransaction.senderPublicKey = input.signatory.signingKey();
+			}
+
+			const signedTransaction = utils.getTransactionBytes(structTransaction).toString("hex");
+
+			return this.dataTransferObjectService.signedTransaction(UUID.random(), signedTransaction, structTransaction);
+		}
+
+		// todo: support multisignature
+
+		if (input.signatory.signingKey()) {
+			struct.passphrase = input.signatory.signingKey();
+		}
+
+		if (input.signatory.actsWithSecondaryMnemonic()) {
+			struct.secondPassphrase = input.signatory.confirmKey();
+		}
+
+		if (input.signatory.actsWithSignature()) {
+			console.log(struct)
+
+			struct.signature = input.signatory.signingKey();
+			struct.id = utils.getTransactionId(struct as any);
+			struct.senderPublicKey = input.signatory.publicKey();
+
+			// const signedTransaction = transactionSigner(struct as any);
+			return this.dataTransferObjectService.signedTransaction(
+				struct.id,
+				struct,
+				struct,
+			);;
+		}
+
+		const signedTransaction = transactionSigner(struct as any);
+
+		return this.dataTransferObjectService.signedTransaction(
+			// @ts-ignore
+			signedTransaction.id,
+			signedTransaction,
+			signedTransaction,
+		);
 	}
 }
