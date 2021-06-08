@@ -27,7 +27,7 @@ import { Manifest } from "./manifest";
 @injectable()
 export class Coin {
 	readonly #container: Container;
-	#hasBeenSynchronized: boolean = false;
+	#isSyncing: boolean = false;
 
 	public constructor(container: Container) {
 		this.#container = container;
@@ -38,13 +38,17 @@ export class Coin {
 			return;
 		}
 
-		this.#hasBeenSynchronized = false;
+		if (this.#isSyncing) {
+			return;
+		}
+
+		this.#isSyncing = true;
 
 		await this.#container
 			.resolve<any>(this.#container.get<CoinSpec>(BindingType.Specification).ServiceProvider)
 			.make(this.#container);
 
-		this.#hasBeenSynchronized = true;
+		this.#isSyncing = false;
 	}
 
 	public async __destruct(): Promise<void> {
@@ -83,12 +87,10 @@ export class Coin {
 		this.#unbind(BindingType.ClientService);
 		this.#unbind(BindingType.BigNumberService);
 		this.#unbind(BindingType.AddressService);
-
-		this.#hasBeenSynchronized = false;
 	}
 
 	public hasBeenSynchronized(): boolean {
-		return this.#hasBeenSynchronized;
+		return this.#container.has(BindingType.AddressService);
 	}
 
 	public network(): Network {
