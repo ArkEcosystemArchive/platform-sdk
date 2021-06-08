@@ -40,7 +40,9 @@ export class Coin {
 			return;
 		}
 
+		/* istanbul ignore next */
 		if (this.#isSyncing) {
+			/* istanbul ignore next */
 			return;
 		}
 
