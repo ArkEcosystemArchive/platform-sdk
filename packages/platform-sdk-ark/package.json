@@ -22,7 +22,7 @@
 		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
 	},
 	"jest": {
-		"preset": "../../jest.coverage.js"
+		"preset": "../../jest.config.js"
 	},
 	"dependencies": {
 		"@arkecosystem/crypto": "^3.0.0-next.23",
