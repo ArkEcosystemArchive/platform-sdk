@@ -1,11 +1,10 @@
-import { SignedTransactionData } from "@arkecosystem/platform-sdk/dist/contracts";
 import "jest-extended";
 
 import { IoC } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
-import { TransactionData, WalletData } from "../dto";
+import { SignedTransactionData, TransactionData, WalletData } from "../dto";
 import { ClientService } from "./client";
 import { DataTransferObjectService } from "./data-transfer-object";
 
