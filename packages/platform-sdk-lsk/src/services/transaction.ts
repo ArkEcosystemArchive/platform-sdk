@@ -113,6 +113,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 				struct.secondPassphrase = input.signatory.confirmKey();
 			}
 
+			if (input.signatory.actsWithSignature()) {
+				struct.signature = input.signatory.signingKey();
+				struct.id = utils.getTransactionId(struct as any);
+				struct.senderPublicKey = input.signatory.publicKey();
+			}
+
 			const signedTransaction = transactionSigner(struct as any);
 
 			return this.dataTransferObjectService.signedTransaction(
