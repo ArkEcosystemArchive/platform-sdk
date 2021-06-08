@@ -1,6 +1,15 @@
 import "jest-extended";
 
 import { Container } from "./container";
+import { BindingType } from "./service-provider.contract";
+
+it("should prevent multiple bindings of the same key", () => {
+	const container = new Container();
+
+	expect(() => container.constant(BindingType.AddressService, "value")).not.toThrow(/Duplicate binding attempted/);
+	expect(() => container.constant(BindingType.AddressService, "value")).toThrow(/Duplicate binding attempted/);
+	expect(() => container.constant(BindingType.AddressService, "value")).toThrow(/Duplicate binding attempted/);
+});
 
 it("should bind a value and be able to retrieve it", () => {
 	const container = new Container();
@@ -8,7 +17,7 @@ it("should bind a value and be able to retrieve it", () => {
 	expect(container.missing("key")).toBeTrue();
 	expect(() => container.get("key")).toThrow();
 
-	container.bind("key", "value");
+	container.constant("key", "value");
 
 	expect(container.has("key")).toBeTrue();
 	expect(container.get("key")).toBe("value");
@@ -19,7 +28,7 @@ it("should forget a value", () => {
 
 	expect(() => container.unbind("key")).toThrow();
 
-	container.bind("key", "value");
+	container.constant("key", "value");
 
 	expect(() => container.unbind("key")).not.toThrow();
 });
@@ -29,7 +38,7 @@ it("should flush all bindings", () => {
 
 	expect(() => container.unbind("key")).toThrow();
 
-	container.bind("key", "value");
+	container.constant("key", "value");
 
 	expect(() => container.unbind("key")).not.toThrow();
 

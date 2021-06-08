@@ -15,19 +15,12 @@ export class Container {
 		return this.#container.get(key);
 	}
 
-	public bind(key: ContainerKey, value: unknown): void {
-		// @TODO: we should check here what type the value is and then use
-		// the appropriate `.to*` method to bind it.
-
-		this.#container.bind(key).toConstantValue(value);
-	}
-
 	public constant(key: ContainerKey, value: unknown): void {
-		this.#container.bind(key).toConstantValue(value);
+		this.#bind(key).toConstantValue(value);
 	}
 
 	public singleton(key: ContainerKey, value: new (...args: any[]) => unknown): void {
-		this.#container.bind(key).to(value).inSingletonScope();
+		this.#bind(key).to(value).inSingletonScope();
 	}
 
 	public rebind(key: ContainerKey, value: unknown): void {
@@ -54,5 +47,13 @@ export class Container {
 
 	public flush(): void {
 		this.#container.unbindAll();
+	}
+
+	#bind(key: ContainerKey): interfaces.BindingToSyntax<unknown> {
+		if (this.has(key)) {
+			throw new Error(`Duplicate binding attempted for ${key.toString()}`);
+		}
+
+		return this.#container.bind(key);
 	}
 }
