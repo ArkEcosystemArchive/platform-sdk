@@ -58,7 +58,7 @@ describe("Address", () => {
 	test.each(["fromMnemonic", "fromMultiSignature", "fromPublicKey", "fromPrivateKey", "fromWIF"])(
 		"%s() should fail to generate an output from an invalid input",
 		(method) => {
-			expect(subject[method](undefined!)).rejects.toThrow(Exceptions.CryptoException);
+			await expect(subject[method](undefined!)).rejects.toThrow(Exceptions.CryptoException);
 		},
 	);
 });
