@@ -23,12 +23,6 @@ export class Container {
 		this.#bind(key).to(value).inSingletonScope();
 	}
 
-	public rebind(key: ContainerKey, value: unknown): void {
-		// @TODO: we should check here what type the value is and then use
-		// the appropriate `.to*` method to bind it.
-		this.#container.rebind(key).toConstantValue(value);
-	}
-
 	public has(key: ContainerKey): boolean {
 		return this.#container.isBound(key);
 	}
