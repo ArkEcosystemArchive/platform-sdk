@@ -38,7 +38,14 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 		downloadQueue.add(async () => database.storePendingBlock(await client.blockWithTransactions(blockHeight)));
 	}
 
-	setInterval(async () => processPendingBlocks(logger, database), 60000); // Every 60 seconds
+	let busy = false;
+	setInterval(async () => {
+		if (!busy) {
+			busy = true;
+			await processPendingBlocks(logger, database);
+			busy = false;
+		}
+	}, 10000); // Every 10 seconds
 };
 
 const runMigrations = async (): Promise<void> => {
