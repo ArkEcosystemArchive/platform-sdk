@@ -38,15 +38,11 @@ export class AbstractTransactionService implements Contract {
 		throw new NotImplemented(this.constructor.name, this.transfer.name);
 	}
 
-	public async secondSignature(
-		input: SecondSignatureInput,
-	): Promise<SignedTransactionData> {
+	public async secondSignature(input: SecondSignatureInput): Promise<SignedTransactionData> {
 		throw new NotImplemented(this.constructor.name, this.secondSignature.name);
 	}
 
-	public async delegateRegistration(
-		input: DelegateRegistrationInput,
-	): Promise<SignedTransactionData> {
+	public async delegateRegistration(input: DelegateRegistrationInput): Promise<SignedTransactionData> {
 		throw new NotImplemented(this.constructor.name, this.delegateRegistration.name);
 	}
 
@@ -54,9 +50,7 @@ export class AbstractTransactionService implements Contract {
 		throw new NotImplemented(this.constructor.name, this.vote.name);
 	}
 
-	public async multiSignature(
-		input: MultiSignatureInput,
-	): Promise<SignedTransactionData> {
+	public async multiSignature(input: MultiSignatureInput): Promise<SignedTransactionData> {
 		throw new NotImplemented(this.constructor.name, this.multiSignature.name);
 	}
 
@@ -68,9 +62,7 @@ export class AbstractTransactionService implements Contract {
 		throw new NotImplemented(this.constructor.name, this.multiPayment.name);
 	}
 
-	public async delegateResignation(
-		input: DelegateResignationInput,
-	): Promise<SignedTransactionData> {
+	public async delegateResignation(input: DelegateResignationInput): Promise<SignedTransactionData> {
 		throw new NotImplemented(this.constructor.name, this.delegateResignation.name);
 	}
 
