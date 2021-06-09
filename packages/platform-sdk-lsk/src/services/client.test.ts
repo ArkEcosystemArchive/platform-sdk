@@ -1,21 +1,27 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
+import { DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
+import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
-
 beforeAll(() => {
 	nock.disableNetConnect();
 
-	Test.bindBigNumberService(container);
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+	});
+});
+
+beforeAll(() => {
+	nock.disableNetConnect();
 });
 
 describe("ClientService", () => {
@@ -27,7 +33,7 @@ describe("ClientService", () => {
 
 			const result = await subject.transaction("15562133894377717094");
 
-			expect(result).toBeInstanceOf(TransactionData);
+			expect(result).toBeInstanceOf(DTO.TransferData);
 		});
 	});
 
@@ -113,7 +119,7 @@ describe("ClientService", () => {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new SignedTransactionData(
+		const transactionPayload = createService(SignedTransactionData).configure(
 			"5961193224963457718",
 			{
 				id: "5961193224963457718",

@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
@@ -6,60 +7,62 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { AbstractSignedTransactionData } from "./signed-transaction";
 
 test("#setAttributes", () => {
-	let transaction = new Transaction("id", { key: "value" }, "");
+	let transaction = new Transaction().configure("id", { key: "value" }, "");
 	expect(transaction.id()).toBe("id");
 
 	transaction.setAttributes({ identifier: "new" });
 	expect(transaction.id()).toBe("new");
 
-	transaction = new Transaction("id", { key: "value" }, "", 2);
+	transaction = new Transaction().configure("id", { key: "value" }, "", 2);
 	expect(transaction).toBeInstanceOf(Transaction);
 
-	transaction = new Transaction("id", { key: "value" }, "", "2");
+	transaction = new Transaction().configure("id", { key: "value" }, "", "2");
 	expect(transaction).toBeInstanceOf(Transaction);
 });
 
 test("#id", () => {
-	expect(new Transaction("id", { key: "value" }, "").id()).toBe("id");
+	expect(new Transaction().configure("id", { key: "value" }, "").id()).toBe("id");
 });
 
 test("#data", () => {
-	expect(new Transaction("id", { key: "value" }, "").blockId()).toBe("blockId");
+	expect(new Transaction().configure("id", { key: "value" }, "").blockId()).toBe("blockId");
 });
 
 test("#sender", () => {
-	expect(new Transaction("id", { key: "value" }, "").sender()).toBe("sender");
+	expect(new Transaction().configure("id", { key: "value" }, "").sender()).toBe("sender");
 });
 
 test("#recipient", () => {
-	expect(new Transaction("id", { key: "value" }, "").recipient()).toBe("recipient");
+	expect(new Transaction().configure("id", { key: "value" }, "").recipient()).toBe("recipient");
 });
 
 test("#amount", () => {
-	expect(new Transaction("id", { key: "value" }, "").amount()).toBe(BigNumber.ZERO);
+	expect(new Transaction().configure("id", { key: "value" }, "").amount()).toBe(BigNumber.ZERO);
 });
 
 test("#fee", () => {
-	expect(new Transaction("id", { key: "value" }, "").fee()).toBe(BigNumber.ZERO);
+	expect(new Transaction().configure("id", { key: "value" }, "").fee()).toBe(BigNumber.ZERO);
 });
 
 test("#timestamp", () => {
-	expect(new Transaction("id", { key: "value" }, "").timestamp()).toEqual(DateTime.make(0));
+	expect(new Transaction().configure("id", { key: "value" }, "").timestamp()).toEqual(DateTime.make(0));
 });
 
 test("#get", () => {
-	expect(new Transaction("id", { key: "value" }, "").get("key")).toBe("value");
+	expect(new Transaction().configure("id", { key: "value" }, "").get("key")).toBe("value");
 });
 
 test("#toString", () => {
-	expect(new Transaction("id", JSON.stringify({ key: "value" }), "").toString()).toMatchInlineSnapshot(
+	expect(new Transaction().configure("id", JSON.stringify({ key: "value" }), "").toString()).toMatchInlineSnapshot(
 		`"{\\"key\\":\\"value\\"}"`,
 	);
-	expect(new Transaction("id", { key: "value" }, "").toString()).toMatchInlineSnapshot(`"{\\"key\\":\\"value\\"}"`);
+	expect(new Transaction().configure("id", { key: "value" }, "").toString()).toMatchInlineSnapshot(
+		`"{\\"key\\":\\"value\\"}"`,
+	);
 });
 
 test("#toObject", () => {
-	expect(new Transaction("id", { key: "value" }, "").toObject()).toMatchInlineSnapshot(`
+	expect(new Transaction().configure("id", { key: "value" }, "").toObject()).toMatchInlineSnapshot(`
 		Object {
 		  "amount": "0",
 		  "broadcast": "",

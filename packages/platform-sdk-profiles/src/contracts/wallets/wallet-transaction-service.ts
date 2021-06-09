@@ -46,117 +46,100 @@ export interface ITransactionService {
 	 * Sign a Transfer transaction.
 	 *
 	 * @param {Services.TransferInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signTransfer(input: Services.TransferInput, options?: Services.TransactionOptions): Promise<string>;
+	signTransfer(input: Services.TransferInput): Promise<string>;
 
 	/**
 	 * Sign a Second-Signature Registration transaction.
 	 *
 	 * @param {Services.SecondSignatureInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signSecondSignature(input: Services.SecondSignatureInput, options?: Services.TransactionOptions): Promise<string>;
+	signSecondSignature(input: Services.SecondSignatureInput): Promise<string>;
 
 	/**
 	 * Sign a Delegate Registration transaction.
 	 *
 	 * @param {Services.DelegateRegistrationInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signDelegateRegistration(
-		input: Services.DelegateRegistrationInput,
-		options?: Services.TransactionOptions,
-	): Promise<string>;
+	signDelegateRegistration(input: Services.DelegateRegistrationInput): Promise<string>;
 
 	/**
 	 * Sign a Vote transaction.
 	 *
 	 * @param {Services.VoteInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signVote(input: Services.VoteInput, options?: Services.TransactionOptions): Promise<string>;
+	signVote(input: Services.VoteInput): Promise<string>;
 
 	/**
 	 * Sign a Multi-Signature Registration transaction.
 	 *
 	 * @param {Services.MultiSignatureInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signMultiSignature(input: Services.MultiSignatureInput, options?: Services.TransactionOptions): Promise<string>;
+	signMultiSignature(input: Services.MultiSignatureInput): Promise<string>;
 
 	/**
 	 * Sign an IPFS transaction.
 	 *
 	 * @param {Services.IpfsInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signIpfs(input: Services.IpfsInput, options?: Services.TransactionOptions): Promise<string>;
+	signIpfs(input: Services.IpfsInput): Promise<string>;
 
 	/**
 	 * Sign a Multi-Payment transaction.
 	 *
 	 * @param {Services.MultiPaymentInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signMultiPayment(input: Services.MultiPaymentInput, options?: Services.TransactionOptions): Promise<string>;
+	signMultiPayment(input: Services.MultiPaymentInput): Promise<string>;
 
 	/**
 	 * Sign a Delegate Resignation transaction.
 	 *
 	 * @param {Services.DelegateResignationInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signDelegateResignation(
-		input: Services.DelegateResignationInput,
-		options?: Services.TransactionOptions,
-	): Promise<string>;
+	signDelegateResignation(input: Services.DelegateResignationInput): Promise<string>;
 
 	/**
 	 * Sign a HTLC Lock transaction.
 	 *
 	 * @param {Services.HtlcLockInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcLock(input: Services.HtlcLockInput, options?: Services.TransactionOptions): Promise<string>;
+	signHtlcLock(input: Services.HtlcLockInput): Promise<string>;
 
 	/**
 	 * Sign a HTLC Claim transaction.
 	 *
 	 * @param {Services.HtlcClaimInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcClaim(input: Services.HtlcClaimInput, options?: Services.TransactionOptions): Promise<string>;
+	signHtlcClaim(input: Services.HtlcClaimInput): Promise<string>;
 
 	/**
 	 * Sign a HTLC Refund transaction.
 	 *
 	 * @param {Services.HtlcRefundInput} input
-	 * @param {Services.TransactionOptions} options
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signHtlcRefund(input: Services.HtlcRefundInput, options?: Services.TransactionOptions): Promise<string>;
+	signHtlcRefund(input: Services.HtlcRefundInput): Promise<string>;
 
 	/**
 	 * Get the transaction for the given ID if it is exists with any valid state.

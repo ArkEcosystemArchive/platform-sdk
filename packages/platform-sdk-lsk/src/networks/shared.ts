@@ -39,5 +39,19 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Ledger: ["getVersion", "getPublicKey"],
 	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
-	Transaction: ["delegateRegistration", "multiSignature", "secondSignature", "transfer", "vote"],
+	Transaction: [
+		"delegateRegistration",
+		"multiSignature",
+		"secondSignature",
+		"transfer.ledgerS",
+		"transfer.ledgerX",
+		"transfer",
+		"vote",
+	],
+};
+
+export const explorer: Networks.NetworkManifestExplorer = {
+	block: "block/{0}",
+	transaction: "tx/{0}",
+	wallet: "address/{0}",
 };

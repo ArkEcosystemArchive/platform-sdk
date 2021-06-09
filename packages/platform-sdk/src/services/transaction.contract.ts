@@ -2,23 +2,18 @@ import { RawTransactionData, SignedTransactionData } from "../contracts";
 import { Signatory } from "../signatories";
 
 export interface TransactionService {
-	__destruct(): Promise<void>;
-
 	// Core
-	transfer(input: TransferInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	secondSignature(input: SecondSignatureInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	delegateRegistration(
-		input: DelegateRegistrationInput,
-		options?: TransactionOptions,
-	): Promise<SignedTransactionData>;
-	vote(input: VoteInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	multiSignature(input: MultiSignatureInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	ipfs(input: IpfsInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	multiPayment(input: MultiPaymentInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	delegateResignation(input: DelegateResignationInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	htlcLock(input: HtlcLockInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	htlcClaim(input: HtlcClaimInput, options?: TransactionOptions): Promise<SignedTransactionData>;
-	htlcRefund(input: HtlcRefundInput, options?: TransactionOptions): Promise<SignedTransactionData>;
+	transfer(input: TransferInput): Promise<SignedTransactionData>;
+	secondSignature(input: SecondSignatureInput): Promise<SignedTransactionData>;
+	delegateRegistration(input: DelegateRegistrationInput): Promise<SignedTransactionData>;
+	vote(input: VoteInput): Promise<SignedTransactionData>;
+	multiSignature(input: MultiSignatureInput): Promise<SignedTransactionData>;
+	ipfs(input: IpfsInput): Promise<SignedTransactionData>;
+	multiPayment(input: MultiPaymentInput): Promise<SignedTransactionData>;
+	delegateResignation(input: DelegateResignationInput): Promise<SignedTransactionData>;
+	htlcLock(input: HtlcLockInput): Promise<SignedTransactionData>;
+	htlcClaim(input: HtlcClaimInput): Promise<SignedTransactionData>;
+	htlcRefund(input: HtlcRefundInput): Promise<SignedTransactionData>;
 
 	// Multi-Signature
 	multiSign(transaction: RawTransactionData, input: TransactionInputs): Promise<SignedTransactionData>;
@@ -36,11 +31,6 @@ export interface TransactionInput {
 	contract?: {
 		address: string;
 	};
-}
-
-export interface TransactionOptions {
-	unsignedBytes: boolean;
-	unsignedJson: boolean;
 }
 
 export interface TransferInput extends TransactionInput {

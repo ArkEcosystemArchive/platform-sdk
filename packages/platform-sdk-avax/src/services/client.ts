@@ -1,31 +1,15 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { uniq } from "@arkecosystem/utils";
 import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 
-import { TransactionData, WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
+import { WalletData } from "../dto";
 import { cb58Decode, usePChain, useXChain } from "./helpers";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #config: Coins.Config;
-	readonly #xchain: AVMAPI;
-	readonly #pchain: PlatformVMAPI;
-	readonly #decimals: number;
-
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-		this.#xchain = useXChain(config);
-		this.#pchain = usePChain(config);
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
-	}
+	#xchain!: AVMAPI;
+	#pchain!: PlatformVMAPI;
 
 	public async transaction(
 		id: string,
@@ -37,39 +21,34 @@ export class ClientService extends Services.AbstractClientService {
 		const unsignedTransaction = transaction.getUnsignedTx();
 		const baseTransaction = unsignedTransaction.getTransaction();
 
-		const assetId = cb58Decode(this.#config.get("network.meta.assetId"));
+		const assetId = cb58Decode(this.configRepository.get("network.meta.assetId"));
 
-		return new TransactionData({
+		return this.dataTransferObjectService.transaction({
 			id,
 			amount: unsignedTransaction.getOutputTotal(assetId).toString(),
 			fee: unsignedTransaction.getBurn(assetId).toString(),
 			memo: baseTransaction.getMemo().toString("utf-8"),
-		}).withDecimals(this.#decimals);
+		});
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { transactions } = await this.#get("v2/transactions", {
-			chainID: this.#config.get("network.meta.blockchainId"),
+			chainID: this.configRepository.get("network.meta.blockchainId"),
 			limit: 100,
 			offset: query.cursor || 0,
 			address: query.address,
 		});
 
-		return Helpers.createTransactionDataCollectionWithType(
-			transactions,
-			{
-				prev: undefined,
-				self: undefined,
-				next: undefined,
-				last: undefined,
-			},
-			TransactionDTO,
-			this.#decimals,
-		);
+		return this.dataTransferObjectService.transactions(transactions, {
+			prev: undefined,
+			self: undefined,
+			next: undefined,
+			last: undefined,
+		});
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
-		const { balance }: any = await this.#xchain.getBalance(id, this.#config.get("network.meta.assetId"));
+		const { balance }: any = await this.#xchain.getBalance(id, this.configRepository.get("network.meta.assetId"));
 
 		return new WalletData({
 			address: id,
@@ -116,14 +95,16 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (
-			await this.#config
-				.get<HttpClient>(Coins.ConfigKey.HttpClient)
-				.get(`${this.#host()}/${path}`, query?.searchParams)
-		).json();
+		return (await this.httpClient.get(`${this.#host()}/${path}`, query?.searchParams)).json();
 	}
 
 	#host(): string {
-		return Helpers.randomHostFromConfig(this.#config, "archival");
+		return Helpers.randomHostFromConfig(this.configRepository, "archival");
+	}
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#xchain = useXChain(this.configRepository);
+		this.#pchain = usePChain(this.configRepository);
 	}
 }

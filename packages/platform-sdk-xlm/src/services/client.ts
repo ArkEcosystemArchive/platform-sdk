@@ -1,12 +1,11 @@
-import { Coins, Collections, Contracts, Helpers, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #client;
-	readonly #decimals: number;
+	#client;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		op_malformed: "ERR_MALFORMED",
@@ -16,20 +15,14 @@ export class ClientService extends Services.AbstractClientService {
 		op_no_issuer: "ERR_NO_ISSUER",
 	};
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		const network = config.get<Networks.NetworkManifest>("network").id;
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		const network = this.configRepository.get<Networks.NetworkManifest>("network").id;
 		this.#client = new Stellar.Server(
 			{ mainnet: "https://horizon.stellar.org", testnet: "https://horizon-testnet.stellar.org" }[
 				network.split(".")[1]
 			],
 		);
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
 	}
 
 	public async transaction(
@@ -39,19 +32,16 @@ export class ClientService extends Services.AbstractClientService {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
 
-		return Helpers.createTransactionDataWithType(
-			{
-				...transaction,
-				operation: operations.records[0],
-			},
-			TransactionDTO,
-		).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction({
+			...transaction,
+			operation: operations.records[0],
+		});
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { records, next, prev } = await this.#client.payments().forAccount(query.address).call();
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			records.filter((transaction) => transaction.type === "payment"),
 			{
 				prev,
@@ -59,8 +49,6 @@ export class ClientService extends Services.AbstractClientService {
 				next,
 				last: undefined,
 			},
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 

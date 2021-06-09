@@ -1,43 +1,38 @@
 /* istanbul ignore file */
 
 import { formatString } from "@arkecosystem/utils";
+import onetime from "onetime";
 import { URL } from "url";
 
-import { Config } from "../coins";
+import { ConfigRepository } from "../coins";
 import { randomNetworkHostFromConfig } from "../helpers";
-import { NetworkHost } from "../networks";
-import { LinkService, LinkServiceSchema } from "./link.contract";
+import { inject, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
+import { LinkService } from "./link.contract";
 
-export abstract class AbstractLinkService implements LinkService {
-	readonly #host: NetworkHost;
-	readonly #schema: LinkServiceSchema;
-
-	public constructor(config: Config, schema: LinkServiceSchema) {
-		this.#host = randomNetworkHostFromConfig(config, "explorer");
-		this.#schema = schema;
-	}
-
-	public async __destruct(): Promise<void> {
-		//
-	}
+@injectable()
+export class AbstractLinkService implements LinkService {
+	@inject(BindingType.ConfigRepository)
+	private readonly configRepository!: ConfigRepository;
 
 	public block(id: string): string {
-		return this.#buildURL(this.#schema.block, id);
+		return this.#buildURL(this.configRepository.get("network.explorer.block"), id);
 	}
 
 	public transaction(id: string): string {
-		return this.#buildURL(this.#schema.transaction, id);
+		return this.#buildURL(this.configRepository.get("network.explorer.transaction"), id);
 	}
 
 	public wallet(id: string): string {
-		return this.#buildURL(this.#schema.wallet, id);
+		return this.#buildURL(this.configRepository.get("network.explorer.wallet"), id);
 	}
 
 	#buildURL(schema: string, id: string): string {
-		const url: URL = new URL(formatString(schema, id), this.#host.host);
+		const { host, query } = onetime(() => randomNetworkHostFromConfig(this.configRepository, "explorer"))();
+		const url: URL = new URL(formatString(schema, id), host);
 
-		if (this.#host.query) {
-			url.search = new URLSearchParams(this.#host.query).toString();
+		if (query) {
+			url.search = new URLSearchParams(query).toString();
 		}
 
 		return url.toString();

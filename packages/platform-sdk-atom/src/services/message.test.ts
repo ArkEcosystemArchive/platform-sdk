@@ -1,14 +1,19 @@
 import "jest-extended";
 
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
+import { KeyPairService } from "./key-pair";
 import { MessageService } from "./message";
 
 let subject: MessageService;
 
-beforeEach(async () => (subject = await MessageService.__construct(createConfig())));
+beforeEach(async () => {
+	subject = createService(MessageService, undefined, (container: IoC.Container) => {
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+	});
+});
 
 describe("MessageService", () => {
 	it("should sign and verify a message", async () => {

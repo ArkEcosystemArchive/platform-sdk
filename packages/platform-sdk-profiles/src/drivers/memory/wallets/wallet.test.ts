@@ -177,15 +177,35 @@ it("should have a manifest service", () => {
 });
 
 it("should have a config service", () => {
-	expect(subject.config()).toBeInstanceOf(Coins.Config);
+	expect(subject.config()).toBeInstanceOf(Coins.ConfigRepository);
 });
 
 it("should have a client service", () => {
 	expect(subject.client()).toBeObject();
 });
 
-it("should have a identity service", () => {
-	expect(subject.identity()).toBeObject();
+it("should have a address service", () => {
+	expect(subject.addressService()).toBeObject();
+});
+
+it("should have a extended address service", () => {
+	expect(subject.extendedAddressService()).toBeObject();
+});
+
+it("should have a key pair service", () => {
+	expect(subject.keyPairService()).toBeObject();
+});
+
+it("should have a private key service", () => {
+	expect(subject.privateKeyService()).toBeObject();
+});
+
+it("should have a public key service", () => {
+	expect(subject.publicKeyService()).toBeObject();
+});
+
+it("should have a wif service", () => {
+	expect(subject.wifService()).toBeObject();
 });
 
 it("should have a ledger service", () => {
@@ -224,7 +244,11 @@ it("should have a display name (username)", () => {
 it("should have a display name (knownName)", () => {
 	const usernameSpy = jest.spyOn(subject, "username").mockReturnValue(undefined);
 
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		name: (a, b) => "knownWallet",
 	});
 
@@ -244,7 +268,11 @@ it("should have an avatar", () => {
 });
 
 it("should have a known name", () => {
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		name: (a, b) => "arkx",
 	});
 
@@ -292,7 +320,11 @@ it("should respond on whether it is a resigned delegate or not", () => {
 });
 
 it("should respond on whether it is known", () => {
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		is: (a, b) => false,
 	});
 
@@ -300,7 +332,11 @@ it("should respond on whether it is known", () => {
 });
 
 it("should respond on whether it is owned by exchange", () => {
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		isExchange: (a, b) => false,
 	});
 
@@ -308,7 +344,11 @@ it("should respond on whether it is owned by exchange", () => {
 });
 
 it("should respond on whether it is owned by a team", () => {
-	container.rebind(Identifiers.KnownWalletService, {
+	if (container.has(Identifiers.KnownWalletService)) {
+		container.unbind(Identifiers.KnownWalletService);
+	}
+
+	container.constant(Identifiers.KnownWalletService, {
 		isTeam: (a, b) => false,
 	});
 

@@ -1,13 +1,9 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #http: HttpClient;
-	readonly #peer: string;
-
 	readonly #broadcastErrors: Record<string, string> = {
 		"failed to marshal JSON bytes": "ERR_JSON_MARSHAL",
 		"failed to unmarshal JSON bytes": "ERR_JSON_UNMARSHAL",
@@ -38,27 +34,13 @@ export class ClientService extends Services.AbstractClientService {
 		unauthorized: "ERR_UNAUTHORIZED",
 	};
 
-	private constructor({ http, peer }) {
-		super();
-
-		this.#http = http;
-		this.#peer = peer;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService({
-			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
-			peer: Helpers.randomHostFromConfig(config),
-		});
-	}
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		const response = await this.#get(`txs/${id}`);
 
-		return Helpers.createTransactionDataWithType(response, TransactionDTO);
+		return this.dataTransferObjectService.transaction(response);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -71,16 +53,12 @@ export class ClientService extends Services.AbstractClientService {
 			limit: query.limit || 100,
 		});
 
-		return Helpers.createTransactionDataCollectionWithType(
-			response.txs,
-			{
-				prev: page <= 1 ? undefined : page - 1,
-				self: Number(response.page_number),
-				next: page >= Number(response.page_total) ? undefined : page,
-				last: response.page_total,
-			},
-			TransactionDTO,
-		);
+		return this.dataTransferObjectService.transactions(response.txs, {
+			prev: page <= 1 ? undefined : page - 1,
+			self: Number(response.page_number),
+			next: page >= Number(response.page_total) ? undefined : page,
+			last: response.page_total,
+		});
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -132,13 +110,19 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query);
+		const response = await this.httpClient.get(
+			`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
+			query,
+		);
 
 		return response.json();
 	}
 
 	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.post(`${this.#peer}/${path}`, body);
+		const response = await this.httpClient.post(
+			`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
+			body,
+		);
 
 		return response.json();
 	}

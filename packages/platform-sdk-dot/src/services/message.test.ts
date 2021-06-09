@@ -1,14 +1,23 @@
 import "jest-extended";
 
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { IoC, Signatories } from "@arkecosystem/platform-sdk";
+import { waitReady } from "@polkadot/wasm-crypto";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
+import { BindingType } from "../constants";
+import { createKeyring } from "../helpers";
 import { MessageService } from "./message";
 
 let subject: MessageService;
 
-beforeEach(async () => (subject = await MessageService.__construct(createConfig())));
+beforeEach(async () => {
+	await waitReady();
+
+	subject = createService(MessageService, undefined, async (container: IoC.Container) => {
+		container.constant(BindingType.Keyring, createKeyring(container.get(IoC.BindingType.ConfigRepository)));
+	});
+});
 
 describe("MessageService", () => {
 	it("should sign a message", async () => {

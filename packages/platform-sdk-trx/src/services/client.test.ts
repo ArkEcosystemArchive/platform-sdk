@@ -1,21 +1,27 @@
 import "jest-extended";
 
-import { Collections, Test } from "@arkecosystem/platform-sdk";
+import { Collections, DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
-import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import { createService } from "../../test/helpers";
+import { SignedTransactionData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
-
 beforeAll(() => {
 	nock.disableNetConnect();
 
-	Test.bindBigNumberService(container);
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+	});
+});
+
+beforeAll(() => {
+	nock.disableNetConnect();
 });
 
 describe("ClientService", () => {
@@ -29,7 +35,7 @@ describe("ClientService", () => {
 				"0daa9f2507c4e79e39391ea165bb76ed018c4cd69d7da129edf9e95f0dae99e2",
 			);
 
-			expect(result).toBeInstanceOf(TransactionData);
+			expect(result).toBeInstanceOf(DTO.TransferData);
 		});
 	});
 
@@ -75,7 +81,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData(
+				createService(SignedTransactionData).configure(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
@@ -95,7 +101,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData(
+				createService(SignedTransactionData).configure(
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`).txID,
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),
 					require(`${__dirname}/../../test/fixtures/crypto/transferSigned.json`),

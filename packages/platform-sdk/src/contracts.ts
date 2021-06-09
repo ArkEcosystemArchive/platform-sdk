@@ -1,5 +1,22 @@
-import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { DelegateRegistrationData } from "./dto/delegate-registration.contract";
+import { DelegateResignationData } from "./dto/delegate-resignation.contract";
+import { HtlcClaimData } from "./dto/htlc-claim.contract";
+import { HtlcLockData } from "./dto/htlc-lock.contract";
+import { HtlcRefundData } from "./dto/htlc-refund.contract";
+import { IpfsData } from "./dto/ipfs.contract";
+import { MultiPaymentData } from "./dto/multi-payment.contract";
+import { MultiSignatureData } from "./dto/multi-signature.contract";
+import { SecondSignatureData } from "./dto/second-signature.contract";
+import { TransferData } from "./dto/transfer.contract";
+import { VoteData } from "./dto/vote.contract";
+import { RawTransactionData, SignedTransactionData } from "./dto/signed-transaction.contract";
+import {
+	UnspentTransactionData,
+	TransactionData,
+	MultiPaymentRecipient,
+	TransactionDataMeta,
+} from "./dto/transaction.contract";
 
 export type KeyValuePair = Record<string, any>;
 
@@ -56,165 +73,6 @@ export interface WalletData {
 	hasFailed(): boolean;
 }
 
-export interface PeerData {
-	ip(): string;
-
-	port(): number;
-
-	version(): string;
-
-	height(): number;
-
-	latency(): number;
-
-	toObject(): KeyValuePair;
-
-	hasPassed(): boolean;
-
-	hasFailed(): boolean;
-}
-
-export interface MultiPaymentRecipient {
-	address: string;
-	amount: BigNumber;
-}
-
-// These types and interfaces are responsible for transaction-specific methods.
-export type TransactionDataMeta = string | number | boolean | undefined;
-
-export interface UnspentTransactionData {
-	id(): string;
-
-	timestamp(): DateTime;
-
-	amount(): BigNumber;
-
-	addresses(): string[];
-}
-
-export interface TransactionData {
-	id(): string;
-
-	blockId(): string | undefined;
-
-	type(): string;
-
-	timestamp(): DateTime | undefined;
-
-	confirmations(): BigNumber;
-
-	sender(): string;
-
-	recipient(): string;
-
-	recipients(): MultiPaymentRecipient[];
-
-	amount(): BigNumber;
-
-	fee(): BigNumber;
-
-	asset(): Record<string, unknown>;
-
-	inputs(): UnspentTransactionData[];
-
-	outputs(): UnspentTransactionData[];
-
-	isConfirmed(): boolean;
-
-	isSent(): boolean;
-
-	isReceived(): boolean;
-
-	isTransfer(): boolean;
-
-	isSecondSignature(): boolean;
-
-	isDelegateRegistration(): boolean;
-
-	isVoteCombination(): boolean;
-
-	isVote(): boolean;
-
-	isUnvote(): boolean;
-
-	isMultiSignature(): boolean;
-
-	isIpfs(): boolean;
-
-	isMultiPayment(): boolean;
-
-	isDelegateResignation(): boolean;
-
-	isHtlcLock(): boolean;
-
-	isHtlcClaim(): boolean;
-
-	isHtlcRefund(): boolean;
-
-	isMagistrate(): boolean;
-
-	toObject(): KeyValuePair;
-
-	hasPassed(): boolean;
-
-	hasFailed(): boolean;
-
-	getMeta(key: string): TransactionDataMeta;
-
-	setMeta(key: string, value: TransactionDataMeta): void;
-}
-
-export interface DelegateRegistrationData extends TransactionData {
-	username(): string;
-}
-
-export interface DelegateResignationData extends TransactionData {}
-
-export interface HtlcClaimData extends TransactionData {
-	lockTransactionId(): string;
-
-	unlockSecret(): string;
-}
-
-export interface HtlcLockData extends TransactionData {
-	secretHash(): string;
-
-	expirationType(): number;
-
-	expirationValue(): number;
-}
-
-export interface HtlcRefundData extends TransactionData {
-	lockTransactionId(): string;
-}
-
-export interface IpfsData extends TransactionData {
-	hash(): string;
-}
-
-export interface MultiPaymentData extends TransactionData {
-	memo(): string | undefined;
-	payments(): { recipientId: string; amount: string }[];
-}
-
-export interface MultiSignatureData extends TransactionData {
-	publicKeys(): string[];
-	min(): number;
-}
-
-export interface SecondSignatureData extends TransactionData {
-	secondPublicKey(): string;
-}
-
-export interface TransferData extends TransactionData {
-	memo(): string | undefined;
-}
-
-export interface VoteData extends TransactionData {
-	votes(): string[];
-	unvotes(): string[];
-}
-
 export type TransactionDataType =
 	| DelegateRegistrationData
 	| DelegateResignationData
@@ -230,27 +88,23 @@ export type TransactionDataType =
 
 export type TransactionDataTypeCollection = TransactionDataType[];
 
-export type RawTransactionData = any;
-
-export interface SignedTransactionData {
-	setAttributes(attributes: { identifier: string }): void;
-
-	// All
-	id(): string;
-	data(): RawTransactionData;
-	sender(): string;
-	recipient(): string;
-	amount(): BigNumber;
-	fee(): BigNumber;
-	timestamp(): DateTime;
-
-	// MultiSignature
-	isMultiSignature(): boolean;
-	isMultiSignatureRegistration(): boolean;
-
-	// Helpers
-	get<T = string>(key: string): T;
-	toString(): string;
-	toBroadcast(): any;
-	toObject(): { id: string; sender: string; recipient: string; amount: string; data: any };
-}
+// @TODO: export those directly from the files and get rid of this whole file
+export {
+	DelegateRegistrationData,
+	DelegateResignationData,
+	HtlcClaimData,
+	HtlcLockData,
+	HtlcRefundData,
+	IpfsData,
+	MultiPaymentData,
+	MultiPaymentRecipient,
+	MultiSignatureData,
+	RawTransactionData,
+	SecondSignatureData,
+	SignedTransactionData,
+	TransactionData,
+	TransactionDataMeta,
+	TransferData,
+	UnspentTransactionData,
+	VoteData,
+};

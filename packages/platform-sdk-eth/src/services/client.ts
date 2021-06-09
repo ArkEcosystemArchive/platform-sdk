@@ -1,16 +1,13 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import Web3 from "web3";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
 
-	readonly #http: HttpClient;
-	readonly #peer: string;
-	readonly #decimals: number;
+	#peer!: string;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"nonce too low": "ERR_NONCE_TOO_LOW",
@@ -22,36 +19,22 @@ export class ClientService extends Services.AbstractClientService {
 		"intrinsic gas too low": "ERR_INTRINSIC_GAS",
 	};
 
-	private constructor({ http, peer, decimals }) {
-		super();
-
-		this.#http = http;
-		this.#peer = peer;
-		this.#decimals = decimals;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService({
-			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
-			peer: Helpers.randomHostFromConfig(config),
-			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
-		});
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
 	}
 
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return Helpers.createTransactionDataWithType(
-			await this.#get(`transactions/${id}`),
-			TransactionDTO,
-		).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const transactions: unknown[] = (await this.#get(`wallets/${query.address}/transactions`)) as any;
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			transactions,
 			// TODO: implement pagination on server
 			{
@@ -60,8 +43,6 @@ export class ClientService extends Services.AbstractClientService {
 				next: undefined,
 				last: undefined,
 			},
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 
@@ -110,10 +91,10 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.get(`${this.#peer}/${path}`, query)).json();
+		return (await this.httpClient.get(`${this.#peer}/${path}`, query)).json();
 	}
 
 	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.#http.post(`${this.#peer}/${path}`, body)).json();
+		return (await this.httpClient.post(`${this.#peer}/${path}`, body)).json();
 	}
 }

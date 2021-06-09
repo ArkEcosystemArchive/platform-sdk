@@ -109,6 +109,7 @@ describe("transaction-mapper", () => {
 			isMagistrate: () => true,
 		});
 
+		// @ts-ignore
 		const collection = new Collections.TransactionDataCollection([transactionData], pagination);
 
 		const transformedCollection = transformTransactionDataCollection(wallet, collection);

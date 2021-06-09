@@ -675,6 +675,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "onetime",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "ora",
       "allowedCategories": [ "libraries" ]
     },

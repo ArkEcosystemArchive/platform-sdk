@@ -37,3 +37,9 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Link: ["block", "transaction", "wallet"],
 	Transaction: ["transfer"],
 };
+
+export const explorer: Networks.NetworkManifestExplorer = {
+	block: "blocks/{0}",
+	transaction: "txs/{0}",
+	wallet: "address/{0}",
+};

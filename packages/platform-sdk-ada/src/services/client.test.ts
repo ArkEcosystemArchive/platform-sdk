@@ -1,25 +1,31 @@
 import "jest-extended";
 
-import { DTO, Signatories, Test } from "@arkecosystem/platform-sdk";
+import { DTO, IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
-import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import { createService } from "../../test/helpers";
+import { SignedTransactionData, TransferData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
 import { TransactionService } from "./transaction";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+	});
+});
 
 afterEach(() => nock.cleanAll());
 
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
 
 describe("ClientService", () => {
@@ -60,7 +66,7 @@ describe("ClientService", () => {
 
 			expect(result).toBeObject();
 			expect(result.items()).toBeArrayOfSize(5);
-			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.items()[0]).toBeInstanceOf(TransferData);
 		});
 		it("missing senderPublicKey", async () => {
 			await expect(
@@ -85,7 +91,7 @@ describe("ClientService", () => {
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
 		const result = await subject.transaction("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
-		expect(result).toBeInstanceOf(TransactionData);
+		expect(result).toBeInstanceOf(TransferData);
 		expect(result.id()).toBe("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
 
 		expect(result.blockId()).toBeUndefined();
@@ -153,7 +159,14 @@ describe("ClientService", () => {
 				.post("/")
 				.reply(201, require(`${__dirname}/../../test/fixtures/transaction/submit-tx.json`));
 
-			const txService = await TransactionService.__construct(createConfig());
+			const txService = createService(TransactionService, undefined, (container) => {
+				container.constant(IoC.BindingType.Container, container);
+				container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+				container.singleton(
+					IoC.BindingType.DataTransferObjectService,
+					Services.AbstractDataTransferObjectService,
+				);
+			});
 
 			const transfer = await txService.transfer({
 				signatory: new Signatories.Signatory(
@@ -187,7 +200,7 @@ describe("ClientService", () => {
 				.reply(201, require(`${__dirname}/../../test/fixtures/transaction/submit-tx-failed.json`));
 
 			const transactions = [
-				new SignedTransactionData(
+				createService(SignedTransactionData).configure(
 					"35e95e8851fb6cc2fadb988d0a6e514386ac7a82a0d40baca34d345740e9657f",
 					{
 						sender:

@@ -1,4 +1,4 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import {
 	Address,
@@ -12,21 +12,8 @@ import {
 	UserSigner,
 } from "@elrondnetwork/erdjs";
 
-import { SignedTransactionData } from "../dto";
-
 export class TransactionService extends Services.AbstractTransactionService {
-	private constructor(peer: string) {
-		super();
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(Helpers.randomHostFromConfig(config));
-	}
-
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "sign.mnemonic");
 		}
@@ -67,6 +54,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 		await signer.sign(transaction);
 
-		return new SignedTransactionData(transaction.getSignature().hex(), unsignedTransaction, transaction);
+		return this.dataTransferObjectService.signedTransaction(
+			transaction.getSignature().hex(),
+			unsignedTransaction,
+			transaction,
+		);
 	}
 }

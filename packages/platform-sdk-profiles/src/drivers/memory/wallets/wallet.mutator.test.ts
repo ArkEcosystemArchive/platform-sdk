@@ -125,7 +125,7 @@ describe("#setCoin", () => {
 
 describe("#identity", () => {
 	it("should mutate the address with a path", async () => {
-		jest.spyOn(subject.coin().identity().address(), "fromMnemonic").mockImplementation(async () => ({
+		jest.spyOn(subject.coin().address(), "fromMnemonic").mockImplementation(async () => ({
 			type: "bip39",
 			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 			path: "path",

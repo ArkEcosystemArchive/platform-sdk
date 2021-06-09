@@ -2,8 +2,6 @@ import { Signatory } from "../signatories";
 import { IdentityOptions } from "./shared.contract";
 
 export interface SignatoryService {
-	__destruct(): Promise<void>;
-
 	mnemonic(mnemonic: string, options?: IdentityOptions): Promise<Signatory>;
 
 	secondaryMnemonic(primary: string, secondary: string, options?: IdentityOptions): Promise<Signatory>;
@@ -16,9 +14,9 @@ export interface SignatoryService {
 
 	privateKey(privateKey: string, options?: IdentityOptions): Promise<Signatory>;
 
-	signature(signature: string, senderPublicKey: string): Promise<Signatory>;
-
 	senderPublicKey(publicKey: string, options?: IdentityOptions): Promise<Signatory>;
 
 	multiSignature(min: number, publicKeys: string[]): Promise<Signatory>;
+
+	ledger(path: string): Promise<Signatory>;
 }

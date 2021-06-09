@@ -1,13 +1,19 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import Joi from "joi";
 
-import { Config } from "../coins";
+import { ConfigRepository } from "../coins";
+import { Container } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { BigNumberService } from "./big-number.service";
 
 test.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])("#make(%s)", async (power) => {
-	const subject = new BigNumberService(
-		new Config(
+	const container = new Container();
+
+	container.constant(
+		BindingType.ConfigRepository,
+		new ConfigRepository(
 			{
 				network: {
 					currency: {
@@ -25,5 +31,10 @@ test.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])("#make(%s)", async (power) => {
 		),
 	);
 
-	expect(subject.make(`1${"0".repeat(power)}`).toHuman()).toBe("1");
+	expect(
+		container
+			.resolve(BigNumberService)
+			.make(`1${"0".repeat(power)}`)
+			.toHuman(),
+	).toBe("1");
 });

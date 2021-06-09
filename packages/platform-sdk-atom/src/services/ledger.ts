@@ -1,14 +1,11 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import Cosmos from "ledger-cosmos-js";
 
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport!: Cosmos;
-
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService();
-	}
 
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.create();

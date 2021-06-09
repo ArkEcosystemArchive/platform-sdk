@@ -1,28 +1,23 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { AddressFactory } from "./identity/address.factory";
+import { AddressFactory } from "./address.factory";
 
+@IoC.injectable()
 export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryService {
-	readonly #factory: AddressFactory;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#factory = new AddressFactory(config);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<WalletDiscoveryService> {
-		return new WalletDiscoveryService(config);
-	}
+	@IoC.inject(IoC.BindingType.AddressService)
+	protected readonly addressFactory!: AddressFactory;
 
 	public async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject[]> {
 		return Promise.all([
-			this.#factory.bip44(mnemonic, options),
-			this.#factory.bip49(mnemonic, options),
-			this.#factory.bip84(mnemonic, options),
+			this.addressFactory.bip44(mnemonic, options),
+			this.addressFactory.bip49(mnemonic, options),
+			this.addressFactory.bip84(mnemonic, options),
 		]);
 	}
 }

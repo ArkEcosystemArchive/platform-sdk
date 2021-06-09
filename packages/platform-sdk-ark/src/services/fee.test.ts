@@ -2,12 +2,14 @@ import "jest-extended";
 
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
 import { FeeService } from "./fee";
 
 let subject: FeeService;
 
-beforeEach(async () => (subject = await FeeService.__construct(createConfig())));
+beforeEach(async () => {
+	subject = createService(FeeService);
+});
 
 afterEach(() => nock.cleanAll());
 
@@ -38,7 +40,10 @@ describe("FeeService", () => {
 				"htlcRefund",
 			]);
 
-			expect(result.transfer).toEqual({ avg: "9878740", max: "10000000", min: "3627425", static: "10000000" });
+			expect(result.transfer.min.toString()).toBe("3627425");
+			expect(result.transfer.avg.toString()).toBe("9878740");
+			expect(result.transfer.max.toString()).toBe("10000000");
+			expect(result.transfer.static.toString()).toBe("10000000");
 		});
 	});
 });

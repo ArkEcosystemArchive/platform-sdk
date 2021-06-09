@@ -1,22 +1,15 @@
-import { Coins, Collections, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 import { NanoClient } from "./rpc";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #client: NanoClient;
-	readonly #decimals: number;
+	#client!: NanoClient;
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#client = new NanoClient(config);
-		this.#decimals = config.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#client = new NanoClient(this.configRepository, this.httpClient);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -25,7 +18,7 @@ export class ClientService extends Services.AbstractClientService {
 		const options = { head: query.cursor || undefined };
 		const { history, previous } = await this.#client.accountHistory(account, count, options);
 
-		return Helpers.createTransactionDataCollectionWithType(
+		return this.dataTransferObjectService.transactions(
 			Object.values(history).map((transaction: any) => {
 				transaction._origin = account;
 
@@ -37,8 +30,6 @@ export class ClientService extends Services.AbstractClientService {
 				next: previous,
 				last: undefined,
 			},
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 

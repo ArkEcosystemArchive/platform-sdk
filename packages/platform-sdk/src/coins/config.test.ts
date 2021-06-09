@@ -2,26 +2,25 @@ import "jest-extended";
 
 import { ValidatorSchema } from "@arkecosystem/platform-sdk-support";
 
-import { Config, ConfigKey } from "./config";
+import { ConfigKey, ConfigRepository } from "./config";
 
-let subject: Config;
+let subject: ConfigRepository;
 
-beforeEach(
-	() =>
-		(subject = new Config(
-			{
-				network: "ark.mainnet",
-			},
-			ValidatorSchema.object({
-				network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet").required(),
-			}),
-		)),
-);
+beforeEach(() => {
+	subject = new ConfigRepository(
+		{
+			network: "ark.mainnet",
+		},
+		ValidatorSchema.object({
+			network: ValidatorSchema.string().valid("ark.mainnet", "ark.devnet").required(),
+		}),
+	);
+});
 
 test("#constructor", () => {
 	expect(
 		() =>
-			new Config(
+			new ConfigRepository(
 				{
 					network: "invalid",
 				},
