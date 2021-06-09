@@ -56,10 +56,14 @@ describe("MultiSignatureService", () => {
 	test("#broadcast", async () => {
 		nock(/.+/)
 			.post("/transaction")
+			.reply(200, {id: "abc"})
+			.post("/transaction")
 			.reply(200, {id: "abc"});
 
-		const transaction = {};
-		const id = await subject.broadcast(transaction);
+		let id = await subject.broadcast({});
+		expect(id).toEqual("abc");
+
+		id = await subject.broadcast({ asset: { multiSignature: "123" }});
 		expect(id).toEqual("abc");
 	});
 
@@ -101,5 +105,40 @@ describe("MultiSignatureService", () => {
 		expect(result).toBeTrue();
 	});
 
+	test("#needsWalletSignature", () => {
+		const transaction = createService(SignedTransactionData);
+		transaction.configure("123", {signatures: []});
+		const result = subject.needsWalletSignature(transaction, "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8");
+		expect(result).toBeFalse();
+	});
 
+	test("#needsFinalSignature", () => {
+		const transaction = createService(SignedTransactionData);
+		transaction.configure("123", {signatures: []});
+		const result = subject.needsFinalSignature(transaction);
+		expect(result).toBeTrue();
+	});
+
+	test("#getValidMultiSignatures", () => {
+		const transaction = createService(SignedTransactionData);
+		transaction.configure("123", {signatures: []});
+		const result = subject.getValidMultiSignatures(transaction);
+		expect(result).toEqual([]);
+	});
+
+	test("#remainingSignatureCount", () => {
+		const transaction = createService(SignedTransactionData);
+		transaction.configure("123", {
+			signatures: [],
+			"multiSignature": {
+				"publicKeys": [
+					"0301fd417566397113ba8c55de2f093a572744ed1829b37b56a129058000ef7bce",
+					"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192"
+				],
+				"min": 2
+			}
+		});
+		const result = subject.remainingSignatureCount(transaction);
+		expect(result).toBe(2);;
+	});
 });
