@@ -1,15 +1,12 @@
 import "jest-extended";
 
 import { IoC, Signatories } from "@arkecosystem/platform-sdk";
-import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
 import { AddressService } from "./address";
-import { ClientService } from "./client";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
-import { LedgerService } from "./ledger";
 import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 
@@ -22,54 +19,34 @@ beforeAll(async () => {
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
-		container.singleton(IoC.BindingType.LedgerService, LedgerService);
-		container.singleton(IoC.BindingType.ClientService, ClientService);
 	});
 });
 
-// @TODO: remove, just here for ledger testing
-jest.setTimeout(60000);
-
 describe("TransactionService", () => {
-	describe.only("#transfer", () => {
-		// it.each(["lsk.mainnet", "lsk.testnet"])("should create for %s", async (network) => {
-		it.each(["lsk.testnet"])("should create for %s", async (network) => {
-			const ledger: LedgerService = createService(LedgerService, network, (container) => {
+	describe("#transfer", () => {
+		it.each(["lsk.mainnet", "lsk.testnet"])("should create for %s", async (network) => {
+			const service = createService(TransactionService, network, (container) => {
 				container.constant(IoC.BindingType.Container, container);
 				container.singleton(IoC.BindingType.AddressService, AddressService);
-				container.singleton(IoC.BindingType.ClientService, ClientService);
 				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 				container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
 				container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
 			});
-			await LedgerTransportNodeHID.create();
-			await ledger.connect(LedgerTransportNodeHID);
 
-			const path = "m/44'/134'/0'/0/0";
-			console.log(await ledger.getPublicKey(path));
-
-			const signed = await subject.transfer(
-				{
-					signatory: new Signatories.Signatory(
-						new Signatories.LedgerSignatory(path),
-					),
-					data: {
-						amount: 1,
-						to: "10395663885515626348L",
-						memo: "sent from ledger",
-					},
+			const result = await service.transfer({
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory({
+						signingKey: identity.mnemonic,
+						address: "15957226662510576840L",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
+				),
+				data: {
+					amount: 1,
+					to: identity.address,
 				},
-				{ unsignedBytes: true, unsignedJson: false },
-			);
-			console.log("signed", signed);
-
-			let result;
-			console.log(
-				(result = await createService(ClientService, undefined, (container) => {
-					container.constant(IoC.BindingType.Container, container);
-					container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
-				}).broadcast([signed])),
-			);
+			});
 
 			expect(result).toBeObject();
 		});
