@@ -1,6 +1,7 @@
-import { Contracts, DTO } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO, IoC } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+@IoC.injectable()
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
 	public primaryKey(): string {
 		return this.address();

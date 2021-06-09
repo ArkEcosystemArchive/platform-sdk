@@ -34,6 +34,8 @@ export interface WalletMultiSignature {
 }
 
 export interface WalletData {
+	fill(data: any): WalletData;
+
 	// Wallet
 	primaryKey(): string;
 

@@ -14,6 +14,9 @@ export class LedgerService extends Services.AbstractLedgerService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	private readonly configRepository!: Coins.ConfigRepository;
 
+	@IoC.inject(IoC.BindingType.DataTransferObjectService)
+	private readonly dataTransferObjectService!: Services.DataTransferObjectService;
+
 	@IoC.inject(IoC.BindingType.ClientService)
 	private readonly clientService!: Services.ClientService;
 
@@ -95,12 +98,18 @@ export class LedgerService extends Services.AbstractLedgerService {
 		await Promise.all(promises);
 
 		// Create a mapping of paths and wallets that have been found.
+		const { cold, used } = this.mappingOfPathsToWallets(addressCache, wallets);
+
+		return { ...used, ...cold };
+	}
+
+	private mappingOfPathsToWallets(addressCache: Record<string, { address: string; publicKey: string }>, wallets: Contracts.WalletData[]) {
 		const cold: Services.LedgerWalletList = {};
 		const used: Services.LedgerWalletList = {};
 
 		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
 			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
-				(wallet: Contracts.WalletData) => wallet.address() === address,
+				(wallet: Contracts.WalletData) => wallet.address() === address
 			);
 
 			if (matchingWallet === undefined) {
@@ -108,11 +117,11 @@ export class LedgerService extends Services.AbstractLedgerService {
 					continue;
 				}
 
-				cold[path] = new WalletData({
+				cold[path] = this.dataTransferObjectService.wallet({
 					address,
 					publicKey,
-					balance: 0,
-				});
+					balance: 0
+				})
 			} else {
 				used[path] = matchingWallet;
 			}
