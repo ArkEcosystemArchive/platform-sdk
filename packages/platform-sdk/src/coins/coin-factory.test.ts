@@ -3,7 +3,6 @@ import "reflect-metadata";
 
 import { ARK } from "../../../platform-sdk-ark/src";
 import { Request } from "../../../platform-sdk-http-got/src";
-
 import { Coin } from "./coin";
 import { CoinFactory } from "./coin-factory";
 
