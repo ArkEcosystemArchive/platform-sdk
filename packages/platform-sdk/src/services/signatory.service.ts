@@ -3,6 +3,7 @@
 import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import {
+	LedgerSignatory,
 	MnemonicSignatory,
 	MultiMnemonicSignatory,
 	MultiSignatureSignatory,
@@ -135,5 +136,9 @@ export class AbstractSignatoryService implements SignatoryService {
 
 	public async multiSignature(min: number, publicKeys: string[]): Promise<Signatory> {
 		return new Signatory(new MultiSignatureSignatory({ min, publicKeys }));
+	}
+
+	public async ledger(path: string): Promise<Signatory> {
+		return new Signatory(new LedgerSignatory(path));
 	}
 }

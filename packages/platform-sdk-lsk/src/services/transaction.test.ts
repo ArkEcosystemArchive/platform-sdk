@@ -5,8 +5,10 @@ import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import { identity } from "../../test/fixtures/identity";
 import { createService } from "../../test/helpers";
 import { AddressService } from "./address";
+import { ClientService } from "./client";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
+import { LedgerService } from "./ledger";
 import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 
@@ -16,8 +18,10 @@ beforeAll(async () => {
 	subject = createService(TransactionService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.ClientService, ClientService);
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.LedgerService, LedgerService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
 	});
 });
@@ -25,15 +29,7 @@ beforeAll(async () => {
 describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it.each(["lsk.mainnet", "lsk.testnet"])("should create for %s", async (network) => {
-			const service = createService(TransactionService, network, (container) => {
-				container.constant(IoC.BindingType.Container, container);
-				container.singleton(IoC.BindingType.AddressService, AddressService);
-				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
-				container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
-				container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
-			});
-
-			const result = await service.transfer({
+			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
 						signingKey: identity.mnemonic,

@@ -1,4 +1,5 @@
 import "jest-extended";
+import { LedgerSignatory } from "./ledger";
 
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
@@ -1186,4 +1187,12 @@ test("#actsWithPrivateMultiSignature", () => {
 	);
 
 	expect(subject.actsWithPrivateMultiSignature()).toBeBoolean();
+});
+
+test("#actsWithLedger", () => {
+	const subject = new Signatory(
+		new LedgerSignatory("path"),
+	);
+
+	expect(subject.actsWithLedger()).toBeBoolean();
 });
