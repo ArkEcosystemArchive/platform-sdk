@@ -5,7 +5,6 @@ import nock from "nock";
 
 import { createService } from "../../test/helpers";
 import { SignedTransactionData } from "../dto";
-import { DataTransferObjectService } from "./data-transfer-object";
 import { MultiSignatureService } from "./multi-signature";
 
 let subject: MultiSignatureService;
@@ -15,7 +14,6 @@ beforeAll(() => {
 
 	subject = createService(MultiSignatureService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
-		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 	});
 });
 
