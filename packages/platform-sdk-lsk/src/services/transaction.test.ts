@@ -7,6 +7,7 @@ import { createService } from "../../test/helpers";
 import { AddressService } from "./address";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
+import { LedgerService } from "./ledger";
 import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 
@@ -18,6 +19,7 @@ beforeAll(async () => {
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.LedgerService, LedgerService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
 	});
 });
