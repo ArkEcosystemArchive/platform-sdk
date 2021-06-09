@@ -65,20 +65,13 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 				const addressMap = {};
 
 				for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
-					const compressedPublicKey = await instance
-						.ledger()
-						.getExtendedPublicKey(`m/44'/${slip44}'/${accountIndex}'`);
+					const ledger = instance.ledger();
 
-					useLogger().info(`Extended Public Key for account [${accountIndex}] >>> ${compressedPublicKey}`);
-
-					for (let addressIndex = 0; addressIndex < 50; addressIndex++) {
-						const path = `44'/${slip44}'/${accountIndex}'/0/${addressIndex}`;
-						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey)
-							.derive(`m/0/${addressIndex}`)
-							.publicKey.toString("hex");
-						const { address: extendedAddress } = await instance.address().fromPublicKey(extendedKey);
-
-						addressMap[extendedAddress] = { path, extendedKey };
+					const ledgerList = await ledger.scan();
+					for (const path of Object.keys(ledgerList)) {
+						const address = ledgerList[path].address();
+						const extendedKey = ledgerList[path].publicKey();
+						addressMap[address] = { path, extendedKey };
 					}
 				}
 
