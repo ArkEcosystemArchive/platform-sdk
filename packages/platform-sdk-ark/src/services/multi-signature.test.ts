@@ -4,9 +4,9 @@ import { IoC } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
-import { MultiSignatureService } from "./multi-signature";
-import { DataTransferObjectService } from "./data-transfer-object";
 import { SignedTransactionData } from "../dto";
+import { DataTransferObjectService } from "./data-transfer-object";
+import { MultiSignatureService } from "./multi-signature";
 
 let subject: MultiSignatureService;
 
@@ -45,9 +45,7 @@ describe("MultiSignatureService", () => {
 	});
 
 	test("#findById", async () => {
-		nock(/.+/)
-			.get("/transaction/DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8")
-			.reply(200, fixtures[0]);
+		nock(/.+/).get("/transaction/DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8").reply(200, fixtures[0]);
 
 		const result = await subject.findById("DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8");
 		expect(result).toBeObject();
@@ -56,9 +54,9 @@ describe("MultiSignatureService", () => {
 	test("#broadcast", async () => {
 		nock(/.+/)
 			.post("/transaction")
-			.reply(200, {id: "abc"})
+			.reply(200, { id: "abc" })
 			.post("/transaction")
-			.reply(200, {id: "abc"});
+			.reply(200, { id: "abc" })
 
 		let id = await subject.broadcast({});
 		expect(id).toEqual("abc");
@@ -68,23 +66,21 @@ describe("MultiSignatureService", () => {
 	});
 
 	test("#flush", async () => {
-		nock(/.+/)
-			.delete("/transactions")
-			.reply(200, {});
+		nock(/.+/).delete("/transactions").reply(200, {});
 
 		await subject.flush();
 	});
 
 	test("#isMultiSignatureReady", () => {
 		const transaction = createService(SignedTransactionData);
-		transaction.configure("123", {signatures: []});
+		transaction.configure("123", { signatures: [] });
 		const result = subject.isMultiSignatureReady(transaction);
 		expect(result).toBeTrue();
 	});
 
 	test("#needsSignatures", () => {
 		const transaction = createService(SignedTransactionData);
-		transaction.configure("123", {signatures: []});
+		transaction.configure("123", { signatures: [] });
 		const result = subject.needsSignatures(transaction);
 		expect(result).toBeFalse();
 	});
@@ -93,18 +89,17 @@ describe("MultiSignatureService", () => {
 		const transaction = createService(SignedTransactionData);
 		transaction.configure("123", {
 			signatures: [],
-			"multiSignature": {
-				"publicKeys": [
+			multiSignature: {
+				publicKeys: [
 					"0301fd417566397113ba8c55de2f093a572744ed1829b37b56a129058000ef7bce",
-					"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192"
+					"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 				],
-				"min": 2
-			}
+				min: 2,
+			},
 		});
 		const result = subject.needsAllSignatures(transaction);
 		expect(result).toBeTrue();
 	});
-
 	test("#needsWalletSignature", () => {
 		const transaction = createService(SignedTransactionData);
 		transaction.configure("123", {signatures: []});
@@ -118,7 +113,6 @@ describe("MultiSignatureService", () => {
 		const result = subject.needsFinalSignature(transaction);
 		expect(result).toBeTrue();
 	});
-
 	test("#getValidMultiSignatures", () => {
 		const transaction = createService(SignedTransactionData);
 		transaction.configure("123", {signatures: []});
