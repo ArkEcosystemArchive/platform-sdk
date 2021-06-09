@@ -62,7 +62,7 @@ describe("TransactionService", () => {
 		it("should verify without nonce", async () => {
 			nock(/.+/)
 				.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
-				.reply(200, { data: { nonce: "1" }});
+				.reply(200, { data: { nonce: "1" } });
 
 			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
