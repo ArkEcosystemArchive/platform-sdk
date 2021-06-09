@@ -1,4 +1,3 @@
-import { HDKey } from "@arkecosystem/platform-sdk-crypto";
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import Table from "cli-table3";
