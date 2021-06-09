@@ -4,7 +4,8 @@ import "reflect-metadata";
 import Joi from "joi";
 
 import { ConfigRepository } from "../coins";
-import { BindingType, Container } from "../ioc";
+import { Container } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { BigNumberService } from "./big-number.service";
 
 test.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])("#make(%s)", async (power) => {

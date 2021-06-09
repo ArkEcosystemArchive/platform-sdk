@@ -30,6 +30,8 @@ export const BindingType = {
 	TransactionService: Symbol.for("Coin<TransactionService>"),
 	WalletDiscoveryService: Symbol.for("Coin<WalletDiscoveryService>"),
 	WIFService: Symbol.for("Coin<WIFService>"),
+	// [Coin] Miscellaneous
+	DataTransferObjects: Symbol.for("Coin<DataTransferObjects>"),
 };
 
 export interface IServiceProvider {

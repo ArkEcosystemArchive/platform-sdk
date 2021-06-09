@@ -1,8 +1,7 @@
-import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import dotify from "node-dotify";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 import { guessBroadcastError } from "./client.errors";
 
 interface BroadcastError {
@@ -18,9 +17,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const body = await this.#get(`transactions/${id}`);
 
-		return this.dataTransferObjectService
-			.transaction(body.data, TransactionDTO)
-			.withDecimals(this.configRepository.get(Coins.ConfigKey.CurrencyDecimals));
+		return this.dataTransferObjectService.transaction(body.data);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -28,11 +25,7 @@ export class ClientService extends Services.AbstractClientService {
 			? await this.#get("transactions", this.#createSearchParams(query))
 			: await this.#post("transactions/search", this.#createSearchParams(query));
 
-		return this.dataTransferObjectService.transactions(
-			response.data,
-			this.#createMetaPagination(response),
-			TransactionDTO,
-		);
+		return this.dataTransferObjectService.transactions(response.data, this.#createMetaPagination(response));
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {

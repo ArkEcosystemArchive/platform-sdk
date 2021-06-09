@@ -1,15 +1,15 @@
 import "jest-extended";
 
-import { IoC, Signatories } from "@arkecosystem/platform-sdk";
+import { IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 import { waitReady } from "@polkadot/wasm-crypto";
 
 import { identity } from "../../test/fixtures/identity";
 import { createServiceAsync } from "../../test/helpers";
 import { BindingType } from "../constants";
+import * as DataTransferObjects from "../dto";
 import { SignedTransactionData } from "../dto/signed-transaction";
 import { createApiPromise, createKeyring } from "../helpers";
 import { AddressService } from "./address";
-import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
 import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
@@ -28,7 +28,8 @@ beforeAll(async () => {
 
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
-		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
 	});

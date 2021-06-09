@@ -1,6 +1,5 @@
 export * from "./address";
 export * from "./client";
-export * from "./data-transfer-object";
 export * from "./address-list";
 export * from "./key-pair";
 export * from "./message";

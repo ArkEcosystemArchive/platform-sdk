@@ -1,14 +1,12 @@
-import { Coins, Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Neon, { api } from "@cityofzion/neon-js";
 
-import * as TransactionDTO from "../dto";
 import { WalletData } from "../dto";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#peer!: string;
 	#apiProvider;
-	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"Block or transaction already exists and cannot be sent repeatedly.": "ERR_DUPLICATE",
@@ -29,7 +27,6 @@ export class ClientService extends Services.AbstractClientService {
 		}[network]!;
 
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -41,17 +38,12 @@ export class ClientService extends Services.AbstractClientService {
 		const prevPage = response.page_number > 1 ? basePage - 1 : undefined;
 		const nextPage = response.total_pages > 1 ? basePage + 1 : undefined;
 
-		return this.dataTransferObjectService.transactions(
-			response.entries,
-			{
-				prev: `${this.#peer}/${basePath}/${prevPage}`,
-				self: undefined,
-				next: `${this.#peer}/${basePath}/${nextPage}`,
-				last: response.total_pages,
-			},
-			TransactionDTO,
-			this.#decimals,
-		);
+		return this.dataTransferObjectService.transactions(response.entries, {
+			prev: `${this.#peer}/${basePath}/${prevPage}`,
+			self: undefined,
+			next: `${this.#peer}/${basePath}/${nextPage}`,
+			last: response.total_pages,
+		});
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
