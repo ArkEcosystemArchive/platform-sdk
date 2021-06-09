@@ -33,11 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			"transfer",
 			{
 				...input,
-				// @ts-ignore - @TODO: this should be reviewed or removed because this was only
-				// added because the type and timestamp are otherwise lost which will mean that
-				// the transaction ID won't be calculated which will cause the whole transaction
-				// to be come useless and make it impossible to broadcast it to accept and forge it
-				data: input.data.ledger || {
+				data: {
 					amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
 					recipientId: input.data.to,
 					data: input.data.memo,
