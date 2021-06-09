@@ -62,47 +62,28 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 				);
 
 				// Derive
-				const addressMap = {};
-
-				for (let accountIndex = 0; accountIndex < 5; accountIndex++) {
-					const ledger = instance.ledger();
-
-					const ledgerList = await ledger.scan();
-					for (const path of Object.keys(ledgerList)) {
-						const address = ledgerList[path].address();
-						const extendedKey = ledgerList[path].publicKey();
-						addressMap[address] = { path, extendedKey };
-					}
-				}
+				const identities = await instance.ledger().scan();
 
 				// Check
 				const networkSpinner = ora("Checking addresses on network...").start();
 
 				const table = new Table({ head: ["Path", "Address", "Public Key", "Balance"] });
 
-				const chunks = await Promise.all(
-					chunk(Object.keys(addressMap), 50).map((addresses: string[]) =>
-						instance.client().wallets({ addresses }),
-					),
-				);
-
 				const wallets: any[] = [];
-				for (const chunk of chunks) {
-					for (const identity of chunk.items()) {
-						table.push([
-							addressMap[identity.address()].path,
-							identity.address(),
-							addressMap[identity.address()].extendedKey,
-							identity.balance().available.toHuman(),
-						]);
+				for (const [path, identity] of Object.entries(identities)) {
+					table.push([
+						path,
+						identity.address(),
+						identity.publicKey(),
+						identity.balance().available.toHuman(),
+					]);
 
-						wallets.push({
-							path: addressMap[identity.address()].path,
-							address: identity.address(),
-							extendedKey: addressMap[identity.address()].extendedKey,
-							balance: identity.balance().available.toHuman(),
-						});
-					}
+					wallets.push({
+						path,
+						address: identity.address(),
+						extendedKey: identity.publicKey(),
+						balance: identity.balance().available.toHuman(),
+					});
 				}
 
 				networkSpinner.stop();
