@@ -76,31 +76,6 @@ describe("TransactionService", () => {
 			expect(result.id()).toBe("2309501a11e4353f894c39268e65e24b2e12a6106769dc10ed898ed3c793a9f6");
 		});
 
-		it("should get the transaction bytes", async () => {
-			const result = await subject.transfer(
-				{
-					nonce: "1",
-					signatory: new Signatories.Signatory(
-						new Signatories.SenderPublicKeySignatory({
-							signingKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-							address: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
-							publicKey: "publicKey",
-						}),
-					),
-					data: {
-						amount: 1,
-						to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-					},
-				},
-				{ unsignedBytes: true, unsignedJson: false },
-			);
-
-			expect(result.id()).not.toBe("dummy");
-			expect(result.toString()).toBe(
-				"ff021e0100000000000100000000000000039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f2280969800000000000000e1f50500000000000000001ec10f500ee29157df2248e26cbe7fae0da06042b4",
-			);
-		});
-
 		it("should sign with a custom expiration", async () => {
 			const result = await subject.transfer({
 				nonce: "1",
