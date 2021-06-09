@@ -54,11 +54,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 	public async delegateRegistration(
 		input: Services.DelegateRegistrationInput,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("registerDelegate", input, options);
+		return this.#createFromData("registerDelegate", input);
 	}
 
 	public async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("castVotes", input, options);
+		return this.#createFromData("castVotes", input);
 	}
 
 	public async multiSignature(input: Services.MultiSignatureInput): Promise<Contracts.SignedTransactionData> {
