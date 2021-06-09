@@ -36,7 +36,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 					data: input.data.memo,
 				},
 			},
-			options,
 		);
 	}
 
@@ -49,7 +48,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 					secondMnemonic: BIP39.normalize(input.data.mnemonic),
 				},
 			},
-			options,
 		);
 	}
 
@@ -74,7 +72,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 					minimum: input.data.min,
 				},
 			},
-			options,
 		);
 	}
 
