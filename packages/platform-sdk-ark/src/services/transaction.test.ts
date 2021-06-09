@@ -12,7 +12,6 @@ import { KeyPairService } from "./key-pair";
 import { LedgerService } from "./ledger";
 import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
-import { SignedTransactionData } from "../dto";
 
 let subject: TransactionService;
 
@@ -81,26 +80,6 @@ describe("TransactionService", () => {
 			});
 
 			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
-		});
-
-		it("should verify without signing", async () => {
-			const input = {
-				nonce: "1",
-				signatory: new Signatories.Signatory(
-					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-						publicKey: "publicKey",
-						privateKey: "privateKey",
-					}),
-				),
-				data: {
-					amount: 1,
-					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-				},
-			};
-			await expect(subject.transfer(input, { unsignedJson: true, unsignedBytes: false })).rejects.toThrow(/toJson is not a function/);
-			await expect(subject.transfer(input, { unsignedJson: false, unsignedBytes: true })).resolves.toBeInstanceOf(SignedTransactionData)
 		});
 
 		it("should sign with a custom expiration", async () => {
