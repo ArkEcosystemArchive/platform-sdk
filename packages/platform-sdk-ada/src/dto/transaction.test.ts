@@ -105,7 +105,7 @@ describe("TransactionData", () => {
 	});
 
 	it("#isTransfer", () => {
-		expect(subject.isTransfer()).toBeFalse();
+		expect(subject.isTransfer()).toBeTrue();
 	});
 
 	it("#isSecondSignature", () => {

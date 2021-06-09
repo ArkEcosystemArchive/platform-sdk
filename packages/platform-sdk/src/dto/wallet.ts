@@ -3,39 +3,68 @@
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { KeyValuePair, WalletBalance } from "../contracts";
+import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 
-export abstract class AbstractWalletData {
+@injectable()
+export class AbstractWalletData {
 	public constructor(protected readonly data: KeyValuePair) {}
 
 	// Wallet
-	abstract primaryKey(): string;
+	public primaryKey(): string {
+		throw new NotImplemented(this.constructor.name, this.primaryKey.name);
+	}
 
-	abstract address(): string;
+	public address(): string {
+		throw new NotImplemented(this.constructor.name, this.address.name);
+	}
 
-	abstract publicKey(): string | undefined;
+	public publicKey(): string | undefined {
+		throw new NotImplemented(this.constructor.name, this.publicKey.name);
+	}
 
-	abstract balance(): WalletBalance;
+	public balance(): WalletBalance {
+		throw new NotImplemented(this.constructor.name, this.balance.name);
+	}
 
-	abstract nonce(): BigNumber;
+	public nonce(): BigNumber {
+		throw new NotImplemented(this.constructor.name, this.nonce.name);
+	}
 
 	// Second Signature
-	abstract secondPublicKey(): string | undefined;
+	public secondPublicKey(): string | undefined {
+		throw new NotImplemented(this.constructor.name, this.secondPublicKey.name);
+	}
 
 	// Delegate
-	abstract username(): string | undefined;
+	public username(): string | undefined {
+		throw new NotImplemented(this.constructor.name, this.username.name);
+	}
 
-	abstract rank(): number | undefined;
+	public rank(): number | undefined {
+		throw new NotImplemented(this.constructor.name, this.rank.name);
+	}
 
-	abstract votes(): BigNumber | undefined;
+	public votes(): BigNumber | undefined {
+		throw new NotImplemented(this.constructor.name, this.votes.name);
+	}
 
 	// Flags
-	abstract isDelegate(): boolean;
+	public isDelegate(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isDelegate.name);
+	}
 
-	abstract isResignedDelegate(): boolean;
+	public isResignedDelegate(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isResignedDelegate.name);
+	}
 
-	abstract isMultiSignature(): boolean;
+	public isMultiSignature(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isMultiSignature.name);
+	}
 
-	abstract isSecondSignature(): boolean;
+	public isSecondSignature(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isSecondSignature.name);
+	}
 
 	public toObject(): KeyValuePair {
 		return {

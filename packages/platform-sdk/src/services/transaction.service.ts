@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
-import { HttpClient } from "../../../platform-sdk-http/dist";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
+
 import { ConfigRepository } from "../coins";
 import { RawTransactionData, SignedTransactionData } from "../contracts";
 import { NotImplemented } from "../exceptions";

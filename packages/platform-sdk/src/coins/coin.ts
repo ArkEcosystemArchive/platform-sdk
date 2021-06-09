@@ -1,4 +1,5 @@
-import { BindingType, Container, injectable } from "../ioc";
+import { Container, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { Network, NetworkRepository } from "../networks";
 import {
 	AddressService,

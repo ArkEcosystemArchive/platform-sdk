@@ -1,11 +1,11 @@
 import { manifest } from "./manifest";
 import { schema } from "./schema";
 import { ServiceProvider } from "./service-provider";
-import * as services from "./services";
+import * as dataTransferObjects from "./dto";
 
 export const ETH = {
+	dataTransferObjects,
 	manifest,
-	services,
-	ServiceProvider,
 	schema,
+	ServiceProvider,
 };

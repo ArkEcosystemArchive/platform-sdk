@@ -1,4 +1,5 @@
-import { BindingType, Container } from "../ioc";
+import { Container } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { Network, NetworkManifest } from "../networks";
 import { NetworkRepository } from "../networks/network-repository";
 import { Coin } from "./coin";
@@ -16,8 +17,9 @@ export class CoinFactory {
 
 		// Act
 		const container = new Container();
-		container.constant(BindingType.Container, container);
 		container.constant(BindingType.ConfigRepository, configRepository);
+		container.constant(BindingType.Container, container);
+		container.constant(BindingType.DataTransferObjects, specification.dataTransferObjects);
 		container.constant(BindingType.HttpClient, options.httpClient);
 		container.constant(BindingType.Manifest, new Manifest(specification.manifest));
 		container.constant(BindingType.Network, CoinFactory.#createNetwork(specification, configRepository));

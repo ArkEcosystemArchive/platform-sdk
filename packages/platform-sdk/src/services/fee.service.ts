@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
-import { HttpClient } from "../../../platform-sdk-http/dist";
+import { HttpClient } from "@arkecosystem/platform-sdk-http";
+
 import { NotImplemented } from "../exceptions";
 import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";

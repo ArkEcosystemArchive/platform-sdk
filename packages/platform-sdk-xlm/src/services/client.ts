@@ -1,13 +1,11 @@
-import { Coins, Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#client;
-	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		op_malformed: "ERR_MALFORMED",
@@ -25,7 +23,6 @@ export class ClientService extends Services.AbstractClientService {
 				network.split(".")[1]
 			],
 		);
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
@@ -35,15 +32,10 @@ export class ClientService extends Services.AbstractClientService {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
 
-		return this.dataTransferObjectService
-			.transaction(
-				{
-					...transaction,
-					operation: operations.records[0],
-				},
-				TransactionDTO,
-			)
-			.withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction({
+			...transaction,
+			operation: operations.records[0],
+		});
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -57,8 +49,6 @@ export class ClientService extends Services.AbstractClientService {
 				next,
 				last: undefined,
 			},
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 

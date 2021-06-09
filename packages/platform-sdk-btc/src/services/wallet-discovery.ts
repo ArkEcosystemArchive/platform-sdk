@@ -1,6 +1,5 @@
 import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { BindingType } from "../../../platform-sdk/dist/ioc";
 import { AddressFactory } from "./address.factory";
 
 @IoC.injectable()
@@ -8,7 +7,7 @@ export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryServ
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	@IoC.inject(BindingType.AddressService)
+	@IoC.inject(IoC.BindingType.AddressService)
 	protected readonly addressFactory!: AddressFactory;
 
 	public async fromMnemonic(
