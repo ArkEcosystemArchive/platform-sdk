@@ -12,7 +12,6 @@ import {
 	SecondaryWIFSignatory,
 	SenderPublicKeySignatory,
 	Signatory,
-	SignatureSignatory,
 	WIFSignatory,
 } from "../signatories";
 import { AddressService } from "./address.contract";
@@ -110,16 +109,6 @@ export class AbstractSignatoryService implements SignatoryService {
 			new PrivateKeySignatory({
 				signingKey: privateKey,
 				address: (await this.addressService.fromPrivateKey(privateKey, options)).address,
-			}),
-		);
-	}
-
-	public async signature(signature: string, senderPublicKey: string): Promise<Signatory> {
-		return new Signatory(
-			new SignatureSignatory({
-				signingKey: signature,
-				address: (await this.addressService.fromPublicKey(senderPublicKey)).address,
-				publicKey: senderPublicKey,
 			}),
 		);
 	}

@@ -14,8 +14,6 @@ export interface SignatoryService {
 
 	privateKey(privateKey: string, options?: IdentityOptions): Promise<Signatory>;
 
-	signature(signature: string, senderPublicKey: string): Promise<Signatory>;
-
 	senderPublicKey(publicKey: string, options?: IdentityOptions): Promise<Signatory>;
 
 	multiSignature(min: number, publicKeys: string[]): Promise<Signatory>;
