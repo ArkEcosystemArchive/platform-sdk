@@ -1,4 +1,4 @@
-import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
 import { block, tools } from "nanocurrency-web";
@@ -9,18 +9,13 @@ import { NanoClient } from "./rpc";
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
 	#client!: NanoClient;
-	#decimals!: number;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#client = new NanoClient(this.configRepository, this.httpClient);
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		const { address, privateKey } = deriveAccount(input.signatory.signingKey());
 		const { balance, representative, frontier } = await this.#client.accountInfo(address, { representative: true });
 

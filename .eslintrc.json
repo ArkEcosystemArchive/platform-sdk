@@ -42,7 +42,7 @@
 		"import/exports-last": "warn",
 		"import/extensions": "error",
 		"import/first": "error",
-		"import/group-exports": "warn",
+		"import/group-exports": "off",
 		"import/namespace": "error",
 		"import/no-absolute-path": "error",
 		"import/no-anonymous-default-export": "error",
@@ -71,7 +71,7 @@
 		],
 		"prettier/prettier": "error",
 		"simple-import-sort/imports": "error",
-		"tsdoc/syntax": "warn",
+		"tsdoc/syntax": "off",
 		"unused-imports/no-unused-imports-ts": "warn"
 	}
 }

@@ -95,7 +95,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isTransfer(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSecondSignature(): boolean {

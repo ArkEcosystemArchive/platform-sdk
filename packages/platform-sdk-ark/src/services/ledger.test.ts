@@ -1,15 +1,15 @@
 import "jest-extended";
 
 import { Address } from "@arkecosystem/crypto-identities";
-import { IoC } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
 import { createService } from "../../test/helpers";
+import * as DataTransferObjects from "../dto";
 import { AddressService } from "./address";
 import { ClientService } from "./client";
-import { DataTransferObjectService } from "./data-transfer-object";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
@@ -17,7 +17,8 @@ const createMockService = async (record: string) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.ClientService, ClientService);
-		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
 	});
 
 	const fromString = RecordStore.fromString(record);

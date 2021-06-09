@@ -1,15 +1,13 @@
-import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import Web3 from "web3";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
 
 	#peer!: string;
-	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"nonce too low": "ERR_NONCE_TOO_LOW",
@@ -24,16 +22,13 @@ export class ClientService extends Services.AbstractClientService {
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return this.dataTransferObjectService
-			.transaction(await this.#get(`transactions/${id}`), TransactionDTO)
-			.withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -48,8 +43,6 @@ export class ClientService extends Services.AbstractClientService {
 				next: undefined,
 				last: undefined,
 			},
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 

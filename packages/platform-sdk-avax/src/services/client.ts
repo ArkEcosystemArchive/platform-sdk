@@ -1,17 +1,15 @@
-import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { uniq } from "@arkecosystem/utils";
 import { AVMAPI, Tx } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 import { cb58Decode, usePChain, useXChain } from "./helpers";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#xchain!: AVMAPI;
 	#pchain!: PlatformVMAPI;
-	#decimals!: number;
 
 	public async transaction(
 		id: string,
@@ -25,17 +23,12 @@ export class ClientService extends Services.AbstractClientService {
 
 		const assetId = cb58Decode(this.configRepository.get("network.meta.assetId"));
 
-		return this.dataTransferObjectService
-			.transaction(
-				{
-					id,
-					amount: unsignedTransaction.getOutputTotal(assetId).toString(),
-					fee: unsignedTransaction.getBurn(assetId).toString(),
-					memo: baseTransaction.getMemo().toString("utf-8"),
-				},
-				TransactionDTO,
-			)
-			.withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction({
+			id,
+			amount: unsignedTransaction.getOutputTotal(assetId).toString(),
+			fee: unsignedTransaction.getBurn(assetId).toString(),
+			memo: baseTransaction.getMemo().toString("utf-8"),
+		});
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -46,17 +39,12 @@ export class ClientService extends Services.AbstractClientService {
 			address: query.address,
 		});
 
-		return this.dataTransferObjectService.transactions(
-			transactions,
-			{
-				prev: undefined,
-				self: undefined,
-				next: undefined,
-				last: undefined,
-			},
-			TransactionDTO,
-			this.#decimals,
-		);
+		return this.dataTransferObjectService.transactions(transactions, {
+			prev: undefined,
+			self: undefined,
+			next: undefined,
+			last: undefined,
+		});
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -118,6 +106,5 @@ export class ClientService extends Services.AbstractClientService {
 	private onPostConstruct(): void {
 		this.#xchain = useXChain(this.configRepository);
 		this.#pchain = usePChain(this.configRepository);
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 }

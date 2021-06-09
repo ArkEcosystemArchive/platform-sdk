@@ -23,10 +23,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#web3 = new Web3(); // @TODO: provide a host
 	}
 
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		try {
 			const senderData = await this.addressService.fromMnemonic(input.signatory.signingKey());
 

@@ -1,18 +1,15 @@
-import { Coins, Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BN, Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#zilliqa!: Zilliqa;
-	#decimals!: number;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(this.configRepository));
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
@@ -21,7 +18,8 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const transaction = await this.#zilliqa.blockchain.getTransaction(id);
 		const receipt = transaction.getReceipt();
-		const data = {
+
+		return this.dataTransferObjectService.transaction({
 			id: transaction.hash,
 			sender: transaction.senderAddress,
 			recipient: transaction.payload.toAddr,
@@ -30,8 +28,7 @@ export class ClientService extends Services.AbstractClientService {
 			gasPrice: transaction.payload.gasPrice,
 			isConfirmed: transaction.isConfirmed(),
 			isSent: transaction.isPending(),
-		};
-		return this.dataTransferObjectService.transaction(data, TransactionDTO).withDecimals(this.#decimals);
+		});
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {

@@ -1,4 +1,5 @@
-import { BindingType, Container, injectable } from "../ioc";
+import { Container, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { Network, NetworkRepository } from "../networks";
 import {
 	AddressService,
@@ -27,6 +28,7 @@ import { Manifest } from "./manifest";
 @injectable()
 export class Coin {
 	readonly #container: Container;
+	#isSyncing = false;
 
 	public constructor(container: Container) {
 		this.#container = container;
@@ -39,9 +41,19 @@ export class Coin {
 			return;
 		}
 
+		/* istanbul ignore next */
+		if (this.#isSyncing) {
+			/* istanbul ignore next */
+			return;
+		}
+
+		this.#isSyncing = true;
+
 		await this.#container
 			.resolve<any>(this.#container.get<CoinSpec>(BindingType.Specification).ServiceProvider)
 			.make(this.#container);
+
+		this.#isSyncing = false;
 	}
 
 	public async __destruct(): Promise<void> {

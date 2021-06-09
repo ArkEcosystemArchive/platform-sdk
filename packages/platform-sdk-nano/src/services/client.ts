@@ -1,18 +1,15 @@
-import { Coins, Collections, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 import { NanoClient } from "./rpc";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#client!: NanoClient;
-	#decimals!: number;
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#client = new NanoClient(this.configRepository, this.httpClient);
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -33,8 +30,6 @@ export class ClientService extends Services.AbstractClientService {
 				next: previous,
 				last: undefined,
 			},
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 

@@ -1,14 +1,14 @@
 import "jest-extended";
 
-import { IoC } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
-import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import { SignedTransactionData, TransactionData, TransferData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
-import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
@@ -17,7 +17,8 @@ jest.setTimeout(30000);
 beforeAll(async () => {
 	subject = createService(ClientService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
-		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
 	});
 });
 
@@ -34,7 +35,7 @@ describe("ClientService", () => {
 				"F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF",
 			);
 
-			expect(result).toBeInstanceOf(TransactionData);
+			expect(result).toBeInstanceOf(TransferData);
 			expect(result.id()).toBe("F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF");
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBeInstanceOf(DateTime);

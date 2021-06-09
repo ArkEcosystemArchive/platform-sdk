@@ -3,6 +3,7 @@
 import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import {
+	LedgerSignatory,
 	MnemonicSignatory,
 	MultiMnemonicSignatory,
 	MultiSignatureSignatory,
@@ -11,7 +12,6 @@ import {
 	SecondaryWIFSignatory,
 	SenderPublicKeySignatory,
 	Signatory,
-	SignatureSignatory,
 	WIFSignatory,
 } from "../signatories";
 import { AddressService } from "./address.contract";
@@ -113,16 +113,6 @@ export class AbstractSignatoryService implements SignatoryService {
 		);
 	}
 
-	public async signature(signature: string, senderPublicKey: string): Promise<Signatory> {
-		return new Signatory(
-			new SignatureSignatory({
-				signingKey: signature,
-				address: (await this.addressService.fromPublicKey(senderPublicKey)).address,
-				publicKey: senderPublicKey,
-			}),
-		);
-	}
-
 	public async senderPublicKey(publicKey: string, options?: IdentityOptions): Promise<Signatory> {
 		return new Signatory(
 			new SenderPublicKeySignatory({
@@ -135,5 +125,9 @@ export class AbstractSignatoryService implements SignatoryService {
 
 	public async multiSignature(min: number, publicKeys: string[]): Promise<Signatory> {
 		return new Signatory(new MultiSignatureSignatory({ min, publicKeys }));
+	}
+
+	public async ledger(path: string): Promise<Signatory> {
+		return new Signatory(new LedgerSignatory(path));
 	}
 }

@@ -1,26 +1,18 @@
-import { Coins, Collections, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import * as TransactionDTO from "../dto";
 import { WalletData } from "../dto";
 import { fetchTransaction, fetchTransactions, fetchUtxosAggregate, submitTransaction } from "./graphql-helpers";
 import { usedAddressesForAccount } from "./helpers";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	#decimals!: number;
-
-	@IoC.postConstruct()
-	private onPostConstruct(): void {
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
-	}
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return this.dataTransferObjectService
-			.transaction(await fetchTransaction(id, this.configRepository, this.httpClient), TransactionDTO)
-			.withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(
+			await fetchTransaction(id, this.configRepository, this.httpClient),
+		);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -40,17 +32,12 @@ export class ClientService extends Services.AbstractClientService {
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
-		return this.dataTransferObjectService.transactions(
-			transactions,
-			{
-				prev: undefined,
-				self: undefined,
-				next: undefined,
-				last: undefined,
-			},
-			TransactionDTO,
-			this.#decimals,
-		);
+		return this.dataTransferObjectService.transactions(transactions, {
+			prev: undefined,
+			self: undefined,
+			next: undefined,
+			last: undefined,
+		});
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {

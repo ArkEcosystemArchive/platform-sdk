@@ -10,10 +10,7 @@ import { UnspentTransaction } from "./transaction.models";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		const {
 			minFeeA,
 			minFeeB,

@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk",
-	"version": "9.0.4",
+	"version": "9.1.1",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -40,9 +40,9 @@
 		"inversify": "~5.1.1",
 		"joi": "^17.4.0",
 		"node-emoji": "^1.10.0",
+		"onetime": "~5.0.0",
 		"reflect-metadata": "~0.1.13",
-		"type-fest": "^1.0.2",
-		"onetime": "~5.0.0"
+		"type-fest": "^1.0.2"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^1.0.2",

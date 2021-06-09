@@ -1,12 +1,10 @@
-import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#peer!: string;
-	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		"Invalid sender publicKey": "ERR_INVALID_SENDER_PUBLICKEY",
@@ -19,7 +17,6 @@ export class ClientService extends Services.AbstractClientService {
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#peer = `${Helpers.randomHostFromConfig(this.configRepository)}/api`;
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
@@ -28,7 +25,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.#get("transactions", { id });
 
-		return this.dataTransferObjectService.transaction(result.data[0], TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(result.data[0]);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -38,8 +35,6 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transactions(
 			result.data,
 			this.#createPagination(result.data, result.meta),
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 

@@ -62,13 +62,13 @@ export class Client {
 	 * @memberof Client
 	 */
 	async #post<T = Record<string, any>>(method: string, params: any): Promise<T> {
-		return (
-			await this.#client.post("/", {
-				jsonrpc: "1.0",
-				id: uuidv4(),
-				method,
-				params,
-			})
-		).json().result;
+		const response = await this.#client.retry(5).post("/", {
+			jsonrpc: "1.0",
+			id: uuidv4(),
+			method,
+			params,
+		});
+
+		return response.json().result;
 	}
 }

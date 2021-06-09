@@ -1,13 +1,15 @@
 import "jest-extended";
 
 import { Transactions } from "@arkecosystem/crypto";
-import { IoC, Signatories } from "@arkecosystem/platform-sdk";
+import { IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
+import * as DataTransferObjects from "../dto";
 import { AddressService } from "./address";
-import { DataTransferObjectService } from "./data-transfer-object";
+import { ClientService } from "./client";
 import { KeyPairService } from "./key-pair";
+import { LedgerService } from "./ledger";
 import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 import { SignedTransactionData } from "../dto";
@@ -22,8 +24,11 @@ beforeAll(async () => {
 	subject = createService(TransactionService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
-		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.singleton(IoC.BindingType.ClientService, ClientService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
 		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.LedgerService, LedgerService);
 		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
 	});
 });
@@ -96,51 +101,6 @@ describe("TransactionService", () => {
 			};
 			await expect(subject.transfer(input, { unsignedJson: true, unsignedBytes: false })).rejects.toThrow(/toJson is not a function/);
 			await expect(subject.transfer(input, { unsignedJson: false, unsignedBytes: true })).resolves.toBeInstanceOf(SignedTransactionData)
-		});
-
-		it("should compute the id with a custom signature", async () => {
-			const result = await subject.transfer({
-				nonce: "1",
-				signatory: new Signatories.Signatory(
-					new Signatories.SignatureSignatory({
-						signingKey:
-							"678f44d24bf1bd08198467102c835bc6973fcfee064fef9ab578b350e8656acabf91d20c83d8745c2d76e3c898ebbabed84aba8786386e13d35e507f991239d6",
-						address: "address",
-						publicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-					}),
-				),
-				data: {
-					amount: 1,
-					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-				},
-			});
-
-			expect(result.id()).toBe("2309501a11e4353f894c39268e65e24b2e12a6106769dc10ed898ed3c793a9f6");
-		});
-
-		it("should get the transaction bytes", async () => {
-			const result = await subject.transfer(
-				{
-					nonce: "1",
-					signatory: new Signatories.Signatory(
-						new Signatories.SenderPublicKeySignatory({
-							signingKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-							address: "DEMvpU4Qq6KvSzF3sRNjGCkm6Kj7cFfVaz",
-							publicKey: "publicKey",
-						}),
-					),
-					data: {
-						amount: 1,
-						to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-					},
-				},
-				{ unsignedBytes: true, unsignedJson: false },
-			);
-
-			expect(result.id()).not.toBe("dummy");
-			expect(result.toString()).toBe(
-				"ff021e0100000000000100000000000000039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f2280969800000000000000e1f50500000000000000001ec10f500ee29157df2248e26cbe7fae0da06042b4",
-			);
 		});
 
 		it("should sign with a custom expiration", async () => {

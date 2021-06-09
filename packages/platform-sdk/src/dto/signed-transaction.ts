@@ -1,11 +1,16 @@
+/* istanbul ignore file */
+
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { RawTransactionData } from "../contracts";
-import { BindingType, inject } from "../ioc";
+import { RawTransactionData, SignedTransactionData } from "../contracts";
+import { NotImplemented } from "../exceptions";
+import { inject, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { BigNumberService } from "../services";
 
-export abstract class AbstractSignedTransactionData {
+@injectable()
+export class AbstractSignedTransactionData implements SignedTransactionData {
 	@inject(BindingType.BigNumberService)
 	protected readonly bigNumberService!: BigNumberService;
 
@@ -40,15 +45,33 @@ export abstract class AbstractSignedTransactionData {
 		return this.signedData;
 	}
 
-	abstract sender(): string;
+	public sender(): string {
+		throw new NotImplemented(this.constructor.name, this.sender.name);
+	}
 
-	abstract recipient(): string;
+	public recipient(): string {
+		throw new NotImplemented(this.constructor.name, this.recipient.name);
+	}
 
-	abstract amount(): BigNumber;
+	public amount(): BigNumber {
+		throw new NotImplemented(this.constructor.name, this.amount.name);
+	}
 
-	abstract fee(): BigNumber;
+	public fee(): BigNumber {
+		throw new NotImplemented(this.constructor.name, this.fee.name);
+	}
 
-	abstract timestamp(): DateTime;
+	public timestamp(): DateTime {
+		throw new NotImplemented(this.constructor.name, this.timestamp.name);
+	}
+
+	public isMultiSignature(): boolean {
+		return false;
+	}
+
+	public isMultiSignatureRegistration(): boolean {
+		return false;
+	}
 
 	public get<T = string>(key: string): T {
 		return this.signedData[key];

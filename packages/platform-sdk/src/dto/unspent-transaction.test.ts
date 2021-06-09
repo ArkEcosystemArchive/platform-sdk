@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";

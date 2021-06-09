@@ -13,9 +13,4 @@ export const schema = ValidatorSchema.object({
 		"bos.mainnet",
 	),
 	httpClient: ValidatorSchema.object(),
-	services: ValidatorSchema.object({
-		ledger: ValidatorSchema.object({
-			transport: ValidatorSchema.any(),
-		}),
-	}).default(undefined),
 });

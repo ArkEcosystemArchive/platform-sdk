@@ -1,12 +1,12 @@
 import "jest-extended";
 
-import { IoC } from "@arkecosystem/platform-sdk";
+import { DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
-import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
@@ -15,7 +15,8 @@ beforeAll(() => {
 
 	subject = createService(ClientService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
-		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
 	});
 });
 
@@ -32,7 +33,7 @@ describe("ClientService", () => {
 
 			const result = await subject.transaction("15562133894377717094");
 
-			expect(result).toBeInstanceOf(TransactionData);
+			expect(result).toBeInstanceOf(DTO.TransferData);
 		});
 	});
 

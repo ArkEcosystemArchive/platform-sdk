@@ -1,7 +1,6 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
@@ -11,22 +10,18 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const { data } = await this.#get(`transaction/${id}`);
 
-		return this.dataTransferObjectService.transaction({ hash: id, ...data.transaction }, TransactionDTO);
+		return this.dataTransferObjectService.transaction({ hash: id, ...data.transaction });
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { data } = await this.#get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
-		return this.dataTransferObjectService.transactions(
-			data.transactions,
-			{
-				prev: undefined,
-				self: undefined,
-				next: undefined,
-				last: undefined,
-			},
-			TransactionDTO,
-		);
+		return this.dataTransferObjectService.transactions(data.transactions, {
+			prev: undefined,
+			self: undefined,
+			next: undefined,
+			last: undefined,
+		});
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {

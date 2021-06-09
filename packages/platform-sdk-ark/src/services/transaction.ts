@@ -3,13 +3,16 @@ import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
-import { v4 as uuidv4 } from "uuid";
+import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
 import { Bindings } from "../contracts";
 import { applyCryptoConfiguration } from "./helpers";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
+	@IoC.inject(IoC.BindingType.LedgerService)
+	private readonly ledgerService!: Services.LedgerService;
+
 	@IoC.inject(IoC.BindingType.AddressService)
 	private readonly addressService!: Services.AddressService;
 
@@ -30,11 +33,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	#multiSignatureSigner!: MultiSignatureSigner;
 	#configCrypto!: { crypto: Interfaces.NetworkConfig; height: number };
 
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("transfer", input, options, ({ transaction, data }) => {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("transfer", input, ({ transaction, data }) => {
 			transaction.recipientId(data.to);
 
 			if (data.memo) {
@@ -43,29 +43,22 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
-	public async secondSignature(
-		input: Services.SecondSignatureInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("secondSignature", input, options, ({ transaction, data }) =>
+	public async secondSignature(input: Services.SecondSignatureInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("secondSignature", input, ({ transaction, data }) =>
 			transaction.signatureAsset(BIP39.normalize(data.mnemonic)),
 		);
 	}
 
 	public async delegateRegistration(
 		input: Services.DelegateRegistrationInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("delegateRegistration", input, options, ({ transaction, data }) =>
+		return this.#createFromData("delegateRegistration", input, ({ transaction, data }) =>
 			transaction.usernameAsset(data.username),
 		);
 	}
 
-	public async vote(
-		input: Services.VoteInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("vote", input, options, ({ transaction, data }) => {
+	public async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("vote", input, ({ transaction, data }) => {
 			const votes: string[] = [];
 
 			if (Array.isArray(data.unvotes)) {
@@ -84,11 +77,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
-	public async multiSignature(
-		input: Services.MultiSignatureInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("multiSignature", input, options, ({ transaction, data }) => {
+	public async multiSignature(input: Services.MultiSignatureInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("multiSignature", input, ({ transaction, data }) => {
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,
 				min: data.min,
@@ -98,20 +88,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
-	public async ipfs(
-		input: Services.IpfsInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("ipfs", input, options, ({ transaction, data }) =>
-			transaction.ipfsAsset(data.hash),
-		);
+	public async ipfs(input: Services.IpfsInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("ipfs", input, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
 	}
 
-	public async multiPayment(
-		input: Services.MultiPaymentInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("multiPayment", input, options, ({ transaction, data }) => {
+	public async multiPayment(input: Services.MultiPaymentInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("multiPayment", input, ({ transaction, data }) => {
 			for (const payment of data.payments) {
 				transaction.addPayment(payment.to, Helpers.toRawUnit(payment.amount, this.configRepository).toString());
 			}
@@ -124,16 +106,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async delegateResignation(
 		input: Services.DelegateResignationInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("delegateResignation", input, options);
+		return this.#createFromData("delegateResignation", input);
 	}
 
-	public async htlcLock(
-		input: Services.HtlcLockInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("htlcLock", input, options, ({ transaction, data }) => {
+	public async htlcLock(input: Services.HtlcLockInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("htlcLock", input, ({ transaction, data }) => {
 			transaction.amount(Helpers.toRawUnit(data.amount, this.configRepository).toString());
 
 			transaction.recipientId(data.to);
@@ -145,11 +123,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
-	public async htlcClaim(
-		input: Services.HtlcClaimInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("htlcClaim", input, options, ({ transaction, data }) =>
+	public async htlcClaim(input: Services.HtlcClaimInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("htlcClaim", input, ({ transaction, data }) =>
 			transaction.htlcClaimAsset({
 				lockTransactionId: data.lockTransactionId,
 				unlockSecret: data.unlockSecret,
@@ -157,11 +132,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 		);
 	}
 
-	public async htlcRefund(
-		input: Services.HtlcRefundInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("htlcRefund", input, options, ({ transaction, data }) =>
+	public async htlcRefund(input: Services.HtlcRefundInput): Promise<Contracts.SignedTransactionData> {
+		return this.#createFromData("htlcRefund", input, ({ transaction, data }) =>
 			transaction.htlcRefundAsset({
 				lockTransactionId: data.lockTransactionId,
 			}),
@@ -227,7 +199,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	async #createFromData(
 		type: string,
 		input: Services.TransactionInputs,
-		options?: Services.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
 		applyCryptoConfiguration(this.#configCrypto);
@@ -245,16 +216,19 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const transaction = Transactions.BuilderFactory[type]().version(2);
 
+			if (input.signatory.actsWithLedger()) {
+				await this.ledgerService.connect(LedgerTransportNodeHID);
+
+				const senderPublicKey = await this.ledgerService.getPublicKey(input.signatory.signingKey());
+				transaction.senderPublicKey(senderPublicKey);
+
+				address = (await this.addressService.fromPublicKey(senderPublicKey)).address;
+			}
+
 			if (input.signatory.actsWithSenderPublicKey()) {
 				address = input.signatory.address();
 
 				transaction.senderPublicKey(input.signatory.signingKey());
-			}
-
-			if (input.signatory.actsWithSignature()) {
-				address = (await this.addressService.fromPublicKey(input.signatory.publicKey())).address;
-
-				transaction.senderPublicKey(input.signatory.publicKey());
 			}
 
 			if (input.nonce) {
@@ -291,17 +265,16 @@ export class TransactionService extends Services.AbstractTransactionService {
 				callback({ transaction, data: input.data });
 			}
 
-			if (options && options.unsignedJson === true) {
-				return transaction.toJson();
-			}
+			if (input.signatory.actsWithLedger()) {
+				transaction.data.signature = await this.ledgerService.signTransaction(
+					input.signatory.signingKey(),
+					Transactions.Serializer.getBytes(transaction.data, {
+						excludeSignature: true,
+						excludeSecondSignature: true,
+					}),
+				);
 
-			if (options && options.unsignedBytes === true) {
-				const signedTransaction = Transactions.Serializer.getBytes(transaction.data, {
-					excludeSignature: true,
-					excludeSecondSignature: true,
-				}).toString("hex");
-
-				return this.dataTransferObjectService.signedTransaction(uuidv4(), signedTransaction, signedTransaction);
+				await this.ledgerService.disconnect();
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
@@ -336,8 +309,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 				for (let i = 0; i < signingKeys.length; i++) {
 					transaction.multiSign(signingKeys[i], i);
 				}
-			} else if (input.signatory.actsWithSignature()) {
-				transaction.data.signature = input.signatory.signingKey();
 			} else {
 				if (input.signatory.actsWithMnemonic()) {
 					transaction.sign(input.signatory.signingKey());

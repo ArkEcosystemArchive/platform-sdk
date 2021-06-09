@@ -1,14 +1,12 @@
-import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import TronWeb from "tronweb";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#connection!: TronWeb;
 	#peer!: string;
-	#decimals!: number;
 
 	readonly #broadcastErrors: Record<string, string> = {
 		SIGERROR: "ERR_INVALID_SIGNATURE",
@@ -29,7 +27,6 @@ export class ClientService extends Services.AbstractClientService {
 	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
 		this.#connection = new TronWeb({ fullHost: this.#peer });
-		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
 	public async transaction(
@@ -38,7 +35,7 @@ export class ClientService extends Services.AbstractClientService {
 	): Promise<Contracts.TransactionDataType> {
 		const result = await this.#connection.trx.getTransaction(id);
 
-		return this.dataTransferObjectService.transaction(result, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(result);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -66,8 +63,6 @@ export class ClientService extends Services.AbstractClientService {
 				next: response.meta.fingerprint,
 				last: undefined,
 			},
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 

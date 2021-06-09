@@ -1,13 +1,13 @@
 import "jest-extended";
 
-import { DTO, IoC, Signatories } from "@arkecosystem/platform-sdk";
+import { DTO, IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
-import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import { SignedTransactionData, TransferData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
-import { DataTransferObjectService } from "./data-transfer-object";
 import { TransactionService } from "./transaction";
 
 let subject: ClientService;
@@ -17,7 +17,8 @@ beforeAll(() => {
 
 	subject = createService(ClientService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
-		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
 	});
 });
 
@@ -65,7 +66,7 @@ describe("ClientService", () => {
 
 			expect(result).toBeObject();
 			expect(result.items()).toBeArrayOfSize(5);
-			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.items()[0]).toBeInstanceOf(TransferData);
 		});
 		it("missing senderPublicKey", async () => {
 			await expect(
@@ -90,7 +91,7 @@ describe("ClientService", () => {
 			.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
 
 		const result = await subject.transaction("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
-		expect(result).toBeInstanceOf(TransactionData);
+		expect(result).toBeInstanceOf(TransferData);
 		expect(result.id()).toBe("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
 
 		expect(result.blockId()).toBeUndefined();
@@ -160,7 +161,11 @@ describe("ClientService", () => {
 
 			const txService = createService(TransactionService, undefined, (container) => {
 				container.constant(IoC.BindingType.Container, container);
-				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+				container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+				container.singleton(
+					IoC.BindingType.DataTransferObjectService,
+					Services.AbstractDataTransferObjectService,
+				);
 			});
 
 			const transfer = await txService.transfer({

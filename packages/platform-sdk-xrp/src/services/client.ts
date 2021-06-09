@@ -1,19 +1,11 @@
-import { Coins, Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 import { broadcastErrors } from "./client.helpers";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	#decimals!: number;
-
-	@IoC.postConstruct()
-	private onPostConstruct(): void {
-		this.#decimals = this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals);
-	}
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
@@ -25,7 +17,7 @@ export class ClientService extends Services.AbstractClientService {
 			},
 		]);
 
-		return this.dataTransferObjectService.transaction(transaction, TransactionDTO).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(transaction);
 	}
 
 	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
@@ -44,8 +36,6 @@ export class ClientService extends Services.AbstractClientService {
 				next: undefined,
 				last: undefined,
 			},
-			TransactionDTO,
-			this.#decimals,
 		);
 	}
 

@@ -230,8 +230,8 @@ describe("#restore", () => {
 		const migrationFunction = jest.fn();
 		const migrations = { "1.0.1": migrationFunction };
 
-		container.bind(Identifiers.MigrationSchemas, migrations);
-		container.bind(Identifiers.MigrationVersion, "1.0.2");
+		container.constant(Identifiers.MigrationSchemas, migrations);
+		container.constant(Identifiers.MigrationVersion, "1.0.2");
 
 		subject = new ProfileImporter(new Profile(dumper.dump()));
 

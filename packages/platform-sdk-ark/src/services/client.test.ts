@@ -1,12 +1,12 @@
 import "jest-extended";
 
-import { IoC } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
-import { DataTransferObjectService } from "./data-transfer-object";
 
 let subject: ClientService;
 
@@ -15,7 +15,8 @@ beforeAll(() => {
 
 	subject = createService(ClientService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
-		container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
 	});
 });
 
@@ -40,7 +41,11 @@ describe("ClientService", () => {
 		it("should work with Core 2.0", async () => {
 			subject = createService(ClientService, "ark.mainnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
-				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+				container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+				container.singleton(
+					IoC.BindingType.DataTransferObjectService,
+					Services.AbstractDataTransferObjectService,
+				);
 			});
 
 			nock(/.+/)
@@ -60,7 +65,11 @@ describe("ClientService", () => {
 		it("should work with Core 3.0", async () => {
 			subject = createService(ClientService, "ark.devnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
-				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+				container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+				container.singleton(
+					IoC.BindingType.DataTransferObjectService,
+					Services.AbstractDataTransferObjectService,
+				);
 			});
 
 			nock(/.+/)
@@ -77,7 +86,11 @@ describe("ClientService", () => {
 		it("should work with Core 3.0 for advanced search", async () => {
 			subject = createService(ClientService, "ark.devnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
-				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+				container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+				container.singleton(
+					IoC.BindingType.DataTransferObjectService,
+					Services.AbstractDataTransferObjectService,
+				);
 			});
 
 			nock(/.+/)
@@ -119,7 +132,11 @@ describe("ClientService", () => {
 		it("should work with Core 2.0", async () => {
 			subject = createService(ClientService, "ark.mainnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
-				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+				container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+				container.singleton(
+					IoC.BindingType.DataTransferObjectService,
+					Services.AbstractDataTransferObjectService,
+				);
 			});
 
 			nock(/.+/)
@@ -135,7 +152,11 @@ describe("ClientService", () => {
 		it("should work with Core 3.0", async () => {
 			subject = createService(ClientService, "ark.devnet", (container) => {
 				container.constant(IoC.BindingType.Container, container);
-				container.singleton(IoC.BindingType.DataTransferObjectService, DataTransferObjectService);
+				container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+				container.singleton(
+					IoC.BindingType.DataTransferObjectService,
+					Services.AbstractDataTransferObjectService,
+				);
 			});
 
 			nock(/.+/)
