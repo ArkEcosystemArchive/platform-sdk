@@ -27,7 +27,7 @@ import { Manifest } from "./manifest";
 @injectable()
 export class Coin {
 	readonly #container: Container;
-	#isSyncing: boolean = false;
+	#isSyncing = false;
 
 	public constructor(container: Container) {
 		this.#container = container;

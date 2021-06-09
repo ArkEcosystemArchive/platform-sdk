@@ -13,7 +13,6 @@ import { PrivateMultiSignatureSignatory } from "./private-multi-signature";
 import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
 import { SenderPublicKeySignatory } from "./sender-public-key";
-import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
 
 type SignatoryType =
@@ -26,7 +25,6 @@ type SignatoryType =
 	| SecondaryMnemonicSignatory
 	| SecondaryWIFSignatory
 	| SenderPublicKeySignatory
-	| SignatureSignatory
 	| WIFSignatory;
 
 export class Signatory {
@@ -184,10 +182,6 @@ export class Signatory {
 
 	public actsWithPrivateKey(): boolean {
 		return this.#signatory instanceof PrivateKeySignatory;
-	}
-
-	public actsWithSignature(): boolean {
-		return this.#signatory instanceof SignatureSignatory;
 	}
 
 	public actsWithSenderPublicKey(): boolean {

@@ -9,8 +9,8 @@ import { AddressService } from "./address";
 import { ClientService } from "./client";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
-import { PublicKeyService } from "./public-key";
 import { LedgerService } from "./ledger";
+import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
@@ -54,26 +54,6 @@ describe("TransactionService", () => {
 
 			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 			expect(result.amount().toNumber()).toBe(100_000_000);
-		});
-
-		it("should compute the id with a custom signature", async () => {
-			const result = await subject.transfer({
-				nonce: "1",
-				signatory: new Signatories.Signatory(
-					new Signatories.SignatureSignatory({
-						signingKey:
-							"678f44d24bf1bd08198467102c835bc6973fcfee064fef9ab578b350e8656acabf91d20c83d8745c2d76e3c898ebbabed84aba8786386e13d35e507f991239d6",
-						address: "address",
-						publicKey: "039180ea4a8a803ee11ecb462bb8f9613fcdb5fe917e292dbcc73409f0e98f8f22",
-					}),
-				),
-				data: {
-					amount: 1,
-					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-				},
-			});
-
-			expect(result.id()).toBe("2309501a11e4353f894c39268e65e24b2e12a6106769dc10ed898ed3c793a9f6");
 		});
 
 		it("should sign with a custom expiration", async () => {

@@ -1,6 +1,6 @@
 import "jest-extended";
-import { LedgerSignatory } from "./ledger";
 
+import { LedgerSignatory } from "./ledger";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
 import { MultiSignatureSignatory } from "./multi-signature";
@@ -10,7 +10,6 @@ import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
 import { SenderPublicKeySignatory } from "./sender-public-key";
 import { Signatory } from "./signatory";
-import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
 
 describe("MnemonicSignatory", () => {
@@ -672,116 +671,6 @@ describe("PrivateKeySignatory", () => {
 	});
 });
 
-describe("SignatureSignatory", () => {
-	test("#signingKey", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(subject.signingKey()).toMatchInlineSnapshot(`"signingKey"`);
-	});
-
-	test("#signingKeys", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(() => subject.signingKeys()).toThrow(/cannot be called/);
-	});
-
-	test("#signingList", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(() => subject.signingList()).toThrow(/cannot be called/);
-	});
-
-	test("#confirmKey", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(() => subject.confirmKey()).toThrow(/cannot be called/);
-	});
-
-	test("#identifier", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(() => subject.identifier()).toThrow(/cannot be called/);
-	});
-
-	test("#identifiers", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(() => subject.identifiers()).toThrow(/cannot be called/);
-	});
-
-	test("#address", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(subject.address()).toMatchInlineSnapshot(`"address"`);
-	});
-
-	test("#publicKey", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(subject.publicKey()).toMatchInlineSnapshot(`"publicKey"`);
-	});
-
-	test("#privateKey", () => {
-		const subject = new Signatory(
-			new SignatureSignatory({
-				signingKey: "signingKey",
-				address: "address",
-				publicKey: "publicKey",
-			}),
-		);
-
-		expect(() => subject.privateKey()).toThrow(/cannot be called/);
-	});
-});
-
 describe("SenderPublicKeySignatory", () => {
 	test("#signingKey", () => {
 		const subject = new Signatory(
@@ -1143,17 +1032,6 @@ test("#actsWithPrivateKey", () => {
 	);
 
 	expect(subject.actsWithPrivateKey()).toBeBoolean();
-});
-
-test("#actsWithSignature", () => {
-	const subject = new Signatory(
-		new PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
-			"this is a top secret passphrase 1",
-			"this is a top secret passphrase 2",
-		]),
-	);
-
-	expect(subject.actsWithSignature()).toBeBoolean();
 });
 
 test("#actsWithSenderPublicKey", () => {

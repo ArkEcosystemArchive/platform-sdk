@@ -26,56 +26,44 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData(
-			"transfer",
-			{
-				...input,
-				data: {
-					amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
-					recipientId: input.data.to,
-					data: input.data.memo,
-				},
+		return this.#createFromData("transfer", {
+			...input,
+			data: {
+				amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
+				recipientId: input.data.to,
+				data: input.data.memo,
 			},
-			options,
-		);
+		});
 	}
 
 	public async secondSignature(input: Services.SecondSignatureInput): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData(
-			"registerSecondPassphrase",
-			{
-				...input,
-				data: {
-					secondMnemonic: BIP39.normalize(input.data.mnemonic),
-				},
+		return this.#createFromData("registerSecondPassphrase", {
+			...input,
+			data: {
+				secondMnemonic: BIP39.normalize(input.data.mnemonic),
 			},
-			options,
-		);
+		});
 	}
 
 	public async delegateRegistration(
 		input: Services.DelegateRegistrationInput,
 	): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("registerDelegate", input, options);
+		return this.#createFromData("registerDelegate", input);
 	}
 
 	public async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData("castVotes", input, options);
+		return this.#createFromData("castVotes", input);
 	}
 
 	public async multiSignature(input: Services.MultiSignatureInput): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData(
-			"registerMultisignature",
-			{
-				...input,
-				data: {
-					keysgroup: input.data.publicKeys,
-					lifetime: input.data.lifetime,
-					minimum: input.data.min,
-				},
+		return this.#createFromData("registerMultisignature", {
+			...input,
+			data: {
+				keysgroup: input.data.publicKeys,
+				lifetime: input.data.lifetime,
+				minimum: input.data.min,
 			},
-			options,
-		);
+		});
 	}
 
 	async #createFromData(

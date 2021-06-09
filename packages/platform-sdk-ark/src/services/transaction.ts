@@ -4,7 +4,6 @@ import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/pla
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
-import { v4 as uuidv4 } from "uuid";
 
 import { Bindings } from "../contracts";
 import { applyCryptoConfiguration } from "./helpers";
@@ -223,12 +222,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 				transaction.senderPublicKey(input.signatory.signingKey());
 			}
 
-			if (input.signatory.actsWithSignature()) {
-				address = (await this.addressService.fromPublicKey(input.signatory.publicKey())).address;
-
-				transaction.senderPublicKey(input.signatory.publicKey());
-			}
-
 			if (input.nonce) {
 				transaction.nonce(input.nonce);
 			} else {
@@ -310,8 +303,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 				for (let i = 0; i < signingKeys.length; i++) {
 					transaction.multiSign(signingKeys[i], i);
 				}
-			} else if (input.signatory.actsWithSignature()) {
-				transaction.data.signature = input.signatory.signingKey();
 			} else {
 				if (input.signatory.actsWithMnemonic()) {
 					transaction.sign(input.signatory.signingKey());

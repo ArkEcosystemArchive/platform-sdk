@@ -8,7 +8,6 @@ import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
 import { SenderPublicKeySignatory } from "./sender-public-key";
 import { Signatory } from "./signatory";
-import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
 
 export {
@@ -22,6 +21,5 @@ export {
 	SecondaryWIFSignatory,
 	SenderPublicKeySignatory,
 	Signatory,
-	SignatureSignatory,
 	WIFSignatory,
 };
