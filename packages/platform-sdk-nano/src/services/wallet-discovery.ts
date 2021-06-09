@@ -1,11 +1,10 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { deriveAccount, deriveLegacyAccount } from "./identity/helpers";
+import { deriveAccount, deriveLegacyAccount } from "./helpers";
 
+@IoC.injectable()
 export class WalletDiscoveryService implements Services.AbstractWalletDiscoveryService {
-	public static async __construct(config: Coins.Config): Promise<WalletDiscoveryService> {
-		return new WalletDiscoveryService();
-	}
+	//
 
 	public async fromMnemonic(
 		mnemonic: string,

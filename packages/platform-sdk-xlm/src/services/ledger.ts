@@ -1,13 +1,10 @@
-import { Coins, Services } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "@ledgerhq/hw-app-str";
 
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport!: Stellar;
-
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService();
-	}
 
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();

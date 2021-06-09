@@ -1,14 +1,9 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { WalletData } from "../dto";
-import * as TransactionDTO from "../dto";
 
+@IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #http: HttpClient;
-	readonly #peer: string;
-	readonly #decimals: number;
-
 	readonly #broadcastErrors: Record<string, string> = {
 		"bad-txns-inputs-duplicate": "ERR_INPUTS_DUPLICATE",
 		"bad-txns-in-belowout": "ERR_IN_BELOWOUT",
@@ -17,30 +12,11 @@ export class ClientService extends Services.AbstractClientService {
 		"bad-txns-txouttotal-toolarge": "ERR_TXOUTTOTAL_TOOLARGE",
 	};
 
-	private constructor({ http, peer, decimals }) {
-		super();
-
-		this.#http = http;
-		this.#peer = peer;
-		this.#decimals = decimals;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<ClientService> {
-		return new ClientService({
-			http: config.get<HttpClient>(Coins.ConfigKey.HttpClient),
-			peer: Helpers.randomHostFromConfig(config),
-			decimals: config.get(Coins.ConfigKey.CurrencyDecimals),
-		});
-	}
-
 	public async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
-		return Helpers.createTransactionDataWithType(
-			await this.#get(`transactions/${id}`),
-			TransactionDTO,
-		).withDecimals(this.#decimals);
+		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 
 	public async wallet(id: string): Promise<Contracts.WalletData> {
@@ -86,13 +62,19 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.get(`${this.#peer}/${path}`, query);
+		const response = await this.httpClient.get(
+			`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
+			query,
+		);
 
 		return response.json();
 	}
 
 	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		const response = await this.#http.post(`${this.#peer}/${path}`, body);
+		const response = await this.httpClient.post(
+			`${Helpers.randomHostFromConfig(this.configRepository)}/${path}`,
+			body,
+		);
 
 		return response.json();
 	}

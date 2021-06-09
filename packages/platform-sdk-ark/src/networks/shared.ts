@@ -99,3 +99,9 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"vote",
 	],
 };
+
+export const explorer: Networks.NetworkManifestExplorer = {
+	block: "block/{0}",
+	transaction: "transaction/{0}",
+	wallet: "wallets/{0}",
+};

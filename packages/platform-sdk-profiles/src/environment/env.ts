@@ -235,8 +235,8 @@ export class Environment {
 	 * @memberof Environment
 	 */
 	public setMigrations(schemas: object, version: string): void {
-		container.bind(Identifiers.MigrationSchemas, schemas);
-		container.bind(Identifiers.MigrationVersion, version);
+		container.constant(Identifiers.MigrationSchemas, schemas);
+		container.constant(Identifiers.MigrationVersion, version);
 	}
 
 	/**

@@ -1,24 +1,30 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
+import { createService } from "../../test/helpers";
 import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
 
-beforeEach(async () => (subject = await ClientService.__construct(createConfig())));
+beforeAll(() => {
+	nock.disableNetConnect();
+
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+	});
+});
 
 afterEach(() => nock.cleanAll());
 
 beforeAll(() => {
 	nock.disableNetConnect();
-
-	Test.bindBigNumberService(container);
 });
 
 describe("ClientService", () => {
@@ -85,7 +91,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData("id", "transactionPayload", "transactionPayload"),
+				createService(SignedTransactionData).configure("id", "transactionPayload", "transactionPayload"),
 			]);
 
 			expect(result).toEqual({
@@ -101,7 +107,7 @@ describe("ClientService", () => {
 				.reply(200, require(`${__dirname}/../../test/fixtures/client/broadcast-failure.json`));
 
 			const result = await subject.broadcast([
-				new SignedTransactionData("id", "transactionPayload", "transactionPayload"),
+				createService(SignedTransactionData).configure("id", "transactionPayload", "transactionPayload"),
 			]);
 
 			expect(result).toEqual({

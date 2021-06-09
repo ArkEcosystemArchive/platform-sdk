@@ -1,31 +1,16 @@
-import { Coins, Contracts, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { SignedTransactionData } from "../dto";
 import { fetchNetworkTip, listUnspentTransactions } from "./graphql-helpers";
 import { addUtxoInput, deriveAddressesAndSigningKeys, usedAddressesForAccount } from "./helpers";
-import { deriveAccountKey, deriveAddress, deriveRootKey } from "./identity/shelley";
+import { deriveAccountKey, deriveAddress, deriveRootKey } from "./shelley";
 import { createValue } from "./transaction.helpers";
 import { UnspentTransaction } from "./transaction.models";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #config: Coins.Config;
-
-	public constructor(config: Coins.Config) {
-		super();
-
-		this.#config = config;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
-	}
-
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		const {
 			minFeeA,
 			minFeeB,
@@ -33,7 +18,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			poolDeposit,
 			keyDeposit,
 			networkId,
-		} = this.#config.get<Contracts.KeyValuePair>("network.meta");
+		} = this.configRepository.get<Contracts.KeyValuePair>("network.meta");
 
 		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
@@ -52,17 +37,22 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// Gather all **used** spend and change addresses of the account
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
-			this.#config,
+			this.configRepository,
+			this.httpClient,
 			Buffer.from(publicKey.as_bytes()).toString("hex"),
 		);
 		const usedAddresses: string[] = [...usedSpendAddresses.values(), ...usedChangeAddresses.values()];
 
 		// Now get utxos for those addresses
-		const utxos: UnspentTransaction[] = await listUnspentTransactions(this.#config, usedAddresses); // when more that one utxo, they seem to be ordered by amount descending
+		const utxos: UnspentTransaction[] = await listUnspentTransactions(
+			this.configRepository,
+			this.httpClient,
+			usedAddresses,
+		); // when more that one utxo, they seem to be ordered by amount descending
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];
-		const amount = Helpers.toRawUnit(input.data.amount, this.#config).toString();
+		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 		const requestedAmount: BigNum = BigNum.from_str(amount);
 		let totalTxAmount: BigNum = BigNum.from_str("0");
 		let totalFeesAmount: BigNum = BigNum.from_str("0");
@@ -120,7 +110,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		witnesses.set_vkeys(vkeyWitnesses);
 
 		// Build the signed transaction
-		return new SignedTransactionData(
+		return this.dataTransferObjectService.signedTransaction(
 			Buffer.from(txHash.to_bytes()).toString("hex"),
 			{
 				// @TODO This doesn't make sense in Cardano, because there can be any many senders (all addresses from the same sender)
@@ -131,12 +121,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 				timestamp: DateTime.make(),
 			},
 			Buffer.from(CardanoWasm.Transaction.new(txBody, witnesses).to_bytes()).toString("hex"),
-			this.#config.get(Coins.ConfigKey.CurrencyDecimals),
 		);
 	}
 
 	public async estimateExpiration(value?: string): Promise<string | undefined> {
-		const tip: number = await fetchNetworkTip(this.#config);
+		const tip: number = await fetchNetworkTip(this.configRepository, this.httpClient);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 
 		return (tip + ttl).toString();

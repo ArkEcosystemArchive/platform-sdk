@@ -53,6 +53,12 @@ export interface NetworkManifestFeatureFlags {
 	Transaction?: TransactionMethods;
 }
 
+export interface NetworkManifestExplorer {
+	block: string;
+	transaction: string;
+	wallet: string;
+}
+
 export interface NetworkManifestToken {
 	name: string;
 	symbol: string;
@@ -99,6 +105,7 @@ export interface NetworkManifest {
 	importMethods: NetworkManifestImportMethods;
 	knownWallets?: string;
 	featureFlags: NetworkManifestFeatureFlags;
+	explorer: NetworkManifestExplorer;
 	tokens?: NetworkManifestToken[];
 	meta?: Record<string, any>;
 }

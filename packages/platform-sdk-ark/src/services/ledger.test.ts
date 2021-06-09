@@ -1,36 +1,31 @@
 import "jest-extended";
 
 import { Address } from "@arkecosystem/crypto-identities";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-mocker";
 import nock from "nock";
 
 import { ledger } from "../../test/fixtures/ledger";
-import { createConfigWithNetwork } from "../../test/helpers";
+import { createService } from "../../test/helpers";
+import * as DataTransferObjects from "../dto";
+import { AddressService } from "./address";
+import { ClientService } from "./client";
 import { LedgerService } from "./ledger";
 
 const createMockService = async (record: string) => {
-	const config = createConfigWithNetwork();
-	const transport = await LedgerService.__construct(config);
+	const transport = createService(LedgerService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.ClientService, ClientService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+	});
 
 	const fromString = RecordStore.fromString(record);
 	await transport.connect(createTransportReplayer(fromString));
 
 	return transport;
 };
-
-describe("constructor", () => {
-	it("should pass with an empty configuration", async () => {
-		const transport = await LedgerService.__construct(
-			createConfigWithNetwork({
-				services: {
-					ledger: {},
-				},
-			}),
-		);
-
-		expect(transport).toBeInstanceOf(LedgerService);
-	});
-});
 
 describe("destruct", () => {
 	it("should pass with a resolved transport closure", async () => {
@@ -98,7 +93,7 @@ describe("scan", () => {
 		expect(Object.keys(walletData)).toHaveLength(2);
 		expect(walletData).toMatchSnapshot();
 
-		for (const wallet of Object.values(walletData)) {
+		for (const wallet of Object.values(walletData) as any) {
 			const publicKey: string | undefined = wallet.publicKey();
 
 			if (publicKey) {

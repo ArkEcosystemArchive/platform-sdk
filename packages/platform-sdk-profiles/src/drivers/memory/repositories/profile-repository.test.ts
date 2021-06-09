@@ -39,7 +39,11 @@ beforeEach(() => {
 
 	subject = new ProfileRepository();
 
-	container.rebind(Identifiers.ProfileRepository, subject);
+	if (container.has(Identifiers.ProfileRepository)) {
+		container.unbind(Identifiers.ProfileRepository);
+	}
+
+	container.constant(Identifiers.ProfileRepository, subject);
 });
 
 describe("ProfileRepository", () => {

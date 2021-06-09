@@ -1,21 +1,36 @@
 import "jest-extended";
 
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../test/helpers";
+import { createService } from "../../test/helpers";
+import * as DataTransferObjects from "../dto";
+import { AddressService } from "./address";
+import { ClientService } from "./client";
+import { KeyPairService } from "./key-pair";
+import { LedgerService } from "./ledger";
+import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
+beforeAll(async () => {
+	subject = createService(TransactionService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.singleton(IoC.BindingType.ClientService, ClientService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.LedgerService, LedgerService);
+		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
+	});
+});
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {
 		it.each(["lsk.mainnet", "lsk.testnet"])("should create for %s", async (network) => {
-			const service = await TransactionService.__construct(createConfig({ network }));
-
-			const result = await service.transfer({
+			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
 						signingKey: identity.mnemonic,

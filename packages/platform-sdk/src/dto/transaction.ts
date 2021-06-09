@@ -1,10 +1,21 @@
+/* istanbul ignore file */
+
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber, Censor } from "@arkecosystem/platform-sdk-support";
+import { inject } from "inversify";
 import emoji from "node-emoji";
 
-import { KeyValuePair, MultiPaymentRecipient, TransactionDataMeta, UnspentTransactionData } from "../contracts";
+import { KeyValuePair } from "../contracts";
+import { NotImplemented } from "../exceptions";
+import { BindingType } from "../ioc/service-provider.contract";
+import {
+	MultiPaymentRecipient,
+	TransactionData,
+	TransactionDataMeta,
+	UnspentTransactionData,
+} from "./transaction.contract";
 
-export abstract class AbstractTransactionData {
+export abstract class AbstractTransactionData implements TransactionData {
 	/**
 	 * Various coins need post-processing to determine things like
 	 * "isSent" or "isReceived" with data that comes from outside
@@ -32,16 +43,30 @@ export abstract class AbstractTransactionData {
 
 	protected decimals?: number;
 
-	public constructor(protected readonly data: KeyValuePair) {}
+	protected data!: KeyValuePair;
 
-	public withDecimals(decimals?: number | string): this {
-		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;
+	@inject(BindingType.BigNumberService)
+	protected readonly bigNumberService!: any; // @TODO: import BigNumberService causes a circular dependency
+
+	public configure(data: any) {
+		this.data = data;
+
 		return this;
 	}
 
-	abstract id(): string;
+	public withDecimals(decimals?: number | string): this {
+		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;
 
-	abstract blockId(): string | undefined;
+		return this;
+	}
+
+	public id(): string {
+		throw new NotImplemented(this.constructor.name, this.id.name);
+	}
+
+	public blockId(): string | undefined {
+		throw new NotImplemented(this.constructor.name, this.blockId.name);
+	}
 
 	public type(): string {
 		for (const [type, method] of Object.entries(this.#types)) {
@@ -53,59 +78,113 @@ export abstract class AbstractTransactionData {
 		return "transfer";
 	}
 
-	abstract timestamp(): DateTime | undefined;
+	public timestamp(): DateTime | undefined {
+		throw new NotImplemented(this.constructor.name, this.timestamp.name);
+	}
 
-	abstract confirmations(): BigNumber;
+	public confirmations(): BigNumber {
+		throw new NotImplemented(this.constructor.name, this.confirmations.name);
+	}
 
-	abstract sender(): string;
+	public sender(): string {
+		throw new NotImplemented(this.constructor.name, this.sender.name);
+	}
 
-	abstract recipient(): string;
+	public recipient(): string {
+		throw new NotImplemented(this.constructor.name, this.recipient.name);
+	}
 
-	abstract recipients(): MultiPaymentRecipient[];
+	public recipients(): MultiPaymentRecipient[] {
+		throw new NotImplemented(this.constructor.name, this.recipients.name);
+	}
 
-	abstract amount(): BigNumber;
+	public amount(): BigNumber {
+		throw new NotImplemented(this.constructor.name, this.amount.name);
+	}
 
-	abstract fee(): BigNumber;
+	public fee(): BigNumber {
+		throw new NotImplemented(this.constructor.name, this.fee.name);
+	}
 
-	abstract asset(): Record<string, unknown>;
+	public asset(): Record<string, unknown> {
+		throw new NotImplemented(this.constructor.name, this.asset.name);
+	}
 
-	abstract inputs(): UnspentTransactionData[];
+	public inputs(): UnspentTransactionData[] {
+		throw new NotImplemented(this.constructor.name, this.inputs.name);
+	}
 
-	abstract outputs(): UnspentTransactionData[];
+	public outputs(): UnspentTransactionData[] {
+		throw new NotImplemented(this.constructor.name, this.outputs.name);
+	}
 
-	abstract isConfirmed(): boolean;
+	public isConfirmed(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isConfirmed.name);
+	}
 
-	abstract isSent(): boolean;
+	public isSent(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isSent.name);
+	}
 
-	abstract isReceived(): boolean;
+	public isReceived(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isReceived.name);
+	}
 
-	abstract isTransfer(): boolean;
+	public isTransfer(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isTransfer.name);
+	}
 
-	abstract isSecondSignature(): boolean;
+	public isSecondSignature(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isSecondSignature.name);
+	}
 
-	abstract isDelegateRegistration(): boolean;
+	public isDelegateRegistration(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isDelegateRegistration.name);
+	}
 
-	abstract isVoteCombination(): boolean;
+	public isVoteCombination(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isVoteCombination.name);
+	}
 
-	abstract isVote(): boolean;
+	public isVote(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isVote.name);
+	}
 
-	abstract isUnvote(): boolean;
+	public isUnvote(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isUnvote.name);
+	}
 
-	abstract isMultiSignature(): boolean;
+	public isMultiSignature(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isMultiSignature.name);
+	}
 
-	abstract isIpfs(): boolean;
+	public isIpfs(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isIpfs.name);
+	}
 
-	abstract isMultiPayment(): boolean;
+	public isMultiPayment(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isMultiPayment.name);
+	}
 
-	abstract isDelegateResignation(): boolean;
+	public isDelegateResignation(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isDelegateResignation.name);
+	}
 
-	abstract isHtlcLock(): boolean;
+	public isHtlcLock(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isHtlcLock.name);
+	}
 
-	abstract isHtlcClaim(): boolean;
+	public isHtlcClaim(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isHtlcClaim.name);
+	}
 
-	abstract isHtlcRefund(): boolean;
+	public isHtlcRefund(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isHtlcRefund.name);
+	}
 
-	abstract isMagistrate(): boolean;
+	public isMagistrate(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isMagistrate.name);
+	}
 
 	public toObject(): KeyValuePair {
 		return {

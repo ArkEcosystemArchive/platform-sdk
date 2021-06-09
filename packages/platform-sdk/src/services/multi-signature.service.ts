@@ -2,13 +2,11 @@
 
 import { SignedTransactionData } from "../contracts";
 import { NotImplemented } from "../exceptions";
+import { injectable } from "../ioc";
 import { MultiSignatureService, MultiSignatureTransaction } from "./multi-signature.contract";
 
-export abstract class AbstractMultiSignatureService implements MultiSignatureService {
-	public async __destruct(): Promise<void> {
-		//
-	}
-
+@injectable()
+export class AbstractMultiSignatureService implements MultiSignatureService {
 	public async allWithPendingState(publicKey: string): Promise<MultiSignatureTransaction[]> {
 		throw new NotImplemented(this.constructor.name, this.allWithPendingState.name);
 	}

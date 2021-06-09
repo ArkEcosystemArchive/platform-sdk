@@ -1,29 +1,21 @@
-import { Coins, Contracts, Exceptions, Helpers, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BN, Long, units, Zilliqa } from "@zilliqa-js/zilliqa";
 
-import { SignedTransactionData } from "../dto";
 import { convertZilToQa, getZilliqaVersion } from "../zilliqa";
 
+@IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	readonly #zilliqa: Zilliqa;
-	readonly #version: number;
+	#zilliqa!: Zilliqa;
+	#version!: number;
 
-	private constructor(config: Coins.Config) {
-		super();
-
-		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(config));
-		this.#version = getZilliqaVersion(config);
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(this.configRepository));
+		this.#version = getZilliqaVersion(this.configRepository);
 	}
 
-	public static async __construct(config: Coins.Config): Promise<TransactionService> {
-		return new TransactionService(config);
-	}
-
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		if (!input.data.to) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "data.to");
 		}
@@ -77,6 +69,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const signedTransaction = await this.#zilliqa.wallet.signWith(transaction, address, true);
 		const broadcastData = JSON.stringify({ ...signedTransaction.payload, version: this.#version });
 
-		return new SignedTransactionData(signedTransaction.hash, signedData, broadcastData);
+		return this.dataTransferObjectService.signedTransaction(signedTransaction.hash, signedData, broadcastData);
 	}
 }

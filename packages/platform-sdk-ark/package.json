@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-ark",
-	"version": "8.9.6",
+	"version": "9.1.1",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -34,6 +34,7 @@
 		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
+		"@ledgerhq/hw-transport-node-hid-singleton": "~5.50.0",
 		"dot-prop": "^6.0.0",
 		"is-url-superb": "^4.0.0",
 		"lodash.orderby": "^4.6.0",

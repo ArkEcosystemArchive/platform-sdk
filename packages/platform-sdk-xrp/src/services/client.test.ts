@@ -1,13 +1,13 @@
 import "jest-extended";
 
-import { Test } from "@arkecosystem/platform-sdk";
+import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
-import { SignedTransactionData, TransactionData, WalletData } from "../dto";
+import { createService } from "../../test/helpers";
+import { SignedTransactionData, TransactionData, TransferData, WalletData } from "../dto";
+import * as DataTransferObjects from "../dto";
 import { ClientService } from "./client";
 
 let subject: ClientService;
@@ -15,11 +15,11 @@ let subject: ClientService;
 jest.setTimeout(30000);
 
 beforeAll(async () => {
-	// nock.disableNetConnect();
-
-	subject = await ClientService.__construct(createConfig());
-
-	Test.bindBigNumberService(container);
+	subject = createService(ClientService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+	});
 });
 
 afterEach(() => nock.cleanAll());
@@ -35,7 +35,7 @@ describe("ClientService", () => {
 				"F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF",
 			);
 
-			expect(result).toBeInstanceOf(TransactionData);
+			expect(result).toBeInstanceOf(TransferData);
 			expect(result.id()).toBe("F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF");
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBeInstanceOf(DateTime);
@@ -89,7 +89,7 @@ describe("ClientService", () => {
 	});
 
 	describe("#broadcast", () => {
-		const transactionPayload = new SignedTransactionData(
+		const transactionPayload = createService(SignedTransactionData).configure(
 			"id",
 			"12000322000000002400000017201B0086955468400000000000000C732102F89EAEC7667B30F33D0687BBA86C3FE2A08CCA40A9186C5BDE2DAA6FA97A37D87446304402207660BDEF67105CE1EBA9AD35DC7156BAB43FF1D47633199EE257D70B6B9AAFBF02207F5517BC8AEF2ADC1325897ECDBA8C673838048BCA62F4E98B252F19BE88796D770A726970706C652E636F6D81144FBFF73DA4ECF9B701940F27341FA8020C313443",
 			"12000322000000002400000017201B0086955468400000000000000C732102F89EAEC7667B30F33D0687BBA86C3FE2A08CCA40A9186C5BDE2DAA6FA97A37D87446304402207660BDEF67105CE1EBA9AD35DC7156BAB43FF1D47633199EE257D70B6B9AAFBF02207F5517BC8AEF2ADC1325897ECDBA8C673838048BCA62F4E98B252F19BE88796D770A726970706C652E636F6D81144FBFF73DA4ECF9B701940F27341FA8020C313443",

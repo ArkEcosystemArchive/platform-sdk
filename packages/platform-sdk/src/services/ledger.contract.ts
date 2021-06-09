@@ -10,8 +10,6 @@ export type LedgerTransport = any;
 export type LedgerWalletList = Record<string, WalletData>;
 
 export interface LedgerService {
-	__destruct(): Promise<void>;
-
 	connect(transport: LedgerTransport): Promise<void>;
 
 	disconnect(): Promise<void>;

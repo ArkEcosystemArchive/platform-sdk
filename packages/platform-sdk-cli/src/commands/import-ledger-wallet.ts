@@ -76,10 +76,7 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 						const extendedKey = HDKey.fromCompressedPublicKey(compressedPublicKey)
 							.derive(`m/0/${addressIndex}`)
 							.publicKey.toString("hex");
-						const { address: extendedAddress } = await instance
-							.identity()
-							.address()
-							.fromPublicKey(extendedKey);
+						const { address: extendedAddress } = await instance.address().fromPublicKey(extendedKey);
 
 						addressMap[extendedAddress] = { path, extendedKey };
 					}

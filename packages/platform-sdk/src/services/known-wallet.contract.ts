@@ -5,7 +5,5 @@ export interface KnownWallet {
 }
 
 export interface KnownWalletService {
-	__destruct(): Promise<void>;
-
 	all(): Promise<KnownWallet[]>;
 }

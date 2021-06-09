@@ -34,10 +34,8 @@ interface AccountHistoryResponse {
 export class NanoClient {
 	readonly #http: HttpClient;
 
-	public constructor(config: Coins.Config) {
-		const host = Helpers.randomHostFromConfig(config);
-
-		this.#http = config.get<HttpClient>(Coins.ConfigKey.HttpClient).baseUrl(host);
+	public constructor(config: Coins.ConfigRepository, httpClient: HttpClient) {
+		this.#http = httpClient.baseUrl(Helpers.randomHostFromConfig(config));
 	}
 
 	public async accountBalance(account: string): Promise<{ balance: string; pending: string }> {

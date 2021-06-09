@@ -1,20 +1,39 @@
 import "jest-extended";
 
-import { Signatories, Test } from "@arkecosystem/platform-sdk";
+import { IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
+import { waitReady } from "@polkadot/wasm-crypto";
 
 import { identity } from "../../test/fixtures/identity";
-import { createConfig } from "../../test/helpers";
-import { container } from "../container";
+import { createServiceAsync } from "../../test/helpers";
+import { BindingType } from "../constants";
+import * as DataTransferObjects from "../dto";
 import { SignedTransactionData } from "../dto/signed-transaction";
+import { createApiPromise, createKeyring } from "../helpers";
+import { AddressService } from "./address";
+import { KeyPairService } from "./key-pair";
+import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
-});
+beforeAll(async () => {
+	await waitReady();
 
-beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
+	subject = await createServiceAsync(TransactionService, undefined, async (container: IoC.Container) => {
+		const apiPromise = await createApiPromise(container.get(IoC.BindingType.ConfigRepository));
+		const keyring = createKeyring(container.get(IoC.BindingType.ConfigRepository));
+
+		container.constant(BindingType.ApiPromise, apiPromise);
+		container.constant(BindingType.Keyring, keyring);
+
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
+	});
+});
 
 jest.setTimeout(10000);
 

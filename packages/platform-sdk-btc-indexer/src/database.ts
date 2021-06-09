@@ -1,8 +1,6 @@
 import { BigNumber } from "@arkecosystem/utils";
-import envPaths from "env-paths";
-import { ensureFileSync } from "fs-extra";
 
-import { PrismaClient } from "../prisma/generated";
+import { Prisma, PrismaClient } from "../prisma/generated";
 import { Logger } from "./logger";
 import { getAmount, getFees, getInputs, getOutputs } from "./tx-parsing-helpers";
 import { Flags, Input, Output } from "./types";
@@ -32,13 +30,6 @@ export class Database {
 	 * @memberof Database
 	 */
 	public constructor(flags: Flags, logger: Logger) {
-		const databaseFile =
-			flags.database || `${envPaths(require("../package.json").name).data}/btc/${flags.network}.db`;
-
-		ensureFileSync(databaseFile);
-
-		logger.debug(`Using [${databaseFile}] as database`);
-
 		this.#prisma = new PrismaClient({
 			log: ["info", "warn", "error"],
 		});
@@ -60,6 +51,53 @@ export class Database {
 		});
 
 		return lastBlockHeight["_max"]?.height || 1;
+	}
+
+	public async allPendingBlocks(): Promise<any[]> {
+		return this.#prisma.pendingBlock.findMany({
+			skip: 0,
+			take: 10000,
+			orderBy: {
+				height: "asc",
+			},
+		});
+	}
+
+	public async storePendingBlock(block: any): Promise<void> {
+		await this.#prisma.pendingBlock.upsert({
+			where: {
+				height: block.height,
+			},
+			create: {
+				height: block.height,
+				payload: block,
+			},
+			update: {
+				payload: block.payload,
+			},
+		});
+	}
+
+	public async deletePendingBlock(height: number): Promise<void> {
+		try {
+			await this.#prisma.pendingBlock.delete({
+				where: { height },
+			});
+		} catch {
+			// If we end up here the record is most likely already gone.
+		}
+	}
+
+	public async alreadyDownloadedBlocks(min: number, max: number): Promise<{ height: number }[]> {
+		return this.#prisma.pendingBlock.findMany({
+			where: {
+				height: {
+					gte: min,
+					lte: max,
+				},
+			},
+			select: { height: true },
+		});
 	}
 
 	/**
@@ -91,17 +129,18 @@ export class Database {
 	 * @memberof Database
 	 */
 	async #storeBlock(block): Promise<void> {
-		try {
-			await this.#prisma.block.create({
-				data: {
-					hash: block.hash,
-					height: block.height,
-				},
-			});
-		} catch {
-			// Ignore, there's nothing to update if already exists
-			// We could query for existence before creation, but it doesn't really make sense
-		}
+		await this.#prisma.block.upsert({
+			where: {
+				height: block.height,
+			},
+			create: {
+				hash: block.hash,
+				height: block.height,
+			},
+			update: {
+				hash: block.hash,
+			},
+		});
 	}
 
 	/**
@@ -161,8 +200,11 @@ export class Database {
 		);
 
 		try {
-			await this.#prisma.transaction.create({
-				data: {
+			await this.#prisma.transaction.upsert({
+				where: {
+					hash: transaction.txid,
+				},
+				create: {
 					block_id: blockId,
 					hash: transaction.txid,
 					time: transaction.time,
@@ -176,10 +218,45 @@ export class Database {
 						})),
 					},
 				},
+				update: {
+					block_id: blockId,
+					hash: transaction.txid,
+					time: transaction.time,
+					amount: BigInt(amount.toString()),
+					fee: BigInt(fee.toString()),
+					transaction_parts: {
+						upsert: outputs.map((output) => {
+							const outputData = {
+								output_idx: output.idx,
+								amount: BigInt(output.amount.toString()),
+								address: JSON.stringify(output.addresses),
+							};
+							return {
+								where: {
+									output_hash_output_idx: {
+										output_hash: transaction.txid,
+										output_idx: output.idx,
+									},
+								},
+								create: outputData,
+								update: outputData,
+							};
+						}),
+					},
+				},
 			});
-		} catch {
-			// Ignore, there's nothing to update if already exists
-			// We could query for existence before creation, but it doesn't really make sense
+		} catch (e) {
+			if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") {
+				// Unique contraint validation. Ignore, there's nothing to update if already exists
+				// We could query for existence before creation, but it doesn't really make sense
+				this.#logger.info(
+					`Ignoring transaction ${transaction.txid} from block ${blockId} as it already exists`,
+				);
+			} else {
+				// If there's an error, we don't want to proceed, as this will affect future utxos
+				// It means there's a programming error and we need to fix it
+				throw e;
+			}
 		}
 
 		await this.#prisma.$transaction(utxoUpdates);

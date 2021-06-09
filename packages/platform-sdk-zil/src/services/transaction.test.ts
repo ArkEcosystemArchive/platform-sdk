@@ -1,19 +1,27 @@
 import "jest-extended";
 
-import { Signatories, Test } from "@arkecosystem/platform-sdk";
+import { IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 
-import { createConfig } from "../../test/config";
 import { identity } from "../../test/fixtures/identity";
-import { container } from "../container";
+import { createService } from "../../test/helpers";
+import * as DataTransferObjects from "../dto";
 import { SignedTransactionData } from "../dto/signed-transaction";
+import { AddressService } from "./address";
+import { KeyPairService } from "./key-pair";
+import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;
 
-beforeEach(async () => (subject = await TransactionService.__construct(createConfig())));
-
-beforeAll(() => {
-	Test.bindBigNumberService(container);
+beforeAll(async () => {
+	subject = createService(TransactionService, undefined, (container) => {
+		container.constant(IoC.BindingType.Container, container);
+		container.singleton(IoC.BindingType.AddressService, AddressService);
+		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);
+		container.singleton(IoC.BindingType.DataTransferObjectService, Services.AbstractDataTransferObjectService);
+		container.singleton(IoC.BindingType.KeyPairService, KeyPairService);
+		container.singleton(IoC.BindingType.PublicKeyService, PublicKeyService);
+	});
 });
 
 describe("TransactionService", () => {

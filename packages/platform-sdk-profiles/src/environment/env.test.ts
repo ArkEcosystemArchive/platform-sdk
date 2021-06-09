@@ -350,7 +350,7 @@ it("should create a profile with password and persist", async () => {
 });
 
 it("should flush all bindings", async () => {
-	container.bind("test", true);
+	container.constant("test", true);
 	subject.reset();
 	expect(() => container.get("test")).toThrow();
 });

@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-eos",
-	"version": "8.9.6",
+	"version": "9.1.1",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -36,6 +36,7 @@
 		"node-fetch": "^2.6.1"
 	},
 	"devDependencies": {
+		"@arkecosystem/platform-sdk-http-got": "workspace:*",
 		"@ledgerhq/hw-transport-mocker": "^5.50.0",
 		"@types/bn.js": "4.11.6",
 		"@types/elliptic": "6.4.12",

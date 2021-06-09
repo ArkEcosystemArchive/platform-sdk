@@ -1,19 +1,36 @@
+/* istanbul ignore file */
+
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
-import { RawTransactionData } from "../contracts";
+import { RawTransactionData, SignedTransactionData } from "../contracts";
+import { NotImplemented } from "../exceptions";
+import { inject, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
+import { BigNumberService } from "../services";
 
-export abstract class AbstractSignedTransactionData {
-	protected readonly decimals?: number;
+@injectable()
+export class AbstractSignedTransactionData implements SignedTransactionData {
+	@inject(BindingType.BigNumberService)
+	protected readonly bigNumberService!: BigNumberService;
 
-	public constructor(
-		protected identifier: string,
-		protected readonly signedData: RawTransactionData,
-		// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-		protected readonly broadcastData: any,
+	protected identifier!: string;
+	protected signedData!: RawTransactionData;
+	protected broadcastData!: any;
+	protected decimals!: number | undefined;
+
+	public configure(
+		identifier: string,
+		signedData: RawTransactionData,
+		broadcastData: any,
 		decimals?: number | string,
 	) {
+		this.identifier = identifier;
+		this.signedData = signedData;
+		this.broadcastData = broadcastData;
 		this.decimals = typeof decimals === "string" ? parseInt(decimals) : decimals;
+
+		return this;
 	}
 
 	public setAttributes(attributes: { identifier: string }): void {
@@ -28,15 +45,33 @@ export abstract class AbstractSignedTransactionData {
 		return this.signedData;
 	}
 
-	abstract sender(): string;
+	public sender(): string {
+		throw new NotImplemented(this.constructor.name, this.sender.name);
+	}
 
-	abstract recipient(): string;
+	public recipient(): string {
+		throw new NotImplemented(this.constructor.name, this.recipient.name);
+	}
 
-	abstract amount(): BigNumber;
+	public amount(): BigNumber {
+		throw new NotImplemented(this.constructor.name, this.amount.name);
+	}
 
-	abstract fee(): BigNumber;
+	public fee(): BigNumber {
+		throw new NotImplemented(this.constructor.name, this.fee.name);
+	}
 
-	abstract timestamp(): DateTime;
+	public timestamp(): DateTime {
+		throw new NotImplemented(this.constructor.name, this.timestamp.name);
+	}
+
+	public isMultiSignature(): boolean {
+		return false;
+	}
+
+	public isMultiSignatureRegistration(): boolean {
+		return false;
+	}
 
 	public get<T = string>(key: string): T {
 		return this.signedData[key];

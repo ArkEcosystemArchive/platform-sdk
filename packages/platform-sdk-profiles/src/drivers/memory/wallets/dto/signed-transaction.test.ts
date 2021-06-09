@@ -6,22 +6,21 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { SignedTransactionData } from "./signed-transaction";
 
 let subject: SignedTransactionData;
-beforeEach(
-	() =>
-		(subject = new SignedTransactionData(
-			"id",
-			{
-				sender: "sender",
-				recipient: "recipient",
-				amount: BigNumber.ONE,
-				fee: BigNumber.ONE,
-				timestamp: DateTime.make(0),
-				isMultiSignature: false,
-				isMultiSignatureRegistration: false,
-			},
-			"",
-		)),
-);
+beforeEach(() => {
+	subject = new SignedTransactionData().configure(
+		"id",
+		{
+			sender: "sender",
+			recipient: "recipient",
+			amount: BigNumber.ONE,
+			fee: BigNumber.ONE,
+			timestamp: DateTime.make(0),
+			isMultiSignature: false,
+			isMultiSignatureRegistration: false,
+		},
+		"",
+	);
+});
 
 it("#sender", async () => {
 	expect(subject.sender()).toBe("sender");

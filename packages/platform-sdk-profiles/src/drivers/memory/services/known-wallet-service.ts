@@ -18,7 +18,7 @@ export class KnownWalletService implements IKnownWalletService {
 			for (const network of networks) {
 				promises.push(async () => {
 					try {
-						this.#registry[network] = await profile.coins().get(coin, network).knownWallets().all();
+						this.#registry[network] = await profile.coins().get(coin, network).knownWallet().all();
 					} catch (error) {
 						// Do nothing if it fails. It's not critical functionality.
 					}

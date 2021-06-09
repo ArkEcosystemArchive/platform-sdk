@@ -360,7 +360,7 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.config} */
-	public config(): Coins.Config {
+	public config(): Coins.ConfigRepository {
 		return this.#attributes.get<Coins.Coin>("coin").config();
 	}
 
@@ -374,9 +374,34 @@ export class Wallet implements IReadWriteWallet {
 		return this.#attributes.get<Coins.Coin>("coin").dataTransferObject();
 	}
 
-	/** {@inheritDoc IReadWriteWallet.identity} */
-	public identity(): Services.IdentityService {
-		return this.#attributes.get<Coins.Coin>("coin").identity();
+	/** {@inheritDoc IReadWriteWallet.addressService} */
+	public addressService(): Services.AddressService {
+		return this.#attributes.get<Coins.Coin>("coin").address();
+	}
+
+	/** {@inheritDoc IReadWriteWallet.extendedAddressService} */
+	public extendedAddressService(): Services.ExtendedAddressService {
+		return this.#attributes.get<Coins.Coin>("coin").extendedAddress();
+	}
+
+	/** {@inheritDoc IReadWriteWallet.keyPairService} */
+	public keyPairService(): Services.KeyPairService {
+		return this.#attributes.get<Coins.Coin>("coin").keyPair();
+	}
+
+	/** {@inheritDoc IReadWriteWallet.privateKeyService} */
+	public privateKeyService(): Services.PrivateKeyService {
+		return this.#attributes.get<Coins.Coin>("coin").privateKey();
+	}
+
+	/** {@inheritDoc IReadWriteWallet.publicKeyService} */
+	public publicKeyService(): Services.PublicKeyService {
+		return this.#attributes.get<Coins.Coin>("coin").publicKey();
+	}
+
+	/** {@inheritDoc IReadWriteWallet.wifService} */
+	public wifService(): Services.WIFService {
+		return this.#attributes.get<Coins.Coin>("coin").wif();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.ledger} */

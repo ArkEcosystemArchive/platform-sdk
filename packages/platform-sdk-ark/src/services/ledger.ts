@@ -1,49 +1,23 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
-import { Coins, Contracts, Services } from "@arkecosystem/platform-sdk";
+import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44, HDKey } from "@arkecosystem/platform-sdk-crypto";
 
 import { WalletData } from "../dto";
-import { ClientService } from "./client";
-import { IdentityService } from "./identity";
+import { chunk, createRange, formatLedgerDerivationPath } from "./ledger.helpers";
 
-const chunk = <T>(value: T[], size: number) =>
-	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
-
-const formatLedgerDerivationPath = (scheme: LedgerDerivationScheme) =>
-	`${scheme.purpose || 44}'/${scheme.coinType}'/${scheme.account || 0}'/${scheme.change || 0}/${scheme.address || 0}`;
-
-type LedgerDerivationScheme = {
-	coinType: number;
-	purpose?: number;
-	account?: number;
-	change?: number;
-	address?: number;
-};
-
-const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
-
+@IoC.injectable()
 export class LedgerService extends Services.AbstractLedgerService {
-	readonly #config: Coins.Config;
-	readonly #identity: IdentityService;
-	readonly #client: ClientService;
-	#ledger: Services.LedgerTransport;
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	private readonly configRepository!: Coins.ConfigRepository;
+
+	@IoC.inject(IoC.BindingType.ClientService)
+	private readonly clientService!: Services.ClientService;
+
+	@IoC.inject(IoC.BindingType.AddressService)
+	private readonly addressService!: Services.AddressService;
+
+	#ledger!: Services.LedgerTransport;
 	#transport!: ARKTransport;
-
-	private constructor(config: Coins.Config, identity: IdentityService, client: ClientService) {
-		super();
-
-		this.#config = config;
-		this.#identity = identity;
-		this.#client = client;
-	}
-
-	public static async __construct(config: Coins.Config): Promise<LedgerService> {
-		return new LedgerService(
-			config,
-			await IdentityService.__construct(config),
-			await ClientService.__construct(config),
-		);
-	}
 
 	public async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
@@ -77,7 +51,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
-		const slip44 = this.#config.get<number>("network.constants.slip44");
+		const slip44 = this.configRepository.get<number>("network.constants.slip44");
 
 		const addressCache: Record<string, { address: string; publicKey: string }> = {};
 		let wallets: Contracts.WalletData[] = [];
@@ -94,14 +68,14 @@ export class LedgerService extends Services.AbstractLedgerService {
 				for (const accountIndex of createRange(page, pageSize)) {
 					const path: string = formatLedgerDerivationPath({ coinType: slip44, account: accountIndex });
 					const publicKey: string = await this.getPublicKey(path);
-					const { address } = await this.#identity.address().fromPublicKey(publicKey);
+					const { address } = await this.addressService.fromPublicKey(publicKey);
 
 					addresses.push(address);
 
 					addressCache[path] = { address, publicKey };
 				}
 
-				const collection = await this.#client.wallets({ addresses });
+				const collection = await this.clientService.wallets({ addresses });
 
 				wallets = wallets.concat(collection.items());
 
@@ -129,7 +103,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 						.derive(`m/0/${addressIndex}`)
 						.publicKey.toString("hex");
 
-					const { address } = await this.#identity.address().fromPublicKey(publicKey);
+					const { address } = await this.addressService.fromPublicKey(publicKey);
 
 					addresses.push(address);
 
@@ -137,7 +111,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 				}
 
 				const collections = await Promise.all(
-					chunk(addresses, 50).map((addresses: string[]) => this.#client.wallets({ addresses })),
+					chunk(addresses, 50).map((addresses: string[]) => this.clientService.wallets({ addresses })),
 				);
 
 				for (const collection of collections) {

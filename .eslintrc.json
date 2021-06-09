@@ -26,6 +26,7 @@
 		"@typescript-eslint/no-empty-interface": "off",
 		"@typescript-eslint/no-explicit-any": "off",
 		"@typescript-eslint/no-misused-promises": "off",
+		"@typescript-eslint/no-non-null-asserted-optional-chain": "off",
 		"@typescript-eslint/no-non-null-assertion": "off",
 		"@typescript-eslint/no-unsafe-assignment": "off",
 		"@typescript-eslint/no-unsafe-call": "off",
@@ -41,7 +42,7 @@
 		"import/exports-last": "warn",
 		"import/extensions": "error",
 		"import/first": "error",
-		"import/group-exports": "warn",
+		"import/group-exports": "off",
 		"import/namespace": "error",
 		"import/no-absolute-path": "error",
 		"import/no-anonymous-default-export": "error",
@@ -70,7 +71,7 @@
 		],
 		"prettier/prettier": "error",
 		"simple-import-sort/imports": "error",
-		"tsdoc/syntax": "warn",
-		"unused-imports/no-unused-imports-ts": "error"
+		"tsdoc/syntax": "off",
+		"unused-imports/no-unused-imports-ts": "warn"
 	}
 }

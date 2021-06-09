@@ -1,32 +1,101 @@
 /* istanbul ignore file */
 
-import Joi, { Schema } from "joi";
-
-import { Config } from "./coins";
-import { Container, ServiceKeys } from "./ioc";
+import { ConfigKey, ConfigRepository } from "./coins";
+import { Container, BindingType } from "./ioc";
+import { NetworkManifest } from "./networks";
 import { BigNumberService } from "./services";
 
-export const createConfig = (config?: object, schema?: Schema): Config =>
-	new Config(
-		config || {
-			network: {
-				currency: {
-					decimals: 1e8,
-				},
-			},
-		},
-		schema ||
-			Joi.object({
-				network: Joi.object({
-					currency: Joi.object({
-						decimals: Joi.number(),
-					}),
-				}),
-			}),
-	);
+const createContainer = ({
+	config,
+	httpClient,
+	manifest,
+	meta,
+	schema,
+}: {
+	config?: ConfigRepository;
+	httpClient: any;
+	manifest: NetworkManifest;
+	meta?: any;
+	schema: any;
+}): Container => {
+	config ??= new ConfigRepository({ network: manifest.id, httpClient }, schema);
 
-export const bindBigNumberService = (container: Container, config?: Config): void => {
-	if (container.missing(ServiceKeys.BigNumberService)) {
-		container.constant(ServiceKeys.BigNumberService, new BigNumberService(config || createConfig()));
+	config.set(ConfigKey.Network, manifest);
+
+	if (meta) {
+		for (const [key, value] of Object.entries(meta)) {
+			config.set(key, value);
+		}
 	}
+
+	const container = new Container();
+	container.constant(BindingType.ConfigRepository, config);
+	container.constant(BindingType.HttpClient, httpClient);
+	container.singleton(BindingType.BigNumberService, BigNumberService);
+
+	return container;
+};
+
+export const createService = <T = any>({
+	config,
+	httpClient,
+	manifest,
+	meta,
+	predicate,
+	schema,
+	service,
+}: {
+	config?: ConfigRepository;
+	httpClient: any;
+	manifest: NetworkManifest;
+	meta?: any;
+	predicate: any;
+	schema: any;
+	service: any;
+}): T => {
+	const container = createContainer({
+		config,
+		httpClient,
+		manifest,
+		meta,
+		schema,
+	});
+
+	if (predicate) {
+		predicate(container);
+	}
+
+	return container.resolve(service);
+};
+
+export const createServiceAsync = async <T = any>({
+	config,
+	httpClient,
+	manifest,
+	meta,
+	predicate,
+	schema,
+	service,
+}: {
+	config?: ConfigRepository;
+	httpClient: any;
+	manifest: NetworkManifest;
+	meta?: any;
+	predicate: any;
+	schema: any;
+	service: any;
+}): Promise<T> => {
+	const container = createContainer({
+		config,
+		httpClient,
+		manifest,
+		meta,
+		schema,
+	});
+
+	if (predicate) {
+		await predicate(container);
+	}
+
+	return container.resolve(service);
 };

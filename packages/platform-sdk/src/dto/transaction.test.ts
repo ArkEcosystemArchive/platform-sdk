@@ -1,4 +1,5 @@
 import "jest-extended";
+import "reflect-metadata";
 
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
@@ -7,20 +8,20 @@ import { MultiPaymentRecipient, UnspentTransactionData } from "../contracts";
 import { AbstractTransactionData } from "./transaction";
 
 test("#withDecimals", () => {
-	expect(new Transaction({ key: "value" }).withDecimals(2)).toBeInstanceOf(Transaction);
-	expect(new Transaction({ key: "value" }).withDecimals("2")).toBeInstanceOf(Transaction);
+	expect(new Transaction().configure({ key: "value" }).withDecimals(2)).toBeInstanceOf(Transaction);
+	expect(new Transaction().configure({ key: "value" }).withDecimals("2")).toBeInstanceOf(Transaction);
 });
 
 test("#id", () => {
-	expect(new Transaction({ key: "value" }).id()).toBe("id");
+	expect(new Transaction().configure({ key: "value" }).id()).toBe("id");
 });
 
 test("#blockId", () => {
-	expect(new Transaction({ key: "value" }).blockId()).toBe("blockId");
+	expect(new Transaction().configure({ key: "value" }).blockId()).toBe("blockId");
 });
 
 test("#type", () => {
-	const subject = new Transaction({ key: "value" });
+	const subject = new Transaction().configure({ key: "value" });
 
 	expect(subject.type()).toBe("transfer");
 
@@ -30,115 +31,115 @@ test("#type", () => {
 });
 
 test("#timestamp", () => {
-	expect(new Transaction({ key: "value" }).timestamp()).toBeUndefined();
+	expect(new Transaction().configure({ key: "value" }).timestamp()).toBeUndefined();
 });
 
 test("#confirmations", () => {
-	expect(new Transaction({ key: "value" }).confirmations()).toBe(BigNumber.ZERO);
+	expect(new Transaction().configure({ key: "value" }).confirmations()).toBe(BigNumber.ZERO);
 });
 
 test("#sender", () => {
-	expect(new Transaction({ key: "value" }).sender()).toBe("sender");
+	expect(new Transaction().configure({ key: "value" }).sender()).toBe("sender");
 });
 
 test("#recipient", () => {
-	expect(new Transaction({ key: "value" }).recipient()).toBe("recipient");
+	expect(new Transaction().configure({ key: "value" }).recipient()).toBe("recipient");
 });
 
 test("#recipients", () => {
-	expect(new Transaction({ key: "value" }).recipients()).toEqual([]);
+	expect(new Transaction().configure({ key: "value" }).recipients()).toEqual([]);
 });
 
 test("#amount", () => {
-	expect(new Transaction({ key: "value" }).amount()).toBe(BigNumber.ZERO);
+	expect(new Transaction().configure({ key: "value" }).amount()).toBe(BigNumber.ZERO);
 });
 
 test("#fee", () => {
-	expect(new Transaction({ key: "value" }).fee()).toBe(BigNumber.ZERO);
+	expect(new Transaction().configure({ key: "value" }).fee()).toBe(BigNumber.ZERO);
 });
 
 test("#memo", () => {
-	expect(new Transaction({ key: "value" }).memo()).toBe("memo");
-	expect(new Transaction({ memo: "" }).memo()).toBeUndefined();
-	expect(new Transaction({ memo: "pedo" }).memo()).toBe("****");
-	expect(new Transaction({ memo: "pedophile" }).memo()).toBe("*********");
-	expect(new Transaction({ memo: "zyva.org" }).memo()).toBeUndefined();
+	expect(new Transaction().configure({ key: "value" }).memo()).toBe("memo");
+	expect(new Transaction().configure({ memo: "" }).memo()).toBeUndefined();
+	expect(new Transaction().configure({ memo: "pedo" }).memo()).toBe("****");
+	expect(new Transaction().configure({ memo: "pedophile" }).memo()).toBe("*********");
+	expect(new Transaction().configure({ memo: "zyva.org" }).memo()).toBeUndefined();
 });
 
 test("#asset", () => {
-	expect(new Transaction({ key: "value" }).asset()).toEqual({});
+	expect(new Transaction().configure({ key: "value" }).asset()).toEqual({});
 });
 
 test("#isConfirmed", () => {
-	expect(new Transaction({ key: "value" }).isConfirmed()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isConfirmed()).toBeFalse();
 });
 
 test("#isSent", () => {
-	expect(new Transaction({ key: "value" }).isSent()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isSent()).toBeFalse();
 });
 
 test("#isReceived", () => {
-	expect(new Transaction({ key: "value" }).isReceived()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isReceived()).toBeFalse();
 });
 
 test("#isTransfer", () => {
-	expect(new Transaction({ key: "value" }).isTransfer()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isTransfer()).toBeFalse();
 });
 
 test("#isSecondSignature", () => {
-	expect(new Transaction({ key: "value" }).isSecondSignature()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isSecondSignature()).toBeFalse();
 });
 
 test("#isDelegateRegistration", () => {
-	expect(new Transaction({ key: "value" }).isDelegateRegistration()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isDelegateRegistration()).toBeFalse();
 });
 
 test("#isVoteCombination", () => {
-	expect(new Transaction({ key: "value" }).isVoteCombination()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isVoteCombination()).toBeFalse();
 });
 
 test("#isVote", () => {
-	expect(new Transaction({ key: "value" }).isVote()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isVote()).toBeFalse();
 });
 
 test("#isUnvote", () => {
-	expect(new Transaction({ key: "value" }).isUnvote()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isUnvote()).toBeFalse();
 });
 
 test("#isMultiSignature", () => {
-	expect(new Transaction({ key: "value" }).isMultiSignature()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isMultiSignature()).toBeFalse();
 });
 
 test("#isIpfs", () => {
-	expect(new Transaction({ key: "value" }).isIpfs()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isIpfs()).toBeFalse();
 });
 
 test("#isMultiPayment", () => {
-	expect(new Transaction({ key: "value" }).isMultiPayment()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isMultiPayment()).toBeFalse();
 });
 
 test("#isDelegateResignation", () => {
-	expect(new Transaction({ key: "value" }).isDelegateResignation()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isDelegateResignation()).toBeFalse();
 });
 
 test("#isHtlcLock", () => {
-	expect(new Transaction({ key: "value" }).isHtlcLock()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isHtlcLock()).toBeFalse();
 });
 
 test("#isHtlcClaim", () => {
-	expect(new Transaction({ key: "value" }).isHtlcClaim()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isHtlcClaim()).toBeFalse();
 });
 
 test("#isHtlcRefund", () => {
-	expect(new Transaction({ key: "value" }).isHtlcRefund()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isHtlcRefund()).toBeFalse();
 });
 
 test("#isMagistrate", () => {
-	expect(new Transaction({ key: "value" }).isMagistrate()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).isMagistrate()).toBeFalse();
 });
 
 test("#toObject", () => {
-	expect(new Transaction({ key: "value" }).toObject()).toMatchInlineSnapshot(`
+	expect(new Transaction().configure({ key: "value" }).toObject()).toMatchInlineSnapshot(`
 		Object {
 		  "amount": BigNumber {},
 		  "asset": Object {},
@@ -154,7 +155,7 @@ test("#toObject", () => {
 });
 
 test("#raw", () => {
-	expect(new Transaction({ key: "value" }).raw()).toMatchInlineSnapshot(`
+	expect(new Transaction().configure({ key: "value" }).raw()).toMatchInlineSnapshot(`
 		Object {
 		  "key": "value",
 		}
@@ -162,17 +163,17 @@ test("#raw", () => {
 });
 
 test("#hasPassed", () => {
-	expect(new Transaction({ key: "value" }).hasPassed()).toBeTrue();
-	expect(new Transaction({}).hasPassed()).toBeFalse();
+	expect(new Transaction().configure({ key: "value" }).hasPassed()).toBeTrue();
+	expect(new Transaction().configure({}).hasPassed()).toBeFalse();
 });
 
 test("#hasFailed", () => {
-	expect(new Transaction({}).hasFailed()).toBeTrue();
-	expect(new Transaction({ key: "value" }).hasFailed()).toBeFalse();
+	expect(new Transaction().configure({}).hasFailed()).toBeTrue();
+	expect(new Transaction().configure({ key: "value" }).hasFailed()).toBeFalse();
 });
 
 test("#getMeta | #setMeta", () => {
-	const subject = new Transaction({});
+	const subject = new Transaction().configure({});
 
 	expect(subject.getMeta("key")).toBeUndefined();
 

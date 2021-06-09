@@ -1,15 +1,16 @@
 import "jest-extended";
 
-import { DTO, Test } from "@arkecosystem/platform-sdk";
+import { DTO } from "@arkecosystem/platform-sdk";
 
 import Fixture from "../../test/fixtures/client/transaction.json";
-import { container } from "../container";
+import { createService } from "../../test/helpers";
 import { TransactionData } from "./transaction";
 
-const subject = new TransactionData(Fixture.data.transactions[0]);
+let subject: TransactionData;
 
-beforeAll(() => {
-	Test.bindBigNumberService(container);
+beforeEach(() => {
+	subject = createService(TransactionData);
+	subject.configure(Fixture.data.transactions[0]);
 });
 
 describe("TransactionData", () => {
@@ -104,7 +105,7 @@ describe("TransactionData", () => {
 	});
 
 	it("#isTransfer", () => {
-		expect(subject.isTransfer()).toBeFalse();
+		expect(subject.isTransfer()).toBeTrue();
 	});
 
 	it("#isSecondSignature", () => {
