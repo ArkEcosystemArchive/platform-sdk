@@ -3,6 +3,7 @@ import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import { v4 as uuidv4 } from "uuid";
 
 import { Bindings } from "../contracts";
@@ -10,6 +11,9 @@ import { applyCryptoConfiguration } from "./helpers";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
+	@IoC.inject(IoC.BindingType.LedgerService)
+	private readonly ledgerService!: Services.LedgerService;
+
 	@IoC.inject(IoC.BindingType.AddressService)
 	private readonly addressService!: Services.AddressService;
 
@@ -291,17 +295,19 @@ export class TransactionService extends Services.AbstractTransactionService {
 				callback({ transaction, data: input.data });
 			}
 
-			if (options && options.unsignedJson === true) {
-				return transaction.toJson();
-			}
+			if (input.signatory.actsWithLedger()) {
+				await this.ledgerService.connect(LedgerTransportNodeHID);
 
-			if (options && options.unsignedBytes === true) {
-				const signedTransaction = Transactions.Serializer.getBytes(transaction.data, {
-					excludeSignature: true,
-					excludeSecondSignature: true,
-				}).toString("hex");
+				transaction.senderPublicKey(await this.ledgerService.getPublicKey(input.signatory.signingKey()));
+				transaction.data.signature = await this.ledgerService.signTransaction(
+					input.signatory.signingKey(),
+					Transactions.Serializer.getBytes(transaction.data, {
+						excludeSignature: true,
+						excludeSecondSignature: true,
+					}),
+				);
 
-				return this.dataTransferObjectService.signedTransaction(uuidv4(), signedTransaction, signedTransaction);
+				await this.ledgerService.disconnect();
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
