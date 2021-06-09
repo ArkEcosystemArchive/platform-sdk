@@ -17,10 +17,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#decimals = this.configRepository.get(Coins.ConfigKey.CurrencyDecimals);
 	}
 
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		const { address, privateKey } = deriveAccount(input.signatory.signingKey());
 		const { balance, representative, frontier } = await this.#client.accountInfo(address, { representative: true });
 

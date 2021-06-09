@@ -16,10 +16,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#slip44 = this.configRepository.get<number>("network.constants.slip44");
 	}
 
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "signatory");
 		}

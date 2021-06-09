@@ -13,10 +13,7 @@ import {
 } from "@elrondnetwork/erdjs";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "sign.mnemonic");
 		}

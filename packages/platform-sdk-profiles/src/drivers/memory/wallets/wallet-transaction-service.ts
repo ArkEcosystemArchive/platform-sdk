@@ -73,75 +73,57 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.signTransfer} */
-	public async signTransfer(input: Services.TransferInput, options?: Services.TransactionOptions): Promise<string> {
+	public async signTransfer(input: Services.TransferInput): Promise<string> {
 		return this.#signTransaction("transfer", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signSecondSignature} */
-	public async signSecondSignature(
-		input: Services.SecondSignatureInput,
-		options?: Services.TransactionOptions,
-	): Promise<string> {
+	public async signSecondSignature(input: Services.SecondSignatureInput): Promise<string> {
 		return this.#signTransaction("secondSignature", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signDelegateRegistration} */
-	public async signDelegateRegistration(
-		input: Services.DelegateRegistrationInput,
-		options?: Services.TransactionOptions,
-	): Promise<string> {
+	public async signDelegateRegistration(input: Services.DelegateRegistrationInput): Promise<string> {
 		return this.#signTransaction("delegateRegistration", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signVote} */
-	public async signVote(input: Services.VoteInput, options?: Services.TransactionOptions): Promise<string> {
+	public async signVote(input: Services.VoteInput): Promise<string> {
 		return this.#signTransaction("vote", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signMultiSignature} */
-	public async signMultiSignature(
-		input: Services.MultiSignatureInput,
-		options?: Services.TransactionOptions,
-	): Promise<string> {
+	public async signMultiSignature(input: Services.MultiSignatureInput): Promise<string> {
 		return this.#signTransaction("multiSignature", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signIpfs} */
-	public async signIpfs(input: Services.IpfsInput, options?: Services.TransactionOptions): Promise<string> {
+	public async signIpfs(input: Services.IpfsInput): Promise<string> {
 		return this.#signTransaction("ipfs", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signMultiPayment} */
-	public async signMultiPayment(
-		input: Services.MultiPaymentInput,
-		options?: Services.TransactionOptions,
-	): Promise<string> {
+	public async signMultiPayment(input: Services.MultiPaymentInput): Promise<string> {
 		return this.#signTransaction("multiPayment", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signDelegateResignation} */
-	public async signDelegateResignation(
-		input: Services.DelegateResignationInput,
-		options?: Services.TransactionOptions,
-	): Promise<string> {
+	public async signDelegateResignation(input: Services.DelegateResignationInput): Promise<string> {
 		return this.#signTransaction("delegateResignation", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signHtlcLock} */
-	public async signHtlcLock(input: Services.HtlcLockInput, options?: Services.TransactionOptions): Promise<string> {
+	public async signHtlcLock(input: Services.HtlcLockInput): Promise<string> {
 		return this.#signTransaction("htlcLock", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signHtlcClaim} */
-	public async signHtlcClaim(input: Services.HtlcClaimInput, options?: Services.TransactionOptions): Promise<string> {
+	public async signHtlcClaim(input: Services.HtlcClaimInput): Promise<string> {
 		return this.#signTransaction("htlcClaim", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signHtlcRefund} */
-	public async signHtlcRefund(
-		input: Services.HtlcRefundInput,
-		options?: Services.TransactionOptions,
-	): Promise<string> {
+	public async signHtlcRefund(input: Services.HtlcRefundInput): Promise<string> {
 		return this.#signTransaction("htlcRefund", input, options);
 	}
 
@@ -384,11 +366,10 @@ export class TransactionService implements ITransactionService {
 	 * @private
 	 * @param {string} type
 	 * @param {*} input
-	 * @param {Services.TransactionOptions} [options]
 	 * @returns {Promise<string>}
 	 * @memberof TransactionService
 	 */
-	async #signTransaction(type: string, input: any, options?: Services.TransactionOptions): Promise<string> {
+	async #signTransaction(type: string, input: any): Promise<string> {
 		const transaction: Contracts.SignedTransactionData = await this.#wallet
 			.coin()
 			.transaction()

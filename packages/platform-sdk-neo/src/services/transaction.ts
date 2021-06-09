@@ -5,10 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	public async transfer(
-		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		try {
 			const signedTransaction = {
 				account: new wallet.Account(input.signatory.signingKey()),
