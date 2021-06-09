@@ -26,4 +26,4 @@ export const DataTransferObjects = {
 	TransferData,
 	VoteData,
 	WalletData,
-}
+};

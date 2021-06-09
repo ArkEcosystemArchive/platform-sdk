@@ -24,4 +24,4 @@ export const Services = {
 	PublicKeyService,
 	TransactionService,
 	WIFService,
-}
+};
