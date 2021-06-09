@@ -45,8 +45,7 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 		try {
 			networkSpinner = ora("Fetching accounts from ledger...").start();
 			identities = await instance.ledger().scan();
-		}
-		finally {
+		} finally {
 			networkSpinner!.stop();
 		}
 
@@ -54,12 +53,7 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 
 		const wallets: any[] = [];
 		for (const [path, identity] of Object.entries(identities)) {
-			table.push([
-				path,
-				identity.address(),
-				identity.publicKey(),
-				identity.balance().available.toHuman(),
-			]);
+			table.push([path, identity.address(), identity.publicKey(), identity.balance().available.toHuman()]);
 
 			wallets.push({
 				path,
@@ -102,13 +96,11 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 		} finally {
 			networkSpinner!.stop();
 		}
-
 	} catch (connectError) {
 		console.log(connectError.message);
 
 		throw connectError;
-	}
-	finally {
+	} finally {
 		await instance.ledger().disconnect();
 	}
 };
