@@ -118,7 +118,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 			}
 		}
 
-		return { ...cold, ...used };
+		return { ...used, ...cold };
 	}
 
 	async #getPublicKeyAndAddress(
