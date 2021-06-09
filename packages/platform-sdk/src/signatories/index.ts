@@ -1,3 +1,4 @@
+import { LedgerSignatory } from "./ledger";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
 import { MultiSignatureSignatory } from "./multi-signature";
@@ -11,6 +12,7 @@ import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
 
 export {
+	LedgerSignatory,
 	MnemonicSignatory,
 	MultiMnemonicSignatory,
 	MultiSignatureSignatory,

@@ -2,6 +2,7 @@ import { ForbiddenMethodCallException } from "../exceptions";
 import { AbstractDoubleSignatory } from "./abstract-double-signatory";
 import { AbstractSignatory } from "./abstract-signatory";
 import { AbstractValueSignatory } from "./abstract-value-signatory";
+import { LedgerSignatory } from "./ledger";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
 import { MultiSignature, MultiSignatureSignatory } from "./multi-signature";
@@ -14,16 +15,17 @@ import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
 
 type SignatoryType =
+	| LedgerSignatory
 	| MnemonicSignatory
 	| MultiMnemonicSignatory
-	| SecondaryMnemonicSignatory
-	| WIFSignatory
-	| SecondaryWIFSignatory
+	| MultiSignatureSignatory
 	| PrivateKeySignatory
-	| SignatureSignatory
-	| SenderPublicKeySignatory
 	| PrivateMultiSignatureSignatory
-	| MultiSignatureSignatory;
+	| SecondaryMnemonicSignatory
+	| SecondaryWIFSignatory
+	| SenderPublicKeySignatory
+	| SignatureSignatory
+	| WIFSignatory;
 
 export class Signatory {
 	readonly #signatory: SignatoryType;
@@ -150,6 +152,14 @@ export class Signatory {
 		throw new ForbiddenMethodCallException(this.constructor.name, this.privateKey.name);
 	}
 
+	public path(): string {
+		if (this.#signatory instanceof LedgerSignatory) {
+			return this.#signatory.signingKey();
+		}
+
+		throw new ForbiddenMethodCallException(this.constructor.name, this.path.name);
+	}
+
 	public actsWithMnemonic(): boolean {
 		return this.#signatory instanceof MnemonicSignatory;
 	}
@@ -188,5 +198,9 @@ export class Signatory {
 
 	public actsWithPrivateMultiSignature(): boolean {
 		return this.#signatory instanceof PrivateMultiSignatureSignatory;
+	}
+
+	public actsWithLedger(): boolean {
+		return this.#signatory instanceof LedgerSignatory;
 	}
 }

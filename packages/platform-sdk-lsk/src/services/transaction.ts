@@ -118,22 +118,20 @@ export class TransactionService extends Services.AbstractTransactionService {
 				registerMultisignature,
 			}[type]!;
 
-			if (options && options.unsignedBytes === true) {
+			if (input.signatory.actsWithLedger()) {
+				await this.ledgerService.connect(LedgerTransportNodeHID);
+
 				const structTransaction = (transactionSigner(struct as any) as unknown) as TransactionJSON;
+				// @ts-ignore - LSK uses JS so they don't encounter these type errors
+				structTransaction.senderPublicKey = await this.ledgerService.getPublicKey(input.signatory.signingKey());
+				// @ts-ignore - LSK uses JS so they don't encounter these type errors
+				structTransaction.signature = await this.ledgerService.signTransaction(input.signatory.signingKey(), utils.getTransactionBytes(structTransaction));
+				// @ts-ignore - LSK uses JS so they don't encounter these type errors
+				structTransaction.id = utils.getTransactionId(structTransaction as any);
 
-				if (input.signatory.actsWithSenderPublicKey()) {
-					// @ts-ignore - LSK uses JS so they don't encounter these type errors
-					structTransaction.senderPublicKey = input.signatory.signingKey();
-					// TODO This one should actually come from the ledger not what the user asks
-				}
+				await this.ledgerService.disconnect();
 
-				const signedTransaction = utils.getTransactionBytes(structTransaction).toString("hex");
-
-				return this.dataTransferObjectService.signedTransaction(
-					UUID.random(),
-					signedTransaction,
-					structTransaction,
-				);
+				return this.dataTransferObjectService.signedTransaction(structTransaction.id, structTransaction, structTransaction);
 			}
 
 			// todo: support multisignature
@@ -146,26 +144,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 				struct.secondPassphrase = input.signatory.confirmKey();
 			}
 
-			if (input.signatory.actsWithSignature()) {
-				struct.signature = input.signatory.signingKey();
-				struct.id = utils.getTransactionId(struct as any);
-				struct.senderPublicKey = input.signatory.publicKey();
-
-				return this.dataTransferObjectService.signedTransaction(struct.id, struct, struct);
-			}
-
-			if (input.signatory.actsWithSenderPublicKey()) {
-				await this.ledgerService.connect(LedgerTransportNodeHID);
-				const path = "m/44'/134'/0'/0/0"; // TODO Need to get this in the signatory or as a param somewhere
-				const buffer: Buffer = utils.getTransactionBytes(transactionSigner(struct as any) as TransactionJSON);
-				struct.signature = await this.ledgerService.signTransaction(path, buffer);
-				await this.ledgerService.disconnect();
-			}
-
-			const signedTransaction = transactionSigner(struct as any);
+			const signedTransaction: any = transactionSigner(struct as any);
 
 			return this.dataTransferObjectService.signedTransaction(
-				// @ts-ignore
 				signedTransaction.id,
 				signedTransaction,
 				signedTransaction,

@@ -31,7 +31,7 @@ beforeAll(async () => {
 jest.setTimeout(60000);
 
 describe("TransactionService", () => {
-	describe("#transfer", () => {
+	describe.only("#transfer", () => {
 		// it.each(["lsk.mainnet", "lsk.testnet"])("should create for %s", async (network) => {
 		it.each(["lsk.testnet"])("should create for %s", async (network) => {
 			const ledger: LedgerService = createService(LedgerService, network, (container) => {
@@ -51,15 +51,11 @@ describe("TransactionService", () => {
 			const signed = await subject.transfer(
 				{
 					signatory: new Signatories.Signatory(
-						new Signatories.SenderPublicKeySignatory({
-							signingKey: "d48522677df50defd175c85072309c7643dbc6bdc63c7665a302579ed2ccaedb",
-							address: "7399986239080551550L",
-							publicKey: "d48522677df50defd175c85072309c7643dbc6bdc63c7665a302579ed2ccaedb",
-						}),
+						new Signatories.LedgerSignatory(path),
 					),
 					data: {
 						amount: 1,
-						to: "11603034586667438647L",
+						to: "10395663885515626348L",
 						memo: "sent from ledger",
 					},
 				},
