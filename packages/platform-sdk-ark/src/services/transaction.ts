@@ -298,7 +298,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			if (input.signatory.actsWithLedger()) {
 				await this.ledgerService.connect(LedgerTransportNodeHID);
 
-				transaction.data.senderPublicKey = await this.ledgerService.getPublicKey(input.signatory.signingKey());
+				transaction.senderPublicKey(await this.ledgerService.getPublicKey(input.signatory.signingKey()));
 				transaction.data.signature = await this.ledgerService.signTransaction(
 					input.signatory.signingKey(),
 					Transactions.Serializer.getBytes(transaction.data, {
