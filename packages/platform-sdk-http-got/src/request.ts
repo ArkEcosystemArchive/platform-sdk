@@ -45,8 +45,6 @@ export class Request extends AbstractRequest {
 		try {
 			return new Response(await got[method.toLowerCase()](url.replace(/^\/+/g, ""), options));
 		} catch (error) {
-			console.log(error)
-			console.log(error.response)
 			return new Response(error.response, error);
 		}
 	}
