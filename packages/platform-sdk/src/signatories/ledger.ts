@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export class LedgerSignatory {
 	readonly #signingKey: string;
 
