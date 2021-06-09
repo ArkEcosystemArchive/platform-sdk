@@ -121,13 +121,20 @@ export class TransactionService extends Services.AbstractTransactionService {
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors
 				structTransaction.senderPublicKey = await this.ledgerService.getPublicKey(input.signatory.signingKey());
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors
-				structTransaction.signature = await this.ledgerService.signTransaction(input.signatory.signingKey(), utils.getTransactionBytes(structTransaction));
+				structTransaction.signature = await this.ledgerService.signTransaction(
+					input.signatory.signingKey(),
+					utils.getTransactionBytes(structTransaction),
+				);
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors
 				structTransaction.id = utils.getTransactionId(structTransaction as any);
 
 				await this.ledgerService.disconnect();
 
-				return this.dataTransferObjectService.signedTransaction(structTransaction.id, structTransaction, structTransaction);
+				return this.dataTransferObjectService.signedTransaction(
+					structTransaction.id,
+					structTransaction,
+					structTransaction,
+				);
 			}
 
 			// todo: support multisignature

@@ -1190,9 +1190,7 @@ test("#actsWithPrivateMultiSignature", () => {
 });
 
 test("#actsWithLedger", () => {
-	const subject = new Signatory(
-		new LedgerSignatory("path"),
-	);
+	const subject = new Signatory(new LedgerSignatory("path"));
 
 	expect(subject.actsWithLedger()).toBeBoolean();
 });

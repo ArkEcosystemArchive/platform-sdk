@@ -34,13 +34,13 @@
 		"@arkecosystem/platform-sdk-http": "workspace:*",
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
+		"@ledgerhq/hw-transport-node-hid-singleton": "~5.50.0",
 		"dot-prop": "^6.0.0",
 		"is-url-superb": "^4.0.0",
 		"lodash.orderby": "^4.6.0",
 		"node-dotify": "^1.0.2",
 		"semver": "^7.3.5",
-		"uuid": "^8.3.2",
-		"@ledgerhq/hw-transport-node-hid-singleton": "~5.50.0"
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
