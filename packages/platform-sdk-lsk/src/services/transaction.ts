@@ -1,5 +1,5 @@
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
-import { BIP39, UUID } from "@arkecosystem/platform-sdk-crypto";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import {
 	castVotes,
