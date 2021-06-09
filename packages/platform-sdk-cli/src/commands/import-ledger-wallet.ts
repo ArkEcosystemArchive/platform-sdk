@@ -1,10 +1,11 @@
+import { Services } from "@arkecosystem/platform-sdk";
 import { Contracts, Environment } from "@arkecosystem/platform-sdk-profiles";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 import Table from "cli-table3";
 import ora from "ora";
 import prompts from "prompts";
 
-import { renderLogo, useLogger } from "../helpers";
+import { renderLogo } from "../helpers";
 
 const chunk = <T>(value: T[], size: number) =>
 	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
@@ -30,102 +31,84 @@ export const importLedgerWallet = async (env: Environment, profile: Contracts.IP
 		},
 	]);
 
-	const slip44 = network === "ark.mainnet" ? 111 : 1;
 	const instance = profile.coins().set(coin, network);
 	await instance.__construct();
 
 	await LedgerTransportNodeHID.create();
 
+	let networkSpinner: ora.Ora;
 	try {
-		const spinner = ora("Trying to connect...").start();
-
 		await instance.ledger().connect(LedgerTransportNodeHID);
 
-		await instance.ledger().getPublicKey(`m/44'/${slip44}'/0'/0/0`);
+		// Derive
+		let identities: Services.LedgerWalletList;
+		try {
+			networkSpinner = ora("Fetching accounts from ledger...").start();
+			identities = await instance.ledger().scan();
+		}
+		finally {
+			networkSpinner!.stop();
+		}
 
-		spinner.stop();
+		const table = new Table({ head: ["Path", "Address", "Public Key", "Balance"] });
+
+		const wallets: any[] = [];
+		for (const [path, identity] of Object.entries(identities)) {
+			table.push([
+				path,
+				identity.address(),
+				identity.publicKey(),
+				identity.balance().available.toHuman(),
+			]);
+
+			wallets.push({
+				path,
+				address: identity.address(),
+				extendedKey: identity.publicKey(),
+				balance: identity.balance().available.toHuman(),
+			});
+		}
+
+		console.log(table.toString());
+
+		const { addresses } = await prompts([
+			{
+				type: "multiselect",
+				name: "addresses",
+				message: "What addresses do you want to import?",
+				choices: wallets.map((wallet) => ({
+					title: `${wallet.address} [${wallet.balance}]`,
+					value: wallet,
+				})),
+			},
+		]);
+
+		const imports: any[] = [];
+		for (const address of addresses) {
+			imports.push(
+				profile.wallets().push(
+					await profile.walletFactory().fromAddressWithDerivationPath({
+						coin,
+						network,
+						address: address.address,
+						path: address.path,
+					}),
+				),
+			);
+		}
+		try {
+			networkSpinner = ora("Fetching accounts from network...").start();
+			await Promise.all(imports);
+		} finally {
+			networkSpinner!.stop();
+		}
+
 	} catch (connectError) {
 		console.log(connectError.message);
 
-		await instance.ledger().disconnect();
-
 		throw connectError;
 	}
-
-	LedgerTransportNodeHID.listen({
-		// @ts-ignore
-		next: async ({ type, deviceModel }) => {
-			if (type === "add") {
-				useLogger().info(
-					`Connected [${deviceModel.productName}] with version [${await instance.ledger().getVersion()}]`,
-				);
-
-				// Derive
-				const identities = await instance.ledger().scan();
-
-				// Check
-				const networkSpinner = ora("Checking addresses on network...").start();
-
-				const table = new Table({ head: ["Path", "Address", "Public Key", "Balance"] });
-
-				const wallets: any[] = [];
-				for (const [path, identity] of Object.entries(identities)) {
-					table.push([
-						path,
-						identity.address(),
-						identity.publicKey(),
-						identity.balance().available.toHuman(),
-					]);
-
-					wallets.push({
-						path,
-						address: identity.address(),
-						extendedKey: identity.publicKey(),
-						balance: identity.balance().available.toHuman(),
-					});
-				}
-
-				networkSpinner.stop();
-
-				console.log(table.toString());
-
-				const { addresses } = await prompts([
-					{
-						type: "multiselect",
-						name: "addresses",
-						message: "What addresses do you want to import?",
-						choices: wallets.map((wallet) => ({
-							title: `${wallet.address} [${wallet.balance}]`,
-							value: wallet,
-						})),
-					},
-				]);
-
-				const imports: any[] = [];
-				for (const address of addresses) {
-					imports.push(
-						profile.wallets().push(
-							await profile.walletFactory().fromAddressWithDerivationPath({
-								coin,
-								network,
-								address: address.address,
-								path: address.path,
-							}),
-						),
-					);
-				}
-
-				await Promise.all(imports);
-
-				// Import
-				process.exit();
-			}
-
-			if (type === "remove") {
-				useLogger().info(`Disconnected [${deviceModel.productName}]`);
-			}
-		},
-		error: (e) => console.log({ type: "failed", message: e.message }),
-		complete: () => void 0,
-	});
+	finally {
+		await instance.ledger().disconnect();
+	}
 };
