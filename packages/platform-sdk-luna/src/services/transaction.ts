@@ -5,9 +5,7 @@ import { LCDClient, MnemonicKey, MsgSend } from "@terra-money/terra.js";
 import { useClient } from "./helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
-	public async transfer(
-		input: Services.TransferInput,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 
 		const transaction = await this.#useClient()

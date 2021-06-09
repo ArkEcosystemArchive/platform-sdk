@@ -25,9 +25,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#network = this.configRepository.get<string>("network.meta.networkId");
 	}
 
-	public async transfer(
-		input: Services.TransferInput,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData(
 			"transfer",
 			{
@@ -42,9 +40,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		);
 	}
 
-	public async secondSignature(
-		input: Services.SecondSignatureInput,
-	): Promise<Contracts.SignedTransactionData> {
+	public async secondSignature(input: Services.SecondSignatureInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData(
 			"registerSecondPassphrase",
 			{
@@ -63,15 +59,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return this.#createFromData("registerDelegate", input, options);
 	}
 
-	public async vote(
-		input: Services.VoteInput,
-	): Promise<Contracts.SignedTransactionData> {
+	public async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("castVotes", input, options);
 	}
 
-	public async multiSignature(
-		input: Services.MultiSignatureInput,
-	): Promise<Contracts.SignedTransactionData> {
+	public async multiSignature(input: Services.MultiSignatureInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData(
 			"registerMultisignature",
 			{

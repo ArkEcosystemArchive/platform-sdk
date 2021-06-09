@@ -67,9 +67,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signDelegateRegistration(
-		input: Services.DelegateRegistrationInput,
-	): Promise<string>;
+	signDelegateRegistration(input: Services.DelegateRegistrationInput): Promise<string>;
 
 	/**
 	 * Sign a Vote transaction.
@@ -114,9 +112,7 @@ export interface ITransactionService {
 	 * @return {Promise<string>}
 	 * @memberof ITransactionService
 	 */
-	signDelegateResignation(
-		input: Services.DelegateResignationInput,
-	): Promise<string>;
+	signDelegateResignation(input: Services.DelegateResignationInput): Promise<string>;
 
 	/**
 	 * Sign a HTLC Lock transaction.

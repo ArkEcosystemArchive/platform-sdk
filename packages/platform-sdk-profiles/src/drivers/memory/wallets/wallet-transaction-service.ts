@@ -78,16 +78,12 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.signSecondSignature} */
-	public async signSecondSignature(
-		input: Services.SecondSignatureInput,
-	): Promise<string> {
+	public async signSecondSignature(input: Services.SecondSignatureInput): Promise<string> {
 		return this.#signTransaction("secondSignature", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signDelegateRegistration} */
-	public async signDelegateRegistration(
-		input: Services.DelegateRegistrationInput,
-	): Promise<string> {
+	public async signDelegateRegistration(input: Services.DelegateRegistrationInput): Promise<string> {
 		return this.#signTransaction("delegateRegistration", input, options);
 	}
 
@@ -97,9 +93,7 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.signMultiSignature} */
-	public async signMultiSignature(
-		input: Services.MultiSignatureInput,
-	): Promise<string> {
+	public async signMultiSignature(input: Services.MultiSignatureInput): Promise<string> {
 		return this.#signTransaction("multiSignature", input, options);
 	}
 
@@ -109,16 +103,12 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.signMultiPayment} */
-	public async signMultiPayment(
-		input: Services.MultiPaymentInput,
-	): Promise<string> {
+	public async signMultiPayment(input: Services.MultiPaymentInput): Promise<string> {
 		return this.#signTransaction("multiPayment", input, options);
 	}
 
 	/** {@inheritDoc ITransactionService.signDelegateResignation} */
-	public async signDelegateResignation(
-		input: Services.DelegateResignationInput,
-	): Promise<string> {
+	public async signDelegateResignation(input: Services.DelegateResignationInput): Promise<string> {
 		return this.#signTransaction("delegateResignation", input, options);
 	}
 
@@ -133,9 +123,7 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.signHtlcRefund} */
-	public async signHtlcRefund(
-		input: Services.HtlcRefundInput,
-	): Promise<string> {
+	public async signHtlcRefund(input: Services.HtlcRefundInput): Promise<string> {
 		return this.#signTransaction("htlcRefund", input, options);
 	}
 

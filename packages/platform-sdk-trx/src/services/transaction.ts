@@ -16,9 +16,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#connection = new TronWeb({ fullHost: Helpers.randomHostFromConfig(this.configRepository) });
 	}
 
-	public async transfer(
-		input: Services.TransferInput,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		try {
 			if (input.signatory.signingKey() === undefined) {
 				throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
