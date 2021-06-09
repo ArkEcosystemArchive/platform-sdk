@@ -1,6 +1,6 @@
 import { Networks } from "@arkecosystem/platform-sdk";
 
-import { explorer, transactions, importMethods, featureFlags } from "../shared";
+import { explorer, transactions, importMethods, featureFlags } from "./shared";
 
 const network: Networks.NetworkManifest = {
 	id: "bind.testnet",

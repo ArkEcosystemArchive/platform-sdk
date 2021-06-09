@@ -81,11 +81,11 @@ describe("scan", () => {
 			.get(
 				"/api/wallets?address=D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK%2CDFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ%2CDFr1CR81idSmfgQ19KXe4M6keqUEAuU8kF%2CDTYiNbvTKveMtJC8KPPdBrgRWxfPxGp1WV%2CDJyGFrZv4MYKrTMcjzEyhZzdTAJju2Rcjr",
 			)
-			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets-page-0.json`))
+			.reply(200, require(`${__dirname}/../test/fixtures/client/wallets-page-0.json`))
 			.get(
 				"/api/wallets?address=DHnV81YdhYDkwCLD8pkxiXh53pGFw435GS%2CDGhLzafzQpBYjDAWP41U4cx5CKZ5BdSnS3%2CDLVXZyKFxLLdyuEtJRUvFoKcorSrnBnq48%2CDFZAfJ1i1LsvhkUk76Piw4v7oTgq12pX9Z%2CDGfNF9bGPss6YKLEqK5gwr4C1M7vgfenzn",
 			)
-			.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets-page-1.json`));
+			.reply(200, require(`${__dirname}/../test/fixtures/client/wallets-page-1.json`));
 
 		const ark = await createMockService(ledger.wallets.record);
 

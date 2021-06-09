@@ -28,7 +28,7 @@ describe("ClientService", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/transactions/3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/transaction.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/transaction.json`));
 
 			const result = await subject.transaction(
 				"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
@@ -51,7 +51,7 @@ describe("ClientService", () => {
 
 			nock(/.+/)
 				.post("/api/transactions/search")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
@@ -72,7 +72,7 @@ describe("ClientService", () => {
 			nock(/.+/)
 				.get("/api/transactions")
 				.query({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" })
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
@@ -99,7 +99,7 @@ describe("ClientService", () => {
 					type: "6",
 					typeGroup: 2,
 				})
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({
 				addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"],
@@ -117,7 +117,7 @@ describe("ClientService", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/wallets/DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/wallet.json`));
 
 			const result = await subject.wallet("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");
 
@@ -138,7 +138,7 @@ describe("ClientService", () => {
 
 			nock(/.+/)
 				.post("/api/wallets/search")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/wallets.json`));
 
 			const result = await subject.wallets({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
@@ -159,7 +159,7 @@ describe("ClientService", () => {
 			nock(/.+/)
 				.get("/api/wallets")
 				.query({ address: "DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8" })
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallets.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/wallets.json`));
 
 			const result = await subject.wallets({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
@@ -172,7 +172,7 @@ describe("ClientService", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates/arkx")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/delegate.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/delegate.json`));
 
 			const result = await subject.delegate("arkx");
 
@@ -184,7 +184,7 @@ describe("ClientService", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/delegates.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/delegates.json`));
 
 			const result = await subject.delegates();
 
@@ -197,7 +197,7 @@ describe("ClientService", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/wallets/arkx")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/wallet.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/wallet.json`));
 
 			const result = await subject.votes("arkx");
 
@@ -212,7 +212,7 @@ describe("ClientService", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/delegates/arkx/voters")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/voters.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/voters.json`));
 
 			const result = await subject.voters("arkx");
 
@@ -225,7 +225,7 @@ describe("ClientService", () => {
 		it("should accept 1 transaction and reject 1 transaction", async () => {
 			nock(/.+/)
 				.post("/api/transactions")
-				.reply(422, require(`${__dirname}/../../test/fixtures/client/broadcast.json`));
+				.reply(422, require(`${__dirname}/../test/fixtures/client/broadcast.json`));
 
 			const result = await subject.broadcast([]);
 

@@ -81,9 +81,9 @@ describe("TransactionService", () => {
 		it("should sign using network estimated expiration", async () => {
 			nock(/.+/)
 				.get("/api/blockchain")
-				.reply(200, require("../../test/fixtures/client/blockchain.json"))
+				.reply(200, require("../test/fixtures/client/blockchain.json"))
 				.get("/api/node/configuration")
-				.reply(200, require("../../test/fixtures/client/configuration.json"));
+				.reply(200, require("../test/fixtures/client/configuration.json"));
 
 			const result = await subject.transfer({
 				nonce: "1",
@@ -303,9 +303,9 @@ describe("TransactionService", () => {
 	test("#estimateExpiration", async () => {
 		nock(/.+/)
 			.get("/api/blockchain")
-			.reply(200, require("../../test/fixtures/client/blockchain.json"))
+			.reply(200, require("../test/fixtures/client/blockchain.json"))
 			.get("/api/node/configuration")
-			.reply(200, require("../../test/fixtures/client/configuration.json"))
+			.reply(200, require("../test/fixtures/client/configuration.json"))
 			.persist();
 
 		await expect(subject.estimateExpiration()).resolves.toBe("6795392");

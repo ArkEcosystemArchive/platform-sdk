@@ -20,9 +20,9 @@ describe("FeeService", () => {
 		it("should succeed", async () => {
 			nock(/.+/)
 				.get("/api/node/fees")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/feesByNode.json`))
+				.reply(200, require(`${__dirname}/../test/fixtures/client/feesByNode.json`))
 				.get("/api/transactions/fees")
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/feesByType.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/feesByType.json`));
 
 			const result = await subject.all();
 
