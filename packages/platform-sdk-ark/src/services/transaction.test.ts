@@ -9,8 +9,8 @@ import { AddressService } from "./address";
 import { ClientService } from "./client";
 import { DataTransferObjectService } from "./data-transfer-object";
 import { KeyPairService } from "./key-pair";
-import { PublicKeyService } from "./public-key";
 import { LedgerService } from "./ledger";
+import { PublicKeyService } from "./public-key";
 import { TransactionService } from "./transaction";
 
 let subject: TransactionService;

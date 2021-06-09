@@ -1,6 +1,6 @@
 import "jest-extended";
-import { LedgerSignatory } from "./ledger";
 
+import { LedgerSignatory } from "./ledger";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
 import { MultiSignatureSignatory } from "./multi-signature";
@@ -10,7 +10,6 @@ import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
 import { SenderPublicKeySignatory } from "./sender-public-key";
 import { Signatory } from "./signatory";
-import { SignatureSignatory } from "./signature";
 import { WIFSignatory } from "./wif";
 
 describe("MnemonicSignatory", () => {

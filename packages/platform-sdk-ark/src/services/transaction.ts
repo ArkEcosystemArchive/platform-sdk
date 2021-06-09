@@ -4,7 +4,6 @@ import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/pla
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
-import { v4 as uuidv4 } from "uuid";
 
 import { Bindings } from "../contracts";
 import { applyCryptoConfiguration } from "./helpers";
