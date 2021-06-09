@@ -19,7 +19,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async transfer(
 		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		const { address, privateKey } = deriveAccount(input.signatory.signingKey());
 		const { balance, representative, frontier } = await this.#client.accountInfo(address, { representative: true });

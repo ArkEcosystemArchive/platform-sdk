@@ -36,7 +36,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async transfer(
 		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("transfer", input, options, ({ transaction, data }) => {
 			transaction.recipientId(data.to);
@@ -49,7 +48,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async secondSignature(
 		input: Services.SecondSignatureInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("secondSignature", input, options, ({ transaction, data }) =>
 			transaction.signatureAsset(BIP39.normalize(data.mnemonic)),
@@ -58,7 +56,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async delegateRegistration(
 		input: Services.DelegateRegistrationInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("delegateRegistration", input, options, ({ transaction, data }) =>
 			transaction.usernameAsset(data.username),
@@ -67,7 +64,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async vote(
 		input: Services.VoteInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("vote", input, options, ({ transaction, data }) => {
 			const votes: string[] = [];
@@ -90,7 +86,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async multiSignature(
 		input: Services.MultiSignatureInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiSignature", input, options, ({ transaction, data }) => {
 			transaction.multiSignatureAsset({
@@ -104,7 +99,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async ipfs(
 		input: Services.IpfsInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("ipfs", input, options, ({ transaction, data }) =>
 			transaction.ipfsAsset(data.hash),
@@ -113,7 +107,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async multiPayment(
 		input: Services.MultiPaymentInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiPayment", input, options, ({ transaction, data }) => {
 			for (const payment of data.payments) {
@@ -128,14 +121,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async delegateResignation(
 		input: Services.DelegateResignationInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("delegateResignation", input, options);
 	}
 
 	public async htlcLock(
 		input: Services.HtlcLockInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("htlcLock", input, options, ({ transaction, data }) => {
 			transaction.amount(Helpers.toRawUnit(data.amount, this.configRepository).toString());
@@ -151,7 +142,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async htlcClaim(
 		input: Services.HtlcClaimInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("htlcClaim", input, options, ({ transaction, data }) =>
 			transaction.htlcClaimAsset({
@@ -163,7 +153,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async htlcRefund(
 		input: Services.HtlcRefundInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("htlcRefund", input, options, ({ transaction, data }) =>
 			transaction.htlcRefundAsset({
@@ -231,7 +220,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	async #createFromData(
 		type: string,
 		input: Services.TransactionInputs,
-		options?: Services.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
 		applyCryptoConfiguration(this.#configCrypto);

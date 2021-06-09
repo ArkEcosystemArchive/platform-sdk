@@ -17,7 +17,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async transfer(
 		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		if (!input.data.to) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "data.to");

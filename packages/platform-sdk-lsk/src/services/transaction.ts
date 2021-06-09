@@ -27,7 +27,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async transfer(
 		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData(
 			"transfer",
@@ -45,7 +44,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async secondSignature(
 		input: Services.SecondSignatureInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData(
 			"registerSecondPassphrase",
@@ -61,21 +59,18 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async delegateRegistration(
 		input: Services.DelegateRegistrationInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("registerDelegate", input, options);
 	}
 
 	public async vote(
 		input: Services.VoteInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("castVotes", input, options);
 	}
 
 	public async multiSignature(
 		input: Services.MultiSignatureInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData(
 			"registerMultisignature",
@@ -94,7 +89,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	async #createFromData(
 		type: string,
 		input: Contracts.KeyValuePair,
-		options?: Services.TransactionOptions,
 		callback?: Function,
 	): Promise<Contracts.SignedTransactionData> {
 		try {

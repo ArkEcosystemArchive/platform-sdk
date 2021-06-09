@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 export class TransactionService extends Services.AbstractTransactionService {
 	public async transfer(
 		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			const signedTransaction = {

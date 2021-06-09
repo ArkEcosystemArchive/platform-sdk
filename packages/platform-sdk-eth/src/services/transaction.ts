@@ -25,7 +25,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public async transfer(
 		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		try {
 			const senderData = await this.addressService.fromMnemonic(input.signatory.signingKey());

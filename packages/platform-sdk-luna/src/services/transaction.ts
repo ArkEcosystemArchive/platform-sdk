@@ -7,7 +7,6 @@ import { useClient } from "./helpers";
 export class TransactionService extends Services.AbstractTransactionService {
 	public async transfer(
 		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
 

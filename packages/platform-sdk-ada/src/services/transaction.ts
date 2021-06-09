@@ -12,7 +12,6 @@ import { UnspentTransaction } from "./transaction.models";
 export class TransactionService extends Services.AbstractTransactionService {
 	public async transfer(
 		input: Services.TransferInput,
-		options?: Services.TransactionOptions,
 	): Promise<Contracts.SignedTransactionData> {
 		const {
 			minFeeA,
