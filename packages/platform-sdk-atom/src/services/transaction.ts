@@ -17,9 +17,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	#networkId;
 	#decimals;
 
-	public async transfer(
-		input: Services.TransferInput,
-	): Promise<Contracts.SignedTransactionData> {
+	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		try {
 			if (input.signatory.signingKey() === undefined) {
 				throw new Error("No mnemonic provided.");
