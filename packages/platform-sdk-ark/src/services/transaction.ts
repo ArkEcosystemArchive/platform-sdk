@@ -216,6 +216,15 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const transaction = Transactions.BuilderFactory[type]().version(2);
 
+			if (input.signatory.actsWithLedger()) {
+				await this.ledgerService.connect(LedgerTransportNodeHID);
+
+				const senderPublicKey = await this.ledgerService.getPublicKey(input.signatory.signingKey());
+				transaction.senderPublicKey(senderPublicKey);
+
+				address = (await this.addressService.fromPublicKey(senderPublicKey)).address;
+			}
+
 			if (input.signatory.actsWithSenderPublicKey()) {
 				address = input.signatory.address();
 
@@ -257,9 +266,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.signatory.actsWithLedger()) {
-				await this.ledgerService.connect(LedgerTransportNodeHID);
-
-				transaction.senderPublicKey(await this.ledgerService.getPublicKey(input.signatory.signingKey()));
 				transaction.data.signature = await this.ledgerService.signTransaction(
 					input.signatory.signingKey(),
 					Transactions.Serializer.getBytes(transaction.data, {
