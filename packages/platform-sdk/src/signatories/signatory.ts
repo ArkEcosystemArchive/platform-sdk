@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { ForbiddenMethodCallException } from "../exceptions";
 import { AbstractDoubleSignatory } from "./abstract-double-signatory";
 import { AbstractSignatory } from "./abstract-signatory";
