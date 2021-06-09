@@ -26,29 +26,23 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData(
-			"transfer",
-			{
-				...input,
-				data: {
-					amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
-					recipientId: input.data.to,
-					data: input.data.memo,
-				},
+		return this.#createFromData("transfer", {
+			...input,
+			data: {
+				amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
+				recipientId: input.data.to,
+				data: input.data.memo,
 			},
-		);
+		});
 	}
 
 	public async secondSignature(input: Services.SecondSignatureInput): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData(
-			"registerSecondPassphrase",
-			{
-				...input,
-				data: {
-					secondMnemonic: BIP39.normalize(input.data.mnemonic),
-				},
+		return this.#createFromData("registerSecondPassphrase", {
+			...input,
+			data: {
+				secondMnemonic: BIP39.normalize(input.data.mnemonic),
 			},
-		);
+		});
 	}
 
 	public async delegateRegistration(
@@ -62,17 +56,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 	}
 
 	public async multiSignature(input: Services.MultiSignatureInput): Promise<Contracts.SignedTransactionData> {
-		return this.#createFromData(
-			"registerMultisignature",
-			{
-				...input,
-				data: {
-					keysgroup: input.data.publicKeys,
-					lifetime: input.data.lifetime,
-					minimum: input.data.min,
-				},
+		return this.#createFromData("registerMultisignature", {
+			...input,
+			data: {
+				keysgroup: input.data.publicKeys,
+				lifetime: input.data.lifetime,
+				minimum: input.data.min,
 			},
-		);
+		});
 	}
 
 	async #createFromData(

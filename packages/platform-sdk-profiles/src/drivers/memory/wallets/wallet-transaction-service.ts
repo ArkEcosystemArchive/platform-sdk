@@ -370,10 +370,7 @@ export class TransactionService implements ITransactionService {
 	 * @memberof TransactionService
 	 */
 	async #signTransaction(type: string, input: any): Promise<string> {
-		const transaction: Contracts.SignedTransactionData = await this.#wallet
-			.coin()
-			.transaction()
-			[type](input);
+		const transaction: Contracts.SignedTransactionData = await this.#wallet.coin().transaction()[type](input);
 
 		const uuid: string = uuidv4();
 
