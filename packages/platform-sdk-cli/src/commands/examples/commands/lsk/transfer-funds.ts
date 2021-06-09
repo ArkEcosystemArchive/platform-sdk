@@ -13,10 +13,10 @@ export const transferFundsWithLSK = async (env: Environment): Promise<void> => {
 
 	// Create read-write wallet #1
 	const mnemonic1: string =
-		"submit teach debate stool guilt pen problem inquiry horn tissue cradle ankle member quarter conduct obvious device ivory top wink globe tool rate tonight";
+		"obvious animal lyrics risk reflect dolphin egg fancy opinion canvas pumpkin lottery";
 	const wallet1 = await profile.walletFactory().fromAddress({
 		address:
-			"addr_test1qq254lk4kl4zpfmr7wsz6qapn7qywks2f6spdhlsx2f7azdu9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqsq7n2ck",
+			"9963422947437499661L",
 		coin: "LSK",
 		network: "lsk.testnet",
 	});
@@ -24,7 +24,7 @@ export const transferFundsWithLSK = async (env: Environment): Promise<void> => {
 
 	// Create read-only wallet #2
 	const address2 =
-		"addr_test1qzt6zp2uf2p3zwdvvdtv4vsh8wrvc7sj92ymj27nnemct84u9m4778wzj4rhddna0s2tszgz9neja69f4q6xwp2w6wqs54c0av";
+		"7399986239080551550L";
 	const wallet2 = await profile.walletFactory().fromAddress({
 		address: address2,
 		coin: "LSK",
