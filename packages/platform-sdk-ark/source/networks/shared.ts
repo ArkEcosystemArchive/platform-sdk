@@ -55,7 +55,7 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Fee: ["all"],
 	Address: [
 		"mnemonic.bip39",
-		"address.multiSignature",
+		"multiSignature",
 		"privateKey",
 		"publicKey",
 		"validate",
@@ -72,7 +72,7 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	],
 	PublicKey: [
 		"mnemonic.bip39",
-		"publicKey.multiSignature",
+		"multiSignature",
 		"wif",
 	],
 	WIF: [
