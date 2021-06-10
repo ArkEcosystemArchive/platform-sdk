@@ -49,7 +49,6 @@ export interface NetworkManifestFeatureFlags {
 	Fee?: FeeMethods;
 	KeyPair?: KeyPairMethods;
 	Ledger?: LedgerMethods;
-	Link?: LinkMethods;
 	Message?: MessageMethods;
 	PrivateKey?: PrivateKeyMethods;
 	PublicKey?: PublicKeyMethods;
@@ -188,9 +187,6 @@ export type WIFMethods = WIFMethod[];
 
 export type LedgerMethod = "getVersion" | "getPublicKey" | "signTransaction" | "signMessage";
 export type LedgerMethods = LedgerMethod[];
-
-export type LinkMethod = "block" | "transaction" | "wallet";
-export type LinkMethods = LinkMethod[];
 
 export type MessageMethod = "sign" | "verify";
 export type MessageMethods = MessageMethod[];
