@@ -36,7 +36,7 @@ export interface SignedTransactionData {
 	// Indicates if the transaction has been signed with a multi-signature.
 	usesMultiSignature(): boolean;
 
-	// Helpers
+	// Access & serialization
 	get<T = string>(key: string): T;
 	toString(): string;
 	toBroadcast(): any;

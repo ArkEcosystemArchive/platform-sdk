@@ -9,7 +9,7 @@ import {
 	importByAddressWithDerivationPath,
 	importByMnemonic,
 	generateWallet,
-} from "../../../../test/helpers";
+} from "../../../../test/mocking";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "../../../contracts";
 import { ProfileSerialiser } from "./profile.serialiser";

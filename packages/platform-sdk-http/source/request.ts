@@ -1,5 +1,6 @@
 import { HttpClient, HttpResponse } from "./contracts";
 import { RequestOptions } from "./request.models";
+import { ensureTrailingSlash } from "./urls";
 
 export abstract class AbstractRequest implements HttpClient {
 	protected _bodyFormat!: string;
@@ -105,13 +106,3 @@ export abstract class AbstractRequest implements HttpClient {
 
 	protected abstract send(method: string, url: string, data?: { query?: object; data?: any }): Promise<HttpResponse>;
 }
-
-const ensureTrailingSlash = (url: string): string => {
-	const lastCharacter = url.substr(-1);
-
-	if (lastCharacter != "/") {
-		url = url + "/";
-	}
-
-	return url;
-};

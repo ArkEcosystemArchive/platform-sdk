@@ -6,7 +6,7 @@ import { waitReady } from "@polkadot/wasm-crypto";
 import { identity } from "../test/fixtures/identity";
 import { createService } from "../test/mocking";
 import { BindingType } from "./constants";
-import { createKeyring } from "./helpers";
+import { createKeyring } from "./factories";
 import { MessageService } from "./message.service";
 
 let subject: MessageService;

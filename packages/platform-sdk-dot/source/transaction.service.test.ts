@@ -8,7 +8,7 @@ import { createServiceAsync } from "../test/mocking";
 import { BindingType } from "./constants";
 import { DataTransferObjects } from "./coin.dtos";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { createApiPromise, createKeyring } from "./helpers";
+import { createApiPromise, createKeyring } from "./factories";
 import { AddressService } from "./address.service";
 import { KeyPairService } from "./key-pair.service";
 import { PublicKeyService } from "./public-key.service";

@@ -5,7 +5,7 @@ import { mock } from "jest-mock-extended";
 import { Coins } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer } from "../../../../../test/mocking";
 import NodeFeesFixture from "../../../../../test/fixtures/client/node-fees.json";
 import { Profile } from "../profile";
 import { ICoinService, IDataRepository } from "../../../../contracts";

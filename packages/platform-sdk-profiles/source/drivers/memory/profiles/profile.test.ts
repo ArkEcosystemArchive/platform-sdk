@@ -2,7 +2,7 @@ import "jest-extended";
 import "reflect-metadata";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { PluginRepository } from "../plugins/plugin-repository";
 import { ContactRepository } from "../repositories/contact-repository";
 import { DataRepository } from "../../../repositories/data-repository";

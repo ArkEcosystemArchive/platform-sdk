@@ -6,7 +6,7 @@ import { cryptoWaitReady } from "@polkadot/util-crypto";
 import { identity } from "../test/fixtures/identity";
 import { createService } from "../test/mocking";
 import { BindingType } from "./constants";
-import { createKeyring } from "./helpers";
+import { createKeyring } from "./factories";
 import { AddressService } from "./address.service";
 
 let subject: AddressService;
