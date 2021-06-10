@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 
+import { inject, injectable } from "inversify";
 import { WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
-import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 import { LedgerService, LedgerTransport, LedgerWalletList } from "./ledger.contract";
