@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.COINS = void 0;
+exports.COINS = {
+	ADA: "ADA",
+	ARK: "ARK",
+	ATOM: "ATOM_2",
+	BTC: "BTC",
+	EOS: "EOS",
+	ETH: "ETH",
+	LSK: "LSK",
+	NEO: "NEO",
+	TRX: "TRX",
+	XLM: "XLM",
+	XMR: "XMR",
+	XRP: "XRP",
+};
+//# sourceMappingURL=constants.js.map

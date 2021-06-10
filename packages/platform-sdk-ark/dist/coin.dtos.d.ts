@@ -1,0 +1,28 @@
+import { DelegateRegistrationData } from "./delegate-registration.dto";
+import { HtlcClaimData } from "./htlc-claim.dto";
+import { HtlcLockData } from "./htlc-lock.dto";
+import { HtlcRefundData } from "./htlc-refund.dto";
+import { IpfsData } from "./ipfs.dto";
+import { MultiPaymentData } from "./multi-payment.dto";
+import { MultiSignatureData } from "./multi-signature.dto";
+import { SecondSignatureData } from "./second-signature.dto";
+import { SignedTransactionData } from "./signed-transaction.dto";
+import { TransactionData } from "./transaction.dto";
+import { TransferData } from "./transfer.dto";
+import { VoteData } from "./vote.dto";
+import { WalletData } from "./wallet.dto";
+export declare const DataTransferObjects: {
+	DelegateRegistrationData: typeof DelegateRegistrationData;
+	HtlcClaimData: typeof HtlcClaimData;
+	HtlcLockData: typeof HtlcLockData;
+	HtlcRefundData: typeof HtlcRefundData;
+	IpfsData: typeof IpfsData;
+	MultiPaymentData: typeof MultiPaymentData;
+	MultiSignatureData: typeof MultiSignatureData;
+	SecondSignatureData: typeof SecondSignatureData;
+	SignedTransactionData: typeof SignedTransactionData;
+	TransactionData: typeof TransactionData;
+	TransferData: typeof TransferData;
+	VoteData: typeof VoteData;
+	WalletData: typeof WalletData;
+};

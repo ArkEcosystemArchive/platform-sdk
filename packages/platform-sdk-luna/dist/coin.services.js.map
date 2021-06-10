@@ -1,0 +1,1 @@
+{"version":3,"file":"coin.services.js","sourceRoot":"","sources":["../src/coin.services.ts"],"names":[],"mappings":";;;AAAA,uDAAmD;AACnD,qDAAiD;AACjD,yDAAoD;AACpD,+DAA0D;AAC1D,6DAAwD;AACxD,+DAA2D;AAE9C,QAAA,QAAQ,GAAG;IACvB,cAAc,EAAd,gCAAc;IACd,aAAa,EAAb,8BAAa;IACb,cAAc,EAAd,iCAAc;IACd,iBAAiB,EAAjB,uCAAiB;IACjB,gBAAgB,EAAhB,qCAAgB;IAChB,kBAAkB,EAAlB,wCAAkB;CAClB,CAAC"}

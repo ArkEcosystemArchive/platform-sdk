@@ -2,7 +2,7 @@
 	"name": "@dated/transaction-export-plugin",
 	"version": "1.0.3",
 	"description": "Export your wallet transaction history",
-	"main": "src/index.js",
+	"main": "source/index.js",
 	"author": "Edgar Goetzendorff <hello@dated.fun>",
 	"license": "MIT",
 	"desktop-wallet": {
