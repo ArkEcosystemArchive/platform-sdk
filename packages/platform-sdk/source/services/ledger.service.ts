@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { inject, injectable } from "inversify";
+
 import { WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
 import { BindingType } from "../ioc/service-provider.contract";
