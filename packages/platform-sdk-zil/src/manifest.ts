@@ -1,5 +1,5 @@
-import ZilliqaMainnet from "./networks/zil/mainnet";
-import ZilliqaTestnet from "./networks/zil/testnet";
+import ZilliqaMainnet from "./networks/zil.mainnet";
+import ZilliqaTestnet from "./networks/zil.testnet";
 
 export const manifest = {
 	name: "ZIL",

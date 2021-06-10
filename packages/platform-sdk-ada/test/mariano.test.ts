@@ -1,6 +1,9 @@
 import "jest-extended";
 import { createService } from "./helpers";
-import { ClientService, AddressService, PrivateKeyService, PublicKeyService, KeyPairService } from "../src/services";
+import { ClientService } from "../src/client.service";
+import { PrivateKeyService } from "../src/private-key.service";
+import { PublicKeyService } from "../src/public-key.service";
+import { KeyPairService } from "../src/key-pair.service";
 import {
 	addressFromAccountExtPublicKey,
 	addressFromMnemonic,
@@ -8,7 +11,7 @@ import {
 	SHELLEY_COIN_PURPOSE,
 	SHELLEY_COIN_TYPE,
 	SHELLEY_DERIVATION_SCHEME,
-} from "../src/services/shelley";
+} from "../src/shelley";
 import lib from "cardano-crypto.js";
 import { Buffer } from "buffer";
 

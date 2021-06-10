@@ -1,5 +1,5 @@
-import SolMainnet from "./networks/sol/mainnet";
-import SolTestnet from "./networks/sol/testnet";
+import SolMainnet from "./networks/sol.mainnet";
+import SolTestnet from "./networks/sol.testnet";
 
 export const manifest = {
 	name: "SOL",
