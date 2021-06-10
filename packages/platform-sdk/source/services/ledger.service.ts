@@ -1,6 +1,5 @@
 /* istanbul ignore file */
 
-import { IoC } from "..";
 import { NotImplemented } from "../exceptions";
 import { BindingType, inject, injectable } from "../ioc";
 import { WalletData } from "../contracts";
