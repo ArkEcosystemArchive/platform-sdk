@@ -12,7 +12,7 @@
 			"title": "ARK Exchange from Switchain",
 			"description": "Switchain plugin on Ark Desktop Wallet",
 			"logo": "https://www.switchain.com/img/logo.svg",
-			"main": "source/index.js",
+			"main": "src/index.js",
 			"author": {
 				"name": "Switchain"
 			},
@@ -106,7 +106,7 @@
 			"title": "Switchain Exchange",
 			"description": "Switchain plugin on Ark Desktop Wallet",
 			"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-			"main": "source/index.js",
+			"main": "src/index.js",
 			"author": {
 				"name": "Switchain"
 			},
@@ -115,9 +115,9 @@
 				"title": "ARK Exchange from Switchain",
 				"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
 				"images": [
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-1.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-2.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-3.png"
 				],
 				"categories": [],
 				"permissions": [
@@ -209,7 +209,7 @@
 			"title": "Switchain Exchange",
 			"description": "Switchain plugin on Ark Desktop Wallet",
 			"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-			"main": "source/index.js",
+			"main": "src/index.js",
 			"author": {
 				"name": "Switchain"
 			},
@@ -218,9 +218,9 @@
 				"title": "Switchain Exchange",
 				"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
 				"images": [
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-1.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-2.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-3.png"
 				],
 				"categories": [],
 				"permissions": [
@@ -312,7 +312,7 @@
 			"title": "Switchain Exchange",
 			"description": "Switchain plugin on Ark Desktop Wallet",
 			"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-			"main": "source/index.js",
+			"main": "src/index.js",
 			"author": {
 				"name": "Switchain"
 			},
@@ -321,9 +321,9 @@
 				"title": "Switchain Exchange",
 				"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
 				"images": [
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
-					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-1.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-2.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/src/img/preview-3.png"
 				],
 				"categories": [],
 				"permissions": [
@@ -466,6 +466,6 @@
 		"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
 	},
 	"license": "MIT",
-	"readme": "## Switchain plugin for cryptocurrency exchange in ARK Desktop Wallet.\n\nThis plugin will be auto-discovered inside ARK Desktop Wallet by the ARK Plugin Manager.\nFor the plugin to work correctly, you must configure the parameters in the file `source/config.json`.\nThe file contains the following parameters:\n\n- `apiKey` - switchain API KEY. Ask Switchain team at hello@switchain.com for an API KEY\n",
+	"readme": "## Switchain plugin for cryptocurrency exchange in ARK Desktop Wallet.\n\nThis plugin will be auto-discovered inside ARK Desktop Wallet by the ARK Plugin Manager.\nFor the plugin to work correctly, you must configure the parameters in the file `src/config.json`.\nThe file contains the following parameters:\n\n- `apiKey` - switchain API KEY. Ask Switchain team at hello@switchain.com for an API KEY\n",
 	"readmeFilename": "README.md"
 }
