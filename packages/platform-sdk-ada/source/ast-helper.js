@@ -15,10 +15,9 @@ const updaters = {
 		"secondSignature",
 		"transfer",
 		"vote",
-		"estimateExpiration"
-	]
+		"estimateExpiration",
+	],
 };
-
 
 function figureOutImplemented(sourceFile, className, knownMethods) {
 	let transactionService = sourceFile.getClassOrThrow(className);
@@ -53,9 +52,7 @@ function updateProperty(shared, varName, propertyName, propertyValues) {
 
 	for (let child of childSyntaxList.getChildrenOfKind(SyntaxKind.PropertyAssignment)) {
 		if (child.getName() === propertyName) {
-			const transactionList = child.getFirstChildByKindOrThrow(
-				SyntaxKind.ArrayLiteralExpression
-			);
+			const transactionList = child.getFirstChildByKindOrThrow(SyntaxKind.ArrayLiteralExpression);
 			let elementsToRemove = transactionList.getElements().length;
 			for (let i = 0; i < elementsToRemove; i++) {
 				transactionList.removeElement(0);
@@ -77,7 +74,7 @@ function doService(serviceName) {
 	const transactionMembers = figureOutImplemented(
 		project.getSourceFileOrThrow(`src/services/${serviceName.toLowerCase()}.ts`),
 		`${serviceName}Service`,
-		knownMethods
+		knownMethods,
 	);
 
 	let implemented = filterKnown(knownMethods, transactionMembers);
