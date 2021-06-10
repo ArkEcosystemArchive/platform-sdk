@@ -1,15 +1,15 @@
 /* istanbul ignore file */
 
 import { IoC } from "..";
-import { WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
-import { injectable } from "../ioc";
+import { BindingType, inject, injectable } from "../ioc";
+import { WalletData } from "../contracts";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 import { LedgerService, LedgerTransport, LedgerWalletList } from "./ledger.contract";
 
 @injectable()
 export class AbstractLedgerService implements LedgerService {
-	@IoC.inject(IoC.BindingType.DataTransferObjectService)
+	@inject(BindingType.DataTransferObjectService)
 	private readonly dataTransferObjectService!: DataTransferObjectService;
 
 	public async __destruct(): Promise<void> {
