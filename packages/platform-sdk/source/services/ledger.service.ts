@@ -1,11 +1,11 @@
 /* istanbul ignore file */
 
+import { IoC } from "..";
+import { WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
 import { injectable } from "../ioc";
-import { LedgerService, LedgerTransport, LedgerWalletList } from "./ledger.contract";
-import { WalletData } from "../contracts";
-import { IoC } from "..";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
+import { LedgerService, LedgerTransport, LedgerWalletList } from "./ledger.contract";
 
 @injectable()
 export class AbstractLedgerService implements LedgerService {

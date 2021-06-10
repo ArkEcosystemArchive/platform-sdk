@@ -8,7 +8,6 @@ import { injectable } from "../ioc";
 
 @injectable()
 export class AbstractWalletData {
-
 	protected data!: KeyValuePair;
 
 	public constructor(data: KeyValuePair) {
