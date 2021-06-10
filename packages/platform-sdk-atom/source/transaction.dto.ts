@@ -34,10 +34,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return attribute.value;
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return [];
-	}
-
 	// @ts-ignore
 	public amount(): BigNumber {
 		const event = this.data.events.find(({ type }) => type === "transfer");
@@ -54,27 +50,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.tx.value.memo;
 	}
 
-	public asset(): Record<string, unknown> {
-		return {};
-	}
-
-	public inputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
 	public outputs(): Contracts.UnspentTransactionData[] {
 		return [];
 	}
 
 	public isConfirmed(): boolean {
-		return false;
-	}
-
-	public isSent(): boolean {
-		return false;
-	}
-
-	public isReceived(): boolean {
 		return false;
 	}
 

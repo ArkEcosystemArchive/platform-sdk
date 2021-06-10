@@ -28,20 +28,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return Object.keys(this.data.outputTotals)[0];
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return [];
-	}
-
 	public amount(): BigNumber {
 		return this.bigNumberService.make(Object.values(this.data.outputTotals)[0] as string);
 	}
 
 	public fee(): BigNumber {
 		return this.bigNumberService.make(this.data.txFee);
-	}
-
-	public asset(): Record<string, unknown> {
-		return {};
 	}
 
 	public inputs(): Contracts.UnspentTransactionData[] {
@@ -70,14 +62,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public isConfirmed(): boolean {
 		return true;
-	}
-
-	public isSent(): boolean {
-		return false;
-	}
-
-	public isReceived(): boolean {
-		return false;
 	}
 
 	public isTransfer(): boolean {

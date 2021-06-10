@@ -17,9 +17,22 @@ export interface SignedTransactionData {
 	fee(): BigNumber;
 	timestamp(): DateTime;
 
-	// MultiSignature
+	// Types
+	isTransfer(): boolean;
+	isSecondSignature(): boolean;
+	isDelegateRegistration(): boolean;
+	isVoteCombination(): boolean;
+	isVote(): boolean;
+	isUnvote(): boolean;
 	isMultiSignature(): boolean;
 	isMultiSignatureRegistration(): boolean;
+	isIpfs(): boolean;
+	isMultiPayment(): boolean;
+	isDelegateResignation(): boolean;
+	isHtlcLock(): boolean;
+	isHtlcClaim(): boolean;
+	isHtlcRefund(): boolean;
+	isMagistrate(): boolean;
 
 	// Helpers
 	get<T = string>(key: string): T;

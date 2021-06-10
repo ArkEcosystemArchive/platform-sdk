@@ -28,10 +28,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		throw new Exceptions.NotImplemented(this.constructor.name, this.recipient.name);
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return [];
-	}
-
 	public amount(): BigNumber {
 		return this.bigNumberService.make(this.data.value);
 	}
@@ -40,27 +36,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.bigNumberService.make(this.data.fee);
 	}
 
-	public asset(): Record<string, unknown> {
-		return {};
-	}
-
-	public inputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
-	public outputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
 	public isConfirmed(): boolean {
-		return false;
-	}
-
-	public isSent(): boolean {
-		return false;
-	}
-
-	public isReceived(): boolean {
 		return false;
 	}
 

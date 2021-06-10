@@ -76,10 +76,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.bigNumberService.make(this.data.fee);
 	}
 
-	public asset(): Record<string, unknown> {
-		return {};
-	}
-
 	public isConfirmed(): boolean {
 		return false;
 	}

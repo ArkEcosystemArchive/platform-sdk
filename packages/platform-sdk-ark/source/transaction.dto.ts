@@ -1,6 +1,7 @@
 import { Contracts, DTO, IoC } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { TransactionTypeService } from "./transaction-type.service";
 
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
@@ -56,14 +57,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.asset || {};
 	}
 
-	public inputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
-	public outputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
 	public isConfirmed(): boolean {
 		return this.confirmations().isGreaterThanOrEqualTo(51);
 	}
@@ -77,70 +70,58 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 	}
 
 	public isTransfer(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 0;
+		return TransactionTypeService.isTransfer(this.data);
 	}
 
 	public isSecondSignature(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 1;
+		return TransactionTypeService.isSecondSignature(this.data);
 	}
 
 	public isDelegateRegistration(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 2;
+		return TransactionTypeService.isDelegateRegistration(this.data);
 	}
 
 	public isVoteCombination(): boolean {
-		return this.isVote() && this.isUnvote();
+		return TransactionTypeService.isVoteCombination(this.data);
 	}
 
 	public isVote(): boolean {
-		const isVote = this.data.typeGroup === 1 && this.data.type === 3;
-
-		if (!isVote) {
-			return false;
-		}
-
-		return (this.asset().votes as string[]).some((vote) => vote.startsWith("+"));
+		return TransactionTypeService.isVote(this.data);
 	}
 
 	public isUnvote(): boolean {
-		const isVote = this.data.typeGroup === 1 && this.data.type === 3;
-
-		if (!isVote) {
-			return false;
-		}
-
-		return (this.asset().votes as string[]).some((vote) => vote.startsWith("-"));
+		return TransactionTypeService.isUnvote(this.data);
 	}
 
 	public isMultiSignature(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 4;
+		return TransactionTypeService.isMultiSignature(this.data);
 	}
 
 	public isIpfs(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 5;
+		return TransactionTypeService.isIpfs(this.data);
 	}
 
 	public isMultiPayment(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 6;
+		return TransactionTypeService.isMultiPayment(this.data);
 	}
 
 	public isDelegateResignation(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 7;
+		return TransactionTypeService.isDelegateResignation(this.data);
 	}
 
 	public isHtlcLock(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 8;
+		return TransactionTypeService.isHtlcLock(this.data);
 	}
 
 	public isHtlcClaim(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 9;
+		return TransactionTypeService.isHtlcClaim(this.data);
 	}
 
 	public isHtlcRefund(): boolean {
-		return this.data.typeGroup === 1 && this.data.type === 10;
+		return TransactionTypeService.isHtlcRefund(this.data);
 	}
 
 	public isMagistrate(): boolean {
-		return this.data.typeGroup === 2;
+		return TransactionTypeService.isMagistrate(this.data);
 	}
 }

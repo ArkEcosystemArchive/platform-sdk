@@ -28,28 +28,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return "TODO";
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return [];
-	}
-
-	public inputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
-	public outputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
 	public amount(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
 	public fee(): BigNumber {
 		return this.bigNumberService.make(this.data.fee);
-	}
-
-	public asset(): Record<string, unknown> {
-		return {};
 	}
 
 	public isConfirmed(): boolean {

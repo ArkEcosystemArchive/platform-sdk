@@ -25,12 +25,4 @@ export class SignedTransactionData
 	public timestamp(): DateTime {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.timestamp.name);
 	}
-
-	public isMultiSignature(): boolean {
-		return false;
-	}
-
-	public isMultiSignatureRegistration(): boolean {
-		throw new Exceptions.NotImplemented(this.constructor.name, this.isMultiSignatureRegistration.name);
-	}
 }
