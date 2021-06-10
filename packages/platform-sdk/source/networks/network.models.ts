@@ -44,13 +44,17 @@ export interface NetworkManifestTransactions {
 }
 
 export interface NetworkManifestFeatureFlags {
+	Address?: AddressMethods;
 	Client?: ClientMethods;
 	Fee?: FeeMethods;
-	Identity?: IdentityMethods;
+	KeyPair?: KeyPairMethods;
 	Ledger?: LedgerMethods;
 	Link?: LinkMethods;
 	Message?: MessageMethods;
+	PrivateKey?: PrivateKeyMethods;
+	PublicKey?: PublicKeyMethods;
 	Transaction?: TransactionMethods;
+	WIF?: WIFMethods;
 }
 
 export interface NetworkManifestExplorer {
@@ -137,43 +141,50 @@ export type ClientMethods = ClientMethod[];
 export type FeeMethod = "all";
 export type FeeMethods = FeeMethod[];
 
-export type IdentityMethod =
-	| "address.mnemonic.bip39"
-	| "address.mnemonic.bip44"
-	| "address.mnemonic.bip49"
-	| "address.mnemonic.bip84"
-	| "address.multiSignature"
-	| "address.privateKey"
-	| "address.publicKey"
-	| "address.secret"
-	| "address.validate"
-	| "address.wif"
-	| "keyPair.mnemonic.bip39"
-	| "keyPair.mnemonic.bip44"
-	| "keyPair.mnemonic.bip49"
-	| "keyPair.mnemonic.bip84"
-	| "keyPair.privateKey"
-	| "keyPair.secret"
-	| "keyPair.wif"
-	| "privateKey.mnemonic.bip39"
-	| "privateKey.mnemonic.bip44"
-	| "privateKey.mnemonic.bip49"
-	| "privateKey.mnemonic.bip84"
-	| "privateKey.secret"
-	| "privateKey.wif"
-	| "publicKey.mnemonic.bip39"
-	| "publicKey.mnemonic.bip44"
-	| "publicKey.mnemonic.bip49"
-	| "publicKey.mnemonic.bip84"
-	| "publicKey.multiSignature"
-	| "publicKey.secret"
-	| "publicKey.wif"
-	| "wif.mnemonic.bip39"
-	| "wif.mnemonic.bip44"
-	| "wif.mnemonic.bip49"
-	| "wif.mnemonic.bip84"
-	| "wif.secret";
-export type IdentityMethods = IdentityMethod[];
+export type AddressMethod =
+	| "mnemonic.bip39"
+	| "mnemonic.bip44"
+	| "mnemonic.bip49"
+	| "mnemonic.bip84"
+	| "multiSignature"
+	| "privateKey"
+	| "publicKey"
+	| "secret"
+	| "validate"
+	| "wif";
+export type AddressMethods = AddressMethod[];
+
+export type KeyPairMethod =
+	| "mnemonic.bip39"
+	| "mnemonic.bip44"
+	| "mnemonic.bip49"
+	| "mnemonic.bip84"
+	| "privateKey"
+	| "secret"
+	| "wif";
+export type KeyPairMethods = KeyPairMethod[];
+
+export type PrivateKeyMethod =
+	| "mnemonic.bip39"
+	| "mnemonic.bip44"
+	| "mnemonic.bip49"
+	| "mnemonic.bip84"
+	| "secret"
+	| "wif";
+export type PrivateKeyMethods = PrivateKeyMethod[];
+
+export type PublicKeyMethod =
+	| "mnemonic.bip39"
+	| "mnemonic.bip44"
+	| "mnemonic.bip49"
+	| "mnemonic.bip84"
+	| "multiSignature"
+	| "secret"
+	| "wif";
+export type PublicKeyMethods = PublicKeyMethod[];
+
+export type WIFMethod = "mnemonic.bip39" | "mnemonic.bip44" | "mnemonic.bip49" | "mnemonic.bip84" | "secret";
+export type WIFMethods = WIFMethod[];
 
 export type LedgerMethod = "getVersion" | "getPublicKey" | "signTransaction" | "signMessage";
 export type LedgerMethods = LedgerMethod[];

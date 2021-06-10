@@ -4,10 +4,10 @@ module.exports = {
 	...baseConfig,
 	collectCoverage: true,
 	collectCoverageFrom: [
-		"src/**/*.ts",
-		"!src/**/index.ts",
+		"source/**/*.ts",
+		"!source/**/index.ts",
 		"!**/node_modules/**",
-		"!src/(container|contracts|manifest|schema|service-provider).ts",
+		"!source/(container|contracts|manifest|schema|service-provider).ts",
 	],
 	coverageDirectory: "<rootDir>/.coverage",
 	coverageReporters: ["json", "lcov", "text", "clover", "html"],
