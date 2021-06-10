@@ -281,7 +281,7 @@ it("should have an string representation", () => {
 
 it("#allows", () => {
 	expect(subject.allows(FeatureFlag.ClientBroadcast)).toBeTrue();
-	expect(subject.allows(FeatureFlag.IdentityAddressMnemonicBip84)).toBeFalse();
+	expect(subject.allows(FeatureFlag.AddressMnemonicBip84)).toBeFalse();
 
 	expect(subject.allows(FeatureFlag.TransactionDelegateRegistration)).toBeTrue();
 	expect(subject.allows(FeatureFlag.TransactionDelegateResignation)).toBeTrue();
@@ -298,7 +298,7 @@ it("#allows", () => {
 });
 
 it("#denies", () => {
-	expect(subject.denies(FeatureFlag.IdentityAddressMnemonicBip84)).toBeTrue();
+	expect(subject.denies(FeatureFlag.AddressMnemonicBip84)).toBeTrue();
 	expect(subject.denies(FeatureFlag.ClientBroadcast)).toBeFalse();
 });
 

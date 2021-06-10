@@ -81,7 +81,6 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"wif.mnemonic.bip49",
 		"wif.mnemonic.bip84",
 	],
-	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
 	Transaction: ["transfer"],
 };

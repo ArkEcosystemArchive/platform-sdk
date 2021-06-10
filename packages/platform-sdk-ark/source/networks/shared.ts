@@ -71,7 +71,6 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"wif.mnemonic.bip39",
 	],
 	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
-	Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
 	Transaction: [
 		"delegateRegistration",
