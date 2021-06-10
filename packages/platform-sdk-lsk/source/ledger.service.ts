@@ -2,11 +2,6 @@ import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import { CommHandler, DposLedger, LedgerAccount, SupportedCoin } from "dpos-ledger-api";
 
-import { WalletData } from "./wallet.dto";
-
-const chunk = <T>(value: T[], size: number) =>
-	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
-
 const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
 @IoC.injectable()
@@ -94,31 +89,8 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 		await Promise.all(promises);
 
-		// Create a mapping of paths and wallets that have been found.
-		const cold: Services.LedgerWalletList = {};
-		const used: Services.LedgerWalletList = {};
-
-		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
-			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
-				(wallet: Contracts.WalletData) => wallet.address() === address,
-			);
-
-			if (matchingWallet === undefined) {
-				if (Object.keys(cold).length > 0) {
-					continue;
-				}
-
-				cold[path] = new WalletData({
-					address,
-					publicKey,
-					balance: 0,
-				});
-			} else {
-				used[path] = matchingWallet;
-			}
-		}
-
-		return { ...used, ...cold };
+		// Return a mapping of paths and wallets that have been found.
+		return this.mapPathsToWallets(addressCache, wallets);
 	}
 
 	async #getPublicKeyAndAddress(

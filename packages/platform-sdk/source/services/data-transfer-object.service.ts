@@ -4,7 +4,7 @@ import { get } from "dot-prop";
 
 import { ConfigKey, ConfigRepository } from "../coins";
 import { TransactionDataCollection } from "../collections";
-import { TransactionDataType } from "../contracts";
+import { TransactionDataType, WalletData } from "../contracts";
 import * as DataTransferObjects from "../dto";
 import { SignedTransactionData } from "../dto/signed-transaction.contract";
 import { TransactionData } from "../dto/transaction.contract";
@@ -98,6 +98,10 @@ export class AbstractDataTransferObjectService implements DataTransferObjectServ
 			transactions.map((transaction) => this.transaction(transaction)),
 			meta,
 		);
+	}
+
+	public wallet(wallet: unknown): WalletData {
+		return this.container.resolve<WalletData>(this.dataTransferObjects.WalletData).fill(wallet);
 	}
 
 	#resolveTransactionClass(klass: string, transaction: unknown): TransactionData {
