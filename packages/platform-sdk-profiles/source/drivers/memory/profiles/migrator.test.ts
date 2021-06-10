@@ -282,7 +282,6 @@ it("should migrate profiles from JSON to Base64", async () => {
 		    "ADVANCED_MODE": false,
 		    "AUTOMATIC_SIGN_OUT_PERIOD": 60,
 		    "BIP39_LOCALE": "english",
-		    "DASHBOARD_CONFIGURATION": false,
 		    "DASHBOARD_TRANSACTION_HISTORY": false,
 		    "DO_NOT_SHOW_FEE_WARNING": false,
 		    "ERROR_REPORTING": false,
