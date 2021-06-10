@@ -35,38 +35,44 @@ export class ProfileValidator implements IProfileValidator {
 				[ProfileData.HasCompletedIntroductoryTutorial]: Joi.boolean(),
 				[ProfileData.HasAcceptedManualInstallationDisclaimer]: Joi.boolean(),
 			}).required(),
-			notifications: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					icon: Joi.string().required(),
-					name: Joi.string().required(),
-					body: Joi.string().required(),
-					type: Joi.string().required(),
-					action: Joi.string().required(),
-					read_at: Joi.number(),
-					meta: Joi.object(),
-				}),
-			).required(),
-			peers: Joi.object().pattern(
-				Joi.string().uuid(),
+			notifications: Joi.object()
+				.pattern(
+					Joi.string().uuid(),
 					Joi.object({
-					name: Joi.string().required(),
-					host: Joi.string().required(),
-					isMultiSignature: Joi.boolean().required(),
-				}),
-			).required(),
-			plugins: Joi.object().pattern(
-				Joi.string().uuid(),
-				Joi.object({
-					id: Joi.string().required(),
-					name: Joi.string().required(),
-					version: Joi.string().required(),
-					isEnabled: Joi.boolean().required(),
-					permissions: Joi.array().items(Joi.string()).required(),
-					urls: Joi.array().items(Joi.string()).required(),
-				}),
-			).required(),
+						id: Joi.string().required(),
+						icon: Joi.string().required(),
+						name: Joi.string().required(),
+						body: Joi.string().required(),
+						type: Joi.string().required(),
+						action: Joi.string().required(),
+						read_at: Joi.number(),
+						meta: Joi.object(),
+					}),
+				)
+				.required(),
+			peers: Joi.object()
+				.pattern(
+					Joi.string().uuid(),
+					Joi.object({
+						name: Joi.string().required(),
+						host: Joi.string().required(),
+						isMultiSignature: Joi.boolean().required(),
+					}),
+				)
+				.required(),
+			plugins: Joi.object()
+				.pattern(
+					Joi.string().uuid(),
+					Joi.object({
+						id: Joi.string().required(),
+						name: Joi.string().required(),
+						version: Joi.string().required(),
+						isEnabled: Joi.boolean().required(),
+						permissions: Joi.array().items(Joi.string()).required(),
+						urls: Joi.array().items(Joi.string()).required(),
+					}),
+				)
+				.required(),
 			// @TODO: assert specific values for enums
 			settings: Joi.object({
 				[ProfileSetting.AdvancedMode]: Joi.boolean(), // @TODO: should we initialise this on profile creation?
