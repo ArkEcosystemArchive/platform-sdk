@@ -3,7 +3,7 @@ import * as bitcoin from "bitcoinjs-lib";
 
 import { BindingType } from "./constants";
 import { AddressFactory } from "./address.factory";
-import { getNetworkConfig } from "./helpers";
+import { getNetworkConfig } from "./config";
 
 @IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {

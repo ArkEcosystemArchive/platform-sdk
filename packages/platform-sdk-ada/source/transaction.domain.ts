@@ -12,7 +12,7 @@ import { Buffer } from "buffer";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { fetchUsedAddressesData } from "./graphql-helpers";
 import { addressFromAccountExtPublicKey, deriveAddress, deriveChangeKey, deriveSpendKey } from "./shelley";
-import { createValue } from "./transaction.helpers";
+import { createValue } from "./transaction.factory";
 import { UnspentTransaction } from "./transaction.models";
 
 export const usedAddressesForAccount = async (
@@ -46,7 +46,7 @@ export const usedAddressesForAccount = async (
 	return { usedSpendAddresses, usedChangeAddresses };
 };
 
-export const addressesChunk = async (
+const addressesChunk = async (
 	networkId: string,
 	accountPublicKey: string,
 	isChange: boolean,
@@ -79,7 +79,7 @@ export const addUtxoInput = (
 	return { added: !skipped, amount: BigNum.from_str(input.value), fee: feeForInput };
 };
 
-export const utxoToTxInput = (utxo: UnspentTransaction): TransactionInput => {
+const utxoToTxInput = (utxo: UnspentTransaction): TransactionInput => {
 	return CardanoWasm.TransactionInput.new(
 		CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.txHash, "hex")),
 		parseInt(utxo.index),

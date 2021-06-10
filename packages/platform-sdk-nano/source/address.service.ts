@@ -2,7 +2,7 @@ import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { deriveAddress, derivePublicKey } from "nanocurrency";
 import { tools } from "nanocurrency-web";
 
-import { deriveAccount } from "./helpers";
+import { deriveAccount } from "./account";
 
 @IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {

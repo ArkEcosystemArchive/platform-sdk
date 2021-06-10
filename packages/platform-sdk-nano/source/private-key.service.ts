@@ -1,6 +1,6 @@
 import { IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { deriveAccount } from "./helpers";
+import { deriveAccount } from "./account";
 
 @IoC.injectable()
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {

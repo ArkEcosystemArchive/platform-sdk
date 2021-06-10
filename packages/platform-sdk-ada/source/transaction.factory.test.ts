@@ -1,6 +1,6 @@
 import { Value } from "@emurgo/cardano-serialization-lib-nodejs";
 
-import { createValue } from "./transaction.helpers";
+import { createValue } from "./transaction.factory";
 
 describe("createValue", () => {
 	it("should work", () => {

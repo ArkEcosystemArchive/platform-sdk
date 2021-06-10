@@ -1,6 +1,6 @@
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { deriveAccount } from "./helpers";
+import { deriveAccount } from "./account";
 
 @IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
