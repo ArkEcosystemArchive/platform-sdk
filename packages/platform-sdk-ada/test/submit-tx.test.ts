@@ -1,8 +1,8 @@
 import "jest-extended";
 
 import { createService } from "../test/helpers";
-import { ClientService } from "../src/client.service";
-import { TransactionService } from "../src/transaction.service";
+import { ClientService } from "../source/client.service";
+import { TransactionService } from "../source/transaction.service";
 import { Signatories } from "@arkecosystem/platform-sdk";
 
 let subject: TransactionService;

@@ -1,0 +1,1 @@
+{"version":3,"file":"second-signature.dto.js","sourceRoot":"","sources":["../src/second-signature.dto.ts"],"names":[],"mappings":";;;;;;;;;AAAA,6DAA4D;AAE5D,uDAAoD;AAGpD,IAAa,mBAAmB,GAAhC,MAAa,mBAAoB,SAAQ,iCAAe;IAChD,eAAe;QACrB,OAAO,IAAI,CAAC,IAAI,CAAC,KAAK,CAAC,SAAS,CAAC,SAAS,CAAC;IAC5C,CAAC;CACD,CAAA;AAJY,mBAAmB;IAD/B,kBAAG,CAAC,UAAU,EAAE;GACJ,mBAAmB,CAI/B;AAJY,kDAAmB"}

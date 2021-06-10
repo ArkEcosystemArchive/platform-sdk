@@ -1,0 +1,1 @@
+{"version":3,"file":"manifest.js","sourceRoot":"","sources":["../src/manifest.ts"],"names":[],"mappings":";;;;;;AAAA,uEAA8C;AAC9C,qEAA4C;AAC5C,yEAAgD;AAChD,yEAAgD;AAChD,yEAAgD;AAEnC,QAAA,QAAQ,GAAG;IACvB,IAAI,EAAE,KAAK;IACX,QAAQ,EAAE;QACT,aAAa,EAAE,qBAAU;QACzB,WAAW,EAAE,mBAAQ;QACrB,aAAa,EAAE,qBAAU;QACzB,aAAa,EAAE,qBAAU;QACzB,YAAY,EAAE,oBAAS;KACvB;CACD,CAAC"}

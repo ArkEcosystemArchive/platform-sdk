@@ -1,0 +1,66 @@
+"use strict";
+var __decorate =
+	(this && this.__decorate) ||
+	function (decorators, target, key, desc) {
+		var c = arguments.length,
+			r = c < 3 ? target : desc === null ? (desc = Object.getOwnPropertyDescriptor(target, key)) : desc,
+			d;
+		if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+			r = Reflect.decorate(decorators, target, key, desc);
+		else
+			for (var i = decorators.length - 1; i >= 0; i--)
+				if ((d = decorators[i])) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+		return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+var __metadata =
+	(this && this.__metadata) ||
+	function (k, v) {
+		if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MessageService = void 0;
+const platform_sdk_1 = require("@arkecosystem/platform-sdk");
+const bitcoinjs_lib_1 = require("bitcoinjs-lib");
+const bitcoinjs_message_1 = require("bitcoinjs-message");
+let MessageService = class MessageService extends platform_sdk_1.Services.AbstractMessageService {
+	constructor() {
+		super(...arguments);
+		Object.defineProperty(this, "addressService", {
+			enumerable: true,
+			configurable: true,
+			writable: true,
+			value: void 0,
+		});
+	}
+	async sign(input) {
+		try {
+			const { compressed, privateKey } = bitcoinjs_lib_1.ECPair.fromWIF(input.signatory.signingKey());
+			if (!privateKey) {
+				throw new Error(`Failed to derive private key for [${input.signatory.signingKey()}].`);
+			}
+			return {
+				message: input.message,
+				signatory: (await this.addressService.fromWIF(input.signatory.signingKey())).address,
+				signature: bitcoinjs_message_1.sign(input.message, privateKey, compressed).toString("base64"),
+			};
+		} catch (error) {
+			throw new platform_sdk_1.Exceptions.CryptoException(error);
+		}
+	}
+	async verify(input) {
+		try {
+			return bitcoinjs_message_1.verify(input.message, input.signatory, input.signature);
+		} catch (error) {
+			throw new platform_sdk_1.Exceptions.CryptoException(error);
+		}
+	}
+};
+__decorate(
+	[platform_sdk_1.IoC.inject(platform_sdk_1.IoC.BindingType.AddressService), __metadata("design:type", Object)],
+	MessageService.prototype,
+	"addressService",
+	void 0,
+);
+MessageService = __decorate([platform_sdk_1.IoC.injectable()], MessageService);
+exports.MessageService = MessageService;
+//# sourceMappingURL=message.service.js.map
