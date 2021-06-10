@@ -161,7 +161,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	});
 
 	// Create a DataEntry
-	profile.data().set("key", "value");
+	profile.data().set(ProfileData.LatestMigration, "0.0.0");
 
 	// Create a Setting
 	profile.settings().set("ADVANCED_MODE", false);
@@ -170,7 +170,7 @@ it("should create a profile with data and persist it when instructed to do so", 
 	subject.profiles().persist(profile);
 
 	// Create a Global DataEntry
-	subject.data().set(ProfileData.LatestMigration, "0.0.0");
+	subject.data().set("KEY", "VALUE");
 
 	// Persist the data for the next instance to use.
 	await subject.persist();
@@ -195,7 +195,11 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
-	expect(newProfile.data().all()).toMatchInlineSnapshot(`Object {}`);
+	expect(newProfile.data().all()).toMatchInlineSnapshot(`
+		Object {
+		  "LATEST_MIGRATION": "0.0.0",
+		}
+	`);
 	expect(newProfile.settings().all()).toMatchInlineSnapshot(`
 		Object {
 		  "ADVANCED_MODE": false,
@@ -231,7 +235,7 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toMatchInlineSnapshot(`
 		Object {
-		  "key": "value",
+		  "LATEST_MIGRATION": "0.0.0",
 		}
 	`);
 	expect(newProfile.settings().all()).toEqual({

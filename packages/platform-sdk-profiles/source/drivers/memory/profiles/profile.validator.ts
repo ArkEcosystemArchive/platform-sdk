@@ -31,7 +31,7 @@ export class ProfileValidator implements IProfileValidator {
 				}),
 			),
 			data: Joi.object({
-				[ProfileData.LatestMigration]: Joi.boolean(),
+				[ProfileData.LatestMigration]: Joi.string(),
 				[ProfileData.HasCompletedIntroductoryTutorial]: Joi.boolean(),
 				[ProfileData.HasAcceptedManualInstallationDisclaimer]: Joi.boolean(),
 			}).required(),
