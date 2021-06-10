@@ -1,508 +1,471 @@
 {
-    "_id": "@elevenyellow.com/ark-switchain-plugin",
-    "_rev": "4-46f3d25044c1f11bd6c648a4b564a3e5",
-    "name": "@elevenyellow.com/ark-switchain-plugin",
-    "dist-tags": {
-        "latest": "1.2.0"
-    },
-    "versions": {
-        "1.0.0": {
-            "name": "@elevenyellow.com/ark-switchain-plugin",
-            "version": "1.0.0",
-            "title": "ARK Exchange from Switchain",
-            "description": "Switchain plugin on Ark Desktop Wallet",
-            "logo": "https://www.switchain.com/img/logo.svg",
-            "main": "source/index.js",
-            "author": {
-                "name": "Switchain"
-            },
-            "license": "MIT",
-            "desktop-wallet": {
-                "title": "ARK Exchange from Switchain",
-                "categories": [],
-                "permissions": [
-                    "COMPONENTS",
-                    "HTTP",
-                    "MENU_ITEMS",
-                    "MESSAGING",
-                    "PROFILE_CURRENT",
-                    "ROUTES",
-                    "STORAGE",
-                    "WEBFRAME",
-                    "TIMERS",
-                    "STORAGE",
-                    "EVENTS",
-                    "ALERTS",
-                    "UI_COMPONENTS"
-                ],
-                "urls": [
-                    "https://api.switchain.com/rest/v1/"
-                ],
-                "minVersion": "2.6"
-            },
-            "keywords": [
-                "@arkecosystem",
-                "desktop-wallet",
-                "plugin",
-                "switchain",
-                "exchange",
-                "swap"
-            ],
-            "bugs": {
-                "url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
-            },
-            "homepage": "http://URL",
-            "repository": {
-                "type": "git",
-                "url": "git+https://github.com/elevenyellow.com/ark-switchain-plugin.git"
-            },
-            "gitHead": "abbb48d6a41229fc64e604bbe19de5342de99f1e",
-            "_id": "@elevenyellow.com/ark-switchain-plugin@1.0.0",
-            "_nodeVersion": "12.13.0",
-            "_npmVersion": "6.12.0",
-            "dist": {
-                "integrity": "sha512-LYHZz3wDx3LoNB9J8bNOUIB/D0dkmLUfmGJKFg5dngisg4dBnhiUj7zSBAnekkBQ6AthFQVH54ZZuxZxEJ/jxg==",
-                "shasum": "53aa9f8533e9d7e84427a56cf3878841557e77bb",
-                "tarball": "https://registry.npmjs.org/@elevenyellow.com/ark-switchain-plugin/-/ark-switchain-plugin-1.0.0.tgz",
-                "fileCount": 20,
-                "unpackedSize": 213879,
-                "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJeaMpJCRA9TVsSAnZWagAACuYQAIqaAO9oPVF7EmNXDR+0\nIRW9+OzPH98f4SC1rYKTWYexFpYihdMlA9Go8wxTVyUq+bi+zNpQTa9gH9dy\nsJ49sCwgGD8EBdxlOF6iw5HnTKcAMe7icyYL9fgQKujdV3UcdbJCBrpMO4CT\nPfvrvqZcGf25HtIh5Pvb4GBRRWnNh0OdduCNUuY+G77xoFotOX9ls/vObyQQ\n7HvTvYAUSwbWBvqmbYAOEgctLWLBzYkUBl/vs5loTqrP3o+fVxP6rpDDhTDE\nbzM6E2+sZ7DvMhFMJDLmy+QHut4465eDqvFNQAZV9huy3AJIliQEI3gWiYbV\n/9B1M5C4F8afmkb8SB2xxiYYyl/capjZSjSYSgRwz0NSogISb2HEoKUavBiP\ntUpAY5o0+eSictDUnIRYX5AyzlgFy1hhM9T/QOW8WoYURJMUYkKRJATTTJL4\nd9qIDKRWVq4QVGXLLPnzo3L8mDnUPNsDM/xmz0MszJSfgaBWG3JQyQEy8FEa\nrIPTmQSBnwmgUM4QsatLuEdBdT/WqGBriA//c51rEjq4zVN7dlBZkOpAGy9+\n8ptcopAXVYup85yeokn7RlEq3ZcXZ7FCxI8xK4nxWUM7yFezZpNLqLNF+0XZ\nGM0mLn9ZhDx+n65aBBCkFih3zrWebbuyLnoq3CW2Ia5iZ8Wg3Kz50XNao4AF\n4BSr\r\n=skkW\r\n-----END PGP SIGNATURE-----\r\n"
-            },
-            "maintainers": [
-                {
-                    "name": "cook1e-monster",
-                    "email": "carlossil01@gmail.com"
-                },
-                {
-                    "name": "ajamardo",
-                    "email": "agus@elevenyellow.com"
-                },
-                {
-                    "name": "enzo",
-                    "email": "enzo@josema.es"
-                },
-                {
-                    "name": "chemuto",
-                    "email": "chemuto@elevenyellow.com"
-                },
-                {
-                    "name": "garbolino",
-                    "email": "roly@elevenyellow.com"
-                },
-                {
-                    "name": "dcusan",
-                    "email": "daniel.cusan@gmail.com"
-                },
-                {
-                    "name": "elevenyellow",
-                    "email": "all@elevenyellow.com"
-                }
-            ],
-            "_npmUser": {
-                "name": "garbolino",
-                "email": "roly@elevenyellow.com"
-            },
-            "directories": {},
-            "_npmOperationalInternal": {
-                "host": "s3://npm-registry-packages",
-                "tmp": "tmp/ark-switchain-plugin_1.0.0_1583925832494_0.02479858886804087"
-            },
-            "_hasShrinkwrap": false
-        },
-        "1.1.0": {
-            "name": "@elevenyellow.com/ark-switchain-plugin",
-            "version": "1.1.0",
-            "title": "Switchain Exchange",
-            "description": "Switchain plugin on Ark Desktop Wallet",
-            "logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-            "main": "source/index.js",
-            "author": {
-                "name": "Switchain"
-            },
-            "license": "MIT",
-            "desktop-wallet": {
-                "title": "ARK Exchange from Switchain",
-                "logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-                "images": [
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
-                ],
-                "categories": [],
-                "permissions": [
-                    "COMPONENTS",
-                    "HTTP",
-                    "MENU_ITEMS",
-                    "MESSAGING",
-                    "PROFILE_CURRENT",
-                    "ROUTES",
-                    "STORAGE",
-                    "WEBFRAME",
-                    "TIMERS",
-                    "STORAGE",
-                    "EVENTS",
-                    "ALERTS",
-                    "UI_COMPONENTS"
-                ],
-                "urls": [
-                    "https://api.switchain.com/rest/v1/",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png"
-                ],
-                "minVersion": "2.6"
-            },
-            "keywords": [
-                "@arkecosystem",
-                "desktop-wallet",
-                "plugin",
-                "switchain",
-                "exchange",
-                "swap"
-            ],
-            "bugs": {
-                "url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
-            },
-            "homepage": "http://URL",
-            "repository": {
-                "type": "git",
-                "url": "git+https://github.com/elevenyellow.com/ark-switchain-plugin.git"
-            },
-            "gitHead": "76ead048082191c1f92de264994fa57a5184e6c7",
-            "_id": "@elevenyellow.com/ark-switchain-plugin@1.1.0",
-            "_nodeVersion": "12.13.0",
-            "_npmVersion": "6.12.0",
-            "dist": {
-                "integrity": "sha512-WRmcpftbxVz5Sf+O7wuh+X565RuKAF/QYwAj/F2IOJ6JxMt9zKbIP3B1w2597J1hH11wvs4Tbz4rNnnXKSNclw==",
-                "shasum": "afd73e60962abf1367fbc073e8c70f9f2a9742fc",
-                "tarball": "https://registry.npmjs.org/@elevenyellow.com/ark-switchain-plugin/-/ark-switchain-plugin-1.1.0.tgz",
-                "fileCount": 23,
-                "unpackedSize": 605982,
-                "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJeb8JiCRA9TVsSAnZWagAAXiMQAJFicDZY6QXJV4+ipcQq\nhq3fsP8mDF3Egx3ttDjUWvXNomKG1HFnRpJnG3hyQnOlzVwDkErrpmU8hDWW\nBvfMd7H54enBcW8HMyCxMVnfffyr8TWOXvy/PbtV5JFSNBvl9/jc9ivwvZE1\nnBiIK2BEXopaPaiGs6ElGe/f0DnuKqwt6jX0PeyCDUlDO8gm2R6eTYr0P9vm\nGWXt/yCu4Kz5v/CpHVLCmQB4u49EFf7ZUi3uSz5gquVHC2B2lFOifLe/f3zY\nt1ES/xnVSJmQ+/BiNU9pyL0gg12sN2Lvm77n5pA45r0/7hbmQQSayzTpgn8Q\nWgD6SkVpejojm7mxdDN9hR3c4BL9LexRh8UPGQAnso23FNjFhbFEbMucwsV/\nLdQt/cR4Rcx9ACWxQwqp8oitQZi5Ox5xx7kuGve1oh9jGLpxKR46j0tVK9Y6\nC5K1iP1tfGMNdiPTt2vI9V5PG8lpsQO9TUXllECjsmEqYqqraiAXmCB5lHp4\nfjQec6U6xa3kIezmmhdV63O+Uny7Vt65+ftTMod2L1xogre0dT76shAvDcbS\n4tmfiBf2RmSS8KoAoxQXgWvbJexxt3Ih0NCTK9iWRmrKMREa/vjD6NfK+VkP\nInBd+hHcknGK6yPqEIXPKalEOnH+FoR22Xaue+IxiTv4n1vRrbLzy8654zLU\nY53E\r\n=OYiH\r\n-----END PGP SIGNATURE-----\r\n"
-            },
-            "maintainers": [
-                {
-                    "name": "ajamardo",
-                    "email": "agus@elevenyellow.com"
-                },
-                {
-                    "name": "chemuto",
-                    "email": "chemuto@elevenyellow.com"
-                },
-                {
-                    "name": "cook1e-monster",
-                    "email": "carlossil01@gmail.com"
-                },
-                {
-                    "name": "dcusan",
-                    "email": "daniel.cusan@gmail.com"
-                },
-                {
-                    "name": "elevenyellow",
-                    "email": "all@elevenyellow.com"
-                },
-                {
-                    "name": "enzo",
-                    "email": "enzo@josema.es"
-                },
-                {
-                    "name": "garbolino",
-                    "email": "roly@elevenyellow.com"
-                }
-            ],
-            "_npmUser": {
-                "name": "garbolino",
-                "email": "roly@elevenyellow.com"
-            },
-            "directories": {},
-            "_npmOperationalInternal": {
-                "host": "s3://npm-registry-packages",
-                "tmp": "tmp/ark-switchain-plugin_1.1.0_1584382562308_0.1589594916292354"
-            },
-            "_hasShrinkwrap": false
-        },
-        "1.1.1": {
-            "name": "@elevenyellow.com/ark-switchain-plugin",
-            "version": "1.1.1",
-            "title": "Switchain Exchange",
-            "description": "Switchain plugin on Ark Desktop Wallet",
-            "logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-            "main": "source/index.js",
-            "author": {
-                "name": "Switchain"
-            },
-            "license": "MIT",
-            "desktop-wallet": {
-                "title": "Switchain Exchange",
-                "logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-                "images": [
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
-                ],
-                "categories": [],
-                "permissions": [
-                    "COMPONENTS",
-                    "HTTP",
-                    "MENU_ITEMS",
-                    "MESSAGING",
-                    "PROFILE_CURRENT",
-                    "ROUTES",
-                    "STORAGE",
-                    "WEBFRAME",
-                    "TIMERS",
-                    "STORAGE",
-                    "EVENTS",
-                    "ALERTS",
-                    "UI_COMPONENTS"
-                ],
-                "urls": [
-                    "https://api.switchain.com/rest/v1/",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png"
-                ],
-                "minVersion": "2.6"
-            },
-            "keywords": [
-                "@arkecosystem",
-                "desktop-wallet",
-                "plugin",
-                "switchain",
-                "exchange",
-                "swap"
-            ],
-            "bugs": {
-                "url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
-            },
-            "homepage": "http://URL",
-            "repository": {
-                "type": "git",
-                "url": "git+https://github.com/elevenyellow/ark-switchain-plugin.git"
-            },
-            "gitHead": "bfbdfbab7aa4ca1a100cf29ac7f6fd16955e6983",
-            "_id": "@elevenyellow.com/ark-switchain-plugin@1.1.1",
-            "_nodeVersion": "12.13.0",
-            "_npmVersion": "6.12.0",
-            "dist": {
-                "integrity": "sha512-gkCvFL+1V+JFgALHeLTa4CtZc4l5/sSUPdvGNSENeTgBoy0+0oSUvD4lBvmu7cNnJcRFR4yeANxNIfFJCwWyPg==",
-                "shasum": "51c655f6fa550f08eab2afa50f16e1cb418b4d6d",
-                "tarball": "https://registry.npmjs.org/@elevenyellow.com/ark-switchain-plugin/-/ark-switchain-plugin-1.1.1.tgz",
-                "fileCount": 23,
-                "unpackedSize": 605969,
-                "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJeb+QaCRA9TVsSAnZWagAAd4UP/iEGm1bvJ57xA+1uZnQ2\nFpsf3lH5mxL4F/N8mQINY94iBylB/z+c0aQ/Z2kaBUPSZg//fvZZgW5hKsTH\n4PqK2/mPH9Jgrpo4Lz+FDHSxx5KQ9lBBUnjbZEiDcVdJRaquCEuz+HIYefF/\n8GJY7wc4sew1l0tqCuMgsstSWo/d+5TrOHJXNdndkkHr0D+B57MpTujCPfWo\nMVy+0ce5eHFhCuUhRGVBo+hi7MNvytdrOhqDbHTFKKkF/VDmyzJntrNcSAag\nazEm7+4nDFiyU88NDr0mBThOKeh9kIQxMygBzqzMxe0fZdknBTlXkMq7IFWi\n7UaUluAF/vuWc2D012IevkVFUJr7I1SpIfGkp8Q4H136xlVmc3Co6As9KstQ\nuCiZe0hu6p/mAY/xhzO0hdvKXennU2jnuvlWplhtHyRNsOk2qFBX4dZWeR7n\nPokDmAdzgl9HCZMgg2UsaK3Aamq+f3x7RBSwkPI2k+4LPlC8Nv2QsvJLYFCV\nDyykKtNGLU7xqRihwrZFK8ALJBzB+hjCYqlI3t/iRZFBCs1pFup+mzMicukc\na/c2mF444R5cH3tVfngh5UiDvtxIAY7+4gNox/6Pz7kJ8UVaQit/kKRlcVen\nzhzOcrTDVRvcU8LG0NnwFfdQwFX7MdzX9glD5JwRtSiNjrZY9ZPTKvoc6Bqd\naGV0\r\n=rQ3Y\r\n-----END PGP SIGNATURE-----\r\n"
-            },
-            "maintainers": [
-                {
-                    "name": "ajamardo",
-                    "email": "agus@elevenyellow.com"
-                },
-                {
-                    "name": "chemuto",
-                    "email": "chemuto@elevenyellow.com"
-                },
-                {
-                    "name": "cook1e-monster",
-                    "email": "carlossil01@gmail.com"
-                },
-                {
-                    "name": "dcusan",
-                    "email": "daniel.cusan@gmail.com"
-                },
-                {
-                    "name": "elevenyellow",
-                    "email": "all@elevenyellow.com"
-                },
-                {
-                    "name": "enzo",
-                    "email": "enzo@josema.es"
-                },
-                {
-                    "name": "garbolino",
-                    "email": "roly@elevenyellow.com"
-                }
-            ],
-            "_npmUser": {
-                "name": "garbolino",
-                "email": "roly@elevenyellow.com"
-            },
-            "directories": {},
-            "_npmOperationalInternal": {
-                "host": "s3://npm-registry-packages",
-                "tmp": "tmp/ark-switchain-plugin_1.1.1_1584391193885_0.7706392378734326"
-            },
-            "_hasShrinkwrap": false
-        },
-        "1.2.0": {
-            "name": "@elevenyellow.com/ark-switchain-plugin",
-            "version": "1.2.0",
-            "title": "Switchain Exchange",
-            "description": "Switchain plugin on Ark Desktop Wallet",
-            "logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-            "main": "source/index.js",
-            "author": {
-                "name": "Switchain"
-            },
-            "license": "MIT",
-            "desktop-wallet": {
-                "title": "Switchain Exchange",
-                "logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
-                "images": [
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
-                ],
-                "categories": [],
-                "permissions": [
-                    "COMPONENTS",
-                    "HTTP",
-                    "MENU_ITEMS",
-                    "MESSAGING",
-                    "PROFILE_CURRENT",
-                    "ROUTES",
-                    "STORAGE",
-                    "WEBFRAME",
-                    "TIMERS",
-                    "STORAGE",
-                    "EVENTS",
-                    "ALERTS",
-                    "UI_COMPONENTS"
-                ],
-                "urls": [
-                    "https://api.switchain.com/rest/v1/",
-                    "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png"
-                ],
-                "minVersion": "2.6"
-            },
-            "keywords": [
-                "@arkecosystem",
-                "desktop-wallet",
-                "plugin",
-                "switchain",
-                "exchange",
-                "swap"
-            ],
-            "bugs": {
-                "url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
-            },
-            "homepage": "http://URL",
-            "repository": {
-                "type": "git",
-                "url": "git+https://github.com/elevenyellow/ark-switchain-plugin.git"
-            },
-            "gitHead": "9a610d2d3afaabbd078ec1bffdd0580ba45ce637",
-            "_id": "@elevenyellow.com/ark-switchain-plugin@1.2.0",
-            "_nodeVersion": "12.13.0",
-            "_npmVersion": "6.12.0",
-            "dist": {
-                "integrity": "sha512-oce4bJ5rm2/j65c8iM3PA/oVndjpx4Pt6VhyTmyWgV2y/5SpJ7xzKHNq5cgC3xgW7rMVlngM0GilOdryGwM1xg==",
-                "shasum": "c9b06aaff42b53447966b60351a2a90813611f75",
-                "tarball": "https://registry.npmjs.org/@elevenyellow.com/ark-switchain-plugin/-/ark-switchain-plugin-1.2.0.tgz",
-                "fileCount": 23,
-                "unpackedSize": 605882,
-                "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJecInnCRA9TVsSAnZWagAAMq8P/i+QR+3SxeRKWngqRI2e\nZ1sfqJzW8RPFKuKoWF7iEcfpq6npWvLxxHp+nIUo2QYAHzmg6wgL/AGNn1If\nzogcXFIUM8FR+qarVFRByu475U323Fv/X5C0JPDSnRPVXABF/pZYTrsaxpe6\nRySfvFSPFfiAnDUxRyOr9FZMQczOT1GzjdwJginTGyQ7wJPISDnHPwzdvgpL\n4k5PvjQxcP/kL0EKGxhGatwF4esIN9wzatk+5B3ozThqscrjhQzgS97cl5jy\n3lnCZBHZ0bjWyX1rzil5zl9hLhbkw7JTGPvet0Q/aZ/UaXZbLepxV1/ZP2mG\nQ38uYThqmxNXAwS5SuF5kIwRmBowfww1kiidlwn0y8RBAkCMKMmFPcBOWV3Y\n5Z0qJzuIM1lLx1ckJabSGMOQ+8NA01WrCLKvD6LwdZZvLv6ezaD0AEW34+NH\nx1iDAn4jPdxfntGyZPxEFFJBnTYDFuSw1WXblI9i7JegG2F+UOjYNhvDOXQe\nEDARIuH+Yerwyq2JkDI4zHD+eWJJgaZm6w6+szU8Dpm6wBUH8PT68J1zspVK\nv71OFYVPkx7G0xf2IM1HTa01zqfJYNnsZVtFcRSutUeRSROBYAkozAW17nvG\nqsE+DePY2a5E1PXxqV7dCRUlhHi6qq6HZ1nxz1FIum7fncIngl+FS0CaJWOS\ngPF5\r\n=ZJna\r\n-----END PGP SIGNATURE-----\r\n"
-            },
-            "maintainers": [
-                {
-                    "name": "ajamardo",
-                    "email": "agus@elevenyellow.com"
-                },
-                {
-                    "name": "chemuto",
-                    "email": "chemuto@elevenyellow.com"
-                },
-                {
-                    "name": "cook1e-monster",
-                    "email": "carlossil01@gmail.com"
-                },
-                {
-                    "name": "dcusan",
-                    "email": "daniel.cusan@gmail.com"
-                },
-                {
-                    "name": "elevenyellow",
-                    "email": "all@elevenyellow.com"
-                },
-                {
-                    "name": "enzo",
-                    "email": "enzo@josema.es"
-                },
-                {
-                    "name": "garbolino",
-                    "email": "roly@elevenyellow.com"
-                }
-            ],
-            "_npmUser": {
-                "name": "garbolino",
-                "email": "roly@elevenyellow.com"
-            },
-            "directories": {},
-            "_npmOperationalInternal": {
-                "host": "s3://npm-registry-packages",
-                "tmp": "tmp/ark-switchain-plugin_1.2.0_1584433639290_0.015186313890126035"
-            },
-            "_hasShrinkwrap": false
-        }
-    },
-    "time": {
-        "created": "2020-03-11T11:23:52.493Z",
-        "1.0.0": "2020-03-11T11:23:52.686Z",
-        "modified": "2020-09-14T15:29:42.165Z",
-        "1.1.0": "2020-03-16T18:16:02.586Z",
-        "1.1.1": "2020-03-16T20:39:54.071Z",
-        "1.2.0": "2020-03-17T08:27:19.488Z"
-    },
-    "maintainers": [
-        {
-            "email": "elxavicio@gmail.com",
-            "name": "javiercarceller"
-        },
-        {
-            "email": "carlossil01@gmail.com",
-            "name": "cook1e-monster"
-        },
-        {
-            "email": "agus@elevenyellow.com",
-            "name": "ajamardo"
-        },
-        {
-            "email": "enzo@josema.es",
-            "name": "enzo"
-        },
-        {
-            "email": "chemuto@elevenyellow.com",
-            "name": "chemuto"
-        },
-        {
-            "email": "roly@elevenyellow.com",
-            "name": "garbolino"
-        },
-        {
-            "email": "daniel.cusan@gmail.com",
-            "name": "dcusan"
-        },
-        {
-            "email": "all@elevenyellow.com",
-            "name": "elevenyellow"
-        }
-    ],
-    "description": "Switchain plugin on Ark Desktop Wallet",
-    "homepage": "http://URL",
-    "keywords": [
-        "@arkecosystem",
-        "desktop-wallet",
-        "plugin",
-        "switchain",
-        "exchange",
-        "swap"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/elevenyellow/ark-switchain-plugin.git"
-    },
-    "author": {
-        "name": "Switchain"
-    },
-    "bugs": {
-        "url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
-    },
-    "license": "MIT",
-    "readme": "## Switchain plugin for cryptocurrency exchange in ARK Desktop Wallet.\n\nThis plugin will be auto-discovered inside ARK Desktop Wallet by the ARK Plugin Manager.\nFor the plugin to work correctly, you must configure the parameters in the file `source/config.json`.\nThe file contains the following parameters:\n\n- `apiKey` - switchain API KEY. Ask Switchain team at hello@switchain.com for an API KEY\n",
-    "readmeFilename": "README.md"
+	"_id": "@elevenyellow.com/ark-switchain-plugin",
+	"_rev": "4-46f3d25044c1f11bd6c648a4b564a3e5",
+	"name": "@elevenyellow.com/ark-switchain-plugin",
+	"dist-tags": {
+		"latest": "1.2.0"
+	},
+	"versions": {
+		"1.0.0": {
+			"name": "@elevenyellow.com/ark-switchain-plugin",
+			"version": "1.0.0",
+			"title": "ARK Exchange from Switchain",
+			"description": "Switchain plugin on Ark Desktop Wallet",
+			"logo": "https://www.switchain.com/img/logo.svg",
+			"main": "source/index.js",
+			"author": {
+				"name": "Switchain"
+			},
+			"license": "MIT",
+			"desktop-wallet": {
+				"title": "ARK Exchange from Switchain",
+				"categories": [],
+				"permissions": [
+					"COMPONENTS",
+					"HTTP",
+					"MENU_ITEMS",
+					"MESSAGING",
+					"PROFILE_CURRENT",
+					"ROUTES",
+					"STORAGE",
+					"WEBFRAME",
+					"TIMERS",
+					"STORAGE",
+					"EVENTS",
+					"ALERTS",
+					"UI_COMPONENTS"
+				],
+				"urls": ["https://api.switchain.com/rest/v1/"],
+				"minVersion": "2.6"
+			},
+			"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
+			"bugs": {
+				"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
+			},
+			"homepage": "http://URL",
+			"repository": {
+				"type": "git",
+				"url": "git+https://github.com/elevenyellow.com/ark-switchain-plugin.git"
+			},
+			"gitHead": "abbb48d6a41229fc64e604bbe19de5342de99f1e",
+			"_id": "@elevenyellow.com/ark-switchain-plugin@1.0.0",
+			"_nodeVersion": "12.13.0",
+			"_npmVersion": "6.12.0",
+			"dist": {
+				"integrity": "sha512-LYHZz3wDx3LoNB9J8bNOUIB/D0dkmLUfmGJKFg5dngisg4dBnhiUj7zSBAnekkBQ6AthFQVH54ZZuxZxEJ/jxg==",
+				"shasum": "53aa9f8533e9d7e84427a56cf3878841557e77bb",
+				"tarball": "https://registry.npmjs.org/@elevenyellow.com/ark-switchain-plugin/-/ark-switchain-plugin-1.0.0.tgz",
+				"fileCount": 20,
+				"unpackedSize": 213879,
+				"npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJeaMpJCRA9TVsSAnZWagAACuYQAIqaAO9oPVF7EmNXDR+0\nIRW9+OzPH98f4SC1rYKTWYexFpYihdMlA9Go8wxTVyUq+bi+zNpQTa9gH9dy\nsJ49sCwgGD8EBdxlOF6iw5HnTKcAMe7icyYL9fgQKujdV3UcdbJCBrpMO4CT\nPfvrvqZcGf25HtIh5Pvb4GBRRWnNh0OdduCNUuY+G77xoFotOX9ls/vObyQQ\n7HvTvYAUSwbWBvqmbYAOEgctLWLBzYkUBl/vs5loTqrP3o+fVxP6rpDDhTDE\nbzM6E2+sZ7DvMhFMJDLmy+QHut4465eDqvFNQAZV9huy3AJIliQEI3gWiYbV\n/9B1M5C4F8afmkb8SB2xxiYYyl/capjZSjSYSgRwz0NSogISb2HEoKUavBiP\ntUpAY5o0+eSictDUnIRYX5AyzlgFy1hhM9T/QOW8WoYURJMUYkKRJATTTJL4\nd9qIDKRWVq4QVGXLLPnzo3L8mDnUPNsDM/xmz0MszJSfgaBWG3JQyQEy8FEa\nrIPTmQSBnwmgUM4QsatLuEdBdT/WqGBriA//c51rEjq4zVN7dlBZkOpAGy9+\n8ptcopAXVYup85yeokn7RlEq3ZcXZ7FCxI8xK4nxWUM7yFezZpNLqLNF+0XZ\nGM0mLn9ZhDx+n65aBBCkFih3zrWebbuyLnoq3CW2Ia5iZ8Wg3Kz50XNao4AF\n4BSr\r\n=skkW\r\n-----END PGP SIGNATURE-----\r\n"
+			},
+			"maintainers": [
+				{
+					"name": "cook1e-monster",
+					"email": "carlossil01@gmail.com"
+				},
+				{
+					"name": "ajamardo",
+					"email": "agus@elevenyellow.com"
+				},
+				{
+					"name": "enzo",
+					"email": "enzo@josema.es"
+				},
+				{
+					"name": "chemuto",
+					"email": "chemuto@elevenyellow.com"
+				},
+				{
+					"name": "garbolino",
+					"email": "roly@elevenyellow.com"
+				},
+				{
+					"name": "dcusan",
+					"email": "daniel.cusan@gmail.com"
+				},
+				{
+					"name": "elevenyellow",
+					"email": "all@elevenyellow.com"
+				}
+			],
+			"_npmUser": {
+				"name": "garbolino",
+				"email": "roly@elevenyellow.com"
+			},
+			"directories": {},
+			"_npmOperationalInternal": {
+				"host": "s3://npm-registry-packages",
+				"tmp": "tmp/ark-switchain-plugin_1.0.0_1583925832494_0.02479858886804087"
+			},
+			"_hasShrinkwrap": false
+		},
+		"1.1.0": {
+			"name": "@elevenyellow.com/ark-switchain-plugin",
+			"version": "1.1.0",
+			"title": "Switchain Exchange",
+			"description": "Switchain plugin on Ark Desktop Wallet",
+			"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
+			"main": "source/index.js",
+			"author": {
+				"name": "Switchain"
+			},
+			"license": "MIT",
+			"desktop-wallet": {
+				"title": "ARK Exchange from Switchain",
+				"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
+				"images": [
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
+				],
+				"categories": [],
+				"permissions": [
+					"COMPONENTS",
+					"HTTP",
+					"MENU_ITEMS",
+					"MESSAGING",
+					"PROFILE_CURRENT",
+					"ROUTES",
+					"STORAGE",
+					"WEBFRAME",
+					"TIMERS",
+					"STORAGE",
+					"EVENTS",
+					"ALERTS",
+					"UI_COMPONENTS"
+				],
+				"urls": [
+					"https://api.switchain.com/rest/v1/",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png"
+				],
+				"minVersion": "2.6"
+			},
+			"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
+			"bugs": {
+				"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
+			},
+			"homepage": "http://URL",
+			"repository": {
+				"type": "git",
+				"url": "git+https://github.com/elevenyellow.com/ark-switchain-plugin.git"
+			},
+			"gitHead": "76ead048082191c1f92de264994fa57a5184e6c7",
+			"_id": "@elevenyellow.com/ark-switchain-plugin@1.1.0",
+			"_nodeVersion": "12.13.0",
+			"_npmVersion": "6.12.0",
+			"dist": {
+				"integrity": "sha512-WRmcpftbxVz5Sf+O7wuh+X565RuKAF/QYwAj/F2IOJ6JxMt9zKbIP3B1w2597J1hH11wvs4Tbz4rNnnXKSNclw==",
+				"shasum": "afd73e60962abf1367fbc073e8c70f9f2a9742fc",
+				"tarball": "https://registry.npmjs.org/@elevenyellow.com/ark-switchain-plugin/-/ark-switchain-plugin-1.1.0.tgz",
+				"fileCount": 23,
+				"unpackedSize": 605982,
+				"npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJeb8JiCRA9TVsSAnZWagAAXiMQAJFicDZY6QXJV4+ipcQq\nhq3fsP8mDF3Egx3ttDjUWvXNomKG1HFnRpJnG3hyQnOlzVwDkErrpmU8hDWW\nBvfMd7H54enBcW8HMyCxMVnfffyr8TWOXvy/PbtV5JFSNBvl9/jc9ivwvZE1\nnBiIK2BEXopaPaiGs6ElGe/f0DnuKqwt6jX0PeyCDUlDO8gm2R6eTYr0P9vm\nGWXt/yCu4Kz5v/CpHVLCmQB4u49EFf7ZUi3uSz5gquVHC2B2lFOifLe/f3zY\nt1ES/xnVSJmQ+/BiNU9pyL0gg12sN2Lvm77n5pA45r0/7hbmQQSayzTpgn8Q\nWgD6SkVpejojm7mxdDN9hR3c4BL9LexRh8UPGQAnso23FNjFhbFEbMucwsV/\nLdQt/cR4Rcx9ACWxQwqp8oitQZi5Ox5xx7kuGve1oh9jGLpxKR46j0tVK9Y6\nC5K1iP1tfGMNdiPTt2vI9V5PG8lpsQO9TUXllECjsmEqYqqraiAXmCB5lHp4\nfjQec6U6xa3kIezmmhdV63O+Uny7Vt65+ftTMod2L1xogre0dT76shAvDcbS\n4tmfiBf2RmSS8KoAoxQXgWvbJexxt3Ih0NCTK9iWRmrKMREa/vjD6NfK+VkP\nInBd+hHcknGK6yPqEIXPKalEOnH+FoR22Xaue+IxiTv4n1vRrbLzy8654zLU\nY53E\r\n=OYiH\r\n-----END PGP SIGNATURE-----\r\n"
+			},
+			"maintainers": [
+				{
+					"name": "ajamardo",
+					"email": "agus@elevenyellow.com"
+				},
+				{
+					"name": "chemuto",
+					"email": "chemuto@elevenyellow.com"
+				},
+				{
+					"name": "cook1e-monster",
+					"email": "carlossil01@gmail.com"
+				},
+				{
+					"name": "dcusan",
+					"email": "daniel.cusan@gmail.com"
+				},
+				{
+					"name": "elevenyellow",
+					"email": "all@elevenyellow.com"
+				},
+				{
+					"name": "enzo",
+					"email": "enzo@josema.es"
+				},
+				{
+					"name": "garbolino",
+					"email": "roly@elevenyellow.com"
+				}
+			],
+			"_npmUser": {
+				"name": "garbolino",
+				"email": "roly@elevenyellow.com"
+			},
+			"directories": {},
+			"_npmOperationalInternal": {
+				"host": "s3://npm-registry-packages",
+				"tmp": "tmp/ark-switchain-plugin_1.1.0_1584382562308_0.1589594916292354"
+			},
+			"_hasShrinkwrap": false
+		},
+		"1.1.1": {
+			"name": "@elevenyellow.com/ark-switchain-plugin",
+			"version": "1.1.1",
+			"title": "Switchain Exchange",
+			"description": "Switchain plugin on Ark Desktop Wallet",
+			"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
+			"main": "source/index.js",
+			"author": {
+				"name": "Switchain"
+			},
+			"license": "MIT",
+			"desktop-wallet": {
+				"title": "Switchain Exchange",
+				"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
+				"images": [
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
+				],
+				"categories": [],
+				"permissions": [
+					"COMPONENTS",
+					"HTTP",
+					"MENU_ITEMS",
+					"MESSAGING",
+					"PROFILE_CURRENT",
+					"ROUTES",
+					"STORAGE",
+					"WEBFRAME",
+					"TIMERS",
+					"STORAGE",
+					"EVENTS",
+					"ALERTS",
+					"UI_COMPONENTS"
+				],
+				"urls": [
+					"https://api.switchain.com/rest/v1/",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png"
+				],
+				"minVersion": "2.6"
+			},
+			"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
+			"bugs": {
+				"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
+			},
+			"homepage": "http://URL",
+			"repository": {
+				"type": "git",
+				"url": "git+https://github.com/elevenyellow/ark-switchain-plugin.git"
+			},
+			"gitHead": "bfbdfbab7aa4ca1a100cf29ac7f6fd16955e6983",
+			"_id": "@elevenyellow.com/ark-switchain-plugin@1.1.1",
+			"_nodeVersion": "12.13.0",
+			"_npmVersion": "6.12.0",
+			"dist": {
+				"integrity": "sha512-gkCvFL+1V+JFgALHeLTa4CtZc4l5/sSUPdvGNSENeTgBoy0+0oSUvD4lBvmu7cNnJcRFR4yeANxNIfFJCwWyPg==",
+				"shasum": "51c655f6fa550f08eab2afa50f16e1cb418b4d6d",
+				"tarball": "https://registry.npmjs.org/@elevenyellow.com/ark-switchain-plugin/-/ark-switchain-plugin-1.1.1.tgz",
+				"fileCount": 23,
+				"unpackedSize": 605969,
+				"npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJeb+QaCRA9TVsSAnZWagAAd4UP/iEGm1bvJ57xA+1uZnQ2\nFpsf3lH5mxL4F/N8mQINY94iBylB/z+c0aQ/Z2kaBUPSZg//fvZZgW5hKsTH\n4PqK2/mPH9Jgrpo4Lz+FDHSxx5KQ9lBBUnjbZEiDcVdJRaquCEuz+HIYefF/\n8GJY7wc4sew1l0tqCuMgsstSWo/d+5TrOHJXNdndkkHr0D+B57MpTujCPfWo\nMVy+0ce5eHFhCuUhRGVBo+hi7MNvytdrOhqDbHTFKKkF/VDmyzJntrNcSAag\nazEm7+4nDFiyU88NDr0mBThOKeh9kIQxMygBzqzMxe0fZdknBTlXkMq7IFWi\n7UaUluAF/vuWc2D012IevkVFUJr7I1SpIfGkp8Q4H136xlVmc3Co6As9KstQ\nuCiZe0hu6p/mAY/xhzO0hdvKXennU2jnuvlWplhtHyRNsOk2qFBX4dZWeR7n\nPokDmAdzgl9HCZMgg2UsaK3Aamq+f3x7RBSwkPI2k+4LPlC8Nv2QsvJLYFCV\nDyykKtNGLU7xqRihwrZFK8ALJBzB+hjCYqlI3t/iRZFBCs1pFup+mzMicukc\na/c2mF444R5cH3tVfngh5UiDvtxIAY7+4gNox/6Pz7kJ8UVaQit/kKRlcVen\nzhzOcrTDVRvcU8LG0NnwFfdQwFX7MdzX9glD5JwRtSiNjrZY9ZPTKvoc6Bqd\naGV0\r\n=rQ3Y\r\n-----END PGP SIGNATURE-----\r\n"
+			},
+			"maintainers": [
+				{
+					"name": "ajamardo",
+					"email": "agus@elevenyellow.com"
+				},
+				{
+					"name": "chemuto",
+					"email": "chemuto@elevenyellow.com"
+				},
+				{
+					"name": "cook1e-monster",
+					"email": "carlossil01@gmail.com"
+				},
+				{
+					"name": "dcusan",
+					"email": "daniel.cusan@gmail.com"
+				},
+				{
+					"name": "elevenyellow",
+					"email": "all@elevenyellow.com"
+				},
+				{
+					"name": "enzo",
+					"email": "enzo@josema.es"
+				},
+				{
+					"name": "garbolino",
+					"email": "roly@elevenyellow.com"
+				}
+			],
+			"_npmUser": {
+				"name": "garbolino",
+				"email": "roly@elevenyellow.com"
+			},
+			"directories": {},
+			"_npmOperationalInternal": {
+				"host": "s3://npm-registry-packages",
+				"tmp": "tmp/ark-switchain-plugin_1.1.1_1584391193885_0.7706392378734326"
+			},
+			"_hasShrinkwrap": false
+		},
+		"1.2.0": {
+			"name": "@elevenyellow.com/ark-switchain-plugin",
+			"version": "1.2.0",
+			"title": "Switchain Exchange",
+			"description": "Switchain plugin on Ark Desktop Wallet",
+			"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
+			"main": "source/index.js",
+			"author": {
+				"name": "Switchain"
+			},
+			"license": "MIT",
+			"desktop-wallet": {
+				"title": "Switchain Exchange",
+				"logo": "https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png",
+				"images": [
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-1.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-2.png",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/source/img/preview-3.png"
+				],
+				"categories": [],
+				"permissions": [
+					"COMPONENTS",
+					"HTTP",
+					"MENU_ITEMS",
+					"MESSAGING",
+					"PROFILE_CURRENT",
+					"ROUTES",
+					"STORAGE",
+					"WEBFRAME",
+					"TIMERS",
+					"STORAGE",
+					"EVENTS",
+					"ALERTS",
+					"UI_COMPONENTS"
+				],
+				"urls": [
+					"https://api.switchain.com/rest/v1/",
+					"https://raw.githubusercontent.com/elevenyellow/ark-switchain-plugin/master/logo.png"
+				],
+				"minVersion": "2.6"
+			},
+			"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
+			"bugs": {
+				"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
+			},
+			"homepage": "http://URL",
+			"repository": {
+				"type": "git",
+				"url": "git+https://github.com/elevenyellow/ark-switchain-plugin.git"
+			},
+			"gitHead": "9a610d2d3afaabbd078ec1bffdd0580ba45ce637",
+			"_id": "@elevenyellow.com/ark-switchain-plugin@1.2.0",
+			"_nodeVersion": "12.13.0",
+			"_npmVersion": "6.12.0",
+			"dist": {
+				"integrity": "sha512-oce4bJ5rm2/j65c8iM3PA/oVndjpx4Pt6VhyTmyWgV2y/5SpJ7xzKHNq5cgC3xgW7rMVlngM0GilOdryGwM1xg==",
+				"shasum": "c9b06aaff42b53447966b60351a2a90813611f75",
+				"tarball": "https://registry.npmjs.org/@elevenyellow.com/ark-switchain-plugin/-/ark-switchain-plugin-1.2.0.tgz",
+				"fileCount": 23,
+				"unpackedSize": 605882,
+				"npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJecInnCRA9TVsSAnZWagAAMq8P/i+QR+3SxeRKWngqRI2e\nZ1sfqJzW8RPFKuKoWF7iEcfpq6npWvLxxHp+nIUo2QYAHzmg6wgL/AGNn1If\nzogcXFIUM8FR+qarVFRByu475U323Fv/X5C0JPDSnRPVXABF/pZYTrsaxpe6\nRySfvFSPFfiAnDUxRyOr9FZMQczOT1GzjdwJginTGyQ7wJPISDnHPwzdvgpL\n4k5PvjQxcP/kL0EKGxhGatwF4esIN9wzatk+5B3ozThqscrjhQzgS97cl5jy\n3lnCZBHZ0bjWyX1rzil5zl9hLhbkw7JTGPvet0Q/aZ/UaXZbLepxV1/ZP2mG\nQ38uYThqmxNXAwS5SuF5kIwRmBowfww1kiidlwn0y8RBAkCMKMmFPcBOWV3Y\n5Z0qJzuIM1lLx1ckJabSGMOQ+8NA01WrCLKvD6LwdZZvLv6ezaD0AEW34+NH\nx1iDAn4jPdxfntGyZPxEFFJBnTYDFuSw1WXblI9i7JegG2F+UOjYNhvDOXQe\nEDARIuH+Yerwyq2JkDI4zHD+eWJJgaZm6w6+szU8Dpm6wBUH8PT68J1zspVK\nv71OFYVPkx7G0xf2IM1HTa01zqfJYNnsZVtFcRSutUeRSROBYAkozAW17nvG\nqsE+DePY2a5E1PXxqV7dCRUlhHi6qq6HZ1nxz1FIum7fncIngl+FS0CaJWOS\ngPF5\r\n=ZJna\r\n-----END PGP SIGNATURE-----\r\n"
+			},
+			"maintainers": [
+				{
+					"name": "ajamardo",
+					"email": "agus@elevenyellow.com"
+				},
+				{
+					"name": "chemuto",
+					"email": "chemuto@elevenyellow.com"
+				},
+				{
+					"name": "cook1e-monster",
+					"email": "carlossil01@gmail.com"
+				},
+				{
+					"name": "dcusan",
+					"email": "daniel.cusan@gmail.com"
+				},
+				{
+					"name": "elevenyellow",
+					"email": "all@elevenyellow.com"
+				},
+				{
+					"name": "enzo",
+					"email": "enzo@josema.es"
+				},
+				{
+					"name": "garbolino",
+					"email": "roly@elevenyellow.com"
+				}
+			],
+			"_npmUser": {
+				"name": "garbolino",
+				"email": "roly@elevenyellow.com"
+			},
+			"directories": {},
+			"_npmOperationalInternal": {
+				"host": "s3://npm-registry-packages",
+				"tmp": "tmp/ark-switchain-plugin_1.2.0_1584433639290_0.015186313890126035"
+			},
+			"_hasShrinkwrap": false
+		}
+	},
+	"time": {
+		"created": "2020-03-11T11:23:52.493Z",
+		"1.0.0": "2020-03-11T11:23:52.686Z",
+		"modified": "2020-09-14T15:29:42.165Z",
+		"1.1.0": "2020-03-16T18:16:02.586Z",
+		"1.1.1": "2020-03-16T20:39:54.071Z",
+		"1.2.0": "2020-03-17T08:27:19.488Z"
+	},
+	"maintainers": [
+		{
+			"email": "elxavicio@gmail.com",
+			"name": "javiercarceller"
+		},
+		{
+			"email": "carlossil01@gmail.com",
+			"name": "cook1e-monster"
+		},
+		{
+			"email": "agus@elevenyellow.com",
+			"name": "ajamardo"
+		},
+		{
+			"email": "enzo@josema.es",
+			"name": "enzo"
+		},
+		{
+			"email": "chemuto@elevenyellow.com",
+			"name": "chemuto"
+		},
+		{
+			"email": "roly@elevenyellow.com",
+			"name": "garbolino"
+		},
+		{
+			"email": "daniel.cusan@gmail.com",
+			"name": "dcusan"
+		},
+		{
+			"email": "all@elevenyellow.com",
+			"name": "elevenyellow"
+		}
+	],
+	"description": "Switchain plugin on Ark Desktop Wallet",
+	"homepage": "http://URL",
+	"keywords": ["@arkecosystem", "desktop-wallet", "plugin", "switchain", "exchange", "swap"],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/elevenyellow/ark-switchain-plugin.git"
+	},
+	"author": {
+		"name": "Switchain"
+	},
+	"bugs": {
+		"url": "https://github.com/elevenyellow/ark-switchain-plugin/issues"
+	},
+	"license": "MIT",
+	"readme": "## Switchain plugin for cryptocurrency exchange in ARK Desktop Wallet.\n\nThis plugin will be auto-discovered inside ARK Desktop Wallet by the ARK Plugin Manager.\nFor the plugin to work correctly, you must configure the parameters in the file `source/config.json`.\nThe file contains the following parameters:\n\n- `apiKey` - switchain API KEY. Ask Switchain team at hello@switchain.com for an API KEY\n",
+	"readmeFilename": "README.md"
 }
