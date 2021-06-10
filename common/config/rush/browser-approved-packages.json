@@ -2,833 +2,833 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
   "packages": [
-    {
-      "name": "@arkecosystem/crypto",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/crypto-identities",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/ledger-transport",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/multi-signature",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-ada",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-ark",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-atom",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-avax",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-btc",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-coincap",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-coingecko",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-crypto",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-cryptocompare",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-dot",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-egld",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-eos",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-eth",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-http",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-http-got",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-intl",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-lsk",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-markets",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-neo",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-profiles",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-sol",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-support",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-trx",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-xlm",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/platform-sdk-xrp",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@arkecosystem/utils",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@cityofzion/neon-js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@elrondnetwork/elrond-core-js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@elrondnetwork/erdjs",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@emurgo/cardano-serialization-lib-nodejs",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ethereumjs/common",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ethereumjs/tx",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@hapi/boom",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@hapi/hapi",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@kodekeep/foreman",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@kodekeep/hapi-json-rpc",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@konceiver/foreman",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@konceiver/hapi-json-rpc",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@konceiver/hapi-rate-limiter-flexible",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ledgerhq/hw-app-btc",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ledgerhq/hw-app-eth",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ledgerhq/hw-app-str",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ledgerhq/hw-app-trx",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ledgerhq/hw-app-xrp",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ledgerhq/hw-transport",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ledgerhq/hw-transport-mocker",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ledgerhq/hw-transport-node-hid-singleton",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@liskhq/lisk-client",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@liskhq/lisk-cryptography",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@liskhq/lisk-transactions",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@polkadot/api",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@polkadot/keyring",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@polkadot/rpc-provider",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@polkadot/util",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@polkadot/util-crypto",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@polkadot/wasm-crypto",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@polkadot/x-global",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@polkadot/x-randomvalues",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@prisma/client",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@ptkdev/logger",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sindresorhus/chunkify",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sindresorhus/slugify",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sindresorhus/tsconfig",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@solana/web3.js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@terra-money/terra.js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@typescript-eslint/eslint-plugin",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@typescript-eslint/parser",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@vechain/picasso",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@zilliqa-js/account",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@zilliqa-js/core",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@zilliqa-js/zilliqa",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@zondax/ledger-polkadot",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "argon2-browser",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "avalanche",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "axios",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bad-words",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bcryptjs",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bcrypto",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bech32",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bent",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "better-sqlite3",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bignumber.js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bip32",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bip38",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bip39",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bip84",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bitcoinjs-lib",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bitcoinjs-message",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bitcore-lib",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bn.js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "boxen",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "bstring",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "cardano-crypto.js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "censorify-it",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "cfonts",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "cli-table3",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "conf",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "create-xpub",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "cross-env",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "dayjs",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "delay",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "dinero.js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "dot-prop",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "dpos-ledger-api",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ed25519-hd-key",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "elliptic",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "elrondjs",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "emittery",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "env-paths",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "envfile",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eosjs",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eslint",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eslint-config-prettier",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eslint-plugin-import",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eslint-plugin-jest",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eslint-plugin-prettier",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eslint-plugin-simple-import-sort",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eslint-plugin-tsdoc",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eslint-plugin-unused-imports",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ethereumjs-tx",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ethereumjs-wallet",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "eventemitter3",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "execa",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "fast-levenshtein",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "form-data",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "front-matter",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "fs-extra",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "got",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "hdkey",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "inversify",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "is-ci",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "is-url-superb",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "jest",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "jest-extended",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "jest-localstorage-mock",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "jest-mock-extended",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "joi",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "keytar",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "kleur",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ky",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ky-universal",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "latest-version",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ledger-cosmos-js",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "listr",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "localforage",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "lodash",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "lodash.minby",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "lodash.orderby",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "mem",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "meow",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "micromatch",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "nanocurrency",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "nanocurrency-web",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "nanomatch",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "noble-ed25519",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "nock",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "node-cache",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "node-dotify",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "node-emoji",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "node-fetch",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "node-forge",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "nodejs-tail",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "npm-check-updates",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "onetime",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ora",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "p-each-series",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "p-queue",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "p-retry",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "p-wait-for",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "password-pwnd",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "pino",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "pino-pretty",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "prettier",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "prisma",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "prompts",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "qrcode",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "rate-limiter-flexible",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "read-last-lines",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "reflect-metadata",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "remarkable",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "rimraf",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ripple-binary-codec",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ripple-keypairs",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ripple-lib",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "rss-parser",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "safe-buffer",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "semver",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "stellar-hd-wallet",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "stellar-sdk",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "string-crypto",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "terminal-link",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "tronweb",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ts-jest",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "type-fest",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "typescript",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "typescript-language-server",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "url-parse-lax",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "uuid",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "web3",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "wif",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "ws",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "yargs-parser",
-      "allowedCategories": [ "libraries" ]
-    }
+	{
+	  "name": "@arkecosystem/crypto",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/crypto-identities",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/ledger-transport",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/multi-signature",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-ada",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-ark",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-atom",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-avax",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-btc",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-coincap",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-coingecko",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-crypto",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-cryptocompare",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-dot",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-egld",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-eos",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-eth",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-http",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-http-got",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-intl",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-lsk",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-markets",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-neo",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-profiles",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-sol",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-support",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-trx",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-xlm",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/platform-sdk-xrp",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@arkecosystem/utils",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@cityofzion/neon-js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@elrondnetwork/elrond-core-js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@elrondnetwork/erdjs",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@emurgo/cardano-serialization-lib-nodejs",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ethereumjs/common",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ethereumjs/tx",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@hapi/boom",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@hapi/hapi",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@kodekeep/foreman",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@kodekeep/hapi-json-rpc",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@konceiver/foreman",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@konceiver/hapi-json-rpc",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@konceiver/hapi-rate-limiter-flexible",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ledgerhq/hw-app-btc",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ledgerhq/hw-app-eth",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ledgerhq/hw-app-str",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ledgerhq/hw-app-trx",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ledgerhq/hw-app-xrp",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ledgerhq/hw-transport",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ledgerhq/hw-transport-mocker",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ledgerhq/hw-transport-node-hid-singleton",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@liskhq/lisk-client",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@liskhq/lisk-cryptography",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@liskhq/lisk-transactions",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@polkadot/api",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@polkadot/keyring",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@polkadot/rpc-provider",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@polkadot/util",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@polkadot/util-crypto",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@polkadot/wasm-crypto",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@polkadot/x-global",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@polkadot/x-randomvalues",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@prisma/client",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@ptkdev/logger",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@sindresorhus/chunkify",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@sindresorhus/slugify",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@sindresorhus/tsconfig",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@solana/web3.js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@terra-money/terra.js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@typescript-eslint/eslint-plugin",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@typescript-eslint/parser",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@vechain/picasso",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@zilliqa-js/account",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@zilliqa-js/core",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@zilliqa-js/zilliqa",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "@zondax/ledger-polkadot",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "argon2-browser",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "avalanche",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "axios",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bad-words",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bcryptjs",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bcrypto",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bech32",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bent",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "better-sqlite3",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bignumber.js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bip32",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bip38",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bip39",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bip84",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bitcoinjs-lib",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bitcoinjs-message",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bitcore-lib",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bn.js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "boxen",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "bstring",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "cardano-crypto.js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "censorify-it",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "cfonts",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "cli-table3",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "conf",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "create-xpub",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "cross-env",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "dayjs",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "delay",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "dinero.js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "dot-prop",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "dpos-ledger-api",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ed25519-hd-key",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "elliptic",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "elrondjs",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "emittery",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "env-paths",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "envfile",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eosjs",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eslint",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eslint-config-prettier",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eslint-plugin-import",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eslint-plugin-jest",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eslint-plugin-prettier",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eslint-plugin-simple-import-sort",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eslint-plugin-tsdoc",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eslint-plugin-unused-imports",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ethereumjs-tx",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ethereumjs-wallet",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "eventemitter3",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "execa",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "fast-levenshtein",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "form-data",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "front-matter",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "fs-extra",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "got",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "hdkey",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "inversify",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "is-ci",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "is-url-superb",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "jest",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "jest-extended",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "jest-localstorage-mock",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "jest-mock-extended",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "joi",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "keytar",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "kleur",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ky",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ky-universal",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "latest-version",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ledger-cosmos-js",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "listr",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "localforage",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "lodash",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "lodash.minby",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "lodash.orderby",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "mem",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "meow",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "micromatch",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "nanocurrency",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "nanocurrency-web",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "nanomatch",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "noble-ed25519",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "nock",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "node-cache",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "node-dotify",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "node-emoji",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "node-fetch",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "node-forge",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "nodejs-tail",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "npm-check-updates",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "onetime",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ora",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "p-each-series",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "p-queue",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "p-retry",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "p-wait-for",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "password-pwnd",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "pino",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "pino-pretty",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "prettier",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "prisma",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "prompts",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "qrcode",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "rate-limiter-flexible",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "read-last-lines",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "reflect-metadata",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "remarkable",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "rimraf",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ripple-binary-codec",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ripple-keypairs",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ripple-lib",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "rss-parser",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "safe-buffer",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "semver",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "stellar-hd-wallet",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "stellar-sdk",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "string-crypto",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "terminal-link",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "tronweb",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ts-jest",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "type-fest",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "typescript",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "typescript-language-server",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "url-parse-lax",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "uuid",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "web3",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "wif",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "ws",
+	  "allowedCategories": [ "libraries" ]
+	},
+	{
+	  "name": "yargs-parser",
+	  "allowedCategories": [ "libraries" ]
+	}
   ]
 }
