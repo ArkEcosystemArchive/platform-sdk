@@ -32,20 +32,10 @@ export const importMethods: Networks.NetworkManifestImportMethods = {
 
 export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Client: ["transactions", "transaction", "wallet", "broadcast"],
-	Address: [
-		"mnemonic.bip44",
-		"publicKey",
-		"validate",
-	],
-	KeyPair: [
-		"mnemonic.bip44",
-	],
-	PrivateKey: [
-		"mnemonic.bip44",
-	],
-	PublicKey: [
-		"mnemonic.bip44",
-	],
+	Address: ["mnemonic.bip44", "publicKey", "validate"],
+	KeyPair: ["mnemonic.bip44"],
+	PrivateKey: ["mnemonic.bip44"],
+	PublicKey: ["mnemonic.bip44"],
 	Message: ["sign", "verify"],
 	Transaction: ["transfer"],
 };

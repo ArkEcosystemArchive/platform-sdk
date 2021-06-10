@@ -183,12 +183,7 @@ export type PublicKeyMethod =
 	| "wif";
 export type PublicKeyMethods = PublicKeyMethod[];
 
-export type WIFMethod =
-	| "mnemonic.bip39"
-	| "mnemonic.bip44"
-	| "mnemonic.bip49"
-	| "mnemonic.bip84"
-	| "secret";
+export type WIFMethod = "mnemonic.bip39" | "mnemonic.bip44" | "mnemonic.bip49" | "mnemonic.bip84" | "secret";
 export type WIFMethods = WIFMethod[];
 
 export type LedgerMethod = "getVersion" | "getPublicKey" | "signTransaction" | "signMessage";

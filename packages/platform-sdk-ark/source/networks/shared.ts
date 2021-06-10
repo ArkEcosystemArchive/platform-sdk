@@ -53,31 +53,11 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"broadcast",
 	],
 	Fee: ["all"],
-	Address: [
-		"mnemonic.bip39",
-		"multiSignature",
-		"privateKey",
-		"publicKey",
-		"validate",
-		"wif",
-	],
-	KeyPair: [
-		"mnemonic.bip39",
-		"privateKey",
-		"wif",
-	],
-	PrivateKey: [
-		"mnemonic.bip39",
-		"wif",
-	],
-	PublicKey: [
-		"mnemonic.bip39",
-		"multiSignature",
-		"wif",
-	],
-	WIF: [
-		"mnemonic.bip39",
-	],
+	Address: ["mnemonic.bip39", "multiSignature", "privateKey", "publicKey", "validate", "wif"],
+	KeyPair: ["mnemonic.bip39", "privateKey", "wif"],
+	PrivateKey: ["mnemonic.bip39", "wif"],
+	PublicKey: ["mnemonic.bip39", "multiSignature", "wif"],
+	WIF: ["mnemonic.bip39"],
 	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
 	Message: ["sign", "verify"],
 	Transaction: [

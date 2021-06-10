@@ -38,24 +38,11 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"fees",
 		"broadcast",
 	],
-	Address: [
-		"mnemonic.bip44",
-		"privateKey",
-		"publicKey",
-		"validate",
-	],
-	KeyPair: [
-		"mnemonic.bip44",
-	],
-	PrivateKey: [
-		"mnemonic.bip44",
-	],
-	PublicKey: [
-		"mnemonic.bip44",
-	],
-	WIF: [
-		"mnemonic.bip44",
-	],
+	Address: ["mnemonic.bip44", "privateKey", "publicKey", "validate"],
+	KeyPair: ["mnemonic.bip44"],
+	PrivateKey: ["mnemonic.bip44"],
+	PublicKey: ["mnemonic.bip44"],
+	WIF: ["mnemonic.bip44"],
 	Message: ["sign", "verify"],
 	Transaction: ["transfer"],
 };
