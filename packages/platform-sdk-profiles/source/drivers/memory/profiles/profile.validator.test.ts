@@ -6,7 +6,7 @@ import nock from "nock";
 
 import { bootContainer } from "../../../../test/helpers";
 import { Profile } from "./profile";
-import { IProfile, IProfileRepository } from "../../../contracts";
+import { IProfile, IProfileRepository, ProfileSetting } from "../../../contracts";
 import { ProfileImporter } from "./profile.importer";
 import { ProfileDumper } from "./profile.dumper";
 import { container } from "../../../environment/container";
@@ -78,17 +78,25 @@ describe("#validate", () => {
 				data: {},
 			},
 			settings: {
-				THEME: "dark",
+				[ProfileSetting.AdvancedMode]: false,
+				[ProfileSetting.AutomaticSignOutPeriod]: 60,
+				[ProfileSetting.Bip39Locale]: "english",
+				[ProfileSetting.DashboardConfiguration]: false,
+				[ProfileSetting.DashboardTransactionHistory]: false,
+				[ProfileSetting.DoNotShowFeeWarning]: false,
+				[ProfileSetting.ErrorReporting]: false,
+				[ProfileSetting.ExchangeCurrency]: "ADA",
+				[ProfileSetting.Locale]: "en-US",
+				[ProfileSetting.MarketProvider]: "coingecko",
+				[ProfileSetting.Name]: "John Doe",
+				[ProfileSetting.NewsFilters]: JSON.stringify({ categories: [], coins: ["ARK"] }),
+				[ProfileSetting.ScreenshotProtection]: false,
+				[ProfileSetting.Theme]: "dark",
+				[ProfileSetting.TimeFormat]: "HH::MM",
+				[ProfileSetting.UseTestNetworks]: false,
 			},
 			wallets: {},
 		};
-		const profile: IProfile = new Profile({
-			id: "uuid",
-			name: "name",
-			avatar: "avatar",
-			password: undefined,
-			data: Base64.encode(JSON.stringify(validProfileData)),
-		});
 
 		validator = new ProfileValidator();
 
