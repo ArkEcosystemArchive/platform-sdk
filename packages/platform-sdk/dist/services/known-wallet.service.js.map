@@ -1,1 +1,0 @@
-{"version":3,"file":"known-wallet.service.js","sourceRoot":"","sources":["../../src/services/known-wallet.service.ts"],"names":[],"mappings":";AAAA,0BAA0B;;;;;;;;;AAE1B,gCAAoC;AAIpC,IAAa,0BAA0B,GAAvC,MAAa,0BAA0B;IAC/B,KAAK,CAAC,UAAU,KAAmB,CAAC;IAEpC,KAAK,CAAC,GAAG;QACf,OAAO,EAAE,CAAC;IACX,CAAC;CACD,CAAA;AANY,0BAA0B;IADtC,gBAAU,EAAE;GACA,0BAA0B,CAMtC;AANY,gEAA0B"}

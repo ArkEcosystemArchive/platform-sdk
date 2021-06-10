@@ -1,1 +1,0 @@
-{"version":3,"file":"htlc-refund.dto.js","sourceRoot":"","sources":["../src/htlc-refund.dto.ts"],"names":[],"mappings":";;;;;;;;;AAAA,6DAA4D;AAE5D,uDAAoD;AAGpD,IAAa,cAAc,GAA3B,MAAa,cAAe,SAAQ,iCAAe;IAC3C,iBAAiB;QACvB,OAAO,IAAI,CAAC,IAAI,CAAC,KAAK,CAAC,MAAM,CAAC,iBAAiB,CAAC;IACjD,CAAC;CACD,CAAA;AAJY,cAAc;IAD1B,kBAAG,CAAC,UAAU,EAAE;GACJ,cAAc,CAI1B;AAJY,wCAAc"}

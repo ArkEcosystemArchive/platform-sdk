@@ -1,1 +1,0 @@
-{"version":3,"file":"coin.schema.js","sourceRoot":"","sources":["../src/coin.schema.ts"],"names":[],"mappings":";;;AAAA,6EAAqE;AAExD,QAAA,MAAM,GAAG,sCAAe,CAAC,MAAM,CAAC;IAC5C,OAAO,EAAE,sCAAe,CAAC,MAAM,EAAE,CAAC,KAAK,CAAC,cAAc,EAAE,cAAc,CAAC;IACvE,UAAU,EAAE,sCAAe,CAAC,MAAM,EAAE;CACpC,CAAC,CAAC"}
