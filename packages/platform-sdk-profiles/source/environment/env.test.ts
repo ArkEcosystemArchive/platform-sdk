@@ -239,11 +239,13 @@ it("should boot the environment from fixed data", async () => {
 		}
 	`);
 	expect(newProfile.settings().all()).toEqual({
-		ADVANCED_MODE: "value",
+		ADVANCED_MODE: false,
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
 		BIP39_LOCALE: "english",
 		EXCHANGE_CURRENCY: "BTC",
-		LEDGER_UPDATE_METHOD: false,
+		"DASHBOARD_TRANSACTION_HISTORY": false,
+		"DO_NOT_SHOW_FEE_WARNING": false,
+		"ERROR_REPORTING": false,
 		LOCALE: "en-US",
 		MARKET_PROVIDER: "cryptocompare",
 		NAME: "John Doe",
