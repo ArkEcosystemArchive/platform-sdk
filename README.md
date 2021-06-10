@@ -12,6 +12,8 @@ Documentation can be found [here](https://ark.dev/docs/platform-sdk).
 
 ## Development
 
+> If you plan to contribute you'll need to ensure that you follow our [naming conventions](./NAMING_CONVENTIONS.md).
+
 [Rush](https://rushjs.io/) and [pnpm](https://pnpm.js.org/en/) are required to be installed before starting. These tools are used to manage this monorepo.
 
 ### Run `lint` and `prettier`

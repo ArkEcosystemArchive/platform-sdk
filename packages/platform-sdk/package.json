@@ -1,24 +1,24 @@
 {
 	"name": "@arkecosystem/platform-sdk",
-	"version": "9.1.1",
+	"version": "9.2.1",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
-	"main": "dist/index",
-	"types": "dist/index",
+	"main": "distribution/index",
+	"types": "distribution/index",
 	"files": [
-		"/dist"
+		"/distribution"
 	],
 	"scripts": {
 		"build": "pnpm run clean && tsc",
 		"build:watch": "pnpm run build -- -w",
-		"clean": "rimraf .coverage dist tmp",
+		"clean": "rimraf .coverage distribution tmp",
 		"test": "jest --forceExit",
 		"test:watch": "jest --forceExit --watchAll",
 		"prepublishOnly": "pnpm run build",
 		"format": "pnpm run lint && pnpm run prettier",
-		"lint": "eslint src/**/*.ts --fix",
-		"lint:tests": "eslint src/**/*.test.ts --fix",
+		"lint": "eslint source/**/*.ts --fix",
+		"lint:tests": "eslint source/**/*.test.ts --fix",
 		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\""
 	},
 	"jest": {

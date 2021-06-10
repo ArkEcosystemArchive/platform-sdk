@@ -17,7 +17,7 @@
 		"noUncheckedIndexedAccess": false,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"outDir": "dist",
+		"outDir": "distribution",
 		"pretty": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
@@ -28,5 +28,5 @@
 		"typeRoots": ["./node_modules/@types"],
 		"useDefineForClassFields": true
 	},
-	"exclude": ["dist", "**/*.spec.ts", "**/*.test.ts"]
+	"exclude": ["distribution", "**/*.spec.ts", "**/*.test.ts"]
 }

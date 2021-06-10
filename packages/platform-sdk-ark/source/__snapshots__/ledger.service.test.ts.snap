@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scan should return scanned wallet 1`] = `
+Object {
+  "44'/1'/0'/0/0": WalletData {
+    "data": Object {
+      "address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
+      "attributes": Object {},
+      "balance": "15000000000",
+      "nonce": "0",
+    },
+  },
+  "44'/1'/1'/0/0": WalletData {
+    "data": Object {
+      "address": "DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ",
+      "balance": 0,
+      "publicKey": "0348a63f3d9c0050575cbfe70de1722fd73ba205a9d2f7150d0725b99abb331892",
+    },
+  },
+}
+`;
+
+exports[`scan should return scanned wallet 2`] = `
+Object {
+  "address": "D9xJncW4ECUSJQWeLP7wncxhDTvNeg2HNK",
+  "balance": Object {
+    "available": BigNumber {},
+    "fees": BigNumber {},
+  },
+  "isDelegate": false,
+  "isMultiSignature": false,
+  "isResignedDelegate": false,
+  "isSecondSignature": false,
+  "nonce": BigNumber {},
+  "publicKey": undefined,
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;
+
+exports[`scan should return scanned wallet 3`] = `
+Object {
+  "address": "DFgggtreMXQNQKnxHddvkaPHcQbRdK3jyJ",
+  "balance": Object {
+    "available": BigNumber {},
+    "fees": BigNumber {},
+  },
+  "isDelegate": false,
+  "isMultiSignature": false,
+  "isResignedDelegate": false,
+  "isSecondSignature": false,
+  "nonce": BigNumber {},
+  "publicKey": "0348a63f3d9c0050575cbfe70de1722fd73ba205a9d2f7150d0725b99abb331892",
+  "rank": undefined,
+  "username": undefined,
+  "votes": undefined,
+}
+`;

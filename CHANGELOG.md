@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 9.2.1 - 2021-06-10
+
+### Changed
+
+- **[SDK]** Dry transaction DTOs (efab8165, @faustbrian)
+
+## 9.2.0 - 2021-06-10
+
+### Changed
+
+- **[SDK]** Provide default implementations for DTOs (628d2a12, @faustbrian)
+- **[SDK]** Flatten feature flags (0a74581d, @faustbrian)
+- **[SDK]** Remove link methods from feature flags because they always exist (aab0fe30, @faustbrian)
+
+### Fixed
+
+- **[CLI]** Use ledger service to import wallets (9a06aa18, @marianogoldman)
+- **[ARK]** Limit all fees to static (5c34036d, @faustbrian)
+
 ## 9.1.1 - 2021-06-07
 
 ### Changed
