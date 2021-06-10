@@ -204,23 +204,23 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	#allowsDeriveWithBIP39(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().allows(Enums.FeatureFlag.IdentityAddressMnemonicBip39);
+		return wallet.gate().allows(Enums.FeatureFlag.AddressMnemonicBip39);
 	}
 
 	#allowsDeriveWithBIP44(wallet: IReadWriteWallet): boolean {
-		return wallet.gate().allows(Enums.FeatureFlag.IdentityAddressMnemonicBip44);
+		return wallet.gate().allows(Enums.FeatureFlag.AddressMnemonicBip44);
 	}
 
 	/* istanbul ignore next */
 	#allowsDeriveWithBIP49(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
-		return wallet.gate().allows(Enums.FeatureFlag.IdentityAddressMnemonicBip49);
+		return wallet.gate().allows(Enums.FeatureFlag.AddressMnemonicBip49);
 	}
 
 	/* istanbul ignore next */
 	#allowsDeriveWithBIP84(wallet: IReadWriteWallet): boolean {
 		/* istanbul ignore next */
-		return wallet.gate().allows(Enums.FeatureFlag.IdentityAddressMnemonicBip84);
+		return wallet.gate().allows(Enums.FeatureFlag.AddressMnemonicBip84);
 	}
 
 	async #encryptWallet(wallet: IReadWriteWallet, password: string, derive: Function): Promise<void> {

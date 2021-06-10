@@ -26,6 +26,14 @@ test("#all", () => {
 		      "wallet": "wallets/{0}",
 		    },
 		    "featureFlags": Object {
+		      "Address": Array [
+		        "mnemonic.bip39",
+		        "multiSignature",
+		        "privateKey",
+		        "publicKey",
+		        "validate",
+		        "wif",
+		      ],
 		      "Client": Array [
 		        "transaction",
 		        "transactions",
@@ -43,22 +51,10 @@ test("#all", () => {
 		      "Fee": Array [
 		        "all",
 		      ],
-		      "Identity": Array [
-		        "address.mnemonic.bip39",
-		        "address.multiSignature",
-		        "address.privateKey",
-		        "address.publicKey",
-		        "address.validate",
-		        "address.wif",
-		        "keyPair.mnemonic.bip39",
-		        "keyPair.privateKey",
-		        "keyPair.wif",
-		        "privateKey.mnemonic.bip39",
-		        "privateKey.wif",
-		        "publicKey.mnemonic.bip39",
-		        "publicKey.multiSignature",
-		        "publicKey.wif",
-		        "wif.mnemonic.bip39",
+		      "KeyPair": Array [
+		        "mnemonic.bip39",
+		        "privateKey",
+		        "wif",
 		      ],
 		      "Ledger": Array [
 		        "getVersion",
@@ -66,14 +62,18 @@ test("#all", () => {
 		        "signTransaction",
 		        "signMessage",
 		      ],
-		      "Link": Array [
-		        "block",
-		        "transaction",
-		        "wallet",
-		      ],
 		      "Message": Array [
 		        "sign",
 		        "verify",
+		      ],
+		      "PrivateKey": Array [
+		        "mnemonic.bip39",
+		        "wif",
+		      ],
+		      "PublicKey": Array [
+		        "mnemonic.bip39",
+		        "multiSignature",
+		        "wif",
 		      ],
 		      "Transaction": Array [
 		        "delegateRegistration",
@@ -99,6 +99,9 @@ test("#all", () => {
 		        "vote.ledgerX",
 		        "vote.musig",
 		        "vote",
+		      ],
+		      "WIF": Array [
+		        "mnemonic.bip39",
 		      ],
 		    },
 		    "governance": Object {
@@ -186,6 +189,14 @@ test("#all", () => {
 		      "wallet": "wallets/{0}",
 		    },
 		    "featureFlags": Object {
+		      "Address": Array [
+		        "mnemonic.bip39",
+		        "multiSignature",
+		        "privateKey",
+		        "publicKey",
+		        "validate",
+		        "wif",
+		      ],
 		      "Client": Array [
 		        "transaction",
 		        "transactions",
@@ -203,22 +214,10 @@ test("#all", () => {
 		      "Fee": Array [
 		        "all",
 		      ],
-		      "Identity": Array [
-		        "address.mnemonic.bip39",
-		        "address.multiSignature",
-		        "address.privateKey",
-		        "address.publicKey",
-		        "address.validate",
-		        "address.wif",
-		        "keyPair.mnemonic.bip39",
-		        "keyPair.privateKey",
-		        "keyPair.wif",
-		        "privateKey.mnemonic.bip39",
-		        "privateKey.wif",
-		        "publicKey.mnemonic.bip39",
-		        "publicKey.multiSignature",
-		        "publicKey.wif",
-		        "wif.mnemonic.bip39",
+		      "KeyPair": Array [
+		        "mnemonic.bip39",
+		        "privateKey",
+		        "wif",
 		      ],
 		      "Ledger": Array [
 		        "getVersion",
@@ -226,14 +225,18 @@ test("#all", () => {
 		        "signTransaction",
 		        "signMessage",
 		      ],
-		      "Link": Array [
-		        "block",
-		        "transaction",
-		        "wallet",
-		      ],
 		      "Message": Array [
 		        "sign",
 		        "verify",
+		      ],
+		      "PrivateKey": Array [
+		        "mnemonic.bip39",
+		        "wif",
+		      ],
+		      "PublicKey": Array [
+		        "mnemonic.bip39",
+		        "multiSignature",
+		        "wif",
 		      ],
 		      "Transaction": Array [
 		        "delegateRegistration",
@@ -259,6 +262,9 @@ test("#all", () => {
 		        "vote.ledgerX",
 		        "vote.musig",
 		        "vote",
+		      ],
+		      "WIF": Array [
+		        "mnemonic.bip39",
 		      ],
 		    },
 		    "governance": Object {
@@ -346,6 +352,14 @@ test("#all", () => {
 		      "wallet": "wallets/{0}",
 		    },
 		    "featureFlags": Object {
+		      "Address": Array [
+		        "mnemonic.bip39",
+		        "multiSignature",
+		        "privateKey",
+		        "publicKey",
+		        "validate",
+		        "wif",
+		      ],
 		      "Client": Array [
 		        "transaction",
 		        "transactions",
@@ -363,22 +377,10 @@ test("#all", () => {
 		      "Fee": Array [
 		        "all",
 		      ],
-		      "Identity": Array [
-		        "address.mnemonic.bip39",
-		        "address.multiSignature",
-		        "address.privateKey",
-		        "address.publicKey",
-		        "address.validate",
-		        "address.wif",
-		        "keyPair.mnemonic.bip39",
-		        "keyPair.privateKey",
-		        "keyPair.wif",
-		        "privateKey.mnemonic.bip39",
-		        "privateKey.wif",
-		        "publicKey.mnemonic.bip39",
-		        "publicKey.multiSignature",
-		        "publicKey.wif",
-		        "wif.mnemonic.bip39",
+		      "KeyPair": Array [
+		        "mnemonic.bip39",
+		        "privateKey",
+		        "wif",
 		      ],
 		      "Ledger": Array [
 		        "getVersion",
@@ -386,14 +388,18 @@ test("#all", () => {
 		        "signTransaction",
 		        "signMessage",
 		      ],
-		      "Link": Array [
-		        "block",
-		        "transaction",
-		        "wallet",
-		      ],
 		      "Message": Array [
 		        "sign",
 		        "verify",
+		      ],
+		      "PrivateKey": Array [
+		        "mnemonic.bip39",
+		        "wif",
+		      ],
+		      "PublicKey": Array [
+		        "mnemonic.bip39",
+		        "multiSignature",
+		        "wif",
 		      ],
 		      "Transaction": Array [
 		        "delegateRegistration",
@@ -419,6 +425,9 @@ test("#all", () => {
 		        "vote.ledgerX",
 		        "vote.musig",
 		        "vote",
+		      ],
+		      "WIF": Array [
+		        "mnemonic.bip39",
 		      ],
 		    },
 		    "governance": Object {
@@ -501,6 +510,14 @@ test("#all", () => {
 		      "wallet": "wallets/{0}",
 		    },
 		    "featureFlags": Object {
+		      "Address": Array [
+		        "mnemonic.bip39",
+		        "multiSignature",
+		        "privateKey",
+		        "publicKey",
+		        "validate",
+		        "wif",
+		      ],
 		      "Client": Array [
 		        "transaction",
 		        "transactions",
@@ -518,22 +535,10 @@ test("#all", () => {
 		      "Fee": Array [
 		        "all",
 		      ],
-		      "Identity": Array [
-		        "address.mnemonic.bip39",
-		        "address.multiSignature",
-		        "address.privateKey",
-		        "address.publicKey",
-		        "address.validate",
-		        "address.wif",
-		        "keyPair.mnemonic.bip39",
-		        "keyPair.privateKey",
-		        "keyPair.wif",
-		        "privateKey.mnemonic.bip39",
-		        "privateKey.wif",
-		        "publicKey.mnemonic.bip39",
-		        "publicKey.multiSignature",
-		        "publicKey.wif",
-		        "wif.mnemonic.bip39",
+		      "KeyPair": Array [
+		        "mnemonic.bip39",
+		        "privateKey",
+		        "wif",
 		      ],
 		      "Ledger": Array [
 		        "getVersion",
@@ -541,14 +546,18 @@ test("#all", () => {
 		        "signTransaction",
 		        "signMessage",
 		      ],
-		      "Link": Array [
-		        "block",
-		        "transaction",
-		        "wallet",
-		      ],
 		      "Message": Array [
 		        "sign",
 		        "verify",
+		      ],
+		      "PrivateKey": Array [
+		        "mnemonic.bip39",
+		        "wif",
+		      ],
+		      "PublicKey": Array [
+		        "mnemonic.bip39",
+		        "multiSignature",
+		        "wif",
 		      ],
 		      "Transaction": Array [
 		        "delegateRegistration",
@@ -574,6 +583,9 @@ test("#all", () => {
 		        "vote.ledgerX",
 		        "vote.musig",
 		        "vote",
+		      ],
+		      "WIF": Array [
+		        "mnemonic.bip39",
 		      ],
 		    },
 		    "governance": Object {
