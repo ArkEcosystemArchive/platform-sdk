@@ -72,19 +72,19 @@ function doService(serviceName) {
 	const knownMethods = updaters[serviceName];
 
 	const transactionMembers = figureOutImplemented(
-		project.getSourceFileOrThrow(`src/services/${serviceName.toLowerCase()}.ts`),
+		project.getSourceFileOrThrow(`source/${serviceName.toLowerCase()}.service.ts`),
 		`${serviceName}Service`,
 		knownMethods,
 	);
 
 	let implemented = filterKnown(knownMethods, transactionMembers);
 
-	const sharedSourceFile = project.getSourceFileOrThrow("src/networks/shared.ts");
+	const sharedSourceFile = project.getSourceFileOrThrow("source/networks/shared.ts");
 	updateProperty(sharedSourceFile, "featureFlags", serviceName, implemented);
 }
 
 const project = new Project();
-project.addSourceFilesAtPaths("src/**/*.ts");
+project.addSourceFilesAtPaths("source/**/*.ts");
 
 for (const updaterName of Object.keys(updaters)) {
 	doService(updaterName);
