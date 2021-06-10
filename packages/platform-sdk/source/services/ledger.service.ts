@@ -2,7 +2,8 @@
 
 import { WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
-import { BindingType, inject, injectable } from "../ioc";
+import { inject, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 import { LedgerService, LedgerTransport, LedgerWalletList } from "./ledger.contract";
 
