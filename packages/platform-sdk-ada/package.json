@@ -31,8 +31,7 @@
 		"@arkecosystem/platform-sdk-intl": "workspace:*",
 		"@arkecosystem/platform-sdk-support": "workspace:*",
 		"@emurgo/cardano-serialization-lib-nodejs": "^7.0.0",
-		"bech32": "^2.0.0",
-		"ts-morph": "~11.0.0"
+		"bech32": "^2.0.0"
 	},
 	"devDependencies": {
 		"@arkecosystem/platform-sdk-http-got": "workspace:*",
