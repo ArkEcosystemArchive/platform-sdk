@@ -69,14 +69,14 @@ export class ProfileValidator implements IProfileValidator {
 			).required(),
 			// @TODO: assert specific values for enums
 			settings: Joi.object({
-				[ProfileSetting.AdvancedMode]: Joi.boolean().default(false),
+				[ProfileSetting.AdvancedMode]: Joi.boolean(), // @TODO: should we initialise this on profile creation?
 				[ProfileSetting.AutomaticSignOutPeriod]: Joi.number().required(),
 				[ProfileSetting.Avatar]: Joi.string(),
 				[ProfileSetting.Bip39Locale]: Joi.string().required(),
-				[ProfileSetting.DashboardConfiguration]: Joi.boolean(),
-				[ProfileSetting.DashboardTransactionHistory]: Joi.boolean(),
-				[ProfileSetting.DoNotShowFeeWarning]: Joi.boolean(),
-				[ProfileSetting.ErrorReporting]: Joi.boolean(),
+				[ProfileSetting.DashboardConfiguration]: Joi.boolean(), // @TODO: should we initialise this on profile creation?
+				[ProfileSetting.DashboardTransactionHistory]: Joi.boolean(), // @TODO: should we initialise this on profile creation?
+				[ProfileSetting.DoNotShowFeeWarning]: Joi.boolean(), // @TODO: should we initialise this on profile creation?
+				[ProfileSetting.ErrorReporting]: Joi.boolean(), // @TODO: should we initialise this on profile creation?
 				[ProfileSetting.ExchangeCurrency]: Joi.string().required(),
 				[ProfileSetting.Locale]: Joi.string().required(),
 				[ProfileSetting.MarketProvider]: Joi.string().allow("coincap", "cryptocompare", "coingecko").required(),

@@ -25,6 +25,7 @@ import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Environment } from "./env";
 import { MemoryStorage } from "./storage/memory";
+import { ProfileData } from "../contracts";
 
 let subject: Environment;
 
@@ -163,13 +164,13 @@ it("should create a profile with data and persist it when instructed to do so", 
 	profile.data().set("key", "value");
 
 	// Create a Setting
-	profile.settings().set("ADVANCED_MODE", "value");
+	profile.settings().set("ADVANCED_MODE", false);
 
 	// Encode all data
 	subject.profiles().persist(profile);
 
 	// Create a Global DataEntry
-	subject.data().set("key", "value");
+	subject.data().set(ProfileData.LatestMigration, "0.0.0");
 
 	// Persist the data for the next instance to use.
 	await subject.persist();
@@ -194,25 +195,22 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.wallets().keys()).toHaveLength(1);
 	expect(newProfile.contacts().keys()).toHaveLength(1);
 	expect(newProfile.notifications().keys()).toHaveLength(1);
-	expect(newProfile.data().all()).toMatchInlineSnapshot(`
+	expect(newProfile.data().all()).toMatchInlineSnapshot(`Object {}`);
+	expect(newProfile.settings().all()).toMatchInlineSnapshot(`
 		Object {
-		  "key": "value",
+		  "ADVANCED_MODE": false,
+		  "AUTOMATIC_SIGN_OUT_PERIOD": 15,
+		  "BIP39_LOCALE": "english",
+		  "EXCHANGE_CURRENCY": "BTC",
+		  "LOCALE": "en-US",
+		  "MARKET_PROVIDER": "cryptocompare",
+		  "NAME": "John Doe",
+		  "SCREENSHOT_PROTECTION": true,
+		  "THEME": "light",
+		  "TIME_FORMAT": "h:mm A",
+		  "USE_TEST_NETWORKS": false,
 		}
 	`);
-	expect(newProfile.settings().all()).toEqual({
-		ADVANCED_MODE: "value",
-		AUTOMATIC_SIGN_OUT_PERIOD: 15,
-		BIP39_LOCALE: "english",
-		EXCHANGE_CURRENCY: "BTC",
-		LEDGER_UPDATE_METHOD: false,
-		LOCALE: "en-US",
-		MARKET_PROVIDER: "cryptocompare",
-		NAME: "John Doe",
-		SCREENSHOT_PROTECTION: true,
-		THEME: "light",
-		TIME_FORMAT: "h:mm A",
-		USE_TEST_NETWORKS: false,
-	});
 });
 
 it("should boot the environment from fixed data", async () => {
