@@ -27,7 +27,6 @@ export class ProfileInitialiser implements IProfileInitialiser {
 		this.#profile.settings().set(ProfileSetting.AdvancedMode, false);
 		this.#profile.settings().set(ProfileSetting.AutomaticSignOutPeriod, 15);
 		this.#profile.settings().set(ProfileSetting.Bip39Locale, "english");
-		this.#profile.settings().set(ProfileSetting.DashboardConfiguration, false);
 		this.#profile.settings().set(ProfileSetting.DashboardTransactionHistory, false);
 		this.#profile.settings().set(ProfileSetting.DoNotShowFeeWarning, false);
 		this.#profile.settings().set(ProfileSetting.ErrorReporting, false);

@@ -178,7 +178,6 @@ describe("#restore", () => {
 				[ProfileSetting.AdvancedMode]: false,
 				[ProfileSetting.AutomaticSignOutPeriod]: 60,
 				[ProfileSetting.Bip39Locale]: "english",
-				[ProfileSetting.DashboardConfiguration]: false,
 				[ProfileSetting.DashboardTransactionHistory]: false,
 				[ProfileSetting.DoNotShowFeeWarning]: false,
 				[ProfileSetting.ErrorReporting]: false,

@@ -79,7 +79,7 @@ export class ProfileValidator implements IProfileValidator {
 				[ProfileSetting.AutomaticSignOutPeriod]: Joi.number().required(),
 				[ProfileSetting.Avatar]: Joi.string(),
 				[ProfileSetting.Bip39Locale]: Joi.string().required(),
-				[ProfileSetting.DashboardConfiguration]: Joi.boolean().required(),
+				[ProfileSetting.DashboardConfiguration]: Joi.object(),
 				[ProfileSetting.DashboardTransactionHistory]: Joi.boolean().required(),
 				[ProfileSetting.DoNotShowFeeWarning]: Joi.boolean().required(),
 				[ProfileSetting.ErrorReporting]: Joi.boolean().required(),
