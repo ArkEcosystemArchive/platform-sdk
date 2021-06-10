@@ -58,11 +58,7 @@ export class SignedTransactionData
 	}
 
 	public isMultiSignature(): boolean {
-		return !!this.signedData.multiSignature;
-	}
-
-	public isMultiSignatureRegistration(): boolean {
-		return this.signedData.type === 4;
+		return TransactionTypeService.isMultiSignature(this.data);
 	}
 
 	public isIpfs(): boolean {
@@ -91,5 +87,9 @@ export class SignedTransactionData
 
 	public isMagistrate(): boolean {
 		return TransactionTypeService.isMagistrate(this.data);
+	}
+
+	public usesMultiSignature(): boolean {
+		return !!this.signedData.multiSignature;
 	}
 }

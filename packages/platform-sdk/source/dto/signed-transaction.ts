@@ -19,6 +19,23 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 	protected broadcastData!: any;
 	protected decimals!: number | undefined;
 
+	readonly #types = {
+		transfer: "isTransfer",
+		secondSignature: "isSecondSignature",
+		delegateRegistration: "isDelegateRegistration",
+		voteCombination: "isVoteCombination",
+		vote: "isVote",
+		unvote: "isUnvote",
+		multiSignature: "isMultiSignature",
+		ipfs: "isIpfs",
+		multiPayment: "isMultiPayment",
+		delegateResignation: "isDelegateResignation",
+		htlcLock: "isHtlcLock",
+		htlcClaim: "isHtlcClaim",
+		htlcRefund: "isHtlcRefund",
+		magistrate: "isMagistrate",
+	};
+
 	public configure(
 		identifier: string,
 		signedData: RawTransactionData,
@@ -39,6 +56,16 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 
 	public id(): string {
 		return this.identifier;
+	}
+
+	public type(): string {
+		for (const [type, method] of Object.entries(this.#types)) {
+			if (this[method]()) {
+				return type;
+			}
+		}
+
+		return "transfer";
 	}
 
 	public data(): RawTransactionData {
@@ -93,10 +120,6 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 		return false;
 	}
 
-	public isMultiSignatureRegistration(): boolean {
-		return false;
-	}
-
 	public isIpfs(): boolean {
 		return false;
 	}
@@ -122,6 +145,10 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 	}
 
 	public isMagistrate(): boolean {
+		return false;
+	}
+
+	public usesMultiSignature(): boolean {
 		return false;
 	}
 
