@@ -7,10 +7,6 @@ import prompts from "prompts";
 
 import { renderLogo } from "../helpers";
 
-const chunk = <T>(value: T[], size: number) =>
-	Array.from({ length: Math.ceil(value.length / size) }, (v, i) => value.slice(i * size, i * size + size));
-
-// @TODO: this currently only supports 5 accounts with 50 wallets. use the DW scanner once implemented
 export const importLedgerWallet = async (env: Environment, profile: Contracts.IProfile): Promise<void> => {
 	renderLogo();
 
