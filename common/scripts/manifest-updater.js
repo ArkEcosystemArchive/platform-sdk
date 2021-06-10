@@ -1,3 +1,4 @@
+const path = require('path');
 const { Project, SyntaxKind } = require("ts-morph");
 
 const updaters = {
@@ -83,8 +84,11 @@ function doService(serviceName) {
 	updateProperty(sharedSourceFile, "featureFlags", serviceName, implemented);
 }
 
+const projectName = process.argv.slice(2)[0];
+const projectFolder = path.join(process.cwd(), "packages", projectName);
+
 const project = new Project();
-project.addSourceFilesAtPaths("source/**/*.ts");
+project.addSourceFilesAtPaths(path.join(projectFolder, "/source/**/*.ts"));
 
 for (const updaterName of Object.keys(updaters)) {
 	doService(updaterName);
