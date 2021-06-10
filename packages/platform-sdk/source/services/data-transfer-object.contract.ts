@@ -1,5 +1,5 @@
 import { TransactionDataCollection } from "../collections";
-import { SignedTransactionData, TransactionDataType } from "../contracts";
+import { SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
 import { MetaPagination } from "./client.contract";
 
 export interface DataTransferObjectService {
@@ -8,4 +8,6 @@ export interface DataTransferObjectService {
 	transaction(transaction: unknown): TransactionDataType;
 
 	transactions(transactions: unknown[], meta: MetaPagination): TransactionDataCollection;
+
+	wallet(wallet: unknown): WalletData;
 }

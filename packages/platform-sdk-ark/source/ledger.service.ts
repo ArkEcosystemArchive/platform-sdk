@@ -1,8 +1,6 @@
 import { ARKTransport } from "@arkecosystem/ledger-transport";
 import { Coins, Contracts, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44, HDKey } from "@arkecosystem/platform-sdk-crypto";
-
-import { WalletData } from "./wallet.dto";
 import { chunk, createRange, formatLedgerDerivationPath } from "./ledger.service.helpers";
 
 @IoC.injectable()
@@ -124,30 +122,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 			page++;
 		} while (hasMore);
 
-		// Create a mapping of paths and wallets that have been found.
-		const cold: Services.LedgerWalletList = {};
-		const used: Services.LedgerWalletList = {};
-
-		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
-			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
-				(wallet: Contracts.WalletData) => wallet.address() === address,
-			);
-
-			if (matchingWallet === undefined) {
-				if (Object.keys(cold).length > 0) {
-					continue;
-				}
-
-				cold[path] = new WalletData({
-					address,
-					publicKey,
-					balance: 0,
-				});
-			} else {
-				used[path] = matchingWallet;
-			}
-		}
-
-		return { ...cold, ...used };
+		// Return a mapping of paths and wallets that have been found.
+		return this.mapPathsToWallets(addressCache, wallets);
 	}
 }

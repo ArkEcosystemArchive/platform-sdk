@@ -24,14 +24,6 @@ const createMockService = async (record: string, opts?: RecordStoreOptions) => {
 	return transport;
 };
 
-describe("constructor", () => {
-	it("should pass with an empty configuration", async () => {
-		const transport = createService(LedgerService);
-
-		expect(transport).toBeInstanceOf(LedgerService);
-	});
-});
-
 describe("destruct", () => {
 	it("should pass with a resolved transport closure", async () => {
 		const subject = await createMockService("");
