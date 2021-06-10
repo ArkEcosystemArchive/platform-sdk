@@ -2,7 +2,6 @@ const { Project, SyntaxKind } = require("ts-morph");
 
 const updaters = {
 	Client: ["transactions", "transaction", "wallet", "broadcast"],
-	// Link: ["block", "transaction", "wallet"],
 	Message: ["sign", "verify"],
 	Transaction: [
 		"delegateRegistration",
