@@ -8,6 +8,7 @@ import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
 import { TransactionData } from "./transaction.dto";
 import { WalletData } from "./wallet.dto";
+import { SignedTransactionData } from "./signed-transaction.dto";
 
 let subject: ClientService;
 

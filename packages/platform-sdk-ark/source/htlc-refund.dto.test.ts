@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { createService } from "../../test/helpers";
+import { createService } from "../test/helpers";
 import { HtlcRefundData } from "./htlc-refund";
 
 let subject: HtlcRefundData;

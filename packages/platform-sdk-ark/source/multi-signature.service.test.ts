@@ -3,9 +3,9 @@ import "jest-extended";
 import { IoC } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createService } from "../../test/helpers";
-import { SignedTransactionData } from "../dto";
-import { MultiSignatureService } from "./multi-signature";
+import { createService } from "../test/helpers";
+import { SignedTransactionData } from "./signed-transaction.dto";
+import { MultiSignatureService } from "./multi-signature.service";
 
 let subject: MultiSignatureService;
 
