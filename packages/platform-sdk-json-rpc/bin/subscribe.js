@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { subscribe } = require("../dist");
+const { subscribe } = require("../distribution");
 
 const { flags } = require("./meow");
 

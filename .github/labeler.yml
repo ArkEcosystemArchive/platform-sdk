@@ -5,7 +5,7 @@ ci:
     - any: [".github/**/*"]
 
 test:
-    - src/**/*.test.ts
+    - source/**/*.test.ts
 
 "Domain: SDK":
     - packages/platform-sdk/*

@@ -1,8 +1,8 @@
 import { Test } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
-import { manifest } from "../src/manifest";
-import { schema } from "../src/schema";
+import { manifest } from "../source/manifest";
+import { schema } from "../source/coin.schema";
 
 export const createService = <T = any>(service: any, network: string = "xrp.mainnet", predicate?: Function): T => {
 	return Test.createService({
