@@ -2,7 +2,7 @@ import "jest-extended";
 
 import Fixture from "../test/fixtures/client/cryptoConfiguration.json";
 import { createService } from "../test/helpers";
-import { DelegateRegistrationData } from "./delegate-registration";
+import { DelegateRegistrationData } from "./delegate-registration.dto";
 
 let subject: DelegateRegistrationData;
 

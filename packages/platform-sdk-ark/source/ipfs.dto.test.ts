@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { createService } from "../test/helpers";
-import { IpfsData } from "./ipfs";
+import { IpfsData } from "./ipfs.dto";
 
 let subject: IpfsData;
 

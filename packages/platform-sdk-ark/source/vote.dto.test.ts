@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { createService } from "../test/helpers";
-import { VoteData } from "./vote";
+import { VoteData } from "./vote.dto";
 
 let subject: VoteData;
 

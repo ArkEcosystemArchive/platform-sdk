@@ -53,7 +53,7 @@ describe("ClientService", () => {
 			nock(/.+/)
 				.post("/api/transactions/search")
 				.query({ page: "0" })
-				.reply(200, require(`${__dirname}/../../test/fixtures/client/transactions.json`));
+				.reply(200, require(`${__dirname}/../test/fixtures/client/transactions.json`));
 
 			const result = await subject.transactions({
 				addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"],
@@ -199,7 +199,7 @@ describe("ClientService", () => {
 	});
 
 	describe("#votes", () => {
-		const fixture = require(`${__dirname}/../../test/fixtures/client/wallet.json`);
+		const fixture = require(`${__dirname}/../test/fixtures/client/wallet.json`);
 
 		it("should succeed", async () => {
 			nock(/.+/).get("/api/wallets/arkx").reply(200, fixture);
@@ -266,7 +266,7 @@ describe("ClientService", () => {
 	});
 
 	describe("#broadcast", () => {
-		const fixture = require(`${__dirname}/../../test/fixtures/client/broadcast.json`);
+		const fixture = require(`${__dirname}/../test/fixtures/client/broadcast.json`);
 
 		it("should accept 1 transaction and reject 1 transaction", async () => {
 			nock(/.+/).post("/api/transactions").reply(422, fixture);

@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { createService } from "../test/helpers";
-import { TransferData } from "./transfer";
+import { TransferData } from "./transfer.dto";
 
 let subject: TransferData;
 

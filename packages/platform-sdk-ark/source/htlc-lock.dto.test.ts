@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { createService } from "../test/helpers";
-import { HtlcLockData } from "./htlc-lock";
+import { HtlcLockData } from "./htlc-lock.dto";
 
 let subject: HtlcLockData;
 

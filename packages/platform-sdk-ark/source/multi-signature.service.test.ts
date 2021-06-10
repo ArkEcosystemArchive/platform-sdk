@@ -20,7 +20,7 @@ beforeAll(() => {
 afterEach(() => nock.cleanAll());
 
 describe("MultiSignatureService", () => {
-	const fixtures = require(`${__dirname}/../../test/fixtures/client/multisig-transactions.json`);
+	const fixtures = require(`${__dirname}/../test/fixtures/client/multisig-transactions.json`);
 
 	test("#allWithPendingState", async () => {
 		nock(/.+/)

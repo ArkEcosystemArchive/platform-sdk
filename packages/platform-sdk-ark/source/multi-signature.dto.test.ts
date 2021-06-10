@@ -1,7 +1,7 @@
 import "jest-extended";
 
 import { createService } from "../test/helpers";
-import { MultiSignatureData } from "./multi-signature";
+import { MultiSignatureData } from "./multi-signature.dto";
 
 let subject: MultiSignatureData;
 
