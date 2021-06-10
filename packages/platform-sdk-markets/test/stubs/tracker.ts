@@ -4,7 +4,7 @@ import {
 	HistoricalPriceOptions,
 	HistoricalVolumeOptions,
 	MarketDataCollection,
-} from "../../src/contracts";
+} from "../../source/contracts";
 
 export class PriceTracker implements PriceTracker {
 	public async verifyToken(token: string): Promise<boolean> {
