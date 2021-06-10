@@ -3,6 +3,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { normalizeTimestamp } from "./timestamps";
+import { TransactionTypeService } from "./transaction-type.service";
 
 @IoC.injectable()
 export class SignedTransactionData
@@ -28,11 +29,31 @@ export class SignedTransactionData
 		return normalizeTimestamp(this.signedData.timestamp);
 	}
 
-	public isMultiSignature(): boolean {
-		return false;
+	public isTransfer(): boolean {
+		return TransactionTypeService.isTransfer(this.data);
 	}
 
-	public isMultiSignatureRegistration(): boolean {
-		return false;
+	public isSecondSignature(): boolean {
+		return TransactionTypeService.isSecondSignature(this.data);
+	}
+
+	public isDelegateRegistration(): boolean {
+		return TransactionTypeService.isDelegateRegistration(this.data);
+	}
+
+	public isVoteCombination(): boolean {
+		return TransactionTypeService.isVoteCombination(this.data);
+	}
+
+	public isVote(): boolean {
+		return TransactionTypeService.isVote(this.data);
+	}
+
+	public isUnvote(): boolean {
+		return TransactionTypeService.isUnvote(this.data);
+	}
+
+	public isMultiSignature(): boolean {
+		return TransactionTypeService.isMultiSignature(this.data);
 	}
 }

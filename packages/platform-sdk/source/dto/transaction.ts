@@ -83,7 +83,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 	}
 
 	public confirmations(): BigNumber {
-		throw new NotImplemented(this.constructor.name, this.confirmations.name);
+		return BigNumber.ZERO;
 	}
 
 	public sender(): string {
@@ -95,7 +95,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 	}
 
 	public recipients(): MultiPaymentRecipient[] {
-		throw new NotImplemented(this.constructor.name, this.recipients.name);
+		return [];
 	}
 
 	public amount(): BigNumber {
@@ -107,83 +107,83 @@ export abstract class AbstractTransactionData implements TransactionData {
 	}
 
 	public asset(): Record<string, unknown> {
-		throw new NotImplemented(this.constructor.name, this.asset.name);
+		return {};
 	}
 
 	public inputs(): UnspentTransactionData[] {
-		throw new NotImplemented(this.constructor.name, this.inputs.name);
+		return [];
 	}
 
 	public outputs(): UnspentTransactionData[] {
-		throw new NotImplemented(this.constructor.name, this.outputs.name);
+		return [];
 	}
 
 	public isConfirmed(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isConfirmed.name);
+		return false;
 	}
 
 	public isSent(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isSent.name);
+		return false;
 	}
 
 	public isReceived(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isReceived.name);
+		return false;
 	}
 
 	public isTransfer(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isTransfer.name);
+		return false;
 	}
 
 	public isSecondSignature(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isSecondSignature.name);
+		return false;
 	}
 
 	public isDelegateRegistration(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isDelegateRegistration.name);
+		return false;
 	}
 
 	public isVoteCombination(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isVoteCombination.name);
+		return false;
 	}
 
 	public isVote(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isVote.name);
+		return false;
 	}
 
 	public isUnvote(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isUnvote.name);
+		return false;
 	}
 
 	public isMultiSignature(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isMultiSignature.name);
+		return false;
 	}
 
 	public isIpfs(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isIpfs.name);
+		return false;
 	}
 
 	public isMultiPayment(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isMultiPayment.name);
+		return false;
 	}
 
 	public isDelegateResignation(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isDelegateResignation.name);
+		return false;
 	}
 
 	public isHtlcLock(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isHtlcLock.name);
+		return false;
 	}
 
 	public isHtlcClaim(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isHtlcClaim.name);
+		return false;
 	}
 
 	public isHtlcRefund(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isHtlcRefund.name);
+		return false;
 	}
 
 	public isMagistrate(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isMagistrate.name);
+		return false;
 	}
 
 	public toObject(): KeyValuePair {

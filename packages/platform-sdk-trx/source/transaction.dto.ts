@@ -28,10 +28,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.raw_data.contract[0].parameter.value.to_address;
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return [];
-	}
-
 	public amount(): BigNumber {
 		return this.bigNumberService.make(this.data.raw_data.contract[0].parameter.value.amount);
 	}
@@ -42,18 +38,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public memo(): string | undefined {
 		return Buffer.from(this.data.raw_data.data || "", "hex").toString() || undefined;
-	}
-
-	public asset(): Record<string, unknown> {
-		return {};
-	}
-
-	public inputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
-	public outputs(): Contracts.UnspentTransactionData[] {
-		return [];
 	}
 
 	public isConfirmed(): boolean {

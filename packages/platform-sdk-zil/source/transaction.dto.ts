@@ -48,20 +48,12 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return BigNumber.make(this.data.gasUsed).times(this.data.gasPrice);
 	}
 
-	public asset(): Record<string, unknown> {
-		return {};
-	}
-
 	public isConfirmed(): boolean {
 		return this.data.isConfirmed;
 	}
 
 	public isSent(): boolean {
 		return this.data.isSent;
-	}
-
-	public isReceived(): boolean {
-		return false;
 	}
 
 	public isTransfer(): boolean {

@@ -28,10 +28,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.Destination;
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return [];
-	}
-
 	public amount(): BigNumber {
 		const value = typeof this.data.Amount === "string" ? this.data.Amount : this.data.Amount.value;
 		return this.bigNumberService.make(value).times(BigNumber.powerOfTen(this.decimals!));
@@ -45,28 +41,8 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return undefined;
 	}
 
-	public asset(): Record<string, unknown> {
-		return {};
-	}
-
-	public inputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
-	public outputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
 	public isConfirmed(): boolean {
 		return this.data.validated;
-	}
-
-	public isSent(): boolean {
-		return false;
-	}
-
-	public isReceived(): boolean {
-		return false;
 	}
 
 	public isTransfer(): boolean {

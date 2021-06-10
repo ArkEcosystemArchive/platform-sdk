@@ -25,12 +25,4 @@ export class SignedTransactionData
 	public timestamp(): DateTime {
 		return DateTime.make(this.signedData.raw_data.timestamp);
 	}
-
-	public isMultiSignature(): boolean {
-		return false;
-	}
-
-	public isMultiSignatureRegistration(): boolean {
-		return false;
-	}
 }

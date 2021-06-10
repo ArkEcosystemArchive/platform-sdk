@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import { IReadWriteWallet, ITransactionService, WalletData } from "../../../contracts";
 
 import { pqueueSettled } from "../../../helpers/queue";
-import { SignedTransactionData } from "./dto/signed-transaction";
 
 type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
 

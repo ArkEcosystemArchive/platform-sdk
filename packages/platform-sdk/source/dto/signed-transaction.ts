@@ -65,11 +65,63 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 		throw new NotImplemented(this.constructor.name, this.timestamp.name);
 	}
 
+	public isTransfer(): boolean {
+		return true;
+	}
+
+	public isSecondSignature(): boolean {
+		return false;
+	}
+
+	public isDelegateRegistration(): boolean {
+		return false;
+	}
+
+	public isVoteCombination(): boolean {
+		return false;
+	}
+
+	public isVote(): boolean {
+		return false;
+	}
+
+	public isUnvote(): boolean {
+		return false;
+	}
+
 	public isMultiSignature(): boolean {
 		return false;
 	}
 
 	public isMultiSignatureRegistration(): boolean {
+		return false;
+	}
+
+	public isIpfs(): boolean {
+		return false;
+	}
+
+	public isMultiPayment(): boolean {
+		return false;
+	}
+
+	public isDelegateResignation(): boolean {
+		return false;
+	}
+
+	public isHtlcLock(): boolean {
+		return false;
+	}
+
+	public isHtlcClaim(): boolean {
+		return false;
+	}
+
+	public isHtlcRefund(): boolean {
+		return false;
+	}
+
+	public isMagistrate(): boolean {
 		return false;
 	}
 
