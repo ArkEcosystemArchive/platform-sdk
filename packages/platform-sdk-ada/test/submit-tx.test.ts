@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { ClientService } from "../source/client.service";
 import { TransactionService } from "../source/transaction.service";
 import { Signatories } from "@arkecosystem/platform-sdk";

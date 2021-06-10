@@ -4,7 +4,7 @@ import { IoC, Signatories } from "@arkecosystem/platform-sdk";
 import { waitReady } from "@polkadot/wasm-crypto";
 
 import { identity } from "../test/fixtures/identity";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { BindingType } from "./constants";
 import { createKeyring } from "./helpers";
 import { MessageService } from "./message.service";

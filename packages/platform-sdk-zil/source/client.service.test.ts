@@ -5,7 +5,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../test/fixtures/identity";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
 import { TransactionData } from "./transaction.dto";
 import { WalletData } from "./wallet.dto";

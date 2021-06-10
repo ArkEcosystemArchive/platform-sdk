@@ -1,7 +1,7 @@
 import { IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../test/fixtures/identity";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { AddressService } from "./address.service";

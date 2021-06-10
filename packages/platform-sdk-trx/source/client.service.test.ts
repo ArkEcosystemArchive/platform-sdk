@@ -3,7 +3,7 @@ import "jest-extended";
 import { Collections, DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";

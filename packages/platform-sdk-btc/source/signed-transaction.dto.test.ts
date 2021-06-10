@@ -2,7 +2,7 @@ import "jest-extended";
 
 import { Exceptions } from "@arkecosystem/platform-sdk";
 
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
 
 let subject: SignedTransactionData;

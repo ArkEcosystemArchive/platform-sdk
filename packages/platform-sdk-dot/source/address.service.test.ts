@@ -4,7 +4,7 @@ import { IoC } from "@arkecosystem/platform-sdk";
 import { cryptoWaitReady } from "@polkadot/util-crypto";
 
 import { identity } from "../test/fixtures/identity";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { BindingType } from "./constants";
 import { createKeyring } from "./helpers";
 import { AddressService } from "./address.service";
