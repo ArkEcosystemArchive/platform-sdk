@@ -6,7 +6,7 @@ import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { bootContainer } from "../../../../test/helpers";
 import { Migrator } from "./migrator";
 import { Profile } from "./profile";
-import { IProfile, ProfileData } from "../../../contracts";
+import { IProfile, ProfileData, ProfileSetting } from "../../../contracts";
 import { ProfileImporter } from "./profile.importer";
 import { ProfileSerialiser } from "./profile.serialiser";
 
@@ -194,6 +194,7 @@ it("should migrate profiles from JSON to Base64", async () => {
 					icon: "warning",
 					name: "Ledger Update Available",
 					body: "...",
+					type: "type",
 					action: "Read Changelog",
 				},
 			},
@@ -202,9 +203,22 @@ it("should migrate profiles from JSON to Base64", async () => {
 				data: {},
 			},
 			settings: {
-				ADVANCED_MODE: "value",
-				NAME: "John Doe",
-				PASSWORD: "$argon2id$v=19$m=16,t=2,p=1$S09reTl2S1NTVllrU2ZuMg$Efpf9GGOgXdDmFmW1eF1Ew",
+				[ProfileSetting.AdvancedMode]: false,
+				[ProfileSetting.AutomaticSignOutPeriod]: 60,
+				[ProfileSetting.Bip39Locale]: "english",
+				[ProfileSetting.DashboardTransactionHistory]: false,
+				[ProfileSetting.DoNotShowFeeWarning]: false,
+				[ProfileSetting.ErrorReporting]: false,
+				[ProfileSetting.ExchangeCurrency]: "ADA",
+				[ProfileSetting.Locale]: "en-US",
+				[ProfileSetting.MarketProvider]: "coingecko",
+				[ProfileSetting.Name]: "John Doe",
+				[ProfileSetting.NewsFilters]: JSON.stringify({ categories: [], coins: ["ARK"] }),
+				[ProfileSetting.Password]: "$argon2id$v=19$m=16,t=2,p=1$S09reTl2S1NTVllrU2ZuMg$Efpf9GGOgXdDmFmW1eF1Ew",
+				[ProfileSetting.ScreenshotProtection]: false,
+				[ProfileSetting.Theme]: "dark",
+				[ProfileSetting.TimeFormat]: "HH::MM",
+				[ProfileSetting.UseTestNetworks]: false,
 			},
 			wallets: {
 				// Skip wallets for this test since we only care if the data was turned into base64, no need for network mocking.
@@ -250,7 +264,6 @@ it("should migrate profiles from JSON to Base64", async () => {
 		  },
 		  "data": Object {
 		    "LATEST_MIGRATION": "2.0.0",
-		    "key": "value",
 		  },
 		  "id": "b999d134-7a24-481e-a95d-bc47c543bfc9",
 		  "notifications": Object {
@@ -260,16 +273,28 @@ it("should migrate profiles from JSON to Base64", async () => {
 		      "icon": "warning",
 		      "id": "b183aef3-2dba-471a-a588-0fcf8f01b645",
 		      "name": "Ledger Update Available",
+		      "type": "type",
 		    },
 		  },
 		  "peers": Object {},
-		  "plugins": Object {
-		    "data": Object {},
-		  },
+		  "plugins": Object {},
 		  "settings": Object {
-		    "ADVANCED_MODE": "value",
+		    "ADVANCED_MODE": false,
+		    "AUTOMATIC_SIGN_OUT_PERIOD": 60,
+		    "BIP39_LOCALE": "english",
+		    "DASHBOARD_TRANSACTION_HISTORY": false,
+		    "DO_NOT_SHOW_FEE_WARNING": false,
+		    "ERROR_REPORTING": false,
+		    "EXCHANGE_CURRENCY": "ADA",
+		    "LOCALE": "en-US",
+		    "MARKET_PROVIDER": "coingecko",
 		    "NAME": "John Doe",
+		    "NEWS_FILTERS": "{\\"categories\\":[],\\"coins\\":[\\"ARK\\"]}",
 		    "PASSWORD": "$argon2id$v=19$m=16,t=2,p=1$S09reTl2S1NTVllrU2ZuMg$Efpf9GGOgXdDmFmW1eF1Ew",
+		    "SCREENSHOT_PROTECTION": false,
+		    "THEME": "dark",
+		    "TIME_FORMAT": "HH::MM",
+		    "USE_TEST_NETWORKS": false,
 		  },
 		  "wallets": Object {},
 		}

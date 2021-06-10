@@ -13,6 +13,7 @@ import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
 import { importByMnemonic } from "../../test/helpers";
 import { StubStorage } from "../../test/stubs/storage";
+import { ProfileData } from "../contracts";
 import { PluginRegistry } from "../drivers/memory/plugins";
 import { Profile } from "../drivers/memory/profiles/profile";
 import { ProfileImporter } from "../drivers/memory/profiles/profile.importer";
@@ -160,16 +161,16 @@ it("should create a profile with data and persist it when instructed to do so", 
 	});
 
 	// Create a DataEntry
-	profile.data().set("key", "value");
+	profile.data().set(ProfileData.LatestMigration, "0.0.0");
 
 	// Create a Setting
-	profile.settings().set("ADVANCED_MODE", "value");
+	profile.settings().set("ADVANCED_MODE", false);
 
 	// Encode all data
 	subject.profiles().persist(profile);
 
 	// Create a Global DataEntry
-	subject.data().set("key", "value");
+	subject.data().set("KEY", "VALUE");
 
 	// Persist the data for the next instance to use.
 	await subject.persist();
@@ -196,23 +197,27 @@ it("should create a profile with data and persist it when instructed to do so", 
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toMatchInlineSnapshot(`
 		Object {
-		  "key": "value",
+		  "LATEST_MIGRATION": "0.0.0",
 		}
 	`);
-	expect(newProfile.settings().all()).toEqual({
-		ADVANCED_MODE: "value",
-		AUTOMATIC_SIGN_OUT_PERIOD: 15,
-		BIP39_LOCALE: "english",
-		EXCHANGE_CURRENCY: "BTC",
-		LEDGER_UPDATE_METHOD: false,
-		LOCALE: "en-US",
-		MARKET_PROVIDER: "cryptocompare",
-		NAME: "John Doe",
-		SCREENSHOT_PROTECTION: true,
-		THEME: "light",
-		TIME_FORMAT: "h:mm A",
-		USE_TEST_NETWORKS: false,
-	});
+	expect(newProfile.settings().all()).toMatchInlineSnapshot(`
+		Object {
+		  "ADVANCED_MODE": false,
+		  "AUTOMATIC_SIGN_OUT_PERIOD": 15,
+		  "BIP39_LOCALE": "english",
+		  "DASHBOARD_TRANSACTION_HISTORY": false,
+		  "DO_NOT_SHOW_FEE_WARNING": false,
+		  "ERROR_REPORTING": false,
+		  "EXCHANGE_CURRENCY": "BTC",
+		  "LOCALE": "en-US",
+		  "MARKET_PROVIDER": "cryptocompare",
+		  "NAME": "John Doe",
+		  "SCREENSHOT_PROTECTION": true,
+		  "THEME": "light",
+		  "TIME_FORMAT": "h:mm A",
+		  "USE_TEST_NETWORKS": false,
+		}
+	`);
 });
 
 it("should boot the environment from fixed data", async () => {
@@ -230,15 +235,17 @@ it("should boot the environment from fixed data", async () => {
 	expect(newProfile.notifications().keys()).toHaveLength(1);
 	expect(newProfile.data().all()).toMatchInlineSnapshot(`
 		Object {
-		  "key": "value",
+		  "LATEST_MIGRATION": "0.0.0",
 		}
 	`);
 	expect(newProfile.settings().all()).toEqual({
-		ADVANCED_MODE: "value",
+		ADVANCED_MODE: false,
 		AUTOMATIC_SIGN_OUT_PERIOD: 15,
 		BIP39_LOCALE: "english",
 		EXCHANGE_CURRENCY: "BTC",
-		LEDGER_UPDATE_METHOD: false,
+		DASHBOARD_TRANSACTION_HISTORY: false,
+		DO_NOT_SHOW_FEE_WARNING: false,
+		ERROR_REPORTING: false,
 		LOCALE: "en-US",
 		MARKET_PROVIDER: "cryptocompare",
 		NAME: "John Doe",

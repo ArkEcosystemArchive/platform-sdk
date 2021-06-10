@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { IProfileData, IProfile } from "../../../contracts";
+import { IProfileData, IProfile, ProfileSetting, ProfileData } from "../../../contracts";
 
 import { IProfileValidator } from "../../../contracts/profiles/profile.validator";
 
@@ -12,7 +12,6 @@ export class ProfileValidator implements IProfileValidator {
 	 * @memberof Profile
 	 */
 	public validate(data: IProfileData): IProfileData {
-		// @TODO: adjust schemas for manifest changes
 		const { error, value } = Joi.object({
 			id: Joi.string().required(),
 			contacts: Joi.object().pattern(
@@ -31,16 +30,70 @@ export class ProfileValidator implements IProfileValidator {
 					starred: Joi.boolean().required(),
 				}),
 			),
-			// TODO: stricter validation to avoid unknown keys or values
-			data: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			notifications: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			peers: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			plugins: Joi.object().required(),
-			// TODO: stricter validation to avoid unknown keys or values
-			settings: Joi.object().required(),
+			data: Joi.object({
+				[ProfileData.LatestMigration]: Joi.string(),
+				[ProfileData.HasCompletedIntroductoryTutorial]: Joi.boolean(),
+				[ProfileData.HasAcceptedManualInstallationDisclaimer]: Joi.boolean(),
+			}).required(),
+			notifications: Joi.object()
+				.pattern(
+					Joi.string().uuid(),
+					Joi.object({
+						id: Joi.string().required(),
+						icon: Joi.string().required(),
+						name: Joi.string().required(),
+						body: Joi.string().required(),
+						type: Joi.string().required(),
+						action: Joi.string().required(),
+						read_at: Joi.number(),
+						meta: Joi.object(),
+					}),
+				)
+				.required(),
+			peers: Joi.object()
+				.pattern(
+					Joi.string().uuid(),
+					Joi.object({
+						name: Joi.string().required(),
+						host: Joi.string().required(),
+						isMultiSignature: Joi.boolean().required(),
+					}),
+				)
+				.required(),
+			plugins: Joi.object()
+				.pattern(
+					Joi.string().uuid(),
+					Joi.object({
+						id: Joi.string().required(),
+						name: Joi.string().required(),
+						version: Joi.string().required(),
+						isEnabled: Joi.boolean().required(),
+						permissions: Joi.array().items(Joi.string()).required(),
+						urls: Joi.array().items(Joi.string()).required(),
+					}),
+				)
+				.required(),
+			// @TODO: assert specific values for enums
+			settings: Joi.object({
+				[ProfileSetting.AdvancedMode]: Joi.boolean().required(),
+				[ProfileSetting.AutomaticSignOutPeriod]: Joi.number().required(),
+				[ProfileSetting.Avatar]: Joi.string(),
+				[ProfileSetting.Bip39Locale]: Joi.string().required(),
+				[ProfileSetting.DashboardConfiguration]: Joi.object(),
+				[ProfileSetting.DashboardTransactionHistory]: Joi.boolean().required(),
+				[ProfileSetting.DoNotShowFeeWarning]: Joi.boolean().required(),
+				[ProfileSetting.ErrorReporting]: Joi.boolean().required(),
+				[ProfileSetting.ExchangeCurrency]: Joi.string().required(),
+				[ProfileSetting.Locale]: Joi.string().required(),
+				[ProfileSetting.MarketProvider]: Joi.string().allow("coincap", "cryptocompare", "coingecko").required(),
+				[ProfileSetting.Name]: Joi.string().required(),
+				[ProfileSetting.NewsFilters]: Joi.string(),
+				[ProfileSetting.Password]: Joi.string(),
+				[ProfileSetting.ScreenshotProtection]: Joi.boolean().default(false),
+				[ProfileSetting.Theme]: Joi.string().required(),
+				[ProfileSetting.TimeFormat]: Joi.string().required(),
+				[ProfileSetting.UseTestNetworks]: Joi.boolean().default(false),
+			}).required(),
 			wallets: Joi.object().pattern(
 				Joi.string().uuid(),
 				Joi.object({
