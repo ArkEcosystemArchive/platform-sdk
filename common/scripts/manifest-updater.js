@@ -86,6 +86,7 @@ function doService(serviceName) {
 
 const projectName = process.argv.slice(2)[0];
 const projectFolder = path.join(process.cwd(), "packages", projectName);
+console.log("projectFolder", projectFolder);
 
 const project = new Project();
 project.addSourceFilesAtPaths(path.join(projectFolder, "/source/**/*.ts"));
