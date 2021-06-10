@@ -9,9 +9,6 @@ export class LedgerService extends Services.AbstractLedgerService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	private readonly configRepository!: Coins.ConfigRepository;
 
-	@IoC.inject(IoC.BindingType.DataTransferObjectService)
-	private readonly dataTransferObjectService!: Services.DataTransferObjectService;
-
 	@IoC.inject(IoC.BindingType.ClientService)
 	private readonly clientService!: Services.ClientService;
 
@@ -93,28 +90,7 @@ export class LedgerService extends Services.AbstractLedgerService {
 		await Promise.all(promises);
 
 		// Create a mapping of paths and wallets that have been found.
-		const cold: Services.LedgerWalletList = {};
-		const used: Services.LedgerWalletList = {};
-
-		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
-			const matchingWallet: Contracts.WalletData | undefined = wallets.find(
-				(wallet: Contracts.WalletData) => wallet.address() === address
-			);
-
-			if (matchingWallet === undefined) {
-				if (Object.keys(cold).length > 0) {
-					continue;
-				}
-
-				cold[path] = this.dataTransferObjectService.wallet({
-					address,
-					publicKey,
-					balance: 0
-				})
-			} else {
-				used[path] = matchingWallet;
-			}
-		}
+		const { cold, used } = this.mapPathsToWallets(addressCache, wallets);
 
 		return { ...used, ...cold };
 	}
