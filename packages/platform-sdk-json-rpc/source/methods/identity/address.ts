@@ -43,7 +43,7 @@ export const registerAddress = () => [
 		schema: Joi.object({ ...baseSchema, wif: Joi.string().required() }).required(),
 	},
 	{
-		name: "identity.address.validate",
+		name: "identity.validate",
 		async method({ coin, network, address }) {
 			return (await makeCoin({ coin, network })).address().validate(address);
 		},

@@ -144,21 +144,21 @@ it("should have an object representation", () => {
 		      "all",
 		    ],
 		    "Identity": Array [
-		      "address.mnemonic.bip39",
+		      "mnemonic.bip39",
 		      "address.multiSignature",
-		      "address.privateKey",
-		      "address.publicKey",
-		      "address.validate",
-		      "address.wif",
-		      "keyPair.mnemonic.bip39",
-		      "keyPair.privateKey",
-		      "keyPair.wif",
-		      "privateKey.mnemonic.bip39",
-		      "privateKey.wif",
-		      "publicKey.mnemonic.bip39",
+		      "privateKey",
+		      "publicKey",
+		      "validate",
+		      "wif",
+		      "mnemonic.bip39",
+		      "privateKey",
+		      "wif",
+		      "mnemonic.bip39",
+		      "wif",
+		      "mnemonic.bip39",
 		      "publicKey.multiSignature",
-		      "publicKey.wif",
-		      "wif.mnemonic.bip39",
+		      "wif",
+		      "mnemonic.bip39",
 		    ],
 		    "Ledger": Array [
 		      "getVersion",
@@ -275,7 +275,7 @@ it("should have an object representation", () => {
 
 it("should have an string representation", () => {
 	expect(subject.toJson()).toMatchInlineSnapshot(
-		`"{\\"id\\":\\"ark.devnet\\",\\"type\\":\\"test\\",\\"name\\":\\"Devnet\\",\\"coin\\":\\"ARK\\",\\"currency\\":{\\"ticker\\":\\"DARK\\",\\"symbol\\":\\"DѦ\\",\\"decimals\\":8},\\"constants\\":{\\"slip44\\":1},\\"hosts\\":[{\\"type\\":\\"full\\",\\"host\\":\\"https://dwallets.ark.io/api\\"},{\\"type\\":\\"musig\\",\\"host\\":\\"https://dmusig1.ark.io\\"},{\\"type\\":\\"explorer\\",\\"host\\":\\"https://dexplorer.ark.io\\"}],\\"governance\\":{\\"delegateCount\\":51,\\"votesPerWallet\\":1,\\"votesPerTransaction\\":1},\\"transactions\\":{\\"expirationType\\":\\"height\\",\\"types\\":[\\"delegate-registration\\",\\"delegate-resignation\\",\\"htlc-claim\\",\\"htlc-lock\\",\\"htlc-refund\\",\\"ipfs\\",\\"multi-payment\\",\\"multi-signature\\",\\"second-signature\\",\\"transfer\\",\\"vote\\"],\\"fees\\":{\\"type\\":\\"dynamic\\",\\"ticker\\":\\"DARK\\"},\\"memo\\":true},\\"importMethods\\":{\\"address\\":{\\"default\\":false,\\"permissions\\":[\\"read\\"]},\\"bip39\\":{\\"default\\":true,\\"permissions\\":[\\"read\\",\\"write\\"]},\\"publicKey\\":{\\"default\\":false,\\"permissions\\":[\\"read\\"]}},\\"featureFlags\\":{\\"Client\\":[\\"transaction\\",\\"transactions\\",\\"wallet\\",\\"wallets\\",\\"delegate\\",\\"delegates\\",\\"votes\\",\\"voters\\",\\"configuration\\",\\"fees\\",\\"syncing\\",\\"broadcast\\"],\\"Fee\\":[\\"all\\"],\\"Identity\\":[\\"address.mnemonic.bip39\\",\\"address.multiSignature\\",\\"address.privateKey\\",\\"address.publicKey\\",\\"address.validate\\",\\"address.wif\\",\\"keyPair.mnemonic.bip39\\",\\"keyPair.privateKey\\",\\"keyPair.wif\\",\\"privateKey.mnemonic.bip39\\",\\"privateKey.wif\\",\\"publicKey.mnemonic.bip39\\",\\"publicKey.multiSignature\\",\\"publicKey.wif\\",\\"wif.mnemonic.bip39\\"],\\"Ledger\\":[\\"getVersion\\",\\"getPublicKey\\",\\"signTransaction\\",\\"signMessage\\"],\\"Link\\":[\\"block\\",\\"transaction\\",\\"wallet\\"],\\"Message\\":[\\"sign\\",\\"verify\\"],\\"Transaction\\":[\\"delegateRegistration\\",\\"delegateResignation\\",\\"ipfs.ledgerS\\",\\"ipfs.ledgerX\\",\\"ipfs.musig\\",\\"ipfs\\",\\"multiPayment.ledgerS\\",\\"multiPayment.ledgerX\\",\\"multiPayment.musig\\",\\"multiPayment\\",\\"multiSignature.ledgerS\\",\\"multiSignature.ledgerX\\",\\"multiSignature.musig\\",\\"multiSignature\\",\\"secondSignature\\",\\"transfer.ledgerS\\",\\"transfer.ledgerX\\",\\"transfer.musig\\",\\"transfer\\",\\"vote.ledgerS\\",\\"vote.ledgerX\\",\\"vote.musig\\",\\"vote\\"]},\\"explorer\\":{\\"block\\":\\"block/{0}\\",\\"transaction\\":\\"transaction/{0}\\",\\"wallet\\":\\"wallets/{0}\\"},\\"knownWallets\\":\\"https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json\\",\\"meta\\":{\\"fastDelegateSync\\":true}}"`,
+		`"{\\"id\\":\\"ark.devnet\\",\\"type\\":\\"test\\",\\"name\\":\\"Devnet\\",\\"coin\\":\\"ARK\\",\\"currency\\":{\\"ticker\\":\\"DARK\\",\\"symbol\\":\\"DѦ\\",\\"decimals\\":8},\\"constants\\":{\\"slip44\\":1},\\"hosts\\":[{\\"type\\":\\"full\\",\\"host\\":\\"https://dwallets.ark.io/api\\"},{\\"type\\":\\"musig\\",\\"host\\":\\"https://dmusig1.ark.io\\"},{\\"type\\":\\"explorer\\",\\"host\\":\\"https://dexplorer.ark.io\\"}],\\"governance\\":{\\"delegateCount\\":51,\\"votesPerWallet\\":1,\\"votesPerTransaction\\":1},\\"transactions\\":{\\"expirationType\\":\\"height\\",\\"types\\":[\\"delegate-registration\\",\\"delegate-resignation\\",\\"htlc-claim\\",\\"htlc-lock\\",\\"htlc-refund\\",\\"ipfs\\",\\"multi-payment\\",\\"multi-signature\\",\\"second-signature\\",\\"transfer\\",\\"vote\\"],\\"fees\\":{\\"type\\":\\"dynamic\\",\\"ticker\\":\\"DARK\\"},\\"memo\\":true},\\"importMethods\\":{\\"address\\":{\\"default\\":false,\\"permissions\\":[\\"read\\"]},\\"bip39\\":{\\"default\\":true,\\"permissions\\":[\\"read\\",\\"write\\"]},\\"publicKey\\":{\\"default\\":false,\\"permissions\\":[\\"read\\"]}},\\"featureFlags\\":{\\"Client\\":[\\"transaction\\",\\"transactions\\",\\"wallet\\",\\"wallets\\",\\"delegate\\",\\"delegates\\",\\"votes\\",\\"voters\\",\\"configuration\\",\\"fees\\",\\"syncing\\",\\"broadcast\\"],\\"Fee\\":[\\"all\\"],\\"Identity\\":[\\"mnemonic.bip39\\",\\"address.multiSignature\\",\\"privateKey\\",\\"publicKey\\",\\"validate\\",\\"wif\\",\\"mnemonic.bip39\\",\\"privateKey\\",\\"wif\\",\\"mnemonic.bip39\\",\\"wif\\",\\"mnemonic.bip39\\",\\"publicKey.multiSignature\\",\\"wif\\",\\"mnemonic.bip39\\"],\\"Ledger\\":[\\"getVersion\\",\\"getPublicKey\\",\\"signTransaction\\",\\"signMessage\\"],\\"Link\\":[\\"block\\",\\"transaction\\",\\"wallet\\"],\\"Message\\":[\\"sign\\",\\"verify\\"],\\"Transaction\\":[\\"delegateRegistration\\",\\"delegateResignation\\",\\"ipfs.ledgerS\\",\\"ipfs.ledgerX\\",\\"ipfs.musig\\",\\"ipfs\\",\\"multiPayment.ledgerS\\",\\"multiPayment.ledgerX\\",\\"multiPayment.musig\\",\\"multiPayment\\",\\"multiSignature.ledgerS\\",\\"multiSignature.ledgerX\\",\\"multiSignature.musig\\",\\"multiSignature\\",\\"secondSignature\\",\\"transfer.ledgerS\\",\\"transfer.ledgerX\\",\\"transfer.musig\\",\\"transfer\\",\\"vote.ledgerS\\",\\"vote.ledgerX\\",\\"vote.musig\\",\\"vote\\"]},\\"explorer\\":{\\"block\\":\\"block/{0}\\",\\"transaction\\":\\"transaction/{0}\\",\\"wallet\\":\\"wallets/{0}\\"},\\"knownWallets\\":\\"https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json\\",\\"meta\\":{\\"fastDelegateSync\\":true}}"`,
 	);
 });
 
