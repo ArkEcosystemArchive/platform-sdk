@@ -373,6 +373,9 @@ export class TransactionService implements ITransactionService {
 
 		const uuid: string = uuidv4();
 
+		// console.log(transaction.data())
+		// console.log(transaction.isMultiSignature(), transaction.usesMultiSignature())
+
 		// When we are working with Multi-Signatures we need to sign them in split through
 		// broadcasting and fetching them multiple times until all participants have signed
 		// the transaction. Once the transaction is fully signed we can mark it as finished.
