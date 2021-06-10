@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { Signatories } from "@arkecosystem/platform-sdk";
+import { Exceptions, Services, Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../test/fixtures/identity";
 import { createService } from "../test/helpers";
@@ -27,5 +27,10 @@ describe("MessageService", () => {
 		});
 
 		await expect(subject.verify(result)).resolves.toBeTrue();
+		await expect(subject.verify({} as Services.SignedMessage)).rejects.toThrow(Exceptions.CryptoException);
+	});
+
+	it("shouldn't sign and verify a invalid message", async () => {
+		await expect(subject.sign({} as Services.MessageInput)).rejects.toThrow(Exceptions.CryptoException);
 	});
 });

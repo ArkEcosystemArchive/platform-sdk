@@ -1,4 +1,4 @@
-import { get, has, set } from "dot-prop";
+import dot from "dot-prop";
 import { Schema } from "joi";
 
 export class ConfigRepository {
@@ -19,7 +19,7 @@ export class ConfigRepository {
 	}
 
 	public get<T>(key: string, defaultValue?: T): T {
-		const value: T | undefined = get(this.#config, key, defaultValue);
+		const value: T | undefined = dot.get(this.#config, key, defaultValue);
 
 		if (value === undefined) {
 			throw new Error(`The [${key}] is an unknown configuration value.`);
@@ -29,19 +29,23 @@ export class ConfigRepository {
 	}
 
 	public getLoose<T>(key: string, defaultValue?: T): T | undefined {
-		return get(this.#config, key, defaultValue);
+		return dot.get(this.#config, key, defaultValue);
 	}
 
 	public set(key: string, value: unknown): void {
-		set(this.#config, key, value);
+		dot.set(this.#config, key, value);
 	}
 
 	public has(key: string): boolean {
-		return has(this.#config, key);
+		return dot.has(this.#config, key);
 	}
 
 	public missing(key: string): boolean {
 		return !this.has(key);
+	}
+
+	public forget(key: string): boolean {
+		return dot.delete(this.#config, key);
 	}
 }
 

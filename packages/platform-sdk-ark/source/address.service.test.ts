@@ -1,5 +1,7 @@
 import "jest-extended";
 
+import { Exceptions } from "@arkecosystem/platform-sdk";
+
 import { identity } from "../test/fixtures/identity";
 import { createService } from "../test/helpers";
 import { AddressService } from "./address.service";
@@ -48,5 +50,16 @@ describe("Address", () => {
 		await expect(subject.validate(identity.address)).resolves.toBeTrue();
 		await expect(subject.validate("AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")).resolves.toBeFalse();
 		await expect(subject.validate("ABC")).resolves.toBeFalse();
+		await expect(subject.validate("")).resolves.toBeFalse();
+		await expect(subject.validate(undefined!)).resolves.toBeFalse();
+		await expect(subject.validate(null!)).resolves.toBeFalse();
+		await expect(subject.validate(({} as unknown) as string)).resolves.toBeFalse();
 	});
+
+	test.each(["fromMnemonic", "fromMultiSignature", "fromPublicKey", "fromPrivateKey", "fromWIF"])(
+		"%s() should fail to generate an output from an invalid input",
+		async (method) => {
+			await expect(subject[method](undefined!)).rejects.toThrow(Exceptions.CryptoException);
+		},
+	);
 });

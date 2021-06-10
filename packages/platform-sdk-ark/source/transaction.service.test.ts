@@ -50,11 +50,36 @@ describe("TransactionService", () => {
 				data: {
 					amount: 1,
 					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+					memo: "foo",
 				},
+				fee: 1,
 			});
 
 			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 			expect(result.amount().toNumber()).toBe(100_000_000);
+		});
+
+		it("should verify without nonce", async () => {
+			nock(/.+/)
+				.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+				.reply(200, { data: { nonce: "1" } });
+
+			const result = await subject.transfer({
+				signatory: new Signatories.Signatory(
+					new Signatories.MnemonicSignatory({
+						signingKey: "this is a top secret passphrase",
+						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						publicKey: "publicKey",
+						privateKey: "privateKey",
+					}),
+				),
+				data: {
+					amount: 1,
+					to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+				},
+			});
+
+			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 
 		it("should sign with a custom expiration", async () => {
@@ -160,13 +185,38 @@ describe("TransactionService", () => {
 				),
 				data: {
 					votes: ["03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec"],
-					unvotes: [],
+					unvotes: ["03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621ded"],
 				},
 			});
 
 			expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
 		});
 	});
+
+	// describe("#multiSignature", () => {
+	// 	it("should verify", async () => {
+	// 		const result = await subject.multiSignature({
+	// 			nonce: "1",
+	// 			signatory: new Signatories.Signatory(
+	// 				new Signatories.MnemonicSignatory({
+	// 					signingKey: "this is a top secret passphrase",
+	// 					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+	// 					publicKey: "publicKey",
+	// 					privateKey: "privateKey",
+	// 				}),
+	// 			),
+	// 			data: {
+	// 				publicKeys: [
+	// 					"03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621dec",
+	// 					"03bbfb43ecb5a54a1e227bb37b5812b5321213838d376e2b455b6af78442621ded",
+	// 				],
+	// 				min: 2,
+	// 			},
+	// 		});
+
+	// 		expect(Transactions.TransactionFactory.fromJson(result.data()).verify()).toBeTrue();
+	// 	});
+	// });
 
 	describe("#ipfs", () => {
 		it("should verify", async () => {
@@ -205,6 +255,7 @@ describe("TransactionService", () => {
 						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
 						{ to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9", amount: 10 },
 					],
+					memo: "foo",
 				},
 			});
 
