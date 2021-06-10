@@ -2,8 +2,8 @@ import PQueue from "p-queue";
 import retry from "p-retry";
 import pino from "pino";
 
-import { Database } from "./database";
 import { indexBlock, indexNewBlocks } from "./blocks";
+import { Database } from "./database";
 import { useDatabase, usePolkadot } from "./factories";
 
 /**

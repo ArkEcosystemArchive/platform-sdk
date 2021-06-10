@@ -2,8 +2,8 @@ import execa from "execa";
 import PQueue from "p-queue";
 import path from "path";
 
-import { useClient, useDatabase, useLogger } from "./factories";
 import { processPendingBlocks } from "./blocks";
+import { useClient, useDatabase, useLogger } from "./factories";
 import { Logger } from "./logger";
 import { Flags } from "./types";
 
