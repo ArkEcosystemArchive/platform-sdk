@@ -1,9 +1,9 @@
 import { IoC, Test } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 
-import { Bindings } from "../src/contracts";
-import { manifest } from "../src/manifest";
-import { schema } from "../src/schema";
+import { Bindings } from "../source/coin.contract";
+import { manifest } from "../source/manifest";
+import { schema } from "../source/coin.schema";
 
 export const createService = <T = any>(service: any, network: string = "ark.devnet", predicate?: Function): T => {
 	return Test.createService({

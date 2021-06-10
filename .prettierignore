@@ -1,5 +1,5 @@
 .coverage
-dist
+distribution
 docs
-packages/**/dist
+packages/**/distribution
 packages/**/prisma

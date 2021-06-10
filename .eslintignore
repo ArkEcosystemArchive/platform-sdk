@@ -3,7 +3,7 @@
 /*.js
 /build/
 /config/
-/dist/
+/distribution/
 /docs/
 /prisma/
 /node_modules/**
