@@ -89,10 +89,8 @@ export class LedgerService extends Services.AbstractLedgerService {
 
 		await Promise.all(promises);
 
-		// Create a mapping of paths and wallets that have been found.
-		const { cold, used } = this.mapPathsToWallets(addressCache, wallets);
-
-		return { ...used, ...cold };
+		// Return a mapping of paths and wallets that have been found.
+		return this.mapPathsToWallets(addressCache, wallets);
 	}
 
 	async #getPublicKeyAndAddress(

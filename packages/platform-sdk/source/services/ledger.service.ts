@@ -51,9 +51,9 @@ export class AbstractLedgerService implements LedgerService {
 	protected mapPathsToWallets(
 		addressCache: Record<string, { address: string; publicKey: string }>,
 		wallets: WalletData[],
-	): { cold: LedgerWalletList; used: LedgerWalletList } {
-		const cold: LedgerWalletList = {};
-		const used: LedgerWalletList = {};
+	): LedgerWalletList {
+		let foundFirstCold: boolean = false;
+		const ledgerWallets: LedgerWalletList = {};
 
 		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
 			const matchingWallet: WalletData | undefined = wallets.find(
@@ -61,19 +61,20 @@ export class AbstractLedgerService implements LedgerService {
 			);
 
 			if (matchingWallet === undefined) {
-				if (Object.keys(cold).length > 0) {
+				if (foundFirstCold) {
 					continue;
 				}
+				foundFirstCold = true;
 
-				cold[path] = this.dataTransferObjectService.wallet({
+				ledgerWallets[path] = this.dataTransferObjectService.wallet({
 					address,
 					publicKey,
 					balance: 0,
 				});
 			} else {
-				used[path] = matchingWallet;
+				ledgerWallets[path] = matchingWallet;
 			}
 		}
-		return { cold, used };
+		return ledgerWallets;
 	}
 }
