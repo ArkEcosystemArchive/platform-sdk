@@ -3,7 +3,7 @@ import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { Zilliqa } from "@zilliqa-js/zilliqa";
 
 import { manifest } from "../src/manifest";
-import { schema } from "../src/schema";
+import { schema } from "../src/coin.schema";
 
 export const createService = <T = any>(service: any, network: string = "zil.testnet", predicate?: Function): T => {
 	return Test.createService({

@@ -1,5 +1,5 @@
-import XrpMainnet from "./networks/xrp/mainnet";
-import XrpTestnet from "./networks/xrp/testnet";
+import XrpMainnet from "./networks/xrp.mainnet";
+import XrpTestnet from "./networks/xrp.testnet";
 
 export const manifest = {
 	name: "XRP",
