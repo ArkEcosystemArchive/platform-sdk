@@ -60,7 +60,7 @@ describe("SignedTransactionData", () => {
 		expect(subject.isMultiSignature()).toBeFalse();
 	});
 
-	test("#isMultiSignatureRegistration", () => {
-		expect(subject.isMultiSignatureRegistration()).toBeFalse();
+	test("#usesMultiSignature", () => {
+		expect(subject.usesMultiSignature()).toBeFalse();
 	});
 });

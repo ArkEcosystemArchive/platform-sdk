@@ -25,7 +25,6 @@ export interface SignedTransactionData {
 	isVote(): boolean;
 	isUnvote(): boolean;
 	isMultiSignature(): boolean;
-	isMultiSignatureRegistration(): boolean;
 	isIpfs(): boolean;
 	isMultiPayment(): boolean;
 	isDelegateResignation(): boolean;
@@ -33,6 +32,9 @@ export interface SignedTransactionData {
 	isHtlcClaim(): boolean;
 	isHtlcRefund(): boolean;
 	isMagistrate(): boolean;
+
+	// Indicates if the transaction has been signed with a multi-signature.
+	usesMultiSignature(): boolean;
 
 	// Helpers
 	get<T = string>(key: string): T;
