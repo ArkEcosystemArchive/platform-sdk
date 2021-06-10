@@ -11,13 +11,13 @@ export const createProfile = async (env: Environment): Promise<void> => {
 		{
 			type: "text",
 			name: "name",
-			message: "What is your name?",
+			message: "What is the profile name?",
 			validate: (value: string) => value && env.profiles().findByName(value) === undefined,
 		},
 		{
 			type: "password",
 			name: "password",
-			message: "What is your password? (Optional)",
+			message: "What is the password? (Optional)",
 			validate: async (value: string) => {
 				if (!value) {
 					return true;
