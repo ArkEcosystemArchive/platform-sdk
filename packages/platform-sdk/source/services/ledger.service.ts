@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 
+import { WalletData } from "../contracts";
 import { NotImplemented } from "../exceptions";
 import { BindingType, inject, injectable } from "../ioc";
-import { WalletData } from "../contracts";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 import { LedgerService, LedgerTransport, LedgerWalletList } from "./ledger.contract";
 
@@ -51,7 +51,7 @@ export class AbstractLedgerService implements LedgerService {
 		addressCache: Record<string, { address: string; publicKey: string }>,
 		wallets: WalletData[],
 	): LedgerWalletList {
-		let foundFirstCold: boolean = false;
+		let foundFirstCold = false;
 		const ledgerWallets: LedgerWalletList = {};
 
 		for (const [path, { address, publicKey }] of Object.entries(addressCache)) {
