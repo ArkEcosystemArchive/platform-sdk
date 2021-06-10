@@ -1,7 +1,7 @@
 import { Services } from "@arkecosystem/platform-sdk";
 import { bech32 } from "bech32";
 
-import { makeAccount } from "./helpers";
+import { makeAccount } from "./factories";
 
 export class AddressService extends Services.AbstractAddressService {
 	public async fromMnemonic(

@@ -2,7 +2,7 @@ import { BigNumber } from "@arkecosystem/utils";
 
 import { Prisma, PrismaClient } from "../prisma/generated";
 import { Logger } from "./logger";
-import { getAmount, getFees, getInputs, getOutputs } from "./tx-parsing-helpers";
+import { getAmount, getFees, getInputs, getOutputs } from "./transactions";
 import { Flags, Input, Output } from "./types";
 
 /**

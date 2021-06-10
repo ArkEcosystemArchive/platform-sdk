@@ -1,7 +1,7 @@
 import Hapi from "@hapi/hapi";
 import Joi from "joi";
 
-import { useDatabase, useLogger } from "./helpers";
+import { useDatabase, useLogger } from "./factories";
 
 const PAGE_SIZE = 15;
 

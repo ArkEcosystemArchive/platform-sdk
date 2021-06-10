@@ -1,4 +1,4 @@
-import { ApiPromise, WsProvider } from "@polkadot/api";
+import { ApiPromise } from "@polkadot/api";
 import pino from "pino";
 import { v4 as uuidv4 } from "uuid";
 
@@ -120,21 +120,3 @@ export const indexNewBlocks = async (polkadot: ApiPromise, database: Database, l
 		await persistBlock(blockHash, block, database, logger);
 	});
 };
-
-/**
- * Creates a new API client instance.
- *
- * @param {string} host
- * @returns {Promise<ApiPromise>}
- */
-export const usePolkadot = async (host: string): Promise<ApiPromise> =>
-	ApiPromise.create({ provider: new WsProvider(host) });
-
-/**
- * Creates a new database instance.
- *
- * @param {*} flags
- * @param {*} logger
- * @returns {Database}
- */
-export const useDatabase = (flags, logger): Database => new Database(flags, logger);

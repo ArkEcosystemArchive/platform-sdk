@@ -3,7 +3,8 @@ import retry from "p-retry";
 import pino from "pino";
 
 import { Database } from "./database";
-import { indexBlock, indexNewBlocks, useDatabase, usePolkadot } from "./helpers";
+import { indexBlock, indexNewBlocks } from "./blocks";
+import { useDatabase, usePolkadot } from "./factories";
 
 /**
  * Launch the indexer and subscribe to updates for new data.
