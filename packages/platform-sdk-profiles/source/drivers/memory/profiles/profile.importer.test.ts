@@ -175,7 +175,21 @@ describe("#restore", () => {
 				data: {},
 			},
 			settings: {
-				THEME: "dark",
+				[ProfileSetting.AdvancedMode]: false,
+				[ProfileSetting.AutomaticSignOutPeriod]: 60,
+				[ProfileSetting.Bip39Locale]: "english",
+				[ProfileSetting.DashboardTransactionHistory]: false,
+				[ProfileSetting.DoNotShowFeeWarning]: false,
+				[ProfileSetting.ErrorReporting]: false,
+				[ProfileSetting.ExchangeCurrency]: "ADA",
+				[ProfileSetting.Locale]: "en-US",
+				[ProfileSetting.MarketProvider]: "coingecko",
+				[ProfileSetting.Name]: "John Doe",
+				[ProfileSetting.NewsFilters]: JSON.stringify({ categories: [], coins: ["ARK"] }),
+				[ProfileSetting.ScreenshotProtection]: false,
+				[ProfileSetting.Theme]: "dark",
+				[ProfileSetting.TimeFormat]: "HH::MM",
+				[ProfileSetting.UseTestNetworks]: false,
 			},
 			wallets: {
 				"88ff9e53-7d40-420d-8f39-9f24acee2164": {
