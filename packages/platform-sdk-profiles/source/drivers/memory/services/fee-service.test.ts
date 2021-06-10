@@ -66,7 +66,7 @@ describe("FeeService", () => {
 		const fees = subject.findByType("ARK", "ark.devnet", "transfer");
 
 		expect(fees.min.toString()).toEqual("357000");
-		expect(fees.avg.toString()).toEqual("71538139");
+		expect(fees.avg.toString()).toEqual("10000000");
 		expect(fees.max.toString()).toEqual("10000000");
 		expect(fees.static.toString()).toEqual("10000000");
 	});
