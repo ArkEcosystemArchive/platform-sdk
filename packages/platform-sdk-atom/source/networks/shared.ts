@@ -37,7 +37,7 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	PrivateKey: [
 		"mnemonic.bip44",
 	],
-	PrivateKey: [
+	PublicKey: [
 		"mnemonic.bip44",
 	],
 	Message: ["sign", "verify"],

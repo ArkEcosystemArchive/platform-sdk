@@ -35,7 +35,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		try {
 			return {
 				publicKey: keyPair.publicKey.toString("hex"),
-				privateKey: privateKey!.toString("hex"),
+				privateKey: keyPair.privateKey!.toString("hex"),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
