@@ -49,7 +49,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http': workspace:*
@@ -96,7 +95,6 @@ importers:
       reflect-metadata: ~0.1.13
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       type-fest: ^1.0.2
       typescript: ^4.3.0
   ../../packages/platform-sdk-ada:
@@ -137,7 +135,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -175,7 +172,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-ark:
     dependencies:
@@ -228,7 +224,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/crypto': ^3.0.0-next.23
@@ -278,7 +273,6 @@ importers:
       rimraf: ^3.0.2
       semver: ^7.3.5
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-ark-musig:
@@ -319,7 +313,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/crypto': ^3.0.0-next.23
@@ -356,7 +349,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-atom:
@@ -400,7 +392,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -440,7 +431,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-avax:
@@ -488,7 +478,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -531,7 +520,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       url-parse-lax: ^4.0.0
       uuid: ^8.3.2
@@ -577,7 +565,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -619,7 +606,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-btc-indexer:
     dependencies:
@@ -670,7 +656,6 @@ importers:
       prisma: 2.24.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
@@ -717,7 +702,6 @@ importers:
       prisma: ^2.24.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       url-parse-lax: ^4.0.0
       uuid: ^8.3.2
@@ -768,7 +752,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -813,7 +796,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       url-parse-lax: ^4.0.0
       uuid: ^8.3.2
@@ -884,7 +866,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -950,7 +931,6 @@ importers:
       semver: ^7.3.5
       terminal-link: ^2.1.1
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       type-fest: ^1.0.2
       typescript: ^4.3.0
   ../../packages/platform-sdk-crypto:
@@ -1002,7 +982,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
       wif: 2.0.6
     specifiers:
@@ -1051,7 +1030,6 @@ importers:
       safe-buffer: ^5.2.1
       string-crypto: ^2.0.1
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
       wif: ^2.0.6
@@ -1102,7 +1080,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -1148,7 +1125,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-dot-indexer:
@@ -1197,7 +1173,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
@@ -1242,7 +1217,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-egld:
@@ -1284,7 +1258,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -1323,7 +1296,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-eos:
     dependencies:
@@ -1366,7 +1338,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -1407,7 +1378,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-eth:
     dependencies:
@@ -1451,7 +1421,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -1492,7 +1461,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       web3: ^1.3.4
   ../../packages/platform-sdk-eth-indexer:
@@ -1540,7 +1508,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
@@ -1583,7 +1550,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
       web3: ^1.3.4
@@ -1632,7 +1598,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
@@ -1675,7 +1640,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
       web3: ^1.3.4
@@ -1708,7 +1672,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@sindresorhus/tsconfig': ^1.0.2
@@ -1738,7 +1701,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-axios:
     dependencies:
@@ -1771,7 +1733,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http': workspace:*
@@ -1802,7 +1763,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-bent:
     dependencies:
@@ -1836,7 +1796,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http': workspace:*
@@ -1868,7 +1827,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-got:
     dependencies:
@@ -1903,7 +1861,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http': workspace:*
@@ -1936,7 +1893,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-ky:
     dependencies:
@@ -1971,7 +1927,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http': workspace:*
@@ -2004,7 +1959,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-http-node-fetch:
     dependencies:
@@ -2038,7 +1992,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http': workspace:*
@@ -2070,7 +2023,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-intl:
     dependencies:
@@ -2102,7 +2054,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@types/dinero.js': 1.6.5
@@ -2132,7 +2083,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-json-rpc:
     dependencies:
@@ -2175,7 +2125,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -2216,7 +2165,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-lsk:
     dependencies:
@@ -2259,7 +2207,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -2300,7 +2247,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-luna:
     dependencies:
@@ -2339,7 +2285,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -2376,7 +2321,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-markets:
     dependencies:
@@ -2411,7 +2355,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -2444,7 +2387,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-nano:
     dependencies:
@@ -2485,7 +2427,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -2524,7 +2465,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-neo:
     dependencies:
@@ -2565,7 +2505,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -2603,7 +2542,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-news:
@@ -2639,7 +2577,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -2672,7 +2609,6 @@ importers:
       rimraf: ^3.0.2
       rss-parser: ^3.9.0
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-news-indexer:
     dependencies:
@@ -2717,7 +2653,6 @@ importers:
       prisma: 2.24.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
@@ -2760,7 +2695,6 @@ importers:
       prisma: ^2.24.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-news-server:
     dependencies:
@@ -2806,7 +2740,6 @@ importers:
       prisma: 2.24.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
@@ -2849,7 +2782,6 @@ importers:
       prisma: ^2.24.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-profiles:
@@ -2921,7 +2853,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -2987,7 +2918,6 @@ importers:
       rimraf: ^3.0.2
       semver: ^7.3.5
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       type-fest: ^1.0.2
       typescript: ^4.3.0
       uuid: ^8.3.2
@@ -3032,7 +2962,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -3071,7 +3000,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-support:
@@ -3113,7 +3041,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@sindresorhus/tsconfig': ^1.0.2
@@ -3152,7 +3079,6 @@ importers:
       remarkable: ^2.0.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-trx:
     dependencies:
@@ -3191,7 +3117,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -3228,7 +3153,6 @@ importers:
       rimraf: ^3.0.2
       tronweb: ^3.2.6
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-xlm:
     dependencies:
@@ -3269,7 +3193,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -3307,7 +3230,6 @@ importers:
       rimraf: ^3.0.2
       stellar-sdk: ^8.1.1
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
   ../../packages/platform-sdk-xrp:
@@ -3353,7 +3275,6 @@ importers:
       rimraf: 3.0.2
       ripple-binary-codec: 1.1.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
       typescript-language-server: 0.5.1
     specifiers:
@@ -3397,7 +3318,6 @@ importers:
       ripple-keypairs: ^1.0.3
       ripple-lib: ^1.9.4
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       typescript-language-server: ^0.5.1
   ../../packages/platform-sdk-zil:
@@ -3438,7 +3358,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk': workspace:*
@@ -3476,7 +3395,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
   ../../packages/platform-sdk-zil-indexer:
     dependencies:
@@ -3525,7 +3443,6 @@ importers:
       prettier: 2.2.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
-      ts-morph: 11.0.0
       typescript: 4.3.2
     specifiers:
       '@arkecosystem/platform-sdk-http-got': workspace:*
@@ -3570,7 +3487,6 @@ importers:
       prettier: ^2.2.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
-      ts-morph: ^11.0.0
       typescript: ^4.3.0
       uuid: ^8.3.2
       web3: ^1.3.4
@@ -5797,15 +5713,6 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
-  /@ts-morph/common/0.10.0:
-    dependencies:
-      fast-glob: 3.2.5
-      minimatch: 3.0.4
-      mkdirp: 1.0.4
-      path-browserify: 1.0.1
-    dev: true
-    resolution:
-      integrity: sha512-6wC+CovwzxLP+bQZcqHJEbZ7ViaIfsid8VzsVjJRkdfCQ8C8K5mm1+9/wkgmn814BPATtgSgFuDmVJnIb8/leg==
   /@types/argon2-browser/1.12.0:
     dev: true
     resolution:
@@ -8063,10 +7970,6 @@ packages:
       node: '>= 0.12.0'
     resolution:
       integrity: sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
-  /code-block-writer/10.1.1:
-    dev: true
-    resolution:
-      integrity: sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==
   /code-point-at/1.1.0:
     engines:
       node: '>=0.10.0'
@@ -13609,10 +13512,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-pG42A75Rypym+DeNd5PHTEU0LTS4aj6mJ6YjhWTSQqvkBKjtwbeuIq7cEO89kXUahsRUnVFRuTOelJqsRIcY0w==
-  /path-browserify/1.0.1:
-    dev: true
-    resolution:
-      integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==
   /path-exists/3.0.0:
     engines:
       node: '>=4'
@@ -15643,13 +15542,6 @@ packages:
       typescript: '>=3.8 <5.0'
     resolution:
       integrity: sha512-7tP4m+silwt1NHqzNRAPjW1BswnAhopTdc2K3HEkRZjF0ZG2F/e/ypVH0xiZIMfItFtD3CX0XFbwPzp9fIEUVg==
-  /ts-morph/11.0.0:
-    dependencies:
-      '@ts-morph/common': 0.10.0
-      code-block-writer: 10.1.1
-    dev: true
-    resolution:
-      integrity: sha512-u5y0jaft5c0sRFnU0K8cZhhsvPUtXjZK5L31JLIhP17qcqo9MDjwsSYLg3UryQDzlktv8wyf/UtoqpFLDYHijg==
   /tsconfig-paths/3.9.0:
     dependencies:
       '@types/json5': 0.0.29
