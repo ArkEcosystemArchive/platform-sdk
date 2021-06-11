@@ -26,7 +26,7 @@ export const importMethods: Networks.NetworkManifestImportMethods = {
 };
 
 export const featureFlags: Networks.NetworkManifestFeatureFlags = {
-	Client: ["transaction", "transactions", "wallet", "wallets", "delegate", "delegates", "broadcast"],
+	Client: ["transactions", "transaction", "wallet", "broadcast"],
 	Fee: ["all"],
 	Address: ["mnemonic.bip39", "publicKey", "validate"],
 	KeyPair: ["mnemonic.bip39"],
@@ -34,15 +34,7 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	PublicKey: ["mnemonic.bip39"],
 	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
 	Message: ["sign", "verify"],
-	Transaction: [
-		"delegateRegistration",
-		"multiSignature",
-		"secondSignature",
-		"transfer.ledgerS",
-		"transfer.ledgerX",
-		"transfer",
-		"vote",
-	],
+	Transaction: ["delegateRegistration", "multiSignature", "secondSignature", "transfer", "vote"],
 };
 
 export const explorer: Networks.NetworkManifestExplorer = {
