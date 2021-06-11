@@ -5,8 +5,5 @@
 	"engines": {
 		"node": "^12 || ^14"
 	},
-	"engineStrict": true,
-	"dependencies": {
-		"ts-morph": "^11.0.0"
-	}
+	"engineStrict": true
 }
