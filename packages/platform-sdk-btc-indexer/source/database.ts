@@ -56,7 +56,7 @@ export class Database {
 	public async allPendingBlocks(): Promise<any[]> {
 		return this.#prisma.pendingBlock.findMany({
 			skip: 0,
-			take: 10000,
+			take: 5000,
 			orderBy: {
 				height: "asc",
 			},

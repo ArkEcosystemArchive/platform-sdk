@@ -46,7 +46,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 			await processPendingBlocks(logger, database);
 			busy = false;
 		}
-	}, 10000); // Every 10 seconds
+	}, 5000); // Every 5 seconds
 };
 
 const runMigrations = async (): Promise<void> => {
