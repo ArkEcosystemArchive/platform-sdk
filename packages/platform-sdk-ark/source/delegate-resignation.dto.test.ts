@@ -8,6 +8,7 @@ let subject: DelegateResignationData;
 
 beforeEach(() => {
 	subject = createService(DelegateResignationData);
+	Fixture.data.genesisBlock.transactions[1].type = 7;
 	subject.configure(Fixture.data.genesisBlock.transactions[1]);
 });
 
