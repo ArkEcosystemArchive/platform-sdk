@@ -4,7 +4,20 @@ const fs = require('fs');
 const { Project, SyntaxKind } = require("ts-morph");
 
 const updaters = {
-	Client: ["transactions", "transaction", "wallet", "broadcast"],
+	Client: [
+		"transaction",
+		"transactions",
+		"wallet",
+		"wallets",
+		"delegate",
+		"delegates",
+		"votes",
+		"voters",
+		"configuration",
+		"fees",
+		"syncing",
+		"broadcast",
+	],
 	Message: ["sign", "verify"],
 	Transaction: [
 		"delegateRegistration",
