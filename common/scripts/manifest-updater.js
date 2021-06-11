@@ -18,6 +18,7 @@ const updaters = {
 		"syncing",
 		"broadcast",
 	],
+	Fee: ["all"],
 	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
 	Message: ["sign", "verify"],
 	Transaction: [
