@@ -38,7 +38,17 @@ export const importMethods: Networks.NetworkManifestImportMethods = {
 };
 
 export const featureFlags: Networks.NetworkManifestFeatureFlags = {
-	Client: ["transactions", "transaction", "wallet", "broadcast"],
+	Client: [
+        "transaction",
+        "transactions",
+        "wallet",
+        "wallets",
+        "delegate",
+        "delegates",
+        "votes",
+        "voters",
+        "broadcast"
+    ],
 	Fee: ["all"],
 	Address: ["mnemonic.bip39", "multiSignature", "privateKey", "publicKey", "validate", "wif"],
 	KeyPair: ["mnemonic.bip39", "privateKey", "wif"],
@@ -48,19 +58,19 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
 	Message: ["sign", "verify"],
 	Transaction: [
-		"delegateRegistration",
-		"delegateResignation",
-		"htlcClaim",
-		"htlcLock",
-		"htlcRefund",
-		"ipfs",
-		"multiPayment",
-		"multiSignature",
-		"secondSignature",
-		"transfer",
-		"vote",
-		"estimateExpiration",
-	],
+        "delegateRegistration",
+        "delegateResignation",
+        "htlcClaim",
+        "htlcLock",
+        "htlcRefund",
+        "ipfs",
+        "multiPayment",
+        "multiSignature",
+        "secondSignature",
+        "transfer",
+        "vote",
+        "estimateExpiration"
+    ],
 };
 
 export const explorer: Networks.NetworkManifestExplorer = {
