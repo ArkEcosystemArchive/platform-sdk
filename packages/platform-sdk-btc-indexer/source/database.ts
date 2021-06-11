@@ -64,18 +64,16 @@ export class Database {
 	}
 
 	public async storePendingBlock(block: any): Promise<void> {
-		await this.#prisma.pendingBlock.upsert({
-			where: {
-				height: block.height,
-			},
-			create: {
-				height: block.height,
-				payload: block,
-			},
-			update: {
-				payload: block.payload,
-			},
-		});
+		try {
+			await this.#prisma.pendingBlock.create({
+				data: {
+					height: block.height,
+					payload: block,
+				},
+			});
+		} catch (error) {
+			if (!(error instanceof Prisma.PrismaClientKnownRequestError) || error.code !== "P2002") throw error;
+		}
 	}
 
 	public async deletePendingBlock(height: number): Promise<void> {
@@ -85,6 +83,48 @@ export class Database {
 			});
 		} catch {
 			// If we end up here the record is most likely already gone.
+		}
+	}
+
+	public async deleteBlock(height: number): Promise<void> {
+		try {
+			const block = await this.#prisma.block.findUnique({
+				where: { height },
+				include: {
+					transactions: {
+						include: {
+							transaction_parts: true,
+						},
+					},
+				},
+			});
+
+			for (const transaction of block!.transactions) {
+				await this.#prisma.transaction.update({
+					where: { hash: transaction.hash },
+					data: {
+						transaction_parts: {
+							deleteMany: {},
+						},
+					},
+				});
+				await this.#prisma.transaction.delete({
+					where: { hash: transaction.hash },
+				});
+			}
+			await this.#prisma.block.update({
+				where: { height: height },
+				data: {
+					transactions: {
+						deleteMany: {},
+					},
+				},
+			});
+			await this.#prisma.block.delete({
+				where: { height: height },
+			});
+		} catch (e) {
+			throw e;
 		}
 	}
 
@@ -129,18 +169,18 @@ export class Database {
 	 * @memberof Database
 	 */
 	async #storeBlock(block): Promise<void> {
-		await this.#prisma.block.upsert({
-			where: {
-				height: block.height,
-			},
-			create: {
-				hash: block.hash,
-				height: block.height,
-			},
-			update: {
-				hash: block.hash,
-			},
-		});
+		// await this.#prisma.$executeRaw`INSERT INTO "public"."Block" (height, hash) VALUES (${block.height}, ${block.hash}) ON CONFLICT DO NOTHING;`;
+
+		try {
+			await this.#prisma.block.create({
+				data: {
+					hash: block.hash,
+					height: block.height,
+				},
+			});
+		} catch (error) {
+			if (!(error instanceof Prisma.PrismaClientKnownRequestError) || error.code !== "P2002") throw error;
+		}
 	}
 
 	/**
@@ -200,11 +240,8 @@ export class Database {
 		);
 
 		try {
-			await this.#prisma.transaction.upsert({
-				where: {
-					hash: transaction.txid,
-				},
-				create: {
+			await this.#prisma.transaction.create({
+				data: {
 					block_id: blockId,
 					hash: transaction.txid,
 					time: transaction.time,
@@ -218,41 +255,9 @@ export class Database {
 						})),
 					},
 				},
-				update: {
-					block_id: blockId,
-					hash: transaction.txid,
-					time: transaction.time,
-					amount: BigInt(amount.toString()),
-					fee: BigInt(fee.toString()),
-					transaction_parts: {
-						upsert: outputs.map((output) => {
-							const outputData = {
-								output_idx: output.idx,
-								amount: BigInt(output.amount.toString()),
-								address: JSON.stringify(output.addresses),
-							};
-							return {
-								where: {
-									output_hash_output_idx: {
-										output_hash: transaction.txid,
-										output_idx: output.idx,
-									},
-								},
-								create: outputData,
-								update: outputData,
-							};
-						}),
-					},
-				},
 			});
 		} catch (e) {
-			if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") {
-				// Unique contraint validation. Ignore, there's nothing to update if already exists
-				// We could query for existence before creation, but it doesn't really make sense
-				this.#logger.info(
-					`Ignoring transaction ${transaction.txid} from block ${blockId} as it already exists`,
-				);
-			} else {
+			if (!(e instanceof Prisma.PrismaClientKnownRequestError) || e.code !== "P2002") {
 				// If there's an error, we don't want to proceed, as this will affect future utxos
 				// It means there's a programming error and we need to fix it
 				throw e;
