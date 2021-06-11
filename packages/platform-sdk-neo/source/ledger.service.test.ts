@@ -4,7 +4,7 @@ import { IoC, Services } from "@arkecosystem/platform-sdk";
 import { createTransportReplayer, RecordStore, RecordStoreOptions } from "@ledgerhq/hw-transport-mocker";
 
 import { ledger } from "../test/fixtures/ledger";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { DataTransferObjects } from "./coin.dtos";
 import { AddressService } from "./address.service";
 import { ClientService } from "./client.service";

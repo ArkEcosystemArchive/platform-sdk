@@ -1,6 +1,6 @@
 import { IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { makeAccount } from "./helpers";
+import { makeAccount } from "./factories";
 
 @IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {

@@ -2,8 +2,9 @@ import PQueue from "p-queue";
 import retry from "p-retry";
 import pino from "pino";
 
+import { indexBlock, indexNewBlocks } from "./blocks";
 import { Database } from "./database";
-import { indexBlock, indexNewBlocks, useDatabase, usePolkadot } from "./helpers";
+import { useDatabase, usePolkadot } from "./factories";
 
 /**
  * Launch the indexer and subscribe to updates for new data.

@@ -1,7 +1,7 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer } from "../../../../../test/mocking";
 import { Profile } from "../profile";
 import { CountAggregate } from "./count-aggregate";
 

@@ -2,7 +2,7 @@ import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/pl
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 
 import { WalletData } from "./wallet.dto";
-import { broadcastErrors } from "./client.helpers";
+import { broadcastErrors } from "./client.errors";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {

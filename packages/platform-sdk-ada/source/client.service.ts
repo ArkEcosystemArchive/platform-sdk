@@ -2,7 +2,7 @@ import { Collections, Contracts, Exceptions, IoC, Services } from "@arkecosystem
 
 import { WalletData } from "./wallet.dto";
 import { fetchTransaction, fetchTransactions, fetchUtxosAggregate, submitTransaction } from "./graphql-helpers";
-import { usedAddressesForAccount } from "./helpers";
+import { usedAddressesForAccount } from "./transaction.domain";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {

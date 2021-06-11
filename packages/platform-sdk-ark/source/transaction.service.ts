@@ -6,7 +6,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
 import { Bindings } from "./coin.contract";
-import { applyCryptoConfiguration } from "./helpers";
+import { applyCryptoConfiguration } from "./config";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {

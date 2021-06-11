@@ -4,7 +4,7 @@ import { Transactions } from "@arkecosystem/crypto";
 import { IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { DataTransferObjects } from "./coin.dtos";
 import { AddressService } from "./address.service";
 import { ClientService } from "./client.service";

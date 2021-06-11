@@ -3,7 +3,7 @@ import "reflect-metadata";
 
 import nock from "nock";
 
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { Profile } from "../profiles/profile";
 import { ContactAddressRepository } from "../repositories/contact-address-repository";
 import { Contact } from "./contact";

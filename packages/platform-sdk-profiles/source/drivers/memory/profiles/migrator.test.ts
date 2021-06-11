@@ -3,7 +3,7 @@ import "reflect-metadata";
 
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { Migrator } from "./migrator";
 import { Profile } from "./profile";
 import { IProfile, ProfileData, ProfileSetting } from "../../../contracts";

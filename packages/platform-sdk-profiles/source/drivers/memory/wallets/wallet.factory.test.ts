@@ -5,7 +5,7 @@ import { decrypt, encrypt } from "bip38";
 import nock from "nock";
 import { decode } from "wif";
 
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { Profile } from "../profiles/profile";
 import { WalletFactory } from "./wallet.factory";
 import { WalletData } from "../../../contracts";

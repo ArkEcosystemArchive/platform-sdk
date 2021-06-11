@@ -3,7 +3,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { computeWork } from "nanocurrency";
 import { block, tools } from "nanocurrency-web";
 
-import { deriveAccount } from "./helpers";
+import { deriveAccount } from "./account";
 import { NanoClient } from "./rpc";
 
 @IoC.injectable()

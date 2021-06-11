@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer } from "../../../../../test/mocking";
 import { PasswordManager } from "./password";
 
 beforeAll(() => bootContainer());

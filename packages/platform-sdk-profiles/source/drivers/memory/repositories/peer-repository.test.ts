@@ -1,6 +1,6 @@
 import "jest-extended";
 import "reflect-metadata";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { Profile } from "../profiles/profile";
 
 import { PeerRepository } from "./peer-repository";

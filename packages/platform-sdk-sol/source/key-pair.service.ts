@@ -1,7 +1,7 @@
 import { Coins, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 
-import { derivePrivateKey, derivePublicKey } from "./helpers";
+import { derivePrivateKey, derivePublicKey } from "./keys";
 
 @IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {

@@ -5,7 +5,7 @@ import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
 import { identity } from "../../../../../test/fixtures/identity";
-import { bootContainer } from "../../../../../test/helpers";
+import { bootContainer } from "../../../../../test/mocking";
 import { container } from "../../../../environment/container";
 import { Identifiers } from "../../../../environment/container.models";
 import { Wallet } from "../wallet";

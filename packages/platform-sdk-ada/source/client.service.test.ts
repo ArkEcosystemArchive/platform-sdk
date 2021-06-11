@@ -4,7 +4,7 @@ import { DTO, IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
 import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";

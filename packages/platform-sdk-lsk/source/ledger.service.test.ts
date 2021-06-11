@@ -5,7 +5,7 @@ import { createTransportReplayer, RecordStore } from "@ledgerhq/hw-transport-moc
 import nock from "nock";
 
 import { ledger } from "../test/fixtures/ledger";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { DataTransferObjects } from "./coin.dtos";
 import { AddressService } from "./address.service";
 import { ClientService } from "./client.service";
