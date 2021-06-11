@@ -1,4 +1,6 @@
 const path = require('path');
+const fs = require('fs');
+
 const { Project, SyntaxKind } = require("ts-morph");
 
 const updaters = {
@@ -20,9 +22,13 @@ const updaters = {
 	],
 };
 
-const projectName = process.argv.slice(2)[0];
-const projectFolder = path.join(process.cwd(), "packages", projectName);
-console.log("Project folder", projectFolder);
+const projectFolder = path.join(process.cwd());
+if (!fs.existsSync(path.join(projectFolder, "source/networks/shared.ts"))) {
+	console.log("Ignoring in", projectFolder);
+	return;
+}
+console.log("Fixing manifest in", projectFolder);
+
 
 function figureOutImplemented(sourceFile, className, knownMethods) {
 	let transactionService = sourceFile.getClassOrThrow(className);
@@ -76,8 +82,16 @@ function doService(serviceName) {
 
 	const knownMethods = updaters[serviceName];
 
+	const serviceSourceFileName = path.join(projectFolder, `source/${serviceName.toLowerCase()}.service.ts`);
+	const serviceSourceFile = project.getSourceFile(serviceSourceFileName);
+	if (!serviceSourceFile) {
+		// TODO Perhaps we should just remove the property from the manifest, or set it to []
+		console.log("service doesn't exist", serviceSourceFileName)
+		return;
+	}
+
 	const transactionMembers = figureOutImplemented(
-		project.getSourceFileOrThrow(path.join(projectFolder, `source/${serviceName.toLowerCase()}.service.ts`)),
+		serviceSourceFile,
 		`${serviceName}Service`,
 		knownMethods,
 	);

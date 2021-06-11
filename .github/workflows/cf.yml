@@ -38,6 +38,8 @@ jobs:
               run: pnpm install -g @microsoft/rush
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
+            - name: Install dependencies
+              run: npm i -g ts-morph
             - name: Update manifest files
               run: sh common/scripts/update-manifests.sh
             - name: Lint
