@@ -20,6 +20,10 @@ const updaters = {
 	],
 };
 
+const projectName = process.argv.slice(2)[0];
+const projectFolder = path.join(process.cwd(), "packages", projectName);
+console.log("Project folder", projectFolder);
+
 function figureOutImplemented(sourceFile, className, knownMethods) {
 	let transactionService = sourceFile.getClassOrThrow(className);
 
@@ -73,20 +77,16 @@ function doService(serviceName) {
 	const knownMethods = updaters[serviceName];
 
 	const transactionMembers = figureOutImplemented(
-		project.getSourceFileOrThrow(`source/${serviceName.toLowerCase()}.service.ts`),
+		project.getSourceFileOrThrow(path.join(projectFolder, `source/${serviceName.toLowerCase()}.service.ts`)),
 		`${serviceName}Service`,
 		knownMethods,
 	);
 
 	let implemented = filterKnown(knownMethods, transactionMembers);
 
-	const sharedSourceFile = project.getSourceFileOrThrow("source/networks/shared.ts");
+	const sharedSourceFile = project.getSourceFileOrThrow(path.join(projectFolder, "source/networks/shared.ts"));
 	updateProperty(sharedSourceFile, "featureFlags", serviceName, implemented);
 }
-
-const projectName = process.argv.slice(2)[0];
-const projectFolder = path.join(process.cwd(), "packages", projectName);
-console.log("projectFolder", projectFolder);
 
 const project = new Project();
 project.addSourceFilesAtPaths(path.join(projectFolder, "/source/**/*.ts"));
