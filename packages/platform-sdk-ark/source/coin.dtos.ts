@@ -1,4 +1,5 @@
 import { DelegateRegistrationData } from "./delegate-registration.dto";
+import { DelegateResignationData } from "./delegate-resignation.dto";
 import { HtlcClaimData } from "./htlc-claim.dto";
 import { HtlcLockData } from "./htlc-lock.dto";
 import { HtlcRefundData } from "./htlc-refund.dto";
@@ -14,6 +15,7 @@ import { WalletData } from "./wallet.dto";
 
 export const DataTransferObjects = {
 	DelegateRegistrationData,
+	DelegateResignationData,
 	HtlcClaimData,
 	HtlcLockData,
 	HtlcRefundData,
