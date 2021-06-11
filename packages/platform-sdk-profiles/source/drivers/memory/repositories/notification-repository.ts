@@ -51,7 +51,7 @@ export class NotificationRepository implements INotificationRepository {
 	}
 
 	/** {@inheritDoc INotificationRepository.push} */
-	public push(value: Except<INotification, "id">): INotification {
+	public push(value: Partial<Except<INotification, "id">>): INotification {
 		const id: string = uuidv4();
 
 		this.#data.set(id, { id, ...value });

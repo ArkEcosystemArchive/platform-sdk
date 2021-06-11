@@ -76,11 +76,11 @@ export interface INotificationRepository {
 	/**
 	 * Create a new notification.
 	 *
-	 * @param {Except<INotification, "id">} value
+	 * @param {Partial<Except<INotification, "id">>} value
 	 * @returns {INotification}
 	 * @memberof INotificationRepository
 	 */
-	push(value: Except<INotification, "id">): INotification;
+	push(value: Partial<Except<INotification, "id">>): INotification;
 
 	/**
 	 * Fill the storage with notification data.
