@@ -1,5 +1,5 @@
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 
 const { Project, SyntaxKind } = require("ts-morph");
 
@@ -18,6 +18,7 @@ const updaters = {
 		"syncing",
 		"broadcast",
 	],
+	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
 	Message: ["sign", "verify"],
 	Transaction: [
 		"delegateRegistration",
@@ -41,7 +42,6 @@ if (!fs.existsSync(path.join(projectFolder, "source/networks/shared.ts"))) {
 	return;
 }
 console.log("Fixing manifest in", projectFolder);
-
 
 function figureOutImplemented(sourceFile, className, knownMethods) {
 	let transactionService = sourceFile.getClassOrThrow(className);
@@ -99,15 +99,11 @@ function doService(serviceName) {
 	const serviceSourceFile = project.getSourceFile(serviceSourceFileName);
 	if (!serviceSourceFile) {
 		// TODO Perhaps we should just remove the property from the manifest, or set it to []
-		console.log("service doesn't exist", serviceSourceFileName)
+		console.log("service doesn't exist", serviceSourceFileName);
 		return;
 	}
 
-	const transactionMembers = figureOutImplemented(
-		serviceSourceFile,
-		`${serviceName}Service`,
-		knownMethods,
-	);
+	const transactionMembers = figureOutImplemented(serviceSourceFile, `${serviceName}Service`, knownMethods);
 
 	let implemented = filterKnown(knownMethods, transactionMembers);
 
