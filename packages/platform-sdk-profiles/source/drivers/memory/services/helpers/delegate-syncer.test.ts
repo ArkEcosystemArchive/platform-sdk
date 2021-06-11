@@ -3,7 +3,7 @@ import "reflect-metadata";
 
 import nock from "nock";
 
-import { bootContainer, makeCoin } from "../../../../../test/helpers";
+import { bootContainer, makeCoin } from "../../../../../test/mocking";
 import { IDelegateSyncer, ParallelDelegateSyncer, SerialDelegateSyncer } from "./delegate-syncer";
 
 let coin;

@@ -1,7 +1,7 @@
 import "jest-extended";
 import "reflect-metadata";
 
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { PluginRegistry } from "./plugin-registry";
 import { PluginRepository } from "./plugin-repository";
 

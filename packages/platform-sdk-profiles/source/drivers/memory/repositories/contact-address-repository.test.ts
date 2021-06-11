@@ -4,7 +4,7 @@ import "reflect-metadata";
 import nock from "nock";
 import { v4 as uuidv4 } from "uuid";
 
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { ContactAddressRepository } from "./contact-address-repository";
 import { Profile } from "../profiles/profile";
 

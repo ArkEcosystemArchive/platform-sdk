@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { FeeService } from "./fee.service";
 
 let subject: FeeService;

@@ -2,7 +2,7 @@ import { Coins, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 import * as bitcoin from "bitcoinjs-lib";
 
-import { getNetworkConfig } from "./helpers";
+import { getNetworkConfig } from "./config";
 
 interface Levels {
 	purpose?: number;

@@ -4,7 +4,7 @@ import "reflect-metadata";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting, ProfileData } from "../../../contracts";
 import { ProfileInitialiser } from "./profile.initialiser";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import nock from "nock";
 
 beforeAll(() => {

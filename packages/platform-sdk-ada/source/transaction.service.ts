@@ -3,9 +3,9 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import CardanoWasm, { BigNum, Bip32PrivateKey } from "@emurgo/cardano-serialization-lib-nodejs";
 
 import { fetchNetworkTip, listUnspentTransactions } from "./graphql-helpers";
-import { addUtxoInput, deriveAddressesAndSigningKeys, usedAddressesForAccount } from "./helpers";
+import { addUtxoInput, deriveAddressesAndSigningKeys, usedAddressesForAccount } from "./transaction.domain";
 import { deriveAccountKey, deriveAddress, deriveRootKey } from "./shelley";
-import { createValue } from "./transaction.helpers";
+import { createValue } from "./transaction.factory";
 import { UnspentTransaction } from "./transaction.models";
 
 @IoC.injectable()

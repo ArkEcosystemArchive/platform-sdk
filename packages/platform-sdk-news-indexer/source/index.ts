@@ -2,7 +2,7 @@ import execa from "execa";
 import path from "path";
 
 import { COINS } from "./constants";
-import { useClient, useDatabase, useLogger } from "./helpers";
+import { useClient, useDatabase, useLogger } from "./factories";
 import { Logger } from "./logger";
 import { Flags } from "./types";
 

@@ -4,7 +4,7 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../test/fixtures/identity";
-import { bootContainer, importByMnemonic } from "../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../test/mocking";
 import { ProfileSetting } from "../../../contracts";
 import { Profile } from "../profiles/profile";
 import { ContactRepository } from "./contact-repository";

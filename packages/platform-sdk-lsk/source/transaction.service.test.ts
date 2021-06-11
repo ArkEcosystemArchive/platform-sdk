@@ -3,7 +3,7 @@ import "jest-extended";
 import { IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../test/fixtures/identity";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { DataTransferObjects } from "./coin.dtos";
 import { AddressService } from "./address.service";
 import { ClientService } from "./client.service";

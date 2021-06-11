@@ -3,7 +3,7 @@ import "jest-extended";
 import { Signatories } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../test/fixtures/identity";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { MessageService } from "./message.service";
 
 let subject: MessageService;

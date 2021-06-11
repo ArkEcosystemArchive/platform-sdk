@@ -3,7 +3,7 @@ import "reflect-metadata";
 
 import nock from "nock";
 
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { KnownWalletService } from "./known-wallet-service";
 import { Profile } from "../profiles/profile";
 

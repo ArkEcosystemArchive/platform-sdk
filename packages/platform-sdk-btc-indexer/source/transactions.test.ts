@@ -1,4 +1,4 @@
-import { getAmount, getFees, getOutputs } from "./tx-parsing-helpers";
+import { getAmount, getFees, getOutputs } from "./transactions";
 
 const txs = ["tx-1", "tx-2", "tx-3", "tx-4"];
 

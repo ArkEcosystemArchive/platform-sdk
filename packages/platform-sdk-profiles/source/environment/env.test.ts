@@ -11,7 +11,7 @@ import { resolve } from "path";
 
 import storageData from "../../test/fixtures/env-storage.json";
 import { identity } from "../../test/fixtures/identity";
-import { importByMnemonic } from "../../test/helpers";
+import { importByMnemonic } from "../../test/mocking";
 import { StubStorage } from "../../test/stubs/storage";
 import { ProfileData } from "../contracts";
 import { PluginRegistry } from "../drivers/memory/plugins";

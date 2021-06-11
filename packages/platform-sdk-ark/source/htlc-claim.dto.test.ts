@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { HtlcClaimData } from "./htlc-claim.dto";
 
 let subject: HtlcClaimData;

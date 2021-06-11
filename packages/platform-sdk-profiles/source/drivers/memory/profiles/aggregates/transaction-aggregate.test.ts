@@ -4,7 +4,7 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
-import { bootContainer, importByMnemonic } from "../../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../../test/mocking";
 import { ExtendedTransactionDataCollection } from "../../../../dto/transaction-collection";
 import * as promiseHelpers from "../../../../helpers/promise";
 import { Profile } from "../profile";

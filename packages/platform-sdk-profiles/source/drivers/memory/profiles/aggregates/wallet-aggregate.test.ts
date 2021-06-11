@@ -5,7 +5,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
 
 import { identity } from "../../../../../test/fixtures/identity";
-import { bootContainer, importByMnemonic } from "../../../../../test/helpers";
+import { bootContainer, importByMnemonic } from "../../../../../test/mocking";
 import { Profile } from "../profile";
 import { WalletAggregate } from "./wallet-aggregate";
 import { IProfile } from "../../../../contracts";

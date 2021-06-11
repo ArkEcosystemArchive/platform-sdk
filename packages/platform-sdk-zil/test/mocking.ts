@@ -1,4 +1,4 @@
-import { Coins, Helpers, Test } from "@arkecosystem/platform-sdk";
+import { Test } from "@arkecosystem/platform-sdk";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { Zilliqa } from "@zilliqa-js/zilliqa";
 

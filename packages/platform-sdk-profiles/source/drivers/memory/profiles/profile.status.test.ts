@@ -2,7 +2,7 @@ import "jest-extended";
 import "reflect-metadata";
 
 import { Base64 } from "@arkecosystem/platform-sdk-crypto";
-import { bootContainer } from "../../../../test/helpers";
+import { bootContainer } from "../../../../test/mocking";
 import { Profile } from "./profile";
 import { IProfile } from "../../../contracts";
 

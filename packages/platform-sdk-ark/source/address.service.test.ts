@@ -3,7 +3,7 @@ import "jest-extended";
 import { Exceptions } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../test/fixtures/identity";
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { AddressService } from "./address.service";
 
 let subject: AddressService;

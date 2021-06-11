@@ -1,6 +1,6 @@
 import retry from "p-retry";
 
-import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
+import { useClient, useDatabase, useLogger, useQueue } from "./factories";
 import { Logger } from "./logger";
 
 /**

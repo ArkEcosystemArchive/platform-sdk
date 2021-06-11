@@ -3,7 +3,7 @@ import "jest-extended";
 import { Coins, IoC } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
-import { createService } from "../test/helpers";
+import { createService } from "../test/mocking";
 import { KnownWalletService } from "./known-wallets.service";
 
 let subject: KnownWalletService;

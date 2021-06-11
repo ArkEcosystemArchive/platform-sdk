@@ -3,7 +3,7 @@ import "jest-extended";
 import { IoC } from "@arkecosystem/platform-sdk";
 
 import { identity } from "../test/fixtures/identity";
-import { createService, mockWallet } from "../test/helpers";
+import { createService, mockWallet } from "../test/mocking";
 import { BindingType } from "./constants";
 import { PrivateKeyService } from "./private-key.service";
 

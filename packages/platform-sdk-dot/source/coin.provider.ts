@@ -2,7 +2,7 @@ import { Coins, IoC } from "@arkecosystem/platform-sdk";
 import { waitReady } from "@polkadot/wasm-crypto";
 
 import { BindingType } from "./constants";
-import { createApiPromise, createKeyring } from "./helpers";
+import { createApiPromise, createKeyring } from "./factories";
 
 import { Services } from "./coin.services";
 

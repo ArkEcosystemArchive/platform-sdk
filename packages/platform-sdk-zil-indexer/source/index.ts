@@ -1,7 +1,7 @@
 import { BN } from "@zilliqa-js/zilliqa";
 import retry from "p-retry";
 
-import { useClient, useDatabase, useLogger, useQueue } from "./helpers";
+import { useClient, useDatabase, useLogger, useQueue } from "./factories";
 
 /**
  * Launch the indexer and subscribe to updates for new data.
