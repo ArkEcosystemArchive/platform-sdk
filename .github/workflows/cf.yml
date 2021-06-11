@@ -41,7 +41,7 @@ jobs:
             - name: Install dependencies
               run: npm i -g ts-morph
             - name: Update manifest files
-              run: sh common/scripts/update-manifests.sh
+              run: sh scripts/update-manifests.sh
             - name: Lint
               run: rush lint
             - name: Format
