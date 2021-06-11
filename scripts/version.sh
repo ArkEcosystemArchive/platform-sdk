@@ -8,12 +8,6 @@ for dir in `find packages -mindepth 1 -maxdepth 1 -type d | sort -nr`; do
     cd ../..
 done
 
-# Update
-rush update
-
-# Build
-rush build
-
 # Branch (Requires GitHub CLI)
 git checkout -b $1
 git add -A

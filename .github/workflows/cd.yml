@@ -39,5 +39,5 @@ jobs:
               run: node common/scripts/install-run-rush.js install
             - name: Build
               run: node common/scripts/install-run-rush.js rebuild --verbose
-            - name: Test
-              run: NPM_AUTH_TOKEN=${{ secrets.NPM_AUTH_TOKEN }} rush publish --publish --set-access-level=public --include-all
+            - name: Publish
+              run: NPM_AUTH_TOKEN=${{ secrets.NPM_AUTH_TOKEN }} node common/scripts/install-run-rush.js publish --publish --set-access-level=public --include-all
