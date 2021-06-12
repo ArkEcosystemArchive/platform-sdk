@@ -86,6 +86,8 @@ export interface TransactionData {
 
 	toObject(): Record<string, any>;
 
+	toJSON(): Record<string, any>;
+
 	hasPassed(): boolean;
 
 	hasFailed(): boolean;

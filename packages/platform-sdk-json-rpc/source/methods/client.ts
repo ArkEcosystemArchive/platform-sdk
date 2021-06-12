@@ -26,7 +26,7 @@ export const registerClient = () => [
 					next: transactions.nextPage(),
 					last: transactions.lastPage(),
 				},
-				data: transactions.items().map((transaction) => transaction.toObject()),
+				data: transactions.items().map((transaction) => transaction.toJSON()),
 			};
 		},
 		schema: Joi.object({
