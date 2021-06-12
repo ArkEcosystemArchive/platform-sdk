@@ -88,6 +88,8 @@ export interface TransactionData {
 
 	toJSON(): Record<string, any>;
 
+	toHuman(): Record<string, any>;
+
 	hasPassed(): boolean;
 
 	hasFailed(): boolean;
