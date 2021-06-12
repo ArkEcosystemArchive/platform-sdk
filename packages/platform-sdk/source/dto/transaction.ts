@@ -214,6 +214,20 @@ export abstract class AbstractTransactionData implements TransactionData {
 		};
 	}
 
+	public toHuman(): KeyValuePair {
+		return {
+			id: this.id(),
+			type: this.type(),
+			timestamp: this.timestamp()?.toISOString(),
+			confirmations: this.confirmations().toString(),
+			sender: this.sender(),
+			recipient: this.recipient(),
+			amount: this.amount().toHuman(),
+			fee: this.fee().toHuman(),
+			asset: this.asset(),
+		};
+	}
+
 	public raw(): KeyValuePair {
 		return this.data;
 	}
