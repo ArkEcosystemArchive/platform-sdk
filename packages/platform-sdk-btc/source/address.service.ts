@@ -35,7 +35,10 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	public override async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
+	public override async fromMultiSignature(
+		min: number,
+		publicKeys: string[],
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { address } = bitcoin.payments.p2sh({
 				redeem: bitcoin.payments.p2ms({

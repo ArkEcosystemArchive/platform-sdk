@@ -31,7 +31,9 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 
-	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(
+		query: Services.ClientTransactionsInput,
+	): Promise<Collections.TransactionDataCollection> {
 		const transactions: unknown[] = (await this.#get(`wallets/${query.address}/transactions`)) as any;
 
 		return this.dataTransferObjectService.transactions(
@@ -50,7 +52,9 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(await this.#get(`wallets/${id}`));
 	}
 
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],
