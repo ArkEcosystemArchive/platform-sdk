@@ -202,29 +202,21 @@ export abstract class AbstractTransactionData implements TransactionData {
 
 	public toJSON(): KeyValuePair {
 		return {
-			id: this.id(),
-			type: this.type(),
+			...this.toObject(),
 			timestamp: this.timestamp()?.toISOString(),
 			confirmations: this.confirmations().toString(),
-			sender: this.sender(),
-			recipient: this.recipient(),
 			amount: this.amount().toString(),
 			fee: this.fee().toString(),
-			asset: this.asset(),
 		};
 	}
 
 	public toHuman(): KeyValuePair {
 		return {
-			id: this.id(),
-			type: this.type(),
+			...this.toObject(),
 			timestamp: this.timestamp()?.toISOString(),
 			confirmations: this.confirmations().toString(),
-			sender: this.sender(),
-			recipient: this.recipient(),
 			amount: this.amount().toHuman(),
 			fee: this.fee().toHuman(),
-			asset: this.asset(),
 		};
 	}
 
