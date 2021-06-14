@@ -42,8 +42,8 @@ test("#isDelegate", () => {
 	expect(new Wallet({ key: "value" }).isDelegate()).toBeFalse();
 });
 
-test("#isMultiSignatureRegistration", () => {
-	expect(new Wallet({ key: "value" }).isMultiSignatureRegistration()).toBeFalse();
+test("#isMultiSignature", () => {
+	expect(new Wallet({ key: "value" }).isMultiSignature()).toBeFalse();
 });
 
 test("#isSecondSignature", () => {
