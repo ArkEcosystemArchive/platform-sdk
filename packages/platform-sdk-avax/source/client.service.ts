@@ -31,7 +31,9 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(
+		query: Services.ClientTransactionsInput,
+	): Promise<Collections.TransactionDataCollection> {
 		const { transactions } = await this.#get("v2/transactions", {
 			chainID: this.configRepository.get("network.meta.blockchainId"),
 			limit: 100,
@@ -70,7 +72,9 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

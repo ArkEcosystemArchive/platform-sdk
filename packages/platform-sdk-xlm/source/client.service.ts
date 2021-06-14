@@ -38,7 +38,9 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(
+		query: Services.ClientTransactionsInput,
+	): Promise<Collections.TransactionDataCollection> {
 		const { records, next, prev } = await this.#client.payments().forAccount(query.address).call();
 
 		return this.dataTransferObjectService.transactions(
@@ -56,7 +58,9 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(await this.#client.loadAccount(id));
 	}
 
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

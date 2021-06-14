@@ -11,7 +11,7 @@ import {
 
 afterEach(() => jest.restoreAllMocks());
 
-const configMock = ({
+const configMock = {
 	get: () => [
 		{
 			type: "full",
@@ -26,7 +26,7 @@ const configMock = ({
 			host: "https://explorer.ark.io",
 		},
 	],
-} as unknown) as ConfigRepository;
+} as unknown as ConfigRepository;
 
 test("filterHostsFromConfig", () => {
 	expect(filterHostsFromConfig(configMock, "explorer")).toEqual([
@@ -78,7 +78,7 @@ describe("pluckAddress", () => {
 });
 
 test("#toRawUnit", () => {
-	const configMock = ({ get: () => 8 } as unknown) as ConfigRepository;
+	const configMock = { get: () => 8 } as unknown as ConfigRepository;
 
 	expect(toRawUnit(42, configMock).toNumber()).toBe(4_200_000_000);
 });

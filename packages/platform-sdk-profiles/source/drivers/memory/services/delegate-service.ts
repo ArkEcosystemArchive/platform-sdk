@@ -118,7 +118,7 @@ export class DelegateService implements IDelegateService {
 			address: delegate.address,
 			publicKey: delegate.publicKey,
 			username: delegate.username,
-			rank: (delegate.rank as unknown) as number,
+			rank: delegate.rank as unknown as number,
 			explorerLink: delegate.explorerLink,
 			isDelegate: delegate.isDelegate,
 			isResignedDelegate: delegate.isResignedDelegate,

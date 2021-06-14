@@ -34,7 +34,9 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-transfer-an-eosio-token
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		const result = await this.#api.transact(
 			{
 				actions: [
