@@ -4,31 +4,31 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public id(): string {
+	public override id(): string {
 		return this.data.hash;
 	}
 
-	public blockId(): string | undefined {
+	public override blockId(): string | undefined {
 		return undefined;
 	}
 
-	public timestamp(): DateTime {
+	public override timestamp(): DateTime {
 		return DateTime.make(this.data.includedAt);
 	}
 
-	public confirmations(): BigNumber {
+	public override confirmations(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public sender(): string {
+	public override sender(): string {
 		return this.data.inputs[0].address;
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		return this.recipients()[0].address;
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
+	public override recipients(): Contracts.MultiPaymentRecipient[] {
 		return this.data.outputs
 			.sort((a, b) => a.index - b.index)
 			.map((out) => ({
@@ -37,7 +37,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			}));
 	}
 
-	public inputs(): Contracts.UnspentTransactionData[] {
+	public override inputs(): Contracts.UnspentTransactionData[] {
 		return this.data.inputs.map(
 			(input: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
@@ -48,7 +48,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		);
 	}
 
-	public outputs(): Contracts.UnspentTransactionData[] {
+	public override outputs(): Contracts.UnspentTransactionData[] {
 		return this.data.outputs.map(
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
@@ -58,7 +58,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		);
 	}
 
-	public amount(): BigNumber {
+	public override amount(): BigNumber {
 		const totalInput = BigNumber.sum(this.data.inputs.map(({ value }) => value));
 
 		const changeOutput =
@@ -72,77 +72,77 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.bigNumberService.make(netAmount);
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		return this.bigNumberService.make(this.data.fee);
 	}
 
-	public isConfirmed(): boolean {
+	public override isConfirmed(): boolean {
 		return false;
 	}
 
-	public isSent(): boolean {
+	public override isSent(): boolean {
 		// @TODO: Need to find a way to determine this
 		return false;
 	}
 
-	public isReceived(): boolean {
+	public override isReceived(): boolean {
 		// @TODO: Need to find a way to determine this
 		return false;
 	}
 
-	public isTransfer(): boolean {
+	public override isTransfer(): boolean {
 		return true;
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return false;
 	}
 
-	public isDelegateRegistration(): boolean {
+	public override isDelegateRegistration(): boolean {
 		return false;
 	}
 
-	public isVoteCombination(): boolean {
+	public override isVoteCombination(): boolean {
 		return false;
 	}
 
-	public isVote(): boolean {
+	public override isVote(): boolean {
 		return false;
 	}
 
-	public isUnvote(): boolean {
+	public override isUnvote(): boolean {
 		return false;
 	}
 
-	public isMultiSignatureRegistration(): boolean {
+	public override isMultiSignatureRegistration(): boolean {
 		return false;
 	}
 
-	public isIpfs(): boolean {
+	public override isIpfs(): boolean {
 		return false;
 	}
 
-	public isMultiPayment(): boolean {
+	public override isMultiPayment(): boolean {
 		return false;
 	}
 
-	public isDelegateResignation(): boolean {
+	public override isDelegateResignation(): boolean {
 		return false;
 	}
 
-	public isHtlcLock(): boolean {
+	public override isHtlcLock(): boolean {
 		return false;
 	}
 
-	public isHtlcClaim(): boolean {
+	public override isHtlcClaim(): boolean {
 		return false;
 	}
 
-	public isHtlcRefund(): boolean {
+	public override isHtlcRefund(): boolean {
 		return false;
 	}
 
-	public isMagistrate(): boolean {
+	public override isMagistrate(): boolean {
 		return false;
 	}
 }

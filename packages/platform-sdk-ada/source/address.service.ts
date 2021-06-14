@@ -8,7 +8,7 @@ export class AddressService extends Services.AbstractAddressService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -24,7 +24,7 @@ export class AddressService extends Services.AbstractAddressService {
 		};
 	}
 
-	public async fromPublicKey(
+	public override async fromPublicKey(
 		publicKey: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -39,7 +39,7 @@ export class AddressService extends Services.AbstractAddressService {
 		};
 	}
 
-	public async validate(address: string): Promise<boolean> {
+	public override async validate(address: string): Promise<boolean> {
 		try {
 			const { words } = bech32.decode(address, 1023);
 
