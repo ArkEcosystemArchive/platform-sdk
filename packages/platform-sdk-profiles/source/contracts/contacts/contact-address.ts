@@ -108,7 +108,7 @@ export interface IContactAddress {
 	 * @returns {boolean}
 	 * @memberof IContactAddress
 	 */
-	 isMultiSignature(): boolean;
+	isMultiSignature(): boolean;
 
 	/**
 	 *
