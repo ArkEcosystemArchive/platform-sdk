@@ -1,7 +1,8 @@
 /* istanbul ignore file */
 
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
-import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
+import { NumberLike } from "@arkecosystem/platform-sdk-support";
+import { BigNumberService } from ".";
 
 import { ConfigRepository } from "../coins";
 import { RawTransactionData, SignedTransactionData } from "../contracts";
@@ -35,6 +36,9 @@ export class AbstractTransactionService implements Contract {
 
 	@inject(BindingType.HttpClient)
 	protected readonly httpClient!: HttpClient;
+
+	@inject(BindingType.BigNumberService)
+	protected readonly bigNumberService!: BigNumberService;
 
 	public async transfer(input: TransferInput): Promise<SignedTransactionData> {
 		throw new NotImplemented(this.constructor.name, this.transfer.name);
@@ -89,6 +93,6 @@ export class AbstractTransactionService implements Contract {
 	}
 
 	protected toSatoshi = (value: NumberLike) => {
-		return BigNumber.make(value).toSatoshi(this.configRepository.get<number>("network.currency.decimals"));
+		return this.bigNumberService.make(value).toSatoshi(this.configRepository.get<number>("network.currency.decimals"));
 	};
 }
