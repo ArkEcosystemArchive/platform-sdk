@@ -703,6 +703,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "pg-promise",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "pino",
       "allowedCategories": [ "libraries" ]
     },
