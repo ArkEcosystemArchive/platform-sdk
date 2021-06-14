@@ -59,7 +59,7 @@ test("#toObject", () => {
 		    "fees": BigNumber {},
 		  },
 		  "isDelegate": false,
-		  "isMultiSignatureRegistration": false,
+		  "isMultiSignature": false,
 		  "isResignedDelegate": false,
 		  "isSecondSignature": false,
 		  "nonce": BigNumber {},
