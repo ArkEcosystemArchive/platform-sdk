@@ -28,7 +28,6 @@
 		"@arkecosystem/crypto": "^3.0.0-next.23",
 		"@arkecosystem/crypto-identities": "^1.1.1",
 		"@arkecosystem/ledger-transport": "^2.0.0",
-		"@arkecosystem/multi-signature": "^0.1.5",
 		"@arkecosystem/platform-sdk": "workspace:*",
 		"@arkecosystem/platform-sdk-crypto": "workspace:*",
 		"@arkecosystem/platform-sdk-http": "workspace:*",
