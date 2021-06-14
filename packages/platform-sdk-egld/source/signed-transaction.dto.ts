@@ -15,7 +15,7 @@ export class SignedTransactionData
 	}
 
 	public override amount(): BigNumber {
-		return this.bigNumberService.make(this.signedData.value.toString());
+		return this.bigNumberService.make(this.signedData.value);
 	}
 
 	public override fee(): BigNumber {
