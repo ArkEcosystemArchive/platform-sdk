@@ -4,7 +4,7 @@ import * as bitcoin from "bitcoinjs-lib";
 
 @IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.KeyPairDataTransferObject> {
@@ -15,7 +15,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
+	public override async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			return this.#normalize(bitcoin.ECPair.fromPrivateKey(Buffer.from(privateKey, "hex")));
 		} catch (error) {
@@ -23,7 +23,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Services.KeyPairDataTransferObject> {
+	public override async fromWIF(wif: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			return this.#normalize(bitcoin.ECPair.fromWIF(wif));
 		} catch (error) {

@@ -1,10 +1,10 @@
-import { Collections, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Collections, DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 
 import { createService } from "../test/mocking";
-import { TransactionData } from "./transaction.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
+import { TransactionData } from "./transaction.dto";
 
 let subject: ClientService;
 

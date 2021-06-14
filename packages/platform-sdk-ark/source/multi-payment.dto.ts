@@ -4,7 +4,7 @@ import { TransactionData } from "./transaction.dto";
 
 @IoC.injectable()
 export class MultiPaymentData extends TransactionData implements Contracts.MultiPaymentData {
-	public memo(): string | undefined {
+	public override memo(): string | undefined {
 		return this.data.vendorField;
 	}
 

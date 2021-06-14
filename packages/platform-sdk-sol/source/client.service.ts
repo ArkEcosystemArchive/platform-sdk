@@ -12,7 +12,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#client = new Connection(this.#host());
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const response = await this.#client.getAccountInfo(new PublicKey(id));
 
 		if (!response) {
@@ -25,7 +25,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

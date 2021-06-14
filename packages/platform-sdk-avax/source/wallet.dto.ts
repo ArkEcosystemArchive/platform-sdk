@@ -2,19 +2,19 @@ import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
-	public primaryKey(): string {
+	public override primaryKey(): string {
 		return this.address();
 	}
 
-	public address(): string {
+	public override address(): string {
 		return this.data.address;
 	}
 
-	public publicKey(): string | undefined {
+	public override publicKey(): string | undefined {
 		return undefined;
 	}
 
-	public balance(): Contracts.WalletBalance {
+	public override balance(): Contracts.WalletBalance {
 		// AVAX uses 1e9 instead of the conventional 1e8 so
 		// we divide by 1e1 which will normalise it to 1e8 to be
 		// consistent for future use by other packages that use it.
@@ -25,23 +25,23 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		};
 	}
 
-	public nonce(): BigNumber {
+	public override nonce(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public secondPublicKey(): string | undefined {
+	public override secondPublicKey(): string | undefined {
 		return undefined;
 	}
 
-	public username(): string | undefined {
+	public override username(): string | undefined {
 		return undefined;
 	}
 
-	public rank(): number | undefined {
+	public override rank(): number | undefined {
 		return undefined;
 	}
 
-	public votes(): BigNumber | undefined {
+	public override votes(): BigNumber | undefined {
 		return undefined;
 	}
 
@@ -49,19 +49,19 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		throw new Error("This wallet does not have a multi-signature registered.");
 	}
 
-	public isDelegate(): boolean {
+	public override isDelegate(): boolean {
 		return false;
 	}
 
-	public isResignedDelegate(): boolean {
+	public override isResignedDelegate(): boolean {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public override isMultiSignature(): boolean {
 		return false;
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return false;
 	}
 }

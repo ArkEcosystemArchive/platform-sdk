@@ -7,10 +7,6 @@ import { AbstractTransactionData } from "./transaction";
 
 @injectable()
 export class MultiPaymentData extends AbstractTransactionData implements Contract {
-	public memo(): string | undefined {
-		throw new NotImplemented(this.constructor.name, this.memo.name);
-	}
-
 	public payments(): { recipientId: string; amount: string }[] {
 		throw new NotImplemented(this.constructor.name, this.payments.name);
 	}

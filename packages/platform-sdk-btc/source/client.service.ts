@@ -12,18 +12,18 @@ export class ClientService extends Services.AbstractClientService {
 		"bad-txns-txouttotal-toolarge": "ERR_TXOUTTOTAL_TOOLARGE",
 	};
 
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(await this.#get(`wallets/${id}`));
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

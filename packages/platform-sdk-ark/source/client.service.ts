@@ -11,7 +11,7 @@ interface BroadcastError {
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
@@ -20,7 +20,7 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction(body.data);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const response = this.#isUpcoming()
 			? await this.#get("transactions", this.#createSearchParams(query))
 			: await this.#post("transactions/search", this.#createSearchParams(query));
@@ -28,13 +28,13 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transactions(response.data, this.#createMetaPagination(response));
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const body = await this.#get(`wallets/${id}`);
 
 		return new WalletData(body.data);
 	}
 
-	public async wallets(query: Services.ClientWalletsInput): Promise<Collections.WalletDataCollection> {
+	public override async wallets(query: Services.ClientWalletsInput): Promise<Collections.WalletDataCollection> {
 		const response = this.#isUpcoming()
 			? await this.#get("wallets", this.#createSearchParams(query))
 			: await this.#post("wallets/search", this.#createSearchParams(query));
@@ -45,13 +45,13 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async delegate(id: string): Promise<Contracts.WalletData> {
+	public override async delegate(id: string): Promise<Contracts.WalletData> {
 		const body = await this.#get(`delegates/${id}`);
 
 		return new WalletData(body.data);
 	}
 
-	public async delegates(query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
+	public override async delegates(query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
 		const body = await this.#get("delegates", this.#createSearchParams(query || {}));
 
 		return new Collections.WalletDataCollection(
@@ -60,7 +60,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async votes(id: string): Promise<Services.VoteReport> {
+	public override async votes(id: string): Promise<Services.VoteReport> {
 		const { data } = await this.#get(`wallets/${id}`);
 
 		const hasVoted = data.attributes?.vote !== undefined;
@@ -72,7 +72,7 @@ export class ClientService extends Services.AbstractClientService {
 		};
 	}
 
-	public async voters(id: string, query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
+	public override async voters(id: string, query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
 		const body = await this.#get(`delegates/${id}/voters`, this.#createSearchParams(query || {}));
 
 		return new Collections.WalletDataCollection(
@@ -81,7 +81,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		let response: Contracts.KeyValuePair;
 
 		try {

@@ -5,7 +5,7 @@ import { deriveRootKey } from "./shelley";
 
 @IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const privateKey = deriveRootKey(input.signatory.signingKey());
 
@@ -19,7 +19,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return PublicKey.from_bech32(input.signatory).verify(
 				Buffer.from(input.message, "utf8"),

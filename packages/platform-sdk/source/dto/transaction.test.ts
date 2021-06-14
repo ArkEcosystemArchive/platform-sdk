@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "jest-extended";
 import "reflect-metadata";
 
@@ -106,8 +108,8 @@ test("#isUnvote", () => {
 	expect(new Transaction().configure({ key: "value" }).isUnvote()).toBeFalse();
 });
 
-test("#isMultiSignature", () => {
-	expect(new Transaction().configure({ key: "value" }).isMultiSignature()).toBeFalse();
+test("#isMultiSignatureRegistration", () => {
+	expect(new Transaction().configure({ key: "value" }).isMultiSignatureRegistration()).toBeFalse();
 });
 
 test("#isIpfs", () => {
@@ -183,42 +185,52 @@ test("#getMeta | #setMeta", () => {
 });
 
 class Transaction extends AbstractTransactionData {
+	// @ts-ignore
 	public id(): string {
 		return "id";
 	}
 
+	// @ts-ignore
 	public blockId(): string | undefined {
 		return "blockId";
 	}
 
+	// @ts-ignore
 	public timestamp(): DateTime | undefined {
 		return undefined;
 	}
 
+	// @ts-ignore
 	public confirmations(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
+	// @ts-ignore
 	public sender(): string {
 		return "sender";
 	}
 
+	// @ts-ignore
 	public recipient(): string {
 		return "recipient";
 	}
 
+	// @ts-ignore
 	public recipients(): MultiPaymentRecipient[] {
 		return [];
 	}
 
+	// @ts-ignore
 	public amount(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
+	// @ts-ignore
 	public fee(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
+	// @ts-ignore
 	public memo(): string | undefined {
 		if (this.data.hasOwnProperty("memo")) {
 			return this.censorMemo(this.data.memo);
@@ -227,83 +239,38 @@ class Transaction extends AbstractTransactionData {
 		return this.censorMemo("memo");
 	}
 
+	// @ts-ignore
 	public asset(): Record<string, unknown> {
 		return {};
 	}
 
+	// @ts-ignore
 	public inputs(): UnspentTransactionData[] {
 		return [];
 	}
 
+	// @ts-ignore
 	public outputs(): UnspentTransactionData[] {
 		return [];
 	}
 
+	// @ts-ignore
 	public isConfirmed(): boolean {
 		return false;
 	}
 
+	// @ts-ignore
 	public isSent(): boolean {
 		return false;
 	}
 
+	// @ts-ignore
 	public isReceived(): boolean {
 		return false;
 	}
 
+	// @ts-ignore
 	public isTransfer(): boolean {
-		return false;
-	}
-
-	public isSecondSignature(): boolean {
-		return false;
-	}
-
-	public isDelegateRegistration(): boolean {
-		return false;
-	}
-
-	public isVoteCombination(): boolean {
-		return false;
-	}
-
-	public isVote(): boolean {
-		return false;
-	}
-
-	public isUnvote(): boolean {
-		return false;
-	}
-
-	public isMultiSignature(): boolean {
-		return false;
-	}
-
-	public isIpfs(): boolean {
-		return false;
-	}
-
-	public isMultiPayment(): boolean {
-		return false;
-	}
-
-	public isDelegateResignation(): boolean {
-		return false;
-	}
-
-	public isHtlcLock(): boolean {
-		return false;
-	}
-
-	public isHtlcClaim(): boolean {
-		return false;
-	}
-
-	public isHtlcRefund(): boolean {
-		return false;
-	}
-
-	public isMagistrate(): boolean {
 		return false;
 	}
 }

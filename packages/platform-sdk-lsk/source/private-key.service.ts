@@ -3,7 +3,7 @@ import { getPrivateAndPublicKeyFromPassphrase } from "@liskhq/lisk-cryptography"
 
 @IoC.injectable()
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {

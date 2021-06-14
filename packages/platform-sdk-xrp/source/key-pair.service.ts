@@ -7,7 +7,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.KeyPairDataTransferObject> {
@@ -23,7 +23,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		};
 	}
 
-	public async fromSecret(secret: string): Promise<Services.KeyPairDataTransferObject> {
+	public override async fromSecret(secret: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			return deriveKeypair(secret);
 		} catch (error) {

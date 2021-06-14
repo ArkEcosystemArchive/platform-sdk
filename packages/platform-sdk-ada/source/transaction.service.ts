@@ -10,7 +10,7 @@ import { UnspentTransaction } from "./transaction.models";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
-	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
+	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		const {
 			minFeeA,
 			minFeeB,
@@ -124,7 +124,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		);
 	}
 
-	public async estimateExpiration(value?: string): Promise<string | undefined> {
+	public override async estimateExpiration(value?: string): Promise<string | undefined> {
 		const tip: number = await fetchNetworkTip(this.configRepository, this.httpClient);
 		const ttl: number = parseInt(value || "7200"); // Yoroi uses 7200 as TTL default
 

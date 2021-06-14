@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "jest-extended";
 import "reflect-metadata";
 
@@ -22,10 +24,6 @@ test("#setAttributes", () => {
 
 test("#id", () => {
 	expect(new Transaction().configure("id", { key: "value" }, "").id()).toBe("id");
-});
-
-test("#data", () => {
-	expect(new Transaction().configure("id", { key: "value" }, "").blockId()).toBe("blockId");
 });
 
 test("#sender", () => {
@@ -79,26 +77,27 @@ test("#toObject", () => {
 });
 
 class Transaction extends AbstractSignedTransactionData {
-	public blockId(): string | undefined {
-		return "blockId";
-	}
-
+	// @ts-ignore
 	public sender(): string {
 		return "sender";
 	}
 
+	// @ts-ignore
 	public recipient(): string {
 		return "recipient";
 	}
 
+	// @ts-ignore
 	public amount(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
+	// @ts-ignore
 	public fee(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
+	// @ts-ignore
 	public timestamp(): DateTime {
 		return DateTime.make(0);
 	}

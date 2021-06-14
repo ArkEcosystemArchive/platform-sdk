@@ -9,6 +9,10 @@ export const makeCoin = async (input: Record<string, string>): Promise<Coins.Coi
 	const cacheKey = `${input.coin}.${input.network}`;
 
 	if (coins[cacheKey]) {
+		delete input.coin;
+		delete input.network;
+		delete input.transformer;
+
 		return coins[cacheKey];
 	}
 
@@ -21,6 +25,7 @@ export const makeCoin = async (input: Record<string, string>): Promise<Coins.Coi
 
 	delete input.coin;
 	delete input.network;
+	delete input.transformer;
 
 	return coins[cacheKey];
 };

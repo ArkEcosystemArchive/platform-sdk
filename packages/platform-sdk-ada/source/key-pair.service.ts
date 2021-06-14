@@ -4,7 +4,7 @@ import { deriveAccountKey, deriveRootKey } from "./shelley";
 
 @IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.KeyPairDataTransferObject> {

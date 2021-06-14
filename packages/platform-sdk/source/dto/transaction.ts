@@ -31,7 +31,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 		voteCombination: "isVoteCombination",
 		vote: "isVote",
 		unvote: "isUnvote",
-		multiSignature: "isMultiSignature",
+		multiSignature: "isMultiSignatureRegistration",
 		ipfs: "isIpfs",
 		multiPayment: "isMultiPayment",
 		delegateResignation: "isDelegateResignation",
@@ -106,6 +106,10 @@ export abstract class AbstractTransactionData implements TransactionData {
 		throw new NotImplemented(this.constructor.name, this.fee.name);
 	}
 
+	public memo(): string | undefined {
+		return undefined;
+	}
+
 	public asset(): Record<string, unknown> {
 		return {};
 	}
@@ -119,7 +123,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 	}
 
 	public isConfirmed(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSent(): boolean {
@@ -131,7 +135,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 	}
 
 	public isTransfer(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSecondSignature(): boolean {
@@ -154,7 +158,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public isMultiSignatureRegistration(): boolean {
 		return false;
 	}
 
@@ -197,6 +201,26 @@ export abstract class AbstractTransactionData implements TransactionData {
 			amount: this.amount(),
 			fee: this.fee(),
 			asset: this.asset(),
+		};
+	}
+
+	public toJSON(): KeyValuePair {
+		return {
+			...this.toObject(),
+			timestamp: this.timestamp()?.toISOString(),
+			confirmations: this.confirmations().toString(),
+			amount: this.amount().toString(),
+			fee: this.fee().toString(),
+		};
+	}
+
+	public toHuman(): KeyValuePair {
+		return {
+			...this.toObject(),
+			timestamp: this.timestamp()?.toISOString(),
+			confirmations: this.confirmations().toString(),
+			amount: this.amount().toHuman(),
+			fee: this.fee().toHuman(),
 		};
 	}
 

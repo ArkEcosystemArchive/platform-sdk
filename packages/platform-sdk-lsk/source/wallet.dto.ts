@@ -3,42 +3,42 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 @IoC.injectable()
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
-	public primaryKey(): string {
+	public override primaryKey(): string {
 		return this.address();
 	}
 
-	public address(): string {
+	public override address(): string {
 		return this.data.address || this.data.account?.address;
 	}
 
-	public publicKey(): string {
+	public override publicKey(): string {
 		return this.data.publicKey || this.data.account?.publicKey;
 	}
 
-	public balance(): Contracts.WalletBalance {
+	public override balance(): Contracts.WalletBalance {
 		return {
 			available: BigNumber.make(this.data.balance),
 			fees: BigNumber.make(this.data.balance),
 		};
 	}
 
-	public nonce(): BigNumber {
+	public override nonce(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public secondPublicKey(): string | undefined {
+	public override secondPublicKey(): string | undefined {
 		return this.data.secondPublicKey;
 	}
 
-	public username(): string | undefined {
+	public override username(): string | undefined {
 		return this.data.username || this.data.delegate?.username;
 	}
 
-	public rank(): number | undefined {
+	public override rank(): number | undefined {
 		return this.data.rank || this.data.delegate?.rank;
 	}
 
-	public votes(): BigNumber | undefined {
+	public override votes(): BigNumber | undefined {
 		return BigNumber.make(this.data.vote || this.data.delegate?.vote);
 	}
 
@@ -50,19 +50,19 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return this.data.multiSignature;
 	}
 
-	public isDelegate(): boolean {
+	public override isDelegate(): boolean {
 		return !!this.data.delegate;
 	}
 
-	public isResignedDelegate(): boolean {
+	public override isResignedDelegate(): boolean {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public override isMultiSignature(): boolean {
 		return false;
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return !!this.data.secondPublicKey;
 	}
 }

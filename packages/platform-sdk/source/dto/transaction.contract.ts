@@ -44,6 +44,8 @@ export interface TransactionData {
 
 	fee(): BigNumber;
 
+	memo(): string | undefined;
+
 	asset(): Record<string, unknown>;
 
 	inputs(): UnspentTransactionData[];
@@ -68,7 +70,7 @@ export interface TransactionData {
 
 	isUnvote(): boolean;
 
-	isMultiSignature(): boolean;
+	isMultiSignatureRegistration(): boolean;
 
 	isIpfs(): boolean;
 
@@ -85,6 +87,10 @@ export interface TransactionData {
 	isMagistrate(): boolean;
 
 	toObject(): Record<string, any>;
+
+	toJSON(): Record<string, any>;
+
+	toHuman(): Record<string, any>;
 
 	hasPassed(): boolean;
 

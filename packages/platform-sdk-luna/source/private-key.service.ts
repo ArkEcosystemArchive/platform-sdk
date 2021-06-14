@@ -3,7 +3,7 @@ import { Exceptions, Services } from "@arkecosystem/platform-sdk";
 import { deriveKey } from "./helpers";
 
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {

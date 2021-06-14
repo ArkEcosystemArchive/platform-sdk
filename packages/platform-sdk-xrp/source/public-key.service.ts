@@ -7,7 +7,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PublicKeyDataTransferObject> {
@@ -22,7 +22,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		};
 	}
 
-	public async fromSecret(secret: string): Promise<Services.PublicKeyDataTransferObject> {
+	public override async fromSecret(secret: string): Promise<Services.PublicKeyDataTransferObject> {
 		return { publicKey: deriveKeypair(secret).publicKey };
 	}
 }

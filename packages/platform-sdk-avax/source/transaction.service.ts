@@ -22,7 +22,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#keychain = useKeychain(this.configRepository);
 	}
 
-	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
+	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 		}
@@ -64,7 +64,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		}
 	}
 
-	public async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
+	public override async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.vote.name, "input.signatory");
 		}

@@ -16,6 +16,8 @@ export const registerClient = () => [
 	{
 		name: "client.transactions",
 		async method(input) {
+			const transformer: string = input.transformer || "toHuman";
+
 			const coin = await makeCoin(input);
 			const transactions = await coin.client().transactions(input);
 
@@ -26,7 +28,7 @@ export const registerClient = () => [
 					next: transactions.nextPage(),
 					last: transactions.lastPage(),
 				},
-				data: transactions.items().map((transaction) => transaction.toObject()),
+				data: transactions.items().map((transaction) => transaction[transformer]()),
 			};
 		},
 		schema: Joi.object({
@@ -46,6 +48,8 @@ export const registerClient = () => [
 			asset: Joi.object(),
 			type: Joi.number(),
 			typeGroup: Joi.number(),
+			// Normalisation
+			transformer: Joi.string().allow("toJSON", "toHuman"),
 		}).required(),
 	},
 	{

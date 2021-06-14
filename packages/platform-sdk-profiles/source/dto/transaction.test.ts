@@ -41,8 +41,8 @@ const createSubject = (wallet, properties, klass) => {
 		recipient: () => "recipient",
 		memo: () => "memo",
 		recipients: () => [],
-		amount: () => BigNumber.make(18).times(1e8),
-		fee: () => BigNumber.make(2).times(1e8),
+		amount: () => BigNumber.make(18e8, 8),
+		fee: () => BigNumber.make(2e8, 8),
 		asset: () => ({}),
 		inputs: () => [],
 		outputs: () => [],
@@ -171,7 +171,7 @@ describe("Transaction", () => {
 			wallet,
 			{
 				timestamp: () => DateTime.make(),
-				amount: () => BigNumber.make(10e8),
+				amount: () => BigNumber.make(10e8, 8),
 			},
 			TransferData,
 		);
@@ -194,7 +194,7 @@ describe("Transaction", () => {
 			wallet,
 			{
 				timestamp: () => DateTime.make(),
-				fee: () => BigNumber.make(10e8),
+				fee: () => BigNumber.make(10e8, 8),
 			},
 			TransferData,
 		);
@@ -327,11 +327,11 @@ describe("Transaction", () => {
 	it("should have a total for unsent", () => {
 		// @ts-ignore
 		subject = new DelegateRegistrationData(wallet, {
-			amount: () => BigNumber.make(18),
-			fee: () => BigNumber.make(2),
+			amount: () => BigNumber.make(18e8, 8),
+			fee: () => BigNumber.make(2e8, 8),
 			isSent: () => false,
 		});
-		expect(subject.total().toNumber()).toStrictEqual(18);
+		expect(subject.total().toNumber()).toStrictEqual(18e8);
 	});
 
 	it("should have a converted total", async () => {
@@ -339,8 +339,8 @@ describe("Transaction", () => {
 			wallet,
 			{
 				timestamp: () => DateTime.make(),
-				amount: () => BigNumber.make(10e8),
-				fee: () => BigNumber.make(5e8),
+				amount: () => BigNumber.make(10e8, 8),
+				fee: () => BigNumber.make(5e8, 8),
 			},
 			TransferData,
 		);
@@ -372,7 +372,7 @@ describe("Transaction", () => {
 		["isHtlcRefund"],
 		["isIpfs"],
 		["isMultiPayment"],
-		["isMultiSignature"],
+		["isMultiSignatureRegistration"],
 		["isSecondSignature"],
 		["isTransfer"],
 		["isVote"],
@@ -395,7 +395,7 @@ describe("Transaction", () => {
 		isHtlcRefund: () => false,
 		isIpfs: () => false,
 		isMultiPayment: () => false,
-		isMultiSignature: () => false,
+		isMultiSignatureRegistration: () => false,
 		isSecondSignature: () => false,
 		isTransfer: () => false,
 		isVote: () => false,

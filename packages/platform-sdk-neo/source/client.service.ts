@@ -29,7 +29,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const basePath = `get_address_abstracts/${query.address}`;
 		const basePage = (query.cursor as number) || 1;
 
@@ -46,7 +46,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const response = await this.#get(`get_balance/${id}`);
 
 		return new WalletData({
@@ -55,7 +55,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

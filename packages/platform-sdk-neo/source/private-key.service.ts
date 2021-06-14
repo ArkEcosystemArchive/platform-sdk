@@ -7,7 +7,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {
@@ -26,7 +26,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
+	public override async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			return {
 				privateKey: createWallet(wif).privateKey,

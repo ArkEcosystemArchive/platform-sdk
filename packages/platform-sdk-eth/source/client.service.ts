@@ -24,14 +24,14 @@ export class ClientService extends Services.AbstractClientService {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
 	}
 
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
 		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const transactions: unknown[] = (await this.#get(`wallets/${query.address}/transactions`)) as any;
 
 		return this.dataTransferObjectService.transactions(
@@ -46,11 +46,11 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		return new WalletData(await this.#get(`wallets/${id}`));
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

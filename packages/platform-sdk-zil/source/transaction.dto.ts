@@ -4,207 +4,55 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public id(): string {
+	public override id(): string {
 		return this.data.id;
 	}
 
-	public blockId(): string | undefined {
+	public override blockId(): string | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.blockId.name);
 	}
 
-	public timestamp(): DateTime {
+	public override timestamp(): DateTime {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.timestamp.name);
 	}
 
-	public confirmations(): BigNumber {
+	public override confirmations(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.confirmations.name);
 	}
 
-	public sender(): string {
+	public override sender(): string {
 		return this.data.sender;
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		return this.data.recipient;
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
+	public override recipients(): Contracts.MultiPaymentRecipient[] {
 		return [{ address: this.recipient(), amount: this.amount() }];
 	}
 
-	public inputs(): Contracts.UnspentTransactionData[] {
+	public override inputs(): Contracts.UnspentTransactionData[] {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.inputs.name);
 	}
 
-	public outputs(): Contracts.UnspentTransactionData[] {
+	public override outputs(): Contracts.UnspentTransactionData[] {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.outputs.name);
 	}
 
-	public amount(): BigNumber {
+	public override amount(): BigNumber {
 		return this.bigNumberService.make(this.data.amount);
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		return BigNumber.make(this.data.gasUsed).times(this.data.gasPrice);
 	}
 
-	public isConfirmed(): boolean {
+	public override isConfirmed(): boolean {
 		return this.data.isConfirmed;
 	}
 
-	public isSent(): boolean {
+	public override isSent(): boolean {
 		return this.data.isSent;
-	}
-
-	public isTransfer(): boolean {
-		return false;
-	}
-
-	public isSecondSignature(): boolean {
-		return false;
-	}
-
-	public isDelegateRegistration(): boolean {
-		return false;
-	}
-
-	public isVoteCombination(): boolean {
-		return false;
-	}
-
-	public isVote(): boolean {
-		return false;
-	}
-
-	public isUnvote(): boolean {
-		return false;
-	}
-
-	public isMultiSignature(): boolean {
-		return false;
-	}
-
-	public isIpfs(): boolean {
-		return false;
-	}
-
-	public isMultiPayment(): boolean {
-		return false;
-	}
-
-	public isDelegateResignation(): boolean {
-		return false;
-	}
-
-	public isHtlcLock(): boolean {
-		return false;
-	}
-
-	public isHtlcClaim(): boolean {
-		return false;
-	}
-
-	public isHtlcRefund(): boolean {
-		return false;
-	}
-
-	public isMagistrate(): boolean {
-		return false;
-	}
-
-	public isEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isEntityResignation(): boolean {
-		return false;
-	}
-
-	public isEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isBusinessEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isBusinessEntityResignation(): boolean {
-		return false;
-	}
-
-	public isBusinessEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isProductEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isProductEntityResignation(): boolean {
-		return false;
-	}
-
-	public isProductEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isPluginEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isPluginEntityResignation(): boolean {
-		return false;
-	}
-
-	public isPluginEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isModuleEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isModuleEntityResignation(): boolean {
-		return false;
-	}
-
-	public isModuleEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isDelegateEntityRegistration(): boolean {
-		return false;
-	}
-
-	public isDelegateEntityResignation(): boolean {
-		return false;
-	}
-
-	public isDelegateEntityUpdate(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessRegistration(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessResignation(): boolean {
-		return false;
-	}
-
-	public isLegacyBusinessUpdate(): boolean {
-		return false;
-	}
-
-	public isLegacyBridgechainRegistration(): boolean {
-		return false;
-	}
-
-	public isLegacyBridgechainResignation(): boolean {
-		return false;
-	}
-
-	public isLegacyBridgechainUpdate(): boolean {
-		return false;
 	}
 }

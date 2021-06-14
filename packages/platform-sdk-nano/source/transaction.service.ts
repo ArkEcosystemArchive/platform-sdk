@@ -15,7 +15,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#client = new NanoClient(this.configRepository, this.httpClient);
 	}
 
-	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
+	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		const { address, privateKey } = deriveAccount(input.signatory.signingKey());
 		const { balance, representative, frontier } = await this.#client.accountInfo(address, { representative: true });
 

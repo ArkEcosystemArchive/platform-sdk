@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "jest-extended";
 import "reflect-metadata";
 
@@ -90,18 +92,22 @@ test("#hasFailed", () => {
 });
 
 class Wallet extends AbstractWalletData {
+	// @ts-ignore
 	public primaryKey(): string {
 		return "address";
 	}
 
+	// @ts-ignore
 	public address(): string {
 		return "address";
 	}
 
+	// @ts-ignore
 	public publicKey(): string | undefined {
 		return "publicKey";
 	}
 
+	// @ts-ignore
 	public balance(): WalletBalance {
 		return {
 			available: BigNumber.ZERO,
@@ -109,38 +115,47 @@ class Wallet extends AbstractWalletData {
 		};
 	}
 
+	// @ts-ignore
 	public nonce(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
+	// @ts-ignore
 	public secondPublicKey(): string | undefined {
 		return "secondPublicKey";
 	}
 
+	// @ts-ignore
 	public username(): string | undefined {
 		return "username";
 	}
 
+	// @ts-ignore
 	public rank(): number | undefined {
 		return 5;
 	}
 
+	// @ts-ignore
 	public votes(): BigNumber | undefined {
 		return BigNumber.ZERO;
 	}
 
+	// @ts-ignore
 	public isDelegate(): boolean {
 		return false;
 	}
 
+	// @ts-ignore
 	public isResignedDelegate(): boolean {
 		return false;
 	}
 
+	// @ts-ignore
 	public isMultiSignature(): boolean {
 		return false;
 	}
 
+	// @ts-ignore
 	public isSecondSignature(): boolean {
 		return false;
 	}

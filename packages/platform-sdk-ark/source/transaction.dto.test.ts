@@ -116,8 +116,8 @@ describe("TransactionData", () => {
 		expect(subject.isUnvote()).toBeFalse();
 	});
 
-	test("#isMultiSignature", () => {
-		expect(subject.isMultiSignature()).toBeFalse();
+	test("#isMultiSignatureRegistration", () => {
+		expect(subject.isMultiSignatureRegistration()).toBeFalse();
 	});
 
 	test("#isIpfs", () => {

@@ -8,7 +8,7 @@ export class FeeService extends Services.AbstractFeeService {
 	@IoC.inject(IoC.BindingType.BigNumberService)
 	private readonly bigNumberService!: Services.BigNumberService;
 
-	public async all(): Promise<Services.TransactionFees> {
+	public override async all(): Promise<Services.TransactionFees> {
 		const node = await this.#get("node/fees");
 		const type = await this.#get("transactions/fees");
 

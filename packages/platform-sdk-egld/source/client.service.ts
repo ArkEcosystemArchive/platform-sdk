@@ -4,7 +4,7 @@ import { WalletData } from "./wallet.dto";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
@@ -13,7 +13,7 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction({ hash: id, ...data.transaction });
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const { data } = await this.#get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
 		return this.dataTransferObjectService.transactions(data.transactions, {
@@ -24,13 +24,13 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { data } = await this.#get(`address/${id}`);
 
 		return new WalletData(data.account);
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

@@ -12,7 +12,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#client = new NanoClient(this.configRepository, this.httpClient);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const account = query.address || query.addresses![0];
 		const count = (query.limit || 15).toString();
 		const options = { head: query.cursor || undefined };
@@ -33,13 +33,13 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { balance, pending } = await this.#client.accountInfo(id, { pending: true });
 
 		return new WalletData({ id, balance, pending });
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

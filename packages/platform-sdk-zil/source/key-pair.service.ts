@@ -9,7 +9,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 	@IoC.inject(BindingType.Wallet)
 	private readonly wallet!: Wallet;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.KeyPairDataTransferObject> {
@@ -18,7 +18,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		return { publicKey, privateKey };
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
+	public override async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		const { publicKey } = await accountFromPrivateKey(this.wallet, privateKey);
 
 		return { publicKey, privateKey };
