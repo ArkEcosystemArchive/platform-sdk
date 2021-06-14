@@ -15,7 +15,7 @@ beforeEach(() => {
 
 describe("TransactionData", () => {
 	test("#id", () => {
-		expect(subject.id()).toBe("15210966682544220710");
+		expect(subject.id()).toBe("3176941083950565875");
 	});
 
 	test("#type", () => {
@@ -24,8 +24,8 @@ describe("TransactionData", () => {
 
 	test("#timestamp", () => {
 		expect(subject.timestamp()).toBeInstanceOf(DateTime);
-		expect(subject.timestamp()?.toUNIX()).toBe(1585295194);
-		expect(subject.timestamp()?.toISOString()).toBe("2020-03-27T07:46:34.000Z");
+		expect(subject.timestamp()?.toUNIX()).toBe(1464188368);
+		expect(subject.timestamp()?.toISOString()).toBe("2016-05-25T14:59:28.000Z");
 	});
 
 	test("#confirmations", () => {
@@ -33,11 +33,11 @@ describe("TransactionData", () => {
 	});
 
 	test("#sender", () => {
-		expect(subject.sender()).toBe("18218254863282357638L");
+		expect(subject.sender()).toBe("11949377625793351079L");
 	});
 
 	test("#recipient", () => {
-		expect(subject.recipient()).toBe("18218254863282357638L");
+		expect(subject.recipient()).toBe("11949377625793351079L");
 	});
 
 	test("#recipients", () => {

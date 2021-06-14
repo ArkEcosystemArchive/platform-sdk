@@ -6,7 +6,7 @@ import { useClient } from "./helpers";
 
 export class TransactionService extends Services.AbstractTransactionService {
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
-		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
+		const amount = this.toSatoshi(input.data.amount).toString();
 
 		const transaction = await this.#useClient()
 			.wallet(new MnemonicKey({ mnemonic: input.signatory.signingKey() }))

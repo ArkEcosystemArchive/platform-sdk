@@ -185,43 +185,53 @@ test("#getMeta | #setMeta", () => {
 });
 
 class Transaction extends AbstractTransactionData {
-	public override id(): string {
+	// @ts-ignore
+	public id(): string {
 		return "id";
 	}
 
-	public override blockId(): string | undefined {
+	// @ts-ignore
+	public blockId(): string | undefined {
 		return "blockId";
 	}
 
-	public override timestamp(): DateTime | undefined {
+	// @ts-ignore
+	public timestamp(): DateTime | undefined {
 		return undefined;
 	}
 
-	public override confirmations(): BigNumber {
+	// @ts-ignore
+	public confirmations(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public override sender(): string {
+	// @ts-ignore
+	public sender(): string {
 		return "sender";
 	}
 
-	public override recipient(): string {
+	// @ts-ignore
+	public recipient(): string {
 		return "recipient";
 	}
 
-	public override recipients(): MultiPaymentRecipient[] {
+	// @ts-ignore
+	public recipients(): MultiPaymentRecipient[] {
 		return [];
 	}
 
-	public override amount(): BigNumber {
+	// @ts-ignore
+	public amount(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public override fee(): BigNumber {
+	// @ts-ignore
+	public fee(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public override memo(): string | undefined {
+	// @ts-ignore
+	public memo(): string | undefined {
 		if (this.data.hasOwnProperty("memo")) {
 			return this.censorMemo(this.data.memo);
 		}
@@ -229,31 +239,38 @@ class Transaction extends AbstractTransactionData {
 		return this.censorMemo("memo");
 	}
 
-	public override asset(): Record<string, unknown> {
+	// @ts-ignore
+	public asset(): Record<string, unknown> {
 		return {};
 	}
 
-	public override inputs(): UnspentTransactionData[] {
+	// @ts-ignore
+	public inputs(): UnspentTransactionData[] {
 		return [];
 	}
 
-	public override outputs(): UnspentTransactionData[] {
+	// @ts-ignore
+	public outputs(): UnspentTransactionData[] {
 		return [];
 	}
 
-	public override isConfirmed(): boolean {
+	// @ts-ignore
+	public isConfirmed(): boolean {
 		return false;
 	}
 
-	public override isSent(): boolean {
+	// @ts-ignore
+	public isSent(): boolean {
 		return false;
 	}
 
-	public override isReceived(): boolean {
+	// @ts-ignore
+	public isReceived(): boolean {
 		return false;
 	}
 
-	public override isTransfer(): boolean {
+	// @ts-ignore
+	public isTransfer(): boolean {
 		return false;
 	}
 }

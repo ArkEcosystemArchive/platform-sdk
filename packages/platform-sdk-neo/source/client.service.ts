@@ -29,7 +29,9 @@ export class ClientService extends Services.AbstractClientService {
 		this.#apiProvider = new api.neoscan.instance(network === "mainnet" ? "MainNet" : "TestNet");
 	}
 
-	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(
+		query: Services.ClientTransactionsInput,
+	): Promise<Collections.TransactionDataCollection> {
 		const basePath = `get_address_abstracts/${query.address}`;
 		const basePage = (query.cursor as number) || 1;
 
@@ -55,7 +57,9 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

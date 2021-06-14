@@ -20,7 +20,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		if (input.signatory.signingKey() === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "signatory");
 		}
-		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toNumber();
+		const amount = this.toSatoshi(input.data.amount).toNumber();
 
 		const transaction = new Transaction();
 		transaction.recentBlockhash = (await this.#client.getRecentBlockhash()).blockhash;

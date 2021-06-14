@@ -46,7 +46,10 @@ export class LedgerService extends Services.AbstractLedgerService {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public override async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
+	public override async scan(options?: {
+		useLegacy: boolean;
+		startPath?: string;
+	}): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.configRepository.get<number>("network.constants.slip44");

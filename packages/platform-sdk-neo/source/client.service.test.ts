@@ -8,7 +8,7 @@ import nock from "nock";
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
 import { DataTransferObjects } from "./coin.dtos";
-import { TransactionData } from "./transaction.dto";
+import { TransferData } from "./transfer.dto";
 import { ClientService } from "./client.service";
 
 let subject: ClientService;
@@ -39,7 +39,7 @@ describe("ClientService", () => {
 			const result = await subject.transactions({ address: "Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF" });
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(DTO.TransferData);
+			expect(result.items()[0]).toBeInstanceOf(TransferData);
 			expect(result.items()[0].id()).toBe("718bc4cfc50c361a8afe032e2c170dfebadce16ea72228a57634413b62b7cf24");
 			expect(result.items()[0].type()).toBe("transfer");
 			expect(result.items()[0].timestamp()).toBeInstanceOf(DateTime);

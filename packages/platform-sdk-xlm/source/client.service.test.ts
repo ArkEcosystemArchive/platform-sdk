@@ -7,7 +7,7 @@ import nock from "nock";
 
 import { identity } from "../test/fixtures/identity";
 import { createService } from "../test/mocking";
-import { TransactionData } from "./transaction.dto";
+import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
@@ -47,7 +47,7 @@ describe("ClientService", () => {
 				"264226cb06af3b86299031884175155e67a02e0a8ad0b3ab3a88b409a8c09d5c",
 			);
 
-			expect(result).toBeInstanceOf(DTO.TransferData);
+			expect(result).toBeInstanceOf(TransferData);
 			expect(result.id()).toBe("264226cb06af3b86299031884175155e67a02e0a8ad0b3ab3a88b409a8c09d5c");
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBeInstanceOf(DateTime);
@@ -73,7 +73,7 @@ describe("ClientService", () => {
 			});
 
 			expect(response).toBeObject();
-			expect(response.items()[0]).toBeInstanceOf(DTO.TransferData);
+			expect(response.items()[0]).toBeInstanceOf(TransferData);
 			expect(response.items()[0].id()).toBe("7cea6abe90654578b42ee696e823187d89d91daa157a1077b542ee7c77413ce3");
 			expect(response.items()[0].type()).toBe("transfer");
 			expect(response.items()[0].timestamp()).toBeInstanceOf(DateTime);
