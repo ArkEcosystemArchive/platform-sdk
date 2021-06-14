@@ -30,7 +30,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			let transaction = await this.#connection.transactionBuilder.sendTrx(
 				input.data.to,
-				Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
+				this.toSatoshi(input.data.amount).toString(),
 				senderAddress,
 				1,
 			);

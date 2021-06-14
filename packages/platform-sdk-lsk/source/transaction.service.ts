@@ -27,7 +27,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return this.#createFromData("transfer", {
 			...input,
 			data: {
-				amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
+				amount: this.toSatoshi(input.data.amount).toString(),
 				recipientId: input.data.to,
 				data: input.data.memo,
 			},
