@@ -46,7 +46,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			const { publicKey, privateKey } = keyPair;
 
 			const account = await this.#client.loadAccount(publicKey);
-			const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
+			const amount = this.toSatoshi(input.data.amount).toString();
 
 			const transaction = new Stellar.TransactionBuilder(account, {
 				fee: input.fee || Stellar.BASE_FEE,

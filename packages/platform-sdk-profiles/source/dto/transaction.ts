@@ -216,7 +216,7 @@ export class TransactionData {
 	}
 
 	protected data<T>(): T {
-		return (this.#data as unknown) as T;
+		return this.#data as unknown as T;
 	}
 
 	#convertAmount(value: BigNumber): BigNumber {

@@ -20,7 +20,9 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction(body.data);
 	}
 
-	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(
+		query: Services.ClientTransactionsInput,
+	): Promise<Collections.TransactionDataCollection> {
 		const response = this.#isUpcoming()
 			? await this.#get("transactions", this.#createSearchParams(query))
 			: await this.#post("transactions/search", this.#createSearchParams(query));
@@ -72,7 +74,10 @@ export class ClientService extends Services.AbstractClientService {
 		};
 	}
 
-	public override async voters(id: string, query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
+	public override async voters(
+		id: string,
+		query?: Contracts.KeyValuePair,
+	): Promise<Collections.WalletDataCollection> {
 		const body = await this.#get(`delegates/${id}/voters`, this.#createSearchParams(query || {}));
 
 		return new Collections.WalletDataCollection(
@@ -81,7 +86,9 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		let response: Contracts.KeyValuePair;
 
 		try {

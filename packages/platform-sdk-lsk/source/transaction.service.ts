@@ -27,14 +27,16 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return this.#createFromData("transfer", {
 			...input,
 			data: {
-				amount: Helpers.toRawUnit(input.data.amount, this.configRepository).toString(),
+				amount: this.toSatoshi(input.data.amount).toString(),
 				recipientId: input.data.to,
 				data: input.data.memo,
 			},
 		});
 	}
 
-	public override async secondSignature(input: Services.SecondSignatureInput): Promise<Contracts.SignedTransactionData> {
+	public override async secondSignature(
+		input: Services.SecondSignatureInput,
+	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("registerSecondPassphrase", {
 			...input,
 			data: {
@@ -53,7 +55,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return this.#createFromData("castVotes", input);
 	}
 
-	public override async multiSignature(input: Services.MultiSignatureInput): Promise<Contracts.SignedTransactionData> {
+	public override async multiSignature(
+		input: Services.MultiSignatureInput,
+	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("registerMultisignature", {
 			...input,
 			data: {
@@ -89,7 +93,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			if (input.signatory.actsWithLedger()) {
 				await this.ledgerService.connect(LedgerTransportNodeHID);
 
-				const structTransaction = (transactionSigner(struct as any) as unknown) as TransactionJSON;
+				const structTransaction = transactionSigner(struct as any) as unknown as TransactionJSON;
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors
 				structTransaction.senderPublicKey = await this.ledgerService.getPublicKey(input.signatory.signingKey());
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors

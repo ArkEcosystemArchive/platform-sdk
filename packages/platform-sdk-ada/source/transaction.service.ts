@@ -11,14 +11,8 @@ import { UnspentTransaction } from "./transaction.models";
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
-		const {
-			minFeeA,
-			minFeeB,
-			minUTxOValue,
-			poolDeposit,
-			keyDeposit,
-			networkId,
-		} = this.configRepository.get<Contracts.KeyValuePair>("network.meta");
+		const { minFeeA, minFeeB, minUTxOValue, poolDeposit, keyDeposit, networkId } =
+			this.configRepository.get<Contracts.KeyValuePair>("network.meta");
 
 		// This is the transaction builder that uses values from the genesis block of the configured network.
 		const txBuilder = CardanoWasm.TransactionBuilder.new(
@@ -52,7 +46,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];
-		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
+		const amount = this.toSatoshi(input.data.amount).toString();
 		const requestedAmount: BigNum = BigNum.from_str(amount);
 		let totalTxAmount: BigNum = BigNum.from_str("0");
 		let totalFeesAmount: BigNum = BigNum.from_str("0");

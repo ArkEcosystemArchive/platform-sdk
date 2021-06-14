@@ -38,7 +38,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
@@ -46,7 +46,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -91,7 +91,7 @@ importers:
       node-emoji: ^1.10.0
       npm-check-updates: ^11.5.6
       onetime: ~5.0.0
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       reflect-metadata: ~0.1.13
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
@@ -123,7 +123,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -132,7 +132,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -169,7 +169,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -212,7 +212,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -221,7 +221,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -269,7 +269,7 @@ importers:
       nock: ^13.0.11
       node-dotify: ^1.0.2
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       semver: ^7.3.5
       ts-jest: ^26.5.5
@@ -301,7 +301,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -310,7 +310,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -346,7 +346,7 @@ importers:
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -380,7 +380,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -389,7 +389,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -428,7 +428,7 @@ importers:
       ledger-cosmos-js: ^2.1.8
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -466,7 +466,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -475,7 +475,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -517,7 +517,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -553,7 +553,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -562,7 +562,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -603,7 +603,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -612,7 +612,6 @@ importers:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@arkecosystem/utils': 1.3.0
       '@konceiver/foreman': 2.0.2
-      '@prisma/client': 2.24.1_prisma@2.24.1
       better-sqlite3: 7.1.5
       env-paths: 2.2.1
       execa: 5.0.0
@@ -644,7 +643,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -653,8 +652,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
-      prisma: 2.24.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -663,7 +661,6 @@ importers:
       '@arkecosystem/utils': ^1.3.0
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ^2.24.1
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -700,8 +697,7 @@ importers:
       p-queue: ^6.6.2
       p-wait-for: ^3.2.0
       pg-promise: ~10.10.2
-      prettier: ^2.2.1
-      prisma: ^2.24.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -742,7 +738,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -751,7 +747,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -795,7 +791,7 @@ importers:
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -856,7 +852,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -865,7 +861,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -927,7 +923,7 @@ importers:
       npm-check-updates: ^11.5.6
       ora: ^5.4.0
       password-pwnd: ^1.0.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       prompts: ^2.4.1
       rimraf: ^3.0.2
       semver: ^7.3.5
@@ -973,7 +969,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
@@ -981,7 +977,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1027,7 +1023,7 @@ importers:
       nock: ^13.0.11
       node-forge: ^0.10.0
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       safe-buffer: ^5.2.1
       string-crypto: ^2.0.1
@@ -1070,7 +1066,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -1079,7 +1075,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1124,7 +1120,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1163,7 +1159,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -1172,7 +1168,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1216,7 +1212,7 @@ importers:
       p-retry: ^4.3.0
       pino: ^6.11.0
       pino-pretty: ^4.5.0
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1248,7 +1244,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -1257,7 +1253,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1295,7 +1291,7 @@ importers:
       noble-ed25519: ~1.2.1
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1329,7 +1325,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
@@ -1337,7 +1333,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1377,7 +1373,7 @@ importers:
       nock: ^13.0.11
       node-fetch: ^2.6.1
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1411,7 +1407,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -1420,7 +1416,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1460,7 +1456,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1498,7 +1494,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -1507,7 +1503,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1549,7 +1545,7 @@ importers:
       npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
       p-retry: ^4.3.0
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1588,7 +1584,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -1597,7 +1593,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1639,7 +1635,7 @@ importers:
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1663,7 +1659,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
@@ -1671,7 +1667,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1700,7 +1696,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1723,7 +1719,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
@@ -1732,7 +1728,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1762,7 +1758,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1786,7 +1782,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
@@ -1795,7 +1791,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1826,7 +1822,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1851,7 +1847,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
@@ -1860,7 +1856,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1892,7 +1888,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1917,7 +1913,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
@@ -1926,7 +1922,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -1958,7 +1954,7 @@ importers:
       ky-universal: ^0.8.2
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -1982,7 +1978,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
@@ -1991,7 +1987,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2022,7 +2018,7 @@ importers:
       nock: ^13.0.11
       node-fetch: ^2.6.1
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2045,7 +2041,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
@@ -2053,7 +2049,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2082,7 +2078,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2115,7 +2111,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2124,7 +2120,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2164,7 +2160,7 @@ importers:
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2197,7 +2193,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2206,7 +2202,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2246,7 +2242,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2275,7 +2271,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2284,7 +2280,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2320,7 +2316,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2345,7 +2341,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2354,7 +2350,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2386,7 +2382,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2417,7 +2413,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2426,7 +2422,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2464,7 +2460,7 @@ importers:
       noble-ed25519: ~1.2.1
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2495,7 +2491,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2504,7 +2500,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2541,7 +2537,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2567,7 +2563,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
@@ -2576,7 +2572,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2607,7 +2603,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       rss-parser: ^3.9.0
       ts-jest: ^26.5.5
@@ -2642,7 +2638,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2651,7 +2647,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       prisma: 2.24.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
@@ -2693,7 +2689,7 @@ importers:
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       prisma: ^2.24.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
@@ -2729,7 +2725,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2738,7 +2734,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       prisma: 2.24.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
@@ -2780,7 +2776,7 @@ importers:
       meow: ^9.0.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       prisma: ^2.24.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
@@ -2842,7 +2838,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       fs-extra: 9.1.0
@@ -2852,7 +2848,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2915,7 +2911,7 @@ importers:
       npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
       p-retry: ^4.3.0
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       reflect-metadata: ~0.1.13
       rimraf: ^3.0.2
       semver: ^7.3.5
@@ -2952,7 +2948,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -2961,7 +2957,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2999,7 +2995,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -3032,7 +3028,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
@@ -3040,7 +3036,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -3076,7 +3072,7 @@ importers:
       joi: ^17.4.0
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       qrcode: ^1.4.4
       remarkable: ^2.0.1
       rimraf: ^3.0.2
@@ -3108,7 +3104,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
@@ -3116,7 +3112,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -3151,7 +3147,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       tronweb: ^3.2.6
       ts-jest: ^26.5.5
@@ -3184,7 +3180,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       jest: 26.6.3
@@ -3192,7 +3188,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -3228,7 +3224,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       stellar-sdk: ^8.1.1
       ts-jest: ^26.5.5
@@ -3263,7 +3259,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       eslint-plugin-unused-imports: 1.1.1
@@ -3273,7 +3269,7 @@ importers:
       lodash: 4.17.21
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ripple-binary-codec: 1.1.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
@@ -3314,7 +3310,7 @@ importers:
       lodash: ^4.17.20
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ripple-binary-codec: ^1.0.2
       ripple-keypairs: ^1.0.3
@@ -3348,7 +3344,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -3357,7 +3353,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -3394,7 +3390,7 @@ importers:
       jest-localstorage-mock: ^2.4.10
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -3433,7 +3429,7 @@ importers:
       eslint-config-prettier: 8.3.0_eslint@7.25.0
       eslint-plugin-import: 2.22.1_eslint@7.25.0
       eslint-plugin-jest: 24.3.6_35117c1346fd2a1db02b1d647b7e5acd
-      eslint-plugin-prettier: 3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9
+      eslint-plugin-prettier: 3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00
       eslint-plugin-simple-import-sort: 7.0.0_eslint@7.25.0
       eslint-plugin-tsdoc: 0.2.14
       got: 11.8.2
@@ -3442,7 +3438,7 @@ importers:
       jest-localstorage-mock: 2.4.10
       nock: 13.0.11
       npm-check-updates: 11.5.9
-      prettier: 2.2.1
+      prettier: 2.3.1
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -3486,7 +3482,7 @@ importers:
       npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
       p-retry: ^4.3.0
-      prettier: ^2.2.1
+      prettier: ^2.3.1
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -9008,11 +9004,11 @@ packages:
         optional: true
     resolution:
       integrity: sha512-WOVH4TIaBLIeCX576rLcOgjNXqP+jNlCiEmRgFTfQtJ52DpwnIQKAVGlGPAN7CZ33bW6eNfHD6s8ZbEUTQubJg==
-  /eslint-plugin-prettier/3.4.0_ed07edc0d33fb90bb2bebf56b9b5e0f9:
+  /eslint-plugin-prettier/3.4.0_ed711e5f9f0b93b1702ff2485ae7ca00:
     dependencies:
       eslint: 7.25.0
       eslint-config-prettier: 8.3.0_eslint@7.25.0
-      prettier: 2.2.1
+      prettier: 2.3.1
       prettier-linter-helpers: 1.0.0
     dev: true
     engines:
@@ -9805,7 +9801,7 @@ packages:
       '@babel/highlight': 7.14.0
       commander: 6.2.1
       lodash: 4.17.21
-      prettier: 2.2.1
+      prettier: 2.3.1
       shelljs: 0.8.4
       typescript: 4.3.2
       typescript-compiler: 1.4.1-2
@@ -13877,12 +13873,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
-  /prettier/2.2.1:
+  /prettier/2.3.1:
     engines:
       node: '>=10.13.0'
     hasBin: true
     resolution:
-      integrity: sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
+      integrity: sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA==
   /pretty-format/22.4.3:
     dependencies:
       ansi-regex: 3.0.0
