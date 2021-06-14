@@ -77,23 +77,28 @@ test("#toObject", () => {
 });
 
 class Transaction extends AbstractSignedTransactionData {
-	public override sender(): string {
+	// @ts-ignore
+	public sender(): string {
 		return "sender";
 	}
 
-	public override recipient(): string {
+	// @ts-ignore
+	public recipient(): string {
 		return "recipient";
 	}
 
-	public override amount(): BigNumber {
+	// @ts-ignore
+	public amount(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public override fee(): BigNumber {
+	// @ts-ignore
+	public fee(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public override timestamp(): DateTime {
+	// @ts-ignore
+	public timestamp(): DateTime {
 		return DateTime.make(0);
 	}
 }
