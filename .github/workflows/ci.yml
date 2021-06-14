@@ -54,7 +54,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk/ && pnpm run test -- --coverage
@@ -94,7 +93,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-ada/ && pnpm run test -- --coverage
@@ -134,7 +132,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-ark/ && pnpm run test -- --coverage
@@ -174,7 +171,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-atom/ && pnpm run test -- --coverage
@@ -214,7 +210,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-avax/ && pnpm run test -- --coverage
@@ -254,7 +249,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-btc/ && pnpm run test -- --coverage
@@ -294,7 +288,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-crypto/ && pnpm run test -- --coverage
@@ -334,7 +327,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-dot/ && pnpm run test -- --coverage --forceExit
@@ -374,7 +366,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-egld/ && pnpm run test -- --coverage
@@ -414,7 +405,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-eos/ && pnpm run test -- --coverage
@@ -454,7 +444,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-eth/ && pnpm run test -- --coverage
@@ -494,7 +483,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-http-axios/ && pnpm run test -- --coverage
@@ -534,7 +522,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-http-bent/ && pnpm run test -- --coverage
@@ -574,7 +561,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-http-got/ && pnpm run test -- --coverage
@@ -614,7 +600,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-http-ky/ && pnpm run test -- --coverage
@@ -654,7 +639,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-http-node-fetch/ && pnpm run test -- --coverage
@@ -694,7 +678,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-intl/ && pnpm run test -- --coverage
@@ -734,7 +717,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-lsk/ && pnpm run test -- --coverage
@@ -774,7 +756,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-markets/ && pnpm run test -- --coverage
@@ -814,7 +795,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-nano/ && pnpm run test -- --coverage
@@ -854,7 +834,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-neo/ && pnpm run test -- --coverage
@@ -894,7 +873,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-news/ && pnpm run test -- --coverage
@@ -934,7 +912,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-profiles/ && pnpm run test -- --coverage
@@ -974,7 +951,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-sol/ && pnpm run test -- --coverage
@@ -1014,7 +990,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-support/ && pnpm run test -- --coverage
@@ -1054,7 +1029,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-trx/ && pnpm run test -- --coverage
@@ -1094,7 +1068,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-xlm/ && pnpm run test -- --coverage
@@ -1134,7 +1107,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-xrp/ && pnpm run test -- --coverage
@@ -1174,7 +1146,6 @@ jobs:
               with:
                   timeout_seconds: 300
                   max_attempts: 3
-                  retry_on: error
                   command: node common/scripts/install-run-rush.js rebuild --verbose
             - name: Test
               run: cd packages/platform-sdk-zil/ && pnpm run test -- --coverage

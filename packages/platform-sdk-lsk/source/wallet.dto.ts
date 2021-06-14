@@ -43,7 +43,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 	}
 
 	public multiSignature(): Contracts.WalletMultiSignature {
-		if (!this.isMultiSignature()) {
+		if (!this.isMultiSignatureRegistration()) {
 			throw new Error("This wallet does not have a multi-signature registered.");
 		}
 
@@ -58,7 +58,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public isMultiSignatureRegistration(): boolean {
 		return false;
 	}
 

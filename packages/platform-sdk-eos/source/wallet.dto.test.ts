@@ -44,8 +44,8 @@ describe("WalletData", () => {
 		expect(() => subject.multiSignature()).toThrow(/not implemented/);
 	});
 
-	it("#isMultiSignature", () => {
-		expect(subject.isMultiSignature()).toBeFalse();
+	it("#isMultiSignatureRegistration", () => {
+		expect(subject.isMultiSignatureRegistration()).toBeFalse();
 	});
 
 	it("#isDelegate", () => {

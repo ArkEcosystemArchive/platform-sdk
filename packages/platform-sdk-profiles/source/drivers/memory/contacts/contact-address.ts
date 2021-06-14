@@ -72,13 +72,13 @@ export class ContactAddress implements IContactAddress {
 			.isTeam(this.#coin.network().id(), this.address());
 	}
 
-	/** {@inheritDoc IContactAddress.isMultiSignature} */
-	public isMultiSignature(): boolean {
+	/** {@inheritDoc IContactAddress.isMultiSignatureRegistration} */
+	public isMultiSignatureRegistration(): boolean {
 		if (!this.#wallet) {
 			throw new Error("This contact has not been synchronized yet. Please call [syncIdentity] before using it.");
 		}
 
-		return this.#wallet.isMultiSignature();
+		return this.#wallet.isMultiSignatureRegistration();
 	}
 
 	/** {@inheritDoc IContactAddress.isSecondSignature} */

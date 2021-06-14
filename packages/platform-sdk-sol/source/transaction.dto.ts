@@ -114,7 +114,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public isMultiSignatureRegistration(): boolean {
 		return false;
 	}
 

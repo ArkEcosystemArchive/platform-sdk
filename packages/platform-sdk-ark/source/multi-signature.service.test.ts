@@ -65,7 +65,7 @@ describe("MultiSignatureService", () => {
 		await subject.flush();
 	});
 
-	test("#isMultiSignatureReady", () => {
+	test("#isMultiSignatureRegistrationReady", () => {
 		const transaction = createService(SignedTransactionData);
 		transaction.configure("123", { signatures: [] });
 		const result = subject.isMultiSignatureReady(transaction);

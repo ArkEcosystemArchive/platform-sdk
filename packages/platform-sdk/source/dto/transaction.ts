@@ -31,7 +31,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 		voteCombination: "isVoteCombination",
 		vote: "isVote",
 		unvote: "isUnvote",
-		multiSignature: "isMultiSignature",
+		multiSignature: "isMultiSignatureRegistration",
 		ipfs: "isIpfs",
 		multiPayment: "isMultiPayment",
 		delegateResignation: "isDelegateResignation",
@@ -154,7 +154,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public isMultiSignatureRegistration(): boolean {
 		return false;
 	}
 

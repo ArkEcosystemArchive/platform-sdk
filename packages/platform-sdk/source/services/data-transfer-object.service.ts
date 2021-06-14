@@ -70,7 +70,7 @@ export class AbstractDataTransferObjectService implements DataTransferObjectServ
 			return this.#resolveTransactionClass("MultiPaymentData", transaction);
 		}
 
-		if (instance.isMultiSignature()) {
+		if (instance.isMultiSignatureRegistration()) {
 			return this.#resolveTransactionClass("MultiSignatureData", transaction);
 		}
 

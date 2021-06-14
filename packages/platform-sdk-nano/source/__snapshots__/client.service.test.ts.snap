@@ -9,7 +9,7 @@ Object {
     "locked": BigNumber {},
   },
   "isDelegate": false,
-  "isMultiSignature": false,
+  "isMultiSignatureRegistration": false,
   "isResignedDelegate": false,
   "isSecondSignature": false,
   "nonce": BigNumber {},

@@ -96,7 +96,7 @@ it("should return multi signature", () => {
 });
 
 it("should return multi-signature participants", async () => {
-	const isMultiSignature = jest.spyOn(subject, "isMultiSignature").mockReturnValue(true);
+	const isMultiSignatureRegistration = jest.spyOn(subject, "isMultiSignatureRegistration").mockReturnValue(true);
 	const multiSignature = jest.spyOn(subject.multiSignature(), "all").mockReturnValue({
 		min: 2,
 		publicKeys: [
@@ -112,7 +112,7 @@ it("should return multi-signature participants", async () => {
 	expect(subject.multiSignature().participants()[0]).toBeInstanceOf(ReadOnlyWallet);
 	expect(subject.multiSignature().participants()[1]).toBeInstanceOf(ReadOnlyWallet);
 
-	isMultiSignature.mockRestore();
+	isMultiSignatureRegistration.mockRestore();
 	multiSignature.mockRestore();
 });
 

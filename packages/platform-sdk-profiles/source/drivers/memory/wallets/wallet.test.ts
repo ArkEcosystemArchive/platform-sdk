@@ -360,11 +360,11 @@ it("should respond on whether it is ledger", () => {
 });
 
 it("should respond on whether it is multi signature or not", () => {
-	expect(subject.isMultiSignature()).toBeFalse();
+	expect(subject.isMultiSignatureRegistration()).toBeFalse();
 
 	subject = new Wallet(uuidv4(), {}, profile);
 
-	expect(() => subject.isMultiSignature()).toThrow(
+	expect(() => subject.isMultiSignatureRegistration()).toThrow(
 		"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 	);
 });

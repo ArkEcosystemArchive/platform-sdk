@@ -128,8 +128,8 @@ describe("TransactionData", () => {
 		expect(subject.isUnvote()).toBeFalse();
 	});
 
-	it("#isMultiSignature", () => {
-		expect(subject.isMultiSignature()).toBeFalse();
+	it("#isMultiSignatureRegistration", () => {
+		expect(subject.isMultiSignatureRegistration()).toBeFalse();
 	});
 
 	it("#isIpfs", () => {
