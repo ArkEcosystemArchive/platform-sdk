@@ -63,7 +63,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	public async lastBlockNumber(): Promise<number> {
-		const lastBlockHeight = await this.#database.any(
+		const lastBlockHeight = await this.#database.one(
 			`SELECT MAX(height) AS height
        FROM blocks`,
 		);
