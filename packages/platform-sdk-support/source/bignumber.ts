@@ -97,7 +97,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public plus(value: NumberLike): BigNumber {
-		return BigNumber.make(this.#value.plus(this.#toBigNumber(value)));
+		return BigNumber.make(this.#value.plus(this.#toBigNumber(value)), this.#decimals);
 	}
 
 	/**
@@ -108,7 +108,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public minus(value: NumberLike): BigNumber {
-		return BigNumber.make(this.#value.minus(this.#toBigNumber(value)));
+		return BigNumber.make(this.#value.minus(this.#toBigNumber(value)), this.#decimals);
 	}
 
 	/**
@@ -119,7 +119,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public divide(value: NumberLike): BigNumber {
-		return BigNumber.make(this.#value.dividedBy(this.#toBigNumber(value)));
+		return BigNumber.make(this.#value.dividedBy(this.#toBigNumber(value)), this.#decimals);
 	}
 
 	/**
@@ -130,7 +130,7 @@ export class BigNumber {
 	 * @memberof BigNumber
 	 */
 	public times(value: NumberLike): BigNumber {
-		return BigNumber.make(this.#value.multipliedBy(this.#toBigNumber(value)));
+		return BigNumber.make(this.#value.multipliedBy(this.#toBigNumber(value)), this.#decimals);
 	}
 
 	/**

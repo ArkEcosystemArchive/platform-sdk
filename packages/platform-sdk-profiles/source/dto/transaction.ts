@@ -54,7 +54,7 @@ export class TransactionData {
 	}
 
 	public convertedAmount(): BigNumber {
-		return this.#convertAmount(this.amount().divide(1e8));
+		return this.#convertAmount(this.amount());
 	}
 
 	public fee(): BigNumber {
@@ -62,7 +62,7 @@ export class TransactionData {
 	}
 
 	public convertedFee(): BigNumber {
-		return this.#convertAmount(this.fee().divide(1e8));
+		return this.#convertAmount(this.fee());
 	}
 
 	public memo(): string | undefined {
@@ -195,7 +195,7 @@ export class TransactionData {
 	}
 
 	public convertedTotal(): BigNumber {
-		return this.#convertAmount(this.total().divide(1e8));
+		return this.#convertAmount(this.total());
 	}
 
 	/**
@@ -226,7 +226,7 @@ export class TransactionData {
 
 		return container
 			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
-			.exchange(this.wallet().currency(), this.wallet().exchangeCurrency(), timestamp, value);
+			.exchange(this.wallet().currency(), this.wallet().exchangeCurrency(), timestamp, value.denominated());
 	}
 }
 
