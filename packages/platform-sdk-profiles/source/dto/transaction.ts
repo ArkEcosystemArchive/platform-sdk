@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";

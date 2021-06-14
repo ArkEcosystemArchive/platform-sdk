@@ -7,7 +7,6 @@ import nock from "nock";
 
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { TransactionData } from "./transaction.dto";
 import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
@@ -64,7 +63,7 @@ describe("ClientService", () => {
 			});
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(DTO.TransferData);
+			expect(result.items()[0]).toBeInstanceOf(TransferData);
 			expect(result.items()[0].id()).toBe("08EF5BDA2825D7A28099219621CDBECCDECB828FEA202DEB6C7ACD5222D36C2C");
 			expect(result.items()[0].type()).toBe("transfer");
 			expect(result.items()[0].timestamp()).toBeInstanceOf(DateTime);
