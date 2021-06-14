@@ -57,7 +57,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return false;
 	}
 
-	public isMultiSignatureRegistration(): boolean {
+	public isMultiSignature(): boolean {
 		return false;
 	}
 

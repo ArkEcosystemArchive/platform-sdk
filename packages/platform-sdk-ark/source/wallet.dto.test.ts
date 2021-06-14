@@ -127,8 +127,8 @@ describe("WalletData", () => {
 			expect(subject.isResignedDelegate()).toBeFalse();
 		});
 
-		test("#isMultiSignatureRegistration", () => {
-			expect(subject.isMultiSignatureRegistration()).toEqual(network === "devnet");
+		test("#isMultiSignature", () => {
+			expect(subject.isMultiSignature()).toEqual(network === "devnet");
 		});
 
 		test("#isSecondSignature", () => {

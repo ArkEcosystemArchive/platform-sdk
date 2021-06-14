@@ -296,7 +296,7 @@ export interface IReadWriteWallet {
 	 * @return {boolean}
 	 * @memberof IReadWriteWallet
 	 */
-	isMultiSignatureRegistration(): boolean;
+	 isMultiSignature(): boolean;
 
 	/**
 	 * Determine if the wallet uses a second signature.
