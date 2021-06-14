@@ -98,7 +98,7 @@ export class Database {
 			},
 		});
 
-		for (const transaction of block!.transactions) {
+		for (const transaction of block.transactions) {
 			await this.#prisma.transaction.update({
 				where: { hash: transaction.hash },
 				data: {
