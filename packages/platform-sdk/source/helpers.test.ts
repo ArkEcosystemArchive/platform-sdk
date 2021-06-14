@@ -6,7 +6,6 @@ import {
 	pluckAddress,
 	randomNetworkHostFromConfig,
 	randomHostFromConfig,
-	toRawUnit,
 } from "./helpers";
 
 afterEach(() => jest.restoreAllMocks());
@@ -75,10 +74,4 @@ describe("pluckAddress", () => {
 	test("addresses", () => {
 		expect(() => pluckAddress({ key: "value" })).toThrow("Failed to pluck any address.");
 	});
-});
-
-test("#toRawUnit", () => {
-	const configMock = ({ get: () => 8 } as unknown) as ConfigRepository;
-
-	expect(toRawUnit(42, configMock).toNumber()).toBe(4_200_000_000);
 });

@@ -22,7 +22,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "input.signatory");
 		}
 
-		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
+		const amount = this.toSatoshi(input.data.amount).toString();
 		const keypair = this.keyring.addFromMnemonic(input.signatory.signingKey());
 		const transaction = await this.client.tx.balances.transfer(input.data.to, amount).signAsync(keypair);
 

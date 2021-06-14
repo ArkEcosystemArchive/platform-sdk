@@ -38,9 +38,3 @@ export const pluckAddress = (query): string => {
 
 	throw new Error("Failed to pluck any address.");
 };
-
-export const toRawUnit = (value: NumberLike, config: ConfigRepository) => {
-	const decimals = config.get<number>("network.currency.decimals");
-	const denomination = BigNumber.make(`1${"0".repeat(decimals)}`); // poor man's bigint exponentiation
-	return denomination.times(value);
-};

@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 
 import { ConfigRepository } from "../coins";
 import { RawTransactionData, SignedTransactionData } from "../contracts";
@@ -86,4 +87,8 @@ export class AbstractTransactionService implements Contract {
 	public async estimateExpiration(value?: string): Promise<string | undefined> {
 		return undefined;
 	}
+
+	protected toSatoshi = (value: NumberLike) => {
+		return BigNumber.make(value).toSatoshi(this.configRepository.get<number>("network.currency.decimals"));
+	};
 }

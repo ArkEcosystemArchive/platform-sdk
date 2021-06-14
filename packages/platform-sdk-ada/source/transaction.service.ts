@@ -52,7 +52,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 		// Figure out which of the utxos to use
 		const usedUtxos: UnspentTransaction[] = [];
-		const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
+		const amount = this.toSatoshi(input.data.amount).toString();
 		const requestedAmount: BigNum = BigNum.from_str(amount);
 		let totalTxAmount: BigNum = BigNum.from_str("0");
 		let totalFeesAmount: BigNum = BigNum.from_str("0");
