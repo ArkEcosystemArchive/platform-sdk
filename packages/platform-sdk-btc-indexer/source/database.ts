@@ -98,6 +98,7 @@ export class Database {
 			},
 		});
 
+		// @ts-ignore
 		for (const transaction of block.transactions) {
 			await this.#prisma.transaction.update({
 				where: { hash: transaction.hash },
@@ -111,6 +112,7 @@ export class Database {
 				where: { hash: transaction.hash },
 			});
 		}
+
 		await this.#prisma.block.update({
 			where: { height: height },
 			data: {
@@ -119,6 +121,7 @@ export class Database {
 				},
 			},
 		});
+
 		await this.#prisma.block.delete({
 			where: { height: height },
 		});
