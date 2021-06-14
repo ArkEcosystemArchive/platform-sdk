@@ -1323,7 +1323,9 @@ it("should broadcast multisignature transaction", async () => {
 	await subject.broadcast(id);
 	expect(subject.waitingForOtherSignatures()).toContainKey(id);
 
-	const mockedFalseMultisignature = jest.spyOn(subject.transaction(id), "isMultiSignatureRegistration").mockReturnValue(false);
+	const mockedFalseMultisignature = jest
+		.spyOn(subject.transaction(id), "isMultiSignatureRegistration")
+		.mockReturnValue(false);
 	await subject.broadcast(id);
 	expect(subject.transaction(id)).toBeDefined();
 
