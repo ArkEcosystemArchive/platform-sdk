@@ -5,7 +5,63 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 9.2.1 - 2021-06-10
+## 9.3.0 - 2021-06-14
+
+### Changed
+
+- **[SDK]** Rename `isMultiSignature` to `isMultiSignatureRegistration` (2dc9eeed, @faustbrian)
+
+## 9.2.11 - 2021-06-11
+
+### Fixed
+
+- **[JSON-RPC]** Return numbers in human-readable format (0ab54fd5, @faustbrian)
+
+## 9.2.10 - 2021-06-11
+
+### Fixed
+
+- **[JSON-RPC]** Remove coin and network from cached instance (253f6a86, @faustbrian)
+- **[JSON-RPC]** Turn transactions to JSON for response (a4aab367, @faustbrian)
+
+## 9.2.8 - 2021-06-11
+
+### Changed
+
+- **[BTC-INDEXER]** Faster processing (50bde2dd, @marianogoldman)
+
+## 9.2.7 - 2021-06-11
+
+### Changed
+
+- **[PROFILES]** Enable transaction history setting on profile creation (291d88d0, @goga-m)
+
+## 9.2.6 - 2021-06-11
+
+### Fixed
+
+- **[ARK]** Add delegate resignation DTO (ea2949fd, @faustbrian)
+
+## 9.2.5 - 2021-06-11
+
+### Fixed
+
+- **[ARK]** Add delegate resignation DTO (ea2949fd, @faustbrian)
+
+## 9.2.4 - 2021-06-11
+
+### Changed
+
+- **[BTC-INDEXER]** Tweak configuration (309ad51a, @faustbrian)
+
+## 9.2.3 - 2021-06-11
+
+### Changed
+
+- **[PROFILES]** Rename `SignedTransactionData#isMultiSignature` to `SignedTransactionData#usesMultiSignature` (c3d77494, @faustbrian)
+- **[PROFILES]** Enforce strict structure for validation (fd431a39, @faustbrian)
+
+## 9.2.1 - 2021-06-11
 
 ### Changed
 
