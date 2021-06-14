@@ -4,11 +4,16 @@ import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { Bindings } from "./coin.contract";
 import { Services } from "./coin.services";
+import { MultiSignatureSigner } from "./multi-signature.signer";
 
 @IoC.injectable()
 export class ServiceProvider extends IoC.AbstractServiceProvider implements IoC.IServiceProvider {
 	public async make(container: IoC.Container): Promise<void> {
 		await this.#retrieveNetworkConfiguration(container);
+
+		if (container.missing(Bindings.MultiSignatureSigner)) {
+			container.singleton(Bindings.MultiSignatureSigner, MultiSignatureSigner);
+		}
 
 		return this.compose(Services, container);
 	}

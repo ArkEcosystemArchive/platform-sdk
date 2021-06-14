@@ -1,12 +1,22 @@
 import { Managers, Transactions, Interfaces, Identities, Enums } from "@arkecosystem/crypto";
+import { IoC } from "@arkecosystem/platform-sdk";
 
+import { Bindings } from "./coin.contract";
 import { MultiSignatureAsset, MultiSignatureTransaction } from "./multi-signature.contract";
 import { PendingMultiSignatureTransaction } from "./multi-signature.transaction";
 
+@IoC.injectable()
 export class MultiSignatureSigner {
-	public constructor(config: Interfaces.NetworkConfig, height: number) {
-		Managers.configManager.setConfig(config);
-		Managers.configManager.setHeight(height);
+	@IoC.inject(Bindings.Crypto)
+	private readonly config!: Interfaces.NetworkConfig;
+
+	@IoC.inject(Bindings.Height)
+	private readonly height!: number;
+
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		Managers.configManager.setConfig(this.config);
+		Managers.configManager.setHeight(this.height);
 	}
 
 	// The first argument should be a TransactionBuilder but we have no proper type to hint that.
