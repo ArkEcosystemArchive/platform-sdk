@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
-import { NumberLike } from "@arkecosystem/platform-sdk-support";
+import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 import { BigNumberService } from "./big-number.service";
 
 import { ConfigRepository } from "../coins";
