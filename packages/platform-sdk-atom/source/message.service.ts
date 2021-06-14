@@ -9,7 +9,7 @@ export class MessageService extends Services.AbstractMessageService {
 	@IoC.inject(IoC.BindingType.KeyPairService)
 	protected readonly keyPairService!: Services.KeyPairService;
 
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const { publicKey, privateKey } = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
 
@@ -25,7 +25,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return secp256k1.verify(
 				HashAlgorithms.sha256(input.message),

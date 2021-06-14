@@ -5,31 +5,31 @@ import { TransactionTypeService } from "./transaction-type.service";
 
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public id(): string {
+	public override id(): string {
 		return this.data.id;
 	}
 
-	public blockId(): string | undefined {
+	public override blockId(): string | undefined {
 		return this.data.blockId;
 	}
 
-	public timestamp(): DateTime | undefined {
+	public override timestamp(): DateTime | undefined {
 		return DateTime.fromUnix(this.data.timestamp.unix);
 	}
 
-	public confirmations(): BigNumber {
+	public override confirmations(): BigNumber {
 		return BigNumber.make(this.data.confirmations);
 	}
 
-	public sender(): string {
+	public override sender(): string {
 		return this.data.sender;
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		return this.data.recipient;
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
+	public override recipients(): Contracts.MultiPaymentRecipient[] {
 		if (!this.isMultiPayment()) {
 			return [];
 		}
@@ -40,7 +40,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		}));
 	}
 
-	public amount(): BigNumber {
+	public override amount(): BigNumber {
 		if (this.isMultiPayment()) {
 			const amount = BigNumber.sum(this.data.asset.payments.map(({ amount }) => amount));
 			return this.bigNumberService.make(amount);
@@ -49,79 +49,79 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.bigNumberService.make(this.data.amount);
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		return this.bigNumberService.make(this.data.fee);
 	}
 
-	public asset(): Record<string, unknown> {
+	public override asset(): Record<string, unknown> {
 		return this.data.asset || {};
 	}
 
-	public isConfirmed(): boolean {
+	public override isConfirmed(): boolean {
 		return this.confirmations().isGreaterThanOrEqualTo(51);
 	}
 
-	public isSent(): boolean {
+	public override isSent(): boolean {
 		return [this.getMeta("address"), this.getMeta("publicKey")].includes(this.sender());
 	}
 
-	public isReceived(): boolean {
+	public override isReceived(): boolean {
 		return [this.getMeta("address"), this.getMeta("publicKey")].includes(this.recipient());
 	}
 
-	public isTransfer(): boolean {
+	public override isTransfer(): boolean {
 		return TransactionTypeService.isTransfer(this.data);
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return TransactionTypeService.isSecondSignature(this.data);
 	}
 
-	public isDelegateRegistration(): boolean {
+	public override isDelegateRegistration(): boolean {
 		return TransactionTypeService.isDelegateRegistration(this.data);
 	}
 
-	public isVoteCombination(): boolean {
+	public override isVoteCombination(): boolean {
 		return TransactionTypeService.isVoteCombination(this.data);
 	}
 
-	public isVote(): boolean {
+	public override isVote(): boolean {
 		return TransactionTypeService.isVote(this.data);
 	}
 
-	public isUnvote(): boolean {
+	public override isUnvote(): boolean {
 		return TransactionTypeService.isUnvote(this.data);
 	}
 
-	public isMultiSignatureRegistration(): boolean {
+	public override isMultiSignatureRegistration(): boolean {
 		return TransactionTypeService.isMultiSignatureRegistration(this.data);
 	}
 
-	public isIpfs(): boolean {
+	public override isIpfs(): boolean {
 		return TransactionTypeService.isIpfs(this.data);
 	}
 
-	public isMultiPayment(): boolean {
+	public override isMultiPayment(): boolean {
 		return TransactionTypeService.isMultiPayment(this.data);
 	}
 
-	public isDelegateResignation(): boolean {
+	public override isDelegateResignation(): boolean {
 		return TransactionTypeService.isDelegateResignation(this.data);
 	}
 
-	public isHtlcLock(): boolean {
+	public override isHtlcLock(): boolean {
 		return TransactionTypeService.isHtlcLock(this.data);
 	}
 
-	public isHtlcClaim(): boolean {
+	public override isHtlcClaim(): boolean {
 		return TransactionTypeService.isHtlcClaim(this.data);
 	}
 
-	public isHtlcRefund(): boolean {
+	public override isHtlcRefund(): boolean {
 		return TransactionTypeService.isHtlcRefund(this.data);
 	}
 
-	public isMagistrate(): boolean {
+	public override isMagistrate(): boolean {
 		return TransactionTypeService.isMagistrate(this.data);
 	}
 }

@@ -2,7 +2,7 @@ import { IoC, Services } from "@arkecosystem/platform-sdk";
 
 @IoC.injectable()
 export class FeeService extends Services.AbstractFeeService {
-	public async all(): Promise<Services.TransactionFees> {
+	public override async all(): Promise<Services.TransactionFees> {
 		const { slow, normal, fast, instant } = (await this.httpClient.get("https://ethgas.watch/api/gas")).json();
 
 		const fees = {

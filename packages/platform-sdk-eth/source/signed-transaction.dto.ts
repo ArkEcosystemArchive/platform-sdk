@@ -6,23 +6,23 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
-	public sender(): string {
+	public override sender(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.sender.name);
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.recipient.name);
 	}
 
-	public amount(): BigNumber {
+	public override amount(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.amount.name);
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.fee.name);
 	}
 
-	public timestamp(): DateTime {
+	public override timestamp(): DateTime {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.timestamp.name);
 	}
 }

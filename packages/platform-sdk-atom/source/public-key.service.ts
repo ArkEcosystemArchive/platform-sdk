@@ -8,7 +8,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 	@IoC.inject(IoC.BindingType.KeyPairService)
 	protected readonly keyPairService!: Services.KeyPairService;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PublicKeyDataTransferObject> {

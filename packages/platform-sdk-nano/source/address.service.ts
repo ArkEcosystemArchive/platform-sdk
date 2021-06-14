@@ -6,7 +6,7 @@ import { deriveAccount } from "./account";
 
 @IoC.injectable()
 export class AddressService extends Services.AbstractAddressService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -16,7 +16,7 @@ export class AddressService extends Services.AbstractAddressService {
 		};
 	}
 
-	public async fromPublicKey(
+	public override async fromPublicKey(
 		publicKey: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -26,7 +26,7 @@ export class AddressService extends Services.AbstractAddressService {
 		};
 	}
 
-	public async fromPrivateKey(
+	public override async fromPrivateKey(
 		privateKey: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -36,7 +36,7 @@ export class AddressService extends Services.AbstractAddressService {
 		};
 	}
 
-	public async validate(address: string): Promise<boolean> {
+	public override async validate(address: string): Promise<boolean> {
 		return tools.validateAddress(address);
 	}
 }

@@ -106,6 +106,10 @@ export abstract class AbstractTransactionData implements TransactionData {
 		throw new NotImplemented(this.constructor.name, this.fee.name);
 	}
 
+	public memo(): string | undefined {
+		return undefined;
+	}
+
 	public asset(): Record<string, unknown> {
 		return {};
 	}
@@ -119,7 +123,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 	}
 
 	public isConfirmed(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSent(): boolean {
@@ -131,7 +135,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 	}
 
 	public isTransfer(): boolean {
-		return false;
+		return true;
 	}
 
 	public isSecondSignature(): boolean {

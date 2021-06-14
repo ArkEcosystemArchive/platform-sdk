@@ -15,41 +15,41 @@ export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#transport!: DposLedger;
 
-	public async connect(transport: Services.LedgerTransport): Promise<void> {
+	public override async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
 		this.#transport = new DposLedger(new CommHandler(this.#ledger));
 	}
 
-	public async disconnect(): Promise<void> {
+	public override async disconnect(): Promise<void> {
 		await this.#ledger.close();
 	}
 
-	public async getVersion(): Promise<string> {
+	public override async getVersion(): Promise<string> {
 		const { version } = await this.#transport.version();
 
 		return version;
 	}
 
-	public async getPublicKey(path: string): Promise<string> {
+	public override async getPublicKey(path: string): Promise<string> {
 		const { publicKey } = await this.#getPublicKeyAndAddress(path);
 
 		return publicKey;
 	}
 
-	public async signTransaction(path: string, payload: Buffer): Promise<string> {
+	public override async signTransaction(path: string, payload: Buffer): Promise<string> {
 		const signature: Buffer = await this.#transport.signTX(this.#getLedgerAccount(path), payload);
 
 		return signature.toString("hex");
 	}
 
-	public async signMessage(path: string, payload: Buffer): Promise<string> {
+	public override async signMessage(path: string, payload: Buffer): Promise<string> {
 		const signature: Buffer = await this.#transport.signMSG(this.#getLedgerAccount(path), payload);
 
 		return signature.slice(0, 64).toString("hex");
 	}
 
 	// @TODO: discover wallets until they 404
-	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
+	public override async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		const page = 0;
 		const slip44 = this.configRepository.get<number>("network.constants.slip44");

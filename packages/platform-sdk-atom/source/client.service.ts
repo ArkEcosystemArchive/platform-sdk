@@ -34,7 +34,7 @@ export class ClientService extends Services.AbstractClientService {
 		unauthorized: "ERR_UNAUTHORIZED",
 	};
 
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
@@ -43,7 +43,7 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction(response);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const page = Number(query.cursor || 1);
 
 		const response = await this.#get("txs", {
@@ -61,7 +61,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { result: details } = await this.#get(`auth/accounts/${id}`);
 		const { result: balance } = await this.#get(`bank/balances/${id}`);
 
@@ -73,7 +73,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

@@ -5,14 +5,14 @@ import { deriveAccountKey, deriveChangeKey, deriveRootKey, deriveSpendKey, deriv
 
 @IoC.injectable()
 export class ExtendedAddressService extends Services.AbstractExtendedAddressService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		pageSize: number,
 	): Promise<Services.ExtendedAddressDataTransferObject[]> {
 		return this.#deriveAddresses(deriveAccountKey(deriveRootKey(mnemonic), 0), pageSize);
 	}
 
-	public async fromPrivateKey(
+	public override async fromPrivateKey(
 		privateKey: string,
 		pageSize: number,
 	): Promise<Services.ExtendedAddressDataTransferObject[]> {

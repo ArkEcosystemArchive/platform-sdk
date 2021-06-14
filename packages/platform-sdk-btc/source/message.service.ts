@@ -7,7 +7,7 @@ export class MessageService extends Services.AbstractMessageService {
 	@IoC.inject(IoC.BindingType.AddressService)
 	private readonly addressService!: Services.AddressService;
 
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const { compressed, privateKey } = ECPair.fromWIF(input.signatory.signingKey());
 
@@ -25,7 +25,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return verify(input.message, input.signatory, input.signature);
 		} catch (error) {

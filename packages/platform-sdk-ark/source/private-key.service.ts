@@ -9,7 +9,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 	@IoC.inject(Bindings.Crypto)
 	private readonly config!: Interfaces.NetworkConfig;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {
@@ -22,7 +22,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
+	public override async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			return {
 				privateKey: BasePrivateKey.fromWIF(wif, this.config.network),

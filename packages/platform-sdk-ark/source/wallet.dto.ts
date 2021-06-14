@@ -4,42 +4,42 @@ import { get, has } from "dot-prop";
 
 @IoC.injectable()
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
-	public primaryKey(): string {
+	public override primaryKey(): string {
 		return this.address();
 	}
 
-	public address(): string {
+	public override address(): string {
 		return this.data.address;
 	}
 
-	public publicKey(): string | undefined {
+	public override publicKey(): string | undefined {
 		return this.data.publicKey;
 	}
 
-	public balance(): Contracts.WalletBalance {
+	public override balance(): Contracts.WalletBalance {
 		return {
 			available: BigNumber.make(this.data.balance),
 			fees: BigNumber.make(this.data.balance),
 		};
 	}
 
-	public nonce(): BigNumber {
+	public override nonce(): BigNumber {
 		return BigNumber.make(this.data.nonce);
 	}
 
-	public secondPublicKey(): string | undefined {
+	public override secondPublicKey(): string | undefined {
 		return this.#getProperty(["secondPublicKey", "attributes.secondPublicKey"]);
 	}
 
-	public username(): string | undefined {
+	public override username(): string | undefined {
 		return this.#getProperty(["username", "attributes.delegate.username"]);
 	}
 
-	public rank(): number | undefined {
+	public override rank(): number | undefined {
 		return this.#getProperty(["rank", "attributes.delegate.rank"]);
 	}
 
-	public votes(): BigNumber | undefined {
+	public override votes(): BigNumber | undefined {
 		const balance: string | undefined = this.#getProperty(["votes", "attributes.delegate.voteBalance"]);
 
 		if (balance === undefined) {
@@ -57,7 +57,7 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return this.#getProperty(["multiSignature", "attributes.multiSignature"]) as Contracts.WalletMultiSignature;
 	}
 
-	public isDelegate(): boolean {
+	public override isDelegate(): boolean {
 		if (this.isResignedDelegate()) {
 			return false;
 		}
@@ -65,15 +65,15 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		return !!this.#getProperty(["username", "attributes.delegate.username"]);
 	}
 
-	public isResignedDelegate(): boolean {
+	public override isResignedDelegate(): boolean {
 		return !!this.#getProperty(["isResigned", "attributes.delegate.resigned"]);
 	}
 
-	public isMultiSignature(): boolean {
+	public override isMultiSignature(): boolean {
 		return !!this.#getProperty(["multiSignature", "attributes.multiSignature"]);
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return !!this.#getProperty(["secondPublicKey", "attributes.secondPublicKey"]);
 	}
 

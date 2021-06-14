@@ -4,39 +4,39 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public id(): string {
+	public override id(): string {
 		return this.data.id;
 	}
 
-	public blockId(): string | undefined {
+	public override blockId(): string | undefined {
 		return undefined;
 	}
 
-	public timestamp(): DateTime | undefined {
+	public override timestamp(): DateTime | undefined {
 		return DateTime.make(this.data.timestamp);
 	}
 
-	public confirmations(): BigNumber {
+	public override confirmations(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public sender(): string {
+	public override sender(): string {
 		return Object.keys(this.data.inputTotals)[0];
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		return Object.keys(this.data.outputTotals)[0];
 	}
 
-	public amount(): BigNumber {
+	public override amount(): BigNumber {
 		return this.bigNumberService.make(Object.values(this.data.outputTotals)[0] as string);
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		return this.bigNumberService.make(this.data.txFee);
 	}
 
-	public inputs(): Contracts.UnspentTransactionData[] {
+	public override inputs(): Contracts.UnspentTransactionData[] {
 		return this.data.inputs.map(
 			(input: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
@@ -48,7 +48,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		);
 	}
 
-	public outputs(): Contracts.UnspentTransactionData[] {
+	public override outputs(): Contracts.UnspentTransactionData[] {
 		return this.data.outputs.map(
 			(output: Contracts.KeyValuePair) =>
 				new DTO.UnspentTransactionData({
@@ -60,63 +60,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		);
 	}
 
-	public isConfirmed(): boolean {
+	public override isConfirmed(): boolean {
 		return true;
 	}
 
-	public isTransfer(): boolean {
+	public override isTransfer(): boolean {
 		return this.data.type === "base";
-	}
-
-	public isSecondSignature(): boolean {
-		return false;
-	}
-
-	public isDelegateRegistration(): boolean {
-		return false;
-	}
-
-	public isVoteCombination(): boolean {
-		return false;
-	}
-
-	public isVote(): boolean {
-		return false;
-	}
-
-	public isUnvote(): boolean {
-		return false;
-	}
-
-	public isMultiSignatureRegistration(): boolean {
-		return false;
-	}
-
-	public isIpfs(): boolean {
-		return false;
-	}
-
-	public isMultiPayment(): boolean {
-		return false;
-	}
-
-	public isDelegateResignation(): boolean {
-		return false;
-	}
-
-	public isHtlcLock(): boolean {
-		return false;
-	}
-
-	public isHtlcClaim(): boolean {
-		return false;
-	}
-
-	public isHtlcRefund(): boolean {
-		return false;
-	}
-
-	public isMagistrate(): boolean {
-		return false;
 	}
 }

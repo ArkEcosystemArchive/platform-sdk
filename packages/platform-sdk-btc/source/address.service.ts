@@ -15,7 +15,7 @@ export class AddressService extends Services.AbstractAddressService {
 
 	#network!: bitcoin.networks.Network;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -35,7 +35,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
+	public override async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { address } = bitcoin.payments.p2sh({
 				redeem: bitcoin.payments.p2ms({
@@ -59,7 +59,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	public async fromPublicKey(
+	public override async fromPublicKey(
 		publicKey: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -83,7 +83,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	public async fromPrivateKey(
+	public override async fromPrivateKey(
 		privateKey: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -107,7 +107,7 @@ export class AddressService extends Services.AbstractAddressService {
 	}
 
 	// @TODO: support for bip44/49/84
-	public async fromWIF(wif: string): Promise<Services.AddressDataTransferObject> {
+	public override async fromWIF(wif: string): Promise<Services.AddressDataTransferObject> {
 		try {
 			const { address } = bitcoin.payments.p2pkh({
 				pubkey: bitcoin.ECPair.fromWIF(wif).publicKey,
@@ -127,7 +127,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async validate(address: string): Promise<boolean> {
+	public override async validate(address: string): Promise<boolean> {
 		return address !== undefined;
 	}
 

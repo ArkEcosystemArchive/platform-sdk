@@ -7,71 +7,71 @@ import { TransactionTypeService } from "./transaction-type.service";
 
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public id(): string {
+	public override id(): string {
 		return this.data.id;
 	}
 
-	public blockId(): string | undefined {
+	public override blockId(): string | undefined {
 		return this.data.blockId;
 	}
 
-	public timestamp(): DateTime | undefined {
+	public override timestamp(): DateTime | undefined {
 		return normalizeTimestamp(this.data.timestamp);
 	}
 
-	public confirmations(): BigNumber {
+	public override confirmations(): BigNumber {
 		return BigNumber.make(this.data.confirmations);
 	}
 
-	public sender(): string {
+	public override sender(): string {
 		return this.data.senderId;
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		return this.data.recipientId;
 	}
 
-	public amount(): BigNumber {
+	public override amount(): BigNumber {
 		return this.bigNumberService.make(this.data.amount);
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		return this.bigNumberService.make(this.data.fee);
 	}
 
-	public memo(): string | undefined {
+	public override memo(): string | undefined {
 		return this.data.asset.data;
 	}
 
-	public isConfirmed(): boolean {
+	public override isConfirmed(): boolean {
 		return this.confirmations().isGreaterThanOrEqualTo(101);
 	}
 
-	public isTransfer(): boolean {
+	public override isTransfer(): boolean {
 		return TransactionTypeService.isTransfer(this.data);
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return TransactionTypeService.isSecondSignature(this.data);
 	}
 
-	public isDelegateRegistration(): boolean {
+	public override isDelegateRegistration(): boolean {
 		return TransactionTypeService.isDelegateRegistration(this.data);
 	}
 
-	public isVoteCombination(): boolean {
+	public override isVoteCombination(): boolean {
 		return TransactionTypeService.isVoteCombination(this.data);
 	}
 
-	public isVote(): boolean {
+	public override isVote(): boolean {
 		return TransactionTypeService.isVote(this.data);
 	}
 
-	public isUnvote(): boolean {
+	public override isUnvote(): boolean {
 		return TransactionTypeService.isUnvote(this.data);
 	}
 
-	public isMultiSignatureRegistration(): boolean {
+	public override isMultiSignatureRegistration(): boolean {
 		return TransactionTypeService.isMultiSignatureRegistration(this.data);
 	}
 }

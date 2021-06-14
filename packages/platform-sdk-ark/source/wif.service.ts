@@ -9,7 +9,7 @@ export class WIFService extends Services.AbstractWIFService {
 	@IoC.inject(Bindings.Crypto)
 	private readonly config!: Interfaces.NetworkConfig;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.WIFDataTransferObject> {
@@ -22,7 +22,7 @@ export class WIFService extends Services.AbstractWIFService {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Services.WIFDataTransferObject> {
+	public override async fromPrivateKey(privateKey: string): Promise<Services.WIFDataTransferObject> {
 		try {
 			return {
 				// @ts-ignore - We don't care about having a public key for this

@@ -11,7 +11,7 @@ export class KnownWalletService extends Services.AbstractKnownWalletService {
 
 	#source: string | undefined;
 
-	public async all(): Promise<Services.KnownWallet[]> {
+	public override async all(): Promise<Services.KnownWallet[]> {
 		if (!this.#source) {
 			return [];
 		}

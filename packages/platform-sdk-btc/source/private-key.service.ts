@@ -4,7 +4,7 @@ import { ECPair } from "bitcoinjs-lib";
 
 @IoC.injectable()
 export class PrivateKeyService extends Services.AbstractPrivateKeyService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {
@@ -15,7 +15,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
+	public override async fromWIF(wif: string): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
 			const { privateKey } = ECPair.fromWIF(wif);
 

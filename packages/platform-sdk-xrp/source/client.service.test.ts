@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { IoC, Services } from "@arkecosystem/platform-sdk";
+import { DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import nock from "nock";
@@ -64,7 +64,7 @@ describe("ClientService", () => {
 			});
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.items()[0]).toBeInstanceOf(DTO.TransferData);
 			expect(result.items()[0].id()).toBe("08EF5BDA2825D7A28099219621CDBECCDECB828FEA202DEB6C7ACD5222D36C2C");
 			expect(result.items()[0].type()).toBe("transfer");
 			expect(result.items()[0].timestamp()).toBeInstanceOf(DateTime);

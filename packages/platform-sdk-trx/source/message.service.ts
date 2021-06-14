@@ -22,7 +22,7 @@ export class MessageService extends Services.AbstractMessageService {
 		});
 	}
 
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const keys: Services.KeyPairDataTransferObject = await this.keyPairService.fromMnemonic(
 				input.signatory.signingKey(),
@@ -46,7 +46,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			const messageAsHex = Buffer.from(input.message).toString("hex");
 			return this.#connection.trx.verifyMessage(messageAsHex, input.signature, input.signatory);

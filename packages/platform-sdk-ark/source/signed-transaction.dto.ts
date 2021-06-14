@@ -8,23 +8,23 @@ import { TransactionTypeService } from "./transaction-type.service";
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
 	implements Contracts.SignedTransactionData {
-	public sender(): string {
+	public override sender(): string {
 		return Identities.Address.fromPublicKey(this.signedData.senderPublicKey);
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		return this.signedData.recipientId;
 	}
 
-	public amount(): BigNumber {
+	public override amount(): BigNumber {
 		return this.bigNumberService.make(this.signedData.amount);
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		return this.bigNumberService.make(this.signedData.fee);
 	}
 
-	public timestamp(): DateTime {
+	public override timestamp(): DateTime {
 		if (this.signedData.timestamp) {
 			return DateTime.make(this.signedData.timestamp);
 		}
@@ -33,63 +33,63 @@ export class SignedTransactionData
 		return DateTime.make();
 	}
 
-	public isTransfer(): boolean {
+	public override isTransfer(): boolean {
 		return TransactionTypeService.isTransfer(this.signedData);
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return TransactionTypeService.isSecondSignature(this.signedData);
 	}
 
-	public isDelegateRegistration(): boolean {
+	public override isDelegateRegistration(): boolean {
 		return TransactionTypeService.isDelegateRegistration(this.signedData);
 	}
 
-	public isVoteCombination(): boolean {
+	public override isVoteCombination(): boolean {
 		return TransactionTypeService.isVoteCombination(this.signedData);
 	}
 
-	public isVote(): boolean {
+	public override isVote(): boolean {
 		return TransactionTypeService.isVote(this.signedData);
 	}
 
-	public isUnvote(): boolean {
+	public override isUnvote(): boolean {
 		return TransactionTypeService.isUnvote(this.signedData);
 	}
 
-	public isMultiSignatureRegistration(): boolean {
+	public override isMultiSignatureRegistration(): boolean {
 		return TransactionTypeService.isMultiSignatureRegistration(this.signedData);
 	}
 
-	public isIpfs(): boolean {
+	public override isIpfs(): boolean {
 		return TransactionTypeService.isIpfs(this.signedData);
 	}
 
-	public isMultiPayment(): boolean {
+	public override isMultiPayment(): boolean {
 		return TransactionTypeService.isMultiPayment(this.signedData);
 	}
 
-	public isDelegateResignation(): boolean {
+	public override isDelegateResignation(): boolean {
 		return TransactionTypeService.isDelegateResignation(this.signedData);
 	}
 
-	public isHtlcLock(): boolean {
+	public override isHtlcLock(): boolean {
 		return TransactionTypeService.isHtlcLock(this.signedData);
 	}
 
-	public isHtlcClaim(): boolean {
+	public override isHtlcClaim(): boolean {
 		return TransactionTypeService.isHtlcClaim(this.signedData);
 	}
 
-	public isHtlcRefund(): boolean {
+	public override isHtlcRefund(): boolean {
 		return TransactionTypeService.isHtlcRefund(this.signedData);
 	}
 
-	public isMagistrate(): boolean {
+	public override isMagistrate(): boolean {
 		return TransactionTypeService.isMagistrate(this.signedData);
 	}
 
-	public usesMultiSignature(): boolean {
+	public override usesMultiSignature(): boolean {
 		return !!this.signedData.multiSignature;
 	}
 }

@@ -5,7 +5,7 @@ import { deriveKeyPair } from "./helpers";
 
 @IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.KeyPairDataTransferObject> {
@@ -22,7 +22,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		}
 	}
 
-	public async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
+	public override async fromPrivateKey(privateKey: string): Promise<Services.KeyPairDataTransferObject> {
 		try {
 			const source = Stellar.Keypair.fromSecret(privateKey);
 

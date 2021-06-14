@@ -11,22 +11,22 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	private readonly httpClient!: HttpClient;
 
 	/** @inheritdoc */
-	public async allWithPendingState(publicKey: string): Promise<Services.MultiSignatureTransaction[]> {
+	public override async allWithPendingState(publicKey: string): Promise<Services.MultiSignatureTransaction[]> {
 		return this.#fetchAll(publicKey, "pending");
 	}
 
 	/** @inheritdoc */
-	public async allWithReadyState(publicKey: string): Promise<Services.MultiSignatureTransaction[]> {
+	public override async allWithReadyState(publicKey: string): Promise<Services.MultiSignatureTransaction[]> {
 		return this.#fetchAll(publicKey, "ready");
 	}
 
 	/** @inheritdoc */
-	public async findById(id: string): Promise<Services.MultiSignatureTransaction> {
+	public override async findById(id: string): Promise<Services.MultiSignatureTransaction> {
 		return this.#normalizeTransaction(await this.#get(`transaction/${id}`));
 	}
 
 	/** @inheritdoc */
-	public async broadcast(transaction: Services.MultiSignatureTransaction): Promise<string> {
+	public override async broadcast(transaction: Services.MultiSignatureTransaction): Promise<string> {
 		let multiSignature = transaction.multiSignature;
 
 		if (transaction.asset && transaction.asset.multiSignature) {
@@ -47,37 +47,37 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	}
 
 	/** @inheritdoc */
-	public isMultiSignatureReady(transaction: Contracts.SignedTransactionData, excludeFinal?: boolean): boolean {
+	public override isMultiSignatureReady(transaction: Contracts.SignedTransactionData, excludeFinal?: boolean): boolean {
 		return new PendingMultiSignatureTransaction(transaction.data()).isMultiSignatureReady({ excludeFinal });
 	}
 
 	/** @inheritdoc */
-	public needsSignatures(transaction: Contracts.SignedTransactionData): boolean {
+	public override needsSignatures(transaction: Contracts.SignedTransactionData): boolean {
 		return new PendingMultiSignatureTransaction(transaction.data()).needsSignatures();
 	}
 
 	/** @inheritdoc */
-	public needsAllSignatures(transaction: Contracts.SignedTransactionData): boolean {
+	public override needsAllSignatures(transaction: Contracts.SignedTransactionData): boolean {
 		return new PendingMultiSignatureTransaction(transaction.data()).needsAllSignatures();
 	}
 
 	/** @inheritdoc */
-	public needsWalletSignature(transaction: Contracts.SignedTransactionData, publicKey: string): boolean {
+	public override needsWalletSignature(transaction: Contracts.SignedTransactionData, publicKey: string): boolean {
 		return new PendingMultiSignatureTransaction(transaction.data()).needsWalletSignature(publicKey);
 	}
 
 	/** @inheritdoc */
-	public needsFinalSignature(transaction: Contracts.SignedTransactionData): boolean {
+	public override needsFinalSignature(transaction: Contracts.SignedTransactionData): boolean {
 		return new PendingMultiSignatureTransaction(transaction.data()).needsFinalSignature();
 	}
 
 	/** @inheritdoc */
-	public getValidMultiSignatures(transaction: Contracts.SignedTransactionData): string[] {
+	public override getValidMultiSignatures(transaction: Contracts.SignedTransactionData): string[] {
 		return new PendingMultiSignatureTransaction(transaction.data()).getValidMultiSignatures();
 	}
 
 	/** @inheritdoc */
-	public remainingSignatureCount(transaction: Contracts.SignedTransactionData): number {
+	public override remainingSignatureCount(transaction: Contracts.SignedTransactionData): number {
 		return new PendingMultiSignatureTransaction(transaction.data()).remainingSignatureCount();
 	}
 

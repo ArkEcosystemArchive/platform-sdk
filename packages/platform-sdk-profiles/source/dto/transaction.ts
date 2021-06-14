@@ -299,7 +299,7 @@ export class SecondSignatureData extends TransactionData {
 }
 
 export class TransferData extends TransactionData {
-	public memo(): string | undefined {
+	public override memo(): string | undefined {
 		return this.data<Contracts.TransferData>().memo();
 	}
 }

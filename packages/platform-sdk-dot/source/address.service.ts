@@ -10,7 +10,7 @@ export class AddressService extends Services.AbstractAddressService {
 	@IoC.inject(BindingType.Keyring)
 	protected readonly keyring!: Keyring;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -20,14 +20,14 @@ export class AddressService extends Services.AbstractAddressService {
 		};
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
+	public override async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "ss58",
 			address: encodeAddress(createKeyMulti(publicKeys, min), 0),
 		};
 	}
 
-	public async validate(address: string): Promise<boolean> {
+	public override async validate(address: string): Promise<boolean> {
 		try {
 			encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address));
 

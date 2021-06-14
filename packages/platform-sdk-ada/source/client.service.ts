@@ -6,7 +6,7 @@ import { usedAddressesForAccount } from "./transaction.domain";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
@@ -15,7 +15,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		if (query.senderPublicKey === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transactions.name, "senderPublicKey");
 		}
@@ -40,7 +40,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { usedSpendAddresses, usedChangeAddresses } = await usedAddressesForAccount(
 			this.configRepository,
 			this.httpClient,
@@ -59,7 +59,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

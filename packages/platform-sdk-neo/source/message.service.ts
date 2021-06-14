@@ -3,7 +3,7 @@ import Neon, { wallet } from "@cityofzion/neon-js";
 
 @IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const account = new wallet.Account(input.signatory.signingKey());
 			const signature = Neon.sign.message(input.message, account.privateKey);
@@ -14,7 +14,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return Neon.verify.message(input.message, input.signature, input.signatory);
 		} catch (error) {

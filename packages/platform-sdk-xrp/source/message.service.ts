@@ -4,7 +4,7 @@ import { deriveKeypair, sign, verify } from "ripple-keypairs";
 
 @IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const { publicKey, privateKey } = deriveKeypair(input.signatory.signingKey());
 
@@ -18,7 +18,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return verify(Buffoon.toHex(input.message), input.signature, input.signatory);
 		} catch (error) {
