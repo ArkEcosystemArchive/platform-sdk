@@ -45,7 +45,7 @@ export class WalletSynchroniser implements IWalletSynchroniser {
 
 	/** {@inheritDoc IWalletSynchroniser.multiSignature} */
 	public async multiSignature(): Promise<void> {
-		if (!this.#wallet.isMultiSignatureRegistration()) {
+		if (!this.#wallet.isMultiSignature()) {
 			return;
 		}
 

@@ -75,7 +75,7 @@ it("should determine if the wallet is a delegate", () => {
 });
 
 it("should determine if the wallet has a multi signature", () => {
-	expect(subject.isMultiSignatureRegistration()).toBeFalse();
+	expect(subject.isMultiSignature()).toBeFalse();
 });
 
 it("should determine if the wallet has a second signature", () => {
@@ -134,7 +134,7 @@ describe("when contact has not been synchronized yet", () => {
 	});
 
 	it("should throw Error trying to determine if the wallet is a a multi signature one", async () => {
-		expect(() => subject.isMultiSignatureRegistration()).toThrow(
+		expect(() => subject.isMultiSignature()).toThrow(
 			"This contact has not been synchronized yet. Please call [syncIdentity] before using it.",
 		);
 	});

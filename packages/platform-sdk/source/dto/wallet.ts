@@ -68,8 +68,8 @@ export class AbstractWalletData {
 		throw new NotImplemented(this.constructor.name, this.isResignedDelegate.name);
 	}
 
-	public isMultiSignatureRegistration(): boolean {
-		throw new NotImplemented(this.constructor.name, this.isMultiSignatureRegistration.name);
+	public isMultiSignature(): boolean {
+		throw new NotImplemented(this.constructor.name, this.isMultiSignature.name);
 	}
 
 	public isSecondSignature(): boolean {
@@ -87,7 +87,7 @@ export class AbstractWalletData {
 			votes: this.votes(),
 			isDelegate: this.isDelegate(),
 			isResignedDelegate: this.isResignedDelegate(),
-			isMultiSignatureRegistration: this.isMultiSignatureRegistration(),
+			isMultiSignature: this.isMultiSignature(),
 			isSecondSignature: this.isSecondSignature(),
 		};
 	}

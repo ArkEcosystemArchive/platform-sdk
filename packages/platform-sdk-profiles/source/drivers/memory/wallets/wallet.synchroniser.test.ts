@@ -96,11 +96,11 @@ it("should sync multi signature when musig", async () => {
 
 	await new WalletSynchroniser(wallet).multiSignature();
 
-	expect(wallet.isMultiSignatureRegistration()).toBeTrue();
+	expect(wallet.isMultiSignature()).toBeTrue();
 });
 
 it("should sync multi signature when not musig", async () => {
 	await new WalletSynchroniser(wallet).multiSignature();
 
-	expect(wallet.isMultiSignatureRegistration()).toBeFalse();
+	expect(wallet.isMultiSignature()).toBeFalse();
 });

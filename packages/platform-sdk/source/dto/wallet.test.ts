@@ -137,7 +137,7 @@ class Wallet extends AbstractWalletData {
 		return false;
 	}
 
-	public isMultiSignatureRegistration(): boolean {
+	public isMultiSignature(): boolean {
 		return false;
 	}
 
