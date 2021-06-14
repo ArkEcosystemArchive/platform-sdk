@@ -20,7 +20,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 
 	const downloadQueue = new PQueue({ concurrency: flags.concurrentDownloads });
 
-	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
+	const [localHeight, remoteHeight] = [await database.lastBlockNumber() + 1, await client.height()];
 
 	logger.info(`Starting at block height ${localHeight}.`);
 

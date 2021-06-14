@@ -67,7 +67,7 @@ export class Database {
 			`SELECT MAX(height) AS height
        FROM blocks`,
 		);
-		return lastBlockHeight?.height || 1;
+		return lastBlockHeight?.height || 0;
 	}
 
 	public async allPendingBlocks(): Promise<any[]> {
