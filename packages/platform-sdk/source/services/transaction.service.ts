@@ -2,13 +2,13 @@
 
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
-import { BigNumberService } from "./big-number.service";
 
 import { ConfigRepository } from "../coins";
 import { RawTransactionData, SignedTransactionData } from "../contracts";
 import { NotImplemented } from "../exceptions";
 import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
+import { BigNumberService } from "./big-number.service";
 import { DataTransferObjectService } from "./data-transfer-object.contract";
 import {
 	DelegateRegistrationInput,

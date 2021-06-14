@@ -1,12 +1,7 @@
 import "jest-extended";
 
 import { ConfigRepository } from "./coins";
-import {
-	filterHostsFromConfig,
-	pluckAddress,
-	randomNetworkHostFromConfig,
-	randomHostFromConfig,
-} from "./helpers";
+import { filterHostsFromConfig, pluckAddress, randomNetworkHostFromConfig, randomHostFromConfig } from "./helpers";
 
 afterEach(() => jest.restoreAllMocks());
 
