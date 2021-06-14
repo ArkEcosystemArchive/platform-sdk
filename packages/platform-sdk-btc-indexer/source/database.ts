@@ -83,7 +83,8 @@ export class Database {
 	public async storePendingBlock(block: any): Promise<void> {
 		await this.#database.any(
 			`INSERT INTO pending_blocks (height, payload)
-       VALUES ($1, $2)`,
+       VALUES ($1, $2)
+			 ON CONFLICT DO NOTHING`,
 			[block.height, block],
 		);
 	}
@@ -133,7 +134,8 @@ export class Database {
 	async #storeBlock(block): Promise<void> {
 		await this.#database.any(
 			`INSERT INTO blocks (height, hash)
-       VALUES ($1, $2)`,
+       VALUES ($1, $2)
+       ON CONFLICT DO NOTHING`,
 			[block.height, block.hash],
 		);
 	}
@@ -183,14 +185,16 @@ export class Database {
 
 		await this.#database.none(
 			`INSERT INTO transactions (block_id, hash, time, amount, fee)
-			   VALUES ($1, $2, $3, $4, $5)`,
+			   VALUES ($1, $2, $3, $4, $5)
+			 	ON CONFLICT DO NOTHING`,
 			[blockId, transaction.txid, transaction.time, BigInt(amount.toString()), BigInt(fee.toString())],
 		);
 
 		for (const output of outputs) {
 			await this.#database.none(
 				`INSERT INTO transaction_parts (output_hash, output_idx, amount, address)
-					 VALUES ($1, $2, $3, $4)`,
+					 VALUES ($1, $2, $3, $4)
+				 ON CONFLICT DO NOTHING`,
 				[transaction.txid, output.idx, BigInt(amount.toString()), JSON.stringify(output.addresses)],
 			);
 		}
