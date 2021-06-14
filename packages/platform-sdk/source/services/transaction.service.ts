@@ -2,7 +2,7 @@
 
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 import { NumberLike } from "@arkecosystem/platform-sdk-support";
-import { BigNumberService } from ".";
+import { BigNumberService } from "./big-number.service";
 
 import { ConfigRepository } from "../coins";
 import { RawTransactionData, SignedTransactionData } from "../contracts";
