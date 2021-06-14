@@ -1,11 +1,11 @@
 import { BigNumber } from "@arkecosystem/utils";
 import fs from "fs";
 import path from "path";
+import pgp from "pg-promise";
+
 import { Logger } from "./logger";
 import { getAmount, getFees, getInputs, getOutputs } from "./transactions";
 import { Flags, Input, Output } from "./types";
-
-import pgp from "pg-promise";
 
 /**
  * Implements a database storage with SQLite.
@@ -163,7 +163,7 @@ export class Database {
 			const read = await this.#database.any(
 				`SELECT output_hash, output_idx, amount
 				 FROM transaction_part
-				 WHERE output_hash IN (${(hashes.map((h, i) => `$${i + 1}`).join(","))})`,
+				 WHERE output_hash IN (${hashes.map((h, i) => `$${i + 1}`).join(",")})`,
 				hashes,
 			);
 
@@ -180,37 +180,39 @@ export class Database {
 
 		const fee: BigNumber = getFees(transaction, outputsByTransactionHashAndIdx);
 
-			await this.#database.none(
-				`INSERT INTO transaction (block_id, hash, time, amount, fee)
+		await this.#database.none(
+			`INSERT INTO transaction (block_id, hash, time, amount, fee)
 			   VALUES ($1, $2, $3, $4, $5)
 			   ON CONFLICT DO NOTHING`,
-				[blockId, transaction.txid, transaction.time, BigInt(amount.toString()), BigInt(fee.toString())],
-			);
+			[blockId, transaction.txid, transaction.time, BigInt(amount.toString()), BigInt(fee.toString())],
+		);
 
-			for (const output of outputs) {
-				await this.#database.none(
-					`INSERT INTO transaction_part (output_hash, output_idx, amount, address)
+		for (const output of outputs) {
+			await this.#database.none(
+				`INSERT INTO transaction_part (output_hash, output_idx, amount, address)
 					 VALUES ($1, $2, $3, $4)
 					 ON CONFLICT DO NOTHING`,
-					[transaction.txid, output.idx, BigInt(amount.toString()), JSON.stringify(output.addresses)],
-				);
-			}
+				[transaction.txid, output.idx, BigInt(amount.toString()), JSON.stringify(output.addresses)],
+			);
+		}
 
-			let i = 0;
-			for (const input of inputs) {
-				await this.#database.none(
-					`UPDATE transaction_part
+		let i = 0;
+		for (const input of inputs) {
+			await this.#database.none(
+				`UPDATE transaction_part
 					 SET input_hash = $1,
 					 input_idx = $2
 				   WHERE output_hash = $3
            AND output_idx = $4`,
-					[transaction.txid, i++, input.txid, input.vout],
-				);
-			}
+				[transaction.txid, i++, input.txid, input.vout],
+			);
+		}
 	}
 
 	async runMigrations() {
 		// TODO properly reference migration file
-		await this.#database.any(fs.readFileSync(path.join(__dirname, "..", "migrations", "create_initial_tables.sql"), "utf8"));
+		await this.#database.any(
+			fs.readFileSync(path.join(__dirname, "..", "migrations", "create_initial_tables.sql"), "utf8"),
+		);
 	}
 }
