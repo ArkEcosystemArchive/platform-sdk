@@ -34,15 +34,15 @@ export class Database {
 	public constructor(flags: Flags, logger: Logger) {
 		this.#database = pgp({
 			query(e) {
-				// console.log('QUERY:', e.query);
+				// logger.debug('QUERY:', e.query);
 			},
 			error(err, e) {
 				if (e.query) {
-					console.log("Failing query:", e.query, e.params);
+					logger.error("Failing query:", e.query, e.params);
 				}
 
 				if (e.ctx) {
-					console.log("Failing tx:", e.ctx);
+					logger.error("Failing tx:", e.ctx);
 				}
 			},
 		})({
