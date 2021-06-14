@@ -87,45 +87,41 @@ export class Database {
 	}
 
 	public async deleteBlock(height: number): Promise<void> {
-		try {
-			const block = await this.#prisma.block.findUnique({
-				where: { height },
-				include: {
-					transactions: {
-						include: {
-							transaction_parts: true,
-						},
+		const block = await this.#prisma.block.findUnique({
+			where: { height },
+			include: {
+				transactions: {
+					include: {
+						transaction_parts: true,
 					},
 				},
-			});
+			},
+		});
 
-			for (const transaction of block!.transactions) {
-				await this.#prisma.transaction.update({
-					where: { hash: transaction.hash },
-					data: {
-						transaction_parts: {
-							deleteMany: {},
-						},
-					},
-				});
-				await this.#prisma.transaction.delete({
-					where: { hash: transaction.hash },
-				});
-			}
-			await this.#prisma.block.update({
-				where: { height: height },
+		for (const transaction of block.transactions) {
+			await this.#prisma.transaction.update({
+				where: { hash: transaction.hash },
 				data: {
-					transactions: {
+					transaction_parts: {
 						deleteMany: {},
 					},
 				},
 			});
-			await this.#prisma.block.delete({
-				where: { height: height },
+			await this.#prisma.transaction.delete({
+				where: { hash: transaction.hash },
 			});
-		} catch (e) {
-			throw e;
 		}
+		await this.#prisma.block.update({
+			where: { height: height },
+			data: {
+				transactions: {
+					deleteMany: {},
+				},
+			},
+		});
+		await this.#prisma.block.delete({
+			where: { height: height },
+		});
 	}
 
 	public async alreadyDownloadedBlocks(min: number, max: number): Promise<{ height: number }[]> {
