@@ -211,7 +211,7 @@ export class Database {
 	async runMigrations() {
 		// TODO properly reference migration file
 		await this.#database.any(
-			fs.readFileSync(path.join(__dirname, "..", "migrations", "create_initial_tables.sql"), "utf8"),
+			fs.readFileSync(path.resolve(__dirname, "../migrations/create_initial_tables.sql"), "utf8"),
 		);
 	}
 }
