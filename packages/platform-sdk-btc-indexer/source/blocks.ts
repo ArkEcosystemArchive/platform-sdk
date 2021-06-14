@@ -9,8 +9,6 @@ export const processPendingBlocks = async (logger: Logger, database: Database): 
 	for (const block of blocks) {
 		try {
 			await database.storeBlockWithTransactions(block.payload);
-
-			await database.deletePendingBlock(block.height);
 		} catch (error) {
 			logger.info(`[FAILURE] Block #${block.height} failed to be upserted: ${error.message}`);
 		}

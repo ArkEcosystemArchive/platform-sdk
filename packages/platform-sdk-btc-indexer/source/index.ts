@@ -1,6 +1,4 @@
-import execa from "execa";
 import PQueue from "p-queue";
-import path from "path";
 
 import { processPendingBlocks } from "./blocks";
 import { useClient, useDatabase, useLogger } from "./factories";
@@ -14,11 +12,11 @@ import { Flags } from "./types";
  * @returns {Promise<void>}
  */
 export const subscribe = async (flags: Flags): Promise<void> => {
-	await runMigrations();
-
 	const logger: Logger = useLogger();
 	const database = useDatabase(flags, logger);
 	const client = useClient(flags);
+
+	await database.runMigrations();
 
 	const downloadQueue = new PQueue({ concurrency: flags.batchSize });
 
@@ -48,15 +46,4 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 			busy = false;
 		}
 	}, 5000); // Every 5 seconds
-};
-
-const runMigrations = async (): Promise<void> => {
-	const { stdout } = await execa("npx", [
-		"prisma",
-		"migrate",
-		"deploy",
-		"--schema",
-		path.resolve(__dirname, "../prisma/schema.prisma"),
-	]);
-	console.log(stdout);
 };
