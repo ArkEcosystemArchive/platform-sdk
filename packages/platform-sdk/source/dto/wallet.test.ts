@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "jest-extended";
 import "reflect-metadata";
 
@@ -90,58 +92,58 @@ test("#hasFailed", () => {
 });
 
 class Wallet extends AbstractWalletData {
-	public primaryKey(): string {
+	public override primaryKey(): string {
 		return "address";
 	}
 
-	public address(): string {
+	public override address(): string {
 		return "address";
 	}
 
-	public publicKey(): string | undefined {
+	public override publicKey(): string | undefined {
 		return "publicKey";
 	}
 
-	public balance(): WalletBalance {
+	public override balance(): WalletBalance {
 		return {
 			available: BigNumber.ZERO,
 			fees: BigNumber.ZERO,
 		};
 	}
 
-	public nonce(): BigNumber {
+	public override nonce(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public secondPublicKey(): string | undefined {
+	public override secondPublicKey(): string | undefined {
 		return "secondPublicKey";
 	}
 
-	public username(): string | undefined {
+	public override username(): string | undefined {
 		return "username";
 	}
 
-	public rank(): number | undefined {
+	public override rank(): number | undefined {
 		return 5;
 	}
 
-	public votes(): BigNumber | undefined {
+	public override votes(): BigNumber | undefined {
 		return BigNumber.ZERO;
 	}
 
-	public isDelegate(): boolean {
+	public override isDelegate(): boolean {
 		return false;
 	}
 
-	public isResignedDelegate(): boolean {
+	public override isResignedDelegate(): boolean {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public override isMultiSignature(): boolean {
 		return false;
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return false;
 	}
 }

@@ -9,7 +9,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 	@IoC.inject(BindingType.Wallet)
 	private readonly wallet!: Wallet;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PublicKeyDataTransferObject> {

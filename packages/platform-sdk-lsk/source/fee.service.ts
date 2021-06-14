@@ -7,7 +7,7 @@ export class FeeService extends Services.AbstractFeeService {
 	@IoC.inject(IoC.BindingType.BigNumberService)
 	protected readonly bigNumberService!: Services.BigNumberService;
 
-	public async all(): Promise<Services.TransactionFees> {
+	public override async all(): Promise<Services.TransactionFees> {
 		return {
 			transfer: this.#transform("TRANSFER_FEE"),
 			secondSignature: this.#transform("SIGNATURE_FEE"),

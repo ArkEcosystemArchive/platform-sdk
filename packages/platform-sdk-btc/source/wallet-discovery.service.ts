@@ -10,7 +10,7 @@ export class WalletDiscoveryService extends Services.AbstractWalletDiscoveryServ
 	@IoC.inject(IoC.BindingType.AddressService)
 	protected readonly addressFactory!: AddressFactory;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject[]> {

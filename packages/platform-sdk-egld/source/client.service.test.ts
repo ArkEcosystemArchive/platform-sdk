@@ -1,6 +1,6 @@
 import "jest-extended";
 
-import { IoC, Services } from "@arkecosystem/platform-sdk";
+import { DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../test/mocking";
@@ -35,7 +35,7 @@ describe("ClientService", () => {
 
 		const result = await subject.transaction("c2e6e2c75357b7d69d735d5ce7d7e9a77291477d0a11ba158b5cf39317398f66");
 
-		expect(result).toBeInstanceOf(TransactionData);
+		expect(result).toBeInstanceOf(DTO.TransferData);
 	});
 
 	test("#transactions", async () => {
@@ -48,7 +48,7 @@ describe("ClientService", () => {
 		});
 
 		expect(result).toBeObject();
-		expect(result.items()[0]).toBeInstanceOf(TransactionData);
+		expect(result.items()[0]).toBeInstanceOf(DTO.TransferData);
 	});
 
 	test("#wallet", async () => {

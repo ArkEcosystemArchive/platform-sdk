@@ -29,7 +29,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#connection = new TronWeb({ fullHost: this.#peer });
 	}
 
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
@@ -38,7 +38,7 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction(result);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		const payload: Record<string, boolean | number> = {
 			limit: query.limit || 15,
 		};
@@ -66,13 +66,13 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { data } = (await this.httpClient.get(`${this.#getHost()}/v1/accounts/${id}`)).json();
 
 		return new WalletData(data[0]);
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

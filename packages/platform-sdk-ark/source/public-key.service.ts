@@ -9,7 +9,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 	@IoC.inject(Bindings.Crypto)
 	private readonly config!: Interfaces.NetworkConfig;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PublicKeyDataTransferObject> {
@@ -22,7 +22,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		}
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.PublicKeyDataTransferObject> {
+	public override async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
 				publicKey: BasePublicKey.fromMultiSignatureAsset({ min, publicKeys }),
@@ -32,7 +32,7 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Services.PublicKeyDataTransferObject> {
+	public override async fromWIF(wif: string): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
 				publicKey: BasePublicKey.fromWIF(wif, this.config.network),

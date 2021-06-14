@@ -15,7 +15,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#version = getZilliqaVersion(this.configRepository);
 	}
 
-	public async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
+	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		if (!input.data.to) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transfer.name, "data.to");
 		}

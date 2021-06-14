@@ -4,30 +4,30 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 @IoC.injectable()
 export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
-	public id(): string {
+	public override id(): string {
 		return this.data.txhash;
 	}
 
-	public blockId(): string | undefined {
+	public override blockId(): string | undefined {
 		return undefined;
 	}
 
-	public timestamp(): DateTime | undefined {
+	public override timestamp(): DateTime | undefined {
 		return DateTime.make(this.data.timestamp);
 	}
 
-	public confirmations(): BigNumber {
+	public override confirmations(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public sender(): string {
+	public override sender(): string {
 		const event = this.data.events.find(({ type }) => type === "message");
 		const attribute = event.attributes.find(({ key }) => key === "sender");
 
 		return attribute.value;
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		const event = this.data.events.find(({ type }) => type === "transfer");
 		const attribute = event.attributes.find(({ key }) => key === "recipient");
 
@@ -42,75 +42,11 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.bigNumberService.make(attribute.value.replace(/\D/g, ""));
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		return this.bigNumberService.make(this.data.gas_used);
 	}
 
-	public memo(): string | undefined {
+	public override memo(): string | undefined {
 		return this.data.tx.value.memo;
-	}
-
-	public outputs(): Contracts.UnspentTransactionData[] {
-		return [];
-	}
-
-	public isConfirmed(): boolean {
-		return false;
-	}
-
-	public isTransfer(): boolean {
-		return false;
-	}
-
-	public isSecondSignature(): boolean {
-		return false;
-	}
-
-	public isDelegateRegistration(): boolean {
-		return false;
-	}
-
-	public isVoteCombination(): boolean {
-		return false;
-	}
-
-	public isVote(): boolean {
-		return false;
-	}
-
-	public isUnvote(): boolean {
-		return false;
-	}
-
-	public isMultiSignatureRegistration(): boolean {
-		return false;
-	}
-
-	public isIpfs(): boolean {
-		return false;
-	}
-
-	public isMultiPayment(): boolean {
-		return false;
-	}
-
-	public isDelegateResignation(): boolean {
-		return false;
-	}
-
-	public isHtlcLock(): boolean {
-		return false;
-	}
-
-	public isHtlcClaim(): boolean {
-		return false;
-	}
-
-	public isHtlcRefund(): boolean {
-		return false;
-	}
-
-	public isMagistrate(): boolean {
-		return false;
 	}
 }

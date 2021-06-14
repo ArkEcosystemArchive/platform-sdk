@@ -15,7 +15,7 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		this.#slip44 = this.configRepository.get<number>("network.constants.slip44");
 	}
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {

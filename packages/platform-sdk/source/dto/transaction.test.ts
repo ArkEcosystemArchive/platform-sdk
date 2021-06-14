@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import "jest-extended";
 import "reflect-metadata";
 
@@ -183,43 +185,43 @@ test("#getMeta | #setMeta", () => {
 });
 
 class Transaction extends AbstractTransactionData {
-	public id(): string {
+	public override id(): string {
 		return "id";
 	}
 
-	public blockId(): string | undefined {
+	public override blockId(): string | undefined {
 		return "blockId";
 	}
 
-	public timestamp(): DateTime | undefined {
+	public override timestamp(): DateTime | undefined {
 		return undefined;
 	}
 
-	public confirmations(): BigNumber {
+	public override confirmations(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public sender(): string {
+	public override sender(): string {
 		return "sender";
 	}
 
-	public recipient(): string {
+	public override recipient(): string {
 		return "recipient";
 	}
 
-	public recipients(): MultiPaymentRecipient[] {
+	public override recipients(): MultiPaymentRecipient[] {
 		return [];
 	}
 
-	public amount(): BigNumber {
+	public override amount(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public fee(): BigNumber {
+	public override fee(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public memo(): string | undefined {
+	public override memo(): string | undefined {
 		if (this.data.hasOwnProperty("memo")) {
 			return this.censorMemo(this.data.memo);
 		}
@@ -227,83 +229,31 @@ class Transaction extends AbstractTransactionData {
 		return this.censorMemo("memo");
 	}
 
-	public asset(): Record<string, unknown> {
+	public override asset(): Record<string, unknown> {
 		return {};
 	}
 
-	public inputs(): UnspentTransactionData[] {
+	public override inputs(): UnspentTransactionData[] {
 		return [];
 	}
 
-	public outputs(): UnspentTransactionData[] {
+	public override outputs(): UnspentTransactionData[] {
 		return [];
 	}
 
-	public isConfirmed(): boolean {
+	public override isConfirmed(): boolean {
 		return false;
 	}
 
-	public isSent(): boolean {
+	public override isSent(): boolean {
 		return false;
 	}
 
-	public isReceived(): boolean {
+	public override isReceived(): boolean {
 		return false;
 	}
 
-	public isTransfer(): boolean {
-		return false;
-	}
-
-	public isSecondSignature(): boolean {
-		return false;
-	}
-
-	public isDelegateRegistration(): boolean {
-		return false;
-	}
-
-	public isVoteCombination(): boolean {
-		return false;
-	}
-
-	public isVote(): boolean {
-		return false;
-	}
-
-	public isUnvote(): boolean {
-		return false;
-	}
-
-	public isMultiSignatureRegistration(): boolean {
-		return false;
-	}
-
-	public isIpfs(): boolean {
-		return false;
-	}
-
-	public isMultiPayment(): boolean {
-		return false;
-	}
-
-	public isDelegateResignation(): boolean {
-		return false;
-	}
-
-	public isHtlcLock(): boolean {
-		return false;
-	}
-
-	public isHtlcClaim(): boolean {
-		return false;
-	}
-
-	public isHtlcRefund(): boolean {
-		return false;
-	}
-
-	public isMagistrate(): boolean {
+	public override isTransfer(): boolean {
 		return false;
 	}
 }

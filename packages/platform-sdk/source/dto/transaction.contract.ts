@@ -44,6 +44,8 @@ export interface TransactionData {
 
 	fee(): BigNumber;
 
+	memo(): string | undefined;
+
 	asset(): Record<string, unknown>;
 
 	inputs(): UnspentTransactionData[];

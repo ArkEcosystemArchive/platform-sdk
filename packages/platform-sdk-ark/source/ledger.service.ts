@@ -17,36 +17,36 @@ export class LedgerService extends Services.AbstractLedgerService {
 	#ledger!: Services.LedgerTransport;
 	#transport!: ARKTransport;
 
-	public async connect(transport: Services.LedgerTransport): Promise<void> {
+	public override async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.open();
 		this.#transport = new ARKTransport(this.#ledger);
 	}
 
-	public async disconnect(): Promise<void> {
+	public override async disconnect(): Promise<void> {
 		await this.#ledger.close();
 	}
 
-	public async getVersion(): Promise<string> {
+	public override async getVersion(): Promise<string> {
 		return this.#transport.getVersion();
 	}
 
-	public async getPublicKey(path: string): Promise<string> {
+	public override async getPublicKey(path: string): Promise<string> {
 		return this.#transport.getPublicKey(path);
 	}
 
-	public async getExtendedPublicKey(path: string): Promise<string> {
+	public override async getExtendedPublicKey(path: string): Promise<string> {
 		return this.#transport.getExtPublicKey(path);
 	}
 
-	public async signTransaction(path: string, payload: Buffer): Promise<string> {
+	public override async signTransaction(path: string, payload: Buffer): Promise<string> {
 		return this.#transport.signTransactionWithSchnorr(path, payload);
 	}
 
-	public async signMessage(path: string, payload: Buffer): Promise<string> {
+	public override async signMessage(path: string, payload: Buffer): Promise<string> {
 		return this.#transport.signMessageWithSchnorr(path, payload);
 	}
 
-	public async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
+	public override async scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Services.LedgerWalletList> {
 		const pageSize = 5;
 		let page = 0;
 		const slip44 = this.configRepository.get<number>("network.constants.slip44");

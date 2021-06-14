@@ -9,7 +9,7 @@ export class AddressService extends Services.AbstractAddressService {
 	@IoC.inject(Bindings.Crypto)
 	private readonly config!: Interfaces.NetworkConfig;
 
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -23,7 +23,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
+	public override async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip39",
@@ -34,7 +34,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async fromPublicKey(
+	public override async fromPublicKey(
 		publicKey: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -48,7 +48,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async fromPrivateKey(
+	public override async fromPrivateKey(
 		privateKey: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -62,7 +62,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async fromWIF(wif: string): Promise<Services.AddressDataTransferObject> {
+	public override async fromWIF(wif: string): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip39",
@@ -73,7 +73,7 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public async validate(address: string): Promise<boolean> {
+	public override async validate(address: string): Promise<boolean> {
 		return BaseAddress.validate(address, this.config.network);
 	}
 }

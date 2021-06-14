@@ -4,7 +4,7 @@ import { bech32 } from "bech32";
 import { makeAccount } from "./factories";
 
 export class AddressService extends Services.AbstractAddressService {
-	public async fromMnemonic(
+	public override async fromMnemonic(
 		mnemonic: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -14,7 +14,7 @@ export class AddressService extends Services.AbstractAddressService {
 		return { type: "bip39", address: account.address() };
 	}
 
-	public async fromPrivateKey(
+	public override async fromPrivateKey(
 		privateKey: string,
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
@@ -24,7 +24,7 @@ export class AddressService extends Services.AbstractAddressService {
 		return { type: "bip39", address: account.address() };
 	}
 
-	public async validate(address: string): Promise<boolean> {
+	public override async validate(address: string): Promise<boolean> {
 		try {
 			bech32.decode(address);
 

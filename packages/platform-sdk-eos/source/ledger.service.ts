@@ -5,27 +5,27 @@ import { BIP44 } from "@arkecosystem/platform-sdk-crypto";
 export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 
-	public async connect(transport: Services.LedgerTransport): Promise<void> {
+	public override async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.create();
 	}
 
-	public async disconnect(): Promise<void> {
+	public override async disconnect(): Promise<void> {
 		await this.#ledger.close();
 	}
 
-	public async getVersion(): Promise<string> {
+	public override async getVersion(): Promise<string> {
 		const result = await this.#ledger.send(0xd4, 0x06, 0x00, 0x00);
 
 		return `${result[1]}.${result[2]}.${result[3]}`;
 	}
 
-	public async getPublicKey(path: string): Promise<string> {
+	public override async getPublicKey(path: string): Promise<string> {
 		const result = await this.#ledger.send(0xd4, 0x02, 0x00, 0x00, this.#eosBip44Parse(path));
 
 		return result.slice(1, 1 + result[0]).toString("hex");
 	}
 
-	public async signTransaction(path: string, payload: Buffer): Promise<string> {
+	public override async signTransaction(path: string, payload: Buffer): Promise<string> {
 		const signature = await this.#eosSignTransaction(path, payload);
 
 		return signature;

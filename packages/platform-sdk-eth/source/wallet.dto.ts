@@ -3,42 +3,42 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
 export class WalletData extends DTO.AbstractWalletData implements Contracts.WalletData {
-	public primaryKey(): string {
+	public override primaryKey(): string {
 		return this.address();
 	}
 
-	public address(): string {
+	public override address(): string {
 		return this.data.address;
 	}
 
-	public publicKey(): string | undefined {
+	public override publicKey(): string | undefined {
 		return undefined;
 	}
 
-	public balance(): Contracts.WalletBalance {
+	public override balance(): Contracts.WalletBalance {
 		return {
 			available: BigNumber.make(Web3.utils.toBN(this.data.balance).toString()),
 			fees: BigNumber.make(Web3.utils.toBN(this.data.balance).toString()),
 		};
 	}
 
-	public nonce(): BigNumber {
+	public override nonce(): BigNumber {
 		return BigNumber.make(Web3.utils.toBN(this.data.nonce).toString());
 	}
 
-	public secondPublicKey(): string | undefined {
+	public override secondPublicKey(): string | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.secondPublicKey.name);
 	}
 
-	public username(): string | undefined {
+	public override username(): string | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.username.name);
 	}
 
-	public rank(): number | undefined {
+	public override rank(): number | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.rank.name);
 	}
 
-	public votes(): BigNumber | undefined {
+	public override votes(): BigNumber | undefined {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.votes.name);
 	}
 
@@ -46,19 +46,19 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 		throw new Exceptions.NotImplemented(this.constructor.name, this.multiSignature.name);
 	}
 
-	public isDelegate(): boolean {
+	public override isDelegate(): boolean {
 		return false;
 	}
 
-	public isResignedDelegate(): boolean {
+	public override isResignedDelegate(): boolean {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public override isMultiSignature(): boolean {
 		return false;
 	}
 
-	public isSecondSignature(): boolean {
+	public override isSecondSignature(): boolean {
 		return false;
 	}
 }

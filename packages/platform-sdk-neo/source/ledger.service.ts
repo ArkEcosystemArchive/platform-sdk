@@ -6,28 +6,28 @@ export class LedgerService extends Services.AbstractLedgerService {
 	#ledger: Services.LedgerTransport;
 	#bip44SessionPath = "";
 
-	public async connect(transport: Services.LedgerTransport): Promise<void> {
+	public override async connect(transport: Services.LedgerTransport): Promise<void> {
 		this.#ledger = await transport.create();
 	}
 
-	public async disconnect(): Promise<void> {
+	public override async disconnect(): Promise<void> {
 		await this.#ledger.close();
 	}
 
-	public async getVersion(): Promise<string> {
+	public override async getVersion(): Promise<string> {
 		const result = await this.#ledger.send(0xb0, 0x01, 0x00, 0x00);
 
 		return result.toString("utf-8").match(new RegExp("([0-9].[0-9].[0-9])", "g")).toString();
 	}
 
-	public async getPublicKey(path: string): Promise<string> {
+	public override async getPublicKey(path: string): Promise<string> {
 		this.#bip44SessionPath = path;
 		const result = await this.#ledger.send(0x80, 0x04, 0x00, 0x00, this.#neoBIP44(path));
 
 		return result.toString("hex").substring(0, 130);
 	}
 
-	public async signTransaction(path: string, payload: Buffer): Promise<string> {
+	public override async signTransaction(path: string, payload: Buffer): Promise<string> {
 		if (this.#bip44SessionPath != path || this.#bip44SessionPath.length == 0) {
 			throw new Error(
 				`Bip44 Path [${path}] must match the session path [${

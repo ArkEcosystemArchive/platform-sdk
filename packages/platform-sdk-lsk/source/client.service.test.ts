@@ -49,7 +49,7 @@ describe("ClientService", () => {
 			const result = await subject.transactions({ address: "6566229458323231555L" });
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.items()[0]).toBeInstanceOf(DTO.TransferData);
 		});
 	});
 

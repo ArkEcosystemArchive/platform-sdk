@@ -10,7 +10,7 @@ export class MessageService extends Services.AbstractMessageService {
 	@IoC.inject(BindingType.Keyring)
 	protected readonly keyring!: Keyring;
 
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const keypair = this.keyring.addFromUri(input.signatory.signingKey());
 
@@ -24,7 +24,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return signatureVerify(stringToU8a(input.message), hexToU8a(input.signature), input.signatory).isValid;
 		} catch (error) {

@@ -4,7 +4,7 @@ import Stellar from "stellar-sdk";
 
 @IoC.injectable()
 export class MessageService extends Services.AbstractMessageService {
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const source = Stellar.Keypair.fromSecret(input.signatory.privateKey());
 
@@ -18,7 +18,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		try {
 			return Stellar.Keypair.fromPublicKey(input.signatory).verify(
 				Buffoon.fromUTF8(input.message),

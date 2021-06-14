@@ -11,7 +11,7 @@ export class MessageService extends Services.AbstractMessageService {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	private readonly configRepository!: Coins.ConfigRepository;
 
-	public async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
+	public override async sign(input: Services.MessageInput): Promise<Services.SignedMessage> {
 		try {
 			const { child } = keyPairFromMnemonic(this.configRepository, input.signatory.signingKey());
 
@@ -25,7 +25,7 @@ export class MessageService extends Services.AbstractMessageService {
 		}
 	}
 
-	public async verify(input: Services.SignedMessage): Promise<boolean> {
+	public override async verify(input: Services.SignedMessage): Promise<boolean> {
 		const bintools = BinTools.getInstance();
 
 		const hrp = getPreferredHRP(parseInt(this.configRepository.get("network.meta.networkId")));

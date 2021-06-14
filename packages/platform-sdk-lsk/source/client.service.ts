@@ -19,7 +19,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#peer = `${Helpers.randomHostFromConfig(this.configRepository)}/api`;
 	}
 
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
@@ -28,7 +28,7 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction(result.data[0]);
 	}
 
-	public async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
 		// @ts-ignore
 		const result = await this.#get("transactions", this.#createSearchParams({ sort: "timestamp:desc", ...query }));
 
@@ -38,13 +38,13 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const result = await this.#get("accounts", { address: id });
 
 		return new WalletData(result.data[0]);
 	}
 
-	public async wallets(query: Services.ClientWalletsInput): Promise<Collections.WalletDataCollection> {
+	public override async wallets(query: Services.ClientWalletsInput): Promise<Collections.WalletDataCollection> {
 		const result = await this.#get("accounts", query);
 
 		return new Collections.WalletDataCollection(
@@ -53,13 +53,13 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async delegate(id: string): Promise<Contracts.WalletData> {
+	public override async delegate(id: string): Promise<Contracts.WalletData> {
 		const result = await this.#get("delegates", { username: id });
 
 		return new WalletData(result.data[0]);
 	}
 
-	public async delegates(query?: any): Promise<Collections.WalletDataCollection> {
+	public override async delegates(query?: any): Promise<Collections.WalletDataCollection> {
 		const result = await this.#get("delegates", this.#createSearchParams({ limit: 101, ...query }));
 
 		return new Collections.WalletDataCollection(
@@ -68,7 +68,7 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public async votes(id: string): Promise<Services.VoteReport> {
+	public override async votes(id: string): Promise<Services.VoteReport> {
 		const { data } = await this.#get("votes", { address: id, limit: 101 });
 
 		return {
@@ -78,7 +78,7 @@ export class ClientService extends Services.AbstractClientService {
 		};
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

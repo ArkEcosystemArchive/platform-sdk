@@ -12,7 +12,7 @@ export class ClientService extends Services.AbstractClientService {
 		this.#zilliqa = new Zilliqa(Helpers.randomHostFromConfig(this.configRepository));
 	}
 
-	public async transaction(
+	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
 	): Promise<Contracts.TransactionDataType> {
@@ -31,7 +31,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async wallet(id: string): Promise<Contracts.WalletData> {
+	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const response = await this.#zilliqa.blockchain.getBalance(id);
 
 		if (response.error) {
@@ -49,7 +49,7 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
 		const minGasPrice = (await this.#zilliqa.blockchain.getMinimumGasPrice()).result;
 
 		const response: Services.BroadcastResponse = {
