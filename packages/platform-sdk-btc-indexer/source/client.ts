@@ -1,7 +1,9 @@
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import { v4 as uuidv4 } from "uuid";
+import retry from "p-retry";
 
 import { Flags } from "./types";
+import { Logger } from "./logger";
 
 /**
  * Implements a JSON-RPC client for bitcoind.
@@ -17,16 +19,17 @@ export class Client {
 	 * @memberof Client
 	 */
 	readonly #client;
+	readonly #logger: Logger;
 
 	/**
 	 * Creates an instance of Client.
 	 *
 	 * @param {Flags} flags
 	 * @param {Logger} logger
-	 * @param {Database} database
 	 * @memberof Client
 	 */
-	public constructor(flags: Flags) {
+	public constructor(flags: Flags, logger: Logger) {
+		this.#logger = logger;
 		this.#client = new Request().baseUrl(flags.host);
 	}
 
@@ -48,7 +51,15 @@ export class Client {
 	 * @memberof Client
 	 */
 	public async blockWithTransactions(id: number): Promise<Record<string, any>> {
-		return this.#post("getblockbyheight", [id, true, true]);
+		return retry(() => this.#post("getblockbyheight", [id, true, true]), {
+			onFailedAttempt: (error) => {
+				console.log(error);
+				this.#logger.error(
+					`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`,
+				);
+			},
+			retries: 5,
+		});
 	}
 
 	/**

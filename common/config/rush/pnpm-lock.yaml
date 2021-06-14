@@ -618,6 +618,7 @@ importers:
       fs-extra: 9.1.0
       meow: 9.0.0
       p-queue: 6.6.2
+      p-retry: 4.5.0
       p-wait-for: 3.2.0
       pg-promise: 10.10.2
       url-parse-lax: 4.0.0
@@ -695,6 +696,7 @@ importers:
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       p-queue: ^6.6.2
+      p-retry: ^4.3.0
       p-wait-for: ^3.2.0
       pg-promise: ~10.10.2
       prettier: ^2.3.1
