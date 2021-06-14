@@ -64,7 +64,6 @@ export class Database {
 			`SELECT MAX(height) AS height
        FROM block`,
 		);
-		console.log(lastBlockHeight);
 		return lastBlockHeight?.height || 1;
 	}
 
@@ -84,22 +83,6 @@ export class Database {
        VALUES ($1, $2)
        ON CONFLICT DO NOTHING`,
 			[block.height, block],
-		);
-	}
-
-	public async deletePendingBlock(height: number): Promise<void> {
-		await this.#database.any(
-			`DELETE FROM pending_block
-       WHERE	height = $1`,
-			[height],
-		);
-	}
-
-	public async deleteBlock(height: number): Promise<void> {
-		await this.#database.any(
-			`DELETE FROM block
-       WHERE	height = $1`,
-			[height],
 		);
 	}
 
@@ -134,7 +117,7 @@ export class Database {
 				}
 			}
 
-			await this.deletePendingBlock(block.height);
+			await this.#deletePendingBlock(block.height);
 		});
 	}
 
@@ -151,6 +134,14 @@ export class Database {
        VALUES ($1, $2)
        ON CONFLICT DO NOTHING`,
 			[block.height, block.hash],
+		);
+	}
+
+	async #deletePendingBlock(height: number): Promise<void> {
+		await this.#database.any(
+			`DELETE FROM pending_block
+       WHERE	height = $1`,
+			[height],
 		);
 	}
 

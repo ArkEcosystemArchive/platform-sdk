@@ -23,7 +23,6 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
 
 	logger.info(`Starting at block height ${localHeight}.`);
-	await database.deleteBlock(localHeight); // at start we always delete the last stored one as it can be incomplete
 
 	const alreadyDownloaded: Set<number> = new Set();
 	(await database.alreadyDownloadedBlocks(localHeight, remoteHeight)).forEach((downloaded) =>
