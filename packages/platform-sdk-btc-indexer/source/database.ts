@@ -108,6 +108,7 @@ export class Database {
 					},
 				},
 			});
+
 			await this.#prisma.transaction.delete({
 				where: { hash: transaction.hash },
 			});
