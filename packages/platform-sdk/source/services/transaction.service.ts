@@ -93,6 +93,6 @@ export class AbstractTransactionService implements Contract {
 	}
 
 	protected toSatoshi(value: NumberLike): BigNumber {
-		return this.bigNumberService.make(value).toSatoshi(this.configRepository.get<number>("network.currency.decimals"));
+		return this.bigNumberService.make(value).toSatoshi();
 	}
 }
