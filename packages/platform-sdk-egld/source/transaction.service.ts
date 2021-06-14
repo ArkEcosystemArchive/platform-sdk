@@ -34,8 +34,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 			sender: input.signatory.address(),
 			receiver: input.data.to,
 			value: input.data.amount,
-			gasPrice: (input.fee as unknown) as number,
-			gasLimit: (input.feeLimit as unknown) as number,
+			gasPrice: input.fee as unknown as number,
+			gasLimit: input.feeLimit as unknown as number,
 			data: input.data.memo,
 			timestamp: DateTime.make(),
 		};
@@ -47,8 +47,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const transaction = new Transaction({
 			receiver: Address.fromString(input.data.to),
 			value: Balance.egld(input.data.amount),
-			gasPrice: new GasPrice((input.fee as unknown) as number),
-			gasLimit: new GasLimit((input.feeLimit as unknown) as number),
+			gasPrice: new GasPrice(input.fee as unknown as number),
+			gasLimit: new GasLimit(input.feeLimit as unknown as number),
 			data: new TransactionPayload(input.data.memo),
 			nonce: new Nonce(parseInt(input.nonce)),
 		});

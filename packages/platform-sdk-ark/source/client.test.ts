@@ -9,6 +9,8 @@ import { ClientService } from "./client.service";
 import { TransactionData } from "./transaction.dto";
 import { WalletData } from "./wallet.dto";
 import { SignedTransactionData } from "./signed-transaction.dto";
+import { TransferData } from "./transfer.dto";
+import { MultiPaymentData } from "./multi-payment.dto";
 
 let subject: ClientService;
 
@@ -35,7 +37,7 @@ describe("ClientService", () => {
 				"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
 			);
 
-			expect(result).toBeInstanceOf(DTO.TransferData);
+			expect(result).toBeInstanceOf(TransferData);
 		});
 	});
 
@@ -61,7 +63,7 @@ describe("ClientService", () => {
 			});
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(DTO.TransferData);
+			expect(result.items()[0]).toBeInstanceOf(MultiPaymentData);
 		});
 
 		it("should work with Core 3.0", async () => {

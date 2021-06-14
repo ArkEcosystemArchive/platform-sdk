@@ -53,7 +53,7 @@ describe("Address", () => {
 		await expect(subject.validate("")).resolves.toBeFalse();
 		await expect(subject.validate(undefined!)).resolves.toBeFalse();
 		await expect(subject.validate(null!)).resolves.toBeFalse();
-		await expect(subject.validate(({} as unknown) as string)).resolves.toBeFalse();
+		await expect(subject.validate({} as unknown as string)).resolves.toBeFalse();
 	});
 
 	test.each(["fromMnemonic", "fromMultiSignature", "fromPublicKey", "fromPrivateKey", "fromWIF"])(

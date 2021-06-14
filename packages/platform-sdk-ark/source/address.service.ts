@@ -23,7 +23,10 @@ export class AddressService extends Services.AbstractAddressService {
 		}
 	}
 
-	public override async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
+	public override async fromMultiSignature(
+		min: number,
+		publicKeys: string[],
+	): Promise<Services.AddressDataTransferObject> {
 		try {
 			return {
 				type: "bip39",

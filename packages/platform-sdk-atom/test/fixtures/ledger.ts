@@ -29,7 +29,6 @@ export const ledger = {
         `,
 		payload:
 			'{"account_number":"6571","chain_id":"cosmoshub-2","fee":{"amount":[{"amount":"5000","denom":"uatom"}],"gas":"200000"},"memo":"Delegated with Ledger from union.market","msgs":[{"type":"cosmos-sdk/MsgDelegate","value":{"amount":{"amount":"1000000","denom":"uatom"},"delegator_address":"cosmos102hty0jv2s29lyc4u0tv97z9v298e24t3vwtpl","validator_address":"cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7"}}],"sequence":"0"}',
-		result:
-			"3045022100edac0d5d791e3512cca0c33fbf2aad190b03e6ca82f248b59354aa71ae26d5e7022072dedf96b9cabb6b7f972bb03f2e862c29ae2c02ca51955526c989c93045e727",
+		result: "3045022100edac0d5d791e3512cca0c33fbf2aad190b03e6ca82f248b59354aa71ae26d5e7022072dedf96b9cabb6b7f972bb03f2e862c29ae2c02ca51955526c989c93045e727",
 	},
 };

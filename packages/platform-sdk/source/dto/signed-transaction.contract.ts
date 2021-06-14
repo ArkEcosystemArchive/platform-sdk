@@ -41,4 +41,5 @@ export interface SignedTransactionData {
 	toString(): string;
 	toBroadcast(): any;
 	toObject(): { id: string; sender: string; recipient: string; amount: string; data: any };
+	type(): string;
 }

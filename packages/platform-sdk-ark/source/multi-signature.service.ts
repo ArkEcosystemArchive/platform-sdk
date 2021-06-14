@@ -47,7 +47,10 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	}
 
 	/** @inheritdoc */
-	public override isMultiSignatureReady(transaction: Contracts.SignedTransactionData, excludeFinal?: boolean): boolean {
+	public override isMultiSignatureReady(
+		transaction: Contracts.SignedTransactionData,
+		excludeFinal?: boolean,
+	): boolean {
 		return new PendingMultiSignatureTransaction(transaction.data()).isMultiSignatureReady({ excludeFinal });
 	}
 

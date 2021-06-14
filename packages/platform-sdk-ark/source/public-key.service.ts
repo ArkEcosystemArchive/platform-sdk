@@ -22,7 +22,10 @@ export class PublicKeyService extends Services.AbstractPublicKeyService {
 		}
 	}
 
-	public override async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.PublicKeyDataTransferObject> {
+	public override async fromMultiSignature(
+		min: number,
+		publicKeys: string[],
+	): Promise<Services.PublicKeyDataTransferObject> {
 		try {
 			return {
 				publicKey: BasePublicKey.fromMultiSignatureAsset({ min, publicKeys }),

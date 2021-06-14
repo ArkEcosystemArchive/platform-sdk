@@ -15,7 +15,9 @@ export class ClientService extends Services.AbstractClientService {
 		);
 	}
 
-	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(
+		query: Services.ClientTransactionsInput,
+	): Promise<Collections.TransactionDataCollection> {
 		if (query.senderPublicKey === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transactions.name, "senderPublicKey");
 		}
@@ -59,7 +61,9 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

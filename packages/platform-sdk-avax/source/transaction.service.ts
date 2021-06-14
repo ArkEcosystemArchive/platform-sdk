@@ -33,7 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			);
 			const keyPairAddresses = this.#keychain.getAddressStrings();
 			const { utxos } = await this.#xchain.getUTXOs(child.getAddressString());
-			const amount = Helpers.toRawUnit(input.data.amount, this.configRepository).toString();
+			const amount = this.toSatoshi(input.data.amount).toString();
 
 			const signedTx = (
 				await this.#xchain.buildBaseTx(

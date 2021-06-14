@@ -4,7 +4,7 @@ import { DTO, IoC, Services } from "@arkecosystem/platform-sdk";
 import nock from "nock";
 
 import { createService } from "../test/mocking";
-import { TransactionData } from "./transaction.dto";
+import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
@@ -35,7 +35,7 @@ describe("ClientService", () => {
 
 		const result = await subject.transaction("c2e6e2c75357b7d69d735d5ce7d7e9a77291477d0a11ba158b5cf39317398f66");
 
-		expect(result).toBeInstanceOf(DTO.TransferData);
+		expect(result).toBeInstanceOf(TransferData);
 	});
 
 	test("#transactions", async () => {
@@ -48,7 +48,7 @@ describe("ClientService", () => {
 		});
 
 		expect(result).toBeObject();
-		expect(result.items()[0]).toBeInstanceOf(DTO.TransferData);
+		expect(result.items()[0]).toBeInstanceOf(TransferData);
 	});
 
 	test("#wallet", async () => {
