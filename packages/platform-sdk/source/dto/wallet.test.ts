@@ -42,8 +42,8 @@ test("#isDelegate", () => {
 	expect(new Wallet({ key: "value" }).isDelegate()).toBeFalse();
 });
 
-test("#isMultiSignature", () => {
-	expect(new Wallet({ key: "value" }).isMultiSignature()).toBeFalse();
+test("#isMultiSignatureRegistration", () => {
+	expect(new Wallet({ key: "value" }).isMultiSignatureRegistration()).toBeFalse();
 });
 
 test("#isSecondSignature", () => {
@@ -59,7 +59,7 @@ test("#toObject", () => {
 		    "fees": BigNumber {},
 		  },
 		  "isDelegate": false,
-		  "isMultiSignature": false,
+		  "isMultiSignatureRegistration": false,
 		  "isResignedDelegate": false,
 		  "isSecondSignature": false,
 		  "nonce": BigNumber {},
@@ -137,7 +137,7 @@ class Wallet extends AbstractWalletData {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public isMultiSignatureRegistration(): boolean {
 		return false;
 	}
 

@@ -53,7 +53,7 @@ export class SignedTransactionData
 		return TransactionTypeService.isUnvote(this.data);
 	}
 
-	public isMultiSignature(): boolean {
-		return TransactionTypeService.isMultiSignature(this.data);
+	public isMultiSignatureRegistration(): boolean {
+		return TransactionTypeService.isMultiSignatureRegistration(this.data);
 	}
 }

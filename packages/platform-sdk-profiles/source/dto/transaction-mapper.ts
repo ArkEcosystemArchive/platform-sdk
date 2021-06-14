@@ -56,7 +56,7 @@ export const transformTransactionData = (
 		return new MultiPaymentData(wallet, transaction);
 	}
 
-	if (instance.isMultiSignature()) {
+	if (instance.isMultiSignatureRegistration()) {
 		return new MultiSignatureData(wallet, transaction);
 	}
 

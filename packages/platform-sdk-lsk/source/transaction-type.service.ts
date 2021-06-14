@@ -33,7 +33,7 @@ export class TransactionTypeService {
 		return ((data.asset || {}).votes as string[]).some((vote) => vote.startsWith("-"));
 	}
 
-	public static isMultiSignature(data: TransactionData): boolean {
+	public static isMultiSignatureRegistration(data: TransactionData): boolean {
 		return data.type === 12;
 	}
 }

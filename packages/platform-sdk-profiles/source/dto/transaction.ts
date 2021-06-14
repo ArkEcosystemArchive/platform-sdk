@@ -118,8 +118,8 @@ export class TransactionData {
 		return this.#data.isUnvote();
 	}
 
-	public isMultiSignature(): boolean {
-		return this.#data.isMultiSignature();
+	public isMultiSignatureRegistration(): boolean {
+		return this.#data.isMultiSignatureRegistration();
 	}
 
 	public isIpfs(): boolean {

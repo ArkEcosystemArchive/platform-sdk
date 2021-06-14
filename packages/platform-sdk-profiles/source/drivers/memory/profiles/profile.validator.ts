@@ -56,7 +56,7 @@ export class ProfileValidator implements IProfileValidator {
 					Joi.object({
 						name: Joi.string().required(),
 						host: Joi.string().required(),
-						isMultiSignature: Joi.boolean().required(),
+						isMultiSignatureRegistration: Joi.boolean().required(),
 					}),
 				)
 				.required(),

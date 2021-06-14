@@ -68,7 +68,7 @@ export interface TransactionData {
 
 	isUnvote(): boolean;
 
-	isMultiSignature(): boolean;
+	isMultiSignatureRegistration(): boolean;
 
 	isIpfs(): boolean;
 

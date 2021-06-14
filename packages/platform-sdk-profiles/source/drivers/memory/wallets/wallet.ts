@@ -310,15 +310,15 @@ export class Wallet implements IReadWriteWallet {
 		return this.data().get(WalletData.DerivationPath) !== undefined;
 	}
 
-	/** {@inheritDoc IReadWriteWallet.isMultiSignature} */
-	public isMultiSignature(): boolean {
+	/** {@inheritDoc IReadWriteWallet.isMultiSignatureRegistration} */
+	public isMultiSignatureRegistration(): boolean {
 		if (!this.#attributes.get<Contracts.WalletData>("wallet")) {
 			throw new Error(
 				"This wallet has not been synchronized yet. Please call [synchroniser().identity()] before using it.",
 			);
 		}
 
-		return this.#attributes.get<Contracts.WalletData>("wallet").isMultiSignature();
+		return this.#attributes.get<Contracts.WalletData>("wallet").isMultiSignatureRegistration();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.isSecondSignature} */

@@ -24,7 +24,7 @@ export interface SignedTransactionData {
 	isVoteCombination(): boolean;
 	isVote(): boolean;
 	isUnvote(): boolean;
-	isMultiSignature(): boolean;
+	isMultiSignatureRegistration(): boolean;
 	isIpfs(): boolean;
 	isMultiPayment(): boolean;
 	isDelegateResignation(): boolean;

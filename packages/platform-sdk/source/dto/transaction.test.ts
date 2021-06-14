@@ -106,8 +106,8 @@ test("#isUnvote", () => {
 	expect(new Transaction().configure({ key: "value" }).isUnvote()).toBeFalse();
 });
 
-test("#isMultiSignature", () => {
-	expect(new Transaction().configure({ key: "value" }).isMultiSignature()).toBeFalse();
+test("#isMultiSignatureRegistration", () => {
+	expect(new Transaction().configure({ key: "value" }).isMultiSignatureRegistration()).toBeFalse();
 });
 
 test("#isIpfs", () => {
@@ -275,7 +275,7 @@ class Transaction extends AbstractTransactionData {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public isMultiSignatureRegistration(): boolean {
 		return false;
 	}
 

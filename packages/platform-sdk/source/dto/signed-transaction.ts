@@ -26,7 +26,7 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 		voteCombination: "isVoteCombination",
 		vote: "isVote",
 		unvote: "isUnvote",
-		multiSignature: "isMultiSignature",
+		multiSignature: "isMultiSignatureRegistration",
 		ipfs: "isIpfs",
 		multiPayment: "isMultiPayment",
 		delegateResignation: "isDelegateResignation",
@@ -116,7 +116,7 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 		return false;
 	}
 
-	public isMultiSignature(): boolean {
+	public isMultiSignatureRegistration(): boolean {
 		return false;
 	}
 
