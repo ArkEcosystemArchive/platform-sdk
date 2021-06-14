@@ -20,9 +20,13 @@ module.exports = meow(
 			database: {
 				type: "string",
 			},
-			batchSize: {
+			concurrentDownloads: {
 				type: "number",
 				default: 100,
+			},
+			batchSize: {
+				type: "number",
+				default: 5000,
 			},
 		},
 	},

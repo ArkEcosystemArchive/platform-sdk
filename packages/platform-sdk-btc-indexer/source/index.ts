@@ -18,7 +18,7 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 
 	await database.runMigrations();
 
-	const downloadQueue = new PQueue({ concurrency: flags.batchSize });
+	const downloadQueue = new PQueue({ concurrency: flags.concurrentDownloads });
 
 	const [localHeight, remoteHeight] = [await database.lastBlockNumber(), await client.height()];
 

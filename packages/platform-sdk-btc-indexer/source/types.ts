@@ -10,6 +10,7 @@ export interface Flags {
 	network: string;
 	host: string;
 	database: string;
+	concurrentDownloads: number;
 	batchSize: number;
 }
 

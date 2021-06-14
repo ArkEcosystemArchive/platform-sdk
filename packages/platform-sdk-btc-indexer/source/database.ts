@@ -23,6 +23,7 @@ export class Database {
 	 * @memberof Database
 	 */
 	readonly #logger: Logger;
+	readonly #flags: any;
 
 	/**
 	 * Creates an instance of Database.
@@ -32,6 +33,10 @@ export class Database {
 	 * @memberof Database
 	 */
 	public constructor(flags: Flags, logger: Logger) {
+		this.#flags = flags;
+
+		this.#logger = logger;
+
 		this.#database = pgp({
 			query(e) {
 				// logger.debug('QUERY:', e.query);
@@ -49,8 +54,6 @@ export class Database {
 			connectionString: process.env.DATABASE_URL,
 			max: 30,
 		});
-
-		this.#logger = logger;
 	}
 
 	/**
@@ -73,15 +76,14 @@ export class Database {
        FROM pending_blocks
        ORDER BY height
        LIMIT $1`,
-			[5000],
+			[this.#flags.batchSize],
 		);
 	}
 
 	public async storePendingBlock(block: any): Promise<void> {
 		await this.#database.any(
 			`INSERT INTO pending_blocks (height, payload)
-       VALUES ($1, $2)
-       ON CONFLICT DO NOTHING`,
+       VALUES ($1, $2)`,
 			[block.height, block],
 		);
 	}
@@ -131,8 +133,7 @@ export class Database {
 	async #storeBlock(block): Promise<void> {
 		await this.#database.any(
 			`INSERT INTO blocks (height, hash)
-       VALUES ($1, $2)
-       ON CONFLICT DO NOTHING`,
+       VALUES ($1, $2)`,
 			[block.height, block.hash],
 		);
 	}
@@ -182,16 +183,14 @@ export class Database {
 
 		await this.#database.none(
 			`INSERT INTO transactions (block_id, hash, time, amount, fee)
-			   VALUES ($1, $2, $3, $4, $5)
-			   ON CONFLICT DO NOTHING`,
+			   VALUES ($1, $2, $3, $4, $5)`,
 			[blockId, transaction.txid, transaction.time, BigInt(amount.toString()), BigInt(fee.toString())],
 		);
 
 		for (const output of outputs) {
 			await this.#database.none(
 				`INSERT INTO transaction_parts (output_hash, output_idx, amount, address)
-					 VALUES ($1, $2, $3, $4)
-					 ON CONFLICT DO NOTHING`,
+					 VALUES ($1, $2, $3, $4)`,
 				[transaction.txid, output.idx, BigInt(amount.toString()), JSON.stringify(output.addresses)],
 			);
 		}
