@@ -1,9 +1,9 @@
 import { Request } from "@arkecosystem/platform-sdk-http-got";
-import { v4 as uuidv4 } from "uuid";
 import retry from "p-retry";
+import { v4 as uuidv4 } from "uuid";
 
-import { Flags } from "./types";
 import { Logger } from "./logger";
+import { Flags } from "./types";
 
 /**
  * Implements a JSON-RPC client for bitcoind.
