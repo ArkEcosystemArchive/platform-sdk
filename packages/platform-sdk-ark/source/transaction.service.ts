@@ -22,6 +22,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.PublicKeyService)
 	private readonly publicKeyService!: Services.PublicKeyService;
 
+	@IoC.inject(Bindings.MultiSignatureSigner)
+	private readonly multiSignatureSigner!: MultiSignatureSigner;
+
 	@IoC.inject(Bindings.Crypto)
 	private readonly packageCrypto!: Interfaces.NetworkConfig;
 
@@ -30,7 +33,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	// @TODO: remove or inject
 	#peer!: string;
-	#multiSignatureSigner!: MultiSignatureSigner;
 	#configCrypto!: { crypto: Interfaces.NetworkConfig; height: number };
 
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
@@ -170,7 +172,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Error("Failed to retrieve the keys for the signatory wallet.");
 		}
 
-		const transactionWithSignature = this.#multiSignatureSigner.addSignature(transaction, {
+		const transactionWithSignature = this.multiSignatureSigner.addSignature(transaction, {
 			publicKey: keys.publicKey,
 			privateKey: keys.privateKey,
 			compressed: true,
@@ -195,8 +197,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
-		// @ts-ignore
-		this.#multiSignatureSigner = new MultiSignatureSigner(this.packageCrypto, this.packageHeight);
 		this.#configCrypto = { crypto: this.packageCrypto, height: this.packageHeight };
 	}
 
@@ -282,7 +282,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
-				const transactionWithSignature = this.#multiSignatureSigner.sign(
+				const transactionWithSignature = this.multiSignatureSigner.sign(
 					transaction,
 					input.signatory.signingList(),
 				);
