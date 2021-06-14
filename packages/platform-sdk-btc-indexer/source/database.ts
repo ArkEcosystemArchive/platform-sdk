@@ -37,23 +37,11 @@ export class Database {
 				// console.log('QUERY:', e.query);
 			},
 			error(err, e) {
-				if (e.cn) {
-					// this is a connection-related error
-					// cn = safe connection details passed into the library:
-					//      if password is present, it is masked by #
-				}
-
 				if (e.query) {
 					console.log("Failing query:", e.query, e.params);
-
-					// query string is available
-					if (e.params) {
-						// query parameters are available
-					}
 				}
 
 				if (e.ctx) {
-					// occurred inside a task or transaction
 					console.log("Failing tx:", e.ctx);
 				}
 			},
