@@ -92,58 +92,71 @@ test("#hasFailed", () => {
 });
 
 class Wallet extends AbstractWalletData {
-	public override primaryKey(): string {
+	// @ts-ignore
+	public primaryKey(): string {
 		return "address";
 	}
 
-	public override address(): string {
+	// @ts-ignore
+	public address(): string {
 		return "address";
 	}
 
-	public override publicKey(): string | undefined {
+	// @ts-ignore
+	public publicKey(): string | undefined {
 		return "publicKey";
 	}
 
-	public override balance(): WalletBalance {
+	// @ts-ignore
+	public balance(): WalletBalance {
 		return {
 			available: BigNumber.ZERO,
 			fees: BigNumber.ZERO,
 		};
 	}
 
-	public override nonce(): BigNumber {
+	// @ts-ignore
+	public nonce(): BigNumber {
 		return BigNumber.ZERO;
 	}
 
-	public override secondPublicKey(): string | undefined {
+	// @ts-ignore
+	public secondPublicKey(): string | undefined {
 		return "secondPublicKey";
 	}
 
-	public override username(): string | undefined {
+	// @ts-ignore
+	public username(): string | undefined {
 		return "username";
 	}
 
-	public override rank(): number | undefined {
+	// @ts-ignore
+	public rank(): number | undefined {
 		return 5;
 	}
 
-	public override votes(): BigNumber | undefined {
+	// @ts-ignore
+	public votes(): BigNumber | undefined {
 		return BigNumber.ZERO;
 	}
 
-	public override isDelegate(): boolean {
+	// @ts-ignore
+	public isDelegate(): boolean {
 		return false;
 	}
 
-	public override isResignedDelegate(): boolean {
+	// @ts-ignore
+	public isResignedDelegate(): boolean {
 		return false;
 	}
 
-	public override isMultiSignature(): boolean {
+	// @ts-ignore
+	public isMultiSignature(): boolean {
 		return false;
 	}
 
-	public override isSecondSignature(): boolean {
+	// @ts-ignore
+	public isSecondSignature(): boolean {
 		return false;
 	}
 }
