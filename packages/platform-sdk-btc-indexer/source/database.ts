@@ -62,7 +62,7 @@ export class Database {
 	public async lastBlockNumber(): Promise<number> {
 		const lastBlockHeight = await this.#database.any(
 			`SELECT MAX(height) AS height
-       FROM block`,
+       FROM blocks`,
 		);
 		return lastBlockHeight?.height || 1;
 	}
@@ -70,7 +70,7 @@ export class Database {
 	public async allPendingBlocks(): Promise<any[]> {
 		return await this.#database.any(
 			`SELECT *
-       FROM pending_block
+       FROM pending_blocks
        ORDER BY height
        LIMIT $1`,
 			[5000],
@@ -79,7 +79,7 @@ export class Database {
 
 	public async storePendingBlock(block: any): Promise<void> {
 		await this.#database.any(
-			`INSERT INTO pending_block (height, payload)
+			`INSERT INTO pending_blocks (height, payload)
        VALUES ($1, $2)
        ON CONFLICT DO NOTHING`,
 			[block.height, block],
@@ -89,7 +89,7 @@ export class Database {
 	public async alreadyDownloadedBlocks(min: number, max: number): Promise<{ height: number }[]> {
 		return await this.#database.any(
 			`SELECT height
-			 FROM pending_block
+			 FROM pending_blocks
        WHERE (height >= $1 AND height <= $2)
 			 ORDER BY HEIGHT`,
 			[min, max],
@@ -130,7 +130,7 @@ export class Database {
 	 */
 	async #storeBlock(block): Promise<void> {
 		await this.#database.any(
-			`INSERT INTO block (height, hash)
+			`INSERT INTO blocks (height, hash)
        VALUES ($1, $2)
        ON CONFLICT DO NOTHING`,
 			[block.height, block.hash],
@@ -139,7 +139,7 @@ export class Database {
 
 	async #deletePendingBlock(height: number): Promise<void> {
 		await this.#database.any(
-			`DELETE FROM pending_block
+			`DELETE FROM pending_blocks
        WHERE	height = $1`,
 			[height],
 		);
@@ -162,7 +162,7 @@ export class Database {
 		if (hashes.length > 0) {
 			const read = await this.#database.any(
 				`SELECT output_hash, output_idx, amount
-				 FROM transaction_part
+				 FROM transaction_parts
 				 WHERE output_hash IN (${hashes.map((h, i) => `$${i + 1}`).join(",")})`,
 				hashes,
 			);
@@ -181,7 +181,7 @@ export class Database {
 		const fee: BigNumber = getFees(transaction, outputsByTransactionHashAndIdx);
 
 		await this.#database.none(
-			`INSERT INTO transaction (block_id, hash, time, amount, fee)
+			`INSERT INTO transactions (block_id, hash, time, amount, fee)
 			   VALUES ($1, $2, $3, $4, $5)
 			   ON CONFLICT DO NOTHING`,
 			[blockId, transaction.txid, transaction.time, BigInt(amount.toString()), BigInt(fee.toString())],
@@ -189,7 +189,7 @@ export class Database {
 
 		for (const output of outputs) {
 			await this.#database.none(
-				`INSERT INTO transaction_part (output_hash, output_idx, amount, address)
+				`INSERT INTO transaction_parts (output_hash, output_idx, amount, address)
 					 VALUES ($1, $2, $3, $4)
 					 ON CONFLICT DO NOTHING`,
 				[transaction.txid, output.idx, BigInt(amount.toString()), JSON.stringify(output.addresses)],
@@ -199,7 +199,7 @@ export class Database {
 		let i = 0;
 		for (const input of inputs) {
 			await this.#database.none(
-				`UPDATE transaction_part
+				`UPDATE transaction_parts
 					 SET input_hash = $1,
 					 input_idx = $2
 				   WHERE output_hash = $3
