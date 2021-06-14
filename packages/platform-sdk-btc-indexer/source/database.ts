@@ -115,7 +115,6 @@ export class Database {
 
 			if (block.tx) {
 				for (const transaction of block.tx) {
-					this.#logger.info(`Storing transaction [${transaction.txid}]`);
 					await this.#storeTransaction(block.height, transaction);
 				}
 			}
