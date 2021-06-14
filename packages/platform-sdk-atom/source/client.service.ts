@@ -43,7 +43,9 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction(response);
 	}
 
-	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(
+		query: Services.ClientTransactionsInput,
+	): Promise<Collections.TransactionDataCollection> {
 		const page = Number(query.cursor || 1);
 
 		const response = await this.#get("txs", {
@@ -73,7 +75,9 @@ export class ClientService extends Services.AbstractClientService {
 		});
 	}
 
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

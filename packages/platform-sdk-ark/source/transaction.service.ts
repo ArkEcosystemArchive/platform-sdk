@@ -43,7 +43,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
-	public override async secondSignature(input: Services.SecondSignatureInput): Promise<Contracts.SignedTransactionData> {
+	public override async secondSignature(
+		input: Services.SecondSignatureInput,
+	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("secondSignature", input, ({ transaction, data }) =>
 			transaction.signatureAsset(BIP39.normalize(data.mnemonic)),
 		);
@@ -77,7 +79,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
-	public override async multiSignature(input: Services.MultiSignatureInput): Promise<Contracts.SignedTransactionData> {
+	public override async multiSignature(
+		input: Services.MultiSignatureInput,
+	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiSignature", input, ({ transaction, data }) => {
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,

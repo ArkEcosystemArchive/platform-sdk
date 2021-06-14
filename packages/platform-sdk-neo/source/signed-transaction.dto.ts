@@ -5,7 +5,8 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 @IoC.injectable()
 export class SignedTransactionData
 	extends DTO.AbstractSignedTransactionData
-	implements Contracts.SignedTransactionData {
+	implements Contracts.SignedTransactionData
+{
 	public override sender(): string {
 		throw new Exceptions.NotImplemented(this.constructor.name, this.sender.name);
 	}

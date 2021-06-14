@@ -45,7 +45,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 			const response = await this.#connection.trx.sign(
 				transaction,
-				(await this.privateKeyService.fromMnemonic(input.signatory.signingKey())).privateKey,
+				(
+					await this.privateKeyService.fromMnemonic(input.signatory.signingKey())
+				).privateKey,
 			);
 
 			const decimals = this.configRepository.get<number>(Coins.ConfigKey.CurrencyDecimals);

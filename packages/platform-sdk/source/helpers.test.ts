@@ -10,7 +10,7 @@ import {
 
 afterEach(() => jest.restoreAllMocks());
 
-const configMock = ({
+const configMock = {
 	get: () => [
 		{
 			type: "full",
@@ -25,7 +25,7 @@ const configMock = ({
 			host: "https://explorer.ark.io",
 		},
 	],
-} as unknown) as ConfigRepository;
+} as unknown as ConfigRepository;
 
 test("filterHostsFromConfig", () => {
 	expect(filterHostsFromConfig(configMock, "explorer")).toEqual([
