@@ -1,12 +1,12 @@
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
-import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
-import { Bindings } from "./coin.contract";
+import { BindingType } from "./coin.contract";
 import { applyCryptoConfiguration } from "./config";
+import { MultiSignatureSigner } from "./multi-signature.signer";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
@@ -22,15 +22,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.PublicKeyService)
 	private readonly publicKeyService!: Services.PublicKeyService;
 
-	@IoC.inject(Bindings.Crypto)
+	@IoC.inject(BindingType.MultiSignatureSigner)
+	private readonly multiSignatureSigner!: MultiSignatureSigner;
+
+	@IoC.inject(BindingType.Crypto)
 	private readonly packageCrypto!: Interfaces.NetworkConfig;
 
-	@IoC.inject(Bindings.Height)
+	@IoC.inject(BindingType.Height)
 	private readonly packageHeight!: number;
 
 	// @TODO: remove or inject
 	#peer!: string;
-	#multiSignatureSigner!: MultiSignatureSigner;
 	#configCrypto!: { crypto: Interfaces.NetworkConfig; height: number };
 
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
@@ -170,7 +172,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Error("Failed to retrieve the keys for the signatory wallet.");
 		}
 
-		const transactionWithSignature = this.#multiSignatureSigner.addSignature(transaction, {
+		const transactionWithSignature = this.multiSignatureSigner.addSignature(transaction, {
 			publicKey: keys.publicKey,
 			privateKey: keys.privateKey,
 			compressed: true,
@@ -195,8 +197,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
-		// @ts-ignore
-		this.#multiSignatureSigner = new MultiSignatureSigner(this.packageCrypto, this.packageHeight);
 		this.#configCrypto = { crypto: this.packageCrypto, height: this.packageHeight };
 	}
 
@@ -282,7 +282,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
-				const transactionWithSignature = this.#multiSignatureSigner.sign(
+				const transactionWithSignature = this.multiSignatureSigner.sign(
 					transaction,
 					input.signatory.signingList(),
 				);

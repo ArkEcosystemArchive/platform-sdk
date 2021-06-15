@@ -6,12 +6,14 @@ import nock from "nock";
 
 import { createService } from "../test/mocking";
 import { DataTransferObjects } from "./coin.dtos";
+import { BindingType } from "./coin.contract";
 import { AddressService } from "./address.service";
 import { ClientService } from "./client.service";
 import { KeyPairService } from "./key-pair.service";
 import { LedgerService } from "./ledger.service";
 import { PublicKeyService } from "./public-key.service";
 import { TransactionService } from "./transaction.service";
+import { MultiSignatureSigner } from "./multi-signature.signer";
 
 let subject: TransactionService;
 
@@ -22,6 +24,7 @@ beforeAll(async () => {
 
 	subject = createService(TransactionService, undefined, (container) => {
 		container.constant(IoC.BindingType.Container, container);
+		container.singleton(BindingType.MultiSignatureSigner, MultiSignatureSigner);
 		container.singleton(IoC.BindingType.AddressService, AddressService);
 		container.singleton(IoC.BindingType.ClientService, ClientService);
 		container.constant(IoC.BindingType.DataTransferObjects, DataTransferObjects);

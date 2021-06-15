@@ -2,11 +2,11 @@ import { Interfaces } from "@arkecosystem/crypto";
 import { Keys as BaseKeys } from "@arkecosystem/crypto-identities";
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { Bindings } from "./coin.contract";
+import { BindingType } from "./coin.contract";
 
 @IoC.injectable()
 export class KeyPairService extends Services.AbstractKeyPairService {
-	@IoC.inject(Bindings.Crypto)
+	@IoC.inject(BindingType.Crypto)
 	private readonly config!: Interfaces.NetworkConfig;
 
 	public override async fromMnemonic(

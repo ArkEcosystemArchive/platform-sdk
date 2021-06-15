@@ -2,13 +2,18 @@ import { Managers } from "@arkecosystem/crypto";
 import { Coins, Helpers, IoC } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
-import { Bindings } from "./coin.contract";
+import { BindingType } from "./coin.contract";
 import { Services } from "./coin.services";
+import { MultiSignatureSigner } from "./multi-signature.signer";
 
 @IoC.injectable()
 export class ServiceProvider extends IoC.AbstractServiceProvider implements IoC.IServiceProvider {
 	public async make(container: IoC.Container): Promise<void> {
 		await this.#retrieveNetworkConfiguration(container);
+
+		if (container.missing(BindingType.MultiSignatureSigner)) {
+			container.singleton(BindingType.MultiSignatureSigner, MultiSignatureSigner);
+		}
 
 		return this.compose(Services, container);
 	}
@@ -33,12 +38,12 @@ export class ServiceProvider extends IoC.AbstractServiceProvider implements IoC.
 		Managers.configManager.setConfig(dataCrypto);
 		Managers.configManager.setHeight(dataStatus.height);
 
-		if (container.missing(Bindings.Crypto)) {
-			container.constant(Bindings.Crypto, dataCrypto);
+		if (container.missing(BindingType.Crypto)) {
+			container.constant(BindingType.Crypto, dataCrypto);
 		}
 
-		if (container.missing(Bindings.Height)) {
-			container.constant(Bindings.Height, dataStatus.height);
+		if (container.missing(BindingType.Height)) {
+			container.constant(BindingType.Height, dataStatus.height);
 		}
 	}
 }
