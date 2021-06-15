@@ -45,11 +45,24 @@ beforeEach(() => {
 });
 
 describe("SignedTransactionData", () => {
-	test("#timestamp", () => {
-		expect(DateTime.make(1620877822246).isSame(subject.timestamp())).toBeTrue();
+	test("#sender", () => {
+		expect(subject.sender()).toEqual("410971d4dec6c12a9b4df09cbad2e42c063084860a");
+	});
+
+	test("#recipient", () => {
+		expect(subject.recipient()).toEqual("41359a9ff5b9cd7c752e56194586e85f2fe24401fa");
 	});
 
 	test("#amount", () => {
 		expect(subject.amount().toNumber()).toBe(1_000_000);
 	});
+
+	test("#fee", () => {
+		expect(subject.fee().toNumber()).toEqual(0);
+	});
+
+	test("#timestamp", () => {
+		expect(DateTime.make(1620877822246).isSame(subject.timestamp())).toBeTrue();
+	});
+
 });
