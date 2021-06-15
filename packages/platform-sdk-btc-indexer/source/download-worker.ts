@@ -1,4 +1,4 @@
-import { Job, Queue, QueueEvents, Worker } from "bullmq";
+import { Job, Queue, QueueEvents, QueueScheduler, Worker } from "bullmq";
 import { Flags } from "./types";
 import { Logger } from "./logger";
 import { Client } from "./client";
@@ -26,10 +26,10 @@ export class DownloadWorker {
 			defaultJobOptions: {
 				attempts: 1000,
 				// it will retry after 2 ^ attempts * delay milliseconds
-				backoff: {
-					type: "exponential",
-					delay: 10,
-				},
+				// backoff: {
+				// 	type: "exponential",
+				// 	delay: 10,
+				// },
 				removeOnComplete: true,
 			},
 		});
@@ -39,14 +39,25 @@ export class DownloadWorker {
 				removeOnComplete: true,
 				attempts: 1000,
 				// it will retry after 2 ^ attempts * delay milliseconds
-				backoff: {
-					type: "exponential",
-					delay: 10,
-				},
+				// backoff: {
+				// 	type: "exponential",
+				// 	delay: 10,
+				// },
 			},
 		});
 
+		const queueScheduler = new QueueScheduler('block-downloads');
+		queueScheduler.on('stalled', (jobId: string, prev: string) => {
+			this.#logger.info("stalled", jobId, prev);
+		});
+		queueScheduler.on('failed', (jobId: string, failedReason: Error, prev: string) => {
+			this.#logger.info("failed", jobId, failedReason, prev);
+		});
+
 		const downloadQueueEvents = new QueueEvents("block-downloads");
+		downloadQueueEvents.on('completed', (jobId) => {
+			this.#logger.error("finished downloading", jobId.jobId);
+		});
 		downloadQueueEvents.on("failed", (jobId, err) => {
 			this.#logger.error("error downloading", err);
 		});
@@ -62,6 +73,7 @@ export class DownloadWorker {
 					const downloaded = await client.blockWithTransactions(job.data.height);
 					await this.#processingQueue.add("processing-request", downloaded, {
 						priority: job.data.height, // Adding with priority is expensive: O(n) on queue size
+						jobId: `processing-request-${job.data.height}`,
 					});
 					return job.data.height;
 				}
@@ -71,7 +83,7 @@ export class DownloadWorker {
 	}
 
 	public async seedJobs() {
-		if (await this.#downloadingQueue.count() > 0) {
+		if (await this.#downloadingQueue.count() > 2000) {
 			return;
 		}
 
@@ -80,11 +92,15 @@ export class DownloadWorker {
 
 		const start: number = lastDownloaded + 1;
 		const end: number = Math.min(lastDownloaded + 1000, lastRemote);
+		console.error("start", start, "end", end);
 		const blocks = createRange(start, end).map((blockId) => ({
 			name: "download-request",
 			data: {
 				height: blockId,
 			},
+			opts: {
+				jobId: `download-request-${blockId}`,
+			}
 		}));
 		await this.#downloadingQueue.addBulk(blocks);
 		this.storeLastDownloaded(end);

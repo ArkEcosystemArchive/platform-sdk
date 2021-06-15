@@ -26,7 +26,11 @@ module.exports = meow(
 			},
 			batchSize: {
 				type: "number",
-				default: 5000,
+				default: 5,
+			},
+			downloader: {
+				type: "boolean",
+				default: false,
 			},
 		},
 	},

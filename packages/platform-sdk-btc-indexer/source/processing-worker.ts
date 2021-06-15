@@ -1,4 +1,4 @@
-import { Job, QueueEvents, Worker } from "bullmq";
+import { QueueEvents, QueueScheduler, Worker } from "bullmq";
 import { Flags } from "./types";
 import { Logger } from "./logger";
 import { Database } from "./database";
@@ -13,7 +13,18 @@ export class ProcessingWorker {
 		this.#logger = logger;
 		this.#database = database;
 
+		const queueScheduler = new QueueScheduler('block-processing');
+		queueScheduler.on('stalled', (jobId: string, prev: string) => {
+			this.#logger.info("stalled", jobId, prev);
+		});
+		queueScheduler.on('failed', (jobId: string, failedReason: Error, prev: string) => {
+			this.#logger.info("failed", jobId, failedReason, prev);
+		});
+
 		const processingQueueEvents = new QueueEvents("block-processing");
+		processingQueueEvents.on('completed', (jobId: string) => {
+			this.#logger.error("finished processing", jobId);
+		});
 		processingQueueEvents.on("failed", (jobId, err) => {
 			this.#logger.error("error processing", err);
 		});

@@ -51,7 +51,7 @@ export class Database {
 				}
 			},
 		})({
-			connectionString: process.env.DATABASE_URL,
+			connectionString: flags.database || process.env.DATABASE_URL,
 			max: 30,
 		});
 	}

@@ -2,14 +2,17 @@
 
 const { Foreman } = require("@konceiver/foreman");
 const { resolve } = require("path");
-const { subscribe } = require("../distribution");
+const { startDownloaderDaemon, startProcessingDaemon } = require("../distribution");
 
 const { flags, input } = require("./meow");
 
-const processName = `btc-${flags.network}-indexer`;
+const processName = `btc-${flags.network}-${flags.downloader ? 'downloader' : 'processing'}-indexer`;
 
 if (input[0] === "run") {
-	(async () => subscribe(flags))();
+	if (flags.downloader)
+		(async () => startDownloaderDaemon(flags))();
+	else
+		(async () => startProcessingDaemon(flags))();
 }
 
 if (input[0] === "start") {

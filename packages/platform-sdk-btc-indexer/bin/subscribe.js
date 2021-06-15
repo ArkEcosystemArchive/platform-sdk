@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
-const { subscribe } = require("../distribution");
+const { startDownloaderDaemon, startProcessingDaemon } = require("../distribution");
 
 const { flags } = require("./meow");
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-subscribe(flags);
+if (flags.downloader)
+	(async () => startDownloaderDaemon(flags))();
+else
+	(async () => startProcessingDaemon(flags))();
