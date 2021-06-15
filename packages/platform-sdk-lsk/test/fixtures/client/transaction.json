@@ -4,26 +4,26 @@
 		"limit": 10,
 		"count": 1
 	},
-	"data": [{
-		"id": "3176941083950565875",
-		"height": 5624,
-		"blockId": "4497389056834647425",
-		"type": 0,
-		"timestamp": 79168,
-		"senderPublicKey": "d9187cbbafe261088163221874fc8de2d6e4ade9bfe1eba7f3787d56e599495c",
-		"recipientPublicKey": "d9187cbbafe261088163221874fc8de2d6e4ade9bfe1eba7f3787d56e599495c",
-		"senderId": "11949377625793351079L",
-		"recipientId": "11949377625793351079L",
-		"amount": "1",
-		"fee": "10000000",
-		"signature": "38babd03c09ed7eae6f1e2b03823204c0092dfec1688137436c7084dadfa5f3ba21b4215e4873a902029d7810524c64bc684f8aff90afca81bb7092662365601",
-		"signatures": [
-
-		],
-		"asset": {
-			"data": "Account initialization"
-		},
-		"confirmations": 15683528
-	}],
+	"data": [
+		{
+			"id": "3176941083950565875",
+			"height": 5624,
+			"blockId": "4497389056834647425",
+			"type": 0,
+			"timestamp": 79168,
+			"senderPublicKey": "d9187cbbafe261088163221874fc8de2d6e4ade9bfe1eba7f3787d56e599495c",
+			"recipientPublicKey": "d9187cbbafe261088163221874fc8de2d6e4ade9bfe1eba7f3787d56e599495c",
+			"senderId": "11949377625793351079L",
+			"recipientId": "11949377625793351079L",
+			"amount": "1",
+			"fee": "10000000",
+			"signature": "38babd03c09ed7eae6f1e2b03823204c0092dfec1688137436c7084dadfa5f3ba21b4215e4873a902029d7810524c64bc684f8aff90afca81bb7092662365601",
+			"signatures": [],
+			"asset": {
+				"data": "Account initialization"
+			},
+			"confirmations": 15683528
+		}
+	],
 	"links": {}
 }

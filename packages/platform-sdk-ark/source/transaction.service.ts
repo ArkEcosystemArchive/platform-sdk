@@ -1,12 +1,12 @@
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
-import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
-import { Bindings } from "./coin.contract";
+import { BindingType } from "./coin.contract";
 import { applyCryptoConfiguration } from "./config";
+import { MultiSignatureSigner } from "./multi-signature.signer";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
@@ -22,15 +22,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.PublicKeyService)
 	private readonly publicKeyService!: Services.PublicKeyService;
 
-	@IoC.inject(Bindings.Crypto)
+	@IoC.inject(BindingType.MultiSignatureSigner)
+	private readonly multiSignatureSigner!: MultiSignatureSigner;
+
+	@IoC.inject(BindingType.Crypto)
 	private readonly packageCrypto!: Interfaces.NetworkConfig;
 
-	@IoC.inject(Bindings.Height)
+	@IoC.inject(BindingType.Height)
 	private readonly packageHeight!: number;
 
 	// @TODO: remove or inject
 	#peer!: string;
-	#multiSignatureSigner!: MultiSignatureSigner;
 	#configCrypto!: { crypto: Interfaces.NetworkConfig; height: number };
 
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
@@ -43,7 +45,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
-	public override async secondSignature(input: Services.SecondSignatureInput): Promise<Contracts.SignedTransactionData> {
+	public override async secondSignature(
+		input: Services.SecondSignatureInput,
+	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("secondSignature", input, ({ transaction, data }) =>
 			transaction.signatureAsset(BIP39.normalize(data.mnemonic)),
 		);
@@ -77,7 +81,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
-	public override async multiSignature(input: Services.MultiSignatureInput): Promise<Contracts.SignedTransactionData> {
+	public override async multiSignature(
+		input: Services.MultiSignatureInput,
+	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiSignature", input, ({ transaction, data }) => {
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,
@@ -95,7 +101,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	public override async multiPayment(input: Services.MultiPaymentInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiPayment", input, ({ transaction, data }) => {
 			for (const payment of data.payments) {
-				transaction.addPayment(payment.to, Helpers.toRawUnit(payment.amount, this.configRepository).toString());
+				transaction.addPayment(payment.to, this.toSatoshi(payment.amount).toString());
 			}
 
 			if (data.memo) {
@@ -112,7 +118,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 	public override async htlcLock(input: Services.HtlcLockInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("htlcLock", input, ({ transaction, data }) => {
-			transaction.amount(Helpers.toRawUnit(data.amount, this.configRepository).toString());
+			transaction.amount(this.toSatoshi(data.amount).toString());
 
 			transaction.recipientId(data.to);
 
@@ -166,7 +172,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Error("Failed to retrieve the keys for the signatory wallet.");
 		}
 
-		const transactionWithSignature = this.#multiSignatureSigner.addSignature(transaction, {
+		const transactionWithSignature = this.multiSignatureSigner.addSignature(transaction, {
 			publicKey: keys.publicKey,
 			privateKey: keys.privateKey,
 			compressed: true,
@@ -191,8 +197,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
-		// @ts-ignore
-		this.#multiSignatureSigner = new MultiSignatureSigner(this.packageCrypto, this.packageHeight);
 		this.#configCrypto = { crypto: this.packageCrypto, height: this.packageHeight };
 	}
 
@@ -240,11 +244,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.data && input.data.amount) {
-				transaction.amount(Helpers.toRawUnit(input.data.amount, this.configRepository).toString());
+				transaction.amount(this.toSatoshi(input.data.amount).toString());
 			}
 
 			if (input.fee) {
-				transaction.fee(Helpers.toRawUnit(input.fee, this.configRepository).toString());
+				transaction.fee(this.toSatoshi(input.fee).toString());
 			}
 
 			if (input.data && input.data.expiration) {
@@ -278,7 +282,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
-				const transactionWithSignature = this.#multiSignatureSigner.sign(
+				const transactionWithSignature = this.multiSignatureSigner.sign(
 					transaction,
 					input.signatory.signingList(),
 				);

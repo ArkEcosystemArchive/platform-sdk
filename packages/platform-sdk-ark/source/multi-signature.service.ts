@@ -1,6 +1,7 @@
-import { PendingMultiSignatureTransaction } from "@arkecosystem/multi-signature";
 import { Coins, Contracts, Helpers, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
+
+import { PendingMultiSignatureTransaction } from "./multi-signature.transaction";
 
 @IoC.injectable()
 export class MultiSignatureService extends Services.AbstractMultiSignatureService {
@@ -47,7 +48,10 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	}
 
 	/** @inheritdoc */
-	public override isMultiSignatureReady(transaction: Contracts.SignedTransactionData, excludeFinal?: boolean): boolean {
+	public override isMultiSignatureReady(
+		transaction: Contracts.SignedTransactionData,
+		excludeFinal?: boolean,
+	): boolean {
 		return new PendingMultiSignatureTransaction(transaction.data()).isMultiSignatureReady({ excludeFinal });
 	}
 

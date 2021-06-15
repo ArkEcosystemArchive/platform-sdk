@@ -27,4 +27,4 @@ export const useLogger = (): Logger => new Logger();
  * @param {Database} database
  * @returns {Client}
  */
-export const useClient = (flags: Flags): Client => new Client(flags);
+export const useClient = (flags: Flags, logger: Logger): Client => new Client(flags, logger);

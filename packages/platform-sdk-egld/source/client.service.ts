@@ -13,7 +13,9 @@ export class ClientService extends Services.AbstractClientService {
 		return this.dataTransferObjectService.transaction({ hash: id, ...data.transaction });
 	}
 
-	public override async transactions(query: Services.ClientTransactionsInput): Promise<Collections.TransactionDataCollection> {
+	public override async transactions(
+		query: Services.ClientTransactionsInput,
+	): Promise<Collections.TransactionDataCollection> {
 		const { data } = await this.#get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
 		return this.dataTransferObjectService.transactions(data.transactions, {
@@ -30,7 +32,9 @@ export class ClientService extends Services.AbstractClientService {
 		return new WalletData(data.account);
 	}
 
-	public override async broadcast(transactions: Contracts.SignedTransactionData[]): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transactions: Contracts.SignedTransactionData[],
+	): Promise<Services.BroadcastResponse> {
 		const result: Services.BroadcastResponse = {
 			accepted: [],
 			rejected: [],

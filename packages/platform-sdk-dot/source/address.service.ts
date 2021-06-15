@@ -20,7 +20,10 @@ export class AddressService extends Services.AbstractAddressService {
 		};
 	}
 
-	public override async fromMultiSignature(min: number, publicKeys: string[]): Promise<Services.AddressDataTransferObject> {
+	public override async fromMultiSignature(
+		min: number,
+		publicKeys: string[],
+	): Promise<Services.AddressDataTransferObject> {
 		return {
 			type: "ss58",
 			address: encodeAddress(createKeyMulti(publicKeys, min), 0),

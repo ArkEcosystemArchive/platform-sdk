@@ -42,7 +42,7 @@ This change was made to improve privacy. If you are using a profile it will now 
 
 ##### Data
 
-Migrating profiles is fairly straightforward. The biggest change is that you need to store the profile data as base64. For this purpose you can use [migrations](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/source/environment/migrator.test.ts) which will allow you to modify the data that is stored before it is accessible to the user. _You will need to temporarily disable the password on all profiles that use one and inform the user about the need of resetting their password. If you do not reset the password you will be unable to restore the profile._
+Migrating profiles is fairly straightforward. The biggest change is that you need to store the profile data as base64. For this purpose you can use [migrations](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/source/migrator.test.ts) which will allow you to modify the data that is stored before it is accessible to the user. _You will need to temporarily disable the password on all profiles that use one and inform the user about the need of resetting their password. If you do not reset the password you will be unable to restore the profile._
 
 We recommend to take a look at [this](https://github.com/ArkEcosystem/platform-sdk/blob/master/packages/platform-sdk-profiles/test/fixtures/env-storage.json) and [this](https://github.com/ArkEcosystem/platform-sdk/commit/e360e2f1b5108ac92977eb09e5100c248429b5ab) to get the full picture of the changes that have been made to better understand what changes you need to apply and how they should be applied.
 
