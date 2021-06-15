@@ -2,6 +2,8 @@ import { Client } from "./client";
 import { Database } from "./database";
 import { Logger } from "./logger";
 import { Flags } from "./types";
+import { DownloadWorker } from "./download-worker";
+import { ProcessingWorker } from "./processing-worker";
 
 /**
  * Creates a new database instance.
@@ -28,3 +30,7 @@ export const useLogger = (): Logger => new Logger();
  * @returns {Client}
  */
 export const useClient = (flags: Flags, logger: Logger): Client => new Client(flags, logger);
+
+export const useDownloader = (flags: Flags, logger: Logger): DownloadWorker => new DownloadWorker(flags, logger, useClient(flags, logger));
+
+export const useProcessor = (flags: Flags, logger: Logger): ProcessingWorker => new ProcessingWorker (flags, logger, useDatabase(flags, logger));
