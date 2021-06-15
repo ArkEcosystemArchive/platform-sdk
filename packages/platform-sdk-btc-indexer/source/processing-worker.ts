@@ -22,9 +22,9 @@ export class ProcessingWorker {
 		});
 
 		const processingQueueEvents = new QueueEvents("block-processing");
-		processingQueueEvents.on('completed', (jobId: string) => {
-			this.#logger.error("finished processing", jobId);
-		});
+		// processingQueueEvents.on('completed', (jobId) => {
+		// 	this.#logger.error("finished processing", jobId.jobId);
+		// });
 		processingQueueEvents.on("failed", (jobId, err) => {
 			this.#logger.error("error processing", err);
 		});

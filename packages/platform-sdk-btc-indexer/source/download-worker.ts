@@ -93,16 +93,16 @@ export class DownloadWorker {
 		const start: number = lastDownloaded + 1;
 		const end: number = Math.min(lastDownloaded + 1000, lastRemote);
 		console.error("start", start, "end", end);
-		const blocks = createRange(start, end).map((blockId) => ({
-			name: "download-request",
-			data: {
-				height: blockId,
-			},
-			opts: {
-				jobId: `download-request-${blockId}`,
-			}
-		}));
-		await this.#downloadingQueue.addBulk(blocks);
+		for (let i = start; i < end; i++) {
+			await this.#downloadingQueue.add( "download-request",
+				 {
+					height: i,
+				},
+				{
+					jobId: `download-request-${i}`,
+				}
+			);
+		}
 		this.storeLastDownloaded(end);
 	}
 
