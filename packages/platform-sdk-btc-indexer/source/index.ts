@@ -1,9 +1,8 @@
-import PQueue from "p-queue";
-
-import { processPendingBlocks } from "./blocks";
-import { useClient, useDatabase, useLogger, useDownloader, useProcessor } from "./factories";
+import { useClient, useDatabase, useDownloader, useLogger, useProcessor } from "./factories";
 import { Logger } from "./logger";
 import { Flags } from "./types";
+import { Database } from "./database";
+import { Client } from "./client";
 
 /**
  * Launch the indexer and subscribe to updates for new data.
@@ -14,39 +13,12 @@ import { Flags } from "./types";
 export const subscribe = async (flags: Flags): Promise<void> => {
 	const logger: Logger = useLogger();
 
-	const downloader = useDownloader(flags, logger);
-	// await downloader.seedJobs(); // TODO need to store somewhere where we are at with downloads
+	const database: Database = useDatabase(flags, logger);
+	await database.runMigrations();
 
-	const processor = useProcessor(flags, logger);
+	const client: Client = useClient(flags, logger);
+	const downloader = useDownloader(flags, logger, client);
+	await downloader.seedJobs();
 
-
-	// await database.runMigrations();
-	//
-	// const downloadQueue = new PQueue({ concurrency: flags.concurrentDownloads });
-	//
-	// const [localHeight, remoteHeight] = [(await database.lastBlockNumber()) + 1, await client.height()];
-	//
-	// logger.info(`Starting at block height ${localHeight}.`);
-	//
-	// const alreadyDownloaded: Set<number> = new Set();
-	// (await database.alreadyDownloadedBlocks(localHeight, remoteHeight)).forEach((downloaded) =>
-	// 	alreadyDownloaded.add(downloaded.height),
-	// );
-	//
-	// const range = [...Array(remoteHeight + 1).keys()]
-	// 	.filter((value) => remoteHeight >= value && localHeight <= value)
-	// 	.filter((value) => !alreadyDownloaded.has(value));
-	//
-	// for (const blockHeight of range) {
-	// 	void downloadQueue.add(async () => database.storePendingBlock(await client.blockWithTransactions(blockHeight)));
-	// }
-	//
-	// let busy = false;
-	// setInterval(async () => {
-	// 	if (!busy) {
-	// 		busy = true;
-	// 		await processPendingBlocks(logger, database);
-	// 		busy = false;
-	// 	}
-	// }, 5000); // Every 5 seconds
+	useProcessor(flags, logger, database);
 };

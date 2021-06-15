@@ -14,14 +14,8 @@ export class ProcessingWorker {
 		this.#database = database;
 
 		const processingQueueEvents = new QueueEvents("block-processing");
-		processingQueueEvents.on("completed", (jobId) => {
-			this.#logger.info("done processing");
-		});
 		processingQueueEvents.on("failed", (jobId, err) => {
 			this.#logger.error("error processing", err);
-		});
-		processingQueueEvents.on("drained", (job: Job) => {
-			this.#logger.info(`processing queue is drained, no more jobs left`);
 		});
 
 		new Worker(
