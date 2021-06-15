@@ -7,7 +7,7 @@ module.exports = {
 		"source/**/*.ts",
 		"!source/**/index.ts",
 		"!**/node_modules/**",
-		"!source/(container|contracts|manifest|schema|service-provider).ts",
+		"!source/(container|contracts|manifest|schema|service-provider|dto|repositories).ts",
 	],
 	coverageDirectory: "<rootDir>/.coverage",
 	coverageReporters: ["json", "lcov", "text", "clover", "html"],
