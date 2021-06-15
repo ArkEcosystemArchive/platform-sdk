@@ -1,12 +1,12 @@
 import { Interfaces, Transactions } from "@arkecosystem/crypto";
-import { MultiSignatureSigner } from "@arkecosystem/multi-signature";
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
-import { Bindings } from "./coin.contract";
+import { BindingType } from "./coin.contract";
 import { applyCryptoConfiguration } from "./config";
+import { MultiSignatureSigner } from "./multi-signature.signer";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
@@ -22,13 +22,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.PublicKeyService)
 	private readonly publicKeyService!: Services.PublicKeyService;
 
-	@IoC.inject(Bindings.MultiSignatureSigner)
+	@IoC.inject(BindingType.MultiSignatureSigner)
 	private readonly multiSignatureSigner!: MultiSignatureSigner;
 
-	@IoC.inject(Bindings.Crypto)
+	@IoC.inject(BindingType.Crypto)
 	private readonly packageCrypto!: Interfaces.NetworkConfig;
 
-	@IoC.inject(Bindings.Height)
+	@IoC.inject(BindingType.Height)
 	private readonly packageHeight!: number;
 
 	// @TODO: remove or inject

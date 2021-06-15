@@ -1,16 +1,16 @@
 import { Managers, Transactions, Interfaces, Identities, Enums } from "@arkecosystem/crypto";
 import { IoC } from "@arkecosystem/platform-sdk";
 
-import { Bindings } from "./coin.contract";
+import { BindingType } from "./coin.contract";
 import { MultiSignatureAsset, MultiSignatureTransaction } from "./multi-signature.contract";
 import { PendingMultiSignatureTransaction } from "./multi-signature.transaction";
 
 @IoC.injectable()
 export class MultiSignatureSigner {
-	@IoC.inject(Bindings.Crypto)
+	@IoC.inject(BindingType.Crypto)
 	private readonly config!: Interfaces.NetworkConfig;
 
-	@IoC.inject(Bindings.Height)
+	@IoC.inject(BindingType.Height)
 	private readonly height!: number;
 
 	@IoC.postConstruct()

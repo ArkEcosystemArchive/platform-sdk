@@ -2,11 +2,11 @@ import { Interfaces } from "@arkecosystem/crypto";
 import { WIF as BaseWIF } from "@arkecosystem/crypto-identities";
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { Bindings } from "./coin.contract";
+import { BindingType } from "./coin.contract";
 
 @IoC.injectable()
 export class WIFService extends Services.AbstractWIFService {
-	@IoC.inject(Bindings.Crypto)
+	@IoC.inject(BindingType.Crypto)
 	private readonly config!: Interfaces.NetworkConfig;
 
 	public override async fromMnemonic(
