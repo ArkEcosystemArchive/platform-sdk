@@ -61,7 +61,7 @@ export class DownloadWorker {
 				if (job.name === "download-request") {
 					const downloaded = await client.blockWithTransactions(job.data.height);
 					await this.#processingQueue.add("processing-request", downloaded, {
-						priority: job.data.height,
+						priority: job.data.height, // Adding with priority is expensive: O(n) on queue size
 					});
 					return job.data.height;
 				}
