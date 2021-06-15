@@ -1,33 +1,22 @@
-import "jest-extended";
+import { Storage } from "./env.models";
 
-import { readFileSync, writeFileSync } from "fs";
-import { resolve } from "path";
+export class MemoryStorage implements Storage {
+	#storage: Record<string, unknown> = {};
 
-import { Storage } from "../../source/env.models";
-
-export class StubStorage implements Storage {
-	readonly #storage;
-
-	public constructor() {
-		try {
-			this.#storage = JSON.parse(readFileSync(resolve(__dirname, "env.json")).toString());
-		} catch {
-			this.#storage = {};
-		}
+	public constructor(data?: any) {
+		this.#storage = data || {};
 	}
 
 	public async all<T = Record<string, unknown>>(): Promise<T> {
-		return this.#storage;
+		return this.#storage as T;
 	}
 
 	public async get<T = any>(key: string): Promise<T | undefined> {
-		return this.#storage[key];
+		return this.#storage[key] as T;
 	}
 
 	public async set(key: string, value: string | object): Promise<void> {
 		this.#storage[key] = value;
-
-		writeFileSync(resolve(__dirname, "env.json"), JSON.stringify(this.#storage));
 	}
 
 	public async has(key: string): Promise<boolean> {
@@ -35,15 +24,15 @@ export class StubStorage implements Storage {
 	}
 
 	public async forget(key: string): Promise<void> {
-		//
+		delete this.#storage[key];
 	}
 
 	public async flush(): Promise<void> {
-		//
+		this.#storage = {};
 	}
 
 	public async count(): Promise<number> {
-		return 0;
+		return Object.keys(this.#storage).length;
 	}
 
 	public async snapshot(): Promise<void> {
