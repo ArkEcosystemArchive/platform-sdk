@@ -83,7 +83,8 @@ export class Database {
 	public async storePendingBlock(block: any): Promise<void> {
 		await this.#database.any(
 			`INSERT INTO pending_blocks (height, payload)
-       VALUES ($1, $2)`,
+       VALUES ($1, $2)
+       ON CONFLICT DO NOTHING`,
 			[block.height, block],
 		);
 	}
@@ -91,9 +92,9 @@ export class Database {
 	public async alreadyDownloadedBlocks(min: number, max: number): Promise<{ height: number }[]> {
 		return await this.#database.any(
 			`SELECT height
-			 FROM pending_blocks
+       FROM pending_blocks
        WHERE (height >= $1 AND height <= $2)
-			 ORDER BY HEIGHT`,
+       ORDER BY height`,
 			[min, max],
 		);
 	}
@@ -114,7 +115,6 @@ export class Database {
 
 			if (block.tx) {
 				for (const transaction of block.tx) {
-					this.#logger.info(`Storing transaction [${transaction.txid}]`);
 					await this.#storeTransaction(block.height, transaction);
 				}
 			}
@@ -133,7 +133,8 @@ export class Database {
 	async #storeBlock(block): Promise<void> {
 		await this.#database.any(
 			`INSERT INTO blocks (height, hash)
-       VALUES ($1, $2)`,
+       VALUES ($1, $2)
+       ON CONFLICT DO NOTHING`,
 			[block.height, block.hash],
 		);
 	}
@@ -163,8 +164,8 @@ export class Database {
 		if (hashes.length > 0) {
 			const read = await this.#database.any(
 				`SELECT output_hash, output_idx, amount
-				 FROM transaction_parts
-				 WHERE output_hash IN (${hashes.map((h, i) => `$${i + 1}`).join(",")})`,
+         FROM transaction_parts
+         WHERE output_hash IN (${hashes.map((h, i) => `$${i + 1}`).join(",")})`,
 				hashes,
 			);
 
@@ -183,14 +184,16 @@ export class Database {
 
 		await this.#database.none(
 			`INSERT INTO transactions (block_id, hash, time, amount, fee)
-			   VALUES ($1, $2, $3, $4, $5)`,
+       VALUES ($1, $2, $3, $4, $5)
+       ON CONFLICT DO NOTHING`,
 			[blockId, transaction.txid, transaction.time, BigInt(amount.toString()), BigInt(fee.toString())],
 		);
 
 		for (const output of outputs) {
 			await this.#database.none(
 				`INSERT INTO transaction_parts (output_hash, output_idx, amount, address)
-					 VALUES ($1, $2, $3, $4)`,
+         VALUES ($1, $2, $3, $4)
+         ON CONFLICT DO NOTHING`,
 				[transaction.txid, output.idx, BigInt(amount.toString()), JSON.stringify(output.addresses)],
 			);
 		}
@@ -199,17 +202,16 @@ export class Database {
 		for (const input of inputs) {
 			await this.#database.none(
 				`UPDATE transaction_parts
-					 SET input_hash = $1,
-					 input_idx = $2
-				   WHERE output_hash = $3
-           AND output_idx = $4`,
+         SET input_hash = $1,
+             input_idx = $2
+         WHERE output_hash = $3
+         AND output_idx = $4`,
 				[transaction.txid, i++, input.txid, input.vout],
 			);
 		}
 	}
 
 	async runMigrations() {
-		// TODO properly reference migration file
 		await this.#database.any(
 			fs.readFileSync(path.resolve(__dirname, "../migrations/create_initial_tables.sql"), "utf8"),
 		);

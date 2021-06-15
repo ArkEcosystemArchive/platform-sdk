@@ -14,7 +14,7 @@ import { Flags } from "./types";
 export const subscribe = async (flags: Flags): Promise<void> => {
 	const logger: Logger = useLogger();
 	const database = useDatabase(flags, logger);
-	const client = useClient(flags);
+	const client = useClient(flags, logger);
 
 	await database.runMigrations();
 
