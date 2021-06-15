@@ -59,9 +59,7 @@ describe("DelegateService", () => {
 
 	it("should sync the delegates only one page", async () => {
 		nock.cleanAll();
-		nock(/.+/)
-			.get("/api/delegates")
-			.reply(200, require("../test/fixtures/client/delegates-single-page.json"));
+		nock(/.+/).get("/api/delegates").reply(200, require("../test/fixtures/client/delegates-single-page.json"));
 
 		expect(() => subject.all("ARK", "ark.devnet")).toThrowError("have not been synchronized yet");
 

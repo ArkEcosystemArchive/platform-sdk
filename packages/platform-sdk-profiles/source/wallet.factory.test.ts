@@ -48,10 +48,7 @@ beforeEach(async () => {
 		.get("/api/node/syncing")
 		.reply(200, require("../test/fixtures/coins/ark/mainnet/syncing.json"))
 		.get("/api/wallets/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX")
-		.reply(
-			200,
-			require("../test/fixtures/coins/ark/mainnet/wallets/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX.json"),
-		)
+		.reply(200, require("../test/fixtures/coins/ark/mainnet/wallets/AdVSe37niA3uFUPgCgMUH2tMsHF4LpLoiX.json"))
 		.persist();
 });
 

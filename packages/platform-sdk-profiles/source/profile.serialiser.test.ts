@@ -4,12 +4,7 @@ import "reflect-metadata";
 import nock from "nock";
 
 import { identity } from "../test/fixtures/identity";
-import {
-	bootContainer,
-	importByAddressWithDerivationPath,
-	importByMnemonic,
-	generateWallet,
-} from "../test/mocking";
+import { bootContainer, importByAddressWithDerivationPath, importByMnemonic, generateWallet } from "../test/mocking";
 import { Profile } from "./profile";
 import { IProfile, ProfileSetting } from "./contracts";
 import { ProfileSerialiser } from "./profile.serialiser";
