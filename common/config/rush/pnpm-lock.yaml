@@ -178,7 +178,6 @@ importers:
       '@arkecosystem/crypto': 3.0.0-next.23
       '@arkecosystem/crypto-identities': 1.1.1
       '@arkecosystem/ledger-transport': 2.0.0
-      '@arkecosystem/multi-signature': 0.1.5
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
       '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
@@ -229,7 +228,6 @@ importers:
       '@arkecosystem/crypto': ^3.0.0-next.23
       '@arkecosystem/crypto-identities': ^1.1.1
       '@arkecosystem/ledger-transport': ^2.0.0
-      '@arkecosystem/multi-signature': ^0.1.5
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
       '@arkecosystem/platform-sdk-http': workspace:*
@@ -613,6 +611,7 @@ importers:
       '@arkecosystem/utils': 1.3.0
       '@konceiver/foreman': 2.0.2
       better-sqlite3: 7.1.5
+      bullmq: 1.34.0
       env-paths: 2.2.1
       execa: 5.0.0
       fs-extra: 9.1.0
@@ -677,6 +676,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^4.22.0
       '@typescript-eslint/parser': ^4.22.0
       better-sqlite3: ^7.1.5
+      bullmq: ~1.34.0
       cross-env: ^7.0.3
       env-paths: ^2.2.1
       eslint: ^7.25.0
@@ -3513,31 +3513,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-DCdjquY3IKWYqRD3d1gLZI4wK3AqhFcJuhcnGiPOhxjRXNJ8S8mOxfgvbwYQI5LysnP0P4nrrVE4VvIRFl40iA==
-  /@arkecosystem/crypto/2.7.25:
-    dependencies:
-      '@arkecosystem/utils': 1.3.0
-      '@types/bytebuffer': 5.0.42
-      ajv: 6.12.6
-      ajv-keywords: 3.5.2_ajv@6.12.6
-      bcrypto: 5.4.0
-      bip32: 2.0.6
-      bip39: 3.0.4
-      browserify-aes: 1.2.0
-      bstring: 0.3.9
-      buffer-xor: 2.0.2
-      bytebuffer: 5.0.1
-      dayjs: 1.10.4
-      deepmerge: 4.2.2
-      fast-memoize: 2.5.2
-      ipaddr.js: 1.9.1
-      lodash.get: 4.4.2
-      lodash.set: 4.3.2
-      lodash.sumby: 4.6.0
-      tiny-glob: 0.2.8
-      wif: 2.0.6
-    dev: false
-    resolution:
-      integrity: sha512-hcTN5EUEnlfAO1PdFnysMPTLCBp4IdQZ0MSI9HweByK/dDZpFbVwh0Xc+Z3yhRimDN5ASB6lfxNdlZAKNhQVQA==
   /@arkecosystem/crypto/3.0.0-next.23:
     dependencies:
       '@arkecosystem/crypto-identities': 1.1.1
@@ -3570,14 +3545,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-PeqzDwebeWvQf+j6/p84wO8aTdIP+YvBoGcJlFWibErxMf2v1AYSNu+yHSRCZPxF+Fz9SOHetnrrebWbHph8zg==
-  /@arkecosystem/multi-signature/0.1.5:
-    dependencies:
-      '@arkecosystem/crypto': 2.7.25
-    dev: false
-    engines:
-      node: '>=12.x'
-    resolution:
-      integrity: sha512-IhVwOobaphmaSi9K2BffFrOfPvZTl4Mpsoo7OJjN07PrkutDUVkp/ugD/rzY6ecsxfGZxob+xfg8Y9BZinDIuQ==
   /@arkecosystem/utils/1.3.0:
     dependencies:
       '@hapi/bourne': 2.0.0
@@ -5795,13 +5762,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-yfAgiWgVLjFCmRv8zAcOIHywYATEwiTVccTLnRp6UxTNavT55M9d/uhK3T03St/+8/z/wW+CRjGKUNmEqoHHCA==
-  /@types/bytebuffer/5.0.42:
-    dependencies:
-      '@types/long': 4.0.1
-      '@types/node': 14.14.43
-    dev: false
-    resolution:
-      integrity: sha512-lEgKojWUAc/MG2t649oZS5AfYFP2xRNPoDuwDBlBMjHXd8MaGPgFgtCXUK7inZdBOygmVf10qxc1Us8GXC96aw==
   /@types/cacheable-request/6.0.1:
     dependencies:
       '@types/http-cache-semantics': 4.0.0
@@ -5899,6 +5859,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-DmZDpSVnsuBrOhtHwE1oKmUJ3qVjHhhNQ7WnZy9/RhH3A24Ar+9o4SoaCWcTzQhalpRDIAMsfdoZLWNJtdBR7A==
+  /@types/ioredis/4.26.4:
+    dependencies:
+      '@types/node': 14.14.43
+    dev: false
+    resolution:
+      integrity: sha512-QFbjNq7EnOGw6d1gZZt2h26OFXjx7z+eqEnbCHSrDI1OOLEgOHMKdtIajJbuCr9uO+X9kQQRe7Lz6uxqxl5XKg==
   /@types/istanbul-lib-coverage/2.0.3:
     dev: true
     resolution:
@@ -7614,6 +7580,19 @@ packages:
     dev: true
     resolution:
       integrity: sha1-y5T662HIaWRR2zZTThQi+U8K7og=
+  /bullmq/1.34.0:
+    dependencies:
+      '@types/ioredis': 4.26.4
+      cron-parser: 2.18.0
+      get-port: 5.1.1
+      ioredis: 4.27.6
+      lodash: 4.17.21
+      semver: 6.3.0
+      tslib: 1.14.1
+      uuid: 8.3.2
+    dev: false
+    resolution:
+      integrity: sha512-aNOB1RCBVGE+53b+fc1r39geeXBXlbB9N0eMId26iqjyICe0VfkoaVjWOqX6vcrDP7rUwVZr6/pw/l5PYnbP+w==
   /bytebuffer/5.0.1:
     dependencies:
       long: 3.2.0
@@ -7975,6 +7954,12 @@ packages:
       node: '>=0.8'
     resolution:
       integrity: sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
+  /cluster-key-slot/1.1.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-2Nii8p3RwAPiFwsnZvukotvow2rIHM+yQ6ZcBXGHdniadkYGZYiGmkHJIbZPIV9nfv7m/U1IPMVVcAhoWFeklw==
   /co/4.6.0:
     dev: true
     engines:
@@ -8221,6 +8206,15 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-Ngq2RBf90N3G7MfhaMGghdtKLSbJQFYAkWRpVXRRoxr1vLL2ArJo6RibcyAxKNz9N51tudljfobX6SCCcuXV1A==
+  /cron-parser/2.18.0:
+    dependencies:
+      is-nan: 1.3.2
+      moment-timezone: 0.5.33
+    dev: false
+    engines:
+      node: '>=0.8'
+    resolution:
+      integrity: sha512-s4odpheTyydAbTBQepsqd2rNWGa2iV3cyo8g7zbI2QQYGLVsfbhmwukayS1XHppe02Oy1fg7mg6xoaraVJeEcg==
   /cross-env/7.0.3:
     dependencies:
       cross-spawn: 7.0.3
@@ -8539,6 +8533,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-m4MZR3wOX4rrPONXrjBfwl6hzSs=
+  /denque/1.5.0:
+    dev: false
+    engines:
+      node: '>=0.10'
+    resolution:
+      integrity: sha512-CYiCSgIF1p6EUByQPlGkKnP1M9g0ZV3qMIrqMqZqdwazygIA/YP2vrbcyl1h/WppKJTdl1F85cXIle+394iDAQ==
   /depd/1.1.2:
     engines:
       node: '>= 0.6'
@@ -10012,6 +10012,12 @@ packages:
       node: '>=8.0.0'
     resolution:
       integrity: sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
+  /get-port/5.1.1:
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==
   /get-prototype-of/0.0.0:
     dev: false
     resolution:
@@ -10117,10 +10123,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-rHtdA6+PDBIjeEvA91rpqzEvk/k3/i7EeNQiryiWuJH0Hw9cpyJMAt2jtbAwUaRdhD+573X4vWw6IcjKPasi9Q==
-  /globalyzer/0.1.0:
-    dev: false
-    resolution:
-      integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==
   /globby/11.0.3:
     dependencies:
       array-union: 2.1.0
@@ -10134,10 +10136,6 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-ffdmosjA807y7+lA1NM0jELARVmYul/715xiILEjo3hBLPTcirgQNnXECn5g3mtR8TOLCVbkfua1Hpen25/Xcg==
-  /globrex/0.1.2:
-    dev: false
-    resolution:
-      integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==
   /got/10.7.0:
     dependencies:
       '@sindresorhus/is': 2.1.1
@@ -10609,6 +10607,23 @@ packages:
     dev: false
     resolution:
       integrity: sha512-j8grHGDzv1v+8T1sAQ+3boTCntFPfvxLCkNcxB1J8qA0lUN+fAlSyYd+RXKvaPRL4AGyPxViutBEJHNXOyUdFQ==
+  /ioredis/4.27.6:
+    dependencies:
+      cluster-key-slot: 1.1.0
+      debug: 4.3.1
+      denque: 1.5.0
+      lodash.defaults: 4.2.0
+      lodash.flatten: 4.4.0
+      p-map: 2.1.0
+      redis-commands: 1.7.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
+      standard-as-callback: 2.1.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-6W3ZHMbpCa8ByMyC1LJGOi7P2WiOKP9B3resoZOVLDhi+6dDBOW+KNsRq3yI36Hmnb2sifCxHX+YSarTeXh48A==
   /ip-regex/4.3.0:
     dev: false
     engines:
@@ -12100,8 +12115,11 @@ packages:
     dev: false
     resolution:
       integrity: sha1-3bG7s+8HRYwBd7oH3hRCLLAz/5s=
+  /lodash.defaults/4.2.0:
+    dev: false
+    resolution:
+      integrity: sha1-0JF4cW/+pN3p5ft7N/bwgCJ0WAw=
   /lodash.flatten/4.4.0:
-    dev: true
     resolution:
       integrity: sha1-8xwiIlqWMtK7+OSt2+8kCqdlph8=
   /lodash.get/4.4.2:
@@ -12147,10 +12165,6 @@ packages:
   /lodash.set/4.3.2:
     resolution:
       integrity: sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM=
-  /lodash.sumby/4.6.0:
-    dev: false
-    resolution:
-      integrity: sha1-fYdzfdshbaL35efNLdnEA6eIc0Y=
   /lodash.toarray/4.4.0:
     dev: false
     resolution:
@@ -12630,6 +12644,16 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-SxIiD2yE/By79p3cNAAXyLQWTvEFNEzcAO7PH+DzRqKSFaplAPFjiQLmw8ofmpCsZf+Rhfn2/xCJagpdGmYdTw==
+  /moment-timezone/0.5.33:
+    dependencies:
+      moment: 2.29.1
+    dev: false
+    resolution:
+      integrity: sha512-PTc2vcT8K9J5/9rDEPe5czSIKgLoGsH8UNpA4qZTVw0Vd/Uz19geE9abbIOQKaAQFcnQ3v5YEXrbSc5BpshH+w==
+  /moment/2.29.1:
+    dev: false
+    resolution:
+      integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
   /mri/1.1.4:
     dev: false
     engines:
@@ -13352,6 +13376,12 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==
+  /p-map/2.1.0:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-y3b8Kpd8OAN444hxfBbFfj1FY/RjtTd8tzYwhUqNYXx0fXx2iX4maP4Qr6qhIKbQXI02wTLAda4fYUbDagTUFw==
   /p-map/4.0.0:
     dependencies:
       aggregate-error: 3.1.0
@@ -14253,6 +14283,24 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==
+  /redis-commands/1.7.0:
+    dev: false
+    resolution:
+      integrity: sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==
+  /redis-errors/1.2.0:
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-62LSrbFeTq9GEMBK/hUpOEJQq60=
+  /redis-parser/3.0.0:
+    dependencies:
+      redis-errors: 1.2.0
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-tm2CjNyv5rS4pCin3vTGvKwxyLQ=
   /reflect-metadata/0.1.13:
     dev: false
     resolution:
@@ -14712,7 +14760,6 @@ packages:
     resolution:
       integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
   /semver/6.3.0:
-    dev: true
     hasBin: true
     resolution:
       integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
@@ -15121,6 +15168,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-gL//fkxfWUsIlFL2Tl42Cl6+HFALEaB1FU76I/Fy+oZjRreP7OPMXFlGbxM7NQsI0ZpUfw76sHnv0WNYuTb7Iw==
+  /standard-as-callback/2.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==
   /static-extend/0.1.2:
     dependencies:
       define-property: 0.2.5
@@ -15488,13 +15539,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-8y6srFoXW+ol1/q1Zas+2HQe9W8=
-  /tiny-glob/0.2.8:
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
-    dev: false
-    resolution:
-      integrity: sha512-vkQP7qOslq63XRX9kMswlby99kyO5OvKptw7AMwBVMjXEI7Tb61eoI5DydyEMOseyGS5anDN1VPoVxEvH01q8w==
   /tiny-secp256k1/1.1.6:
     dependencies:
       bindings: 1.5.0

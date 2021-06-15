@@ -391,6 +391,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "bullmq",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "cardano-crypto.js",
       "allowedCategories": [ "libraries" ]
     },
