@@ -90,5 +90,4 @@ describe("SignedTransactionData", () => {
 	test("#isMultiSignatureRegistration", () => {
 		expect(subject.isMultiSignatureRegistration()).toBeFalse();
 	});
-
 });

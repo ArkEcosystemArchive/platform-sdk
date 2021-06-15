@@ -18,7 +18,7 @@ beforeEach(() => {
 				{
 					destination: "0xfoobar",
 					amount: "4206900000",
-				}
+				},
 			],
 			_fee: "6",
 			created_at: "1970-01-01T00:00:00.000Z",
