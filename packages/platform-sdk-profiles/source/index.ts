@@ -1,8 +1,8 @@
 import "reflect-metadata";
 
-export * from "./environment/container.models";
-export * from "./environment/env.models";
-export * from "./environment/env";
+export * from "./container.models";
+export * from "./env.models";
+export * from "./env";
 
 export * as Contracts from "./contracts";
 export * as DTO from "./dto";

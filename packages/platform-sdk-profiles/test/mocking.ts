@@ -8,15 +8,15 @@ import { ETH } from "@arkecosystem/platform-sdk-eth";
 import { Request } from "@arkecosystem/platform-sdk-http-got";
 import nock from "nock";
 
-import { container } from "../source/environment/container";
-import { Profile } from "../source/drivers/memory/profiles/profile";
+import { container } from "../source/container";
+import { Profile } from "../source/profile";
 import { StubStorage } from "./stubs/storage";
 import { IProfile, IReadWriteWallet } from "../source/contracts";
-import { WalletFactory } from "../source/drivers/memory/wallets/wallet.factory";
-import { MemoryDriver } from "../source/drivers/memory";
+import { WalletFactory } from "../source/wallet.factory";
+import { DriverFactory } from "../source/driver";
 
 export const bootContainer = (): void => {
-	new MemoryDriver().make(container, {
+	DriverFactory.make(container, {
 		coins: { ADA, ARK, BTC, ETH },
 		storage: new StubStorage(),
 		httpClient: new Request(),
