@@ -18,7 +18,10 @@ export const createService = <T = any>(service: any, network: string = "ark.devn
 			}
 
 			if (container.missing(BindingType.Height)) {
-				container.constant(BindingType.Height, require(`${__dirname}/fixtures/client/syncing.json`).data.height);
+				container.constant(
+					BindingType.Height,
+					require(`${__dirname}/fixtures/client/syncing.json`).data.height,
+				);
 			}
 
 			if (predicate) {
