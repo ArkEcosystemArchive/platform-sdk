@@ -168,11 +168,10 @@ export class Database {
          WHERE output_hash IN (${hashes.map((h, i) => `$${i + 1}`).join(",")})`,
 				hashes,
 			);
-
 			if (read) {
 				const byHashAndIdx = (readElements) =>
 					readElements.reduce((carry, element) => {
-						carry[element["output_hash"] + element["output_idx"]] = BigNumber.make(element["amount"]);
+						carry[element["output_hash"] + '|' + element["output_idx"]] = BigNumber.make(element["amount"]);
 						return carry;
 					}, {});
 
