@@ -1,9 +1,10 @@
 import { Job, Queue, QueueEvents, QueueScheduler, Worker } from "bullmq";
-import { Flags } from "./types";
-import { Logger } from "./logger";
-import { Client } from "./client";
 import fs from "fs";
 import path from "path";
+
+import { Client } from "./client";
+import { Logger } from "./logger";
+import { Flags } from "./types";
 
 const createRange = (start: number, size: number) => Array.from({ length: size }, (_, i) => i + size * start);
 
@@ -46,16 +47,16 @@ export class DownloadWorker {
 			},
 		});
 
-		const queueScheduler = new QueueScheduler('block-downloads');
-		queueScheduler.on('stalled', (jobId: string, prev: string) => {
+		const queueScheduler = new QueueScheduler("block-downloads");
+		queueScheduler.on("stalled", (jobId: string, prev: string) => {
 			this.#logger.info("stalled", jobId, prev);
 		});
-		queueScheduler.on('failed', (jobId: string, failedReason: Error, prev: string) => {
+		queueScheduler.on("failed", (jobId: string, failedReason: Error, prev: string) => {
 			this.#logger.info("failed", jobId, failedReason, prev);
 		});
 
 		const downloadQueueEvents = new QueueEvents("block-downloads");
-		downloadQueueEvents.on('completed', (jobId) => {
+		downloadQueueEvents.on("completed", (jobId) => {
 			this.#logger.error("finished downloading", jobId.jobId);
 		});
 		downloadQueueEvents.on("failed", (jobId, err) => {
@@ -83,7 +84,7 @@ export class DownloadWorker {
 	}
 
 	public async seedJobs() {
-		if (await this.#downloadingQueue.count() > 2000) {
+		if ((await this.#downloadingQueue.count()) > 2000) {
 			return;
 		}
 
@@ -94,13 +95,14 @@ export class DownloadWorker {
 		const end: number = Math.min(lastDownloaded + 1000, lastRemote);
 		console.error("start", start, "end", end);
 		for (let i = start; i < end; i++) {
-			await this.#downloadingQueue.add( "download-request",
-				 {
+			await this.#downloadingQueue.add(
+				"download-request",
+				{
 					height: i,
 				},
 				{
 					jobId: `download-request-${i}`,
-				}
+				},
 			);
 		}
 		this.storeLastDownloaded(end);

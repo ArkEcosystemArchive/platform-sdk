@@ -171,7 +171,7 @@ export class Database {
 			if (read) {
 				const byHashAndIdx = (readElements) =>
 					readElements.reduce((carry, element) => {
-						carry[element["output_hash"] + '|' + element["output_idx"]] = BigNumber.make(element["amount"]);
+						carry[element["output_hash"] + "|" + element["output_idx"]] = BigNumber.make(element["amount"]);
 						return carry;
 					}, {});
 

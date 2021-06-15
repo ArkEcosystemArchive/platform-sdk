@@ -5,7 +5,5 @@ const { startDownloaderDaemon, startProcessingDaemon } = require("../distributio
 const { flags } = require("./meow");
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-if (flags.downloader)
-	(async () => startDownloaderDaemon(flags))();
-else
-	(async () => startProcessingDaemon(flags))();
+if (flags.downloader) (async () => startDownloaderDaemon(flags))();
+else (async () => startProcessingDaemon(flags))();

@@ -1,8 +1,8 @@
+import { Client } from "./client";
+import { Database } from "./database";
 import { useClient, useDatabase, useDownloader, useLogger, useProcessor } from "./factories";
 import { Logger } from "./logger";
 import { Flags } from "./types";
-import { Database } from "./database";
-import { Client } from "./client";
 
 /**
  * Start a downloader daemon

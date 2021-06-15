@@ -28,9 +28,11 @@ export const getFees = (transaction, outputs): BigNumber => {
 	const inputAmount: BigNumber = transaction.vin
 		.filter((input) => input.txid !== undefined && input.vout !== undefined)
 		.reduce((carry: BigNumber, input) => {
-			const output = outputs[input.txid + '|' + input.vout];
+			const output = outputs[input.txid + "|" + input.vout];
 			if (!output) {
-				throw new Error(`Couldn't find utxo from prior transaction [hash: ${input.txid}, idx: ${input.vout}]. Most likely trying to process out of sequence.`);
+				throw new Error(
+					`Couldn't find utxo from prior transaction [hash: ${input.txid}, idx: ${input.vout}]. Most likely trying to process out of sequence.`,
+				);
 			}
 			return carry.plus(output);
 		}, BigNumber.ZERO);
