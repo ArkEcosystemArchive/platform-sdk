@@ -126,6 +126,10 @@ export abstract class AbstractTransactionData implements TransactionData {
 		return true;
 	}
 
+	public isReturn(): boolean {
+		return this.isSent() && this.isReceived();
+	}
+
 	public isSent(): boolean {
 		return false;
 	}
