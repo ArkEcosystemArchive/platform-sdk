@@ -33,7 +33,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		const unsignedTransaction = {
 			sender: input.signatory.address(),
 			receiver: input.data.to,
-			value: Balance.egld(input.data.amount),
+			value: input.data.amount,
 			gasPrice: input.fee as unknown as number,
 			gasLimit: input.feeLimit as unknown as number,
 			data: input.data.memo,

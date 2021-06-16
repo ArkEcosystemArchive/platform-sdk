@@ -62,4 +62,32 @@ describe("SignedTransactionData", () => {
 	test("#timestamp", () => {
 		expect(subject.timestamp()).toEqual(DateTime.make("2020-08-19T03:08:03.000Z"));
 	});
+
+	test("#isTransfer", () => {
+		expect(subject.isTransfer()).toBeFalse();
+	});
+
+	test("#isSecondSignature", () => {
+		expect(subject.isSecondSignature()).toBeFalse();
+	});
+
+	test("#isDelegateRegistration", () => {
+		expect(subject.isDelegateRegistration()).toBeFalse();
+	});
+
+	test("#isVoteCombination", () => {
+		expect(subject.isVoteCombination()).toBeFalse();
+	});
+
+	test("#isVote", () => {
+		expect(subject.isVote()).toBeFalse();
+	});
+
+	test("#isUnvote", () => {
+		expect(subject.isUnvote()).toBeFalse();
+	});
+
+	test("#isMultiSignatureRegistration", () => {
+		expect(subject.isMultiSignatureRegistration()).toBeFalse();
+	});
 });

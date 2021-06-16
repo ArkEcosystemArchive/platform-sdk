@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-news-server",
-	"version": "9.3.10",
+	"version": "9.3.13",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
@@ -35,7 +35,7 @@
 		"@hapi/hapi": "^20.1.2",
 		"@konceiver/foreman": "^2.0.2",
 		"@konceiver/hapi-rate-limiter-flexible": "^1.0.3",
-		"@prisma/client": "^2.24.1",
+		"@prisma/client": "^2.25.0",
 		"joi": "^17.4.0",
 		"meow": "^9.0.0",
 		"uuid": "^8.3.2"
@@ -72,7 +72,7 @@
 		"nock": "^13.0.11",
 		"npm-check-updates": "^11.5.6",
 		"prettier": "^2.3.1",
-		"prisma": "^2.24.1",
+		"prisma": "^2.25.0",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^26.5.5",
 		"typescript": "^4.3.0"

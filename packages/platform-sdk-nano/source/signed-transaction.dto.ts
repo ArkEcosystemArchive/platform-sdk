@@ -8,11 +8,11 @@ export class SignedTransactionData
 	implements Contracts.SignedTransactionData
 {
 	public override sender(): string {
-		return "TODO";
+		return this.signedData.fromAddress;
 	}
 
 	public override recipient(): string {
-		return "TODO";
+		return this.signedData.toAddress;
 	}
 
 	public override amount(): BigNumber {

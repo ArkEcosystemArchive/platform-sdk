@@ -20,7 +20,23 @@ beforeEach(() => {
 });
 
 describe("SignedTransactionData", () => {
+	test("#sender", () => {
+		expect(() => subject.sender()).toThrowError(Exceptions.NotImplemented);
+	});
+
+	test("#recipient", () => {
+		expect(() => subject.recipient()).toThrowError(Exceptions.NotImplemented);
+	});
+
+	test("#amount", () => {
+		expect(() => subject.amount()).toThrowError(Exceptions.NotImplemented);
+	});
+
+	test("#fee", () => {
+		expect(() => subject.fee()).toThrowError(Exceptions.NotImplemented);
+	});
+
 	test("#timestamp", () => {
-		expect(() => subject.timestamp()).toThrow(Exceptions.NotImplemented);
+		expect(() => subject.timestamp()).toThrowError(Exceptions.NotImplemented);
 	});
 });
