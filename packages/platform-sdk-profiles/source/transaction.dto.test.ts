@@ -303,6 +303,18 @@ describe("Transaction", () => {
 		expect(subject.hasFailed()).toBeTrue();
 	});
 
+	test("#isReturn", () => {
+		subject = createSubject(
+			wallet,
+			{
+				isReturn: () => true,
+			},
+			TransactionData,
+		);
+
+		expect(subject.isReturn()).toBeTrue();
+	});
+
 	test("#getMeta | #setMeta", () => {
 		const getMeta = jest.fn();
 		const setMeta = jest.fn();

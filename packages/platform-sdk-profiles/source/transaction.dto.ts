@@ -96,6 +96,10 @@ export class TransactionData {
 		return this.#data.isReceived();
 	}
 
+	public isReturn(): boolean {
+		return this.#data.isReturn();
+	}
+
 	public isTransfer(): boolean {
 		return this.#data.isTransfer();
 	}
