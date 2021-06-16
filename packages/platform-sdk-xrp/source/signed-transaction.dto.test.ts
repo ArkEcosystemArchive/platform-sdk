@@ -1,6 +1,7 @@
 import "jest-extended";
 
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { Exceptions } from "@arkecosystem/platform-sdk";
 
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
@@ -20,6 +21,22 @@ beforeEach(() => {
 });
 
 describe("SignedTransactionData", () => {
+	test("#sender", () => {
+		expect(() => subject.sender()).toThrowError(Exceptions.NotImplemented);
+	});
+
+	test("#recipient", () => {
+		expect(() => subject.recipient()).toThrowError(Exceptions.NotImplemented);
+	});
+
+	test("#amount", () => {
+		expect(() => subject.amount()).toThrowError(Exceptions.NotImplemented);
+	});
+
+	test("#fee", () => {
+		expect(() => subject.fee()).toThrowError(Exceptions.NotImplemented);
+	});
+
 	test("#timestamp", () => {
 		expect(DateTime.make(0).isSame(subject.timestamp())).toBeTrue();
 	});
