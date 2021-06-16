@@ -95,7 +95,7 @@ export class AbstractWalletData {
 	public toHuman(): KeyValuePair {
 		const { available, fees, locked, tokens } = this.balance();
 
-		let balance: {
+		const balance: {
 			available: string;
 			fees: string;
 			locked?: string | undefined;
