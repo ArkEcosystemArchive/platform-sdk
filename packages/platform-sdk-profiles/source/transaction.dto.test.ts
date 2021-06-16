@@ -307,8 +307,7 @@ describe("Transaction", () => {
 		subject = createSubject(
 			wallet,
 			{
-				isSent: () => true,
-				isReceived: () => true,
+				isReturn: () => true,
 			},
 			TransactionData,
 		);
