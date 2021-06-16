@@ -38,11 +38,9 @@ export const subscribe = async (flags: Flags): Promise<void> => {
 	}
 
 	let busy = false;
-	setInterval(async () => {
-		if (!busy) {
-			busy = true;
-			await processPendingBlocks(logger, database);
-			busy = false;
-		}
-	}, 5000); // Every 5 seconds
+	while (!busy) {
+		busy = true;
+		await processPendingBlocks(logger, database);
+		busy = false;
+	}
 };
