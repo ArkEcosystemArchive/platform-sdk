@@ -54,6 +54,8 @@ export interface TransactionData {
 
 	isConfirmed(): boolean;
 
+	isReturn(): boolean;
+
 	isSent(): boolean;
 
 	isReceived(): boolean;

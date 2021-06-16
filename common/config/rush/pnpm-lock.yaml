@@ -178,7 +178,6 @@ importers:
       '@arkecosystem/crypto': 3.0.0-next.23
       '@arkecosystem/crypto-identities': 1.1.1
       '@arkecosystem/ledger-transport': 2.0.0
-      '@arkecosystem/multi-signature': 0.1.5
       '@arkecosystem/platform-sdk': link:../platform-sdk
       '@arkecosystem/platform-sdk-crypto': link:../platform-sdk-crypto
       '@arkecosystem/platform-sdk-http': link:../platform-sdk-http
@@ -229,7 +228,6 @@ importers:
       '@arkecosystem/crypto': ^3.0.0-next.23
       '@arkecosystem/crypto-identities': ^1.1.1
       '@arkecosystem/ledger-transport': ^2.0.0
-      '@arkecosystem/multi-signature': ^0.1.5
       '@arkecosystem/platform-sdk': workspace:*
       '@arkecosystem/platform-sdk-crypto': workspace:*
       '@arkecosystem/platform-sdk-http': workspace:*
@@ -2615,7 +2613,7 @@ importers:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@arkecosystem/utils': 1.3.0
       '@konceiver/foreman': 2.0.2
-      '@prisma/client': 2.24.1_prisma@2.24.1
+      '@prisma/client': 2.25.0_prisma@2.25.0
       env-paths: 2.2.1
       execa: 5.0.0
       meow: 9.0.0
@@ -2650,7 +2648,7 @@ importers:
       nock: 13.0.11
       npm-check-updates: 11.5.9
       prettier: 2.3.1
-      prisma: 2.24.1
+      prisma: 2.25.0
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2659,7 +2657,7 @@ importers:
       '@arkecosystem/utils': ^1.3.0
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ^2.24.1
+      '@prisma/client': ^2.25.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2692,7 +2690,7 @@ importers:
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       prettier: ^2.3.1
-      prisma: ^2.24.1
+      prisma: ^2.25.0
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2701,7 +2699,7 @@ importers:
       '@hapi/hapi': 20.1.2
       '@konceiver/foreman': 2.0.2
       '@konceiver/hapi-rate-limiter-flexible': 1.0.3
-      '@prisma/client': 2.24.1_prisma@2.24.1
+      '@prisma/client': 2.25.0_prisma@2.25.0
       joi: 17.4.0
       meow: 9.0.0
       uuid: 8.3.2
@@ -2737,7 +2735,7 @@ importers:
       nock: 13.0.11
       npm-check-updates: 11.5.9
       prettier: 2.3.1
-      prisma: 2.24.1
+      prisma: 2.25.0
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2747,7 +2745,7 @@ importers:
       '@konceiver/foreman': ^2.0.2
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ^2.24.1
+      '@prisma/client': ^2.25.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2779,7 +2777,7 @@ importers:
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       prettier: ^2.3.1
-      prisma: ^2.24.1
+      prisma: ^2.25.0
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -3513,31 +3511,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-DCdjquY3IKWYqRD3d1gLZI4wK3AqhFcJuhcnGiPOhxjRXNJ8S8mOxfgvbwYQI5LysnP0P4nrrVE4VvIRFl40iA==
-  /@arkecosystem/crypto/2.7.25:
-    dependencies:
-      '@arkecosystem/utils': 1.3.0
-      '@types/bytebuffer': 5.0.42
-      ajv: 6.12.6
-      ajv-keywords: 3.5.2_ajv@6.12.6
-      bcrypto: 5.4.0
-      bip32: 2.0.6
-      bip39: 3.0.4
-      browserify-aes: 1.2.0
-      bstring: 0.3.9
-      buffer-xor: 2.0.2
-      bytebuffer: 5.0.1
-      dayjs: 1.10.4
-      deepmerge: 4.2.2
-      fast-memoize: 2.5.2
-      ipaddr.js: 1.9.1
-      lodash.get: 4.4.2
-      lodash.set: 4.3.2
-      lodash.sumby: 4.6.0
-      tiny-glob: 0.2.8
-      wif: 2.0.6
-    dev: false
-    resolution:
-      integrity: sha512-hcTN5EUEnlfAO1PdFnysMPTLCBp4IdQZ0MSI9HweByK/dDZpFbVwh0Xc+Z3yhRimDN5ASB6lfxNdlZAKNhQVQA==
   /@arkecosystem/crypto/3.0.0-next.23:
     dependencies:
       '@arkecosystem/crypto-identities': 1.1.1
@@ -3570,14 +3543,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-PeqzDwebeWvQf+j6/p84wO8aTdIP+YvBoGcJlFWibErxMf2v1AYSNu+yHSRCZPxF+Fz9SOHetnrrebWbHph8zg==
-  /@arkecosystem/multi-signature/0.1.5:
-    dependencies:
-      '@arkecosystem/crypto': 2.7.25
-    dev: false
-    engines:
-      node: '>=12.x'
-    resolution:
-      integrity: sha512-IhVwOobaphmaSi9K2BffFrOfPvZTl4Mpsoo7OJjN07PrkutDUVkp/ugD/rzY6ecsxfGZxob+xfg8Y9BZinDIuQ==
   /@arkecosystem/utils/1.3.0:
     dependencies:
       '@hapi/bourne': 2.0.0
@@ -5523,13 +5488,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-6A/cteC0B3hm64/xG6DNG8qGsHAXJgAy9wjcB38qnoJGYl12hysIFjPeHD+V0W/LOl9payW6kpZzhisLlVOZpQ==
-  /@prisma/client/2.24.1_prisma@2.24.1:
+  /@prisma/client/2.25.0_prisma@2.25.0:
     dependencies:
-      '@prisma/engines-version': 2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4
-      prisma: 2.24.1
+      '@prisma/engines-version': 2.25.0-36.c838e79f39885bc8e1611849b1eb28b5bb5bc922
+      prisma: 2.25.0
     dev: false
     engines:
-      node: '>=10.16'
+      node: '>=12.2'
     peerDependencies:
       prisma: '*'
     peerDependenciesMeta:
@@ -5537,16 +5502,16 @@ packages:
         optional: true
     requiresBuild: true
     resolution:
-      integrity: sha512-vllhf36g3oI98GF1Q5IPmnR5MYzBPeCcl/Xiz6EAi4DMOxE069o9ka5BAqYbUG2USx8JuKw09QdMnDrp3Kyn8g==
-  /@prisma/engines-version/2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4:
+      integrity: sha512-JDrAJ+oemiYAwgpYNJvCVT59S9bMbqkx78q2OT54xmmBoyYWWnn6t6oS6q8gKMiKHS6rzm/jdh3sy+2E0R+NAQ==
+  /@prisma/engines-version/2.25.0-36.c838e79f39885bc8e1611849b1eb28b5bb5bc922:
     dev: false
     resolution:
-      integrity: sha512-60Do+ByVfHnhJ2id5h/lXOZnDQNIf5pz3enkKWOmyr744Z2IxkBu65jRckFfMN5cPtmXDre/Ay/GKm0aoeLwrw==
-  /@prisma/engines/2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4:
+      integrity: sha512-uZaonv3ZzLYAi99AooOe2BOBmb3k+ibVsJyZ5J3F6U1uFHTtTI9AVzC51mE09iNcgq3ZBt2CZNi5CDQZedMWyA==
+  /@prisma/engines/2.25.0-36.c838e79f39885bc8e1611849b1eb28b5bb5bc922:
     dev: true
     requiresBuild: true
     resolution:
-      integrity: sha512-29/xO9kqeQka+wN5Ev10l5L4XQXNVXdPToJs1M29VZ2imQsNsL4rtz26m3qGM54IoGWwwfTVdvuVRxKnDl2rig==
+      integrity: sha512-vjLCk8AFRZu3D8h/SMcWDzTo0xkMuUDyXQzXekn8gzAGjb47B6LQXGR6rDoZ3/uPM13JNTLPvF62mtVaY6fVeQ==
   /@protobufjs/aspromise/1.1.2:
     dev: false
     resolution:
@@ -5795,13 +5760,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-yfAgiWgVLjFCmRv8zAcOIHywYATEwiTVccTLnRp6UxTNavT55M9d/uhK3T03St/+8/z/wW+CRjGKUNmEqoHHCA==
-  /@types/bytebuffer/5.0.42:
-    dependencies:
-      '@types/long': 4.0.1
-      '@types/node': 14.14.43
-    dev: false
-    resolution:
-      integrity: sha512-lEgKojWUAc/MG2t649oZS5AfYFP2xRNPoDuwDBlBMjHXd8MaGPgFgtCXUK7inZdBOygmVf10qxc1Us8GXC96aw==
   /@types/cacheable-request/6.0.1:
     dependencies:
       '@types/http-cache-semantics': 4.0.0
@@ -10117,10 +10075,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-rHtdA6+PDBIjeEvA91rpqzEvk/k3/i7EeNQiryiWuJH0Hw9cpyJMAt2jtbAwUaRdhD+573X4vWw6IcjKPasi9Q==
-  /globalyzer/0.1.0:
-    dev: false
-    resolution:
-      integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==
   /globby/11.0.3:
     dependencies:
       array-union: 2.1.0
@@ -10134,10 +10088,6 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-ffdmosjA807y7+lA1NM0jELARVmYul/715xiILEjo3hBLPTcirgQNnXECn5g3mtR8TOLCVbkfua1Hpen25/Xcg==
-  /globrex/0.1.2:
-    dev: false
-    resolution:
-      integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==
   /got/10.7.0:
     dependencies:
       '@sindresorhus/is': 2.1.1
@@ -12147,10 +12097,6 @@ packages:
   /lodash.set/4.3.2:
     resolution:
       integrity: sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM=
-  /lodash.sumby/4.6.0:
-    dev: false
-    resolution:
-      integrity: sha1-fYdzfdshbaL35efNLdnEA6eIc0Y=
   /lodash.toarray/4.4.0:
     dev: false
     resolution:
@@ -13917,16 +13863,16 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ==
-  /prisma/2.24.1:
+  /prisma/2.25.0:
     dependencies:
-      '@prisma/engines': 2.24.1-2.18095475d5ee64536e2f93995e48ad800737a9e4
+      '@prisma/engines': 2.25.0-36.c838e79f39885bc8e1611849b1eb28b5bb5bc922
     dev: true
     engines:
-      node: '>=10.4'
+      node: '>=12.2'
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-L+ykMpttbWzpTNsy+PPynnEX/mS1s5zs49euXBrMjxXh1M6/f9MYlTNAj+iP90O9ZSaURSpNa+1jzatPghqUcQ==
+      integrity: sha512-AdAlP+PShvugljIx62Omu+eLKu6Cozz06dehmClIHSb0/yFiVnyBtrRVV4LZus+QX6Ayg7CTDvtzroACAWl+Zw==
   /process-nextick-args/2.0.1:
     resolution:
       integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
@@ -15488,13 +15434,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-8y6srFoXW+ol1/q1Zas+2HQe9W8=
-  /tiny-glob/0.2.8:
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
-    dev: false
-    resolution:
-      integrity: sha512-vkQP7qOslq63XRX9kMswlby99kyO5OvKptw7AMwBVMjXEI7Tb61eoI5DydyEMOseyGS5anDN1VPoVxEvH01q8w==
   /tiny-secp256k1/1.1.6:
     dependencies:
       bindings: 1.5.0

@@ -92,6 +92,39 @@ export class AbstractWalletData {
 		};
 	}
 
+	public toHuman(): KeyValuePair {
+		const { available, fees, locked, tokens } = this.balance();
+
+		const balance: {
+			available: string;
+			fees: string;
+			locked?: string | undefined;
+			tokens?: Record<string, string> | undefined;
+		} = {
+			available: available.toHuman(),
+			fees: fees.toHuman(),
+			locked: undefined,
+			tokens: undefined,
+		};
+
+		if (locked) {
+			balance.locked = locked.toHuman();
+		}
+
+		if (tokens) {
+			balance.tokens = {};
+
+			for (const [key, value] of Object.entries(tokens)) {
+				balance.tokens[key] = value.toHuman();
+			}
+		}
+
+		return {
+			...this.toObject(),
+			balance,
+		};
+	}
+
 	public raw(): KeyValuePair {
 		return this.data;
 	}
