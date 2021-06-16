@@ -54,12 +54,16 @@ export const registerClient = () => [
 	},
 	{
 		name: "client.wallet",
-		async method({ coin, network, id }) {
-			return (await (await makeCoin({ coin, network })).client().wallet(id)).toObject();
+		async method({ coin, network, id, transformer }) {
+			transformer ??= "toHuman";
+
+			return (await (await makeCoin({ coin, network })).client().wallet(id))[transformer]();
 		},
 		schema: Joi.object({
 			...baseSchema,
 			id: Joi.string().required(),
+			// Normalisation
+			transformer: Joi.string().allow("toJSON", "toHuman"),
 		}).required(),
 	},
 	{
