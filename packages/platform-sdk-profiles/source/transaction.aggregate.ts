@@ -3,7 +3,6 @@ import { IProfile, IReadWriteWallet, ITransactionAggregate } from "./contracts";
 import { ExtendedTransactionDataCollection } from "./transaction.collection";
 
 import { ExtendedTransactionData } from "./transaction.dto";
-import { transformTransactionData } from "./transaction.mapper";
 import { promiseAllSettledByKey } from "./helpers/promise";
 
 type HistoryMethod = string;
@@ -95,8 +94,7 @@ export class TransactionAggregate implements ITransactionAggregate {
 			}
 
 			for (const transaction of request.value.items()) {
-				// @ts-ignore - @TODO
-				result.push(transformTransactionData(this.#getWallet(id), transaction));
+				result.push(transaction);
 			}
 
 			this.#history[method][id] = request.value;
