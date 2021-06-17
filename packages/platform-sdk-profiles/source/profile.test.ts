@@ -84,13 +84,11 @@ it("should have a custom avatar in data", () => {
 });
 
 it("should have a balance", () => {
-	expect(subject.balance()).toBeInstanceOf(BigNumber);
-	expect(subject.balance().toString()).toBe("0");
+	expect(subject.balance()).toBe(0);
 });
 
 it("should have a converted balance", () => {
-	expect(subject.convertedBalance()).toBeInstanceOf(BigNumber);
-	expect(subject.convertedBalance().toString()).toBe("0");
+	expect(subject.convertedBalance()).toBe(0);
 });
 
 it("should have a contacts repository", () => {

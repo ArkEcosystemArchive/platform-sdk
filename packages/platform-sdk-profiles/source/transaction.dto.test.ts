@@ -163,7 +163,7 @@ describe("Transaction", () => {
 	});
 
 	it("should have an amount", () => {
-		expect(subject.amount()).toStrictEqual(BigNumber.make(18));
+		expect(subject.amount()).toStrictEqual(18);
 	});
 
 	it("should have a converted amount", async () => {
@@ -178,15 +178,15 @@ describe("Transaction", () => {
 
 		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
-		expect(subject.convertedAmount().toNumber()).toBe(0.0005048);
+		expect(subject.convertedAmount()).toBe(0.0005048);
 	});
 
 	it("should have a default converted amount", () => {
-		expect(subject.convertedAmount().toNumber()).toStrictEqual(0);
+		expect(subject.convertedAmount()).toStrictEqual(0);
 	});
 
 	it("should have a fee", () => {
-		expect(subject.fee().toNumber()).toStrictEqual(2e8);
+		expect(subject.fee()).toStrictEqual(2);
 	});
 
 	it("should have a converted fee", async () => {
@@ -201,11 +201,11 @@ describe("Transaction", () => {
 
 		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
-		expect(subject.convertedFee().toNumber()).toBe(0.0005048);
+		expect(subject.convertedFee()).toBe(0.0005048);
 	});
 
 	it("should have a default converted fee", () => {
-		expect(subject.convertedFee().toNumber()).toStrictEqual(0);
+		expect(subject.convertedFee()).toStrictEqual(0);
 	});
 
 	test("#toObject", () => {
@@ -333,7 +333,7 @@ describe("Transaction", () => {
 	});
 
 	it("should have a total for sent", () => {
-		expect(subject.total().toNumber()).toStrictEqual(20e8);
+		expect(subject.total()).toStrictEqual(20);
 	});
 
 	it("should have a total for unsent", () => {
@@ -343,7 +343,7 @@ describe("Transaction", () => {
 			fee: () => BigNumber.make(2e8, 8),
 			isSent: () => false,
 		});
-		expect(subject.total().toNumber()).toStrictEqual(18e8);
+		expect(subject.total()).toStrictEqual(18);
 	});
 
 	it("should have a converted total", async () => {
@@ -359,11 +359,11 @@ describe("Transaction", () => {
 
 		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
 
-		expect(subject.convertedTotal().toNumber()).toBe(0.0007572);
+		expect(subject.convertedTotal()).toBe(0.0007572);
 	});
 
 	it("should have a default converted total", () => {
-		expect(subject.convertedTotal().toNumber()).toStrictEqual(0);
+		expect(subject.convertedTotal()).toStrictEqual(0);
 	});
 
 	it("should have meta", () => {
@@ -533,14 +533,14 @@ describe("MultiPaymentData", () => {
 		subject = createSubject(
 			wallet,
 			{
-				payments: () => [{ recipient: "recipient", amount: 1000 }],
+				payments: () => [{ recipientId: "recipientId", amount: BigNumber.make(1000, 8).times(1e8) }],
 			},
 			MultiPaymentData,
 		);
 	});
 
 	test("#payments", () => {
-		expect(subject.payments()).toEqual([{ recipient: "recipient", amount: 1000 }]);
+		expect(subject.payments()).toEqual([{ recipientId: "recipientId", amount: 1000 }]);
 	});
 });
 

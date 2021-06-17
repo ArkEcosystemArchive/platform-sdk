@@ -96,10 +96,10 @@ export class AbstractWalletData {
 		const { available, fees, locked, tokens } = this.balance();
 
 		const balance: {
-			available: string;
-			fees: string;
-			locked?: string | undefined;
-			tokens?: Record<string, string> | undefined;
+			available: number;
+			fees: number;
+			locked?: number | undefined;
+			tokens?: Record<string, number> | undefined;
 		} = {
 			available: available.toHuman(),
 			fees: fees.toHuman(),

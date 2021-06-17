@@ -63,7 +63,7 @@ export const accessWallet = async (profile: Contracts.IProfile): Promise<void> =
 	}
 
 	if (command === "balance") {
-		useLogger().info(wallet.balance().toHuman());
+		useLogger().info(wallet.balance());
 	}
 
 	if (command === "list-transactions") {

@@ -34,7 +34,7 @@ describe("SignedTransactionData", () => {
 	});
 
 	test("#amount", () => {
-		expect(subject.amount().toHuman()).toEqual("12500000000");
+		expect(subject.amount().toHuman()).toEqual(12500000000);
 	});
 
 	test("#fee", () => {

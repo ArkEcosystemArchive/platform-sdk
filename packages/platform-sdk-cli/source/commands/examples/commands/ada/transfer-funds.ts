@@ -33,8 +33,8 @@ export const transferFundsWithADA = async (env: Environment): Promise<void> => {
 	profile.wallets().push(wallet2);
 
 	// Display profile and wallet balances
-	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
-	logger.log("Wallet 2", wallet2.address(), "balance", wallet2.balance().toHuman(2));
+	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance());
+	logger.log("Wallet 2", wallet2.address(), "balance", wallet2.balance());
 
 	// Transfer from wallet1 to wallet2
 	const signatory = await wallet1.coin().signatory().mnemonic(mnemonic1);

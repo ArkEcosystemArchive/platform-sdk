@@ -34,7 +34,7 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 			return [];
 		}
 
-		return this.data.asset.payments.map((payment: { recipientId: string; amount: string }) => ({
+		return this.data.asset.payments.map((payment: { recipientId: string; amount: BigNumber }) => ({
 			address: payment.recipientId,
 			amount: this.bigNumberService.make(payment.amount),
 		}));

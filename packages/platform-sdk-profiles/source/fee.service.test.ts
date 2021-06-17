@@ -65,9 +65,9 @@ describe("FeeService", () => {
 
 		const fees = subject.findByType("ARK", "ark.devnet", "transfer");
 
-		expect(fees.min.toString()).toEqual("357000");
-		expect(fees.avg.toString()).toEqual("10000000");
-		expect(fees.max.toString()).toEqual("10000000");
-		expect(fees.static.toString()).toEqual("10000000");
+		expect(fees.min.toHuman()).toEqual(0.00357);
+		expect(fees.avg.toHuman()).toEqual(0.1);
+		expect(fees.max.toHuman()).toEqual(0.1);
+		expect(fees.static.toHuman()).toEqual(0.1);
 	});
 });

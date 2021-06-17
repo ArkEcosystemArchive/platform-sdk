@@ -28,7 +28,7 @@ export const createProfileWithWallets = async (env: Environment): Promise<void> 
 	profile.wallets().push(wallet2);
 
 	// Display profile balance
-	logger.log("Profile balance", profile.balance().toHuman(2));
+	logger.log("Profile balance", profile.balance());
 
 	// Create contact
 	const contact: Contracts.IContact = profile.contacts().create("friend1");

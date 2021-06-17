@@ -36,5 +36,5 @@ test.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])("#make(%s)", async (power) => {
 			.resolve(BigNumberService)
 			.make(`1${"0".repeat(power)}`)
 			.toHuman(),
-	).toBe("1");
+	).toBe(1);
 });

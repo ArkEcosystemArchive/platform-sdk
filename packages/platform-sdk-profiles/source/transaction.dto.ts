@@ -2,7 +2,7 @@
 
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 
 import { IExchangeRateService, IReadWriteWallet } from "./contracts";
 import { container } from "./container";
@@ -51,19 +51,19 @@ export class TransactionData {
 		return this.#data.recipients();
 	}
 
-	public amount(): BigNumber {
-		return this.#data.amount();
+	public amount(): number {
+		return this.#data.amount().toHuman();
 	}
 
-	public convertedAmount(): BigNumber {
+	public convertedAmount(): number {
 		return this.#convertAmount(this.amount());
 	}
 
-	public fee(): BigNumber {
-		return this.#data.fee();
+	public fee(): number {
+		return this.#data.fee().toHuman();
 	}
 
-	public convertedFee(): BigNumber {
+	public convertedFee(): number {
 		return this.#convertAmount(this.fee());
 	}
 
@@ -192,15 +192,15 @@ export class TransactionData {
 	 * These methods serve as helpers to aggregate commonly used values.
 	 */
 
-	public total(): BigNumber {
+	public total(): number {
 		if (this.isSent()) {
-			return this.amount().plus(this.fee());
+			return this.amount() + this.fee();
 		}
 
 		return this.amount();
 	}
 
-	public convertedTotal(): BigNumber {
+	public convertedTotal(): number {
 		return this.#convertAmount(this.total());
 	}
 
@@ -223,16 +223,16 @@ export class TransactionData {
 		return this.#data as unknown as T;
 	}
 
-	#convertAmount(value: BigNumber): BigNumber {
+	#convertAmount(value: number): number {
 		const timestamp: DateTime | undefined = this.timestamp();
 
 		if (timestamp === undefined) {
-			return BigNumber.ZERO;
+			return 0;
 		}
 
 		return container
 			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
-			.exchange(this.wallet().currency(), this.wallet().exchangeCurrency(), timestamp, value.denominated());
+			.exchange(this.wallet().currency(), this.wallet().exchangeCurrency(), timestamp, value);
 	}
 }
 
@@ -282,8 +282,12 @@ export class IpfsData extends TransactionData {
 
 export class MultiPaymentData extends TransactionData {
 	// TODO: expose read-only wallet instances
-	public payments(): { recipientId: string; amount: string }[] {
-		return this.data<Contracts.MultiPaymentData>().payments();
+	public payments(): { recipientId: string; amount: number }[] {
+		// @ts-ignore
+		return this.data<Contracts.MultiPaymentData>().payments().map((payment: { recipientId: string; amount: BigNumber }) => ({
+			recipientId: payment.recipientId,
+			amount: payment.amount.toHuman(),
+		}));
 	}
 }
 

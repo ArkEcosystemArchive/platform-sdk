@@ -19,7 +19,7 @@ beforeEach(() => {
 			method: {
 				args: {
 					dest: "0xfoobar",
-					value: "4206900000000",
+					value: "1200000000000",
 				},
 			},
 			timestamp: "1970-01-01T00:00:00.000Z",
@@ -38,7 +38,7 @@ describe("SignedTransactionData", () => {
 	});
 
 	test("#amount", () => {
-		expect(subject.amount().toHuman()).toEqual("420.69");
+		expect(subject.amount().toHuman()).toEqual(120);
 	});
 
 	test("#fee", () => {
