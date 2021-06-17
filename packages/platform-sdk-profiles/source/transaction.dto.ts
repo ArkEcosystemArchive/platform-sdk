@@ -51,20 +51,20 @@ export class TransactionData {
 		return this.#data.recipients();
 	}
 
-	public amount(): number {
-		return this.#data.amount().toHuman();
+	public amount(): BigNumber {
+		return this.#data.amount();
 	}
 
 	public convertedAmount(): number {
-		return this.#convertAmount(this.amount());
+		return this.#convertAmount(this.amount().toNumber());
 	}
 
-	public fee(): number {
-		return this.#data.fee().toHuman();
+	public fee(): BigNumber {
+		return this.#data.fee();
 	}
 
 	public convertedFee(): number {
-		return this.#convertAmount(this.fee());
+		return this.#convertAmount(this.fee().toNumber());
 	}
 
 	public memo(): string | undefined {
