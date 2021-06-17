@@ -1,6 +1,7 @@
 import "jest-extended";
 import "reflect-metadata";
 
+import { BigNumber } from "@arkecosystem/utils";
 import nock from "nock";
 
 import { identity } from "../test/fixtures/identity";
@@ -53,6 +54,7 @@ describe("TransactionAggregate", () => {
 
 			expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
 			expect(result.items()).toHaveLength(100);
+			expect(result.items()[0].amount()).toBeInstanceOf(BigNumber);
 		});
 
 		it("should not have more transactions", async () => {
