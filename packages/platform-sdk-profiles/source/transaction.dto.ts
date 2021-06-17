@@ -284,10 +284,12 @@ export class MultiPaymentData extends TransactionData {
 	// TODO: expose read-only wallet instances
 	public payments(): { recipientId: string; amount: number }[] {
 		// @ts-ignore
-		return this.data<Contracts.MultiPaymentData>().payments().map((payment: { recipientId: string; amount: BigNumber }) => ({
-			recipientId: payment.recipientId,
-			amount: payment.amount.toHuman(),
-		}));
+		return this.data<Contracts.MultiPaymentData>()
+			.payments()
+			.map((payment: { recipientId: string; amount: BigNumber }) => ({
+				recipientId: payment.recipientId,
+				amount: payment.amount.toHuman(),
+			}));
 	}
 }
 
