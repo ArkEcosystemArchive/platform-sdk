@@ -95,8 +95,7 @@ export class TransactionAggregate implements ITransactionAggregate {
 			}
 
 			for (const transaction of request.value.items()) {
-				// @ts-ignore - @TODO
-				result.push(transformTransactionData(this.#getWallet(id), transaction));
+				result.push(transaction);
 			}
 
 			this.#history[method][id] = request.value;

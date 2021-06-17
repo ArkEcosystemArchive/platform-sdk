@@ -54,7 +54,7 @@ describe("TransactionAggregate", () => {
 
 			expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
 			expect(result.items()).toHaveLength(100);
-			expect(result.items()[0].amount()).toBeInstanceOf(BigNumber);
+			expect(result.items()[0].amount()).toBe(7.99999999);
 		});
 
 		it("should not have more transactions", async () => {
