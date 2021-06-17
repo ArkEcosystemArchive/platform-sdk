@@ -1,5 +1,5 @@
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 
 import { IProfile } from "./contracts";
 
@@ -26,11 +26,11 @@ export interface IExchangeRateService {
 	 * @param {string} currency
 	 * @param {string} exchangeCurrency
 	 * @param {DateTime} date
-	 * @param {BigNumber} value
-	 * @return {BigNumber}
+	 * @param {NumberLike} value
+	 * @return {number}
 	 * @memberof IExchangeRateService
 	 */
-	exchange(currency: string, exchangeCurrency: string, date: DateTime, value: BigNumber): BigNumber;
+	exchange(currency: string, exchangeCurrency: string, date: DateTime, value: NumberLike): number;
 
 	/**
 	 * Take a snapshot of the current data.

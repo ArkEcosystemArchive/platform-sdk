@@ -304,11 +304,11 @@ export class BigNumber {
 	 * Divides the current value by one satoshi and rounds it to the given amount of decimals.
 	 *
 	 * @param {number} [decimals]
-	 * @returns {string}
+	 * @returns {number}
 	 * @memberof BigNumber
 	 */
-	public toHuman(decimals?: number): string {
-		return this.denominated(decimals).toString();
+	public toHuman(decimals?: number): number {
+		return +this.denominated(decimals).toString();
 	}
 
 	/**

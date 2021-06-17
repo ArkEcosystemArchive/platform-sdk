@@ -1,5 +1,3 @@
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
-
 type NetworkType = "live" | "test";
 
 /**
@@ -13,16 +11,16 @@ export interface IWalletAggregate {
 	 * Aggregate the balance for all wallets of the currently selected profile.
 	 *
 	 * @param {NetworkType} [networkType]
-	 * @return {BigNumber}
+	 * @return {number}
 	 * @memberof IWalletAggregate
 	 */
-	balance(networkType?: NetworkType): BigNumber;
+	balance(networkType?: NetworkType): number;
 
 	/**
 	 * Aggregate the converted balance for all wallets of the currently selected profile.
 	 *
-	 * @return {BigNumber}
+	 * @return {number}
 	 * @memberof IWalletAggregate
 	 */
-	convertedBalance(): BigNumber;
+	convertedBalance(): number;
 }

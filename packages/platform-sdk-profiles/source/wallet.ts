@@ -139,21 +139,21 @@ export class Wallet implements IReadWriteWallet {
 	}
 
 	/** {@inheritDoc IReadWriteWallet.balance} */
-	public balance(): BigNumber {
+	public balance(): number {
 		const value: Contracts.WalletBalance | undefined = this.data().get(WalletData.Balance);
 
-		return BigNumber.make(value?.available || 0, this.#decimals());
+		return +BigNumber.make(value?.available || 0, this.#decimals()).toHuman();
 	}
 
 	/** {@inheritDoc IReadWriteWallet.convertedBalance} */
-	public convertedBalance(): BigNumber {
+	public convertedBalance(): number {
 		if (this.network().isTest()) {
-			return BigNumber.ZERO;
+			return 0;
 		}
 
-		return container
+		return +container
 			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
-			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance().denominated());
+			.exchange(this.currency(), this.exchangeCurrency(), DateTime.make(), this.balance());
 	}
 
 	/** {@inheritDoc IReadWriteWallet.nonce} */

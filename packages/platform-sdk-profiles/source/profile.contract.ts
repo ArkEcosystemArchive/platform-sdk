@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { AttributeBag } from "./helpers/attribute-bag";
 import {
 	IPluginRepository,
@@ -119,18 +118,18 @@ export interface IProfile {
 	/**
 	 * Get the balance.
 	 *
-	 * @return {BigNumber}
+	 * @return {number}
 	 * @memberof IProfile
 	 */
-	balance(): BigNumber;
+	balance(): number;
 
 	/**
 	 * Get the converted balance.
 	 *
-	 * @return {BigNumber}
+	 * @return {number}
 	 * @memberof IProfile
 	 */
-	convertedBalance(): BigNumber;
+	convertedBalance(): number;
 
 	/**
 	 * Get the coin service instance.

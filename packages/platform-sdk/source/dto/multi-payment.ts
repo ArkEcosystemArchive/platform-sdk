@@ -1,5 +1,7 @@
 /* istanbul ignore file */
 
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
 import { NotImplemented } from "../exceptions";
 import { injectable } from "../ioc";
 import { MultiPaymentData as Contract } from "./multi-payment.contract";
@@ -7,7 +9,7 @@ import { AbstractTransactionData } from "./transaction";
 
 @injectable()
 export class MultiPaymentData extends AbstractTransactionData implements Contract {
-	public payments(): { recipientId: string; amount: string }[] {
+	public payments(): { recipientId: string; amount: BigNumber }[] {
 		throw new NotImplemented(this.constructor.name, this.payments.name);
 	}
 }
