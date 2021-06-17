@@ -1,6 +1,6 @@
 {
 	"name": "@arkecosystem/platform-sdk-http",
-	"version": "9.3.14",
+	"version": "10.0.0",
 	"description": "Cross-Platform Utilities for ARK Applications",
 	"license": "MIT",
 	"contributors": [],
