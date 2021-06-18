@@ -1,3 +1,4 @@
+export * from "./signed-transaction.dto";
 export * from "./transaction.collection";
-export * from "./transaction.mapper";
 export * from "./transaction.dto";
+export * from "./transaction.mapper";
