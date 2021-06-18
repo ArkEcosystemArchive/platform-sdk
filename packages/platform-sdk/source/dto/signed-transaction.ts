@@ -8,6 +8,7 @@ import { NotImplemented } from "../exceptions";
 import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import { BigNumberService } from "../services";
+import { SignedTransactionObject } from "./signed-transaction.contract";
 
 @injectable()
 export class AbstractSignedTransactionData implements SignedTransactionData {
@@ -168,16 +169,7 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 		return this.broadcastData;
 	}
 
-	public toObject(): {
-		id: string;
-		sender: string;
-		recipient: string;
-		amount: string;
-		fee: string;
-		timestamp: string;
-		data: RawTransactionData;
-		broadcast: any;
-	} {
+	public toObject(): SignedTransactionObject {
 		return {
 			id: this.id(),
 			sender: this.sender(),

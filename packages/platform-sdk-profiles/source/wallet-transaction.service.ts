@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import { IReadWriteWallet, ITransactionService, WalletData } from "./contracts";
 
 import { pqueueSettled } from "./helpers/queue";
-
-type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
+import { ExtendedSignedTransactionData } from "./signed-transaction.dto";
+import { SignedTransactionDataDictionary } from "./wallet-transaction.service.contract";
 
 export class TransactionService implements ITransactionService {
 	/**
@@ -129,7 +129,7 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.transaction} */
-	public transaction(id: string): Contracts.SignedTransactionData {
+	public transaction(id: string): ExtendedSignedTransactionData {
 		this.#assertHasValidIdentifier(id);
 
 		if (this.hasBeenConfirmed(id)) {
@@ -231,7 +231,7 @@ export class TransactionService implements ITransactionService {
 	public isAwaitingSignatureByPublicKey(id: string, publicKey: string): boolean {
 		this.#assertHasValidIdentifier(id);
 
-		let transaction: Contracts.SignedTransactionData | undefined;
+		let transaction: ExtendedSignedTransactionData | undefined;
 
 		if (this.#waitingForOurSignature[id]) {
 			transaction = this.#waitingForOurSignature[id];
@@ -245,7 +245,7 @@ export class TransactionService implements ITransactionService {
 			throw new Error(`Transaction [${id}] is not awaiting any signatures.`);
 		}
 
-		return this.#wallet.coin().multiSignature().needsWalletSignature(transaction, publicKey);
+		return this.#wallet.coin().multiSignature().needsWalletSignature(transaction.data(), publicKey);
 	}
 
 	/** {@inheritDoc ITransactionService.canBeSigned} */
@@ -255,7 +255,7 @@ export class TransactionService implements ITransactionService {
 		return this.#wallet
 			.coin()
 			.multiSignature()
-			.needsWalletSignature(this.transaction(id), this.#getPublicKey());
+			.needsWalletSignature(this.transaction(id).data(), this.#getPublicKey());
 	}
 
 	/** {@inheritDoc ITransactionService.canBeBroadcasted} */
@@ -269,7 +269,7 @@ export class TransactionService implements ITransactionService {
 	public async broadcast(id: string): Promise<Services.BroadcastResponse> {
 		this.#assertHasValidIdentifier(id);
 
-		const transaction: Contracts.SignedTransactionData = this.transaction(id);
+		const transaction: ExtendedSignedTransactionData = this.transaction(id);
 
 		let result: Services.BroadcastResponse = {
 			accepted: [],
@@ -278,7 +278,7 @@ export class TransactionService implements ITransactionService {
 		};
 
 		if (this.canBeBroadcasted(id)) {
-			result = await this.#wallet.client().broadcast([transaction]);
+			result = await this.#wallet.client().broadcast([transaction.data()]);
 		} else if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
 			result.accepted.push(await this.#wallet.coin().multiSignature().broadcast(transaction.data()));
 		}
@@ -299,7 +299,7 @@ export class TransactionService implements ITransactionService {
 		}
 
 		try {
-			const transactionLocal: Contracts.SignedTransactionData = this.transaction(id);
+			const transactionLocal: ExtendedSignedTransactionData = this.transaction(id);
 			const transaction: Contracts.TransactionData = await this.#wallet
 				.client()
 				.transaction(transactionLocal.id());
@@ -379,9 +379,9 @@ export class TransactionService implements ITransactionService {
 		// broadcasting and fetching them multiple times until all participants have signed
 		// the transaction. Once the transaction is fully signed we can mark it as finished.
 		if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
-			this.#waitingForOtherSignatures[uuid] = transaction;
+			this.#waitingForOtherSignatures[uuid] = new ExtendedSignedTransactionData(transaction);
 		} else {
-			this.#signed[uuid] = transaction;
+			this.#signed[uuid] = new ExtendedSignedTransactionData(transaction);
 		}
 
 		return uuid;
@@ -431,10 +431,12 @@ export class TransactionService implements ITransactionService {
 
 		for (const transaction of transactions) {
 			const transactionId: string = transaction.id;
-			const signedTransaction = this.#wallet
-				.coin()
-				.dataTransferObject()
-				.signedTransaction(transactionId, transaction, JSON.stringify(transaction));
+			const signedTransaction = new ExtendedSignedTransactionData(
+				this.#wallet
+					.coin()
+					.dataTransferObject()
+					.signedTransaction(transactionId, transaction, JSON.stringify(transaction)),
+			);
 
 			this.#waitingForOurSignature[transactionId] = signedTransaction;
 			this.#waitingForOtherSignatures[transactionId] = signedTransaction;
@@ -452,10 +454,12 @@ export class TransactionService implements ITransactionService {
 			.allWithReadyState(this.#getPublicKey());
 
 		for (const transaction of transactions) {
-			this.#signed[transaction.id] = this.#wallet
-				.coin()
-				.dataTransferObject()
-				.signedTransaction(transaction.id, transaction, JSON.stringify(transaction));
+			this.#signed[transaction.id] = new ExtendedSignedTransactionData(
+				this.#wallet
+					.coin()
+					.dataTransferObject()
+					.signedTransaction(transaction.id, transaction, JSON.stringify(transaction)),
+			);
 		}
 	}
 }

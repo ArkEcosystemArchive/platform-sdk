@@ -8,6 +8,7 @@ export * from "./multi-payment";
 export * from "./multi-signature";
 export * from "./second-signature";
 export * from "./signed-transaction";
+export * from "./signed-transaction.contract";
 export * from "./transaction";
 export * from "./transfer";
 export * from "./unspent-transaction";

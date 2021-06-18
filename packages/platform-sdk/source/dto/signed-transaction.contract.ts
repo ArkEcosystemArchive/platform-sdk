@@ -3,6 +3,17 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export type RawTransactionData = any;
 
+export interface SignedTransactionObject {
+	id: string;
+	sender: string;
+	recipient: string;
+	amount: string;
+	fee: string;
+	timestamp: string;
+	data: RawTransactionData;
+	broadcast: any;
+}
+
 export interface SignedTransactionData {
 	setAttributes(attributes: { identifier: string }): void;
 
@@ -40,6 +51,6 @@ export interface SignedTransactionData {
 	get<T = string>(key: string): T;
 	toString(): string;
 	toBroadcast(): any;
-	toObject(): { id: string; sender: string; recipient: string; amount: string; data: any };
+	toObject(): SignedTransactionObject;
 	type(): string;
 }
