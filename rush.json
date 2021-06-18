@@ -66,18 +66,6 @@
 			"shouldPublish": true
 		},
 		{
-			"packageName": "@arkecosystem/platform-sdk-btc-indexer",
-			"projectFolder": "packages/platform-sdk-btc-indexer",
-			"reviewCategory": "libraries",
-			"shouldPublish": true
-		},
-		{
-			"packageName": "@arkecosystem/platform-sdk-btc-server",
-			"projectFolder": "packages/platform-sdk-btc-server",
-			"reviewCategory": "libraries",
-			"shouldPublish": true
-		},
-		{
 			"packageName": "@arkecosystem/platform-sdk-cli",
 			"projectFolder": "packages/platform-sdk-cli",
 			"reviewCategory": "libraries",
