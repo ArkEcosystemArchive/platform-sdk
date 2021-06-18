@@ -108,10 +108,6 @@ export class TransactionAggregate implements ITransactionAggregate {
 		});
 	}
 
-	#getWallet(id: string): IReadWriteWallet {
-		return this.#profile.wallets().findById(id);
-	}
-
 	#getWallets(addresses: string[] = []): IReadWriteWallet[] {
 		return this.#profile
 			.wallets()
