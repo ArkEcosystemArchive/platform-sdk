@@ -456,9 +456,9 @@ export class TransactionService implements ITransactionService {
 		for (const transaction of transactions) {
 			this.#signed[transaction.id] = new ExtendedSignedTransactionData(
 				this.#wallet
-				.coin()
-				.dataTransferObject()
-				.signedTransaction(transaction.id, transaction, JSON.stringify(transaction)),
+					.coin()
+					.dataTransferObject()
+					.signedTransaction(transaction.id, transaction, JSON.stringify(transaction)),
 			);
 		}
 	}
