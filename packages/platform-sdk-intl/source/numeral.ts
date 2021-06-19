@@ -8,10 +8,10 @@ export class Numeral {
 	/**
 	 * The locale that will be used for formatting.
 	 *
-	 * @type {string}
+	 * @type {string | undefined}
 	 * @memberof Numeral
 	 */
-	readonly #locale: string;
+	readonly #locale: string | undefined;
 
 	/**
 	 * The options that should be used for formatting.
@@ -24,11 +24,11 @@ export class Numeral {
 	/**
 	 * Creates an instance of Numeral.
 	 *
-	 * @param {string} locale
+	 * @param {string | undefined} locale
 	 * @param {Intl.NumberFormatOptions} [options]
 	 * @memberof Numeral
 	 */
-	private constructor(locale: string, options?: Intl.NumberFormatOptions) {
+	private constructor(locale: string | undefined, options?: Intl.NumberFormatOptions) {
 		this.#locale = locale;
 		this.#options = options || {};
 	}
@@ -37,12 +37,12 @@ export class Numeral {
 	 * Creates an instance of Numeral.
 	 *
 	 * @static
-	 * @param {string} locale
+	 * @param {string | undefined} locale
 	 * @param {Intl.NumberFormatOptions} [options]
 	 * @returns {Numeral}
 	 * @memberof Numeral
 	 */
-	public static make(locale: string, options?: Intl.NumberFormatOptions): Numeral {
+	public static make(locale: string | undefined, options?: Intl.NumberFormatOptions): Numeral {
 		return new Numeral(locale, options);
 	}
 
