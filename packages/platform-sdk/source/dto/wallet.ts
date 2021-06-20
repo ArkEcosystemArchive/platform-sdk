@@ -4,10 +4,15 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { KeyValuePair, WalletBalance } from "../contracts";
 import { NotImplemented } from "../exceptions";
-import { injectable } from "../ioc";
+import { inject, injectable } from "../ioc";
+import { BindingType } from "../ioc/service-provider.contract";
+import { BigNumberService } from "../services/big-number.service";
 
 @injectable()
 export class AbstractWalletData {
+	@inject(BindingType.BigNumberService)
+	protected readonly bigNumberService!: BigNumberService;
+
 	protected data!: KeyValuePair;
 
 	public constructor(data: KeyValuePair) {
