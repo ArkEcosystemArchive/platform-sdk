@@ -67,7 +67,7 @@ export class ClientService extends Services.AbstractClientService {
 		const { result: details } = await this.#get(`auth/accounts/${id}`);
 		const { result: balance } = await this.#get(`bank/balances/${id}`);
 
-		return new WalletData({
+		return this.dataTransferObjectService.wallet({
 			address: details.value.address,
 			publicKey: details.value.public_key.value,
 			balance: Object.values(balance).find(({ denom }: any) => denom === "uatom"),

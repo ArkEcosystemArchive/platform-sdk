@@ -71,7 +71,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { data } = (await this.httpClient.get(`${this.#getHost()}/v1/accounts/${id}`)).json();
 
-		return new WalletData(data[0]);
+		return this.dataTransferObjectService.wallet(data[0]);
 	}
 
 	public override async broadcast(

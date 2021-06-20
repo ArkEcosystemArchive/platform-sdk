@@ -50,14 +50,14 @@ export class ClientService extends Services.AbstractClientService {
 	public override async delegate(id: string): Promise<Contracts.WalletData> {
 		const body = await this.#get(`delegates/${id}`);
 
-		return new WalletData(body.data);
+		return this.dataTransferObjectService.wallet(body.data);
 	}
 
 	public override async delegates(query?: Contracts.KeyValuePair): Promise<Collections.WalletDataCollection> {
 		const body = await this.#get("delegates", this.#createSearchParams(query || {}));
 
 		return new Collections.WalletDataCollection(
-			body.data.map((wallet) => new WalletData(wallet)),
+			body.data.map((wallet) => this.dataTransferObjectService.wallet(wallet)),
 			this.#createMetaPagination(body),
 		);
 	}
@@ -81,7 +81,7 @@ export class ClientService extends Services.AbstractClientService {
 		const body = await this.#get(`delegates/${id}/voters`, this.#createSearchParams(query || {}));
 
 		return new Collections.WalletDataCollection(
-			body.data.map((wallet) => new WalletData(wallet)),
+			body.data.map((wallet) => this.dataTransferObjectService.wallet(wallet)),
 			this.#createMetaPagination(body),
 		);
 	}

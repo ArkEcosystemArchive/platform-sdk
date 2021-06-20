@@ -10,24 +10,16 @@ export const registerBusiness = () => [
 
 			const transferFee = (await business.fee().all()).transfer.avg.toHuman();
 
-			const sender = await business.client().wallet(from);
-			const amount = sender.balance().available.toHuman() - transferFee;
-
-			console.log("before:balance", sender.balance().available.toHuman())
-			console.log("before:amount", amount)
-			console.log("before:fee", transferFee)
-
             const transfer = await business.transaction().transfer({
                 data: {
-                    amount,
+                    amount: (
+						await business.client().wallet(from)
+					).balance().available.toHuman() - transferFee,
                     to,
                 },
 				fee: transferFee,
                 signatory: await business.signatory().mnemonic(mnemonic),
             });
-
-			console.log("after:amount", transfer.amount().toString())
-			console.log("after:fee", transfer.fee().toString())
 
 			const broadcast = await business.client().broadcast([transfer]);
 
