@@ -10,16 +10,14 @@ export const registerBusiness = () => [
 
 			const transferFee = (await business.fee().all()).transfer.avg.toHuman();
 
-            const transfer = await business.transaction().transfer({
-                data: {
-                    amount: (
-						await business.client().wallet(from)
-					).balance().available.toHuman() - transferFee,
-                    to,
-                },
+			const transfer = await business.transaction().transfer({
+				data: {
+					amount: (await business.client().wallet(from)).balance().available.toHuman() - transferFee,
+					to,
+				},
 				fee: transferFee,
-                signatory: await business.signatory().mnemonic(mnemonic),
-            });
+				signatory: await business.signatory().mnemonic(mnemonic),
+			});
 
 			const broadcast = await business.client().broadcast([transfer]);
 
@@ -27,7 +25,7 @@ export const registerBusiness = () => [
 				return broadcast;
 			}
 
-            return {
+			return {
 				id: transfer.id(),
 				sender: transfer.sender(),
 				recipient: transfer.recipient(),

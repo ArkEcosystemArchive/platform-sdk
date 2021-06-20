@@ -62,7 +62,9 @@ export class ClientService extends Services.AbstractClientService {
 		const validators: string[] = await this.#pchain.sampleValidators(10000);
 
 		return new Collections.WalletDataCollection(
-			uniq(validators).map((validator: string) => this.dataTransferObjectService.wallet({ address: validator, balance: 0 })),
+			uniq(validators).map((validator: string) =>
+				this.dataTransferObjectService.wallet({ address: validator, balance: 0 }),
+			),
 			{
 				prev: undefined,
 				self: undefined,
