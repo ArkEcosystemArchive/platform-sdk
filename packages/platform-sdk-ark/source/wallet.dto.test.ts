@@ -3,6 +3,7 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "./wallet.dto";
+import { createService } from "../test/mocking";
 
 let subject: WalletData;
 
@@ -78,7 +79,9 @@ describe("WalletData", () => {
 	};
 
 	describe.each(["mainnet", "devnet"])("%s", (network) => {
-		beforeEach(() => (subject = new WalletData(WalletDataFixture[network])));
+		beforeEach(() => {
+			subject = createService(WalletData).fill(WalletDataFixture[network]);
+		});
 
 		test("#primaryKey", () => {
 			expect(subject.primaryKey()).toBe("DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9");

@@ -43,14 +43,14 @@ export class ClientService extends Services.AbstractClientService {
 	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const result = await this.#get("accounts", { address: id });
 
-		return new WalletData(result.data[0]);
+		return this.dataTransferObjectService.wallet(result.data[0]);
 	}
 
 	public override async wallets(query: Services.ClientWalletsInput): Promise<Collections.WalletDataCollection> {
 		const result = await this.#get("accounts", query);
 
 		return new Collections.WalletDataCollection(
-			result.data.map((wallet) => new WalletData(wallet)),
+			result.data.map((wallet) => this.dataTransferObjectService.wallet(wallet)),
 			this.#createPagination(result.data, result.meta),
 		);
 	}
@@ -58,14 +58,14 @@ export class ClientService extends Services.AbstractClientService {
 	public override async delegate(id: string): Promise<Contracts.WalletData> {
 		const result = await this.#get("delegates", { username: id });
 
-		return new WalletData(result.data[0]);
+		return this.dataTransferObjectService.wallet(result.data[0]);
 	}
 
 	public override async delegates(query?: any): Promise<Collections.WalletDataCollection> {
 		const result = await this.#get("delegates", this.#createSearchParams({ limit: 101, ...query }));
 
 		return new Collections.WalletDataCollection(
-			result.data.map((wallet) => new WalletData(wallet)),
+			result.data.map((wallet) => this.dataTransferObjectService.wallet(wallet)),
 			this.#createPagination(result.data, result.meta),
 		);
 	}

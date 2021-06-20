@@ -42,7 +42,7 @@ export class ClientService extends Services.AbstractClientService {
 	}
 
 	public override async wallet(id: string): Promise<Contracts.WalletData> {
-		return new WalletData(
+		return this.dataTransferObjectService.wallet(
 			(
 				await this.#post("account_info", [
 					{

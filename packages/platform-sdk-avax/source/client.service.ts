@@ -52,7 +52,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { balance }: any = await this.#xchain.getBalance(id, this.configRepository.get("network.meta.assetId"));
 
-		return new WalletData({
+		return this.dataTransferObjectService.wallet({
 			address: id,
 			balance: balance,
 		});
@@ -62,7 +62,9 @@ export class ClientService extends Services.AbstractClientService {
 		const validators: string[] = await this.#pchain.sampleValidators(10000);
 
 		return new Collections.WalletDataCollection(
-			uniq(validators).map((validator: string) => new WalletData({ address: validator, balance: 0 })),
+			uniq(validators).map((validator: string) =>
+				this.dataTransferObjectService.wallet({ address: validator, balance: 0 }),
+			),
 			{
 				prev: undefined,
 				self: undefined,

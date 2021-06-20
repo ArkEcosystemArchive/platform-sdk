@@ -51,7 +51,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const response = await this.#get(`get_balance/${id}`);
 
-		return new WalletData({
+		return this.dataTransferObjectService.wallet({
 			address: id,
 			balance: response.balance.find((balance) => balance.asset === "NEO").amount,
 		});

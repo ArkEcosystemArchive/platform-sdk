@@ -19,7 +19,7 @@ export class ClientService extends Services.AbstractClientService {
 			throw new Exceptions.Exception("Received an invalid response.");
 		}
 
-		return new WalletData({
+		return this.dataTransferObjectService.wallet({
 			address: id,
 			balance: response.lamports,
 		});
