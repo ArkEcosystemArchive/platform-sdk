@@ -11,7 +11,7 @@ export const registerBusiness = () => [
 			return business.client().broadcast([
 				await business.transaction().transfer({
 					data: {
-						amount: amount - (await business.fee().all()).transfer.avg.toHuman(),
+						amount: Number.parseFloat(amount) - (await business.fee().all()).transfer.avg.toHuman(),
 						to,
 					},
 					signatory: await business.signatory().mnemonic(mnemonic),
