@@ -26,17 +26,14 @@ export class AbstractDataTransferObjectService implements DataTransferObjectServ
 	protected readonly dataTransferObjects!: Record<string, any>;
 
 	public signedTransaction(identifier: string, signedData: string, broadcastData: any): SignedTransactionData {
-		const signedTransaction = this.container.resolve<SignedTransactionData>(
+		return this.container.resolve<SignedTransactionData>(
 			this.dataTransferObjects.SignedTransactionData,
-		);
-		signedTransaction.configure(
+		).configure(
 			identifier,
 			signedData,
 			broadcastData,
 			this.configRepository.get<number>(ConfigKey.CurrencyDecimals),
 		);
-
-		return signedTransaction;
 	}
 
 	public transaction(transaction: unknown): TransactionDataType & TransactionData {
