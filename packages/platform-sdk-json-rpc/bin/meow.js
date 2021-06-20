@@ -15,7 +15,7 @@ module.exports = meow(
 			},
 			port: {
 				type: "number",
-				default: 3100,
+				default: 3000,
 			},
 			points: {
 				type: "number",
