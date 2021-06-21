@@ -3,6 +3,7 @@ import "reflect-metadata";
 export * from "./container.models";
 export * from "./env.models";
 export * from "./env";
+export * from "./profile";
 
 export * as Contracts from "./contracts";
 export * as DTO from "./dto";
