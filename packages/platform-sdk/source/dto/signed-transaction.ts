@@ -200,9 +200,11 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 			}));
 		}
 
-		return [{
-			address: this.recipient(),
-			amount: this.amount(),
-		}];
+		return [
+			{
+				address: this.recipient(),
+				amount: this.amount(),
+			},
+		];
 	}
 }
