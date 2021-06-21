@@ -15,7 +15,7 @@ beforeEach(() => {
 		{
 			sender: "0xdeadbeef",
 			recipient: "0xfoobar",
-			amount: "420690000000",
+			amount: "120000000000",
 			fee: "6",
 			timestamp: "1970-01-01T00:00:00.000Z",
 		},
@@ -33,7 +33,7 @@ describe("SignedTransactionData", () => {
 	});
 
 	test("#amount", () => {
-		expect(subject.amount().toHuman()).toEqual("420.69");
+		expect(subject.amount().toHuman()).toEqual(120);
 	});
 
 	test("#fee", () => {

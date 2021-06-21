@@ -18,6 +18,10 @@ export class SignedTransactionData
 	}
 
 	public override amount(): BigNumber {
+		if (this.isMultiPayment()) {
+			return this.bigNumberService.make(BigNumber.sum(this.signedData.asset.payments.map(({ amount }) => amount)));
+		}
+
 		return this.bigNumberService.make(this.signedData.amount);
 	}
 

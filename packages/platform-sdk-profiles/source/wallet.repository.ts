@@ -191,9 +191,11 @@ export class WalletRepository implements IWalletRepository {
 			if (options.excludeLedgerWallets && wallet.isLedger()) {
 				continue;
 			}
-			if (options.excludeEmptyWallets && wallet.balance().isZero()) {
+
+			if (options.excludeEmptyWallets && wallet.balance() === 0) {
 				continue;
 			}
+
 			result[id] = wallet.toObject();
 		}
 

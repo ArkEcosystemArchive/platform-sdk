@@ -22,7 +22,7 @@ export const listTransactionsWithXLM = async (env: Environment): Promise<void> =
 	profile.wallets().push(wallet1);
 
 	// Display profile and wallet balances
-	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance().toHuman(2));
+	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance());
 
 	// Show transactions
 	const transactions: Collections.TransactionDataCollection = await wallet1

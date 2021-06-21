@@ -251,18 +251,18 @@ export class TransactionService extends Services.AbstractTransactionService {
 				transaction.fee(this.toSatoshi(input.fee).toString());
 			}
 
-			if (input.data && input.data.expiration) {
-				transaction.expiration(input.data.expiration);
-			} else {
-				try {
+			try {
+				if (input.data && input.data.expiration) {
+					transaction.expiration(input.data.expiration);
+				} else {
 					const estimatedExpiration = await this.estimateExpiration();
 
 					if (estimatedExpiration) {
 						transaction.expiration(parseInt(estimatedExpiration));
 					}
-				} catch {
-					// If we fail to estimate the expiration we'll still continue.
 				}
+			} catch {
+				// If we fail to set the expiration we'll still continue.
 			}
 
 			if (callback) {

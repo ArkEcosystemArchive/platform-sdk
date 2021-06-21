@@ -17,7 +17,7 @@ beforeEach(() => {
 			_operations: [
 				{
 					destination: "0xfoobar",
-					amount: "4206900000",
+					amount: "1200000000",
 				},
 			],
 			_fee: "6",
@@ -37,7 +37,7 @@ describe("SignedTransactionData", () => {
 	});
 
 	test("#amount", () => {
-		expect(subject.amount().toHuman()).toEqual("420.69");
+		expect(subject.amount().toHuman()).toEqual(120);
 	});
 
 	test("#fee", () => {

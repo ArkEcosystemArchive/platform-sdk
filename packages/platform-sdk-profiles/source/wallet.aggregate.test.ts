@@ -38,17 +38,17 @@ beforeEach(async () => {
 
 describe("WalletAggregate", () => {
 	it("#balance", async () => {
-		expect(subject.balance("test").toString()).toEqual("55827093444556");
-		expect(subject.balance("live").toString()).toEqual("0");
-		expect(subject.balance().toString()).toEqual("0");
+		expect(subject.balance("test")).toEqual(558270.93444556);
+		expect(subject.balance("live")).toEqual(0);
+		expect(subject.balance()).toEqual(0);
 
 		const mockWalletLive = jest.spyOn(profile.wallets().first().network(), "isLive").mockReturnValue(true);
-		expect(subject.balance("live").toString()).toEqual("55827093444556");
+		expect(subject.balance("live")).toEqual(558270.93444556);
 		mockWalletLive.mockRestore();
 	});
 
 	it("#convertedBalance", async () => {
-		expect(subject.convertedBalance().toString()).toEqual("0");
+		expect(subject.convertedBalance()).toEqual(0);
 	});
 
 	it("#balancesByNetworkType", async () => {
@@ -65,11 +65,11 @@ describe("WalletAggregate", () => {
 		expect(subject.balancePerCoin("test")).toEqual({
 			DARK: {
 				percentage: "100.00",
-				total: "55827093444556",
+				total: "558270.93444556",
 			},
 		});
 
-		const mockWalletLive = jest.spyOn(profile.wallets().first(), "balance").mockReturnValue(BigNumber.ZERO);
+		const mockWalletLive = jest.spyOn(profile.wallets().first(), "balance").mockReturnValue(0);
 
 		expect(subject.balancePerCoin("test")).toEqual({ DARK: { percentage: "0.00", total: "0" } });
 		mockWalletLive.mockRestore();

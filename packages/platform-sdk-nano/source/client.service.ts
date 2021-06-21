@@ -38,7 +38,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { balance, pending } = await this.#client.accountInfo(id, { pending: true });
 
-		return new WalletData({ id, balance, pending });
+		return this.dataTransferObjectService.wallet({ id, balance, pending });
 	}
 
 	public override async broadcast(

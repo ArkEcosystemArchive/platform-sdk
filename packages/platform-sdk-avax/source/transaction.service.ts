@@ -1,7 +1,7 @@
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Hash } from "@arkecosystem/platform-sdk-crypto";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { BigNumber } from "@arkecosystem/utils";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { BN, Buffer } from "avalanche";
 import { AVMAPI } from "avalanche/dist/apis/avm";
 import { PlatformVMAPI } from "avalanche/dist/apis/platformvm";

@@ -16,9 +16,9 @@ export const openExistingProfile = async (env: Environment): Promise<void> => {
 	await profile.sync();
 
 	// Display profile and wallet balances
-	logger.log("Profile balance", profile.balance().toHuman(2));
+	logger.log("Profile balance", profile.balance());
 	for (const wallet of Object.values(await profile.wallets().all())) {
-		logger.log("Wallet", wallet.address(), "balance", wallet.balance().toHuman(2));
+		logger.log("Wallet", wallet.address(), "balance", wallet.balance());
 	}
 
 	for (const contact of Object.values(await profile.contacts().all())) {

@@ -30,7 +30,7 @@ export class ClientService extends Services.AbstractClientService {
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-get-table-information
 
 	public override async wallet(id: string): Promise<Contracts.WalletData> {
-		return new WalletData(await this.#rpc.get_account(id));
+		return this.dataTransferObjectService.wallet(await this.#rpc.get_account(id));
 	}
 
 	// https://developers.eos.io/manuals/eosjs/latest/how-to-guides/how-to-transfer-an-eosio-token

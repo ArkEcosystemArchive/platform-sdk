@@ -242,12 +242,12 @@ export class Profile implements IProfile {
 	}
 
 	/** {@inheritDoc IProfile.balance} */
-	public balance(): BigNumber {
+	public balance(): number {
 		return this.walletAggregate().balance();
 	}
 
 	/** {@inheritDoc IProfile.convertedBalance} */
-	public convertedBalance(): BigNumber {
+	public convertedBalance(): number {
 		return this.walletAggregate().convertedBalance();
 	}
 

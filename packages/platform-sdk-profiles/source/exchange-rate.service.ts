@@ -1,6 +1,6 @@
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { MarketService } from "@arkecosystem/platform-sdk-markets";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
 
 import { DataRepository } from "./data.repository";
 import { container } from "./container";
@@ -55,26 +55,15 @@ export class ExchangeRateService implements IExchangeRateService {
 	}
 
 	/** {@inheritDoc IExchangeRateService.exchange} */
-	public exchange(currency: string, exchangeCurrency: string, date: DateTime, value: BigNumber): BigNumber {
-		const exchangeRate: BigNumber = this.#rateByDate(currency, exchangeCurrency, date);
+	public exchange(currency: string, exchangeCurrency: string, date: DateTime, value: NumberLike): number {
+		const exchangeRate: number =
+			this.#dataRepository.get(`${currency}.${exchangeCurrency}.${date.format("YYYY-MM-DD")}`) || 0;
 
-		if (exchangeRate.isZero()) {
-			return exchangeRate;
+		if (exchangeRate === 0) {
+			return 0;
 		}
 
-		return value.times(exchangeRate);
-	}
-
-	#rateByDate(currency: string, exchangeCurrency: string, date: DateTime): BigNumber {
-		const result: number | undefined = this.#dataRepository.get(
-			`${currency}.${exchangeCurrency}.${date.format("YYYY-MM-DD")}`,
-		);
-
-		if (result === undefined) {
-			return BigNumber.ZERO;
-		}
-
-		return BigNumber.make(result);
+		return +value.toString() * exchangeRate;
 	}
 
 	/** {@inheritDoc IExchangeRateService.generate} */

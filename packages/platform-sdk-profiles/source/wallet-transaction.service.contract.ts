@@ -1,6 +1,8 @@
 import { Contracts, Signatories, Services } from "@arkecosystem/platform-sdk";
 
-type SignedTransactionDataDictionary = Record<string, Contracts.SignedTransactionData>;
+import { ExtendedSignedTransactionData } from "./signed-transaction.dto";
+
+export type SignedTransactionDataDictionary = Record<string, ExtendedSignedTransactionData>;
 
 /**
  * Defines the implementation contract for the transaction service.
@@ -148,7 +150,7 @@ export interface ITransactionService {
 	 * @return {Contracts.SignedTransactionData}
 	 * @memberof ITransactionService
 	 */
-	transaction(id: string): Contracts.SignedTransactionData;
+	transaction(id: string): ExtendedSignedTransactionData;
 
 	/**
 	 * Get all transactions that are pending in some state.

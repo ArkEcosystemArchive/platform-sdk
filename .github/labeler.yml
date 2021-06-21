@@ -31,14 +31,6 @@ test:
     - packages/platform-sdk-btc/*
     - packages/platform-sdk-btc/**/*
 
-"Domain: BTC/Indexer":
-    - packages/platform-sdk-btc-indexer/*
-    - packages/platform-sdk-btc-indexer/**/*
-
-"Domain: BTC/Server":
-    - packages/platform-sdk-btc-server/*
-    - packages/platform-sdk-btc-server/**/*
-
 "Domain: CLI":
     - packages/platform-sdk-cli/*
     - packages/platform-sdk-cli/**/*

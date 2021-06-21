@@ -55,7 +55,7 @@ export class ClientService extends Services.AbstractClientService {
 			Array.from(usedSpendAddresses.values()).concat(Array.from(usedChangeAddresses.values())),
 		);
 
-		return new WalletData({
+		return this.dataTransferObjectService.wallet({
 			id,
 			balance,
 		});

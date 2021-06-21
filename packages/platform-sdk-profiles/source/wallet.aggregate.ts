@@ -11,8 +11,8 @@ export class WalletAggregate implements IWalletAggregate {
 	}
 
 	/** {@inheritDoc IWalletAggregate.balance} */
-	public balance(networkType: NetworkType = "live"): BigNumber {
-		return this.balancesByNetworkType()[networkType];
+	public balance(networkType: NetworkType = "live"): number {
+		return +this.balancesByNetworkType()[networkType].toHuman();
 	}
 
 	/** {@inheritDoc IWalletAggregate.balancesByNetworkType} */
@@ -37,21 +37,22 @@ export class WalletAggregate implements IWalletAggregate {
 	}
 
 	/** {@inheritDoc IWalletAggregate.convertedBalance} */
-	public convertedBalance(): BigNumber {
+	public convertedBalance(): number {
 		return this.#profile
 			.wallets()
 			.values()
 			.reduce(
 				(total: BigNumber, wallet: IReadWriteWallet) => total.plus(wallet.convertedBalance()),
 				BigNumber.ZERO,
-			);
+			)
+			.toNumber();
 	}
 
 	/** {@inheritDoc IWalletAggregate.balancePerCoin} */
 	public balancePerCoin(networkType: NetworkType = "live"): Record<string, { total: number; percentage: number }> {
 		const result = {};
 
-		const totalByProfile: BigNumber = this.balance(networkType);
+		const totalByProfile: number = this.balance(networkType);
 		const walletsByCoin: Record<string, Record<string, IReadWriteWallet>> = this.#profile.wallets().allByCoin();
 
 		for (const [coin, wallets] of Object.entries(walletsByCoin)) {
@@ -67,9 +68,8 @@ export class WalletAggregate implements IWalletAggregate {
 
 				result[coin] = {
 					total: totalByCoin.toFixed(),
-					percentage: totalByProfile.isZero()
-						? "0.00"
-						: totalByCoin.divide(totalByProfile).times(100).toFixed(2),
+					percentage:
+						totalByProfile === 0 ? "0.00" : totalByCoin.divide(totalByProfile).times(100).toFixed(2),
 				};
 			}
 		}

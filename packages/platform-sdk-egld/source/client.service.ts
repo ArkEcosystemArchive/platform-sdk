@@ -29,7 +29,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async wallet(id: string): Promise<Contracts.WalletData> {
 		const { data } = await this.#get(`address/${id}`);
 
-		return new WalletData(data.account);
+		return this.dataTransferObjectService.wallet(data.account);
 	}
 
 	public override async broadcast(

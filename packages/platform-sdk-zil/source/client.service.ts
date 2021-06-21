@@ -42,7 +42,7 @@ export class ClientService extends Services.AbstractClientService {
 			throw new Exceptions.Exception(`Received an invalid response: ${JSON.stringify(response)}`);
 		}
 
-		return new WalletData({
+		return this.dataTransferObjectService.wallet({
 			address: id,
 			balance: response.result.balance,
 			nonce: response.result.nonce,

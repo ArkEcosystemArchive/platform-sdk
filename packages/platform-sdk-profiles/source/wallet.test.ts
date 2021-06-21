@@ -21,6 +21,7 @@ import {
 	WalletImportMethod,
 	WalletSetting,
 } from "./contracts";
+import { ExchangeRateService } from "./exchange-rate.service";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -83,6 +84,12 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/markets/cryptocompare/historical.json"))
 		.persist();
 
+	// Make sure we don't persist any data between runs
+	if (container.has(Identifiers.ExchangeRateService)) {
+		container.unbind(Identifiers.ExchangeRateService);
+		container.singleton(Identifiers.ExchangeRateService, ExchangeRateService);
+	}
+
 	const profileRepository = container.get<IProfileRepository>(Identifiers.ProfileRepository);
 	profileRepository.flush();
 	profile = profileRepository.create("John Doe");
@@ -112,12 +119,11 @@ it("should have a publicKey", () => {
 });
 
 it("should have a balance", () => {
-	expect(subject.balance()).toBeInstanceOf(BigNumber);
-	expect(subject.balance().toString()).toBe("55827093444556");
+	expect(subject.balance()).toBe(558270.93444556);
 
 	subject.data().set(WalletData.Balance, undefined);
 
-	expect(subject.balance().toString()).toBe("0");
+	expect(subject.balance()).toBe(0);
 });
 
 it("should have a converted balance if it is a live wallet", async () => {
@@ -134,11 +140,11 @@ it("should have a converted balance if it is a live wallet", async () => {
 
 	wallet.data().set(WalletData.Balance, { available: 1e8, fees: 1e8 });
 
-	expect(wallet.convertedBalance()).toBeInstanceOf(BigNumber);
-	expect(wallet.convertedBalance().toNumber()).toBe(0);
+	expect(wallet.convertedBalance()).toBeNumber();
+	expect(wallet.convertedBalance()).toBe(0);
 
 	await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
-	expect(wallet.convertedBalance().toNumber()).toBe(0.00005048);
+	expect(wallet.convertedBalance()).toBe(0.00005048);
 
 	live.mockRestore();
 	test.mockRestore();
@@ -148,7 +154,7 @@ it("should not have a converted balance if it is a live wallet but has no exchan
 	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(true);
 	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(false);
 
-	expect(subject.convertedBalance()).toEqual(BigNumber.ZERO);
+	expect(subject.convertedBalance()).toBe(0);
 
 	live.mockRestore();
 	test.mockRestore();
@@ -158,7 +164,7 @@ it("should not have a converted balance if it is a test wallet", async () => {
 	const live = jest.spyOn(subject.network(), "isLive").mockReturnValue(false);
 	const test = jest.spyOn(subject.network(), "isTest").mockReturnValue(true);
 
-	expect(subject.convertedBalance()).toEqual(BigNumber.ZERO);
+	expect(subject.convertedBalance()).toBe(0);
 
 	live.mockRestore();
 	test.mockRestore();
