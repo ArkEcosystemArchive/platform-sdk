@@ -1,5 +1,6 @@
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { MultiPaymentRecipient } from "./transaction.contract";
 
 export type RawTransactionData = any;
 
@@ -53,4 +54,9 @@ export interface SignedTransactionData {
 	toBroadcast(): any;
 	toObject(): SignedTransactionObject;
 	type(): string;
+
+	// @TODO: remove those after introducing proper signed tx DTOs
+	username(): string;
+	hash(): string;
+	recipients(): MultiPaymentRecipient[];
 }

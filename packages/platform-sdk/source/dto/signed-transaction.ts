@@ -9,6 +9,7 @@ import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import { BigNumberService } from "../services";
 import { SignedTransactionObject } from "./signed-transaction.contract";
+import { MultiPaymentRecipient } from "./transaction.contract";
 
 @injectable()
 export class AbstractSignedTransactionData implements SignedTransactionData {
@@ -180,5 +181,25 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 			data: this.data(),
 			broadcast: this.toBroadcast(),
 		};
+	}
+
+	// @TODO: remove those after introducing proper signed tx DTOs (ARK/LSK specific)
+	public username(): string {
+		return this.signedData.asset.delegate.username;
+	}
+
+	public hash(): string {
+		return this.signedData.asset.ipfs;
+	}
+
+	public recipients(): MultiPaymentRecipient[] {
+		if (!this.isMultiPayment()) {
+			return [];
+		}
+
+		return this.signedData.asset.payments.map((payment: { recipientId: string; amount: BigNumber }) => ({
+			address: payment.recipientId,
+			amount: this.bigNumberService.make(payment.amount),
+		}));
 	}
 }
