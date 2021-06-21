@@ -37,10 +37,10 @@ export class FeeService extends Services.AbstractFeeService {
 		const maximumFee = this.bigNumberService.make(staticFees[typeGroup][type]);
 
 		return {
-			static: this.bigNumberService.make(staticFees[typeGroup][type]),
+			static: maximumFee,
 			min: minimumFee.isGreaterThan(maximumFee) ? maximumFee : minimumFee,
 			avg: averageFee.isGreaterThan(maximumFee) ? maximumFee : averageFee,
-			max: this.bigNumberService.make(staticFees[typeGroup][type]),
+			max: maximumFee,
 		};
 	}
 
