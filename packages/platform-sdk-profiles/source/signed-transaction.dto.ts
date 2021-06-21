@@ -128,7 +128,10 @@ export class ExtendedSignedTransactionData {
 		return this.#data.hash();
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
+	public recipients(): {
+		address: string;
+		amount: number;
+	}[] {
 		return this.#data.recipients().map((payment: { address: string; amount: BigNumber }) => ({
 			address: payment.address,
 			amount: payment.amount.toHuman(),
