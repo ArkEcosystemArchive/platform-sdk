@@ -2,6 +2,7 @@
 
 import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 export class ExtendedSignedTransactionData {
 	readonly #data: Contracts.SignedTransactionData;
@@ -116,5 +117,21 @@ export class ExtendedSignedTransactionData {
 
 	public toObject(): DTO.SignedTransactionObject {
 		return this.#data.toObject();
+	}
+
+	// @TODO: remove those after introducing proper signed tx DTOs (ARK/LSK specific)
+	public username(): string {
+		return this.#data.username();
+	}
+
+	public hash(): string {
+		return this.#data.hash();
+	}
+
+	public recipients(): Contracts.MultiPaymentRecipient[] {
+		return this.#data.recipients().map((payment: { address: string; amount: BigNumber }) => ({
+			address: payment.address,
+			amount: payment.amount.toHuman(),
+		}));
 	}
 }
