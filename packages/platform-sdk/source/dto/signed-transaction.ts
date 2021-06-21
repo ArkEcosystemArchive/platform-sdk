@@ -193,13 +193,16 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 	}
 
 	public recipients(): MultiPaymentRecipient[] {
-		if (!this.isMultiPayment()) {
-			return [];
+		if (this.isMultiPayment()) {
+			return this.signedData.asset.payments.map((payment: { recipientId: string; amount: BigNumber }) => ({
+				address: payment.recipientId,
+				amount: this.bigNumberService.make(payment.amount),
+			}));
 		}
 
-		return this.signedData.asset.payments.map((payment: { recipientId: string; amount: BigNumber }) => ({
-			address: payment.recipientId,
-			amount: this.bigNumberService.make(payment.amount),
-		}));
+		return [{
+			address: this.recipient(),
+			amount: this.amount(),
+		}];
 	}
 }
