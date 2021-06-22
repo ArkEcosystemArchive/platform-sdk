@@ -27,6 +27,21 @@ export class Authenticator implements IAuthenticator {
 		this.#profile.status().markAsDirty();
 	}
 
+	/** {@inheritDoc IAuthenticator.setPassword} */
+	public forgetPassword(password: string): void {
+		if (!this.verifyPassword(password)) {
+			throw new Error("The current password does not match.");
+		}
+
+		this.#profile.settings().forget(ProfileSetting.Password);
+
+		this.#profile.getAttributes().forget("password");
+
+		this.#profile.password().forget();
+
+		this.#profile.status().markAsDirty();
+	}
+
 	/** {@inheritDoc IAuthenticator.verifyPassword} */
 	public verifyPassword(password: string): boolean {
 		if (!this.#profile.usesPassword()) {
@@ -38,13 +53,7 @@ export class Authenticator implements IAuthenticator {
 
 	/** {@inheritDoc IAuthenticator.changePassword} */
 	public changePassword(oldPassword: string, newPassword: string): void {
-		const currentPassword: string | undefined = this.#profile.settings().get(ProfileSetting.Password);
-
-		if (!currentPassword) {
-			throw new Error("No password is set. Call [setPassword] instead.");
-		}
-
-		if (!Bcrypt.verify(currentPassword, oldPassword)) {
+		if (!this.verifyPassword(oldPassword)) {
 			throw new Error("The current password does not match.");
 		}
 
