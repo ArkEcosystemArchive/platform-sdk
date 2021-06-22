@@ -2,8 +2,7 @@ import { Collections, Services } from "@arkecosystem/platform-sdk";
 import { IProfile, IReadWriteWallet, ITransactionAggregate } from "./contracts";
 import { ExtendedTransactionDataCollection } from "./transaction.collection";
 
-import { ExtendedTransactionData, TransactionData } from "./transaction.dto";
-import { transformTransactionData } from "./transaction.mapper";
+import { ExtendedTransactionData } from "./transaction.dto";
 import { promiseAllSettledByKey } from "./helpers/promise";
 
 type HistoryMethod = string;
