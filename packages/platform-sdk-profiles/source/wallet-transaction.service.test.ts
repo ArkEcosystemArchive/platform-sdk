@@ -893,7 +893,7 @@ it("#confirm", async () => {
 			errors: {},
 		})
 		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
-		.reply(200, { data: { confirmations: 1 } });
+		.reply(200, { data: { confirmations: 0 } });
 
 	const input = {
 		signatory: new Signatories.Signatory(

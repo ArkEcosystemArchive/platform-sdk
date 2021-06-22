@@ -123,7 +123,7 @@ export abstract class AbstractTransactionData implements TransactionData {
 	}
 
 	public isConfirmed(): boolean {
-		return true;
+		return this.confirmations().isGreaterThanOrEqualTo(1);
 	}
 
 	public isReturn(): boolean {
