@@ -65,7 +65,7 @@ it("should set password in memory", () => {
 it("should forget the password", () => {
 	expect(profile.usesPassword()).toBeFalse();
 	const firstExport = new ProfileExporter(profile).export();
-	expect(firstExport).toMatchSnapshot();
+	expect(firstExport).toBeString();
 
 	subject.setPassword("old-password");
 
@@ -76,4 +76,10 @@ it("should forget the password", () => {
 
 	expect(profile.usesPassword()).toBeFalse();
 	expect(new ProfileExporter(profile).export().length <= firstExport.length).toBeTrue();
+});
+
+it("should fail to forget the password if the current password is invalid", () => {
+	subject.setPassword("password");
+
+	expect(() => subject.forgetPassword("invalid-password")).toThrow("does not match");
 });
