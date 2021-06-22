@@ -43,10 +43,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.asset.data;
 	}
 
-	public override isConfirmed(): boolean {
-		return this.confirmations().isGreaterThanOrEqualTo(101);
-	}
-
 	public override isTransfer(): boolean {
 		return TransactionTypeService.isTransfer(this.data);
 	}

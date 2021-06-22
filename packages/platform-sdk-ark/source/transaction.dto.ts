@@ -57,10 +57,6 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 		return this.data.asset || {};
 	}
 
-	public override isConfirmed(): boolean {
-		return this.confirmations().isGreaterThanOrEqualTo(51);
-	}
-
 	public override isSent(): boolean {
 		return [this.getMeta("address"), this.getMeta("publicKey")].includes(this.sender());
 	}
