@@ -47,8 +47,11 @@ export class TransactionData {
 		return this.#data.recipient();
 	}
 
-	public recipients(): Contracts.MultiPaymentRecipient[] {
-		return this.#data.recipients();
+	public recipients(): {
+		address: string;
+		amount: number;
+	}[] {
+		return this.#data.recipients().map(({ address, amount }) => ({ address, amount: amount.toHuman() }));
 	}
 
 	public amount(): number {
