@@ -64,15 +64,16 @@ it("should set password in memory", () => {
 
 it("should forget the password", () => {
 	expect(profile.usesPassword()).toBeFalse();
-	expect(new ProfileExporter(profile).export()).toMatchSnapshot();
+	const firstExport = new ProfileExporter(profile).export();
+	expect(firstExport).toMatchSnapshot();
 
 	subject.setPassword("old-password");
 
 	expect(profile.usesPassword()).toBeTrue();
-	expect(new ProfileExporter(profile).export()).toMatchSnapshot();
+	expect(new ProfileExporter(profile).export().length > firstExport.length * 2).toBeTrue();
 
 	subject.forgetPassword("old-password");
 
 	expect(profile.usesPassword()).toBeFalse();
-	expect(new ProfileExporter(profile).export()).toMatchSnapshot();
+	expect(new ProfileExporter(profile).export().length <= firstExport.length).toBeTrue();
 });
