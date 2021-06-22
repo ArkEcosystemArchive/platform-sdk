@@ -1,5 +1,6 @@
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+
 import { MultiPaymentRecipient } from "./transaction.contract";
 
 export type RawTransactionData = any;
