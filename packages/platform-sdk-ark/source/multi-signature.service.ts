@@ -35,7 +35,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 		}
 
 		const { id } = await this.#post("transaction", {
-			data: transaction,
+			data: transaction, // @TODO: we need to call .data() here because SignedTransactionData is used sometimes by DW - check why
 			multisigAsset: multiSignature,
 		});
 
@@ -148,7 +148,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 			...data,
 			id, // This is the real ID, computed by the MuSig Server.
 			timestamp,
-			multiSignature: multisigAsset,
+			multiSignature: multisigAsset, // @TODO: this is undefined - check why
 		};
 	}
 
