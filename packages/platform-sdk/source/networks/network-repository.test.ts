@@ -157,6 +157,7 @@ test("#all", () => {
 		        "type": "dynamic",
 		      },
 		      "memo": true,
+		      "multiPaymentRecipients": 64,
 		      "types": Array [
 		        "delegate-registration",
 		        "delegate-resignation",
@@ -320,6 +321,7 @@ test("#all", () => {
 		        "type": "dynamic",
 		      },
 		      "memo": true,
+		      "multiPaymentRecipients": 64,
 		      "types": Array [
 		        "delegate-registration",
 		        "delegate-resignation",
@@ -478,6 +480,7 @@ test("#all", () => {
 		        "type": "dynamic",
 		      },
 		      "memo": true,
+		      "multiPaymentRecipients": 64,
 		      "types": Array [
 		        "delegate-registration",
 		        "delegate-resignation",
@@ -636,6 +639,7 @@ test("#all", () => {
 		        "type": "dynamic",
 		      },
 		      "memo": true,
+		      "multiPaymentRecipients": 64,
 		      "types": Array [
 		        "delegate-registration",
 		        "delegate-resignation",
