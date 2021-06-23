@@ -269,6 +269,16 @@ export class Network {
 	}
 
 	/**
+	 * Returns the number of recipients per multi payment transaction.
+	 *
+	 * @return {*}  {number}
+	 * @memberof Network
+	 */
+	public multiPaymentRecipients(): number {
+		return get(this.#network, "transactions.multiPaymentRecipients", 0);
+	}
+
+	/**
 	 * Returns the list of available tokens, like ERC20 or TRC20.
 	 *
 	 * @return {*}  {NetworkManifestToken[]}

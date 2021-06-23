@@ -148,6 +148,7 @@ Object {
       "type": "dynamic",
     },
     "memo": true,
+    "multiPaymentRecipients": 64,
     "types": Array [
       "delegate-registration",
       "delegate-resignation",
