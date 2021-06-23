@@ -61,8 +61,8 @@ export class WalletSerialiser {
 		const balance = this.#wallet.data().get<Contracts.WalletBalance>(WalletData.Balance);
 
 		const serializedBalance: SerializedBalance = {
-			available: this.bigNumberService.make(balance?.available || 0).toString(),
-			fees: this.bigNumberService.make(balance?.fees || 0).toString(),
+			available: this.#wallet.coin().bigNumber().make(balance?.available || 0).toString(),
+			fees: this.#wallet.coin().bigNumber().make(balance?.fees || 0).toString(),
 		};
 
 		if (balance?.locked) {
