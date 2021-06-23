@@ -34,10 +34,7 @@ const network: Networks.NetworkManifest = {
 		votesPerWallet: 1,
 		votesPerTransaction: 1,
 	},
-	transactions: {
-		...transactions,
-		multiPaymentRecipients: 64,
-	},
+	transactions,
 	importMethods,
 	featureFlags,
 	explorer,

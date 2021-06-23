@@ -40,6 +40,7 @@ const network: Networks.NetworkManifest = {
 			type: "dynamic",
 			ticker: "DARK",
 		},
+		multiPaymentRecipients: 128,
 	},
 	importMethods,
 	featureFlags,
