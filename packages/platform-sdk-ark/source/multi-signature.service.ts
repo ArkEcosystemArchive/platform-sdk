@@ -35,7 +35,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 		}
 
 		const { id } = await this.#post("transaction", {
-			data: transaction, // @TODO: we need to call .data() here because SignedTransactionData is used sometimes by DW - check why
+			data: transaction,
 			multisigAsset: multiSignature,
 		});
 
