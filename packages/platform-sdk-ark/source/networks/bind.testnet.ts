@@ -39,7 +39,11 @@ const network: Networks.NetworkManifest = {
 	},
 	importMethods,
 	featureFlags,
-	explorer,
+	explorer: {
+		block: "block/{0}",
+		transaction: "transaction/{0}",
+		wallet: "wallets/{0}",
+	},
 	meta: {
 		fastDelegateSync: true,
 	},

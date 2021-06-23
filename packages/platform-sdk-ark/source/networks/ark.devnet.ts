@@ -1,6 +1,6 @@
 import { Networks } from "@arkecosystem/platform-sdk";
 
-import { explorer, featureFlags, importMethods, transactions } from "./shared";
+import { featureFlags, importMethods, transactions } from "./shared";
 
 const network: Networks.NetworkManifest = {
 	id: "ark.devnet",
@@ -43,7 +43,11 @@ const network: Networks.NetworkManifest = {
 	},
 	importMethods,
 	featureFlags,
-	explorer,
+	explorer: {
+		block: "blocks/{0}",
+		transaction: "transactions/{0}",
+		wallet: "wallets/{0}",
+	},
 	knownWallets: "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",
 	meta: {
 		fastDelegateSync: true,
