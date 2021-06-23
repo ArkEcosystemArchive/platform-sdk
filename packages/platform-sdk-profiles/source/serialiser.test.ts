@@ -102,7 +102,7 @@ describe.each([
 	[
 		456,
 		{
-			available: this.bigNumberService.make((1),
+			available: this.bigNumberService.make(1),
 			fees: this.bigNumberService.make(2),
 			locked: BigNumber.make(3),
 			tokens: {

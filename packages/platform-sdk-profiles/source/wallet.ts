@@ -586,7 +586,7 @@ export class Wallet implements IReadWriteWallet {
 
 		/* istanbul ignore next */
 		this.data().set(WalletData.Balance, {
-			available: this.bigNumberService.make((balance?.available || 0, this.#decimals()),
+			available: this.bigNumberService.make(balance?.available || 0, this.#decimals()),
 			fees: this.bigNumberService.make(balance?.fees || 0, this.#decimals()),
 		});
 
