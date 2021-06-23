@@ -102,8 +102,8 @@ describe.each([
 	[
 		456,
 		{
-			available: BigNumber.make(1),
-			fees: BigNumber.make(2),
+			available: this.bigNumberService.make((1),
+			fees: this.bigNumberService.make(2),
 			locked: BigNumber.make(3),
 			tokens: {
 				ARK: BigNumber.make(4),
