@@ -30,6 +30,7 @@ export interface NetworkHost {
 export interface ImportMethod {
 	default: boolean;
 	permissions: WalletPermission[];
+	canBeEncrypted?: boolean;
 }
 
 export interface NetworkManifestTransactions {
