@@ -11,7 +11,11 @@ export class WIFService extends Services.AbstractWIFService {
 		try {
 			return {
 				// 255 isn't the real version but I couldn't find any number documented
-				wif: WIF.encode({ version: 255, privateKey: getPrivateAndPublicKeyFromPassphrase(mnemonic).privateKey, compressed: true }),
+				wif: WIF.encode({
+					version: 255,
+					privateKey: getPrivateAndPublicKeyFromPassphrase(mnemonic).privateKey,
+					compressed: true,
+				}),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
