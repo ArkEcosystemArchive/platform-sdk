@@ -20,6 +20,7 @@ export const transactions: Networks.NetworkManifestTransactions = {
 		ticker: "ARK",
 	},
 	memo: true,
+	multiPaymentRecipients: 64,
 };
 
 export const importMethods: Networks.NetworkManifestImportMethods = {

@@ -41,6 +41,7 @@ export interface NetworkManifestTransactions {
 	};
 	memo?: boolean;
 	utxo?: boolean;
+	multiPaymentRecipients?: number;
 }
 
 export interface NetworkManifestFeatureFlags {

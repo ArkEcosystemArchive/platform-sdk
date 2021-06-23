@@ -36,6 +36,7 @@ const network: Networks.NetworkManifest = {
 			type: "dynamic",
 			ticker: "BIND",
 		},
+		multiPaymentRecipients: 64,
 	},
 	importMethods,
 	featureFlags,
