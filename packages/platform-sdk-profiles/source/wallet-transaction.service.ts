@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { Contracts, Signatories, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Signatories, Services, Exceptions } from "@arkecosystem/platform-sdk";
 import { v4 as uuidv4 } from "uuid";
 import { IReadWriteWallet, ITransactionService, WalletData } from "./contracts";
 
@@ -65,6 +65,10 @@ export class TransactionService implements ITransactionService {
 	/** {@inheritDoc ITransactionService.addSignature} */
 	public async addSignature(id: string, signatory: Signatories.Signatory): Promise<void> {
 		this.#assertHasValidIdentifier(id);
+
+		if (!(signatory.actsWithMnemonic() || signatory.actsWithWif())) {
+			throw new Exceptions.Exception("The signatory has to use a mnemonic or WIF.");
+		}
 
 		const transaction = await this.#wallet.coin().multiSignature().findById(id);
 
