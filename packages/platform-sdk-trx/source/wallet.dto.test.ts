@@ -4,11 +4,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { data } from "../test/fixtures/client/wallet.json";
 import { WalletData } from "./wallet.dto";
-
-let subject: WalletData;
+import { createService } from "../test/mocking";
 
 describe("WalletData", () => {
-	const subject = new WalletData(data[0]);
+	const subject = createService(WalletData).fill(data[0]);
 
 	it("#address", () => {
 		expect(subject.address()).toEqual(data[0].address);

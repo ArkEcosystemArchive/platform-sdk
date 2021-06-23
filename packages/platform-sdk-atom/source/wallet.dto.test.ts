@@ -4,9 +4,10 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../test/fixtures/client/wallet.json";
 import { WalletData } from "./wallet.dto";
+import { createService } from "../test/mocking";
 
 describe("WalletData", () => {
-	const subject = new WalletData({
+	const subject = createService(WalletData).fill({
 		address: Fixture.result.value.address,
 		publicKey: Fixture.result.value.public_key.value,
 		balance: 22019458509,
