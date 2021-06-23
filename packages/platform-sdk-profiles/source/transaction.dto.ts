@@ -51,6 +51,7 @@ export class TransactionData {
 		address: string;
 		amount: number;
 	}[] {
+		/* istanbul ignore next */
 		return this.#data.recipients().map(({ address, amount }) => ({ address, amount: amount.toHuman() }));
 	}
 
