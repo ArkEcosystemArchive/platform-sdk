@@ -210,7 +210,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 		try {
 			let address: string | undefined;
 
-			if (input.signatory.actsWithMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
+			if (input.signatory.actsWithMnemonic() || input.signatory.actsWithSecondaryMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
 				address = (await this.addressService.fromMnemonic(input.signatory.signingKey())).address;
 			}
 
