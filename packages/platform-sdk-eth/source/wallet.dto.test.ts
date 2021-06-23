@@ -3,12 +3,13 @@ import "jest-extended";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { WalletData } from "./wallet.dto";
+import { createService } from "../test/mocking";
 
 let subject: WalletData;
 
 beforeEach(
 	() =>
-		(subject = new WalletData({
+		(subject = createService(WalletData).fill({
 			address: "0x4581a610f96878266008993475f1476ca9997081",
 			balance: 10,
 			nonce: 0,
