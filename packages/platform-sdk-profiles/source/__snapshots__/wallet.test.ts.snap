@@ -123,6 +123,7 @@ Object {
       ],
     },
     "bip39": Object {
+      "canBeEncrypted": true,
       "default": true,
       "permissions": Array [
         "read",

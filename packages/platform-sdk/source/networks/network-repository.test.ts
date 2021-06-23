@@ -132,6 +132,7 @@ test("#all", () => {
 		        ],
 		      },
 		      "bip39": Object {
+		        "canBeEncrypted": true,
 		        "default": true,
 		        "permissions": Array [
 		          "read",
@@ -296,6 +297,7 @@ test("#all", () => {
 		        ],
 		      },
 		      "bip39": Object {
+		        "canBeEncrypted": true,
 		        "default": true,
 		        "permissions": Array [
 		          "read",
@@ -456,6 +458,7 @@ test("#all", () => {
 		        ],
 		      },
 		      "bip39": Object {
+		        "canBeEncrypted": true,
 		        "default": true,
 		        "permissions": Array [
 		          "read",
@@ -615,6 +618,7 @@ test("#all", () => {
 		        ],
 		      },
 		      "bip39": Object {
+		        "canBeEncrypted": true,
 		        "default": true,
 		        "permissions": Array [
 		          "read",
