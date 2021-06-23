@@ -88,7 +88,7 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 };
 
 export const explorer: Networks.NetworkManifestExplorer = {
-	block: "block/{0}",
-	transaction: "transaction/{0}",
+	block: "blocks/{0}",
+	transaction: "transactions/{0}",
 	wallet: "wallets/{0}",
 };
