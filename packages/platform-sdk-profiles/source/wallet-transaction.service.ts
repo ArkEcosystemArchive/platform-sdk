@@ -284,7 +284,7 @@ export class TransactionService implements ITransactionService {
 		if (this.canBeBroadcasted(id)) {
 			result = await this.#wallet.client().broadcast([transaction.data()]);
 		} else if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
-			result.accepted.push(await this.#wallet.coin().multiSignature().broadcast(transaction.data()));
+			result.accepted.push(await this.#wallet.coin().multiSignature().broadcast(transaction.data().data()));
 		}
 
 		if (result.accepted.includes(transaction.id())) {
