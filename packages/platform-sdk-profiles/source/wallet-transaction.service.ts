@@ -411,9 +411,9 @@ export class TransactionService implements ITransactionService {
 		if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
 			uuid = transaction.id();
 
-			this.#waitingForOtherSignatures[uuid] = new ExtendedSignedTransactionData(transaction);
+			this.#waitingForOtherSignatures[uuid] = this.#createExtendedSignedTransactionData(transaction);
 		} else {
-			this.#signed[uuid] = new ExtendedSignedTransactionData(transaction);
+			this.#signed[uuid] = this.#createExtendedSignedTransactionData(transaction);
 		}
 
 		this.#identifierMap[uuid] = transaction.id();
@@ -465,7 +465,7 @@ export class TransactionService implements ITransactionService {
 
 		for (const transaction of transactions) {
 			const transactionId: string = transaction.id;
-			const signedTransaction = new ExtendedSignedTransactionData(
+			const signedTransaction = this.#createExtendedSignedTransactionData(
 				this.#wallet.coin().dataTransferObject().signedTransaction(transactionId, transaction, transaction),
 			);
 
@@ -485,9 +485,13 @@ export class TransactionService implements ITransactionService {
 			.allWithReadyState(this.#getPublicKey());
 
 		for (const transaction of transactions) {
-			this.#signed[transaction.id] = new ExtendedSignedTransactionData(
+			this.#signed[transaction.id] = this.#createExtendedSignedTransactionData(
 				this.#wallet.coin().dataTransferObject().signedTransaction(transaction.id, transaction, transaction),
 			);
 		}
+	}
+
+	#createExtendedSignedTransactionData(transaction: Contracts.SignedTransactionData): ExtendedSignedTransactionData {
+		return new ExtendedSignedTransactionData(transaction, this.#wallet);
 	}
 }
