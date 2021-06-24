@@ -28,7 +28,6 @@ export interface TransactionInput {
 	feeLimit?: number;
 	nonce?: string;
 	signatory: Signatory;
-	signatories?: Signatory[];
 	contract?: {
 		address: string;
 	};
@@ -129,5 +128,4 @@ export interface EntityUpdateInput extends TransactionInput {
 
 export type TransactionInputs = Record<string, any> & {
 	signatory: Signatory;
-	signatories?: Signatory[];
 };

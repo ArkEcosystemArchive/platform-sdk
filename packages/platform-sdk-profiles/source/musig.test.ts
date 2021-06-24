@@ -30,7 +30,64 @@ beforeEach(async () => {
 	subject = new TransactionService(wallet);
 });
 
-it("should throw if a transaction is retrieved that does not exist", async () => {
+it("should perform a transfer", async () => {
+	const PA = "wallet1";
+	const PB = "wallet2";
+	const PC = "wallet3";
+
+	const publicKeys = [
+		(await wallet.coin().publicKey().fromMnemonic(PA)).publicKey,
+		(await wallet.coin().publicKey().fromMnemonic(PB)).publicKey,
+		(await wallet.coin().publicKey().fromMnemonic(PC)).publicKey,
+	];
+
+	wallet = await profile.walletFactory().fromAddress({
+		coin: "ARK",
+		network: "ark.devnet",
+		address: "DTToLoKRFviEppvVLAZtdY1mJsE8q43DMe",
+	});
+	await wallet.synchroniser().identity();
+
+	const uuid = await wallet.transaction().signTransfer({
+		nonce: wallet.nonce().plus(1).toString(),
+		signatory: await wallet.coin().signatory().multiSignature(2, publicKeys),
+		data: {
+			amount: 1,
+			to: "DTToLoKRFviEppvVLAZtdY1mJsE8q43DMe",
+		},
+	});
+
+	// Add the first signature and re-broadcast the transaction.
+	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PA));
+
+	// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+	await wallet.transaction().sync();
+
+	// Add the second signature and re-broadcast the transaction.
+	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PB));
+
+	// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+	await wallet.transaction().sync();
+
+	// Add the third signature and re-broadcast the transaction.
+	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PC));
+
+	// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+	await wallet.transaction().sync();
+
+	// Add the final signature by signing the whole transaction with the signatures of all participants.
+	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PA));
+
+	// Sync all of the transactions from the Multi-Signature Server and check the state of each.
+	await wallet.transaction().sync();
+
+	// Broadcast the multi signature.
+	for (const signedID of Object.keys(wallet.transaction().signed())) {
+		console.log(JSON.stringify(await wallet.transaction().broadcast(signedID), null, 4));
+	}
+});
+
+it("should perform a registration", async () => {
 	const PA = "wallet1";
 	const PB = "wallet2";
 	const PC = "wallet3";
@@ -51,20 +108,13 @@ it("should throw if a transaction is retrieved that does not exist", async () =>
 	const uuid = await wallet.transaction().signMultiSignature({
 		nonce: wallet.nonce().plus(1).toString(),
 		fee: 5,
-		// @TODO: make this optional when we have multiple signatories or use a NullSignatory
 		signatory: await wallet.coin().signatory().multiSignature(2, publicKeys),
-		signatories: [
-			await wallet.coin().signatory().multiSignature(2, publicKeys),
-			await wallet.coin().signatory().mnemonic(PA),
-		],
 		data: {
 			publicKeys,
 			min: 2,
 			senderPublicKey: wallet.publicKey(),
 		},
 	});
-
-	console.log(JSON.stringify(await wallet.transaction().broadcast(uuid), null, 4));
 
 	// Add the first signature and re-broadcast the transaction.
 	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PA));

@@ -174,18 +174,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 			throw new Error("Failed to retrieve the keys for the signatory wallet.");
 		}
 
-		// @ts-ignore
-		return this.multiSignatureSigner.addSignature(transaction, {
+		const transactionWithSignature = this.multiSignatureSigner.addSignature(transaction, {
 			publicKey: keys.publicKey,
 			privateKey: keys.privateKey,
 			compressed: true,
 		});
 
-		// return this.dataTransferObjectService.signedTransaction(
-		// 	transactionWithSignature.id!,
-		// 	transactionWithSignature,
-		// 	transactionWithSignature,
-		// );
+		return this.dataTransferObjectService.signedTransaction(
+			transactionWithSignature.id!,
+			transactionWithSignature,
+			transactionWithSignature,
+		);
 	}
 
 	public override async estimateExpiration(value?: string): Promise<string | undefined> {
@@ -289,18 +288,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 			}
 
 			if (input.signatory.actsWithMultiSignature()) {
-				let transactionWithSignature = this.multiSignatureSigner.sign(
+				const transactionWithSignature = this.multiSignatureSigner.sign(
 					transaction,
 					input.signatory.signingList(),
 				);
-
-				// @TODO: find a nicer solution for adding the initial signature
-				if (input.signatories) {
-					// @ts-ignore
-					transactionWithSignature = await this.multiSign(transactionWithSignature, {
-						signatory: input.signatories[1],
-					});
-				}
 
 				return this.dataTransferObjectService.signedTransaction(
 					transactionWithSignature.id!,

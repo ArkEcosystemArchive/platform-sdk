@@ -77,19 +77,25 @@ export class TransactionService implements ITransactionService {
 			throw new Exceptions.Exception("The signatory has to use a mnemonic or WIF.");
 		}
 
+		let transaction: Services.MultiSignatureTransaction;
+
+		try {
+			transaction = await this.#wallet
+					.coin()
+					.multiSignature()
+					.findById(this.#identifierMap[id])
+		} catch {
+			// If we end up here we are adding the first signature, locally.
+			transaction = this.transaction(id).data().data();
+		}
+
 		const transactionWithSignature = await this.#wallet
 			.coin()
 			.transaction()
-			.multiSign(
-				await this.#wallet
-					.coin()
-					.multiSignature()
-					.findById(this.#identifierMap[id]),
-				{ signatory },
-			);
+			.multiSign(transaction, { signatory });
 
 		// @TODO: handle errors
-		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature);
+		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());
 	}
 
 	/** {@inheritDoc ITransactionService.signTransfer} */
