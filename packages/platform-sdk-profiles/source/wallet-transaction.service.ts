@@ -116,7 +116,7 @@ export class TransactionService implements ITransactionService {
 
 	/** {@inheritDoc ITransactionService.signMultiSignature} */
 	public async signMultiSignature(input: Services.MultiSignatureInput): Promise<string> {
-		return await this.#signTransaction("multiSignature", input);
+		return this.#signTransaction("multiSignature", input);
 	}
 
 	/** {@inheritDoc ITransactionService.signIpfs} */
