@@ -89,9 +89,7 @@ export class TransactionService implements ITransactionService {
 			);
 
 		// @TODO: handle errors
-		console.log(
-			JSON.stringify(await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature), null, 4),
-		);
+		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature);
 	}
 
 	/** {@inheritDoc ITransactionService.signTransfer} */

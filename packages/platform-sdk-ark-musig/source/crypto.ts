@@ -25,6 +25,7 @@ export const verifySignatures = (
 		excludeSecondSignature: true,
 		excludeMultiSignature: true,
 	});
+
 	for (const signature of signatures) {
 		const publicKeyIndex: number = parseInt(signature.slice(0, 2), 16);
 		const partialSignature: string = signature.slice(2, 130);
