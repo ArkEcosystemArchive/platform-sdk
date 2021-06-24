@@ -190,7 +190,7 @@ describe("ClientService", () => {
 
 			expect(result.accepted).toMatchObject([]);
 			expect(result.rejected[0]).toBeString();
-			expect(result.errors[result.rejected[0]]).toMatchObject(["ERR_INSUFFICIENT_FUNDS"]);
+			expect(result.errors[result.rejected[0]]).toBe("op_underfunded");
 		});
 	});
 });

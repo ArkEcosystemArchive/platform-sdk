@@ -112,7 +112,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["id"],
 				errors: {
-					id: ["GasPrice 1 lower than minimum allowable 2000000000"],
+					id: "GasPrice 1 lower than minimum allowable 2000000000",
 				},
 			});
 		});

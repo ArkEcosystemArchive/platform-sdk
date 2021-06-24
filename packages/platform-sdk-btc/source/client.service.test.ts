@@ -100,7 +100,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["id"],
 				errors: {
-					id: ["ERR_IN_BELOWOUT"],
+					id: "bad-txns-in-belowout",
 				},
 			});
 		});

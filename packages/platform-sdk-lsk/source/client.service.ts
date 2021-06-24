@@ -1,7 +1,5 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#peer!: string;
@@ -99,13 +97,11 @@ export class ClientService extends Services.AbstractClientService {
 			if (errors) {
 				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id()])) {
-					result.errors[transaction.id()] = [];
-				}
-
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+				for (const key of Object.keys(this.#broadcastErrors)) {
 					if (errors[0].message.includes(key)) {
-						result.errors[transaction.id()].push(value);
+						result.errors[transaction.id()] = key;
+
+						break;
 					}
 				}
 			}

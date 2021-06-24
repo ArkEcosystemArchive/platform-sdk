@@ -89,14 +89,12 @@ export class ClientService extends Services.AbstractClientService {
 			if (response.error) {
 				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id()])) {
-					result.errors[transaction.id()] = [];
-				}
-
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+				for (const key of Object.keys(this.#broadcastErrors)) {
 					// @ts-ignore
 					if (response.error.message.includes(key)) {
-						result.errors[transaction.id()].push(value);
+						result.errors[transaction.id()] = key;
+
+						break;
 					}
 				}
 			}
