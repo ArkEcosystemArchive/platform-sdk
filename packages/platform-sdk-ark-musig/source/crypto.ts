@@ -43,13 +43,13 @@ export const verifySignatures = (
 		// })
 
 		if (!Crypto.Hash.verifySchnorr(hash, partialSignature, publicKey)) {
-			console.log("failing")
+			console.log("failing");
 
 			return false;
 		}
 	}
 
-	console.log("passing")
+	console.log("passing");
 
 	return true;
 };

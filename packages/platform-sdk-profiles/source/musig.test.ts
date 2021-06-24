@@ -51,10 +51,7 @@ it("should throw if a transaction is retrieved that does not exist", async () =>
 	const uuid = await wallet.transaction().signMultiSignature({
 		nonce: wallet.nonce().plus(1).toString(),
 		fee: 5,
-		signatory: await wallet
-			.coin()
-			.signatory()
-			.multiSignature(2, publicKeys),
+		signatory: await wallet.coin().signatory().multiSignature(2, publicKeys),
 		data: {
 			publicKeys,
 			min: 2,
@@ -65,37 +62,25 @@ it("should throw if a transaction is retrieved that does not exist", async () =>
 	console.log(JSON.stringify(await wallet.transaction().broadcast(uuid), null, 4));
 
 	// Add the first signature and re-broadcast the transaction.
-	await wallet.transaction().addSignature(
-		uuid,
-		await wallet.coin().signatory().mnemonic(PA),
-	);
+	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PA));
 
 	// Sync all of the transactions from the Multi-Signature Server and check the state of each.
 	await wallet.transaction().sync();
 
 	// Add the second signature and re-broadcast the transaction.
-	await wallet.transaction().addSignature(
-		uuid,
-		await wallet.coin().signatory().mnemonic(PB),
-	);
+	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PB));
 
 	// Sync all of the transactions from the Multi-Signature Server and check the state of each.
 	await wallet.transaction().sync();
 
 	// Add the third signature and re-broadcast the transaction.
-	await wallet.transaction().addSignature(
-		uuid,
-		await wallet.coin().signatory().mnemonic(PC),
-	);
+	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PC));
 
 	// Sync all of the transactions from the Multi-Signature Server and check the state of each.
 	await wallet.transaction().sync();
 
 	// Add the final signature by signing the whole transaction with the signatures of all participants.
-	await wallet.transaction().addSignature(
-		uuid,
-		await wallet.coin().signatory().mnemonic(PA),
-	);
+	await wallet.transaction().addSignature(uuid, await wallet.coin().signatory().mnemonic(PA));
 
 	// Sync all of the transactions from the Multi-Signature Server and check the state of each.
 	await wallet.transaction().sync();
