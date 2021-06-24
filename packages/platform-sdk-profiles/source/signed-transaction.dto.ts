@@ -1,14 +1,17 @@
 /* istanbul ignore file */
 
-import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
+import { IReadWriteWallet } from "./wallet.contract";
 
 export class ExtendedSignedTransactionData {
 	readonly #data: Contracts.SignedTransactionData;
+	readonly #wallet: IReadWriteWallet;
 
-	public constructor(data: Contracts.SignedTransactionData) {
+	public constructor(data: Contracts.SignedTransactionData, wallet: IReadWriteWallet) {
 		this.#data = data;
+		this.#wallet = wallet;
 	}
 
 	public data(): Contracts.SignedTransactionData {
@@ -41,6 +44,18 @@ export class ExtendedSignedTransactionData {
 
 	public timestamp(): DateTime {
 		return this.#data.timestamp();
+	}
+
+	public isReturn(): boolean {
+		return this.isSent() && this.isReceived();
+	}
+
+	public isSent(): boolean {
+		return [this.#wallet.address(), this.#wallet.publicKey()].includes(this.sender());
+	}
+
+	public isReceived(): boolean {
+		return [this.#wallet.address(), this.#wallet.publicKey()].includes(this.recipient());
 	}
 
 	public isTransfer(): boolean {
@@ -117,6 +132,10 @@ export class ExtendedSignedTransactionData {
 
 	public toObject(): DTO.SignedTransactionObject {
 		return this.#data.toObject();
+	}
+
+	public wallet(): IReadWriteWallet {
+		return this.#wallet;
 	}
 
 	// @TODO: remove those after introducing proper signed tx DTOs (ARK/LSK specific)
