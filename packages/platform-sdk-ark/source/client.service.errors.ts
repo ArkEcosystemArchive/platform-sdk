@@ -51,11 +51,11 @@ export const broadcastErrors = {
 };
 
 export const guessBroadcastError = (error: string): string => {
-	for (const [type, pattern] of Object.entries(broadcastErrors)) {
-		if (new RegExp(pattern).test(error)) {
-			return type;
+	for (const message of Object.values(broadcastErrors)) {
+		if (new RegExp(message).test(error)) {
+			return error;
 		}
 	}
 
-	return "ERR_UNKNOWN";
+	return broadcastErrors.ERR_UNKNOWN;
 };
