@@ -123,8 +123,13 @@ export class AbstractSignatoryService implements SignatoryService {
 		);
 	}
 
-	public async multiSignature(min: number, publicKeys: string[]): Promise<Signatory> {
-		return new Signatory(new MultiSignatureSignatory({ min, publicKeys }));
+	public async multiSignature(min: number, publicKeys: string[], options?: IdentityOptions): Promise<Signatory> {
+		return new Signatory(
+			new MultiSignatureSignatory(
+				{ min, publicKeys },
+				(await this.addressService.fromMultiSignature(min, publicKeys)).address,
+			),
+		);
 	}
 
 	public async ledger(path: string): Promise<Signatory> {

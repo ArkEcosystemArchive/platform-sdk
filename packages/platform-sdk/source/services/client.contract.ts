@@ -13,7 +13,10 @@ export interface MetaPagination {
 export interface BroadcastResponse {
 	accepted: string[];
 	rejected: string[];
-	errors: Record<string, string[]>;
+	errors: Record<string, {
+		type: string;
+		message: string;
+	}[]>;
 }
 
 export interface ClientService {

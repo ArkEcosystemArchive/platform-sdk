@@ -51,6 +51,13 @@ export class TransactionService implements ITransactionService {
 	 */
 	#waitingForOtherSignatures: SignedTransactionDataDictionary = {};
 
+	/**
+	 * The UUIDs and their transaction IDs.
+	 *
+	 * @memberof TransactionService
+	 */
+	#identifierMap: Record<string, string> = {};
+
 	public constructor(wallet: IReadWriteWallet) {
 		this.#wallet = wallet;
 
@@ -66,15 +73,17 @@ export class TransactionService implements ITransactionService {
 	public async addSignature(id: string, signatory: Signatories.Signatory): Promise<void> {
 		this.#assertHasValidIdentifier(id);
 
-		if (!(signatory.actsWithMnemonic() || signatory.actsWithWif())) {
+		if (!signatory.actsWithMnemonic() && !signatory.actsWithWif()) {
 			throw new Exceptions.Exception("The signatory has to use a mnemonic or WIF.");
 		}
 
-		const transaction = await this.#wallet.coin().multiSignature().findById(id);
+		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(
+			await this.#wallet.coin().multiSignature().findById(this.#identifierMap[id]),
+			{ signatory },
+		);
 
-		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(transaction, { signatory });
-
-		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());
+		// @TODO: handle errors
+		console.log(JSON.stringify(await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature), null, 4));
 	}
 
 	/** {@inheritDoc ITransactionService.signTransfer} */
@@ -99,7 +108,7 @@ export class TransactionService implements ITransactionService {
 
 	/** {@inheritDoc ITransactionService.signMultiSignature} */
 	public async signMultiSignature(input: Services.MultiSignatureInput): Promise<string> {
-		return this.#signTransaction("multiSignature", input);
+		return await this.#signTransaction("multiSignature", input);
 	}
 
 	/** {@inheritDoc ITransactionService.signIpfs} */
@@ -283,12 +292,19 @@ export class TransactionService implements ITransactionService {
 
 		if (this.canBeBroadcasted(id)) {
 			result = await this.#wallet.client().broadcast([transaction.data()]);
-		} else if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
-			result.accepted.push(await this.#wallet.coin().multiSignature().broadcast(transaction.data().data()));
-		}
 
-		if (result.accepted.includes(transaction.id())) {
-			this.#broadcasted[id] = this.#signed[id];
+			if (result.accepted.includes(transaction.id())) {
+				this.#broadcasted[id] = this.#signed[id];
+			}
+		} else if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
+			// result = await this.#wallet.coin().multiSignature().broadcast(transaction.data().data());
+			result = await this.#wallet.coin().multiSignature().broadcast(
+				JSON.parse(JSON.stringify(transaction.data().data(), null, 4)),
+			);
+
+			if (result.accepted.length === 1) {
+				this.#identifierMap[id] = result.accepted[0];
+			}
 		}
 
 		return result;
@@ -377,16 +393,20 @@ export class TransactionService implements ITransactionService {
 	async #signTransaction(type: string, input: any): Promise<string> {
 		const transaction: Contracts.SignedTransactionData = await this.#wallet.coin().transaction()[type](input);
 
-		const uuid: string = uuidv4();
+		let uuid: string = uuidv4();
 
 		// When we are working with Multi-Signatures we need to sign them in split through
 		// broadcasting and fetching them multiple times until all participants have signed
 		// the transaction. Once the transaction is fully signed we can mark it as finished.
 		if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
+			uuid = transaction.id();
+
 			this.#waitingForOtherSignatures[uuid] = new ExtendedSignedTransactionData(transaction);
 		} else {
 			this.#signed[uuid] = new ExtendedSignedTransactionData(transaction);
 		}
+
+		this.#identifierMap[uuid] = transaction.id();
 
 		return uuid;
 	}
@@ -439,7 +459,7 @@ export class TransactionService implements ITransactionService {
 				this.#wallet
 					.coin()
 					.dataTransferObject()
-					.signedTransaction(transactionId, transaction, JSON.stringify(transaction)),
+					.signedTransaction(transactionId, transaction, transaction),
 			);
 
 			this.#waitingForOurSignature[transactionId] = signedTransaction;
@@ -462,7 +482,7 @@ export class TransactionService implements ITransactionService {
 				this.#wallet
 					.coin()
 					.dataTransferObject()
-					.signedTransaction(transaction.id, transaction, JSON.stringify(transaction)),
+					.signedTransaction(transaction.id, transaction, transaction),
 			);
 		}
 	}

@@ -1,5 +1,5 @@
 import { Coins, Contracts, Helpers, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
-import { HttpClient } from "@arkecosystem/platform-sdk-http";
+import { HttpClient, RequestException } from "@arkecosystem/platform-sdk-http";
 
 import { PendingMultiSignatureTransaction } from "./multi-signature.transaction";
 
@@ -27,19 +27,49 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	}
 
 	/** @inheritdoc */
-	public override async broadcast(transaction: Services.MultiSignatureTransaction): Promise<string> {
-		let multiSignature = transaction.multiSignature;
+	public override async broadcast(transaction: Services.MultiSignatureTransaction): Promise<Services.BroadcastResponse> {
+		let multisigAsset = transaction.multiSignature;
 
 		if (transaction.asset && transaction.asset.multiSignature) {
-			multiSignature = transaction.asset.multiSignature;
+			multisigAsset = transaction.asset.multiSignature;
 		}
 
-		const { id } = await this.#post("transaction", {
-			data: transaction,
-			multisigAsset: multiSignature,
-		});
+		try {
+			const { id } = (await this.httpClient.post(`${this.#getPeer()}/transaction`, {
+				data: transaction,
+				multisigAsset,
+			})).json();
 
-		return id;
+			return {
+				accepted: [id],
+				rejected: [],
+				errors: {},
+			};
+		} catch (error) {
+			if (error instanceof RequestException) {
+				const message: string = (error as any).response.json().message;
+
+				let type: string | undefined = "ERR_UNKNOWN";
+
+				if (message === "data.signatures should NOT have fewer than 1 items") {
+					type = "ERR_LESS_THAN_ONE_SIGNATURE";
+				}
+
+				if (message === "Transaction signatures are not valid") {
+					type = "ERR_INVALID_SIGNATURES";
+				}
+
+				return {
+					accepted: [],
+					rejected: [transaction.id],
+					errors: {
+						[transaction.id]: [{ type, message }]
+					},
+				};
+			}
+
+			throw error;
+		}
 	}
 
 	/** @inheritdoc */
@@ -109,19 +139,6 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	 */
 	async #delete(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
 		return (await this.httpClient.delete(`${this.#getPeer()}/${path}`, query)).json();
-	}
-
-	/**
-	 *
-	 *
-	 * @private
-	 * @param {string} path
-	 * @param {Contracts.KeyValuePair} body
-	 * @returns {Promise<Contracts.KeyValuePair>}
-	 * @memberof MultiSignatureService
-	 */
-	async #post(path: string, body: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
-		return (await this.httpClient.post(`${this.#getPeer()}/${path}`, body)).json();
 	}
 
 	/**

@@ -22,7 +22,8 @@ const network: Networks.NetworkManifest = {
 		},
 		{
 			type: "musig",
-			host: "https://dmusig1.ark.io",
+			// host: "https://dmusig1.ark.io",
+			host: "http://0.0.0.0:3000",
 		},
 		{
 			type: "explorer",

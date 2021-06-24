@@ -3,6 +3,7 @@
 import { SignedTransactionData } from "../contracts";
 import { NotImplemented } from "../exceptions";
 import { injectable } from "../ioc";
+import { BroadcastResponse } from "./client.contract";
 import { MultiSignatureService, MultiSignatureTransaction } from "./multi-signature.contract";
 
 @injectable()
@@ -19,7 +20,7 @@ export class AbstractMultiSignatureService implements MultiSignatureService {
 		throw new NotImplemented(this.constructor.name, this.findById.name);
 	}
 
-	public async broadcast(transaction: MultiSignatureTransaction): Promise<string> {
+	public async broadcast(transaction: MultiSignatureTransaction): Promise<BroadcastResponse> {
 		throw new NotImplemented(this.constructor.name, this.broadcast.name);
 	}
 

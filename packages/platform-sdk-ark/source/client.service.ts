@@ -1,7 +1,6 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import dotify from "node-dotify";
 
-import { WalletData } from "./wallet.dto";
 import { guessBroadcastError } from "./client.service.errors";
 
 interface BroadcastError {
@@ -219,10 +218,16 @@ export class ClientService extends Services.AbstractClientService {
 					}
 
 					for (const error of value) {
-						result.errors[key].push(guessBroadcastError(error.message));
+						result.errors[key].push({
+							type: guessBroadcastError(error.message),
+							message: error.message,
+						});
 					}
 				} else {
-					result.errors[key] = [guessBroadcastError(value.message)];
+					result.errors[key] = [{
+						type: guessBroadcastError(value.message),
+						message: value.message,
+					}];
 				}
 			}
 		}
