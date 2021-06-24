@@ -350,3 +350,7 @@ it("#usesUTXO", () => {
 it("#tokens", () => {
 	expect(subject.tokens()).toBeArray();
 });
+
+it("#multiPaymentRecipients", () => {
+	expect(subject.multiPaymentRecipients()).toBeNumber();
+});

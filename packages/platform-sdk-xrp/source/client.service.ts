@@ -80,11 +80,7 @@ export class ClientService extends Services.AbstractClientService {
 			} else {
 				result.rejected.push(transactionId);
 
-				if (!Array.isArray(result.errors[transactionId])) {
-					result.errors[transactionId] = [];
-				}
-
-				result.errors[transactionId].push(broadcastErrors[engine_result]);
+				result.errors[transactionId] = broadcastErrors[engine_result];
 			}
 		}
 

@@ -1,8 +1,6 @@
 import { Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#client;
@@ -78,14 +76,12 @@ export class ClientService extends Services.AbstractClientService {
 				const { extras } = err.response.data;
 				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id()])) {
-					result.errors[transaction.id()] = [];
-				}
-
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+				for (const key of Object.keys(this.#broadcastErrors)) {
 					for (const operation of extras.result_codes.operations) {
 						if (operation.includes(key)) {
-							result.errors[transaction.id()].push(value);
+							result.errors[transaction.id()] = key;
+
+							break;
 						}
 					}
 				}

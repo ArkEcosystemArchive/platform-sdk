@@ -213,23 +213,9 @@ export class ClientService extends Services.AbstractClientService {
 
 			for (const [key, value] of responseErrors) {
 				if (Array.isArray(value)) {
-					if (!Array.isArray(result.errors[key])) {
-						result.errors[key] = [];
-					}
-
-					for (const error of value) {
-						result.errors[key].push({
-							type: guessBroadcastError(error.message),
-							message: error.message,
-						});
-					}
+					result.errors[key] = guessBroadcastError(value[0].message);
 				} else {
-					result.errors[key] = [
-						{
-							type: guessBroadcastError(value.message),
-							message: value.message,
-						},
-					];
+					result.errors[key] = guessBroadcastError(value.message);
 				}
 			}
 		}

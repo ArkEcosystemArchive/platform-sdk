@@ -99,7 +99,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652"],
 				errors: {
-					"0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652": ["ERR_INSUFFICIENT_FUNDS"],
+					"0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652": "ERR_INSUFFICIENT_FUNDS",
 				},
 			});
 		});

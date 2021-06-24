@@ -1,5 +1,5 @@
 import { broadcastErrors, guessBroadcastError } from "./client.service.errors";
 
-test.each(Object.entries(broadcastErrors))("guessBroadcastError(%s)", (type, pattern) => {
-	expect(guessBroadcastError(pattern)).toBe(type);
+test.each(Object.values(broadcastErrors))("guessBroadcastError(%s)", (message) => {
+	expect(guessBroadcastError(message)).toBe(message);
 });

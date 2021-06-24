@@ -1,7 +1,5 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	readonly #broadcastErrors: Record<string, string> = {
@@ -97,13 +95,11 @@ export class ClientService extends Services.AbstractClientService {
 				if (message) {
 					result.rejected.push(txhash);
 
-					if (!Array.isArray(result.errors[txhash])) {
-						result.errors[txhash] = [];
-					}
-
-					for (const [key, value] of Object.entries(this.#broadcastErrors)) {
+					for (const key of Object.keys(this.#broadcastErrors)) {
 						if (message.includes(key)) {
-							result.errors[txhash].push(value);
+							result.errors[txhash] = key;
+
+							break;
 						}
 					}
 				}
