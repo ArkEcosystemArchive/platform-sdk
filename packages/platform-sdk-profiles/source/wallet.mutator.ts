@@ -40,8 +40,7 @@ export class WalletMutator implements IWalletMutator {
 			}
 
 			this.#wallet.profile().status().markAsDirty();
-		} catch (e) {
-			console.log(e);
+		} catch {
 			this.#wallet.markAsPartiallyRestored();
 		}
 	}

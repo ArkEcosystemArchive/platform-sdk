@@ -13,8 +13,8 @@ export const verifySignatures = (
 	transaction: Interfaces.ITransactionData,
 	multiSignature: Interfaces.IMultiSignatureAsset,
 ): boolean => {
-	const { publicKeys }: Interfaces.IMultiSignatureAsset = multiSignature;
-	const { signatures }: Interfaces.ITransactionData = transaction;
+	const { publicKeys }: Interfaces.IMultiSignatureAsset = { ...multiSignature };
+	const { signatures }: Interfaces.ITransactionData = { ...transaction };
 
 	if (!signatures || !signatures.length) {
 		return false;

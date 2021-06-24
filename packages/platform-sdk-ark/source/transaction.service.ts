@@ -1,4 +1,4 @@
-import { Interfaces, Transactions } from "@arkecosystem/crypto";
+import { Identities, Interfaces, Transactions } from "@arkecosystem/crypto";
 import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
@@ -85,12 +85,14 @@ export class TransactionService extends Services.AbstractTransactionService {
 		input: Services.MultiSignatureInput,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiSignature", input, ({ transaction, data }) => {
+			if (data.senderPublicKey) {
+				transaction.senderPublicKey(data.senderPublicKey);
+			}
+
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,
 				min: data.min,
 			});
-
-			transaction.senderPublicKey(data.senderPublicKey);
 		});
 	}
 
