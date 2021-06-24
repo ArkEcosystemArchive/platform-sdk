@@ -4,14 +4,6 @@ import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/pl
 export class ClientService extends Services.AbstractClientService {
 	#peer!: string;
 
-	readonly #broadcastErrors: Record<string, string> = {
-		"Invalid sender publicKey": "ERR_INVALID_SENDER_PUBLICKEY",
-		"Account does not have enough LSK": "ERR_INSUFFICIENT_FUNDS",
-		"Sender does not have a secondPublicKey": "ERR_MISSING_SECOND_PUBLICKEY",
-		"Missing signSignature": "ERR_MISSING_SIGNATURE",
-		"Sender is not a multisignature account": "ERR_MISSING_MULTISIGNATURE",
-	};
-
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#peer = `${Helpers.randomHostFromConfig(this.configRepository)}/api`;
@@ -97,13 +89,7 @@ export class ClientService extends Services.AbstractClientService {
 			if (errors) {
 				result.rejected.push(transaction.id());
 
-				for (const key of Object.keys(this.#broadcastErrors)) {
-					if (errors[0].message.includes(key)) {
-						result.errors[transaction.id()] = key;
-
-						break;
-					}
-				}
+				result.errors[transaction.id()] = errors[0].message;
 			}
 		}
 

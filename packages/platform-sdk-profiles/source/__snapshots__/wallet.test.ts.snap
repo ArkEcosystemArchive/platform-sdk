@@ -106,7 +106,7 @@ Object {
       "type": "full",
     },
     Object {
-      "host": "http://0.0.0.0:3100",
+      "host": "https://dmusig1.ark.io",
       "type": "musig",
     },
     Object {

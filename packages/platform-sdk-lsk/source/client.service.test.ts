@@ -166,7 +166,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["5961193224963457718"],
 				errors: {
-					"5961193224963457718": "Account does not have enough LSK",
+					"5961193224963457718": "Account does not have enough LSK: 18218254863282357638L, balance: 219.2",
 				},
 			});
 		});
