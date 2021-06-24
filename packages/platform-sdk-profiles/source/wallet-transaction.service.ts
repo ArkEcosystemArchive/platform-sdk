@@ -292,10 +292,6 @@ export class TransactionService implements ITransactionService {
 
 		if (this.canBeBroadcasted(id)) {
 			result = await this.#wallet.client().broadcast([transaction.data()]);
-
-			if (result.accepted.includes(transaction.id())) {
-				this.#broadcasted[id] = this.#signed[id];
-			}
 		} else if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
 			// result = await this.#wallet.coin().multiSignature().broadcast(transaction.data().data());
 			result = await this.#wallet.coin().multiSignature().broadcast(
@@ -305,6 +301,10 @@ export class TransactionService implements ITransactionService {
 			if (result.accepted.length === 1) {
 				this.#identifierMap[id] = result.accepted[0];
 			}
+		}
+
+		if (result.accepted.includes(transaction.id())) {
+			this.#broadcasted[id] = this.#signed[id];
 		}
 
 		return result;

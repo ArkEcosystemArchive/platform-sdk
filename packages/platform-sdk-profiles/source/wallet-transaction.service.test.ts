@@ -89,7 +89,7 @@ describe("signatures", () => {
 		nock(/.+/)
 			.post("/transaction")
 			.reply(200, {
-				id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+				id: "505e385d08e211b83fa6cf304ad67f42ddbdb364d767fd65354eb5a620b9380f",
 			})
 			.get("/transactions")
 			.query({
@@ -97,7 +97,7 @@ describe("signatures", () => {
 				state: "pending",
 			})
 			.reply(200, {
-				id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+				id: "505e385d08e211b83fa6cf304ad67f42ddbdb364d767fd65354eb5a620b9380f",
 			})
 			.get("/transactions")
 			.query({
@@ -105,7 +105,12 @@ describe("signatures", () => {
 				state: "ready",
 			})
 			.reply(200, {
-				id: "a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+				id: "505e385d08e211b83fa6cf304ad67f42ddbdb364d767fd65354eb5a620b9380f",
+			})
+			.get("/transaction/505e385d08e211b83fa6cf304ad67f42ddbdb364d767fd65354eb5a620b9380f")
+			.reply(200, {
+				data: { signatures: [] },
+				multisigAsset: {},
 			});
 
 		const id = await subject.signMultiSignature({
@@ -125,7 +130,7 @@ describe("signatures", () => {
 
 		await subject.sync();
 		await subject.addSignature(
-			"a7245dcc720d3e133035cff04b4a14dbc0f8ff889c703c89c99f2f03e8f3c59d",
+			id,
 			new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
 					signingKey: "this is a top secret passphrase 1",
@@ -397,7 +402,7 @@ describe("signatures", () => {
 });
 
 it("#transaction lifecycle", async () => {
-	const realHash = "54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2";
+	const realHash = "f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca";
 
 	const input = {
 		signatory: new Signatories.Signatory(
@@ -689,14 +694,14 @@ it("should broadcast transaction", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2"],
+				accept: ["f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
+		.get("/api/transactions/f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca")
 		.reply(200, { data: { confirmations: 1 } });
 
 	const input = {
@@ -726,14 +731,14 @@ it("should broadcast a transfer and confirm it", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2"],
+				accept: ["f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
+		.get("/api/transactions/f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca")
 		.reply(200, { data: { confirmations: 51 } });
 
 	const input = {
@@ -887,14 +892,14 @@ it("#confirm", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2"],
+				accept: ["f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
+		.get("/api/transactions/f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca")
 		.reply(200, { data: { confirmations: 0 } });
 
 	const input = {
@@ -916,7 +921,7 @@ it("#confirm", async () => {
 	await expect(subject.broadcast(id)).resolves.toMatchInlineSnapshot(`
 					Object {
 					  "accepted": Array [
-					    "54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2",
+					    "f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca",
 					  ],
 					  "errors": Object {},
 					  "rejected": Array [],
@@ -944,7 +949,7 @@ it("#confirm", async () => {
 	// Confirmed
 	nock.cleanAll();
 	nock(/.+/)
-		.get("/api/transactions/54f08f26642e29f50e3efe68b321dc45556a83d99f7e2fcd051b0c3f8efb39b2")
+		.get("/api/transactions/f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca")
 		.reply(200, { data: { confirmations: 51 } });
 
 	await subject.confirm(id);
