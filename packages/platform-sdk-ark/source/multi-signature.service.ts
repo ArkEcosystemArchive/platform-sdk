@@ -67,7 +67,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 					accepted: [],
 					rejected: [transaction.id],
 					errors: {
-						[transaction.id]: [{ type, message }],
+						[transaction.id]: message,
 					},
 				};
 			}
