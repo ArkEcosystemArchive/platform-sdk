@@ -26,15 +26,30 @@ export const verifySignatures = (
 		excludeMultiSignature: true,
 	});
 
+	// console.log({
+	// 	hash: hash.toString("hex"),
+	// 	signatures,
+	// })
+
 	for (const signature of signatures) {
 		const publicKeyIndex: number = parseInt(signature.slice(0, 2), 16);
 		const partialSignature: string = signature.slice(2, 130);
 		const publicKey: string = publicKeys[publicKeyIndex];
 
+		// console.log({
+		// 	publicKeyIndex,
+		// 	partialSignature,
+		// 	publicKey,
+		// })
+
 		if (!Crypto.Hash.verifySchnorr(hash, partialSignature, publicKey)) {
+			console.log("failing")
+
 			return false;
 		}
 	}
+
+	console.log("passing")
 
 	return true;
 };

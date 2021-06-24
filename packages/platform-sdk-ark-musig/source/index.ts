@@ -3,7 +3,7 @@ import Boom from "@hapi/boom";
 import { Server } from "@hapi/hapi";
 
 import { IStoreTransaction, TransactionStatus } from "./contracts";
-import { getBaseTransactionId } from "./crypto";
+import { getBaseTransactionId, verifySignatures } from "./crypto";
 import { Storage } from "./database";
 import { memory } from "./memory";
 
@@ -114,6 +114,10 @@ export async function subscribe(options: Record<string, string | number | boolea
 				// 		return Boom.badData("Transaction signatures are not valid");
 				// 	}
 				// }
+
+				if (transaction.data.signatures) {
+					verifySignatures(transaction.data, transaction.multisigAsset);
+				}
 
 				const baseTransactionId = getBaseTransactionId(transaction.data);
 				const storeTransaction = memory.getTransactionById(baseTransactionId);
