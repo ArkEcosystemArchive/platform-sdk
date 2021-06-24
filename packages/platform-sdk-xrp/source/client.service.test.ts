@@ -122,7 +122,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: [transactionPayload.id()],
 				errors: {
-					[transactionPayload.id()]: "ERR_UNFUNDED_PAYMENT",
+					[transactionPayload.id()]: "tecUNFUNDED_PAYMENT",
 				},
 			});
 		});
