@@ -27,7 +27,9 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 	}
 
 	/** @inheritdoc */
-	public override async broadcast(transaction: Services.MultiSignatureTransaction): Promise<Services.BroadcastResponse> {
+	public override async broadcast(
+		transaction: Services.MultiSignatureTransaction,
+	): Promise<Services.BroadcastResponse> {
 		let multisigAsset = transaction.multiSignature;
 
 		if (transaction.asset && transaction.asset.multiSignature) {
@@ -35,10 +37,12 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 		}
 
 		try {
-			const { id } = (await this.httpClient.post(`${this.#getPeer()}/transaction`, {
-				data: transaction,
-				multisigAsset,
-			})).json();
+			const { id } = (
+				await this.httpClient.post(`${this.#getPeer()}/transaction`, {
+					data: transaction,
+					multisigAsset,
+				})
+			).json();
 
 			return {
 				accepted: [id],
@@ -63,7 +67,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 					accepted: [],
 					rejected: [transaction.id],
 					errors: {
-						[transaction.id]: [{ type, message }]
+						[transaction.id]: [{ type, message }],
 					},
 				};
 			}

@@ -224,10 +224,12 @@ export class ClientService extends Services.AbstractClientService {
 						});
 					}
 				} else {
-					result.errors[key] = [{
-						type: guessBroadcastError(value.message),
-						message: value.message,
-					}];
+					result.errors[key] = [
+						{
+							type: guessBroadcastError(value.message),
+							message: value.message,
+						},
+					];
 				}
 			}
 		}

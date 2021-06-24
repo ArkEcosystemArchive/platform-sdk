@@ -3,10 +3,9 @@ import Boom from "@hapi/boom";
 import { Server } from "@hapi/hapi";
 
 import { IStoreTransaction, TransactionStatus } from "./contracts";
-import { getBaseTransactionId, verifySignatures } from "./crypto";
+import { getBaseTransactionId } from "./crypto";
 import { Storage } from "./database";
 import { memory } from "./memory";
-import { transactionSchemaVerifier } from "./transaction-schema-verifier";
 
 const bootDatabase = (network: string) => {
 	const storage = new Storage();

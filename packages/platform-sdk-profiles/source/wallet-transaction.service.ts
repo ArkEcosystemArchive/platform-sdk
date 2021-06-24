@@ -77,13 +77,21 @@ export class TransactionService implements ITransactionService {
 			throw new Exceptions.Exception("The signatory has to use a mnemonic or WIF.");
 		}
 
-		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(
-			await this.#wallet.coin().multiSignature().findById(this.#identifierMap[id]),
-			{ signatory },
-		);
+		const transactionWithSignature = await this.#wallet
+			.coin()
+			.transaction()
+			.multiSign(
+				await this.#wallet
+					.coin()
+					.multiSignature()
+					.findById(this.#identifierMap[id]),
+				{ signatory },
+			);
 
 		// @TODO: handle errors
-		console.log(JSON.stringify(await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature), null, 4));
+		console.log(
+			JSON.stringify(await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature), null, 4),
+		);
 	}
 
 	/** {@inheritDoc ITransactionService.signTransfer} */
@@ -294,9 +302,10 @@ export class TransactionService implements ITransactionService {
 			result = await this.#wallet.client().broadcast([transaction.data()]);
 		} else if (transaction.isMultiSignatureRegistration() || transaction.usesMultiSignature()) {
 			// result = await this.#wallet.coin().multiSignature().broadcast(transaction.data().data());
-			result = await this.#wallet.coin().multiSignature().broadcast(
-				JSON.parse(JSON.stringify(transaction.data().data(), null, 4)),
-			);
+			result = await this.#wallet
+				.coin()
+				.multiSignature()
+				.broadcast(JSON.parse(JSON.stringify(transaction.data().data(), null, 4)));
 
 			if (result.accepted.length === 1) {
 				this.#identifierMap[id] = result.accepted[0];
@@ -456,10 +465,7 @@ export class TransactionService implements ITransactionService {
 		for (const transaction of transactions) {
 			const transactionId: string = transaction.id;
 			const signedTransaction = new ExtendedSignedTransactionData(
-				this.#wallet
-					.coin()
-					.dataTransferObject()
-					.signedTransaction(transactionId, transaction, transaction),
+				this.#wallet.coin().dataTransferObject().signedTransaction(transactionId, transaction, transaction),
 			);
 
 			this.#waitingForOurSignature[transactionId] = signedTransaction;
@@ -479,10 +485,7 @@ export class TransactionService implements ITransactionService {
 
 		for (const transaction of transactions) {
 			this.#signed[transaction.id] = new ExtendedSignedTransactionData(
-				this.#wallet
-					.coin()
-					.dataTransferObject()
-					.signedTransaction(transaction.id, transaction, transaction),
+				this.#wallet.coin().dataTransferObject().signedTransaction(transaction.id, transaction, transaction),
 			);
 		}
 	}
