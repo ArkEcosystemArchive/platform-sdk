@@ -51,8 +51,8 @@ it("should throw if a transaction is retrieved that does not exist", async () =>
 	const uuid = await wallet.transaction().signMultiSignature({
 		nonce: wallet.nonce().plus(1).toString(),
 		fee: 5,
-        // @TODO: make this optional when we have multiple signatories or use a NullSignatory
-        signatory: await wallet.coin().signatory().multiSignature(2, publicKeys),
+		// @TODO: make this optional when we have multiple signatories or use a NullSignatory
+		signatory: await wallet.coin().signatory().multiSignature(2, publicKeys),
 		signatories: [
 			await wallet.coin().signatory().multiSignature(2, publicKeys),
 			await wallet.coin().signatory().mnemonic(PA),
