@@ -490,4 +490,8 @@ export class TransactionService implements ITransactionService {
 			);
 		}
 	}
+
+	#createExtendedSignedTransactionData(transaction: Contracts.SignedTransactionData): ExtendedSignedTransactionData {
+		return new ExtendedSignedTransactionData(transaction, this.#wallet);
+	}
 }

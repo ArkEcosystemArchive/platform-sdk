@@ -94,18 +94,6 @@ export class AbstractSignedTransactionData implements SignedTransactionData {
 		throw new NotImplemented(this.constructor.name, this.timestamp.name);
 	}
 
-	public isReturn(): boolean {
-		return this.isSent() && this.isReceived();
-	}
-
-	public isSent(): boolean {
-		return true;
-	}
-
-	public isReceived(): boolean {
-		return false;
-	}
-
 	public isTransfer(): boolean {
 		return true;
 	}
