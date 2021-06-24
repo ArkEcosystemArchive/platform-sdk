@@ -116,7 +116,8 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172"],
 				errors: {
-					"0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172": "insufficient funds for gas * price + value",
+					"0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172":
+						"insufficient funds for gas * price + value",
 				},
 			});
 		});
