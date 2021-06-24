@@ -107,16 +107,10 @@ export async function subscribe(options: Record<string, string | number | boolea
 					return Boom.badData(error, errors);
 				}
 
-				// @TODO: this fails for whatever reason
-				// The signatures work fine and the final transaction can be broadcasted and forged too.
-				// if (transaction.data.signatures && transaction.data.signatures.length) {
-				// 	if (!verifySignatures(transaction.data, transaction.multisigAsset)) {
-				// 		return Boom.badData("Transaction signatures are not valid");
-				// 	}
-				// }
-
-				if (transaction.data.signatures) {
-					verifySignatures(transaction.data, transaction.multisigAsset);
+				if (transaction.data.signatures && transaction.data.signatures.length) {
+					if (!verifySignatures(transaction.data, transaction.multisigAsset)) {
+						return Boom.badData("Transaction signatures are not valid");
+					}
 				}
 
 				const baseTransactionId = getBaseTransactionId(transaction.data);

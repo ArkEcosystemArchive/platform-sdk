@@ -15,7 +15,7 @@ module.exports = meow(
 			},
 			network: {
 				type: "string",
-				default: "mainnet",
+				isRequired: true,
 			},
 			host: {
 				type: "string",
