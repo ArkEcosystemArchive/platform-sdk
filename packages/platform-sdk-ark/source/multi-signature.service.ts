@@ -165,7 +165,7 @@ export class MultiSignatureService extends Services.AbstractMultiSignatureServic
 			...data,
 			id, // This is the real ID, computed by the MuSig Server.
 			timestamp,
-			multiSignature: multisigAsset, // @TODO: this is undefined - check why
+			multiSignature: multisigAsset,
 		};
 	}
 
