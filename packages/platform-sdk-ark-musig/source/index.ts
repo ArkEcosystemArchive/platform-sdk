@@ -6,6 +6,7 @@ import { IStoreTransaction, TransactionStatus } from "./contracts";
 import { getBaseTransactionId, verifySignatures } from "./crypto";
 import { Storage } from "./database";
 import { memory } from "./memory";
+import { transactionSchemaVerifier } from "./transaction-schema-verifier";
 
 const bootDatabase = (network: string) => {
 	const storage = new Storage();
@@ -100,12 +101,11 @@ export async function subscribe(options: Record<string, string | number | boolea
 			try {
 				const transaction: IStoreTransaction = request.payload as IStoreTransaction;
 
-				// @TODO: this fails because the initial payload has no signatures
-				// const { error, errors } = transactionSchemaVerifier.verifySchema(request.payload.data);
+				const { error, errors } = transactionSchemaVerifier.verifySchema(request.payload.data);
 
-				// if (error) {
-				// 	return Boom.badData(error, errors);
-				// }
+				if (error) {
+					return Boom.badData(error, errors);
+				}
 
 				// @TODO: this fails for whatever reason
 				// The signatures work fine and the final transaction can be broadcasted and forged too.
