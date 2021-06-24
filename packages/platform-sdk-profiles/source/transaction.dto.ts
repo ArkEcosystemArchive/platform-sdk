@@ -2,7 +2,7 @@
 
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { IExchangeRateService, IReadWriteWallet } from "./contracts";
 import { container } from "./container";
