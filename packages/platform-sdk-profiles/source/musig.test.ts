@@ -30,7 +30,7 @@ beforeEach(async () => {
 	subject = new TransactionService(wallet);
 });
 
-it("should perform a transfer", async () => {
+it.skip("should perform a transfer", async () => {
 	const PA = "wallet1";
 	const PB = "wallet2";
 	const PC = "wallet3";
@@ -87,7 +87,7 @@ it("should perform a transfer", async () => {
 	}
 });
 
-it("should perform a registration", async () => {
+it.skip("should perform a registration", async () => {
 	const PA = "wallet1";
 	const PB = "wallet2";
 	const PC = "wallet3";
