@@ -31,7 +31,7 @@ export async function subscribe(options: Record<string, string | number | boolea
 	server.route({
 		method: "GET",
 		path: "/transactions",
-		handler: (request, h) => {
+		handler: (request) => {
 			try {
 				const storeTransactions = memory.getTransactionsByPublicKey(request.query.publicKey);
 
@@ -54,8 +54,7 @@ export async function subscribe(options: Record<string, string | number | boolea
 		},
 		options: {
 			validate: {
-				// @ts-ignore
-				async query(data: object, options: object) {
+				async query(data: object) {
 					const { error } = Validation.validator.validate(
 						{
 							type: "object",
@@ -80,7 +79,7 @@ export async function subscribe(options: Record<string, string | number | boolea
 	server.route({
 		method: "GET",
 		path: "/transaction/{id}",
-		handler: (request, h) => {
+		handler: (request) => {
 			try {
 				const transaction = memory.getTransactionById(request.params.id);
 
@@ -98,9 +97,15 @@ export async function subscribe(options: Record<string, string | number | boolea
 	server.route({
 		method: "POST",
 		path: "/transaction",
-		handler: (request, h) => {
+		handler: (request) => {
 			try {
 				const transaction: IStoreTransaction = request.payload as IStoreTransaction;
+
+				const { error, errors } = transactionSchemaVerifier.verifySchema(request.payload.data);
+
+				if (error) {
+					return Boom.badData(error, errors);
+				}
 
 				if (transaction.data.signatures && transaction.data.signatures.length) {
 					if (!verifySignatures(transaction.data, transaction.multisigAsset)) {
@@ -121,13 +126,6 @@ export async function subscribe(options: Record<string, string | number | boolea
 			} catch (error) {
 				return Boom.badImplementation(error.message);
 			}
-		},
-		options: {
-			validate: {
-				async payload(data: IStoreTransaction) {
-					transactionSchemaVerifier.verifySchema(data.data);
-				},
-			},
 		},
 	});
 

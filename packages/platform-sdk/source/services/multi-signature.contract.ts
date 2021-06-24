@@ -1,4 +1,5 @@
 import { SignedTransactionData } from "../contracts";
+import { BroadcastResponse } from "./client.contract";
 
 export type MultiSignatureTransaction = Record<string, any>;
 
@@ -40,10 +41,10 @@ export interface MultiSignatureService {
 	 * Broadcast the given multi-signature transaction.
 	 *
 	 * @param {MultiSignatureTransaction} transaction
-	 * @returns {Promise<string>}
+	 * @returns {Promise<BroadcastResponse>}
 	 * @memberof MultiSignatureService
 	 */
-	broadcast(transaction: MultiSignatureTransaction): Promise<string>;
+	broadcast(transaction: MultiSignatureTransaction): Promise<BroadcastResponse>;
 
 	/**
 	 * Determine if the multi-signature is ready to be broadcasting.
