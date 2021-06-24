@@ -33,10 +33,7 @@ class Memory {
 
 	public updateTransaction(transaction: Interfaces.ITransactionData): void {
 		const storeId = getBaseTransactionId(transaction);
-
 		const storeTxToUpdate = this.#transactions[storeId];
-		// console.log(["payload", transaction.signatures])
-		// console.log(["store", storeTxToUpdate.data.signatures])
 
 		if (!storeTxToUpdate) {
 			throw new Error(`No transaction found for store ID ${storeId}`);
