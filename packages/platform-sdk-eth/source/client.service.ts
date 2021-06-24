@@ -7,16 +7,6 @@ export class ClientService extends Services.AbstractClientService {
 
 	#peer!: string;
 
-	readonly #broadcastErrors: Record<string, string> = {
-		"nonce too low": "ERR_NONCE_TOO_LOW",
-		"nonce too high": "ERR_NONCE_TOO_HIGH",
-		"gas limit reached": "ERR_GAS_LIMIT_REACHED",
-		"insufficient funds for transfer": "ERR_INSUFFICIENT_FUNDS_FOR_TRANSFER",
-		"insufficient funds for gas * price + value": "ERR_INSUFFICIENT_FUNDS",
-		"gas uint64 overflow": "ERR_GAS_UINT_OVERFLOW",
-		"intrinsic gas too low": "ERR_INTRINSIC_GAS",
-	};
-
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
@@ -77,13 +67,7 @@ export class ClientService extends Services.AbstractClientService {
 			if (response.error) {
 				result.rejected.push(transactionId);
 
-				for (const key of Object.keys(this.#broadcastErrors)) {
-					if (response.error.message.includes(key)) {
-						result.errors[transactionId] = key;
-
-						break;
-					}
-				}
+				result.errors[transactionId] = response.error.message;
 			}
 		}
 

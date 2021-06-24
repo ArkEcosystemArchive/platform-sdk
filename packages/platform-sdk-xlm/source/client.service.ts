@@ -5,14 +5,6 @@ import Stellar from "stellar-sdk";
 export class ClientService extends Services.AbstractClientService {
 	#client;
 
-	readonly #broadcastErrors: Record<string, string> = {
-		op_malformed: "ERR_MALFORMED",
-		op_underfunded: "ERR_INSUFFICIENT_FUNDS",
-		op_low_reserve: "ERR_LOW_RESERVE",
-		op_line_full: "ERR_LINE_FULL",
-		op_no_issuer: "ERR_NO_ISSUER",
-	};
-
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		const network = this.configRepository.get<Networks.NetworkManifest>("network").id;
@@ -73,18 +65,11 @@ export class ClientService extends Services.AbstractClientService {
 
 				result.accepted.push(id);
 			} catch (err) {
-				const { extras } = err.response.data;
 				result.rejected.push(transaction.id());
 
-				for (const key of Object.keys(this.#broadcastErrors)) {
-					for (const operation of extras.result_codes.operations) {
-						if (operation.includes(key)) {
-							result.errors[transaction.id()] = key;
+				const { extras } = err.response.data;
 
-							break;
-						}
-					}
-				}
+				result.errors[transaction.id()] = JSON.stringify(extras.result_codes.operations);
 			}
 		}
 

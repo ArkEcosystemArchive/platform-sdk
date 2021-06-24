@@ -1,9 +1,6 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 
-import { WalletData } from "./wallet.dto";
-import { broadcastErrors } from "./client.errors";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
@@ -80,7 +77,7 @@ export class ClientService extends Services.AbstractClientService {
 			} else {
 				result.rejected.push(transactionId);
 
-				result.errors[transactionId] = broadcastErrors[engine_result];
+				result.errors[transactionId] = engine_result;
 			}
 		}
 

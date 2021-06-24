@@ -2,36 +2,6 @@ import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/pl
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #broadcastErrors: Record<string, string> = {
-		"failed to marshal JSON bytes": "ERR_JSON_MARSHAL",
-		"failed to unmarshal JSON bytes": "ERR_JSON_UNMARSHAL",
-		"insufficient account funds": "ERR_INSUFFICIENT_FUNDS",
-		"insufficient fee": "ERR_INSUFFICIENT_FEE",
-		"insufficient funds": "ERR_INSUFFICIENT_FUNDS",
-		"invalid account password": "ERR_WRONG_PASSWORD",
-		"invalid address": "ERR_INVALID_ADDRESS",
-		"invalid coins": "ERR_INVALID_COINS",
-		"invalid gas adjustment": "ERROR_INVALID_GAS_ADJUSTMENT",
-		"invalid pubkey": "ERR_INVALID_PUB_KEY",
-		"invalid request": "ERR_INVALID_REQUEST",
-		"invalid sequence": "ERR_INVALID_SEQUENCE",
-		"key not found": "ERR_KEY_NOT_FOUND",
-		"maximum number of signatures exceeded": "ERR_TOO_MANY_SIGNATURES",
-		"memo too large": "ERR_MEMO_TOO_LARGE",
-		"mempool is full": "ERR_MEMPOOL_IS_FULL",
-		"no signatures supplied": "ERR_NO_SIGNATURES",
-		"out of gas": "ERR_OUT_OF_GAS",
-		"tx already in mempool": "ERR_TX_IN_MEMPOOL_CACHE",
-		"tx intended signer does not match the given signer": "ERROR_INVALID_SIGNER",
-		"tx parse error": "ERR_TX_DECODE",
-		"tx too large": "ERR_TX_TOO_LARGE",
-		"unknown address": "ERR_UNKNOWN_ADDRESS",
-		"unknown request": "ERR_UNKNOWN_REQUEST",
-		internal: "ERR_INTERNAL",
-		panic: "ERR_PANIC",
-		unauthorized: "ERR_UNAUTHORIZED",
-	};
-
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
@@ -95,13 +65,7 @@ export class ClientService extends Services.AbstractClientService {
 				if (message) {
 					result.rejected.push(txhash);
 
-					for (const key of Object.keys(this.#broadcastErrors)) {
-						if (message.includes(key)) {
-							result.errors[txhash] = key;
-
-							break;
-						}
-					}
+					result.errors[txhash] = message;
 				}
 			}
 		}
