@@ -6,21 +6,6 @@ export class ClientService extends Services.AbstractClientService {
 	#connection!: TronWeb;
 	#peer!: string;
 
-	readonly #broadcastErrors: Record<string, string> = {
-		SIGERROR: "ERR_INVALID_SIGNATURE",
-		CONTRACT_VALIDATE_ERROR: "ERR_CONTRACT_VALIDATE_ERROR",
-		CONTRACT_EXE_ERROR: "ERR_CONTRACT_EXE_ERROR",
-		BANDWITH_ERROR: "ERR_BANDWITH_ERROR",
-		DUP_TRANSACTION_ERROR: "ERR_DUP_TRANSACTION_ERROR",
-		TAPOS_ERROR: "ERR_TAPOS_ERROR",
-		TOO_BIG_TRANSACTION_ERROR: "ERR_TOO_BIG_TRANSACTION_ERROR",
-		TRANSACTION_EXPIRATION_ERROR: "ERR_TRANSACTION_EXPIRATION_ERROR",
-		SERVER_BUSY: "ERR_SERVER_BUSY",
-		NO_CONNECTION: "ERR_NO_CONNECTION",
-		NOT_ENOUGH_EFFECTIVE_CONNECTION: "ERR_NOT_ENOUGH_EFFECTIVE_CONNECTION",
-		OTHER_ERROR: "ERR_OTHER_ERROR",
-	};
-
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
@@ -93,13 +78,7 @@ export class ClientService extends Services.AbstractClientService {
 			if (response.code) {
 				result.rejected.push(transaction.id());
 
-				for (const key of Object.keys(this.#broadcastErrors)) {
-					if (response.code.includes(key)) {
-						result.errors[transaction.id()] = key;
-
-						break;
-					}
-				}
+				result.errors[transaction.id()] = response.code;
 			}
 		}
 

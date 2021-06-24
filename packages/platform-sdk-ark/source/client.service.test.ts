@@ -280,8 +280,7 @@ describe("ClientService", () => {
 				accepted: ["e4311204acf8a86ba833e494f5292475c6e9e0913fc455a12601b4b6b55818d8"],
 				rejected: ["d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216"],
 				errors: {
-					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216:
-						"Failed to apply transaction, because an unknown error occurred.",
+					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216: "Already forged.",
 				},
 			});
 		});
@@ -302,8 +301,7 @@ describe("ClientService", () => {
 				accepted: ["e4311204acf8a86ba833e494f5292475c6e9e0913fc455a12601b4b6b55818d8"],
 				rejected: ["d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216"],
 				errors: {
-					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216:
-						"Failed to apply transaction, because an unknown error occurred.",
+					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216: "Already forged.",
 				},
 			});
 		});

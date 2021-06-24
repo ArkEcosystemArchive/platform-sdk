@@ -81,18 +81,15 @@ export class TransactionService implements ITransactionService {
 
 		try {
 			transaction = await this.#wallet
-					.coin()
-					.multiSignature()
-					.findById(this.#identifierMap[id])
+				.coin()
+				.multiSignature()
+				.findById(this.#identifierMap[id]);
 		} catch {
 			// If we end up here we are adding the first signature, locally.
 			transaction = this.transaction(id).data().data();
 		}
 
-		const transactionWithSignature = await this.#wallet
-			.coin()
-			.transaction()
-			.multiSign(transaction, { signatory });
+		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(transaction, { signatory });
 
 		// @TODO: handle errors
 		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());

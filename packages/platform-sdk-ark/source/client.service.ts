@@ -1,13 +1,6 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import dotify from "node-dotify";
 
-import { guessBroadcastError } from "./client.service.errors";
-
-interface BroadcastError {
-	type: string;
-	message: string;
-}
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
@@ -102,7 +95,35 @@ export class ClientService extends Services.AbstractClientService {
 			response = error.response.json();
 		}
 
-		return this.#handleBroadcastResponse(response);
+		const { data, errors } = response;
+
+		const result: Services.BroadcastResponse = {
+			accepted: [],
+			rejected: [],
+			errors: {},
+		};
+
+		if (Array.isArray(data.accept)) {
+			result.accepted = data.accept;
+		}
+
+		if (Array.isArray(data.invalid)) {
+			result.rejected = data.invalid;
+		}
+
+		if (errors) {
+			const responseErrors: [string, { message: string }][] = Object.entries(errors);
+
+			for (const [key, value] of responseErrors) {
+				if (Array.isArray(value)) {
+					result.errors[key] = value[0].message;
+				} else {
+					result.errors[key] = value.message;
+				}
+			}
+		}
+
+		return result;
 	}
 
 	async #get(path: string, query?: Contracts.KeyValuePair): Promise<Contracts.KeyValuePair> {
@@ -186,38 +207,6 @@ export class ClientService extends Services.AbstractClientService {
 
 			result.searchParams = dotify({ ...result.searchParams, ...result.body });
 			result.body = null;
-		}
-
-		return result;
-	}
-
-	#handleBroadcastResponse(response): Services.BroadcastResponse {
-		const { data, errors } = response;
-
-		const result: Services.BroadcastResponse = {
-			accepted: [],
-			rejected: [],
-			errors: {},
-		};
-
-		if (Array.isArray(data.accept)) {
-			result.accepted = data.accept;
-		}
-
-		if (Array.isArray(data.invalid)) {
-			result.rejected = data.invalid;
-		}
-
-		if (errors) {
-			const responseErrors: [string, BroadcastError][] = Object.entries(errors);
-
-			for (const [key, value] of responseErrors) {
-				if (Array.isArray(value)) {
-					result.errors[key] = guessBroadcastError(value[0].message);
-				} else {
-					result.errors[key] = guessBroadcastError(value.message);
-				}
-			}
 		}
 
 		return result;

@@ -2,14 +2,6 @@ import { Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #broadcastErrors: Record<string, string> = {
-		"bad-txns-inputs-duplicate": "ERR_INPUTS_DUPLICATE",
-		"bad-txns-in-belowout": "ERR_IN_BELOWOUT",
-		"bad-txns-vout-negative": "ERR_VOUT_NEGATIVE",
-		"bad-txns-vout-toolarge": "ERR_VOUT_TOOLARGE",
-		"bad-txns-txouttotal-toolarge": "ERR_TXOUTTOTAL_TOOLARGE",
-	};
-
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
@@ -46,13 +38,7 @@ export class ClientService extends Services.AbstractClientService {
 			if (response.error) {
 				result.rejected.push(transactionId);
 
-				for (const key of Object.keys(this.#broadcastErrors)) {
-					if (response.error.message.includes(key)) {
-						result.errors[transactionId] = key;
-
-						break;
-					}
-				}
+				result.errors[transactionId] = response.error.message;
 			}
 		}
 
