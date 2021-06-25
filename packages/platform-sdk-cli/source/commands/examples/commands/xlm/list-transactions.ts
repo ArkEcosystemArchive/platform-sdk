@@ -25,7 +25,7 @@ export const listTransactionsWithXLM = async (env: Environment): Promise<void> =
 	logger.log("Wallet 1", wallet1.address(), "balance", wallet1.balance());
 
 	// Show transactions
-	const transactions: Collections.TransactionDataCollection = await wallet1
+	const transactions: Collections.ConfirmedTransactionDataCollection = await wallet1
 		.client()
 		.transactions({ address: wallet1.address() });
 

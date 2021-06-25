@@ -8,8 +8,8 @@ import { NotImplemented } from "../exceptions";
 import { inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import { BigNumberService } from "../services";
+import { MultiPaymentRecipient } from "./confirmed-transaction.contract";
 import { SignedTransactionObject } from "./signed-transaction.contract";
-import { MultiPaymentRecipient } from "./transaction.contract";
 
 @injectable()
 export class AbstractSignedTransactionData implements SignedTransactionData {

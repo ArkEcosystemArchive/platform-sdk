@@ -3,8 +3,9 @@
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
 
 import { ConfigRepository } from "../coins";
-import { TransactionDataCollection, WalletDataCollection } from "../collections";
-import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
+import { ConfirmedTransactionDataCollection, WalletDataCollection } from "../collections";
+import { KeyValuePair, SignedTransactionData, WalletData } from "../contracts";
+import { ConfirmedTransactionData } from "../dto/confirmed-transaction.contract";
 import { NotImplemented } from "../exceptions";
 import { inject } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
@@ -28,11 +29,11 @@ export class AbstractClientService implements ClientService {
 	@inject(BindingType.HttpClient)
 	protected readonly httpClient!: HttpClient;
 
-	public async transaction(id: string, input?: TransactionDetailInput): Promise<TransactionDataType> {
+	public async transaction(id: string, input?: TransactionDetailInput): Promise<ConfirmedTransactionData> {
 		throw new NotImplemented(this.constructor.name, this.transaction.name);
 	}
 
-	public async transactions(query: ClientTransactionsInput): Promise<TransactionDataCollection> {
+	public async transactions(query: ClientTransactionsInput): Promise<ConfirmedTransactionDataCollection> {
 		throw new NotImplemented(this.constructor.name, this.transactions.name);
 	}
 

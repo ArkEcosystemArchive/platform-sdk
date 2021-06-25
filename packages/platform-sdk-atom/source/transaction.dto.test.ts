@@ -5,18 +5,18 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../test/fixtures/client/transaction.json";
 import { createService } from "../test/mocking";
-import { TransactionData } from "./transaction.dto";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
-let subject: TransactionData;
+let subject: ConfirmedTransactionData;
 
 beforeEach(() => {
-	subject = createService(TransactionData);
+	subject = createService(ConfirmedTransactionData);
 	subject.configure(Fixture);
 });
 
-describe("TransactionData", () => {
+describe("ConfirmedTransactionData", () => {
 	it("should succeed", async () => {
-		expect(subject).toBeInstanceOf(TransactionData);
+		expect(subject).toBeInstanceOf(ConfirmedTransactionData);
 		expect(subject.id()).toBe("B0DB35EADB3655E954A785B1ED0402222EF8C7061B22E52720AB1CE027ADBD11");
 		expect(subject.type()).toBe("transfer");
 		expect(subject.timestamp()).toBeInstanceOf(DateTime);

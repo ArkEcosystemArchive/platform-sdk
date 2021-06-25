@@ -1,12 +1,12 @@
 import { Collections, Services } from "@arkecosystem/platform-sdk";
 import { IProfile, IReadWriteWallet, ITransactionAggregate } from "./contracts";
-import { ExtendedTransactionDataCollection } from "./transaction.collection";
+import { ExtendedConfirmedTransactionDataCollection } from "./transaction.collection";
 
-import { ExtendedTransactionData } from "./transaction.dto";
+import { ExtendedConfirmedTransactionData } from "./transaction.dto";
 import { promiseAllSettledByKey } from "./helpers/promise";
 
 type HistoryMethod = string;
-type HistoryWallet = ExtendedTransactionDataCollection;
+type HistoryWallet = ExtendedConfirmedTransactionDataCollection;
 
 type AggregateQuery = {
 	addresses?: string[];
@@ -21,17 +21,17 @@ export class TransactionAggregate implements ITransactionAggregate {
 	}
 
 	/** {@inheritDoc ITransactionAggregate.all} */
-	public async all(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+	public async all(query: AggregateQuery = {}): Promise<ExtendedConfirmedTransactionDataCollection> {
 		return this.#aggregate("all", query);
 	}
 
 	/** {@inheritDoc ITransactionAggregate.sent} */
-	public async sent(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+	public async sent(query: AggregateQuery = {}): Promise<ExtendedConfirmedTransactionDataCollection> {
 		return this.#aggregate("sent", query);
 	}
 
 	/** {@inheritDoc ITransactionAggregate.received} */
-	public async received(query: AggregateQuery = {}): Promise<ExtendedTransactionDataCollection> {
+	public async received(query: AggregateQuery = {}): Promise<ExtendedConfirmedTransactionDataCollection> {
 		return this.#aggregate("received", query);
 	}
 
@@ -52,14 +52,14 @@ export class TransactionAggregate implements ITransactionAggregate {
 		this.#history = {};
 	}
 
-	async #aggregate(method: string, query: AggregateQuery): Promise<ExtendedTransactionDataCollection> {
+	async #aggregate(method: string, query: AggregateQuery): Promise<ExtendedConfirmedTransactionDataCollection> {
 		if (!this.#history[method]) {
 			this.#history[method] = {};
 		}
 
 		const syncedWallets: IReadWriteWallet[] = this.#getWallets(query.addresses);
 
-		const requests: Record<string, Promise<Collections.TransactionDataCollection>> = {};
+		const requests: Record<string, Promise<Collections.ConfirmedTransactionDataCollection>> = {};
 
 		for (const syncedWallet of syncedWallets) {
 			requests[syncedWallet.id()] = new Promise((resolve, reject) => {
@@ -81,8 +81,8 @@ export class TransactionAggregate implements ITransactionAggregate {
 			});
 		}
 
-		const responses = await promiseAllSettledByKey<ExtendedTransactionDataCollection>(requests);
-		const result: ExtendedTransactionData[] = [];
+		const responses = await promiseAllSettledByKey<ExtendedConfirmedTransactionDataCollection>(requests);
+		const result: ExtendedConfirmedTransactionData[] = [];
 
 		for (const [id, request] of Object.entries(responses || {})) {
 			if (request.status === "rejected" || request.value instanceof Error) {
@@ -100,7 +100,7 @@ export class TransactionAggregate implements ITransactionAggregate {
 			this.#history[method][id] = request.value;
 		}
 
-		return new ExtendedTransactionDataCollection(result, {
+		return new ExtendedConfirmedTransactionDataCollection(result, {
 			prev: undefined,
 			self: undefined,
 			next: Number(this.hasMore(method)),
