@@ -36,7 +36,6 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Message: ["sign", "verify"],
 	Transaction: [
 		"delegateRegistration",
-		"multiSignature",
 		"secondSignature",
 		"transfer.ledgerS",
 		"transfer.ledgerX",
