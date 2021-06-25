@@ -12,7 +12,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const result = await this.#get("transactions", { id });
 
 		return this.dataTransferObjectService.transaction(result.data[0]);
@@ -20,7 +20,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		// @ts-ignore
 		const result = await this.#get("transactions", this.#createSearchParams({ sort: "timestamp:desc", ...query }));
 

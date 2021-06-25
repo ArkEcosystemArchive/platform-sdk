@@ -7,7 +7,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { MultiPaymentRecipient, UnspentTransactionData } from "../contracts";
-import { AbstractTransactionData } from "./transaction";
+import { AbstractConfirmedTransactionData } from "./confirmed-transaction";
 
 test("#withDecimals", () => {
 	expect(new Transaction().configure({ key: "value" }).withDecimals(2)).toBeInstanceOf(Transaction);
@@ -184,7 +184,7 @@ test("#getMeta | #setMeta", () => {
 	expect(subject.getMeta("key")).toBe("value");
 });
 
-class Transaction extends AbstractTransactionData {
+class Transaction extends AbstractConfirmedTransactionData {
 	// @ts-ignore
 	public id(): string {
 		return "id";

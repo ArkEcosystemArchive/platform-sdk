@@ -1,5 +1,6 @@
-import { TransactionDataCollection, WalletDataCollection } from "../collections";
-import { KeyValuePair, SignedTransactionData, TransactionDataType, WalletData } from "../contracts";
+import { ConfirmedTransactionDataCollection, WalletDataCollection } from "../collections";
+import { KeyValuePair, SignedTransactionData, WalletData } from "../contracts";
+import { ConfirmedTransactionData } from "../dto/confirmed-transaction.contract";
 
 export type ClientPaginatorCursor = string | number | undefined;
 
@@ -17,8 +18,8 @@ export interface BroadcastResponse {
 }
 
 export interface ClientService {
-	transaction(id: string): Promise<TransactionDataType>;
-	transactions(query: ClientTransactionsInput): Promise<TransactionDataCollection>;
+	transaction(id: string): Promise<ConfirmedTransactionData>;
+	transactions(query: ClientTransactionsInput): Promise<ConfirmedTransactionDataCollection>;
 
 	wallet(id: string): Promise<WalletData>;
 	wallets(query: ClientWalletsInput): Promise<WalletDataCollection>;

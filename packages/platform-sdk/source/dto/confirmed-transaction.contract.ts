@@ -19,10 +19,10 @@ export interface UnspentTransactionData {
 	addresses(): string[];
 }
 
-export interface TransactionData {
-	configure(data: any): TransactionData;
+export interface ConfirmedTransactionData {
+	configure(data: any): ConfirmedTransactionData;
 
-	withDecimals(decimals?: number | string): TransactionData;
+	withDecimals(decimals?: number | string): ConfirmedTransactionData;
 
 	id(): string;
 
@@ -88,6 +88,41 @@ export interface TransactionData {
 
 	isMagistrate(): boolean;
 
+	// Second-Signature Registration
+	secondPublicKey(): string;
+
+	// Delegate Registration
+	username(): string;
+
+	// Vote
+	votes(): string[];
+
+	unvotes(): string[];
+
+	// Multi-Signature Registration
+	publicKeys(): string[];
+
+	min(): number;
+
+	// IPFS
+	hash(): string;
+
+	// Multi-Payment
+	payments(): { recipientId: string; amount: BigNumber }[];
+
+	// HTLC Claim / Refund
+	lockTransactionId(): string;
+
+	// HTLC Claim
+	unlockSecret(): string;
+
+	// HTLC Lock
+	secretHash(): string;
+
+	expirationType(): number;
+
+	expirationValue(): number;
+
 	toObject(): Record<string, any>;
 
 	toJSON(): Record<string, any>;
@@ -102,3 +137,5 @@ export interface TransactionData {
 
 	setMeta(key: string, value: TransactionDataMeta): void;
 }
+
+export type ConfirmedTransactionDataCollection = ConfirmedTransactionData[];

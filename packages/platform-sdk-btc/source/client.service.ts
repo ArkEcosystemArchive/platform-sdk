@@ -5,7 +5,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 

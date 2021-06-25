@@ -5,11 +5,10 @@ import nock from "nock";
 
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
-import { DelegateRegistrationData } from "./delegate-registration.dto";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
 let subject: ClientService;
 
@@ -36,7 +35,7 @@ describe("ClientService", () => {
 
 			const result = await subject.transaction("15562133894377717094");
 
-			expect(result).toBeInstanceOf(TransferData);
+			expect(result).toBeInstanceOf(ConfirmedTransactionData);
 		});
 	});
 
@@ -50,7 +49,7 @@ describe("ClientService", () => {
 			const result = await subject.transactions({ address: "6566229458323231555L" });
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(DelegateRegistrationData);
+			expect(result.items()[0]).toBeInstanceOf(ConfirmedTransactionData);
 		});
 	});
 
