@@ -18,6 +18,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.LedgerService)
 	private readonly ledgerService!: Services.LedgerService;
 
+	@IoC.inject(IoC.BindingType.AddressService)
+	private readonly addressService!: Services.AddressService;
+
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#network = this.configRepository.get<string>("network.meta.networkId");
@@ -96,6 +99,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 				const structTransaction = transactionSigner(struct as any) as unknown as TransactionJSON;
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors
 				structTransaction.senderPublicKey = await this.ledgerService.getPublicKey(input.signatory.signingKey());
+
+				if (!structTransaction.recipientId) {
+					// @ts-ignore - LSK uses JS so they don't encounter these type errors
+					structTransaction.recipientId = (await this.addressService.fromPublicKey(structTransaction.senderPublicKey)).address;
+				}
+
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors
 				structTransaction.signature = await this.ledgerService.signTransaction(
 					input.signatory.signingKey(),
