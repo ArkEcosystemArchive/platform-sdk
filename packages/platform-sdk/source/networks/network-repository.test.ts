@@ -601,7 +601,7 @@ test("#all", () => {
 		    },
 		    "hosts": Array [
 		      Object {
-		        "host": "http://apis-testnet.compendia.org/api",
+		        "host": "https://apis-testnet.compendia.org/api",
 		        "type": "full",
 		      },
 		      Object {
