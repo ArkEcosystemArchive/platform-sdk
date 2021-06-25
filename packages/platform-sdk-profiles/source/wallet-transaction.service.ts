@@ -330,7 +330,7 @@ export class TransactionService implements ITransactionService {
 
 		try {
 			const transactionLocal: ExtendedSignedTransactionData = this.transaction(id);
-			const transaction: Contracts.TransactionData = await this.#wallet
+			const transaction: Contracts.ConfirmedTransactionData = await this.#wallet
 				.client()
 				.transaction(transactionLocal.id());
 

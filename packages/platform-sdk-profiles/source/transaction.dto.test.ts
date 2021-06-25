@@ -12,20 +12,7 @@ import { IExchangeRateService, IProfile, IReadWriteWallet, ProfileSetting } from
 import { Profile } from "./profile";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
-import {
-	DelegateRegistrationData,
-	DelegateResignationData,
-	HtlcClaimData,
-	HtlcLockData,
-	HtlcRefundData,
-	IpfsData,
-	MultiPaymentData,
-	MultiSignatureData,
-	SecondSignatureData,
-	TransactionData,
-	TransferData,
-	VoteData,
-} from "./transaction.dto";
+import { ExtendedConfirmedTransactionData } from "./transaction.dto";
 
 const createSubject = (wallet, properties, klass) => {
 	let meta: Contracts.TransactionDataMeta = "some meta";
@@ -114,7 +101,7 @@ afterEach(() => {
 });
 
 describe("Transaction", () => {
-	beforeEach(() => (subject = createSubject(wallet, undefined, DelegateRegistrationData)));
+	beforeEach(() => (subject = createSubject(wallet, undefined, ExtendedConfirmedTransactionData)));
 
 	it("should have an explorer link", () => {
 		expect(subject.explorerLink()).toBe("https://dexplorer.ark.io/transaction/transactionId");
@@ -131,7 +118,7 @@ describe("Transaction", () => {
 				...subject,
 				blockId: () => undefined,
 			},
-			DelegateRegistrationData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(subject.explorerLinkForBlock()).toBeUndefined();
@@ -173,7 +160,7 @@ describe("Transaction", () => {
 				timestamp: () => DateTime.make(),
 				amount: () => BigNumber.make(10e8, 8),
 			},
-			TransferData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
@@ -196,7 +183,7 @@ describe("Transaction", () => {
 				timestamp: () => DateTime.make(),
 				fee: () => BigNumber.make(10e8, 8),
 			},
-			TransferData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
@@ -216,7 +203,7 @@ describe("Transaction", () => {
 					key: "value",
 				}),
 			},
-			TransactionData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(subject.toObject()).toMatchInlineSnapshot(`
@@ -232,7 +219,7 @@ describe("Transaction", () => {
 			{
 				memo: () => "memo",
 			},
-			TransactionData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(subject.memo()).toBe("memo");
@@ -244,7 +231,7 @@ describe("Transaction", () => {
 			{
 				inputs: () => [{}, {}, {}],
 			},
-			TransactionData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(subject.inputs()).toHaveLength(3);
@@ -256,7 +243,7 @@ describe("Transaction", () => {
 			{
 				outputs: () => [{}, {}, {}],
 			},
-			TransactionData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(subject.outputs()).toHaveLength(3);
@@ -268,7 +255,7 @@ describe("Transaction", () => {
 			{
 				memo: undefined,
 			},
-			TransactionData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(() => subject.memo()).not.toThrow();
@@ -281,7 +268,7 @@ describe("Transaction", () => {
 			{
 				hasPassed: () => true,
 			},
-			TransactionData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(subject.hasPassed()).toBeTrue();
@@ -297,7 +284,7 @@ describe("Transaction", () => {
 			{
 				hasFailed: () => true,
 			},
-			TransactionData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(subject.hasFailed()).toBeTrue();
@@ -309,7 +296,7 @@ describe("Transaction", () => {
 			{
 				isReturn: () => true,
 			},
-			TransactionData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		expect(subject.isReturn()).toBeTrue();
@@ -319,7 +306,7 @@ describe("Transaction", () => {
 		const getMeta = jest.fn();
 		const setMeta = jest.fn();
 
-		subject = createSubject(wallet, { getMeta, setMeta }, TransactionData);
+		subject = createSubject(wallet, { getMeta, setMeta }, ExtendedConfirmedTransactionData);
 
 		subject.getMeta("key");
 		subject.setMeta("key", "value");
@@ -338,7 +325,7 @@ describe("Transaction", () => {
 
 	it("should have a total for unsent", () => {
 		// @ts-ignore
-		subject = new DelegateRegistrationData(wallet, {
+		subject = new ExtendedConfirmedTransactionData(wallet, {
 			amount: () => BigNumber.make(18e8, 8),
 			fee: () => BigNumber.make(2e8, 8),
 			isSent: () => false,
@@ -354,7 +341,7 @@ describe("Transaction", () => {
 				amount: () => BigNumber.make(10e8, 8),
 				fee: () => BigNumber.make(5e8, 8),
 			},
-			TransferData,
+			ExtendedConfirmedTransactionData,
 		);
 
 		await container.get<IExchangeRateService>(Identifiers.ExchangeRateService).syncAll(profile, "DARK");
@@ -417,7 +404,7 @@ describe("Transaction", () => {
 
 	it.each(data)(`should delegate %p correctly`, (functionName) => {
 		// @ts-ignore
-		const transactionData = new TransactionData(wallet, {
+		const transactionData = new ExtendedConfirmedTransactionData(wallet, {
 			...dummyTransactionData,
 			[String(functionName)]: () => true,
 		});
@@ -432,7 +419,7 @@ describe("DelegateRegistrationData", () => {
 			{
 				username: () => "username",
 			},
-			DelegateRegistrationData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -442,7 +429,7 @@ describe("DelegateRegistrationData", () => {
 });
 
 describe("DelegateResignationData", () => {
-	beforeEach(() => (subject = createSubject(wallet, undefined, DelegateResignationData)));
+	beforeEach(() => (subject = createSubject(wallet, undefined, ExtendedConfirmedTransactionData)));
 
 	test("#id", () => {
 		expect(subject.id()).toBe("transactionId");
@@ -457,7 +444,7 @@ describe("HtlcClaimData", () => {
 				lockTransactionId: () => "lockTransactionId",
 				unlockSecret: () => "unlockSecret",
 			},
-			HtlcClaimData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -479,7 +466,7 @@ describe("HtlcLockData", () => {
 				expirationType: () => 5,
 				expirationValue: () => 3,
 			},
-			HtlcLockData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -503,7 +490,7 @@ describe("HtlcRefundData", () => {
 			{
 				lockTransactionId: () => "lockTransactionId",
 			},
-			HtlcRefundData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -519,7 +506,7 @@ describe("IpfsData", () => {
 			{
 				hash: () => "hash",
 			},
-			IpfsData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -535,7 +522,7 @@ describe("MultiPaymentData", () => {
 			{
 				payments: () => [{ recipientId: "recipientId", amount: BigNumber.make(1000, 8).times(1e8) }],
 			},
-			MultiPaymentData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -552,7 +539,7 @@ describe("MultiSignatureData", () => {
 				publicKeys: () => ["1", "2", "3"],
 				min: () => 5,
 			},
-			MultiSignatureData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -572,7 +559,7 @@ describe("SecondSignatureData", () => {
 			{
 				secondPublicKey: () => "secondPublicKey",
 			},
-			SecondSignatureData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -588,7 +575,7 @@ describe("TransferData", () => {
 			{
 				memo: () => "memo",
 			},
-			TransferData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -605,7 +592,7 @@ describe("VoteData", () => {
 				votes: () => ["vote"],
 				unvotes: () => ["unvote"],
 			},
-			VoteData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 
@@ -625,7 +612,7 @@ describe("Type Specific", () => {
 			{
 				asset: () => ({ key: "value" }),
 			},
-			VoteData,
+			ExtendedConfirmedTransactionData,
 		);
 	});
 

@@ -5,7 +5,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { KeyValuePair } from "../contracts";
 import { injectable } from "../ioc";
-import { UnspentTransactionData as Contract } from "./transaction.contract";
+import { UnspentTransactionData as Contract } from "./confirmed-transaction.contract";
 
 @injectable()
 export class UnspentTransactionData implements Contract {

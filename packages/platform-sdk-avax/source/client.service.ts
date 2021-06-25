@@ -14,7 +14,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const transaction = new Tx();
 		transaction.fromString(await this.#xchain.getTx(id));
 
@@ -33,7 +33,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		const { transactions } = await this.#get("v2/transactions", {
 			chainID: this.configRepository.get("network.meta.blockchainId"),
 			limit: 100,

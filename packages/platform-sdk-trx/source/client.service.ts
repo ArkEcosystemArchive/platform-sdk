@@ -15,7 +15,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const result = await this.#connection.trx.getTransaction(id);
 
 		return this.dataTransferObjectService.transaction(result);
@@ -23,7 +23,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		const payload: Record<string, boolean | number> = {
 			limit: query.limit || 15,
 		};

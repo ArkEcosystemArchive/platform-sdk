@@ -5,15 +5,15 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../test/fixtures/client/transaction.json";
 import { createService } from "../test/mocking";
-import { TransactionData } from "./transaction.dto";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
-let subject: TransactionData;
+let subject: ConfirmedTransactionData;
 
 beforeEach(() => {
-	subject = createService(TransactionData).configure(Fixture.data[0]);
+	subject = createService(ConfirmedTransactionData).configure(Fixture.data[0]);
 });
 
-describe("TransactionData", () => {
+describe("ConfirmedTransactionData", () => {
 	test("#id", () => {
 		expect(subject.id()).toBe("3176941083950565875");
 	});

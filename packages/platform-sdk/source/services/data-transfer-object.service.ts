@@ -3,11 +3,11 @@
 import { get } from "dot-prop";
 
 import { ConfigKey, ConfigRepository } from "../coins";
-import { TransactionDataCollection } from "../collections";
-import { TransactionDataType, WalletData } from "../contracts";
+import { ConfirmedTransactionDataCollection } from "../collections";
+import { WalletData } from "../contracts";
 import * as DataTransferObjects from "../dto";
+import { ConfirmedTransactionData } from "../dto/confirmed-transaction.contract";
 import { SignedTransactionData } from "../dto/signed-transaction.contract";
-import { TransactionData } from "../dto/transaction.contract";
 import { Container, inject, injectable } from "../ioc";
 import { BindingType } from "../ioc/service-provider.contract";
 import { MetaPagination } from "./client.contract";
@@ -36,62 +36,12 @@ export class AbstractDataTransferObjectService implements DataTransferObjectServ
 			);
 	}
 
-	public transaction(transaction: unknown): TransactionDataType & TransactionData {
-		const instance: TransactionData = this.#resolveTransactionClass("TransactionData", transaction);
-
-		if (instance.isDelegateRegistration()) {
-			return this.#resolveTransactionClass("DelegateRegistrationData", transaction);
-		}
-
-		if (instance.isDelegateResignation()) {
-			return this.#resolveTransactionClass("DelegateResignationData", transaction);
-		}
-
-		if (instance.isHtlcClaim()) {
-			return this.#resolveTransactionClass("HtlcClaimData", transaction);
-		}
-
-		if (instance.isHtlcLock()) {
-			return this.#resolveTransactionClass("HtlcLockData", transaction);
-		}
-
-		if (instance.isHtlcRefund()) {
-			return this.#resolveTransactionClass("HtlcRefundData", transaction);
-		}
-
-		if (instance.isIpfs()) {
-			return this.#resolveTransactionClass("IpfsData", transaction);
-		}
-
-		if (instance.isMultiPayment()) {
-			return this.#resolveTransactionClass("MultiPaymentData", transaction);
-		}
-
-		if (instance.isMultiSignatureRegistration()) {
-			return this.#resolveTransactionClass("MultiSignatureData", transaction);
-		}
-
-		if (instance.isSecondSignature()) {
-			return this.#resolveTransactionClass("SecondSignatureData", transaction);
-		}
-
-		if (instance.isTransfer()) {
-			return this.#resolveTransactionClass("TransferData", transaction);
-		}
-
-		if (instance.isVote()) {
-			return this.#resolveTransactionClass("VoteData", transaction);
-		}
-
-		if (instance.isUnvote()) {
-			return this.#resolveTransactionClass("VoteData", transaction);
-		}
-
-		return instance;
+	public transaction(transaction: unknown): ConfirmedTransactionData {
+		return this.#resolveTransactionClass("ConfirmedTransactionData", transaction);
 	}
 
-	public transactions(transactions: unknown[], meta: MetaPagination): TransactionDataCollection {
-		return new TransactionDataCollection(
+	public transactions(transactions: unknown[], meta: MetaPagination): ConfirmedTransactionDataCollection {
+		return new ConfirmedTransactionDataCollection(
 			transactions.map((transaction) => this.transaction(transaction)),
 			meta,
 		);
@@ -101,9 +51,11 @@ export class AbstractDataTransferObjectService implements DataTransferObjectServ
 		return this.container.resolve<WalletData>(this.dataTransferObjects.WalletData).fill(wallet);
 	}
 
-	#resolveTransactionClass(klass: string, transaction: unknown): TransactionData {
+	#resolveTransactionClass(klass: string, transaction: unknown): ConfirmedTransactionData {
 		return this.container
-			.resolve<TransactionData>((get(this.dataTransferObjects, klass) || get(DataTransferObjects, klass))!)
+			.resolve<ConfirmedTransactionData>(
+				(get(this.dataTransferObjects, klass) || get(DataTransferObjects, klass))!,
+			)
 			.configure(transaction)
 			.withDecimals(this.configRepository.get(ConfigKey.CurrencyDecimals));
 	}
