@@ -152,7 +152,11 @@ export class MultiSignatureSigner {
 		};
 	}
 
-	async #signWithLedger(transaction: MultiSignatureTransaction, signatory: Signatories.Signatory, excludeMultiSignature = false): Promise<string> {
+	async #signWithLedger(
+		transaction: MultiSignatureTransaction,
+		signatory: Signatories.Signatory,
+		excludeMultiSignature = false,
+	): Promise<string> {
 		await this.ledgerService.connect(LedgerTransportNodeHID);
 
 		const signature = await this.ledgerService.signTransaction(
