@@ -160,25 +160,31 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		applyCryptoConfiguration(this.#configCrypto);
 
-		let keys: Services.KeyPairDataTransferObject | undefined;
+		let signingKeys: Services.KeyPairDataTransferObject | undefined;
+		let confirmKeys: Services.KeyPairDataTransferObject | undefined;
 
 		if (input.signatory.actsWithMnemonic()) {
-			keys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
+			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
+		}
+
+		if (input.signatory.actsWithSecondaryMnemonic()) {
+			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
+			confirmKeys = await this.keyPairService.fromMnemonic(input.signatory.confirmKey());
 		}
 
 		if (input.signatory.actsWithWif()) {
-			keys = await this.keyPairService.fromWIF(input.signatory.signingKey());
+			signingKeys = await this.keyPairService.fromWIF(input.signatory.signingKey());
 		}
 
-		if (!keys) {
-			throw new Error("Failed to retrieve the keys for the signatory wallet.");
+		if (!signingKeys) {
+			throw new Error("Failed to retrieve the signing keys for the signatory wallet.");
 		}
 
-		const transactionWithSignature = this.multiSignatureSigner.addSignature(transaction, {
-			publicKey: keys.publicKey,
-			privateKey: keys.privateKey,
-			compressed: true,
-		});
+		const transactionWithSignature = this.multiSignatureSigner.addSignature(
+			transaction,
+			this.#formatKeyPair(signingKeys)!,
+			this.#formatKeyPair(confirmKeys),
+		);
 
 		return this.dataTransferObjectService.signedTransaction(
 			transactionWithSignature.id!,
@@ -349,5 +355,17 @@ export class TransactionService extends Services.AbstractTransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
+	}
+
+	#formatKeyPair(keyPair?: Services.KeyPairDataTransferObject): Interfaces.IKeyPair | undefined {
+		if (keyPair) {
+			return {
+				publicKey: keyPair.publicKey,
+				privateKey: keyPair.privateKey,
+				compressed: true,
+			};
+		}
+
+		return undefined;
 	}
 }
