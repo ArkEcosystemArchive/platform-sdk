@@ -26,6 +26,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#network = this.configRepository.get<string>("network.meta.networkId");
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("transfer", {
 			...input,

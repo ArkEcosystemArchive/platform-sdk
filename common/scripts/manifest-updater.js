@@ -159,8 +159,8 @@ function knownMethodsStrategyPlusAnnotations(serviceSourceFile, serviceName, kno
 	const fromAnnotations = figureOutAnnotations(serviceSourceFile, `${serviceName}Service`, implemented, annotations);
 
 	return implemented.flatMap((method) => [
-		method,
 		...fromAnnotations.filter((innerMethod) => innerMethod.startsWith(method)),
+		method,
 	]);
 }
 
