@@ -176,6 +176,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 			signingKeys = await this.keyPairService.fromWIF(input.signatory.signingKey());
 		}
 
+		if (input.signatory.actsWithSecondaryWif()) {
+			signingKeys = await this.keyPairService.fromWIF(input.signatory.signingKey());
+			confirmKeys = await this.keyPairService.fromWIF(input.signatory.confirmKey());
+		}
+
 		if (!signingKeys) {
 			throw new Error("Failed to retrieve the signing keys for the signatory wallet.");
 		}
