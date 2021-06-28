@@ -10,7 +10,8 @@ export class TransactionService extends Services.AbstractTransactionService {
 	private readonly addressService!: Services.AddressService;
 
 	// @TODO: bind via service provider and inject
-	#unspent;
+	@IoC.inject(IoC.BindingType.UnspentAggregator)
+	private readonly unspent!: UnspentAggregator;
 
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		try {
@@ -25,7 +26,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 			// ({ wif: input.signatory.signingKey() });
 
 			// 2. Aggregate the unspent transactions
-			const unspent: UnspentTransaction[] = await this.#unspent.aggregate(address);
+			const unspent: UnspentTransaction[] = await this.unspent.aggregate(address);
 
 			// 3. Compute the amount to be transfered
 			const amount = this.toSatoshi(input.data.amount).toNumber();
@@ -43,13 +44,5 @@ export class TransactionService extends Services.AbstractTransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	@IoC.postConstruct()
-	private onPostConstruct(): void {
-		this.#unspent = new UnspentAggregator({
-			http: this.httpClient,
-			peer: Helpers.randomHostFromConfig(this.configRepository),
-		});
 	}
 }

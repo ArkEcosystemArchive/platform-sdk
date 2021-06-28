@@ -1,19 +1,20 @@
+import { Coins, Helpers, IoC } from "@arkecosystem/platform-sdk";
+
 import { HttpClient } from "@arkecosystem/platform-sdk-http";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { UnspentTransaction } from "./contracts";
 
+@IoC.injectable()
 export class UnspentAggregator {
-	readonly #http: HttpClient;
-	readonly #peer: string;
+	@IoC.inject(IoC.BindingType.HttpClient)
+	private readonly http!: HttpClient;
 
-	public constructor({ http, peer }) {
-		this.#http = http;
-		this.#peer = peer;
-	}
+	@IoC.inject(IoC.BindingType.ConfigRepository)
+	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public async aggregate(address: string, amount: BigNumber): Promise<UnspentTransaction[]> {
-		const response = (await this.#http.get(`${this.#peer}/wallets/${address}/transactions/unspent`)).json();
+	public async aggregate(address: string): Promise<UnspentTransaction[]> {
+		const peer = Helpers.randomHostFromConfig(this.configRepository);
+		const response = (await this.http.get(`${peer}/wallets/${address}/transactions/unspent`)).json();
 
 		return response.map((transaction) => ({
 			address: transaction.address,
