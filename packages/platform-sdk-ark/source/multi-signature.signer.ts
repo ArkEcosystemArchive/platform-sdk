@@ -77,14 +77,13 @@ export class MultiSignatureSigner {
 
 		const { signingKeys, confirmKeys } = await this.#deriveKeyPairs(input);
 
-		if (!isReady && signingKeys) {
-			const index: number = transaction.multiSignature.publicKeys.indexOf(signingKeys.publicKey);
-
-			if (index === -1) {
-				throw new Error(`The public key [${signingKeys.publicKey}] is not associated with this transaction.`);
-			}
-
+		if (!isReady) {
 			if (input.signatory.actsWithLedger()) {
+				const index: number = this.#publicKeyIndex(
+					transaction,
+					await this.ledgerService.getPublicKey(input.signatory.signingKey()),
+				);
+
 				if (!transaction.signatures) {
 					transaction.signatures = [];
 				}
@@ -94,7 +93,11 @@ export class MultiSignatureSigner {
 
 				transaction.signatures.push(`${signatureIndex}${signature}`);
 			} else {
-				Transactions.Signer.multiSign(transaction, signingKeys, index);
+				if (!signingKeys) {
+					throw new Error("Failed to retrieve the signing keys for the signatory wallet.");
+				}
+
+				Transactions.Signer.multiSign(transaction, signingKeys, this.#publicKeyIndex(transaction, signingKeys.publicKey));
 			}
 		}
 
@@ -121,8 +124,12 @@ export class MultiSignatureSigner {
 		signingKeys: Interfaces.IKeyPair | undefined;
 		confirmKeys: Interfaces.IKeyPair | undefined;
 	}> {
-		let signingKeys: Services.KeyPairDataTransferObject | undefined;
-		let confirmKeys: Services.KeyPairDataTransferObject | undefined;
+		let signingKeys: Services.KeyPairDataTransferObject | undefined = undefined;
+		let confirmKeys: Services.KeyPairDataTransferObject | undefined = undefined;
+
+		if (input.signatory.actsWithLedger()) {
+			return { signingKeys, confirmKeys };
+		}
 
 		if (input.signatory.actsWithMnemonic()) {
 			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
@@ -183,5 +190,15 @@ export class MultiSignatureSigner {
 		}
 
 		return undefined;
+	}
+
+	#publicKeyIndex(transaction: Contracts.RawTransactionData, publicKey: string): number {
+		const index: number = transaction.multiSignature.publicKeys.indexOf(publicKey);
+
+		if (index === -1) {
+			throw new Error(`The public key [${publicKey}] is not associated with this transaction.`);
+		}
+
+		return index;
 	}
 }
