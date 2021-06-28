@@ -4,8 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import Web3 from "web3";
 
 @IoC.injectable()
-export class ConfirmedTransactionData extends DTO.AbstractConfirmedTransactionData
-{
+export class ConfirmedTransactionData extends DTO.AbstractConfirmedTransactionData {
 	public override id(): string {
 		return this.data.hash;
 	}

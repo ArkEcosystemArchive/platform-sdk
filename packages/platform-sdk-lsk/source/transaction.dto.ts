@@ -6,8 +6,7 @@ import { normalizeTimestamp } from "./timestamps";
 import { TransactionTypeService } from "./transaction-type.service";
 
 @IoC.injectable()
-export class ConfirmedTransactionData extends DTO.AbstractConfirmedTransactionData
-{
+export class ConfirmedTransactionData extends DTO.AbstractConfirmedTransactionData {
 	public override id(): string {
 		return this.data.id;
 	}
