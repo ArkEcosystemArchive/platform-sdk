@@ -1,5 +1,6 @@
 import { Managers, Transactions, Interfaces, Identities, Enums } from "@arkecosystem/crypto";
-import { IoC } from "@arkecosystem/platform-sdk";
+import { Contracts, IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
+import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
 import { BindingType } from "./coin.contract";
 import { MultiSignatureAsset, MultiSignatureTransaction } from "./multi-signature.contract";
@@ -7,6 +8,12 @@ import { PendingMultiSignatureTransaction } from "./multi-signature.transaction"
 
 @IoC.injectable()
 export class MultiSignatureSigner {
+	@IoC.inject(IoC.BindingType.LedgerService)
+	private readonly ledgerService!: Services.LedgerService;
+
+	@IoC.inject(IoC.BindingType.KeyPairService)
+	private readonly keyPairService!: Services.KeyPairService;
+
 	@IoC.inject(BindingType.Crypto)
 	private readonly config!: Interfaces.NetworkConfig;
 
@@ -60,35 +67,103 @@ export class MultiSignatureSigner {
 		return data;
 	}
 
-	public addSignature(
-		transaction: MultiSignatureTransaction,
-		primaryKeys: Interfaces.IKeyPair,
-		secondaryKeys?: Interfaces.IKeyPair,
-	): MultiSignatureTransaction {
+	public async addSignature(
+		transaction: Contracts.RawTransactionData,
+		input: Services.TransactionInputs,
+	): Promise<MultiSignatureTransaction> {
 		const pendingMultiSignature = new PendingMultiSignatureTransaction(transaction);
 
 		const isReady = pendingMultiSignature.isMultiSignatureReady({ excludeFinal: true });
 
-		if (!isReady) {
-			const index: number = transaction.multiSignature.publicKeys.indexOf(primaryKeys.publicKey);
+		const { signingKeys, confirmKeys } = await this.#deriveKeyPairs(input);
+
+		if (!isReady && signingKeys) {
+			const index: number = transaction.multiSignature.publicKeys.indexOf(signingKeys.publicKey);
 
 			if (index === -1) {
-				throw new Error(`The public key [${primaryKeys.publicKey}] is not associated with this transaction.`);
+				throw new Error(`The public key [${signingKeys.publicKey}] is not associated with this transaction.`);
 			}
 
-			Transactions.Signer.multiSign(transaction, primaryKeys, index);
+			Transactions.Signer.multiSign(transaction, signingKeys, index);
 		}
 
 		if (isReady && pendingMultiSignature.needsFinalSignature()) {
-			Transactions.Signer.sign(transaction, primaryKeys);
+			if (signingKeys) {
+				Transactions.Signer.sign(transaction, signingKeys);
+			}
 
-			if (secondaryKeys) {
-				Transactions.Signer.secondSign(transaction, secondaryKeys);
+			if (confirmKeys) {
+				Transactions.Signer.secondSign(transaction, confirmKeys);
+			}
+
+			if (input.signatory.actsWithLedger()) {
+				this.#signWithLedger(transaction, input.signatory);
 			}
 
 			transaction.id = Transactions.Utils.getId(transaction);
 		}
 
 		return transaction;
+	}
+
+	async #deriveKeyPairs(input: Services.TransactionInputs): Promise<{
+		signingKeys: Interfaces.IKeyPair | undefined;
+		confirmKeys: Interfaces.IKeyPair | undefined;
+	}> {
+		let signingKeys: Services.KeyPairDataTransferObject | undefined;
+		let confirmKeys: Services.KeyPairDataTransferObject | undefined;
+
+		if (input.signatory.actsWithMnemonic()) {
+			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
+		}
+
+		if (input.signatory.actsWithSecondaryMnemonic()) {
+			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
+			confirmKeys = await this.keyPairService.fromMnemonic(input.signatory.confirmKey());
+		}
+
+		if (input.signatory.actsWithWif()) {
+			signingKeys = await this.keyPairService.fromWIF(input.signatory.signingKey());
+		}
+
+		if (input.signatory.actsWithSecondaryWif()) {
+			signingKeys = await this.keyPairService.fromWIF(input.signatory.signingKey());
+			confirmKeys = await this.keyPairService.fromWIF(input.signatory.confirmKey());
+		}
+
+		if (!signingKeys) {
+			throw new Error("Failed to retrieve the signing keys for the signatory wallet.");
+		}
+
+		return {
+			signingKeys: this.#formatKeyPair(signingKeys),
+			confirmKeys: this.#formatKeyPair(confirmKeys),
+		};
+	}
+
+	async #signWithLedger(transaction: MultiSignatureTransaction, signatory: Signatories.Signatory): Promise<void> {
+		await this.ledgerService.connect(LedgerTransportNodeHID);
+
+		transaction.signature = await this.ledgerService.signTransaction(
+			signatory.signingKey(),
+			Transactions.Serializer.getBytes(transaction, {
+				excludeSignature: true,
+				excludeSecondSignature: true,
+			}),
+		);
+
+		await this.ledgerService.disconnect();
+	}
+
+	#formatKeyPair(keyPair?: Services.KeyPairDataTransferObject): Interfaces.IKeyPair | undefined {
+		if (keyPair) {
+			return {
+				publicKey: keyPair.publicKey,
+				privateKey: keyPair.privateKey,
+				compressed: true,
+			};
+		}
+
+		return undefined;
 	}
 }
