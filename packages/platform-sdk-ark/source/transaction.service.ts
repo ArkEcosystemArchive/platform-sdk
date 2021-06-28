@@ -16,9 +16,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.AddressService)
 	private readonly addressService!: Services.AddressService;
 
-	@IoC.inject(IoC.BindingType.KeyPairService)
-	private readonly keyPairService!: Services.KeyPairService;
-
 	@IoC.inject(IoC.BindingType.PublicKeyService)
 	private readonly publicKeyService!: Services.PublicKeyService;
 
@@ -160,36 +157,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		applyCryptoConfiguration(this.#configCrypto);
 
-		let signingKeys: Services.KeyPairDataTransferObject | undefined;
-		let confirmKeys: Services.KeyPairDataTransferObject | undefined;
-
-		if (input.signatory.actsWithMnemonic()) {
-			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
-		}
-
-		if (input.signatory.actsWithSecondaryMnemonic()) {
-			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
-			confirmKeys = await this.keyPairService.fromMnemonic(input.signatory.confirmKey());
-		}
-
-		if (input.signatory.actsWithWif()) {
-			signingKeys = await this.keyPairService.fromWIF(input.signatory.signingKey());
-		}
-
-		if (input.signatory.actsWithSecondaryWif()) {
-			signingKeys = await this.keyPairService.fromWIF(input.signatory.signingKey());
-			confirmKeys = await this.keyPairService.fromWIF(input.signatory.confirmKey());
-		}
-
-		if (!signingKeys) {
-			throw new Error("Failed to retrieve the signing keys for the signatory wallet.");
-		}
-
-		const transactionWithSignature = this.multiSignatureSigner.addSignature(
-			transaction,
-			this.#formatKeyPair(signingKeys)!,
-			this.#formatKeyPair(confirmKeys),
-		);
+		const transactionWithSignature = await this.multiSignatureSigner.addSignature(transaction, input);
 
 		return this.dataTransferObjectService.signedTransaction(
 			transactionWithSignature.id!,
@@ -360,17 +328,5 @@ export class TransactionService extends Services.AbstractTransactionService {
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}
-	}
-
-	#formatKeyPair(keyPair?: Services.KeyPairDataTransferObject): Interfaces.IKeyPair | undefined {
-		if (keyPair) {
-			return {
-				publicKey: keyPair.publicKey,
-				privateKey: keyPair.privateKey,
-				compressed: true,
-			};
-		}
-
-		return undefined;
 	}
 }
