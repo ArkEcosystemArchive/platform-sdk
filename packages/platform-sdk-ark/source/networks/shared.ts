@@ -67,6 +67,8 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"htlcRefund",
 		"ipfs",
 		"multiPayment",
+		"multiSignature.ledgerX",
+		"multiSignature.musig",
 		"multiSignature",
 		"secondSignature",
 		"transfer",
