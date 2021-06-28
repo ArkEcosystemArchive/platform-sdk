@@ -354,3 +354,7 @@ it("#tokens", () => {
 it("#multiPaymentRecipients", () => {
 	expect(subject.multiPaymentRecipients()).toBeNumber();
 });
+
+it("#bip39WordCount", () => {
+	expect(subject.bip39WordCount()).toBe(24);
+});
