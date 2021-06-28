@@ -49,6 +49,14 @@ export class AbstractLedgerService implements LedgerService {
 		throw new NotImplemented(this.constructor.name, this.scan.name);
 	}
 
+	public async isNanoS(): Promise<boolean> {
+		return false;
+	}
+
+	public async isNanoX(): Promise<boolean> {
+		return false;
+	}
+
 	protected mapPathsToWallets(
 		addressCache: Record<string, { address: string; publicKey: string }>,
 		wallets: WalletData[],
