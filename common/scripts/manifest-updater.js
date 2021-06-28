@@ -48,21 +48,25 @@ const updaters = {
 
 	Transaction: {
 		strategy: function (serviceSourceFile, serviceName) {
-			return knownMethodsStrategyPlusAnnotations(serviceSourceFile, serviceName, [
-				"delegateRegistration",
-				"delegateResignation",
-				"estimateExpiration",
-				"htlcClaim",
-				"htlcLock",
-				"htlcRefund",
-				"ipfs",
-				"multiPayment",
-				"multiSignature",
-				"secondSignature",
-				"transfer",
-				"vote",
-			],
-				["ledgerS", "ledgerX", "musig"]);
+			return knownMethodsStrategyPlusAnnotations(
+				serviceSourceFile,
+				serviceName,
+				[
+					"delegateRegistration",
+					"delegateResignation",
+					"estimateExpiration",
+					"htlcClaim",
+					"htlcLock",
+					"htlcRefund",
+					"ipfs",
+					"multiPayment",
+					"multiSignature",
+					"secondSignature",
+					"transfer",
+					"vote",
+				],
+				["ledgerS", "ledgerX", "musig"],
+			);
 		},
 	},
 };
@@ -99,6 +103,28 @@ function figureOutImplemented(sourceFile, className, knownMethods) {
 	return members;
 }
 
+function figureOutAnnotations(sourceFile, className, knownMethods, annotations) {
+	let transactionService = sourceFile.getClassOrThrow(className);
+
+	const annotated = [];
+	for (const member of transactionService.getInstanceMembers()) {
+		const methodName = member.getName();
+		if (!knownMethods.includes(methodName)) {
+			continue;
+		}
+
+		const jsDocs = member.getJsDocs();
+		if (jsDocs.length > 0) {
+			const tagNames = jsDocs[0].getTags().map((tag) => tag.getTagName());
+			for (const annotation of annotations) {
+				if (tagNames.includes(annotation)) annotated.push(methodName + "." + annotation);
+			}
+		}
+	}
+
+	return annotated;
+}
+
 function updateProperty(shared, varName, propertyName, propertyValues) {
 	const variable = shared.getVariableDeclarationOrThrow(varName);
 
@@ -119,7 +145,7 @@ function updateProperty(shared, varName, propertyName, propertyValues) {
 
 function knownMethodsStrategy(serviceSourceFile, serviceName, knownMethods) {
 	function filterKnown(knownMethods, members) {
-		return knownMethods.filter((method) => members.includes(method)).map((method) => `"${method}"`);
+		return knownMethods.filter((method) => members.includes(method));
 	}
 
 	const transactionMembers = figureOutImplemented(serviceSourceFile, `${serviceName}Service`, knownMethods);
@@ -128,12 +154,14 @@ function knownMethodsStrategy(serviceSourceFile, serviceName, knownMethods) {
 }
 
 function knownMethodsStrategyPlusAnnotations(serviceSourceFile, serviceName, knownMethods, annotations) {
-
 	const implemented = knownMethodsStrategy(serviceSourceFile, serviceName, knownMethods);
 
-	console.log('implemented', implemented);
+	const fromAnnotations = figureOutAnnotations(serviceSourceFile, `${serviceName}Service`, implemented, annotations);
 
-	return implemented;
+	return implemented.flatMap((method) => [
+		method,
+		...fromAnnotations.filter((innerMethod) => innerMethod.startsWith(method)),
+	]);
 }
 
 function doService(serviceName) {
@@ -148,7 +176,7 @@ function doService(serviceName) {
 	}
 
 	const discoveryFunction = updaters[serviceName].strategy;
-	const implemented = discoveryFunction(serviceSourceFile, serviceName);
+	const implemented = discoveryFunction(serviceSourceFile, serviceName).map((method) => `"${method}"`);
 
 	const sharedSourceFile = project.getSourceFileOrThrow(path.join(projectFolder, "source/networks/shared.ts"));
 	updateProperty(sharedSourceFile, "featureFlags", serviceName, implemented);

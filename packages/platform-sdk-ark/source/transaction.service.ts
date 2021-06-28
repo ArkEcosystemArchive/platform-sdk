@@ -32,6 +32,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 	#peer!: string;
 	#configCrypto!: { crypto: Interfaces.NetworkConfig; height: number };
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("transfer", input, ({ transaction, data }) => {
 			transaction.recipientId(data.to);
