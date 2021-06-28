@@ -65,6 +65,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		);
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("vote", input, ({ transaction, data }) => {
 			const votes: string[] = [];
@@ -85,6 +92,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async multiSignature(
 		input: Services.MultiSignatureInput,
 	): Promise<Contracts.SignedTransactionData> {
@@ -100,10 +114,24 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async ipfs(input: Services.IpfsInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("ipfs", input, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async multiPayment(input: Services.MultiPaymentInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiPayment", input, ({ transaction, data }) => {
 			for (const payment of data.payments) {
