@@ -34,14 +34,7 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	PublicKey: ["mnemonic.bip39"],
 	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
 	Message: ["sign", "verify"],
-	Transaction: [
-		"delegateRegistration",
-		"secondSignature",
-		"transfer.ledgerS",
-		"transfer.ledgerX",
-		"transfer",
-		"vote",
-	],
+	Transaction: ["delegateRegistration", "multiSignature", "secondSignature", "transfer", "vote"],
 };
 
 export const explorer: Networks.NetworkManifestExplorer = {
