@@ -87,6 +87,9 @@ export interface NetworkManifestImportMethods {
 export interface NetworkManifestConstants {
 	slip44: number;
 	bech32?: string;
+	bip39?: {
+		wordCount: number;
+	};
 }
 
 export interface NetworkManifest {
