@@ -354,6 +354,6 @@ it("#multiPaymentRecipients", () => {
 	expect(subject.multiPaymentRecipients()).toBeNumber();
 });
 
-it("#bip39WordCount", () => {
-	expect(subject.bip39WordCount()).toBe(24);
+it("#wordCount", () => {
+	expect(subject.wordCount()).toBe(24);
 });

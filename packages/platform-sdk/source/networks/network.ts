@@ -284,7 +284,7 @@ export class Network {
 	 * @return {*}  {number}
 	 * @memberof Network
 	 */
-	public bip39WordCount(): number {
+	public wordCount(): number {
 		return get(this.#network, "constants.bip39.wordCount", 24);
 	}
 
