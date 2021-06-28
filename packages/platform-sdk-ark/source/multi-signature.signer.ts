@@ -1,4 +1,4 @@
-import { Managers, Transactions, Interfaces, Identities, Enums } from "@arkecosystem/crypto";
+import { Managers, Transactions, Interfaces, Identities, Enums, Utils } from "@arkecosystem/crypto";
 import { Contracts, IoC, Services, Signatories } from "@arkecosystem/platform-sdk";
 import LedgerTransportNodeHID from "@ledgerhq/hw-transport-node-hid-singleton";
 
@@ -84,7 +84,18 @@ export class MultiSignatureSigner {
 				throw new Error(`The public key [${signingKeys.publicKey}] is not associated with this transaction.`);
 			}
 
-			Transactions.Signer.multiSign(transaction, signingKeys, index);
+			if (input.signatory.actsWithLedger()) {
+				if (!transaction.signatures) {
+					transaction.signatures = [];
+				}
+
+				const signature: string = await this.#signWithLedger(transaction, input.signatory, true);
+				const signatureIndex: string = Utils.numberToHex(index === -1 ? transaction.signatures.length : index);
+
+				transaction.signatures.push(`${signatureIndex}${signature}`);
+			} else {
+				Transactions.Signer.multiSign(transaction, signingKeys, index);
+			}
 		}
 
 		if (isReady && pendingMultiSignature.needsFinalSignature()) {
@@ -97,7 +108,7 @@ export class MultiSignatureSigner {
 			}
 
 			if (input.signatory.actsWithLedger()) {
-				this.#signWithLedger(transaction, input.signatory);
+				transaction.signature = this.#signWithLedger(transaction, input.signatory);
 			}
 
 			transaction.id = Transactions.Utils.getId(transaction);
@@ -141,18 +152,21 @@ export class MultiSignatureSigner {
 		};
 	}
 
-	async #signWithLedger(transaction: MultiSignatureTransaction, signatory: Signatories.Signatory): Promise<void> {
+	async #signWithLedger(transaction: MultiSignatureTransaction, signatory: Signatories.Signatory, excludeMultiSignature = false): Promise<string> {
 		await this.ledgerService.connect(LedgerTransportNodeHID);
 
-		transaction.signature = await this.ledgerService.signTransaction(
+		const signature = await this.ledgerService.signTransaction(
 			signatory.signingKey(),
 			Transactions.Serializer.getBytes(transaction, {
 				excludeSignature: true,
 				excludeSecondSignature: true,
+				excludeMultiSignature,
 			}),
 		);
 
 		await this.ledgerService.disconnect();
+
+		return signature;
 	}
 
 	#formatKeyPair(keyPair?: Services.KeyPairDataTransferObject): Interfaces.IKeyPair | undefined {
