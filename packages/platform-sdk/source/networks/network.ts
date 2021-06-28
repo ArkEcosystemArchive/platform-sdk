@@ -279,6 +279,16 @@ export class Network {
 	}
 
 	/**
+	 * Returns the number of words for newly generated BIP39 phrases.
+	 *
+	 * @return {*}  {number}
+	 * @memberof Network
+	 */
+	public wordCount(): number {
+		return get(this.#network, "constants.bip39.wordCount", 24);
+	}
+
+	/**
 	 * Returns the list of available tokens, like ERC20 or TRC20.
 	 *
 	 * @return {*}  {NetworkManifestToken[]}
