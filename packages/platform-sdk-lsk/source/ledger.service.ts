@@ -118,4 +118,12 @@ export class LedgerService extends Services.AbstractLedgerService {
 			return undefined;
 		}
 	}
+
+	public override async isNanoS(): Promise<boolean> {
+		return this.#ledger.deviceModel.id === "nanoS";
+	}
+
+	public override async isNanoX(): Promise<boolean> {
+		return this.#ledger.deviceModel.id === "nanoX";
+	}
 }
