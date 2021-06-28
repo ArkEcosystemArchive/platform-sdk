@@ -73,7 +73,6 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"multiPayment.ledgerX",
 		"multiPayment.musig",
 		"multiPayment",
-		"multiSignature.ledgerS",
 		"multiSignature.ledgerX",
 		"multiSignature.musig",
 		"multiSignature",
