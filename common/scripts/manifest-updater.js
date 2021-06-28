@@ -4,37 +4,67 @@ const fs = require("fs");
 const { Project, SyntaxKind } = require("ts-morph");
 
 const updaters = {
-	Client: [
-		"transaction",
-		"transactions",
-		"wallet",
-		"wallets",
-		"delegate",
-		"delegates",
-		"votes",
-		"voters",
-		"configuration",
-		"fees",
-		"syncing",
-		"broadcast",
-	],
-	Fee: ["all"],
-	Ledger: ["getVersion", "getPublicKey", "signTransaction", "signMessage"],
-	Message: ["sign", "verify"],
-	Transaction: [
-		"delegateRegistration",
-		"delegateResignation",
-		"htlcClaim",
-		"htlcLock",
-		"htlcRefund",
-		"ipfs",
-		"multiPayment",
-		"multiSignature",
-		"secondSignature",
-		"transfer",
-		"vote",
-		"estimateExpiration",
-	],
+	Client: {
+		strategy: function (serviceSourceFile, serviceName) {
+			return knownMethodsStrategy(serviceSourceFile, serviceName, [
+				"transaction",
+				"transactions",
+				"wallet",
+				"wallets",
+				"delegate",
+				"delegates",
+				"votes",
+				"voters",
+				"configuration",
+				"fees",
+				"syncing",
+				"broadcast",
+			]);
+		},
+	},
+
+	Fee: {
+		strategy: function (serviceSourceFile, serviceName) {
+			return knownMethodsStrategy(serviceSourceFile, serviceName, ["all"]);
+		},
+	},
+
+	Ledger: {
+		strategy: function (serviceSourceFile, serviceName) {
+			return knownMethodsStrategy(serviceSourceFile, serviceName, [
+				"getVersion",
+				"getPublicKey",
+				"signTransaction",
+				"signMessage",
+			]);
+		},
+	},
+
+	Message: {
+		strategy: function (serviceSourceFile, serviceName) {
+			return knownMethodsStrategy(serviceSourceFile, serviceName, ["sign", "verify"]);
+		},
+	},
+
+	Transaction: {
+		strategy: function (serviceSourceFile, serviceName) {
+			return knownMethodsStrategyPlusAnnotations(serviceSourceFile, serviceName, [
+				"delegateRegistration",
+				"delegateResignation",
+				"estimateExpiration",
+				"htlcClaim",
+				"htlcLock",
+				"htlcRefund",
+				"ipfs",
+				"multiPayment",
+				"multiSignature",
+				"secondSignature",
+				"transfer",
+				"vote",
+			],
+				["ledgerS", "ledgerX", "musig"]);
+		},
+	},
 };
 
 const projectFolder = path.join(process.cwd());
@@ -65,7 +95,7 @@ function figureOutImplemented(sourceFile, className, knownMethods) {
 		}
 	}
 
-	console.log(`🌍 ADA supports ${countSupported} out of ${knownMethods.length} methods for the ${className}`);
+	console.log(`🌍 supports ${countSupported} out of ${knownMethods.length} methods for the ${className}`);
 	return members;
 }
 
@@ -87,14 +117,27 @@ function updateProperty(shared, varName, propertyName, propertyValues) {
 	}
 }
 
-function filterKnown(knownMethods, members) {
-	return knownMethods.filter((method) => members.includes(method)).map((method) => `"${method}"`);
+function knownMethodsStrategy(serviceSourceFile, serviceName, knownMethods) {
+	function filterKnown(knownMethods, members) {
+		return knownMethods.filter((method) => members.includes(method)).map((method) => `"${method}"`);
+	}
+
+	const transactionMembers = figureOutImplemented(serviceSourceFile, `${serviceName}Service`, knownMethods);
+
+	return filterKnown(knownMethods, transactionMembers);
+}
+
+function knownMethodsStrategyPlusAnnotations(serviceSourceFile, serviceName, knownMethods, annotations) {
+
+	const implemented = knownMethodsStrategy(serviceSourceFile, serviceName, knownMethods);
+
+	console.log('implemented', implemented);
+
+	return implemented;
 }
 
 function doService(serviceName) {
 	console.log(`Running for service ${serviceName}`);
-
-	const knownMethods = updaters[serviceName];
 
 	const serviceSourceFileName = path.join(projectFolder, `source/${serviceName.toLowerCase()}.service.ts`);
 	const serviceSourceFile = project.getSourceFile(serviceSourceFileName);
@@ -104,9 +147,8 @@ function doService(serviceName) {
 		return;
 	}
 
-	const transactionMembers = figureOutImplemented(serviceSourceFile, `${serviceName}Service`, knownMethods);
-
-	let implemented = filterKnown(knownMethods, transactionMembers);
+	const discoveryFunction = updaters[serviceName].strategy;
+	const implemented = discoveryFunction(serviceSourceFile, serviceName);
 
 	const sharedSourceFile = project.getSourceFileOrThrow(path.join(projectFolder, "source/networks/shared.ts"));
 	updateProperty(sharedSourceFile, "featureFlags", serviceName, implemented);
