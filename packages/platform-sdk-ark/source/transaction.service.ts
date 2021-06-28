@@ -97,7 +97,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	 *
 	 * @musig
 	 * @ledgerX
-	 * @ledgerS
 	 */
 	public override async multiSignature(
 		input: Services.MultiSignatureInput,
