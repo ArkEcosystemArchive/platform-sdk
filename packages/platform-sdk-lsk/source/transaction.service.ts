@@ -102,7 +102,9 @@ export class TransactionService extends Services.AbstractTransactionService {
 
 				if (!structTransaction.recipientId) {
 					// @ts-ignore - LSK uses JS so they don't encounter these type errors
-					structTransaction.recipientId = (await this.addressService.fromPublicKey(structTransaction.senderPublicKey)).address;
+					structTransaction.recipientId = (
+						await this.addressService.fromPublicKey(structTransaction.senderPublicKey)
+					).address;
 				}
 
 				// @ts-ignore - LSK uses JS so they don't encounter these type errors
