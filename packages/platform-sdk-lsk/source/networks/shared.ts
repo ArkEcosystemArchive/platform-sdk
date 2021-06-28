@@ -41,6 +41,8 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"transfer.ledgerS",
 		"transfer.ledgerX",
 		"transfer",
+		"vote.ledgerS",
+		"vote.ledgerX",
 		"vote",
 	],
 };

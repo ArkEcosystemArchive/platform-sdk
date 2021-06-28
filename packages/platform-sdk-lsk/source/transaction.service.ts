@@ -60,6 +60,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return this.#createFromData("registerDelegate", input);
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("castVotes", input);
 	}
