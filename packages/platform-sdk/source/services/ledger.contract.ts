@@ -25,4 +25,8 @@ export interface LedgerService {
 	signMessage(path: string, payload: Buffer): Promise<string>;
 
 	scan(options?: { useLegacy: boolean; startPath?: string }): Promise<Record<string, WalletData>>;
+
+	isNanoS(): Promise<boolean>;
+
+	isNanoX(): Promise<boolean>;
 }

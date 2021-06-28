@@ -128,4 +128,12 @@ export class LedgerService extends Services.AbstractLedgerService {
 		// Return a mapping of paths and wallets that have been found.
 		return this.mapPathsToWallets(addressCache, wallets);
 	}
+
+	public override async isNanoS(): Promise<boolean> {
+		return this.#ledger.deviceModel.id === "nanoS";
+	}
+
+	public override async isNanoX(): Promise<boolean> {
+		return this.#ledger.deviceModel.id === "nanoX";
+	}
 }
