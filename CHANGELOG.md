@@ -5,145 +5,247 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 9.3.0 - 2021-06-14
-
-### Changed
-
-- **[SDK]** Rename `isMultiSignature` to `isMultiSignatureRegistration` (2dc9eeed, @faustbrian)
-
-## 9.2.11 - 2021-06-11
-
-### Fixed
-
-- **[JSON-RPC]** Return numbers in human-readable format (0ab54fd5, @faustbrian)
-
-## 9.2.10 - 2021-06-11
-
-### Fixed
-
-- **[JSON-RPC]** Remove coin and network from cached instance (253f6a86, @faustbrian)
-- **[JSON-RPC]** Turn transactions to JSON for response (a4aab367, @faustbrian)
-
-## 9.2.8 - 2021-06-11
-
-### Changed
-
-- **[BTC-INDEXER]** Faster processing (50bde2dd, @marianogoldman)
-
-## 9.2.7 - 2021-06-11
-
-### Changed
-
-- **[PROFILES]** Enable transaction history setting on profile creation (291d88d0, @goga-m)
-
-## 9.2.6 - 2021-06-11
-
-### Fixed
-
-- **[ARK]** Add delegate resignation DTO (ea2949fd, @faustbrian)
-
-## 9.2.5 - 2021-06-11
-
-### Fixed
-
-- **[ARK]** Add delegate resignation DTO (ea2949fd, @faustbrian)
-
-## 9.2.4 - 2021-06-11
-
-### Changed
-
-- **[BTC-INDEXER]** Tweak configuration (309ad51a, @faustbrian)
-
-## 9.2.3 - 2021-06-11
-
-### Changed
-
-- **[PROFILES]** Rename `SignedTransactionData#isMultiSignature` to `SignedTransactionData#usesMultiSignature` (c3d77494, @faustbrian)
-- **[PROFILES]** Enforce strict structure for validation (fd431a39, @faustbrian)
-
-## 9.2.1 - 2021-06-11
-
-### Changed
-
-- **[SDK]** Dry transaction DTOs (efab8165, @faustbrian)
-
-## 9.2.0 - 2021-06-10
-
-### Changed
-
-- **[SDK]** Provide default implementations for DTOs (628d2a12, @faustbrian)
-- **[SDK]** Flatten feature flags (0a74581d, @faustbrian)
-- **[SDK]** Remove link methods from feature flags because they always exist (aab0fe30, @faustbrian)
-
-### Fixed
-
-- **[CLI]** Use ledger service to import wallets (9a06aa18, @marianogoldman)
-- **[ARK]** Limit all fees to static (5c34036d, @faustbrian)
-
-## 9.1.1 - 2021-06-07
-
-### Changed
-
-- **[ARK]** Derive ledger address early to determine nonce (cd27e080, @faustbrian)
-
-## 9.1.0 - 2021-06-07
+## 10.2.16 - 2021-06-14
 
 ### Added
 
-- **[LSK]** Implement ledger signing (ab0dfe5c, @faustbrian)
+- Implement `WIFService` (6d7cb1d6, @faustbrian)
 
 ### Changed
 
-- **[BTC-INDEXER]** Store pending blocks in database (531b9618, @faustbrian)
-- **[ARK]** **[BREAKING]** Handle ledger signing in `TransactionService` (4f7f2c2f, @faustbrian)
-- **[SDK]** **[BREAKING]** Remove `TransactionOptions` in favour of `Signatory` (665dbfad, @faustbrian)
-- **[SDK]** **[BREAKING]** Remove `SignatureSignatory` in favour of `LedgerSignatory` (8f65cf38, @faustbrian)
-
-## 9.0.10 - 2021-06-07
+- Implement command to update feature flags in manifests (b102a07f, @faustbrian)
 
 ### Fixed
 
-- **[SDK]** Prevent `Coin.__construct` race condition (2bde3af4, @faustbrian)
+- Return maximum fee as minimum and average for multi-payments (f2317231, @faustbrian)
 
-## 9.0.9 - 2021-06-07
+## 10.2.13 - 2021-06-14
 
 ### Fixed
 
-- **[ARK]** `compendia` => `bind` (92d662d3, @faustbrian)
+- Correct coincap daily average (5f32f299, @faustbrian)
 
-## 9.0.8 - 2021-06-07
+## 10.2.12 - 2021-06-14
+
+### Fixed
+
+- Respect word count for wallet generation when passed in (dc50e777, @faustbrian)
+
+## 10.2.11 - 2021-06-14
+
+### Added
+
+- Expose word count for BIP39 passphrases (29969e3b, @faustbrian)
+
+## 10.2.10 - 2021-06-14
+
+### Added
+
+- Implement methods to identify ledger device model (5d0eccda, @faustbrian)
+
+## 10.2.9 - 2021-06-14
+
+### Fixed
+
+- Remove `multiSignature.ledgerS` flag (cf53b3e6, @faustbrian)
+
+## 10.2.8 - 2021-06-14
+
+### Fixed
+
+- Ensure ledger public key is associated with MuSig (cab2fe09, @faustbrian)
+
+## 10.2.7 - 2021-06-14
+
+### Added
+
+- Implement second WIF support for MuSig signing (f114e812, @faustbrian)
+- Add final MuSig signature with ledger (633549ce, @faustbrian)
+- Add MuSig participant signature with ledger (cdd2f0e1, @faustbrian)
+
+## 10.2.3 - 2021-06-14
+
+### Fixed
+
+- Remove multi-signature transaction flag (995b5388, @faustbrian)
+
+## 10.2.2 - 2021-06-14
+
+### Fixed
+
+- Set `recipientId` before ledger signing (5972e68a, @faustbrian)
+
+## 10.2.1 - 2021-06-14
+
+### Fixed
+
+- Compendia testnet host (eac533cf, @faustbrian)
+
+## 10.2.0 - 2021-06-14
 
 ### Changed
 
-- **[BTC-INDEXER]** Only ignore error if unique constraint violation (a5571ccd, @marianogoldman)
-- **[BTC-INDEXER]** Use upserts for blocks, transactions and parts (afccd8f0, @marianogoldman)
-- **[SDK]** Throw an exception if a duplicate binding is attempted (7f7965b7, @faustbrian)
+- Consolidate confirmed transaction DTOs (fc86bb0a, @faustbrian)
+
+## 10.1.20 - 2021-06-14
 
 ### Fixed
 
-- **[LSK]** Try/catch syntax (6b588fd1, @faustbrian)
+- Add missing methods to `ExtendedSignedTransactionData` (0a9e2c48, @faustbrian)
 
-## 9.0.4 - 2021-06-07
-
-### Fixed
-
-- **[SDK]** Only unbind if binding exists (15f872f8, @faustbrian)
-
-## 9.0.3 - 2021-06-07
+## 10.1.19 - 2021-06-14
 
 ### Changed
 
-- **[SDK]** Initiate inversify through constructor (cc28e93c, @faustbrian)
-- **[SDK]** Destroy container bindings in reverse order (a541b612, @faustbrian)
+- Stop normalising broadcasting errors (b7a1e9dd, @faustbrian)
 
 ### Fixed
 
-- **[SDK]** Do not construct or destruct if already done (f962b587, @faustbrian)
+- Add missing methods to `ExtendedSignedTransactionData` (46d0718c, @faustbrian)
 
-## 9.0.0 - 2021-06-07
+## 10.1.18 - 2021-06-14
+
+### Fixed
+
+- Multi signature registration process (00eb172f, @faustbrian)
+
+## 10.1.17 - 2021-06-14
 
 ### Changed
 
-- **[SDK]** **[BREAKING CHANGE]** Migrate coin architecture to make use of IoC/DI (8e9655cc, @faustbrian)
-- **[SDK]** **[BREAKING CHANGE]** Store explorer path schemas in manifest (0ad2fbc1, @faustbrian)
-- **[SDK]** **[BREAKING CHANGE]** Provide default implementations of services (4c92e04e, @faustbrian)
+- Throw an exception if invalid signatory is used for `addSignature` (aa3e856f, @faustbrian)
+- Return transaction broadcasting error as string (603450c5, @faustbrian)
+
+### Fixed
+
+- Pass plain object to multi-signature broadcaster (ab990540, @faustbrian)
+
+## 10.1.14 - 2021-06-14
+
+### Added
+
+- Indicate if an import method can be encrypted (395e7df0, @faustbrian)
+
+## 10.1.13 - 2021-06-14
+
+### Fixed
+
+- Correct multi-payment recipient count (d3f068da, @faustbrian)
+
+## 10.1.12 - 2021-06-14
+
+### Fixed
+
+- Derive address for nonce with second signature (892b7aca, @faustbrian)
+
+## 10.1.11 - 2021-06-14
+
+### Added
+
+- Expose number of multi payment recipients (dd6c449e, @faustbrian)
+
+## 10.1.10 - 2021-06-14
+
+### Fixed
+
+- Always use `BigNumberService` for `BigNumber` creation in DTOs (45a6060e, @faustbrian)
+
+## 10.1.0 - 2021-06-14
+
+### Fixed
+
+- Normalise multi-payment amounts (d9859690, @faustbrian)
+
+## 10.1.8 - 2021-06-14
+
+### Fixed
+
+- Handle edge-case where confirmations come back as 0 from APIs (2ad8b2c2, @faustbrian)
+
+## 10.1.7 - 2021-06-14
+
+### Added
+
+- Implement password removal (3faca55a, @faustbrian)
+
+### Changed
+
+- Use maximum fee as static and maximum (ef47e6e5, @w3ea)
+
+### Fixed
+
+- Confirm ARK and LSK as soon as the transaction is on-chain (51ea3446, @faustbrian)
+
+## 10.1.4 - 2021-06-14
+
+### Changed
+
+- Export `Wallet` class (392db724, @faustbrian)
+
+## 10.1.3 - 2021-06-14
+
+### Changed
+
+- Export `Profile` class (d4de6770, @faustbrian)
+
+## 10.1.2 - 2021-06-14
+
+### Changed
+
+- Proxy temporary `SignedTransactionData` methods and normalise their output (b9b904a3, @faustbrian)
+
+## 10.1.1 - 2021-06-14
+
+### Changed
+
+- Temporarily expose username, hash and recipients through `SignedTransactionData` (a415c8cc, @faustbrian)
+
+## 10.1.0 - 2021-06-14
+
+### Added
+
+- Implement `business.withdrawal` (d1e6629c, @faustbrian)
+
+### Changed
+
+- Make Numeral `locale` optional (c173f549, @alesmit)
+
+### Fixed
+
+- Create `WalletData` through `DataTransferObjectService` (baec0781, @faustbrian)
+
+## 10.1.0 - 2021-06-14
+
+### Fixed
+
+- Handle all expiration errors (c0cc13c3, @faustbrian)
+
+## 10.0.4 - 2021-06-14
+
+### Fixed
+
+- Handle all expiration errors (c0cc13c3, @faustbrian)
+
+## 10.0.3 - 2021-06-14
+
+### Fixed
+
+- Export `ExtendedSignedTransactionData` (93bb6a5f, @faustbrian)
+
+## 10.0.2 - 2021-06-14
+
+### Changed
+
+- Normalise signed data through `ExtendedSignedTransactionData` (8170a9b3, @faustbrian)
+
+## 10.0.1 - 2021-06-14
+
+### Fixed
+
+- Prevent duplicate DTO transformation in `TransactionAggregate` (04e86745, @faustbrian)
+
+## 10.0.0 - 2021-06-14
+
+### Changed
+
+- Treat balances, amounts and fees as numbers (9255267e, @faustbrian)
