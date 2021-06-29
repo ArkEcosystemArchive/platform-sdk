@@ -150,7 +150,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **[SDK]** Always use `BigNumberService` for `BigNumber` creation in DTOs (45a6060e, @faustbrian)
 
-## 10.1.0 - 2021-06-22
+## 10.1.9 - 2021-06-22
 
 ### Fixed
 
