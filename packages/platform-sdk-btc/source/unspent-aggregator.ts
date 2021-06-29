@@ -12,10 +12,15 @@ export class UnspentAggregator {
 	@IoC.inject(IoC.BindingType.ConfigRepository)
 	protected readonly configRepository!: Coins.ConfigRepository;
 
-	public async aggregate(address: string): Promise<UnspentTransaction[]> {
-		const peer = Helpers.randomHostFromConfig(this.configRepository);
-		const response = (await this.http.get(`${peer}/wallets/${address}/transactions/unspent`)).json();
+	#peer!: string;
 
+	@IoC.postConstruct()
+	private onPostConstruct(): void {
+		this.#peer = Helpers.randomHostFromConfig(this.configRepository);
+	}
+
+	public async aggregate(address: string): Promise<UnspentTransaction[]> {
+		const response = (await this.http.get(`${this.#peer}/wallets/${address}/transactions/unspent`)).json();
 		return response.map((transaction) => ({
 			address: transaction.address,
 			txId: transaction.mintTxid,
