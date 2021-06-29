@@ -3,14 +3,14 @@ import { Transaction } from "bitcore-lib";
 
 import { UnspentTransaction } from "./contracts";
 import { UnspentAggregator } from "./unspent-aggregator";
+import { BindingType } from "./constants";
 
 @IoC.injectable()
 export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.AddressService)
 	private readonly addressService!: Services.AddressService;
 
-	// @TODO: bind via service provider and inject
-	@IoC.inject(IoC.BindingType.UnspentAggregator)
+	@IoC.inject(BindingType.UnspentAggregator)
 	private readonly unspent!: UnspentAggregator;
 
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
