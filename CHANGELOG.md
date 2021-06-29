@@ -214,38 +214,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Create `WalletData` through `DataTransferObjectService` (baec0781, @faustbrian)
 
-## 10.1.0 - 2021-06-14
-
-### Fixed
-
-- Handle all expiration errors (c0cc13c3, @faustbrian)
-
 ## 10.0.4 - 2021-06-18
 
 ### Fixed
 
-- Handle all expiration errors (c0cc13c3, @faustbrian)
+-**[PROFILES]**  Handle all expiration errors (c0cc13c3, @faustbrian)
 
 ## 10.0.3 - 2021-06-18
 
 ### Fixed
 
-- Export `ExtendedSignedTransactionData` (93bb6a5f, @faustbrian)
+- **[PROFILES]** Export `ExtendedSignedTransactionData` (93bb6a5f, @faustbrian)
 
 ## 10.0.2 - 2021-06-18
 
 ### Changed
 
-- Normalise signed data through `ExtendedSignedTransactionData` (8170a9b3, @faustbrian)
+- **[PROFILES]** Normalise signed data through `ExtendedSignedTransactionData` (8170a9b3, @faustbrian)
 
 ## 10.0.1 - 2021-06-17
 
 ### Fixed
 
-- Prevent duplicate DTO transformation in `TransactionAggregate` (04e86745, @faustbrian)
+- **[PROFILES]** Prevent duplicate DTO transformation in `TransactionAggregate` (04e86745, @faustbrian)
 
 ## 10.0.0 - 2021-06-17
 
 ### Changed
 
-- Treat balances, amounts and fees as numbers (9255267e, @faustbrian)
+- **[SDK]** Treat balances, amounts and fees as numbers (9255267e, @faustbrian)
