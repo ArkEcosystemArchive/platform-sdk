@@ -49,3 +49,18 @@ jobs:
             - uses: stefanzweifel/git-auto-commit-action@v4
               with:
                   commit_message: "style: resolve style guide violations"
+    spellcheck:
+        runs-on: ubuntu-latest
+        concurrency:
+            group: ${{ github.head_ref }}-spellcheck
+            cancel-in-progress: true
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.head_ref }}
+                  token: ${{ secrets.GH_TOKEN }}
+            - name: Spellcheck
+              uses: check-spelling/check-spelling@main
+            - uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  commit_message: "style: resolve style guide violations"
