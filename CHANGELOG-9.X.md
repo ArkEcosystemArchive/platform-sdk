@@ -5,38 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 9.3.14 - 2021-06-14
+## 9.3.14 - 2021-06-16
 
 ### Added
 
 - Implement `TransactionData#isReturn` (543240b9, @goga-m)
 
-## 9.3.13 - 2021-06-14
+## 9.3.13 - 2021-06-16
 
 ### Changed
 
 - Process blocks whenever we are not busy (9faf8d49, @faustbrian)
 
-## 9.3.12 - 2021-06-14
+## 9.3.12 - 2021-06-16
 
 ### Added
 
 - Implement transformer for `client.wallet` call (ca09c4a1, @faustbrian)
 - Implement `TransactionData#isReturn` (9b0dcc96, @faustbrian)
 
-## 9.3.10 - 2021-06-14
+## 9.3.10 - 2021-06-15
 
 ### Changed
 
 - Integrate `@arkecosystem/multi-signature` (c1cc4da9, @faustbrian)
 
-## 9.3.9 - 2021-06-14
+## 9.3.9 - 2021-06-15
 
 ### Fixed
 
 - More robust indexing (aef2fb0d, @marianogoldman)
 
-## 9.3.8 - 2021-06-14
+## 9.3.8 - 2021-06-15
 
 ### Changed
 
