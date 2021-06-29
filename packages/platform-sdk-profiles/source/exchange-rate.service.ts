@@ -83,7 +83,7 @@ export class ExchangeRateService implements IExchangeRateService {
 	}
 
 	#hasFetchedHistoricalRates(currency: string, exchangeCurrency: string): boolean {
-		const yesterday = DateTime.make().subDays(1).format('YYYY-MM-DD');
+		const yesterday = DateTime.make().subDays(1).format("YYYY-MM-DD");
 
 		return this.#dataRepository.has(`${currency}.${exchangeCurrency}.${yesterday}`);
 	}
