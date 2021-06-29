@@ -9,57 +9,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Implement `TransactionData#isReturn` (543240b9, @goga-m)
+- **[SDK]** Implement `TransactionData#isReturn` (543240b9, @goga-m)
 
 ## 9.3.13 - 2021-06-16
 
 ### Changed
 
-- Process blocks whenever we are not busy (9faf8d49, @faustbrian)
+- **[BTC-INDEXER]** Process blocks whenever we are not busy (9faf8d49, @faustbrian)
 
 ## 9.3.12 - 2021-06-16
 
 ### Added
 
-- Implement transformer for `client.wallet` call (ca09c4a1, @faustbrian)
-- Implement `TransactionData#isReturn` (9b0dcc96, @faustbrian)
+- **[JSON-RPC]** Implement transformer for `client.wallet` call (ca09c4a1, @faustbrian)
+- **[SDK]** Implement `TransactionData#isReturn` (9b0dcc96, @faustbrian)
 
 ## 9.3.10 - 2021-06-15
 
 ### Changed
 
-- Integrate `@arkecosystem/multi-signature` (c1cc4da9, @faustbrian)
+- **[ARK]** Integrate `@arkecosystem/multi-signature` (c1cc4da9, @faustbrian)
 
 ## 9.3.9 - 2021-06-15
 
 ### Fixed
 
-- More robust indexing (aef2fb0d, @marianogoldman)
+- **[BTC-INDEXER]** More robust indexing (aef2fb0d, @marianogoldman)
 
 ## 9.3.8 - 2021-06-15
 
 ### Changed
 
-- Replace uses of `Helpers#toRawUnit` by `BigNumber#toSatoshi` (1b144ec7, @axeldelamarre)
-- Replace `prisma` with `pg-promise` (75e97712, @marianogoldman)
+- **[SDK]** Replace uses of `Helpers#toRawUnit` by `BigNumber#toSatoshi` (1b144ec7, @axeldelamarre)
+- **[BTC-INDEXER]** Replace `prisma` with `pg-promise` (75e97712, @marianogoldman)
 
 ## 9.3.6 - 2021-06-14
 
 ### Changed
 
-- Merge `toObject` into `toHuman` and `toJSON` (c470cc18, @faustbrian)
+- **[SDK]** Merge `toObject` into `toHuman` and `toJSON` (c470cc18, @faustbrian)
 
 ### Fixed
 
-- Use `denominated` amount for conversion (5160b322, @faustbrian)
-- Ensure correct `TransferData` instance is used (d6f3fc50, @faustbrian)
-- Export `SignedTransactionData#type` type (934eda46, @goga-m)
+- **[PROFILES]** Use `denominated` amount for conversion (5160b322, @faustbrian)
+- **[SDK]** Ensure correct `TransferData` instance is used (d6f3fc50, @faustbrian)
+- **[SDK]** Export `SignedTransactionData#type` type (934eda46, @goga-m)
 
 ## 9.3.1 - 2021-06-14
 
 ### Fixed
 
-- Use `isMultiSignature` for wallets (dfc9027e, @faustbrian)
+- **[SDK]** Use `isMultiSignature` for wallets (dfc9027e, @faustbrian)
 
 ## 9.3.0 - 2021-06-14
 
