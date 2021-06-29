@@ -30,6 +30,7 @@ export interface NetworkHost {
 export interface ImportMethod {
 	default: boolean;
 	permissions: WalletPermission[];
+	canBeEncrypted?: boolean;
 }
 
 export interface NetworkManifestTransactions {
@@ -41,6 +42,7 @@ export interface NetworkManifestTransactions {
 	};
 	memo?: boolean;
 	utxo?: boolean;
+	multiPaymentRecipients?: number;
 }
 
 export interface NetworkManifestFeatureFlags {
@@ -85,6 +87,9 @@ export interface NetworkManifestImportMethods {
 export interface NetworkManifestConstants {
 	slip44: number;
 	bech32?: string;
+	bip39?: {
+		wordCount: number;
+	};
 }
 
 export interface NetworkManifest {
@@ -200,6 +205,7 @@ export type TransactionMethod =
 	| "delegateResignation.ledgerX"
 	| "delegateResignation.musig"
 	| "delegateResignation"
+	| "estimateExpiration"
 	| "htlcClaim.ledgerS"
 	| "htlcClaim.ledgerX"
 	| "htlcClaim.musig"

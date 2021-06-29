@@ -1,27 +1,10 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import TronWeb from "tronweb";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#connection!: TronWeb;
 	#peer!: string;
-
-	readonly #broadcastErrors: Record<string, string> = {
-		SIGERROR: "ERR_INVALID_SIGNATURE",
-		CONTRACT_VALIDATE_ERROR: "ERR_CONTRACT_VALIDATE_ERROR",
-		CONTRACT_EXE_ERROR: "ERR_CONTRACT_EXE_ERROR",
-		BANDWITH_ERROR: "ERR_BANDWITH_ERROR",
-		DUP_TRANSACTION_ERROR: "ERR_DUP_TRANSACTION_ERROR",
-		TAPOS_ERROR: "ERR_TAPOS_ERROR",
-		TOO_BIG_TRANSACTION_ERROR: "ERR_TOO_BIG_TRANSACTION_ERROR",
-		TRANSACTION_EXPIRATION_ERROR: "ERR_TRANSACTION_EXPIRATION_ERROR",
-		SERVER_BUSY: "ERR_SERVER_BUSY",
-		NO_CONNECTION: "ERR_NO_CONNECTION",
-		NOT_ENOUGH_EFFECTIVE_CONNECTION: "ERR_NOT_ENOUGH_EFFECTIVE_CONNECTION",
-		OTHER_ERROR: "ERR_OTHER_ERROR",
-	};
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
@@ -32,7 +15,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const result = await this.#connection.trx.getTransaction(id);
 
 		return this.dataTransferObjectService.transaction(result);
@@ -40,7 +23,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		const payload: Record<string, boolean | number> = {
 			limit: query.limit || 15,
 		};
@@ -95,15 +78,7 @@ export class ClientService extends Services.AbstractClientService {
 			if (response.code) {
 				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id()])) {
-					result.errors[transaction.id()] = [];
-				}
-
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
-					if (response.code.includes(key)) {
-						result.errors[transaction.id()].push(value);
-					}
-				}
+				result.errors[transaction.id()] = response.code;
 			}
 		}
 

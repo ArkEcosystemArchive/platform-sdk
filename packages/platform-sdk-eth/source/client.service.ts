@@ -1,23 +1,11 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import Web3 from "web3";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	static readonly MONTH_IN_SECONDS = 8640 * 30;
 
 	#peer!: string;
-
-	readonly #broadcastErrors: Record<string, string> = {
-		"nonce too low": "ERR_NONCE_TOO_LOW",
-		"nonce too high": "ERR_NONCE_TOO_HIGH",
-		"gas limit reached": "ERR_GAS_LIMIT_REACHED",
-		"insufficient funds for transfer": "ERR_INSUFFICIENT_FUNDS_FOR_TRANSFER",
-		"insufficient funds for gas * price + value": "ERR_INSUFFICIENT_FUNDS",
-		"gas uint64 overflow": "ERR_GAS_UINT_OVERFLOW",
-		"intrinsic gas too low": "ERR_INTRINSIC_GAS",
-	};
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
@@ -27,13 +15,13 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		const transactions: unknown[] = (await this.#get(`wallets/${query.address}/transactions`)) as any;
 
 		return this.dataTransferObjectService.transactions(
@@ -79,15 +67,7 @@ export class ClientService extends Services.AbstractClientService {
 			if (response.error) {
 				result.rejected.push(transactionId);
 
-				if (!Array.isArray(result.errors[transactionId])) {
-					result.errors[transactionId] = [];
-				}
-
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
-					if (response.error.message.includes(key)) {
-						result.errors[transactionId].push(value);
-					}
-				}
+				result.errors[transactionId] = response.error.message;
 			}
 		}
 

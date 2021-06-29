@@ -43,9 +43,6 @@ test("#all", () => {
 		        "delegates",
 		        "votes",
 		        "voters",
-		        "configuration",
-		        "fees",
-		        "syncing",
 		        "broadcast",
 		      ],
 		      "Fee": Array [
@@ -78,6 +75,10 @@ test("#all", () => {
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
+		        "estimateExpiration",
+		        "htlcClaim",
+		        "htlcLock",
+		        "htlcRefund",
 		        "ipfs.ledgerS",
 		        "ipfs.ledgerX",
 		        "ipfs.musig",
@@ -86,7 +87,6 @@ test("#all", () => {
 		        "multiPayment.ledgerX",
 		        "multiPayment.musig",
 		        "multiPayment",
-		        "multiSignature.ledgerS",
 		        "multiSignature.ledgerX",
 		        "multiSignature.musig",
 		        "multiSignature",
@@ -132,6 +132,7 @@ test("#all", () => {
 		        ],
 		      },
 		      "bip39": Object {
+		        "canBeEncrypted": true,
 		        "default": true,
 		        "permissions": Array [
 		          "read",
@@ -157,6 +158,7 @@ test("#all", () => {
 		        "type": "dynamic",
 		      },
 		      "memo": true,
+		      "multiPaymentRecipients": 128,
 		      "types": Array [
 		        "delegate-registration",
 		        "delegate-resignation",
@@ -206,9 +208,6 @@ test("#all", () => {
 		        "delegates",
 		        "votes",
 		        "voters",
-		        "configuration",
-		        "fees",
-		        "syncing",
 		        "broadcast",
 		      ],
 		      "Fee": Array [
@@ -241,6 +240,10 @@ test("#all", () => {
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
+		        "estimateExpiration",
+		        "htlcClaim",
+		        "htlcLock",
+		        "htlcRefund",
 		        "ipfs.ledgerS",
 		        "ipfs.ledgerX",
 		        "ipfs.musig",
@@ -249,7 +252,6 @@ test("#all", () => {
 		        "multiPayment.ledgerX",
 		        "multiPayment.musig",
 		        "multiPayment",
-		        "multiSignature.ledgerS",
 		        "multiSignature.ledgerX",
 		        "multiSignature.musig",
 		        "multiSignature",
@@ -295,6 +297,7 @@ test("#all", () => {
 		        ],
 		      },
 		      "bip39": Object {
+		        "canBeEncrypted": true,
 		        "default": true,
 		        "permissions": Array [
 		          "read",
@@ -320,6 +323,7 @@ test("#all", () => {
 		        "type": "dynamic",
 		      },
 		      "memo": true,
+		      "multiPaymentRecipients": 64,
 		      "types": Array [
 		        "delegate-registration",
 		        "delegate-resignation",
@@ -369,9 +373,6 @@ test("#all", () => {
 		        "delegates",
 		        "votes",
 		        "voters",
-		        "configuration",
-		        "fees",
-		        "syncing",
 		        "broadcast",
 		      ],
 		      "Fee": Array [
@@ -404,6 +405,10 @@ test("#all", () => {
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
+		        "estimateExpiration",
+		        "htlcClaim",
+		        "htlcLock",
+		        "htlcRefund",
 		        "ipfs.ledgerS",
 		        "ipfs.ledgerX",
 		        "ipfs.musig",
@@ -412,7 +417,6 @@ test("#all", () => {
 		        "multiPayment.ledgerX",
 		        "multiPayment.musig",
 		        "multiPayment",
-		        "multiSignature.ledgerS",
 		        "multiSignature.ledgerX",
 		        "multiSignature.musig",
 		        "multiSignature",
@@ -454,6 +458,7 @@ test("#all", () => {
 		        ],
 		      },
 		      "bip39": Object {
+		        "canBeEncrypted": true,
 		        "default": true,
 		        "permissions": Array [
 		          "read",
@@ -478,6 +483,7 @@ test("#all", () => {
 		        "type": "dynamic",
 		      },
 		      "memo": true,
+		      "multiPaymentRecipients": 128,
 		      "types": Array [
 		        "delegate-registration",
 		        "delegate-resignation",
@@ -527,9 +533,6 @@ test("#all", () => {
 		        "delegates",
 		        "votes",
 		        "voters",
-		        "configuration",
-		        "fees",
-		        "syncing",
 		        "broadcast",
 		      ],
 		      "Fee": Array [
@@ -562,6 +565,10 @@ test("#all", () => {
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
+		        "estimateExpiration",
+		        "htlcClaim",
+		        "htlcLock",
+		        "htlcRefund",
 		        "ipfs.ledgerS",
 		        "ipfs.ledgerX",
 		        "ipfs.musig",
@@ -570,7 +577,6 @@ test("#all", () => {
 		        "multiPayment.ledgerX",
 		        "multiPayment.musig",
 		        "multiPayment",
-		        "multiSignature.ledgerS",
 		        "multiSignature.ledgerX",
 		        "multiSignature.musig",
 		        "multiSignature",
@@ -595,7 +601,7 @@ test("#all", () => {
 		    },
 		    "hosts": Array [
 		      Object {
-		        "host": "http://apis-testnet.compendia.org/api",
+		        "host": "https://apis-testnet.compendia.org/api",
 		        "type": "full",
 		      },
 		      Object {
@@ -612,6 +618,7 @@ test("#all", () => {
 		        ],
 		      },
 		      "bip39": Object {
+		        "canBeEncrypted": true,
 		        "default": true,
 		        "permissions": Array [
 		          "read",
@@ -636,6 +643,7 @@ test("#all", () => {
 		        "type": "dynamic",
 		      },
 		      "memo": true,
+		      "multiPaymentRecipients": 64,
 		      "types": Array [
 		        "delegate-registration",
 		        "delegate-resignation",

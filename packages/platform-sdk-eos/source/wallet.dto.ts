@@ -16,8 +16,8 @@ export class WalletData extends DTO.AbstractWalletData implements Contracts.Wall
 
 	public override balance(): Contracts.WalletBalance {
 		return {
-			available: BigNumber.make(this.data.net_weight),
-			fees: BigNumber.make(this.data.net_weight),
+			available: this.bigNumberService.make(this.data.net_weight),
+			fees: this.bigNumberService.make(this.data.net_weight),
 		};
 	}
 

@@ -7,10 +7,10 @@ import nock from "nock";
 
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
 let subject: ClientService;
 
@@ -41,7 +41,7 @@ describe("ClientService", () => {
 				"68ad0264053ab94fa7749e78d2f728911d166ca9af8dbb68e6ee264958ca7f32",
 			);
 
-			expect(result).toBeInstanceOf(TransferData);
+			expect(result).toBeInstanceOf(ConfirmedTransactionData);
 			expect(result.id()).toBe("68ad0264053ab94fa7749e78d2f728911d166ca9af8dbb68e6ee264958ca7f32");
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBeInstanceOf(DateTime);
@@ -100,7 +100,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["id"],
 				errors: {
-					id: ["ERR_IN_BELOWOUT"],
+					id: "bad-txns-in-belowout, value in (0.00041265) < value out (1.00) (code 16)",
 				},
 			});
 		});

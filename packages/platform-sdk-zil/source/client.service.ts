@@ -15,7 +15,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const transaction = await this.#zilliqa.blockchain.getTransaction(id);
 		const receipt = transaction.getReceipt();
 
@@ -84,7 +84,7 @@ export class ClientService extends Services.AbstractClientService {
 				}
 			} catch (error) {
 				response.rejected.push(id);
-				response.errors[id] = [error.message];
+				response.errors[id] = error.message;
 			}
 		}
 

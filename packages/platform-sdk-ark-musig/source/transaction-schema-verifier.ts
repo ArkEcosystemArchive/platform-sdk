@@ -16,11 +16,7 @@ class TransactionSchemaVerifier {
 			data.type === Enums.TransactionType.MultiSignature &&
 			(!data.typeGroup || data.typeGroup === Enums.TransactionTypeGroup.Core);
 
-		const { error } = Transactions.Verifier.verifySchema(data, !isMultiSignatureRegistration);
-
-		if (error) {
-			throw new Error(error);
-		}
+		return Transactions.Verifier.verifySchema(data, !isMultiSignatureRegistration);
 	}
 
 	#extendTransaction(schema, schemaName?) {

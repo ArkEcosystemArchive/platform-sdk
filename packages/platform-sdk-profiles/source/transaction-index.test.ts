@@ -10,7 +10,7 @@ import { container } from "./container";
 import { Identifiers } from "./container.models";
 import { Wallet } from "./wallet";
 import { IProfile, IProfileRepository, IReadWriteWallet } from "./contracts";
-import { ExtendedTransactionDataCollection } from "./transaction.collection";
+import { ExtendedConfirmedTransactionDataCollection } from "./transaction.collection";
 
 let profile: IProfile;
 let subject: IReadWriteWallet;
@@ -86,15 +86,17 @@ beforeEach(async () => {
 beforeAll(() => nock.disableNetConnect());
 
 it("all", async () => {
-	await expect(subject.transactionIndex().all()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	await expect(subject.transactionIndex().all()).resolves.toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 });
 
 it("sent", async () => {
-	await expect(subject.transactionIndex().sent()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	await expect(subject.transactionIndex().sent()).resolves.toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 });
 
 it("received", async () => {
-	await expect(subject.transactionIndex().received()).resolves.toBeInstanceOf(ExtendedTransactionDataCollection);
+	await expect(subject.transactionIndex().received()).resolves.toBeInstanceOf(
+		ExtendedConfirmedTransactionDataCollection,
+	);
 });
 
 it("should fetch transaction by id", async () => {

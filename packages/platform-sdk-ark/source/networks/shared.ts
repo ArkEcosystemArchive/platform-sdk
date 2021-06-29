@@ -20,6 +20,7 @@ export const transactions: Networks.NetworkManifestTransactions = {
 		ticker: "ARK",
 	},
 	memo: true,
+	multiPaymentRecipients: 64,
 };
 
 export const importMethods: Networks.NetworkManifestImportMethods = {
@@ -30,6 +31,7 @@ export const importMethods: Networks.NetworkManifestImportMethods = {
 	bip39: {
 		default: true,
 		permissions: ["read", "write"],
+		canBeEncrypted: true,
 	},
 	publicKey: {
 		default: false,
@@ -47,9 +49,6 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"delegates",
 		"votes",
 		"voters",
-		"configuration",
-		"fees",
-		"syncing",
 		"broadcast",
 	],
 	Fee: ["all"],
@@ -63,6 +62,10 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Transaction: [
 		"delegateRegistration",
 		"delegateResignation",
+		"estimateExpiration",
+		"htlcClaim",
+		"htlcLock",
+		"htlcRefund",
 		"ipfs.ledgerS",
 		"ipfs.ledgerX",
 		"ipfs.musig",
@@ -71,7 +74,6 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 		"multiPayment.ledgerX",
 		"multiPayment.musig",
 		"multiPayment",
-		"multiSignature.ledgerS",
 		"multiSignature.ledgerX",
 		"multiSignature.musig",
 		"multiSignature",

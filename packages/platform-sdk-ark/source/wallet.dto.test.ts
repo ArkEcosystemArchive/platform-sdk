@@ -122,7 +122,7 @@ describe("WalletData", () => {
 		test("#isDelegate", () => {
 			expect(subject.isDelegate()).toBeTrue();
 
-			subject = new WalletData({ ...WalletDataFixture.mainnet, isResigned: true });
+			subject = createService(WalletData).fill({ ...WalletDataFixture.mainnet, isResigned: true });
 			expect(subject.isDelegate()).toBeFalse();
 		});
 
@@ -144,8 +144,8 @@ describe("WalletData", () => {
 	});
 
 	test("#multiSignature", () => {
-		const devnetSubject = new WalletData(WalletDataFixture.devnet);
-		const mainnetSubject = new WalletData(WalletDataFixture.mainnet);
+		const devnetSubject = createService(WalletData).fill(WalletDataFixture.devnet);
+		const mainnetSubject = createService(WalletData).fill(WalletDataFixture.mainnet);
 
 		expect(() => mainnetSubject.multiSignature()).toThrow(/does not have/);
 		expect(devnetSubject.multiSignature()).toEqual(WalletDataFixture.devnet.attributes.multiSignature);

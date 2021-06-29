@@ -9,7 +9,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		return this.dataTransferObjectService.transaction(
 			await fetchTransaction(id, this.configRepository, this.httpClient),
 		);
@@ -17,7 +17,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		if (query.senderPublicKey === undefined) {
 			throw new Exceptions.MissingArgument(this.constructor.name, this.transactions.name, "senderPublicKey");
 		}

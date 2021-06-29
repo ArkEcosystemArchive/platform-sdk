@@ -1,21 +1,10 @@
 import { Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Neon, { api } from "@cityofzion/neon-js";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#peer!: string;
 	#apiProvider;
-
-	readonly #broadcastErrors: Record<string, string> = {
-		"Block or transaction already exists and cannot be sent repeatedly.": "ERR_DUPLICATE",
-		"The memory pool is full and no more transactions can be sent.": "ERR_EXCESS",
-		"The block cannot be validated.": "ERR_VALIDATION_FAILED",
-		"Block or transaction validation failed.": "ERR_VALIDATION_FAILED",
-		"One of the Policy filters failed.": "ERR_POLICY_FILTER_FAILED",
-		"Unknown error.": "ERR_UNKNOWN",
-	};
 
 	@IoC.postConstruct()
 	private onPostConstruct() {
@@ -31,7 +20,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		const basePath = `get_address_abstracts/${query.address}`;
 		const basePage = (query.cursor as number) || 1;
 
@@ -89,16 +78,8 @@ export class ClientService extends Services.AbstractClientService {
 			if (response.error) {
 				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id()])) {
-					result.errors[transaction.id()] = [];
-				}
-
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
-					// @ts-ignore
-					if (response.error.message.includes(key)) {
-						result.errors[transaction.id()].push(value);
-					}
-				}
+				// @ts-ignore
+				result.errors[transaction.id()] = response.error.message;
 			}
 		}
 

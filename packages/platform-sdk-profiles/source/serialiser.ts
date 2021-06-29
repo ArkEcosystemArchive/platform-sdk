@@ -1,5 +1,4 @@
 import { Networks, Contracts } from "@arkecosystem/platform-sdk";
-import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { IReadWriteWallet, IWalletData, WalletData, WalletFlag } from "./contracts";
 
@@ -61,8 +60,16 @@ export class WalletSerialiser {
 		const balance = this.#wallet.data().get<Contracts.WalletBalance>(WalletData.Balance);
 
 		const serializedBalance: SerializedBalance = {
-			available: BigNumber.make(balance?.available || 0).toString(),
-			fees: BigNumber.make(balance?.fees || 0).toString(),
+			available: this.#wallet
+				.coin()
+				.bigNumber()
+				.make(balance?.available || 0)
+				.toString(),
+			fees: this.#wallet
+				.coin()
+				.bigNumber()
+				.make(balance?.fees || 0)
+				.toString(),
 		};
 
 		if (balance?.locked) {

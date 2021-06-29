@@ -6,10 +6,10 @@ import nock from "nock";
 
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
 let subject: ClientService;
 
@@ -40,7 +40,7 @@ describe("ClientService", () => {
 				"0xf6ad7f16653a2070f36c5f9c243acb30109da76658b54712745136d8e8236eae",
 			);
 
-			expect(result).toBeInstanceOf(TransferData);
+			expect(result).toBeInstanceOf(ConfirmedTransactionData);
 			expect(result.id()).toBe("0xf6ad7f16653a2070f36c5f9c243acb30109da76658b54712745136d8e8236eae");
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBeUndefined();
@@ -66,7 +66,7 @@ describe("ClientService", () => {
 			});
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(TransferData);
+			expect(result.items()[0]).toBeInstanceOf(ConfirmedTransactionData);
 		});
 	});
 
@@ -116,7 +116,8 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172"],
 				errors: {
-					"0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172": ["ERR_INSUFFICIENT_FUNDS"],
+					"0x227cff6fc8990fecd43cc9c7768f2c98cc5ee8e7c98c67c11161e008cce2b172":
+						"insufficient funds for gas * price + value",
 				},
 			});
 		});

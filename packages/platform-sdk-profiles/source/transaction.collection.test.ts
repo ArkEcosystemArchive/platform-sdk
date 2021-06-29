@@ -1,6 +1,6 @@
-import { ExtendedTransactionDataCollection } from "./transaction.collection";
+import { ExtendedConfirmedTransactionDataCollection } from "./transaction.collection";
 
-let subject: ExtendedTransactionDataCollection;
+let subject: ExtendedConfirmedTransactionDataCollection;
 
 const dummy = {
 	id: () => "id",
@@ -13,7 +13,7 @@ const dummy = {
 
 beforeEach(() => {
 	// @ts-ignore
-	subject = new ExtendedTransactionDataCollection([dummy], { prev: 1, self: 2, next: 3, last: 3 });
+	subject = new ExtendedConfirmedTransactionDataCollection([dummy], { prev: 1, self: 2, next: 3, last: 3 });
 });
 
 test("#findById", () => {

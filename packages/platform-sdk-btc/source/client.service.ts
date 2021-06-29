@@ -1,21 +1,11 @@
 import { Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
-	readonly #broadcastErrors: Record<string, string> = {
-		"bad-txns-inputs-duplicate": "ERR_INPUTS_DUPLICATE",
-		"bad-txns-in-belowout": "ERR_IN_BELOWOUT",
-		"bad-txns-vout-negative": "ERR_VOUT_NEGATIVE",
-		"bad-txns-vout-toolarge": "ERR_VOUT_TOOLARGE",
-		"bad-txns-txouttotal-toolarge": "ERR_TXOUTTOTAL_TOOLARGE",
-	};
-
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		return this.dataTransferObjectService.transaction(await this.#get(`transactions/${id}`));
 	}
 
@@ -48,15 +38,7 @@ export class ClientService extends Services.AbstractClientService {
 			if (response.error) {
 				result.rejected.push(transactionId);
 
-				if (!Array.isArray(result.errors[transactionId])) {
-					result.errors[transactionId] = [];
-				}
-
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
-					if (response.error.message.includes(key)) {
-						result.errors[transactionId].push(value);
-					}
-				}
+				result.errors[transactionId] = response.error.message;
 			}
 		}
 

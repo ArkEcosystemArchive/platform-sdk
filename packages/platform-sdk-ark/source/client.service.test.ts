@@ -6,11 +6,9 @@ import nock from "nock";
 import { createService } from "../test/mocking";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
-import { TransactionData } from "./transaction.dto";
+import { ConfirmedTransactionData } from "./transaction.dto";
 import { WalletData } from "./wallet.dto";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { TransferData } from "./transfer.dto";
-import { MultiPaymentData } from "./multi-payment.dto";
 
 let subject: ClientService;
 
@@ -37,7 +35,7 @@ describe("ClientService", () => {
 				"3e3817fd0c35bc36674f3874c2953fa3e35877cbcdb44a08bdc6083dbd39d572",
 			);
 
-			expect(result).toBeInstanceOf(TransferData);
+			expect(result).toBeInstanceOf(ConfirmedTransactionData);
 		});
 	});
 
@@ -63,7 +61,7 @@ describe("ClientService", () => {
 			});
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(MultiPaymentData);
+			expect(result.items()[0]).toBeInstanceOf(ConfirmedTransactionData);
 		});
 
 		it("should work with Core 3.0", async () => {
@@ -84,7 +82,7 @@ describe("ClientService", () => {
 			const result = await subject.transactions({ addresses: ["DBk4cPYpqp7EBcvkstVDpyX7RQJNHxpMg8"] });
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.items()[0]).toBeInstanceOf(ConfirmedTransactionData);
 		});
 
 		it("should work with Core 3.0 for advanced search", async () => {
@@ -116,7 +114,7 @@ describe("ClientService", () => {
 			});
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(TransactionData);
+			expect(result.items()[0]).toBeInstanceOf(ConfirmedTransactionData);
 		});
 	});
 
@@ -280,7 +278,7 @@ describe("ClientService", () => {
 				accepted: ["e4311204acf8a86ba833e494f5292475c6e9e0913fc455a12601b4b6b55818d8"],
 				rejected: ["d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216"],
 				errors: {
-					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216: ["ERR_UNKNOWN"],
+					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216: "Already forged.",
 				},
 			});
 		});
@@ -301,7 +299,7 @@ describe("ClientService", () => {
 				accepted: ["e4311204acf8a86ba833e494f5292475c6e9e0913fc455a12601b4b6b55818d8"],
 				rejected: ["d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216"],
 				errors: {
-					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216: ["ERR_UNKNOWN"],
+					d4cb4edfbd50a5d71d3d190a687145530b73f041c59e2c4137fe8b3d1f970216: "Already forged.",
 				},
 			});
 		});

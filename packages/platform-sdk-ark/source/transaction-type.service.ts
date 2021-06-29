@@ -18,7 +18,7 @@ export class TransactionTypeService {
 	}
 
 	public static isVote(data: TransactionData): boolean {
-		const isVote = data.typeGroup === 1 && data.type === 3;
+		const isVote = TransactionTypeService.#typeGroup(data) === 1 && data.type === 3;
 
 		if (!isVote) {
 			return false;
@@ -28,7 +28,7 @@ export class TransactionTypeService {
 	}
 
 	public static isUnvote(data: TransactionData): boolean {
-		const isVote = data.typeGroup === 1 && data.type === 3;
+		const isVote = TransactionTypeService.#typeGroup(data) === 1 && data.type === 3;
 
 		if (!isVote) {
 			return false;

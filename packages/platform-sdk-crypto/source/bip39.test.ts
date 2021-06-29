@@ -24,6 +24,13 @@ test("#generate", async () => {
 	expect(BIP39.generate("spanish")).toBeString();
 });
 
+test("#generate with number of words", async () => {
+	expect(BIP39.generate("english").split(" ")).toHaveLength(12);
+	expect(BIP39.generate("english", 12).split(" ")).toHaveLength(12);
+	expect(BIP39.generate("english", 24).split(" ")).toHaveLength(24);
+	expect(BIP39.generate("english", 36).split(" ")).toHaveLength(12);
+});
+
 test("#validate", async () => {
 	expect(BIP39.validate(english, "english")).toBeTrue();
 	expect(BIP39.validate(japanese, "japanese")).toBeTrue();

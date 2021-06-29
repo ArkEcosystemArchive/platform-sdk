@@ -1,15 +1,12 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 import { UUID } from "@arkecosystem/platform-sdk-crypto";
 
-import { WalletData } from "./wallet.dto";
-import { broadcastErrors } from "./client.errors";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const transaction = await this.#post("tx", [
 			{
 				transaction: id,
@@ -22,7 +19,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		const { transactions } = await this.#post("account_tx", [
 			{
 				account: query.address || query.addresses![0],
@@ -80,11 +77,7 @@ export class ClientService extends Services.AbstractClientService {
 			} else {
 				result.rejected.push(transactionId);
 
-				if (!Array.isArray(result.errors[transactionId])) {
-					result.errors[transactionId] = [];
-				}
-
-				result.errors[transactionId].push(broadcastErrors[engine_result]);
+				result.errors[transactionId] = engine_result;
 			}
 		}
 

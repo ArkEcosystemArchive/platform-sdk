@@ -2,18 +2,18 @@
 
 import { Coins, Contracts } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
-import { BigNumber, NumberLike } from "@arkecosystem/platform-sdk-support";
+import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import { IExchangeRateService, IReadWriteWallet } from "./contracts";
 import { container } from "./container";
 import { Identifiers } from "./container.models";
 
-export class TransactionData {
+export class ExtendedConfirmedTransactionData implements Contracts.ConfirmedTransactionData {
 	readonly #wallet: IReadWriteWallet;
 	readonly #coin: Coins.Coin;
-	readonly #data: Contracts.TransactionDataType;
+	readonly #data: Contracts.ConfirmedTransactionData;
 
-	public constructor(wallet: IReadWriteWallet, data: Contracts.TransactionDataType) {
+	public constructor(wallet: IReadWriteWallet, data: Contracts.ConfirmedTransactionData) {
 		this.#wallet = wallet;
 		this.#coin = wallet.coin();
 		this.#data = data;
@@ -47,13 +47,16 @@ export class TransactionData {
 		return this.#data.recipient();
 	}
 
+	// @ts-ignore
 	public recipients(): {
 		address: string;
 		amount: number;
 	}[] {
+		/* istanbul ignore next */
 		return this.#data.recipients().map(({ address, amount }) => ({ address, amount: amount.toHuman() }));
 	}
 
+	// @ts-ignore
 	public amount(): number {
 		return this.#data.amount().toHuman();
 	}
@@ -62,6 +65,7 @@ export class TransactionData {
 		return this.#convertAmount(this.amount());
 	}
 
+	// @ts-ignore
 	public fee(): number {
 		return this.#data.fee().toHuman();
 	}
@@ -159,6 +163,65 @@ export class TransactionData {
 		return this.#data.isMagistrate();
 	}
 
+	public username(): string {
+		return this.data<Contracts.ConfirmedTransactionData>().username();
+	}
+
+	public lockTransactionId(): string {
+		return this.data<Contracts.ConfirmedTransactionData>().lockTransactionId();
+	}
+
+	public unlockSecret(): string {
+		return this.data<Contracts.ConfirmedTransactionData>().unlockSecret();
+	}
+
+	public secretHash(): string {
+		return this.data<Contracts.ConfirmedTransactionData>().secretHash();
+	}
+
+	public expirationType(): number {
+		return this.data<Contracts.ConfirmedTransactionData>().expirationType();
+	}
+
+	public expirationValue(): number {
+		return this.data<Contracts.ConfirmedTransactionData>().expirationValue();
+	}
+
+	public hash(): string {
+		return this.data<Contracts.ConfirmedTransactionData>().hash();
+	}
+
+	// @ts-ignore
+	public payments(): { recipientId: string; amount: number }[] {
+		// @ts-ignore
+		return this.data<Contracts.ConfirmedTransactionData>()
+			.payments()
+			.map((payment: { recipientId: string; amount: BigNumber }) => ({
+				recipientId: payment.recipientId,
+				amount: payment.amount.toHuman(),
+			}));
+	}
+
+	public publicKeys(): string[] {
+		return this.data<Contracts.ConfirmedTransactionData>().publicKeys();
+	}
+
+	public min(): number {
+		return this.data<Contracts.ConfirmedTransactionData>().min();
+	}
+
+	public secondPublicKey(): string {
+		return this.data<Contracts.ConfirmedTransactionData>().secondPublicKey();
+	}
+
+	public votes(): string[] {
+		return this.data<Contracts.ConfirmedTransactionData>().votes();
+	}
+
+	public unvotes(): string[] {
+		return this.data<Contracts.ConfirmedTransactionData>().unvotes();
+	}
+
 	public explorerLink(): string {
 		return this.#coin.link().transaction(this.id());
 	}
@@ -238,106 +301,3 @@ export class TransactionData {
 			.exchange(this.wallet().currency(), this.wallet().exchangeCurrency(), timestamp, value);
 	}
 }
-
-export class DelegateRegistrationData extends TransactionData {
-	public username(): string {
-		return this.data<Contracts.DelegateRegistrationData>().username();
-	}
-}
-
-export class DelegateResignationData extends TransactionData {}
-
-export class HtlcClaimData extends TransactionData {
-	public lockTransactionId(): string {
-		return this.data<Contracts.HtlcClaimData>().lockTransactionId();
-	}
-
-	public unlockSecret(): string {
-		return this.data<Contracts.HtlcClaimData>().unlockSecret();
-	}
-}
-
-export class HtlcLockData extends TransactionData {
-	public secretHash(): string {
-		return this.data<Contracts.HtlcLockData>().secretHash();
-	}
-
-	public expirationType(): number {
-		return this.data<Contracts.HtlcLockData>().expirationType();
-	}
-
-	public expirationValue(): number {
-		return this.data<Contracts.HtlcLockData>().expirationValue();
-	}
-}
-
-export class HtlcRefundData extends TransactionData {
-	public lockTransactionId(): string {
-		return this.data<Contracts.HtlcRefundData>().lockTransactionId();
-	}
-}
-
-export class IpfsData extends TransactionData {
-	public hash(): string {
-		return this.data<Contracts.IpfsData>().hash();
-	}
-}
-
-export class MultiPaymentData extends TransactionData {
-	// TODO: expose read-only wallet instances
-	public payments(): { recipientId: string; amount: number }[] {
-		// @ts-ignore
-		return this.data<Contracts.MultiPaymentData>()
-			.payments()
-			.map((payment: { recipientId: string; amount: BigNumber }) => ({
-				recipientId: payment.recipientId,
-				amount: payment.amount.toHuman(),
-			}));
-	}
-}
-
-export class MultiSignatureData extends TransactionData {
-	// TODO: expose read-only wallet instances
-	public publicKeys(): string[] {
-		return this.data<Contracts.MultiSignatureData>().publicKeys();
-	}
-
-	public min(): number {
-		return this.data<Contracts.MultiSignatureData>().min();
-	}
-}
-
-export class SecondSignatureData extends TransactionData {
-	public secondPublicKey(): string {
-		return this.data<Contracts.SecondSignatureData>().secondPublicKey();
-	}
-}
-
-export class TransferData extends TransactionData {
-	public override memo(): string | undefined {
-		return this.data<Contracts.TransferData>().memo();
-	}
-}
-
-export class VoteData extends TransactionData {
-	public votes(): string[] {
-		return this.data<Contracts.VoteData>().votes();
-	}
-
-	public unvotes(): string[] {
-		return this.data<Contracts.VoteData>().unvotes();
-	}
-}
-
-export type ExtendedTransactionData =
-	| DelegateRegistrationData
-	| DelegateResignationData
-	| HtlcClaimData
-	| HtlcLockData
-	| HtlcRefundData
-	| IpfsData
-	| MultiPaymentData
-	| MultiSignatureData
-	| SecondSignatureData
-	| TransferData
-	| VoteData;

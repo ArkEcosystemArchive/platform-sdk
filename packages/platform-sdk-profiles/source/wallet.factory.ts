@@ -34,8 +34,9 @@ export class WalletFactory implements IWalletFactory {
 		coin,
 		network,
 		locale,
+		wordCount,
 	}: IGenerateOptions): Promise<{ mnemonic: string; wallet: IReadWriteWallet }> {
-		const mnemonic: string = BIP39.generate(locale);
+		const mnemonic: string = BIP39.generate(locale, wordCount);
 
 		return { mnemonic, wallet: await this.fromMnemonicWithBIP39({ mnemonic, coin, network }) };
 	}

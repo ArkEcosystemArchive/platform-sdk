@@ -7,10 +7,10 @@ import nock from "nock";
 
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
 let subject: ClientService;
 
@@ -37,7 +37,7 @@ describe("ClientService", () => {
 				"F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF",
 			);
 
-			expect(result).toBeInstanceOf(TransferData);
+			expect(result).toBeInstanceOf(ConfirmedTransactionData);
 			expect(result.id()).toBe("F4AB442A6D4CBB935D66E1DA7309A5FC71C7143ED4049053EC14E3875B0CF9BF");
 			expect(result.type()).toBe("transfer");
 			expect(result.timestamp()).toBeInstanceOf(DateTime);
@@ -63,7 +63,7 @@ describe("ClientService", () => {
 			});
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(TransferData);
+			expect(result.items()[0]).toBeInstanceOf(ConfirmedTransactionData);
 			expect(result.items()[0].id()).toBe("08EF5BDA2825D7A28099219621CDBECCDECB828FEA202DEB6C7ACD5222D36C2C");
 			expect(result.items()[0].type()).toBe("transfer");
 			expect(result.items()[0].timestamp()).toBeInstanceOf(DateTime);
@@ -122,7 +122,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: [transactionPayload.id()],
 				errors: {
-					[transactionPayload.id()]: ["ERR_UNFUNDED_PAYMENT"],
+					[transactionPayload.id()]: "tecUNFUNDED_PAYMENT",
 				},
 			});
 		});

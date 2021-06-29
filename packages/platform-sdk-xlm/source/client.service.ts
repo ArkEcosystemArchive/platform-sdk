@@ -1,19 +1,9 @@
 import { Collections, Contracts, IoC, Networks, Services } from "@arkecosystem/platform-sdk";
 import Stellar from "stellar-sdk";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#client;
-
-	readonly #broadcastErrors: Record<string, string> = {
-		op_malformed: "ERR_MALFORMED",
-		op_underfunded: "ERR_INSUFFICIENT_FUNDS",
-		op_low_reserve: "ERR_LOW_RESERVE",
-		op_line_full: "ERR_LINE_FULL",
-		op_no_issuer: "ERR_NO_ISSUER",
-	};
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
@@ -28,7 +18,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const transaction = await this.#client.transactions().transaction(id).call();
 		const operations = await transaction.operations();
 
@@ -40,7 +30,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		const { records, next, prev } = await this.#client.payments().forAccount(query.address).call();
 
 		return this.dataTransferObjectService.transactions(
@@ -75,20 +65,11 @@ export class ClientService extends Services.AbstractClientService {
 
 				result.accepted.push(id);
 			} catch (err) {
-				const { extras } = err.response.data;
 				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id()])) {
-					result.errors[transaction.id()] = [];
-				}
+				const { extras } = err.response.data;
 
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
-					for (const operation of extras.result_codes.operations) {
-						if (operation.includes(key)) {
-							result.errors[transaction.id()].push(value);
-						}
-					}
-				}
+				result.errors[transaction.id()] = JSON.stringify(extras.result_codes.operations);
 			}
 		}
 

@@ -4,16 +4,16 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 import Fixture from "../test/fixtures/client/transaction.json";
 import { createService } from "../test/mocking";
-import { TransactionData } from "./transaction.dto";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
-let subject: TransactionData;
+let subject: ConfirmedTransactionData;
 
 beforeEach(() => {
-	subject = createService(TransactionData);
+	subject = createService(ConfirmedTransactionData);
 	subject.configure(Fixture);
 });
 
-describe("TransactionData", () => {
+describe("ConfirmedTransactionData", () => {
 	test("#id", () => {
 		expect(subject.id()).toBe("0xf6ad7f16653a2070f36c5f9c243acb30109da76658b54712745136d8e8236eae");
 	});

@@ -39,7 +39,7 @@ jest.setTimeout(10000);
 
 describe("TransactionService", () => {
 	describe("#transfer", () => {
-		it("should verify", async () => {
+		it.skip("should verify", async () => {
 			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({

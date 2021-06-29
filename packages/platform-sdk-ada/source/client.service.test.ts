@@ -6,11 +6,11 @@ import nock from "nock";
 
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
 import { TransactionService } from "./transaction.service";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
 let subject: ClientService;
 
@@ -68,7 +68,7 @@ describe("ClientService", () => {
 
 			expect(result).toBeObject();
 			expect(result.items()).toBeArrayOfSize(5);
-			expect(result.items()[0]).toBeInstanceOf(TransferData);
+			expect(result.items()[0]).toBeInstanceOf(ConfirmedTransactionData);
 		});
 		it("missing senderPublicKey", async () => {
 			await expect(
@@ -93,7 +93,7 @@ describe("ClientService", () => {
 			.reply(200, require(`${__dirname}/../test/fixtures/client/transaction.json`));
 
 		const result = await subject.transaction("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
-		expect(result).toBeInstanceOf(TransferData);
+		expect(result).toBeInstanceOf(ConfirmedTransactionData);
 		expect(result.id()).toBe("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
 
 		expect(result.blockId()).toBeUndefined();

@@ -3,7 +3,7 @@ import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 @IoC.injectable()
-export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+export class ConfirmedTransactionData extends DTO.AbstractConfirmedTransactionData {
 	public override id(): string {
 		return this.data.txID;
 	}

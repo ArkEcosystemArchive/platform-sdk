@@ -1,12 +1,12 @@
 import "jest-extended";
 
-import { TransactionDataCollection } from "./transactions";
+import { ConfirmedTransactionDataCollection } from "./transactions";
 
-let subject: TransactionDataCollection;
+let subject: ConfirmedTransactionDataCollection;
 
 beforeEach(
 	() =>
-		(subject = new TransactionDataCollection(
+		(subject = new ConfirmedTransactionDataCollection(
 			[
 				// @ts-ignore
 				{

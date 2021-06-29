@@ -9,6 +9,7 @@ export interface IGenerateOptions {
 	coin: string;
 	network: string;
 	locale?: string;
+	wordCount?: number;
 }
 
 /**

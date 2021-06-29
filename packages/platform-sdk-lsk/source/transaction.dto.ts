@@ -6,7 +6,7 @@ import { normalizeTimestamp } from "./timestamps";
 import { TransactionTypeService } from "./transaction-type.service";
 
 @IoC.injectable()
-export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+export class ConfirmedTransactionData extends DTO.AbstractConfirmedTransactionData {
 	public override id(): string {
 		return this.data.id;
 	}
@@ -69,5 +69,37 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public override isMultiSignatureRegistration(): boolean {
 		return TransactionTypeService.isMultiSignatureRegistration(this.data);
+	}
+
+	// Delegate Registration
+	public override username(): string {
+		return this.data.asset.delegate.username;
+	}
+
+	// Vote
+	public override votes(): string[] {
+		return this.data.asset.votes
+			.filter((vote: string) => vote.startsWith("+"))
+			.map((publicKey: string) => publicKey.substr(1));
+	}
+
+	public override unvotes(): string[] {
+		return this.data.asset.votes
+			.filter((vote: string) => vote.startsWith("-"))
+			.map((publicKey: string) => publicKey.substr(1));
+	}
+
+	// Second-Signature Registration
+	public override secondPublicKey(): string {
+		return this.data.asset.signature.publicKey;
+	}
+
+	// Multi-Signature Registration
+	public override publicKeys(): string[] {
+		return this.data.asset.multisignature.keysgroup;
+	}
+
+	public override min(): number {
+		return this.data.asset.multisignature.min;
 	}
 }

@@ -4,16 +4,16 @@ import { DTO } from "@arkecosystem/platform-sdk";
 
 import Fixture from "../test/fixtures/client/transaction.json";
 import { createService } from "../test/mocking";
-import { TransactionData } from "./transaction.dto";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
-let subject: TransactionData;
+let subject: ConfirmedTransactionData;
 
 beforeEach(() => {
-	subject = createService(TransactionData);
+	subject = createService(ConfirmedTransactionData);
 	subject.configure(Fixture.data.transactions[0]);
 });
 
-describe("TransactionData", () => {
+describe("ConfirmedTransactionData", () => {
 	it("#id", () => {
 		expect(subject.id()).toEqual("35b40547f04963d3b41478fc27038948d74718802c486d9125f1884d8c83a31d");
 	});

@@ -5,7 +5,7 @@ import nock from "nock";
 
 import { identity } from "../test/fixtures/identity";
 import { bootContainer, importByMnemonic } from "../test/mocking";
-import { ExtendedTransactionDataCollection } from "./transaction.collection";
+import { ExtendedConfirmedTransactionDataCollection } from "./transaction.collection";
 import * as promiseHelpers from "./helpers/promise";
 import { Profile } from "./profile";
 import { TransactionAggregate } from "./transaction.aggregate";
@@ -51,7 +51,7 @@ describe("TransactionAggregate", () => {
 
 			const result = await subject[method]();
 
-			expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
+			expect(result).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 			expect(result.items()).toHaveLength(100);
 			expect(result.items()[0].amount()).toBe(7.99999999);
 		});
@@ -64,7 +64,7 @@ describe("TransactionAggregate", () => {
 
 			const result = await subject[method]();
 
-			expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
+			expect(result).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 			expect(result.items()).toHaveLength(100);
 			expect(subject.hasMore(method)).toBeFalse();
 		});
@@ -74,7 +74,7 @@ describe("TransactionAggregate", () => {
 
 			const result = await subject[method]();
 
-			expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
+			expect(result).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 			expect(result.items()).toHaveLength(0);
 			expect(subject.hasMore(method)).toBeFalse();
 		});
@@ -87,7 +87,7 @@ describe("TransactionAggregate", () => {
 
 			const result = await subject[method]();
 
-			expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
+			expect(result).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 			expect(result.items()).toHaveLength(0);
 			expect(subject.hasMore(method)).toBeFalse();
 		});
@@ -104,21 +104,21 @@ describe("TransactionAggregate", () => {
 			// We receive a response that does contain a "next" cursor
 			const firstRequest = await subject[method]();
 
-			expect(firstRequest).toBeInstanceOf(ExtendedTransactionDataCollection);
+			expect(firstRequest).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 			expect(firstRequest.items()).toHaveLength(100);
 			expect(subject.hasMore(method)).toBeTrue();
 
 			// We receive a response that does not contain a "next" cursor
 			const secondRequest = await subject[method]();
 
-			expect(secondRequest).toBeInstanceOf(ExtendedTransactionDataCollection);
+			expect(secondRequest).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 			expect(secondRequest.items()).toHaveLength(100);
 			expect(subject.hasMore(method)).toBeFalse();
 
 			// We do not send any requests because no more data is available
 			const thirdRequest = await subject[method]();
 
-			expect(thirdRequest).toBeInstanceOf(ExtendedTransactionDataCollection);
+			expect(thirdRequest).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 			expect(thirdRequest.items()).toHaveLength(0);
 			expect(subject.hasMore(method)).toBeFalse();
 		});
@@ -181,7 +181,7 @@ describe("TransactionAggregate", () => {
 			});
 
 		const results = await subject.all();
-		expect(results).toBeInstanceOf(ExtendedTransactionDataCollection);
+		expect(results).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 		promiseAllSettledByKeyMock.mockRestore();
 	});
 
@@ -192,7 +192,7 @@ describe("TransactionAggregate", () => {
 			.reply(200, require("../test/fixtures/client/transactions.json"));
 
 		const result = await subject.all({ addresses: ["D8rr7B1d6TL6pf14LgMz4sKp1VBMs6YUYD"] });
-		expect(result).toBeInstanceOf(ExtendedTransactionDataCollection);
+		expect(result).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 		//@ts-ignore
 		expect(result.items()).toHaveLength(0);
 

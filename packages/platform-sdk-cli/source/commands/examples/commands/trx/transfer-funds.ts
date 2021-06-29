@@ -50,7 +50,7 @@ export const transferFundsWithTRX = async (env: Environment): Promise<void> => {
 	await pollTransactionStatus(transactionId, wallet1);
 
 	// Show transactions
-	const transactions: Collections.TransactionDataCollection = await wallet1
+	const transactions: Collections.ConfirmedTransactionDataCollection = await wallet1
 		.client()
 		.transactions({ address: wallet1.address() });
 

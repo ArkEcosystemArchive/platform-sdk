@@ -34,9 +34,6 @@ Object {
       "delegates",
       "votes",
       "voters",
-      "configuration",
-      "fees",
-      "syncing",
       "broadcast",
     ],
     "Fee": Array [
@@ -69,6 +66,10 @@ Object {
     "Transaction": Array [
       "delegateRegistration",
       "delegateResignation",
+      "estimateExpiration",
+      "htlcClaim",
+      "htlcLock",
+      "htlcRefund",
       "ipfs.ledgerS",
       "ipfs.ledgerX",
       "ipfs.musig",
@@ -77,7 +78,6 @@ Object {
       "multiPayment.ledgerX",
       "multiPayment.musig",
       "multiPayment",
-      "multiSignature.ledgerS",
       "multiSignature.ledgerX",
       "multiSignature.musig",
       "multiSignature",
@@ -123,6 +123,7 @@ Object {
       ],
     },
     "bip39": Object {
+      "canBeEncrypted": true,
       "default": true,
       "permissions": Array [
         "read",
@@ -148,6 +149,7 @@ Object {
       "type": "dynamic",
     },
     "memo": true,
+    "multiPaymentRecipients": 128,
     "types": Array [
       "delegate-registration",
       "delegate-resignation",

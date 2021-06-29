@@ -53,10 +53,10 @@ describe("MultiSignatureService", () => {
 		nock(/.+/).post("/transaction").reply(200, { id: "abc" }).post("/transaction").reply(200, { id: "abc" });
 
 		let id = await subject.broadcast({});
-		expect(id).toEqual("abc");
+		expect(id).toEqual({ accepted: ["abc"], errors: {}, rejected: [] });
 
 		id = await subject.broadcast({ asset: { multiSignature: "123" } });
-		expect(id).toEqual("abc");
+		expect(id).toEqual({ accepted: ["abc"], errors: {}, rejected: [] });
 	});
 
 	test("#flush", async () => {

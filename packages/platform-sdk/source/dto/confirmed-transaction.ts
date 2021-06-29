@@ -9,13 +9,13 @@ import { KeyValuePair } from "../contracts";
 import { NotImplemented } from "../exceptions";
 import { BindingType } from "../ioc/service-provider.contract";
 import {
+	ConfirmedTransactionData,
 	MultiPaymentRecipient,
-	TransactionData,
 	TransactionDataMeta,
 	UnspentTransactionData,
-} from "./transaction.contract";
+} from "./confirmed-transaction.contract";
 
-export abstract class AbstractTransactionData implements TransactionData {
+export abstract class AbstractConfirmedTransactionData implements ConfirmedTransactionData {
 	/**
 	 * Various coins need post-processing to determine things like
 	 * "isSent" or "isReceived" with data that comes from outside
@@ -192,6 +192,67 @@ export abstract class AbstractTransactionData implements TransactionData {
 
 	public isMagistrate(): boolean {
 		return false;
+	}
+
+	// Second-Signature Registration
+	public secondPublicKey(): string {
+		throw new NotImplemented(this.constructor.name, this.secondPublicKey.name);
+	}
+
+	// Delegate Registration
+	public username(): string {
+		throw new NotImplemented(this.constructor.name, this.username.name);
+	}
+
+	// Vote
+	public votes(): string[] {
+		throw new NotImplemented(this.constructor.name, this.votes.name);
+	}
+
+	public unvotes(): string[] {
+		throw new NotImplemented(this.constructor.name, this.unvotes.name);
+	}
+
+	// Multi-Signature Registration
+	public publicKeys(): string[] {
+		throw new NotImplemented(this.constructor.name, this.publicKeys.name);
+	}
+
+	public min(): number {
+		throw new NotImplemented(this.constructor.name, this.min.name);
+	}
+
+	// IPFS
+	public hash(): string {
+		throw new NotImplemented(this.constructor.name, this.hash.name);
+	}
+
+	// Multi-Payment
+	public payments(): { recipientId: string; amount: BigNumber }[] {
+		throw new NotImplemented(this.constructor.name, this.payments.name);
+	}
+
+	// HTLC Claim / Refund
+	public lockTransactionId(): string {
+		throw new NotImplemented(this.constructor.name, this.lockTransactionId.name);
+	}
+
+	// HTLC Claim
+	public unlockSecret(): string {
+		throw new NotImplemented(this.constructor.name, this.unlockSecret.name);
+	}
+
+	// HTLC Lock
+	public secretHash(): string {
+		throw new NotImplemented(this.constructor.name, this.secretHash.name);
+	}
+
+	public expirationType(): number {
+		throw new NotImplemented(this.constructor.name, this.expirationType.name);
+	}
+
+	public expirationValue(): number {
+		throw new NotImplemented(this.constructor.name, this.expirationValue.name);
 	}
 
 	public toObject(): KeyValuePair {

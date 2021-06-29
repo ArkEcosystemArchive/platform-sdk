@@ -1,18 +1,8 @@
 import { Collections, Contracts, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
 
-import { WalletData } from "./wallet.dto";
-
 @IoC.injectable()
 export class ClientService extends Services.AbstractClientService {
 	#peer!: string;
-
-	readonly #broadcastErrors: Record<string, string> = {
-		"Invalid sender publicKey": "ERR_INVALID_SENDER_PUBLICKEY",
-		"Account does not have enough LSK": "ERR_INSUFFICIENT_FUNDS",
-		"Sender does not have a secondPublicKey": "ERR_MISSING_SECOND_PUBLICKEY",
-		"Missing signSignature": "ERR_MISSING_SIGNATURE",
-		"Sender is not a multisignature account": "ERR_MISSING_MULTISIGNATURE",
-	};
 
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
@@ -22,7 +12,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const result = await this.#get("transactions", { id });
 
 		return this.dataTransferObjectService.transaction(result.data[0]);
@@ -30,7 +20,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		// @ts-ignore
 		const result = await this.#get("transactions", this.#createSearchParams({ sort: "timestamp:desc", ...query }));
 
@@ -99,15 +89,7 @@ export class ClientService extends Services.AbstractClientService {
 			if (errors) {
 				result.rejected.push(transaction.id());
 
-				if (!Array.isArray(result.errors[transaction.id()])) {
-					result.errors[transaction.id()] = [];
-				}
-
-				for (const [key, value] of Object.entries(this.#broadcastErrors)) {
-					if (errors[0].message.includes(key)) {
-						result.errors[transaction.id()].push(value);
-					}
-				}
+				result.errors[transaction.id()] = errors[0].message;
 			}
 		}
 

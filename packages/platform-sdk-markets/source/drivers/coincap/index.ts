@@ -131,7 +131,7 @@ export class CoinCap implements PriceTracker {
 
 		const { data } = await this.#get("rates");
 
-		return priceUsd * Number(data.find((rate: any) => rate.symbol === options.currency.toUpperCase()).rateUsd);
+		return priceUsd / Number(data.find((rate: any) => rate.symbol === options.currency.toUpperCase()).rateUsd);
 	}
 
 	/**

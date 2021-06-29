@@ -7,7 +7,7 @@ export class ClientService extends Services.AbstractClientService {
 	public override async transaction(
 		id: string,
 		input?: Services.TransactionDetailInput,
-	): Promise<Contracts.TransactionDataType> {
+	): Promise<Contracts.ConfirmedTransactionData> {
 		const { data } = await this.#get(`transaction/${id}`);
 
 		return this.dataTransferObjectService.transaction({ hash: id, ...data.transaction });
@@ -15,7 +15,7 @@ export class ClientService extends Services.AbstractClientService {
 
 	public override async transactions(
 		query: Services.ClientTransactionsInput,
-	): Promise<Collections.TransactionDataCollection> {
+	): Promise<Collections.ConfirmedTransactionDataCollection> {
 		const { data } = await this.#get(`address/${Helpers.pluckAddress(query)}/transactions`);
 
 		return this.dataTransferObjectService.transactions(data.transactions, {

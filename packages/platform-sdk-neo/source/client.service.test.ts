@@ -8,8 +8,8 @@ import nock from "nock";
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
 import { DataTransferObjects } from "./coin.dtos";
-import { TransferData } from "./transfer.dto";
 import { ClientService } from "./client.service";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
 let subject: ClientService;
 
@@ -39,7 +39,7 @@ describe("ClientService", () => {
 			const result = await subject.transactions({ address: "Ab9QkPeMzx7ehptvjbjHviAXUfdhAmEAUF" });
 
 			expect(result).toBeObject();
-			expect(result.items()[0]).toBeInstanceOf(TransferData);
+			expect(result.items()[0]).toBeInstanceOf(ConfirmedTransactionData);
 			expect(result.items()[0].id()).toBe("718bc4cfc50c361a8afe032e2c170dfebadce16ea72228a57634413b62b7cf24");
 			expect(result.items()[0].type()).toBe("transfer");
 			expect(result.items()[0].timestamp()).toBeInstanceOf(DateTime);
@@ -99,7 +99,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652"],
 				errors: {
-					"0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652": ["ERR_INSUFFICIENT_FUNDS"],
+					"0cb2e1fc8caa83cfb204e5cd2f66a58f3954a3b7bcc8958aaba38b582376e652": "ERR_INSUFFICIENT_FUNDS",
 				},
 			});
 		});

@@ -1,9 +1,10 @@
 import { Contracts, DTO, IoC } from "@arkecosystem/platform-sdk";
+import { Base64 } from "@arkecosystem/platform-sdk-crypto";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
 @IoC.injectable()
-export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+export class ConfirmedTransactionData extends DTO.AbstractConfirmedTransactionData {
 	public override id(): string {
 		return this.data.id;
 	}
@@ -66,5 +67,13 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public override isTransfer(): boolean {
 		return this.data.type === "base";
+	}
+
+	public override memo(): string | undefined {
+		try {
+			return Base64.decode(this.data.memo);
+		} catch {
+			return undefined;
+		}
 	}
 }

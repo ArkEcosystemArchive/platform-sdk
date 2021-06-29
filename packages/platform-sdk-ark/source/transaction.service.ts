@@ -16,9 +16,6 @@ export class TransactionService extends Services.AbstractTransactionService {
 	@IoC.inject(IoC.BindingType.AddressService)
 	private readonly addressService!: Services.AddressService;
 
-	@IoC.inject(IoC.BindingType.KeyPairService)
-	private readonly keyPairService!: Services.KeyPairService;
-
 	@IoC.inject(IoC.BindingType.PublicKeyService)
 	private readonly publicKeyService!: Services.PublicKeyService;
 
@@ -35,6 +32,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 	#peer!: string;
 	#configCrypto!: { crypto: Interfaces.NetworkConfig; height: number };
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("transfer", input, ({ transaction, data }) => {
 			transaction.recipientId(data.to);
@@ -61,6 +65,13 @@ export class TransactionService extends Services.AbstractTransactionService {
 		);
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("vote", input, ({ transaction, data }) => {
 			const votes: string[] = [];
@@ -81,23 +92,45 @@ export class TransactionService extends Services.AbstractTransactionService {
 		});
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 */
 	public override async multiSignature(
 		input: Services.MultiSignatureInput,
 	): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiSignature", input, ({ transaction, data }) => {
+			if (data.senderPublicKey) {
+				transaction.senderPublicKey(data.senderPublicKey);
+			}
+
 			transaction.multiSignatureAsset({
 				publicKeys: data.publicKeys,
 				min: data.min,
 			});
-
-			transaction.senderPublicKey(data.senderPublicKey);
 		});
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async ipfs(input: Services.IpfsInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("ipfs", input, ({ transaction, data }) => transaction.ipfsAsset(data.hash));
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @musig
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async multiPayment(input: Services.MultiPaymentInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("multiPayment", input, ({ transaction, data }) => {
 			for (const payment of data.payments) {
@@ -158,25 +191,7 @@ export class TransactionService extends Services.AbstractTransactionService {
 	): Promise<Contracts.SignedTransactionData> {
 		applyCryptoConfiguration(this.#configCrypto);
 
-		let keys: Services.KeyPairDataTransferObject | undefined;
-
-		if (input.signatory.actsWithMnemonic()) {
-			keys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
-		}
-
-		if (input.signatory.actsWithWif()) {
-			keys = await this.keyPairService.fromWIF(input.signatory.signingKey());
-		}
-
-		if (!keys) {
-			throw new Error("Failed to retrieve the keys for the signatory wallet.");
-		}
-
-		const transactionWithSignature = this.multiSignatureSigner.addSignature(transaction, {
-			publicKey: keys.publicKey,
-			privateKey: keys.privateKey,
-			compressed: true,
-		});
+		const transactionWithSignature = await this.multiSignatureSigner.addSignature(transaction, input);
 
 		return this.dataTransferObjectService.signedTransaction(
 			transactionWithSignature.id!,
@@ -210,7 +225,11 @@ export class TransactionService extends Services.AbstractTransactionService {
 		try {
 			let address: string | undefined;
 
-			if (input.signatory.actsWithMnemonic() || input.signatory.actsWithPrivateMultiSignature()) {
+			if (
+				input.signatory.actsWithMnemonic() ||
+				input.signatory.actsWithSecondaryMnemonic() ||
+				input.signatory.actsWithPrivateMultiSignature()
+			) {
 				address = (await this.addressService.fromMnemonic(input.signatory.signingKey())).address;
 			}
 

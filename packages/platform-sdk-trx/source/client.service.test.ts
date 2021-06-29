@@ -8,7 +8,7 @@ import { SignedTransactionData } from "./signed-transaction.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
-import { TransferData } from "./transfer.dto";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
 let subject: ClientService;
 
@@ -37,7 +37,7 @@ describe("ClientService", () => {
 				"0daa9f2507c4e79e39391ea165bb76ed018c4cd69d7da129edf9e95f0dae99e2",
 			);
 
-			expect(result).toBeInstanceOf(TransferData);
+			expect(result).toBeInstanceOf(ConfirmedTransactionData);
 		});
 	});
 
@@ -50,7 +50,7 @@ describe("ClientService", () => {
 
 			const result = await subject.transactions({ address: "TUrM3F7b7WVZSZVjgrqsVBYXQL3GVgAqXq" });
 
-			expect(result).toBeInstanceOf(Collections.TransactionDataCollection);
+			expect(result).toBeInstanceOf(Collections.ConfirmedTransactionDataCollection);
 		});
 	});
 
@@ -114,7 +114,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["8768a0f9849e2189fe323d4bb9d7485e7a045273096275f1bcb51b1433f73fc3"],
 				errors: {
-					"8768a0f9849e2189fe323d4bb9d7485e7a045273096275f1bcb51b1433f73fc3": ["ERR_INVALID_SIGNATURE"],
+					"8768a0f9849e2189fe323d4bb9d7485e7a045273096275f1bcb51b1433f73fc3": "SIGERROR",
 				},
 			});
 		});

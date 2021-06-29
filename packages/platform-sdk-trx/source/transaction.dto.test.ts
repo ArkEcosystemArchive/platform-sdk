@@ -3,16 +3,16 @@ import "jest-extended";
 import nock from "nock";
 
 import { createService } from "../test/mocking";
-import { TransactionData } from "./transaction.dto";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
-let subject: TransactionData;
+let subject: ConfirmedTransactionData;
 
 beforeAll(() => nock.disableNetConnect());
 
 describe("transaction", () => {
 	describe("blockId", () => {
 		it("should parse blockId correctly", () => {
-			subject = createService(TransactionData).configure(
+			subject = createService(ConfirmedTransactionData).configure(
 				require(`${__dirname}/../test/fixtures/client/transactions.json`).data[1],
 			);
 			expect(subject.blockId()).toBeString();
@@ -22,14 +22,14 @@ describe("transaction", () => {
 
 	describe("memo", () => {
 		it("should parse memo correctly", () => {
-			subject = createService(TransactionData).configure(
+			subject = createService(ConfirmedTransactionData).configure(
 				require(`${__dirname}/../test/fixtures/client/transactions.json`).data[1],
 			);
 			expect(subject.memo()).toBe("Mariano");
 		});
 
 		it("should parse missing memo correctly", () => {
-			subject = createService(TransactionData).configure(
+			subject = createService(ConfirmedTransactionData).configure(
 				require(`${__dirname}/../test/fixtures/client/transactions.json`).data[0],
 			);
 			expect(subject.memo()).toBeUndefined();

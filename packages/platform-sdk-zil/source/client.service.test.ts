@@ -7,10 +7,10 @@ import nock from "nock";
 import { identity } from "../test/fixtures/identity";
 import { createService } from "../test/mocking";
 import { SignedTransactionData } from "./signed-transaction.dto";
-import { TransferData } from "./transfer.dto";
 import { WalletData } from "./wallet.dto";
 import { DataTransferObjects } from "./coin.dtos";
 import { ClientService } from "./client.service";
+import { ConfirmedTransactionData } from "./transaction.dto";
 
 const fixtures = `${__dirname}/../test/fixtures/client`;
 
@@ -40,7 +40,7 @@ describe("ClientService", () => {
 
 		const result = await subject.transaction("b2e78cb571fcee734fb6e3e34a16d735e3a3550c09100b79d017dd364b8770cb");
 
-		expect(result).toBeInstanceOf(TransferData);
+		expect(result).toBeInstanceOf(ConfirmedTransactionData);
 		expect(result.id()).toBe("b2e78cb571fcee734fb6e3e34a16d735e3a3550c09100b79d017dd364b8770cb");
 		expect(result.isConfirmed()).toBe(true);
 		expect(result.sender()).toBe("0xE77555ff2103cAF9b8Ed5AC46277A50504bbC0EE");
@@ -112,7 +112,7 @@ describe("ClientService", () => {
 				accepted: [],
 				rejected: ["id"],
 				errors: {
-					id: ["GasPrice 1 lower than minimum allowable 2000000000"],
+					id: "GasPrice 1 lower than minimum allowable 2000000000",
 				},
 			});
 		});

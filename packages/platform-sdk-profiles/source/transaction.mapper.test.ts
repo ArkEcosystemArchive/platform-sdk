@@ -9,37 +9,24 @@ import { bootContainer } from "../test/mocking";
 import { IProfile, IReadWriteWallet, ProfileSetting } from "./contracts";
 import { Profile } from "./profile";
 import { Wallet } from "./wallet";
-import {
-	DelegateRegistrationData,
-	DelegateResignationData,
-	HtlcClaimData,
-	HtlcLockData,
-	HtlcRefundData,
-	IpfsData,
-	MultiPaymentData,
-	MultiSignatureData,
-	SecondSignatureData,
-	TransactionData,
-	TransferData,
-	VoteData,
-} from "./transaction.dto";
-import { ExtendedTransactionDataCollection } from "./transaction.collection";
-import { transformTransactionData, transformTransactionDataCollection } from "./transaction.mapper";
+import { ExtendedConfirmedTransactionData } from "./transaction.dto";
+import { ExtendedConfirmedTransactionDataCollection } from "./transaction.collection";
+import { transformTransactionData, transformConfirmedTransactionDataCollection } from "./transaction.mapper";
 
 const data = [
-	[DelegateRegistrationData, "isDelegateRegistration"],
-	[DelegateResignationData, "isDelegateResignation"],
-	[HtlcClaimData, "isHtlcClaim"],
-	[HtlcLockData, "isHtlcLock"],
-	[HtlcRefundData, "isHtlcRefund"],
-	[IpfsData, "isIpfs"],
-	[MultiPaymentData, "isMultiPayment"],
-	[MultiSignatureData, "isMultiSignatureRegistration"],
-	[SecondSignatureData, "isSecondSignature"],
-	[TransferData, "isTransfer"],
-	[VoteData, "isVote"],
-	[VoteData, "isUnvote"],
-	[TransactionData, "isOther"],
+	[ExtendedConfirmedTransactionData, "isDelegateRegistration"],
+	[ExtendedConfirmedTransactionData, "isDelegateResignation"],
+	[ExtendedConfirmedTransactionData, "isHtlcClaim"],
+	[ExtendedConfirmedTransactionData, "isHtlcLock"],
+	[ExtendedConfirmedTransactionData, "isHtlcRefund"],
+	[ExtendedConfirmedTransactionData, "isIpfs"],
+	[ExtendedConfirmedTransactionData, "isMultiPayment"],
+	[ExtendedConfirmedTransactionData, "isMultiSignatureRegistration"],
+	[ExtendedConfirmedTransactionData, "isSecondSignature"],
+	[ExtendedConfirmedTransactionData, "isTransfer"],
+	[ExtendedConfirmedTransactionData, "isVote"],
+	[ExtendedConfirmedTransactionData, "isUnvote"],
+	[ExtendedConfirmedTransactionData, "isOther"],
 ];
 
 beforeAll(() => bootContainer());
@@ -105,15 +92,15 @@ describe("transaction-mapper", () => {
 		};
 
 		// @ts-ignore
-		const transactionData = new TransactionData(wallet, {
+		const transactionData = new ExtendedConfirmedTransactionData(wallet, {
 			isMagistrate: () => true,
 		});
 
 		// @ts-ignore
-		const collection = new Collections.TransactionDataCollection([transactionData], pagination);
+		const collection = new Collections.ConfirmedTransactionDataCollection([transactionData], pagination);
 
-		const transformedCollection = transformTransactionDataCollection(wallet, collection);
-		expect(transformedCollection).toBeInstanceOf(ExtendedTransactionDataCollection);
+		const transformedCollection = transformConfirmedTransactionDataCollection(wallet, collection);
+		expect(transformedCollection).toBeInstanceOf(ExtendedConfirmedTransactionDataCollection);
 		expect(transformedCollection.getPagination()).toBe(pagination);
 	});
 });

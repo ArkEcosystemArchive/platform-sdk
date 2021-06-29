@@ -21,11 +21,12 @@ export class BIP39 {
 	 *
 	 * @static
 	 * @param {string} [locale="english"]
+	 * @param {number} [wordCount]
 	 * @returns {string}
 	 * @memberof BIP39
 	 */
-	public static generate(locale = "english"): string {
-		return generateMnemonic(undefined, undefined, wordlists[locale]);
+	public static generate(locale = "english", wordCount?: number): string {
+		return generateMnemonic(wordCount === 24 ? 256 : 128, undefined, wordlists[locale]);
 	}
 
 	/**

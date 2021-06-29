@@ -4,7 +4,7 @@ import { BigNumber } from "@arkecosystem/platform-sdk-support";
 import { TransactionTypeService } from "./transaction-type.service";
 
 @IoC.injectable()
-export class TransactionData extends DTO.AbstractTransactionData implements Contracts.TransactionData {
+export class ConfirmedTransactionData extends DTO.AbstractConfirmedTransactionData {
 	public override id(): string {
 		return this.data.id;
 	}
@@ -119,5 +119,82 @@ export class TransactionData extends DTO.AbstractTransactionData implements Cont
 
 	public override isMagistrate(): boolean {
 		return TransactionTypeService.isMagistrate(this.data);
+	}
+
+	// Delegate Registration
+	public override username(): string {
+		return this.data.asset.delegate.username;
+	}
+
+	// Transfer
+	public override memo(): string | undefined {
+		return this.data.vendorField;
+	}
+
+	// Vote
+	public override votes(): string[] {
+		return this.data.asset.votes
+			.filter((vote: string) => vote.startsWith("+"))
+			.map((publicKey: string) => publicKey.substr(1));
+	}
+
+	public override unvotes(): string[] {
+		return this.data.asset.votes
+			.filter((vote: string) => vote.startsWith("-"))
+			.map((publicKey: string) => publicKey.substr(1));
+	}
+
+	// Second-Signature Registration
+	public override secondPublicKey(): string {
+		return this.data.asset.signature.publicKey;
+	}
+
+	// Multi-Signature Registration
+	public override publicKeys(): string[] {
+		return this.data.asset.multiSignature.publicKeys;
+	}
+
+	public override min(): number {
+		return this.data.asset.multiSignature.min;
+	}
+
+	// Multi-Payment
+	public override payments(): { recipientId: string; amount: BigNumber }[] {
+		return this.data.asset.payments.map((payment: { recipientId: string; amount: BigNumber }) => ({
+			address: payment.recipientId,
+			amount: this.bigNumberService.make(payment.amount),
+		}));
+	}
+
+	// IPFS
+	public override hash(): string {
+		return this.data.asset.ipfs;
+	}
+
+	// HTLC Claim / Refund
+	public override lockTransactionId(): string {
+		if (this.isHtlcRefund()) {
+			return this.data.asset.refund.lockTransactionId;
+		}
+
+		return this.data.asset.lock.lockTransactionId;
+	}
+
+	// HTLC Claim
+	public override unlockSecret(): string {
+		return this.data.asset.lock.unlockSecret;
+	}
+
+	// HTLC Lock
+	public override secretHash(): string {
+		return this.data.asset.lock.secretHash;
+	}
+
+	public override expirationType(): number {
+		return this.data.asset.lock.expiration.type;
+	}
+
+	public override expirationValue(): number {
+		return this.data.asset.lock.expiration.value;
 	}
 }

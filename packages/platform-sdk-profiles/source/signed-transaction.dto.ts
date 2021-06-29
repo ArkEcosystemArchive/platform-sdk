@@ -1,14 +1,20 @@
 /* istanbul ignore file */
 
-import { Contracts, DTO, Exceptions } from "@arkecosystem/platform-sdk";
+import { Contracts, DTO } from "@arkecosystem/platform-sdk";
 import { DateTime } from "@arkecosystem/platform-sdk-intl";
 import { BigNumber } from "@arkecosystem/platform-sdk-support";
 
+import { IExchangeRateService, IReadWriteWallet } from "./contracts";
+import { container } from "./container";
+import { Identifiers } from "./container.models";
+
 export class ExtendedSignedTransactionData {
 	readonly #data: Contracts.SignedTransactionData;
+	readonly #wallet: IReadWriteWallet;
 
-	public constructor(data: Contracts.SignedTransactionData) {
+	public constructor(data: Contracts.SignedTransactionData, wallet: IReadWriteWallet) {
 		this.#data = data;
+		this.#wallet = wallet;
 	}
 
 	public data(): Contracts.SignedTransactionData {
@@ -35,12 +41,32 @@ export class ExtendedSignedTransactionData {
 		return this.#data.amount().toHuman();
 	}
 
+	public convertedAmount(): number {
+		return this.#convertAmount(this.amount());
+	}
+
 	public fee(): number {
 		return this.#data.fee().toHuman();
 	}
 
+	public convertedFee(): number {
+		return this.#convertAmount(this.fee());
+	}
+
 	public timestamp(): DateTime {
 		return this.#data.timestamp();
+	}
+
+	public isReturn(): boolean {
+		return this.isSent() && this.isReceived();
+	}
+
+	public isSent(): boolean {
+		return [this.#wallet.address(), this.#wallet.publicKey()].includes(this.sender());
+	}
+
+	public isReceived(): boolean {
+		return [this.#wallet.address(), this.#wallet.publicKey()].includes(this.recipient());
 	}
 
 	public isTransfer(): boolean {
@@ -103,6 +129,18 @@ export class ExtendedSignedTransactionData {
 		return this.#data.usesMultiSignature();
 	}
 
+	public total(): number {
+		if (this.isSent()) {
+			return this.amount() + this.fee();
+		}
+
+		return this.amount();
+	}
+
+	public convertedTotal(): number {
+		return this.#convertAmount(this.total());
+	}
+
 	public get<T = string>(key: string): T {
 		return this.#data.get(key);
 	}
@@ -117,6 +155,10 @@ export class ExtendedSignedTransactionData {
 
 	public toObject(): DTO.SignedTransactionObject {
 		return this.#data.toObject();
+	}
+
+	public wallet(): IReadWriteWallet {
+		return this.#wallet;
 	}
 
 	// @TODO: remove those after introducing proper signed tx DTOs (ARK/LSK specific)
@@ -136,5 +178,41 @@ export class ExtendedSignedTransactionData {
 			address: payment.address,
 			amount: payment.amount.toHuman(),
 		}));
+	}
+
+	public explorerLink(): string {
+		return this.#wallet.coin().link().transaction(this.id());
+	}
+
+	public explorerLinkForBlock(): string | undefined {
+		return undefined;
+	}
+
+	public memo(): string | undefined {
+		return undefined;
+	}
+
+	public blockId(): string | undefined {
+		return undefined;
+	}
+
+	public confirmations(): BigNumber {
+		return BigNumber.ZERO;
+	}
+
+	public isConfirmed(): boolean {
+		return false;
+	}
+
+	#convertAmount(value: number): number {
+		const timestamp: DateTime | undefined = this.timestamp();
+
+		if (timestamp === undefined) {
+			return 0;
+		}
+
+		return container
+			.get<IExchangeRateService>(Identifiers.ExchangeRateService)
+			.exchange(this.wallet().currency(), this.wallet().exchangeCurrency(), timestamp, value);
 	}
 }
