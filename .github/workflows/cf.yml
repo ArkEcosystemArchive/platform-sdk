@@ -38,6 +38,10 @@ jobs:
               run: pnpm install -g @microsoft/rush
             - name: Install dependencies
               run: node common/scripts/install-run-rush.js install
+            - name: Install ts-morph
+              run: pnpm install --frozen-lockfile
+            - name: Update manifests
+              run: sh scripts/update-manifests.sh
             - name: Lint
               run: rush lint
             - name: Format

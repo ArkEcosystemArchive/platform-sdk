@@ -26,6 +26,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 		this.#network = this.configRepository.get<string>("network.meta.networkId");
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async transfer(input: Services.TransferInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("transfer", {
 			...input,
@@ -54,6 +60,12 @@ export class TransactionService extends Services.AbstractTransactionService {
 		return this.#createFromData("registerDelegate", input);
 	}
 
+	/**
+	 * @inheritDoc
+	 *
+	 * @ledgerX
+	 * @ledgerS
+	 */
 	public override async vote(input: Services.VoteInput): Promise<Contracts.SignedTransactionData> {
 		return this.#createFromData("castVotes", input);
 	}
