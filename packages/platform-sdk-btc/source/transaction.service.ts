@@ -1,4 +1,4 @@
-import { Contracts, Exceptions, Helpers, IoC, Services } from "@arkecosystem/platform-sdk";
+import { Contracts, Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
 import { Transaction } from "bitcore-lib";
 
 import { UnspentTransaction } from "./contracts";

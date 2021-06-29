@@ -32,7 +32,6 @@ export const BindingType = {
 	WIFService: Symbol.for("Coin<WIFService>"),
 	// [Coin] Miscellaneous
 	DataTransferObjects: Symbol.for("Coin<DataTransferObjects>"),
-	UnspentAggregator: Symbol.for("Coin<UnspentAggregator>"),
 };
 
 export interface IServiceProvider {
