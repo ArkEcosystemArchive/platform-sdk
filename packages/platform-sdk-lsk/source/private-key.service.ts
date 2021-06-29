@@ -8,8 +8,10 @@ export class PrivateKeyService extends Services.AbstractPrivateKeyService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.PrivateKeyDataTransferObject> {
 		try {
+			const { privateKey } = getPrivateAndPublicKeyFromPassphrase(mnemonic);
+
 			return {
-				privateKey: getPrivateAndPublicKeyFromPassphrase(mnemonic).privateKey,
+				privateKey: privateKey.slice(0, privateKey.length / 2),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

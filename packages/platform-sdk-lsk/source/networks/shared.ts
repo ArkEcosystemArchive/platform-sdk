@@ -26,7 +26,7 @@ export const importMethods: Networks.NetworkManifestImportMethods = {
 };
 
 export const featureFlags: Networks.NetworkManifestFeatureFlags = {
-	Client: ["transaction", "transactions", "wallet", "wallets", "delegate", "delegates", "broadcast"],
+	Client: ["transaction", "transactions", "wallet", "wallets", "delegate", "delegates", "votes", "broadcast"],
 	Fee: ["all"],
 	Address: ["mnemonic.bip39", "publicKey", "validate"],
 	KeyPair: ["mnemonic.bip39"],
@@ -36,10 +36,13 @@ export const featureFlags: Networks.NetworkManifestFeatureFlags = {
 	Message: ["sign", "verify"],
 	Transaction: [
 		"delegateRegistration",
+		"multiSignature",
 		"secondSignature",
 		"transfer.ledgerS",
 		"transfer.ledgerX",
 		"transfer",
+		"vote.ledgerS",
+		"vote.ledgerX",
 		"vote",
 	],
 };

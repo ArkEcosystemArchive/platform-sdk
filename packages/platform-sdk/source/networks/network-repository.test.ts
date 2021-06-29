@@ -43,9 +43,6 @@ test("#all", () => {
 		        "delegates",
 		        "votes",
 		        "voters",
-		        "configuration",
-		        "fees",
-		        "syncing",
 		        "broadcast",
 		      ],
 		      "Fee": Array [
@@ -78,6 +75,10 @@ test("#all", () => {
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
+		        "estimateExpiration",
+		        "htlcClaim",
+		        "htlcLock",
+		        "htlcRefund",
 		        "ipfs.ledgerS",
 		        "ipfs.ledgerX",
 		        "ipfs.musig",
@@ -207,9 +208,6 @@ test("#all", () => {
 		        "delegates",
 		        "votes",
 		        "voters",
-		        "configuration",
-		        "fees",
-		        "syncing",
 		        "broadcast",
 		      ],
 		      "Fee": Array [
@@ -242,6 +240,10 @@ test("#all", () => {
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
+		        "estimateExpiration",
+		        "htlcClaim",
+		        "htlcLock",
+		        "htlcRefund",
 		        "ipfs.ledgerS",
 		        "ipfs.ledgerX",
 		        "ipfs.musig",
@@ -371,9 +373,6 @@ test("#all", () => {
 		        "delegates",
 		        "votes",
 		        "voters",
-		        "configuration",
-		        "fees",
-		        "syncing",
 		        "broadcast",
 		      ],
 		      "Fee": Array [
@@ -406,6 +405,10 @@ test("#all", () => {
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
+		        "estimateExpiration",
+		        "htlcClaim",
+		        "htlcLock",
+		        "htlcRefund",
 		        "ipfs.ledgerS",
 		        "ipfs.ledgerX",
 		        "ipfs.musig",
@@ -530,9 +533,6 @@ test("#all", () => {
 		        "delegates",
 		        "votes",
 		        "voters",
-		        "configuration",
-		        "fees",
-		        "syncing",
 		        "broadcast",
 		      ],
 		      "Fee": Array [
@@ -565,6 +565,10 @@ test("#all", () => {
 		      "Transaction": Array [
 		        "delegateRegistration",
 		        "delegateResignation",
+		        "estimateExpiration",
+		        "htlcClaim",
+		        "htlcLock",
+		        "htlcRefund",
 		        "ipfs.ledgerS",
 		        "ipfs.ledgerX",
 		        "ipfs.musig",

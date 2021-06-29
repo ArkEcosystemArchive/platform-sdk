@@ -10,7 +10,7 @@ export class KeyPairService extends Services.AbstractKeyPairService {
 		try {
 			const { publicKey, privateKey } = getPrivateAndPublicKeyFromPassphrase(mnemonic);
 
-			return { publicKey, privateKey };
+			return { publicKey, privateKey: privateKey.slice(0, privateKey.length / 2) };
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);
 		}

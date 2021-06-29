@@ -29,6 +29,7 @@ export class ExchangeRateService implements IExchangeRateService {
 
 		await this.#fetchDailyRate(profile, currency, exchangeCurrency);
 
+		/* istanbul ignore next */
 		if (this.#hasFetchedHistoricalRates(currency, exchangeCurrency)) {
 			return;
 		}
@@ -66,12 +67,12 @@ export class ExchangeRateService implements IExchangeRateService {
 		return +value.toString() * exchangeRate;
 	}
 
-	/** {@inheritDoc IExchangeRateService.generate} */
+	/** {@inheritDoc IExchangeRateService.snapshot} */
 	public async snapshot(): Promise<void> {
 		await container.get<Storage>(Identifiers.Storage).set(this.#storageKey, this.#dataRepository.all());
 	}
 
-	/** {@inheritDoc IExchangeRateService.generate} */
+	/** {@inheritDoc IExchangeRateService.restore} */
 	public async restore(): Promise<void> {
 		const entries: object | undefined | null = await container
 			.get<Storage>(Identifiers.Storage)
@@ -83,8 +84,9 @@ export class ExchangeRateService implements IExchangeRateService {
 	}
 
 	#hasFetchedHistoricalRates(currency: string, exchangeCurrency: string): boolean {
-		/* istanbul ignore next */
-		return Object.keys(this.#dataRepository.get(`${currency}.${exchangeCurrency}`) || {}).length > 1;
+		const yesterday = DateTime.make().subDays(1).format("YYYY-MM-DD");
+
+		return this.#dataRepository.has(`${currency}.${exchangeCurrency}.${yesterday}`);
 	}
 
 	async #fetchDailyRate(profile: IProfile, currency: string, exchangeCurrency: string): Promise<void> {
