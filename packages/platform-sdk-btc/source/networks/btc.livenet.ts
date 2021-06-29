@@ -18,7 +18,7 @@ const network: Networks.NetworkManifest = {
 	hosts: [
 		{
 			type: "full",
-			host: "https://coins.com/api/btc",
+			host: "http://51.210.0.39:8898/api",
 		},
 		{
 			type: "explorer",
