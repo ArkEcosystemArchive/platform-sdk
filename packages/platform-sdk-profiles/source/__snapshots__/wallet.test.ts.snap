@@ -136,6 +136,14 @@ Object {
         "read",
       ],
     },
+    "secret": Object {
+      "canBeEncrypted": true,
+      "default": false,
+      "permissions": Array [
+        "read",
+        "write",
+      ],
+    },
   },
   "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",
   "meta": Object {

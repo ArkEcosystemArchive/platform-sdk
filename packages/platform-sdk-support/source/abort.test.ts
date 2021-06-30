@@ -1,4 +1,4 @@
-import { abort_if, abort_unless } from "../distribution";
+import { abort_if, abort_unless } from "./abort";
 
 test("#abort_if", () => {
 	expect(() => abort_if(false, "Hello")).not.toThrow();

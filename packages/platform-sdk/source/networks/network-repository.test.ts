@@ -145,6 +145,14 @@ test("#all", () => {
 		          "read",
 		        ],
 		      },
+		      "secret": Object {
+		        "canBeEncrypted": true,
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		          "write",
+		        ],
+		      },
 		    },
 		    "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/devnet/known-wallets-extended.json",
 		    "meta": Object {
@@ -310,6 +318,14 @@ test("#all", () => {
 		          "read",
 		        ],
 		      },
+		      "secret": Object {
+		        "canBeEncrypted": true,
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		          "write",
+		        ],
+		      },
 		    },
 		    "knownWallets": "https://raw.githubusercontent.com/ArkEcosystem/common/master/mainnet/known-wallets-extended.json",
 		    "meta": Object {
@@ -471,6 +487,14 @@ test("#all", () => {
 		          "read",
 		        ],
 		      },
+		      "secret": Object {
+		        "canBeEncrypted": true,
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		          "write",
+		        ],
+		      },
 		    },
 		    "meta": Object {
 		      "fastDelegateSync": true,
@@ -629,6 +653,14 @@ test("#all", () => {
 		        "default": false,
 		        "permissions": Array [
 		          "read",
+		        ],
+		      },
+		      "secret": Object {
+		        "canBeEncrypted": true,
+		        "default": false,
+		        "permissions": Array [
+		          "read",
+		          "write",
 		        ],
 		      },
 		    },

@@ -16,7 +16,7 @@ describe("Address", () => {
 
 		expect(result).toMatchInlineSnapshot(`
 		Object {
-		  "address": "0xFE8D8D622E31B21EF3ED035633C2B40E8FD9BBCA",
+		  "address": "0x986A007A43D65FF18D040ACDAD844CFE7C349135",
 		  "type": "bip44",
 		}
 	`);
@@ -27,7 +27,7 @@ describe("Address", () => {
 
 		expect(result).toMatchInlineSnapshot(`
 		Object {
-		  "address": "0xFE8D8D622E31B21EF3ED035633C2B40E8FD9BBCA",
+		  "address": "0x986A007A43D65FF18D040ACDAD844CFE7C349135",
 		  "type": "bip44",
 		}
 	`);
@@ -38,7 +38,7 @@ describe("Address", () => {
 
 		expect(result).toMatchInlineSnapshot(`
 		Object {
-		  "address": "0xFE8D8D622E31B21EF3ED035633C2B40E8FD9BBCA",
+		  "address": "0x986A007A43D65FF18D040ACDAD844CFE7C349135",
 		  "type": "bip44",
 		}
 	`);

@@ -2,7 +2,7 @@ const baseConfig = require("./jest.config");
 
 module.exports = {
 	...baseConfig,
-	collectCoverage: false,
+	collectCoverage: true,
 	collectCoverageFrom: [
 		"source/**/*.ts",
 		"!source/**/index.ts",
