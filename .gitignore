@@ -63,7 +63,3 @@ common/deploy/
 common/temp/
 common/autoinstallers/*/.npmrc
 **/.rush/temp/
-
-# Prisma client generated files
-packages/platform-sdk-news-indexer/prisma/generated
-packages/platform-sdk-news-server/prisma/generated
