@@ -1,8 +1,8 @@
 export const identity = {
 	// Standard
-	privateKey: "ab0348360dd030e97849683564570fa34a74dbccfc96b12632003d07592e155e",
-	publicKey: "0386b39760b417b960afbadb129bb14245938116770462bc7dac14c93840371cff",
-	address: "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
+	privateKey: "22c88ff4e97fb3831564b094129933cea8303c4b5ed8d9a872c34746e72db748",
+	publicKey: "030231b08f7297f25ce80c593fec839d1fe30d1f340d12d8dcefdb2b17055bd998",
+	address: "cosmos1wqus3z856rwadvum3l0lg0nl4sc957vq0wn8d0",
 	wif: "...",
 	mnemonic: "bomb open frame quit success evolve gain donate prison very rent later",
 	// Multi Signature
