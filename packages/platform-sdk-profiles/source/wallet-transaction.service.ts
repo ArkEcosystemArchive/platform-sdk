@@ -73,7 +73,7 @@ export class TransactionService implements ITransactionService {
 	public async addSignature(id: string, signatory: Signatories.Signatory): Promise<Services.BroadcastResponse> {
 		this.#assertHasValidIdentifier(id);
 
-		if (!signatory.actsWithMnemonic() && !signatory.actsWithWif()) {
+		if (!signatory.actsWithMnemonic() && !signatory.actsWithSecret() && !signatory.actsWithWif()) {
 			throw new Exceptions.Exception("The signatory has to use a mnemonic or WIF.");
 		}
 

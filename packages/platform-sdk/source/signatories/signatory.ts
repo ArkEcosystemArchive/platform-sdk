@@ -12,6 +12,7 @@ import { PrivateKeySignatory } from "./private-key";
 import { PrivateMultiSignatureSignatory } from "./private-multi-signature";
 import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
+import { SecretSignatory } from "./secret";
 import { SenderPublicKeySignatory } from "./sender-public-key";
 import { WIFSignatory } from "./wif";
 
@@ -24,6 +25,7 @@ type SignatoryType =
 	| PrivateMultiSignatureSignatory
 	| SecondaryMnemonicSignatory
 	| SecondaryWIFSignatory
+	| SecretSignatory
 	| SenderPublicKeySignatory
 	| WIFSignatory;
 
@@ -198,5 +200,9 @@ export class Signatory {
 
 	public actsWithLedger(): boolean {
 		return this.#signatory instanceof LedgerSignatory;
+	}
+
+	public actsWithSecret(): boolean {
+		return this.#signatory instanceof SecretSignatory;
 	}
 }

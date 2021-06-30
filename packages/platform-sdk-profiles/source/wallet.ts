@@ -579,6 +579,16 @@ export class Wallet implements IReadWriteWallet {
 		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.WIFWithEncryption;
 	}
 
+	/** {@inheritDoc IReadWriteWallet.actsWithSecret} */
+	public actsWithSecret(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.SECRET;
+	}
+
+	/** {@inheritDoc IReadWriteWallet.actsWithSecretWithEncryption} */
+	public actsWithSecretWithEncryption(): boolean {
+		return this.data().get(WalletData.ImportMethod) === WalletImportMethod.SECRET_WITH_ENCRYPTION;
+	}
+
 	#restore(): void {
 		const balance: Contracts.WalletBalance | undefined = this.data().get<Contracts.WalletBalance>(
 			WalletData.Balance,

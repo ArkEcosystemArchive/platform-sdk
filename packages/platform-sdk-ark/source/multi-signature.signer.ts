@@ -139,6 +139,10 @@ export class MultiSignatureSigner {
 			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
 		}
 
+		if (input.signatory.actsWithSecret()) {
+			signingKeys = await this.keyPairService.fromSecret(input.signatory.signingKey());
+		}
+
 		if (input.signatory.actsWithSecondaryMnemonic()) {
 			signingKeys = await this.keyPairService.fromMnemonic(input.signatory.signingKey());
 			confirmKeys = await this.keyPairService.fromMnemonic(input.signatory.confirmKey());

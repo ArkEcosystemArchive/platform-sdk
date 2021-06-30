@@ -10,6 +10,7 @@ import {
 	PrivateKeySignatory,
 	SecondaryMnemonicSignatory,
 	SecondaryWIFSignatory,
+	SecretSignatory,
 	SenderPublicKeySignatory,
 	Signatory,
 	WIFSignatory,
@@ -134,5 +135,16 @@ export class AbstractSignatoryService implements SignatoryService {
 
 	public async ledger(path: string): Promise<Signatory> {
 		return new Signatory(new LedgerSignatory(path));
+	}
+
+	public async secret(secret: string): Promise<Signatory> {
+		return new Signatory(
+			new SecretSignatory({
+				signingKey: secret,
+				address: (await this.addressService.fromSecret(secret)).address,
+				publicKey: (await this.publicKeyService.fromSecret(secret)).publicKey,
+				privateKey: (await this.privateKeyService.fromSecret(secret)).privateKey,
+			}),
+		);
 	}
 }

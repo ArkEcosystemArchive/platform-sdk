@@ -664,4 +664,12 @@ export interface IReadWriteWallet {
 	 * @memberof IReadWriteWallet
 	 */
 	actsWithWifWithEncryption(): boolean;
+
+	/**
+	 * Determines if the wallet has been imported with a secret.
+	 *
+	 * @return {*}  {boolean}
+	 * @memberof IReadWriteWallet
+	 */
+	 actsWithSecret(): boolean;
 }

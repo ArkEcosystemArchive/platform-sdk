@@ -1072,3 +1072,14 @@ test("#actsWithLedger", () => {
 
 	expect(subject.actsWithLedger()).toBeBoolean();
 });
+
+test("#actsWithSecret", () => {
+	const subject = new Signatory(
+		new PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
+			"this is a top secret passphrase 1",
+			"this is a top secret passphrase 2",
+		]),
+	);
+
+	expect(subject.actsWithSecret()).toBeBoolean();
+});
