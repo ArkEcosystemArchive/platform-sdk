@@ -70,7 +70,7 @@ export class TransactionService implements ITransactionService {
 	}
 
 	/** {@inheritDoc ITransactionService.addSignature} */
-	public async addSignature(id: string, signatory: Signatories.Signatory): Promise<void> {
+	public async addSignature(id: string, signatory: Signatories.Signatory): Promise<Services.BroadcastResponse> {
 		this.#assertHasValidIdentifier(id);
 
 		if (!signatory.actsWithMnemonic() && !signatory.actsWithWif()) {
@@ -91,8 +91,7 @@ export class TransactionService implements ITransactionService {
 
 		const transactionWithSignature = await this.#wallet.coin().transaction().multiSign(transaction, { signatory });
 
-		// @TODO: handle errors
-		await this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());
+		return this.#wallet.coin().multiSignature().broadcast(transactionWithSignature.data());
 	}
 
 	/** {@inheritDoc ITransactionService.signTransfer} */
