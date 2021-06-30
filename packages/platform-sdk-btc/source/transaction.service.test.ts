@@ -32,16 +32,17 @@ describe("TransactionService", () => {
 
 		const result = await subject.transfer({
 			signatory: new Signatories.Signatory(
-				new Signatories.WIFSignatory({
+				new Signatories.HierarchicalDeterministicSignatory({
 					signingKey: identity.wif,
-					address: identity.addressBIP49,
+					address: identity.addressBIP44,
 					publicKey: identity.publicKey,
 					privateKey: identity.privateKey,
+					path: "m/44'/0'/0'/0/10",
 				}),
 			),
 			data: {
 				amount: 1,
-				to: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
+				to: "1CBsFaD2gh53McBDaQ46fNZxQUDnyNbis6",
 				memo: "foo",
 			},
 		});

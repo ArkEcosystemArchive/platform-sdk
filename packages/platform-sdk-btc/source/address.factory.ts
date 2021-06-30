@@ -4,6 +4,8 @@ import * as bitcoin from "bitcoinjs-lib";
 
 import { getNetworkConfig } from "./config";
 
+const pathRegex = new RegExp("^m/(\\d*)'/(\\d*)'/(\\d*)'?/?(\\d*)'?/?(\\d*)'?$");
+
 interface Levels {
 	purpose?: number;
 	coinType: number;
@@ -22,6 +24,20 @@ export class AddressFactory {
 	@IoC.postConstruct()
 	private onPostConstruct(): void {
 		this.#network = getNetworkConfig(this.configRepository);
+	}
+
+	public pathToLevels(path: string): Levels {
+		const pathParts = pathRegex.exec(path);
+		if (pathParts === null) {
+			throw Error("Couldn't parse hd path");
+		}
+		return {
+			purpose: parseInt(pathParts[1]),
+			coinType: this.configRepository.get(Coins.ConfigKey.Slip44),
+			account: parseInt(pathParts[3]),
+			change: parseInt(pathParts[4]),
+			index: parseInt(pathParts[5]),
+		};
 	}
 
 	public bip44(mnemonic: string, options?: Services.IdentityOptions): Services.AddressDataTransferObject {
@@ -78,6 +94,26 @@ export class AddressFactory {
 				network: this.#network,
 			}),
 		);
+	}
+
+	public deriveAddresses(mnemonic: string, path: string): Services.AddressDataTransferObject[] {
+		const levels = this.pathToLevels(path);
+
+		let addresses: Services.AddressDataTransferObject[] = [];
+		let addressIndex = 0;
+		do {
+			const current = this.bip44(mnemonic, {
+				bip44: {
+					account: levels.account || 0, // TODO this should always be non-null
+					change: levels.change,
+					addressIndex: addressIndex,
+				},
+			});
+			addresses.push(current);
+		} while (addressIndex++ <= (levels.index || 0));
+
+		console.log(addresses);
+		return addresses;
 	}
 
 	#derive(

@@ -158,6 +158,9 @@ export class Signatory {
 		if (this.#signatory instanceof LedgerSignatory) {
 			return this.#signatory.signingKey();
 		}
+		if (this.#signatory instanceof HierarchicalDeterministicSignatory) {
+			return this.#signatory.path();
+		}
 
 		throw new ForbiddenMethodCallException(this.constructor.name, this.path.name);
 	}
