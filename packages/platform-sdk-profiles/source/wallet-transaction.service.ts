@@ -73,8 +73,20 @@ export class TransactionService implements ITransactionService {
 	public async addSignature(id: string, signatory: Signatories.Signatory): Promise<Services.BroadcastResponse> {
 		this.#assertHasValidIdentifier(id);
 
-		if (!signatory.actsWithMnemonic() && !signatory.actsWithWif()) {
-			throw new Exceptions.Exception("The signatory has to use a mnemonic or WIF.");
+		if (signatory.actsWithMultiMnemonic()) {
+			throw new Exceptions.Exception("The signatory cannot act with a multi mnemonic.");
+		}
+
+		if (signatory.actsWithSenderPublicKey()) {
+			throw new Exceptions.Exception("The signatory cannot act with a sender public key.");
+		}
+
+		if (signatory.actsWithMultiSignature()) {
+			throw new Exceptions.Exception("The signatory cannot act with a multi signature.");
+		}
+
+		if (signatory.actsWithPrivateMultiSignature()) {
+			throw new Exceptions.Exception("The signatory cannot act with a private multi signature.");
 		}
 
 		let transaction: Services.MultiSignatureTransaction;

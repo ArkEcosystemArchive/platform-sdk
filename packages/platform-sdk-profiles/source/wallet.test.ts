@@ -573,3 +573,11 @@ it("should determine if the wallet acts with wif", () => {
 it("should determine if the wallet acts with wif with encryption", () => {
 	expect(subject.actsWithWifWithEncryption()).toBeBoolean();
 });
+
+it("should determine if the wallet acts with a secret", () => {
+	expect(subject.actsWithSecret()).toBeBoolean();
+});
+
+it("should determine if the wallet acts with a secret with encryption", () => {
+	expect(subject.actsWithSecretWithEncryption()).toBeBoolean();
+});

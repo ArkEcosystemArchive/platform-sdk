@@ -1008,3 +1008,96 @@ it("should sync multisig transaction and delete the ones that do not require our
 it("should throw if a transaction is retrieved that does not exist", async () => {
 	expect(() => subject.transaction("id")).toThrow(/could not be found/);
 });
+
+describe("addSignature failures", () => {
+	let transactionId;
+
+	beforeEach(async () => {
+		nock(/.+/)
+			.post("/transaction")
+			.reply(200, {
+				id: "505e385d08e211b83fa6cf304ad67f42ddbdb364d767fd65354eb5a620b9380f",
+			})
+			.get("/transactions")
+			.query({
+				publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
+				state: "pending",
+			})
+			.reply(200, {
+				id: "505e385d08e211b83fa6cf304ad67f42ddbdb364d767fd65354eb5a620b9380f",
+			})
+			.get("/transactions")
+			.query({
+				publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
+				state: "ready",
+			})
+			.reply(200, {
+				id: "505e385d08e211b83fa6cf304ad67f42ddbdb364d767fd65354eb5a620b9380f",
+			})
+			.get("/transaction/505e385d08e211b83fa6cf304ad67f42ddbdb364d767fd65354eb5a620b9380f")
+			.reply(200, {
+				data: { signatures: [] },
+				multisigAsset: {},
+			});
+
+		transactionId = await subject.signMultiSignature({
+			nonce: "1",
+			signatory: new Signatories.Signatory(
+				new Signatories.MultiMnemonicSignatory(
+					["citizen door athlete item name various drive onion foster audit board myself"],
+					["D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW"],
+				),
+			),
+			data: {
+				publicKeys: ["02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910"],
+				min: 1,
+				senderPublicKey: "0205d9bbe71c343ac9a6a83a4344fd404c3534fc7349827097d0835d160bc2b896",
+			},
+		});
+
+		await subject.sync();
+	});
+
+	it("should throw if the signatory cannot act with a multi mnemonic", async () => {
+		await expect(() => subject.addSignature(
+			transactionId,
+			new Signatories.Signatory(
+				new Signatories.MultiMnemonicSignatory([], []),
+			),
+		)).rejects.toThrowError("The signatory cannot act with a multi mnemonic.");
+	});
+
+	it("should throw if the signatory cannot act with a sender public key", async () => {
+		await expect(() => subject.addSignature(
+			transactionId,
+			new Signatories.Signatory(
+				new Signatories.SenderPublicKeySignatory({
+					signingKey: "upset",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
+					publicKey: "publicKey",
+				}),
+			),
+		)).rejects.toThrowError("The signatory cannot act with a sender public key.");
+	});
+
+	it("should throw if the signatory cannot act with a multi signature", async () => {
+		await expect(() => subject.addSignature(
+			transactionId,
+			new Signatories.Signatory(
+				new Signatories.MultiSignatureSignatory({
+					publicKeys: [],
+					min: 0,
+				}),
+			),
+		)).rejects.toThrowError("The signatory cannot act with a multi signature.");
+	});
+
+	it("should throw if the signatory cannot act with a private multi signature", async () => {
+		await expect(() => subject.addSignature(
+			transactionId,
+			new Signatories.Signatory(
+				new Signatories.PrivateMultiSignatureSignatory("key", []),
+			),
+		)).rejects.toThrowError("The signatory cannot act with a private multi signature.");
+	});
+});

@@ -6,6 +6,7 @@ import { PrivateKeySignatory } from "./private-key";
 import { PrivateMultiSignatureSignatory } from "./private-multi-signature";
 import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
+import { SecretSignatory } from "./secret";
 import { SenderPublicKeySignatory } from "./sender-public-key";
 import { Signatory } from "./signatory";
 import { WIFSignatory } from "./wif";
@@ -19,6 +20,7 @@ export {
 	PrivateMultiSignatureSignatory,
 	SecondaryMnemonicSignatory,
 	SecondaryWIFSignatory,
+	SecretSignatory,
 	SenderPublicKeySignatory,
 	Signatory,
 	WIFSignatory,

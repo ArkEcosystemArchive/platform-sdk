@@ -233,6 +233,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 				address = (await this.addressService.fromMnemonic(input.signatory.signingKey())).address;
 			}
 
+			if (input.signatory.actsWithSecret()) {
+				address = (await this.addressService.fromSecret(input.signatory.signingKey())).address;
+			}
+
 			if (input.signatory.actsWithWif()) {
 				address = (await this.addressService.fromWIF(input.signatory.signingKey())).address;
 			}
@@ -349,6 +353,10 @@ export class TransactionService extends Services.AbstractTransactionService {
 				if (input.signatory.actsWithSecondaryWif()) {
 					transaction.signWithWif(input.signatory.signingKey());
 					transaction.secondSignWithWif(input.signatory.confirmKey());
+				}
+
+				if (input.signatory.actsWithSecret()) {
+					transaction.sign(input.signatory.signingKey());
 				}
 			}
 
