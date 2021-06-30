@@ -236,11 +236,14 @@ describe("signatures", () => {
 		const input = {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
-				new Signatories.PrivateMultiSignatureSignatory("upset boat motor few ketchup merge punch gesture lecture piano neutral uniform", [
+				new Signatories.PrivateMultiSignatureSignatory(
 					"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
-					"citizen door athlete item name various drive onion foster audit board myself",
-					"nuclear anxiety mandate board property fade chief mule west despair photo fiber",
-				]),
+					[
+						"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+						"citizen door athlete item name various drive onion foster audit board myself",
+						"nuclear anxiety mandate board property fade chief mule west despair photo fiber",
+					],
+				),
 			),
 			data: {
 				publicKeys: [
@@ -581,10 +584,13 @@ it("sign a multisig transaction awaiting other signatures", async () => {
 	const id = await subject.signMultiSignature({
 		nonce: "1",
 		signatory: new Signatories.Signatory(
-			new Signatories.PrivateMultiSignatureSignatory("upset boat motor few ketchup merge punch gesture lecture piano neutral uniform", [
+			new Signatories.PrivateMultiSignatureSignatory(
 				"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
-				"citizen door athlete item name various drive onion foster audit board myself",
-			]),
+				[
+					"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+					"citizen door athlete item name various drive onion foster audit board myself",
+				],
+			),
 		),
 		data: {
 			publicKeys: [
@@ -863,10 +869,13 @@ it("should broadcast multisignature registration", async () => {
 	const id = await subject.signMultiSignature({
 		nonce: "1",
 		signatory: new Signatories.Signatory(
-			new Signatories.PrivateMultiSignatureSignatory("upset boat motor few ketchup merge punch gesture lecture piano neutral uniform", [
+			new Signatories.PrivateMultiSignatureSignatory(
 				"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
-				"citizen door athlete item name various drive onion foster audit board myself",
-			]),
+				[
+					"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+					"citizen door athlete item name various drive onion foster audit board myself",
+				],
+			),
 		),
 		data: {
 			publicKeys: [

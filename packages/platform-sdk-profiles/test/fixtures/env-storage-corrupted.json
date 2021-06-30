@@ -1,52 +1,52 @@
 {
-    "profiles": {
-        "b999d134-7a24-481e-a95d-bc47c543bfc9": {
-            "contacts": {
-                "0e147f96-049f-4d89-bad4-ad3341109907": {
-                    "name": "Jane Doe",
-                    "starred": false,
-                    "addresses": []
-                }
-            },
-            "data": {
-                "key": "value"
-            },
-            "notifications": {
-                "b183aef3-2dba-471a-a588-0fcf8f01b645": {
-                    "id": "b183aef3-2dba-471a-a588-0fcf8f01b645",
-                    "icon": "warning",
-                    "name": "Ledger Update Available",
-                    "body": "...",
-                    "action": "Read Changelog"
-                }
-            },
-            "peers": {},
-            "plugins": {
-                "data": {}
-            },
-            "settings": {
-                "ADVANCED_MODE": "value",
-                "NAME": "John Doe"
-            },
-            "wallets": {
-                "ac38fe6d-4b67-4ef1-85be-17c5f6841129": {
-                    "coin": "ARK",
-                    "network": "ark.devnet",
-                    "address": "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
-                    "publicKey": "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
-                    "data": {
-                        "BALANCE": {},
-                        "SEQUENCE": {}
-                    },
-                    "settings": {
-                        "ALIAS": "Johnathan Doe",
-                        "AVATAR": "..."
-                    }
-                }
-            }
-        }
-    },
-    "data": {
-        "key": "value"
-    }
+	"profiles": {
+		"b999d134-7a24-481e-a95d-bc47c543bfc9": {
+			"contacts": {
+				"0e147f96-049f-4d89-bad4-ad3341109907": {
+					"name": "Jane Doe",
+					"starred": false,
+					"addresses": []
+				}
+			},
+			"data": {
+				"key": "value"
+			},
+			"notifications": {
+				"b183aef3-2dba-471a-a588-0fcf8f01b645": {
+					"id": "b183aef3-2dba-471a-a588-0fcf8f01b645",
+					"icon": "warning",
+					"name": "Ledger Update Available",
+					"body": "...",
+					"action": "Read Changelog"
+				}
+			},
+			"peers": {},
+			"plugins": {
+				"data": {}
+			},
+			"settings": {
+				"ADVANCED_MODE": "value",
+				"NAME": "John Doe"
+			},
+			"wallets": {
+				"ac38fe6d-4b67-4ef1-85be-17c5f6841129": {
+					"coin": "ARK",
+					"network": "ark.devnet",
+					"address": "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
+					"publicKey": "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
+					"data": {
+						"BALANCE": {},
+						"SEQUENCE": {}
+					},
+					"settings": {
+						"ALIAS": "Johnathan Doe",
+						"AVATAR": "..."
+					}
+				}
+			}
+		}
+	},
+	"data": {
+		"key": "value"
+	}
 }

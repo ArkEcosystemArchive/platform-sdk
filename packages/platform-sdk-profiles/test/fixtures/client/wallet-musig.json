@@ -1,15 +1,15 @@
 {
-    "data": {
-        "address": "DML7XEfePpj5qDFb1SbCWxLRhzdTDop7V1",
-        "publicKey": "02cec9caeb855e54b71e4d60c00889e78107f6136d1f664e5646ebcb2f62dae2c6",
-        "nonce": "123",
-        "balance": "55827093444556",
-        "multiSignature": {
-            "min": 2,
-            "publicKeys": [
-                "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
-                "022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce"
-            ]
-        }
-    }
+	"data": {
+		"address": "DML7XEfePpj5qDFb1SbCWxLRhzdTDop7V1",
+		"publicKey": "02cec9caeb855e54b71e4d60c00889e78107f6136d1f664e5646ebcb2f62dae2c6",
+		"nonce": "123",
+		"balance": "55827093444556",
+		"multiSignature": {
+			"min": 2,
+			"publicKeys": [
+				"030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
+				"022e04844a0f02b1df78dff2c7c4e3200137dfc1183dcee8fc2a411b00fd1877ce"
+			]
+		}
+	}
 }

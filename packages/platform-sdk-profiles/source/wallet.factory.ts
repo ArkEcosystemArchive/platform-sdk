@@ -184,12 +184,7 @@ export class WalletFactory implements IWalletFactory {
 	}
 
 	/** {@inheritDoc IWalletFactory.fromSecret} */
-	public async fromSecret({
-		coin,
-		network,
-		secret,
-		password,
-	}: ISecretOptions): Promise<IReadWriteWallet> {
+	public async fromSecret({ coin, network, secret, password }: ISecretOptions): Promise<IReadWriteWallet> {
 		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
 
 		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.SECRET);

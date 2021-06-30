@@ -89,7 +89,12 @@ test("#last", () => {
 });
 
 test("#allByCoin", async () => {
-	await importByMnemonic("upset boat motor few ketchup merge punch gesture lecture piano neutral uniform", "ARK", "ark.devnet", 39);
+	await importByMnemonic(
+		"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+		"ARK",
+		"ark.devnet",
+		39,
+	);
 
 	expect(subject.allByCoin()).toBeObject();
 	expect(subject.allByCoin().DARK).toBeObject();
@@ -190,9 +195,24 @@ describe("#sortBy", () => {
 	beforeEach(async () => {
 		subject.flush();
 
-		walletARK = await importByMnemonic("wood summer suggest unlock device trust else basket minimum hire lady cute", "ARK", "ark.devnet", 39);
-		walletBTC = await importByMnemonic("brisk grab cash invite labor frozen scrap endorse fault fence prison brisk", "BTC", "btc.testnet", 44);
-		walletETH = await importByMnemonic("print alert reflect tree draw assault mean lift burst pattern rain subway", "ETH", "eth.mainnet", 44);
+		walletARK = await importByMnemonic(
+			"wood summer suggest unlock device trust else basket minimum hire lady cute",
+			"ARK",
+			"ark.devnet",
+			39,
+		);
+		walletBTC = await importByMnemonic(
+			"brisk grab cash invite labor frozen scrap endorse fault fence prison brisk",
+			"BTC",
+			"btc.testnet",
+			44,
+		);
+		walletETH = await importByMnemonic(
+			"print alert reflect tree draw assault mean lift burst pattern rain subway",
+			"ETH",
+			"eth.mainnet",
+			44,
+		);
 	});
 
 	it("should sort by coin", async () => {
@@ -254,7 +274,9 @@ describe("#sortBy", () => {
 
 			wallet = new Wallet(uuidv4(), {}, profile);
 			await wallet.mutator().coin("ARK", "ark.devnet");
-			await wallet.mutator().identity("obvious office stock bind patient jazz off neutral figure truth start limb");
+			await wallet
+				.mutator()
+				.identity("obvious office stock bind patient jazz off neutral figure truth start limb");
 
 			// @ts-ignore
 			await subject.fill({
@@ -269,7 +291,9 @@ describe("#sortBy", () => {
 		it("should restore", async () => {
 			const newWallet2 = new Wallet(uuidv4(), {}, profile);
 			await newWallet2.mutator().coin("ARK", "ark.devnet");
-			await newWallet2.mutator().identity("obvious office stock bind patient jazz off neutral figure truth start limb");
+			await newWallet2
+				.mutator()
+				.identity("obvious office stock bind patient jazz off neutral figure truth start limb");
 
 			// @ts-ignore
 			await subject.fill({
