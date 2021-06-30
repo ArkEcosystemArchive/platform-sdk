@@ -2421,7 +2421,7 @@ importers:
       '@arkecosystem/platform-sdk-http-got': link:../platform-sdk-http-got
       '@arkecosystem/utils': 1.3.0
       '@konceiver/foreman': 2.0.2
-      '@prisma/client': 2.25.0_prisma@2.25.0
+      '@prisma/client': 2.26.0_prisma@2.26.0
       env-paths: 2.2.1
       execa: 5.0.0
       meow: 9.0.0
@@ -2456,7 +2456,7 @@ importers:
       nock: 13.0.11
       npm-check-updates: 11.5.9
       prettier: 2.3.1
-      prisma: 2.25.0
+      prisma: 2.26.0
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2465,7 +2465,7 @@ importers:
       '@arkecosystem/utils': ^1.3.0
       '@konceiver/foreman': ^2.0.2
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ^2.25.0
+      '@prisma/client': ^2.26.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2498,7 +2498,7 @@ importers:
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       prettier: ^2.3.1
-      prisma: ^2.25.0
+      prisma: ^2.26.0
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -2507,7 +2507,7 @@ importers:
       '@hapi/hapi': 20.1.2
       '@konceiver/foreman': 2.0.2
       '@konceiver/hapi-rate-limiter-flexible': 1.0.3
-      '@prisma/client': 2.25.0_prisma@2.25.0
+      '@prisma/client': 2.26.0_prisma@2.26.0
       joi: 17.4.0
       meow: 9.0.0
       uuid: 8.3.2
@@ -2543,7 +2543,7 @@ importers:
       nock: 13.0.11
       npm-check-updates: 11.5.9
       prettier: 2.3.1
-      prisma: 2.25.0
+      prisma: 2.26.0
       rimraf: 3.0.2
       ts-jest: 26.5.5_jest@26.6.3+typescript@4.3.2
       typescript: 4.3.2
@@ -2553,7 +2553,7 @@ importers:
       '@konceiver/foreman': ^2.0.2
       '@konceiver/hapi-rate-limiter-flexible': ^1.0.3
       '@ledgerhq/hw-transport-mocker': ^5.50.0
-      '@prisma/client': ^2.25.0
+      '@prisma/client': ^2.26.0
       '@types/better-sqlite3': 5.4.1
       '@types/eslint': ^7.2.10
       '@types/eslint-plugin-prettier': ^3.1.0
@@ -2585,7 +2585,7 @@ importers:
       nock: ^13.0.11
       npm-check-updates: ^11.5.6
       prettier: ^2.3.1
-      prisma: ^2.25.0
+      prisma: ^2.26.0
       rimraf: ^3.0.2
       ts-jest: ^26.5.5
       typescript: ^4.3.0
@@ -5296,10 +5296,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-6A/cteC0B3hm64/xG6DNG8qGsHAXJgAy9wjcB38qnoJGYl12hysIFjPeHD+V0W/LOl9payW6kpZzhisLlVOZpQ==
-  /@prisma/client/2.25.0_prisma@2.25.0:
+  /@prisma/client/2.26.0_prisma@2.26.0:
     dependencies:
-      '@prisma/engines-version': 2.25.0-36.c838e79f39885bc8e1611849b1eb28b5bb5bc922
-      prisma: 2.25.0
+      '@prisma/engines-version': 2.26.0-23.9b816b3aa13cc270074f172f30d6eda8a8ce867d
+      prisma: 2.26.0
     dev: false
     engines:
       node: '>=12.2'
@@ -5310,16 +5310,16 @@ packages:
         optional: true
     requiresBuild: true
     resolution:
-      integrity: sha512-JDrAJ+oemiYAwgpYNJvCVT59S9bMbqkx78q2OT54xmmBoyYWWnn6t6oS6q8gKMiKHS6rzm/jdh3sy+2E0R+NAQ==
-  /@prisma/engines-version/2.25.0-36.c838e79f39885bc8e1611849b1eb28b5bb5bc922:
+      integrity: sha512-iwhjdUV/MEQZ7RzTEcZ/D+ewxx/pGExWJ2LypfHioJIvEMyK0saPiR0tjMvMT2I2SVzrIM5dXGhBHWi2JksWrQ==
+  /@prisma/engines-version/2.26.0-23.9b816b3aa13cc270074f172f30d6eda8a8ce867d:
     dev: false
     resolution:
-      integrity: sha512-uZaonv3ZzLYAi99AooOe2BOBmb3k+ibVsJyZ5J3F6U1uFHTtTI9AVzC51mE09iNcgq3ZBt2CZNi5CDQZedMWyA==
-  /@prisma/engines/2.25.0-36.c838e79f39885bc8e1611849b1eb28b5bb5bc922:
+      integrity: sha512-8tygPkPxag3myF5fgNQ60zwnNSZzFf4J+DXGKykXaBLLt9W2FLkaE5sVL8/OqAGhLAnVsKj83CqPms35bKrTKw==
+  /@prisma/engines/2.26.0-23.9b816b3aa13cc270074f172f30d6eda8a8ce867d:
     dev: true
     requiresBuild: true
     resolution:
-      integrity: sha512-vjLCk8AFRZu3D8h/SMcWDzTo0xkMuUDyXQzXekn8gzAGjb47B6LQXGR6rDoZ3/uPM13JNTLPvF62mtVaY6fVeQ==
+      integrity: sha512-a0jIhLvw9rFh6nZTr5Y3uzP28I2xNDu3pqxANvwMNnmIoYr1wYEcO1pMXn/36BGXldDdAWMmAbhfloHA3IB8DA==
   /@protobufjs/aspromise/1.1.2:
     dev: false
     resolution:
@@ -13545,16 +13545,16 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ==
-  /prisma/2.25.0:
+  /prisma/2.26.0:
     dependencies:
-      '@prisma/engines': 2.25.0-36.c838e79f39885bc8e1611849b1eb28b5bb5bc922
+      '@prisma/engines': 2.26.0-23.9b816b3aa13cc270074f172f30d6eda8a8ce867d
     dev: true
     engines:
       node: '>=12.2'
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-AdAlP+PShvugljIx62Omu+eLKu6Cozz06dehmClIHSb0/yFiVnyBtrRVV4LZus+QX6Ayg7CTDvtzroACAWl+Zw==
+      integrity: sha512-MXTQlF8X9mabkdTRb9x5nF6jvo1kT85d9hqIpYjLLZy+5tlvEaCaLBj+ok8GINdfYBS7gwQERZ9MHx0tb5dCdg==
   /process-nextick-args/2.0.1:
     resolution:
       integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
