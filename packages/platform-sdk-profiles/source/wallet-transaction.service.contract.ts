@@ -39,10 +39,10 @@ export interface ITransactionService {
 	 *
 	 * @param {string} id
 	 * @param {Signatories.Signatory} signatory
-	 * @return {Promise<void>}
+	 * @return {Promise<Services.BroadcastResponse>}
 	 * @memberof ITransactionService
 	 */
-	addSignature(id: string, signatory: Signatories.Signatory): Promise<void>;
+	addSignature(id: string, signatory: Signatories.Signatory): Promise<Services.BroadcastResponse>;
 
 	/**
 	 * Sign a Transfer transaction.
