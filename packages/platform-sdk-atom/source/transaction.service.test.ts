@@ -39,7 +39,7 @@ describe("TransactionService", () => {
 			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+						signingKey: "this is a top secret passphrase",
 						address: "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
 						publicKey: "publicKey",
 						privateKey: "privateKey",

@@ -21,7 +21,7 @@ describe("Address", () => {
 
 		expect(result).toMatchInlineSnapshot(`
 		Object {
-		  "address": "cosmos1fvxjdyfdvat5g0ee7jmyemwl2n95ad7negf7ap",
+		  "address": "cosmos1wqus3z856rwadvum3l0lg0nl4sc957vq0wn8d0",
 		  "path": "m/44'/118'/0'/0/0",
 		  "type": "bip44",
 		}
