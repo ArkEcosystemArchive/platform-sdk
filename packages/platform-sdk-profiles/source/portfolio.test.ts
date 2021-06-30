@@ -61,9 +61,9 @@ it("should aggregate the balances of all wallets", async () => {
 		.persist();
 
 	const [a, b, c] = await Promise.all([
-		importByMnemonic(profile, "ark", "ARK", "ark.devnet"),
-		importByMnemonic(profile, "btc", "ARK", "ark.devnet"),
-		importByMnemonic(profile, "eth", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "bomb open frame quit success evolve gain donate prison very rent later", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "dizzy feel dinosaur one custom excuse mutual announce shrug stamp rose arctic", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "citizen door athlete item name various drive onion foster audit board myself", "ARK", "ark.devnet"),
 	]);
 	a.data().set(WalletData.Balance, { available: 1e8, fees: 1e8 });
 	b.data().set(WalletData.Balance, { available: 1e8, fees: 1e8 });
@@ -90,9 +90,9 @@ it("should aggregate the balances of all wallets", async () => {
 
 it("should ignore test network wallets", async () => {
 	await Promise.all([
-		importByMnemonic(profile, "ark", "ARK", "ark.devnet"),
-		importByMnemonic(profile, "btc", "ARK", "ark.devnet"),
-		importByMnemonic(profile, "eth", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "bomb open frame quit success evolve gain donate prison very rent later", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "dizzy feel dinosaur one custom excuse mutual announce shrug stamp rose arctic", "ARK", "ark.devnet"),
+		importByMnemonic(profile, "citizen door athlete item name various drive onion foster audit board myself", "ARK", "ark.devnet"),
 	]);
 
 	expect(profile.portfolio().breakdown()).toEqual([]);

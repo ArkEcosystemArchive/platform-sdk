@@ -1,6 +1,8 @@
 import { Interfaces } from "@arkecosystem/crypto";
 import { Address as BaseAddress, Keys } from "@arkecosystem/crypto-identities";
 import { Exceptions, IoC, Services } from "@arkecosystem/platform-sdk";
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
+import { abort_if, abort_unless } from "@arkecosystem/platform-sdk-support";
 
 import { BindingType } from "./coin.contract";
 
@@ -14,6 +16,8 @@ export class AddressService extends Services.AbstractAddressService {
 		options?: Services.IdentityOptions,
 	): Promise<Services.AddressDataTransferObject> {
 		try {
+			abort_unless(BIP39.validate(mnemonic), "The given value is not BIP39 compliant.");
+
 			return {
 				type: "bip39",
 				address: BaseAddress.fromPassphrase(mnemonic, this.config.network),
@@ -59,6 +63,19 @@ export class AddressService extends Services.AbstractAddressService {
 			return {
 				type: "bip39",
 				address: BaseAddress.fromPrivateKey(Keys.fromPrivateKey(privateKey), this.config.network),
+			};
+		} catch (error) {
+			throw new Exceptions.CryptoException(error);
+		}
+	}
+
+	public override async fromSecret(secret: string): Promise<Services.AddressDataTransferObject> {
+		try {
+			abort_if(BIP39.validate(secret), "The given value is BIP39 compliant. Please use [fromMnemonic] instead.");
+
+			return {
+				type: "bip39",
+				address: BaseAddress.fromPassphrase(secret, this.config.network),
 			};
 		} catch (error) {
 			throw new Exceptions.CryptoException(error);

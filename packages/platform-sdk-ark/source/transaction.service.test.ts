@@ -14,6 +14,7 @@ import { LedgerService } from "./ledger.service";
 import { PublicKeyService } from "./public-key.service";
 import { TransactionService } from "./transaction.service";
 import { MultiSignatureSigner } from "./multi-signature.signer";
+import { identity } from "../test/fixtures/identity";
 
 let subject: TransactionService;
 
@@ -44,8 +45,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -64,14 +65,14 @@ describe("TransactionService", () => {
 
 		it("should verify without nonce", async () => {
 			nock(/.+/)
-				.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+				.get(`/api/wallets/${identity.address}`)
 				.reply(200, { data: { nonce: "1" } });
 
 			const result = await subject.transfer({
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -90,8 +91,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -103,7 +104,7 @@ describe("TransactionService", () => {
 				},
 			});
 
-			expect(result.id()).toBe("a0663692055a4c3a646971dc9db93cea3df1dbb95c79fe9688b96d4e6955ceb8");
+			expect(result.id()).toBe("b6eb0b8ff36c77ab3e2a8384d1df4d0d68cb398f220ee9073dd82fe5828d7cbf");
 		});
 
 		it("should sign using network estimated expiration", async () => {
@@ -117,8 +118,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -138,8 +139,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -159,8 +160,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -180,8 +181,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -202,8 +203,8 @@ describe("TransactionService", () => {
 	// 			nonce: "1",
 	// 			signatory: new Signatories.Signatory(
 	// 				new Signatories.MnemonicSignatory({
-	// 					signingKey: "this is a top secret passphrase",
-	// 					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+	// 					signingKey: identity.mnemonic,
+	// 					address: identity.address,
 	// 					publicKey: "publicKey",
 	// 					privateKey: "privateKey",
 	// 				}),
@@ -227,8 +228,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -246,8 +247,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -272,8 +273,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -290,8 +291,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -317,8 +318,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),
@@ -339,8 +340,8 @@ describe("TransactionService", () => {
 				nonce: "1",
 				signatory: new Signatories.Signatory(
 					new Signatories.MnemonicSignatory({
-						signingKey: "this is a top secret passphrase",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+						signingKey: identity.mnemonic,
+						address: identity.address,
 						publicKey: "publicKey",
 						privateKey: "privateKey",
 					}),

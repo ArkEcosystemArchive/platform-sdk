@@ -32,9 +32,9 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/syncing.json"))
 
 		// default wallet
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
-		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
+		.get("/api/wallets/030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 
 		// second wallet
@@ -127,7 +127,7 @@ describe("#identity", () => {
 	it("should mutate the address with a path", async () => {
 		jest.spyOn(subject.coin().address(), "fromMnemonic").mockImplementation(async () => ({
 			type: "bip39",
-			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 			path: "path",
 		}));
 
@@ -148,7 +148,7 @@ describe("#address", () => {
 
 		await subject.mutator().address({
 			type: "bip39",
-			address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 			path: "path",
 		});
 

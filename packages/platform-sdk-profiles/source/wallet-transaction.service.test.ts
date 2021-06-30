@@ -38,9 +38,9 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/syncing.json"))
 
 		// default wallet
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
-		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
+		.get("/api/wallets/030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 
 		// second wallet
@@ -93,7 +93,7 @@ describe("signatures", () => {
 			})
 			.get("/transactions")
 			.query({
-				publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 				state: "pending",
 			})
 			.reply(200, {
@@ -101,7 +101,7 @@ describe("signatures", () => {
 			})
 			.get("/transactions")
 			.query({
-				publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 				state: "ready",
 			})
 			.reply(200, {
@@ -117,8 +117,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MultiMnemonicSignatory(
-					["this is a top secret passphrase 2"],
-					["D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib"],
+					["citizen door athlete item name various drive onion foster audit board myself"],
+					["D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW"],
 				),
 			),
 			data: {
@@ -133,8 +133,8 @@ describe("signatures", () => {
 			id,
 			new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase 1",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -148,15 +148,15 @@ describe("signatures", () => {
 		const input = {
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
 			),
 			data: {
 				amount: 1,
-				to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				to: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 			},
 		};
 		const id = await subject.signTransfer(input);
@@ -170,8 +170,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -192,8 +192,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -214,8 +214,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -236,10 +236,10 @@ describe("signatures", () => {
 		const input = {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
-				new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
-					"this is a top secret passphrase 1",
-					"this is a top secret passphrase 2",
-					"this is a top secret passphrase 3",
+				new Signatories.PrivateMultiSignatureSignatory("upset boat motor few ketchup merge punch gesture lecture piano neutral uniform", [
+					"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+					"citizen door athlete item name various drive onion foster audit board myself",
+					"nuclear anxiety mandate board property fade chief mule west despair photo fiber",
 				]),
 			),
 			data: {
@@ -265,8 +265,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -287,8 +287,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -313,8 +313,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -332,8 +332,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -360,8 +360,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -383,8 +383,8 @@ describe("signatures", () => {
 			nonce: "1",
 			signatory: new Signatories.Signatory(
 				new Signatories.MnemonicSignatory({
-					signingKey: "this is a top secret passphrase",
-					address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+					signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 					publicKey: "publicKey",
 					privateKey: "privateKey",
 				}),
@@ -402,20 +402,20 @@ describe("signatures", () => {
 });
 
 it("#transaction lifecycle", async () => {
-	const realHash = "f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca";
+	const realHash = "819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef";
 
 	const input = {
 		signatory: new Signatories.Signatory(
 			new Signatories.MnemonicSignatory({
-				signingKey: "this is a top secret passphrase",
-				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+				address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 				publicKey: "publicKey",
 				privateKey: "privateKey",
 			}),
 		),
 		data: {
 			amount: 1,
-			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			to: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 		},
 	};
 	const id = await subject.signTransfer(input);
@@ -472,15 +472,15 @@ it("#pending", async () => {
 	const input = {
 		signatory: new Signatories.Signatory(
 			new Signatories.MnemonicSignatory({
-				signingKey: "this is a top secret passphrase",
-				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+				address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 				publicKey: "publicKey",
 				privateKey: "privateKey",
 			}),
 		),
 		data: {
 			amount: 1,
-			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			to: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 		},
 	};
 	const id = await subject.signTransfer(input);
@@ -506,15 +506,15 @@ it("#dump", async () => {
 	const input = {
 		signatory: new Signatories.Signatory(
 			new Signatories.MnemonicSignatory({
-				signingKey: "this is a top secret passphrase",
-				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+				address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 				publicKey: "publicKey",
 				privateKey: "privateKey",
 			}),
 		),
 		data: {
 			amount: 1,
-			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			to: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 		},
 	};
 
@@ -532,15 +532,15 @@ it("#restore", async () => {
 	const input = {
 		signatory: new Signatories.Signatory(
 			new Signatories.MnemonicSignatory({
-				signingKey: "this is a top secret passphrase",
-				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+				address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 				publicKey: "publicKey",
 				privateKey: "privateKey",
 			}),
 		),
 		data: {
 			amount: 1,
-			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			to: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 		},
 	};
 
@@ -566,13 +566,13 @@ it("sign a multisig transaction awaiting other signatures", async () => {
 	nock(/.+/)
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "pending",
 		})
 		.reply(200, [require("../test/fixtures/client/musig-transaction.json")])
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "ready",
 		})
 		.reply(200, { data: [] })
@@ -581,9 +581,9 @@ it("sign a multisig transaction awaiting other signatures", async () => {
 	const id = await subject.signMultiSignature({
 		nonce: "1",
 		signatory: new Signatories.Signatory(
-			new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
-				"this is a top secret passphrase 1",
-				"this is a top secret passphrase 2",
+			new Signatories.PrivateMultiSignatureSignatory("upset boat motor few ketchup merge punch gesture lecture piano neutral uniform", [
+				"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+				"citizen door athlete item name various drive onion foster audit board myself",
 			]),
 		),
 		data: {
@@ -611,13 +611,13 @@ it("should sync multisig transaction awaiting our signature", async () => {
 	nock(/.+/)
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "pending",
 		})
 		.reply(200, [require("../test/fixtures/client/multisig-transaction-awaiting-our.json")])
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "ready",
 		})
 		.reply(200, [])
@@ -633,13 +633,13 @@ it("should await singature by public ip", async () => {
 	nock(/.+/)
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "pending",
 		})
 		.reply(200, [require("../test/fixtures/client/multisig-transaction-awaiting-signature.json")])
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "ready",
 		})
 		.reply(200, [])
@@ -655,7 +655,7 @@ it("should await singature by public ip", async () => {
 	expect(
 		subject.isAwaitingSignatureByPublicKey(
 			id,
-			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			"030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 		),
 	).toBeTrue();
 
@@ -666,13 +666,13 @@ it("transaction should not await any signatures", async () => {
 	nock(/.+/)
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "pending",
 		})
 		.reply(200, [])
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "ready",
 		})
 		.reply(200, [require("../test/fixtures/client/multisig-transaction-awaiting-none.json")])
@@ -684,7 +684,7 @@ it("transaction should not await any signatures", async () => {
 	expect(() =>
 		subject.isAwaitingSignatureByPublicKey(
 			id,
-			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			"030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 		),
 	).toThrow();
 });
@@ -694,28 +694,28 @@ it("should broadcast transaction", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca"],
+				accept: ["819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca")
+		.get("/api/transactions/819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef")
 		.reply(200, { data: { confirmations: 1 } });
 
 	const input = {
 		signatory: new Signatories.Signatory(
 			new Signatories.MnemonicSignatory({
-				signingKey: "this is a top secret passphrase",
-				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+				address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 				publicKey: "publicKey",
 				privateKey: "privateKey",
 			}),
 		),
 		data: {
 			amount: 1,
-			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			to: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 		},
 	};
 
@@ -731,28 +731,28 @@ it("should broadcast a transfer and confirm it", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca"],
+				accept: ["819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca")
+		.get("/api/transactions/819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef")
 		.reply(200, { data: { confirmations: 51 } });
 
 	const input = {
 		signatory: new Signatories.Signatory(
 			new Signatories.MnemonicSignatory({
-				signingKey: "this is a top secret passphrase",
-				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+				address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 				publicKey: "publicKey",
 				privateKey: "privateKey",
 			}),
 		),
 		data: {
 			amount: 1,
-			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			to: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 		},
 	};
 
@@ -769,13 +769,13 @@ it("should broadcast multisignature transaction", async () => {
 	nock(/.+/)
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "pending",
 		})
 		.reply(200, require("../test/fixtures/client/multisig-transaction-awaiting-none.json"))
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "ready",
 		})
 		.reply(200, { data: [] })
@@ -798,17 +798,17 @@ it("should broadcast multisignature transaction", async () => {
 				{
 					publicKeys: [
 						"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
-						"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+						"030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 					],
 					min: 2,
 				},
-				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				"030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			),
 		),
 		data: {
 			publicKeys: [
 				"02edf966159de0013ca5b99371c5436e78f22df0d565eceee09feb977fe49cb910",
-				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+				"030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			],
 			min: 2,
 		},
@@ -838,13 +838,13 @@ it("should broadcast multisignature registration", async () => {
 	nock(/.+/)
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "pending",
 		})
 		.reply(200, require("../test/fixtures/client/musig-transaction.json"))
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "ready",
 		})
 		.reply(200, { data: [] })
@@ -863,9 +863,9 @@ it("should broadcast multisignature registration", async () => {
 	const id = await subject.signMultiSignature({
 		nonce: "1",
 		signatory: new Signatories.Signatory(
-			new Signatories.PrivateMultiSignatureSignatory("this is a top secret passphrase 1", [
-				"this is a top secret passphrase 1",
-				"this is a top secret passphrase 2",
+			new Signatories.PrivateMultiSignatureSignatory("upset boat motor few ketchup merge punch gesture lecture piano neutral uniform", [
+				"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+				"citizen door athlete item name various drive onion foster audit board myself",
 			]),
 		),
 		data: {
@@ -892,28 +892,28 @@ it("#confirm", async () => {
 		.post("/api/transactions")
 		.reply(201, {
 			data: {
-				accept: ["f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca"],
+				accept: ["819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef"],
 				broadcast: [],
 				excess: [],
 				invalid: [],
 			},
 			errors: {},
 		})
-		.get("/api/transactions/f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca")
+		.get("/api/transactions/819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef")
 		.reply(200, { data: { confirmations: 0 } });
 
 	const input = {
 		signatory: new Signatories.Signatory(
 			new Signatories.MnemonicSignatory({
-				signingKey: "this is a top secret passphrase",
-				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				signingKey: "bomb open frame quit success evolve gain donate prison very rent later",
+				address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 				publicKey: "publicKey",
 				privateKey: "privateKey",
 			}),
 		),
 		data: {
 			amount: 1,
-			to: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+			to: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 		},
 	};
 
@@ -921,7 +921,7 @@ it("#confirm", async () => {
 	await expect(subject.broadcast(id)).resolves.toMatchInlineSnapshot(`
 					Object {
 					  "accepted": Array [
-					    "f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca",
+					    "819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef",
 					  ],
 					  "errors": Object {},
 					  "rejected": Array [],
@@ -949,7 +949,7 @@ it("#confirm", async () => {
 	// Confirmed
 	nock.cleanAll();
 	nock(/.+/)
-		.get("/api/transactions/f2316f4b9402bdb92c4ad329512cd1060bdd23fb61f3663fadede6f7c008b9ca")
+		.get("/api/transactions/819aa9902c194ce2fd48ae8789fa1b5273698c02b7ad91d0d561742567fd4cef")
 		.reply(200, { data: { confirmations: 51 } });
 
 	await subject.confirm(id);
@@ -960,13 +960,13 @@ it("should sync multisig transaction and delete the ones that do not require our
 	nock(/.+/)
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "pending",
 		})
 		.reply(200, [require("../test/fixtures/client/multisig-transaction-awaiting-our.json")])
 		.get("/transactions")
 		.query({
-			publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 			state: "ready",
 		})
 		.reply(200, [])

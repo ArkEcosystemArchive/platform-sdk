@@ -70,6 +70,18 @@ export interface IAddressWithDerivationPathOptions {
 }
 
 /**
+ * Defines the options for an import with a secret.
+ *
+ * @interface ISecretOptions
+ */
+export interface ISecretOptions {
+	coin: string;
+	network: string;
+	secret: string;
+	password?: string;
+}
+
+/**
  * Defines the options for an import with a WIF.
  *
  * @interface IWifOptions

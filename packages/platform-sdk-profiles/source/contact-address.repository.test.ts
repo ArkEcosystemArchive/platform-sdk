@@ -14,7 +14,7 @@ let profile: Profile;
 const stubData = {
 	coin: "ARK",
 	network: "ark.devnet",
-	address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+	address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 };
 
 beforeEach(async () => {
@@ -29,7 +29,7 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../test/fixtures/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 

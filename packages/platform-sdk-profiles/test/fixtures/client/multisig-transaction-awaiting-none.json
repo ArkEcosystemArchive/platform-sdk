@@ -1,23 +1,23 @@
 {
-	"version": 2,
-	"network": 30,
-	"type": 4,
-	"nonce": "2",
-	"senderPublicKey": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
-	"fee": "2000000000",
-	"amount": "0",
-	"asset": {
-		"multiSignature": {
-			"publicKeys": [
-				"0301fd417566397113ba8c55de2f093a572744ed1829b37b56a129058000ef7bce",
-				"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192"
-			],
-			"min": 2
-		}
-	},
-	"signatures": [
-		"0171d86f3f6552b237dd81272a7b0da7718c4d26682255223dcf1928174082ce72b07218162938c674afe741119650135338eb3da159e0626ddab6b7851882e08b",
-		"02d44d9bde77c9ea02d3516ab3263a77f4f9fbb90c30b47eba7a8bb87325edeb78dd69f914f28426e6ff661c4bc001f253130f4e7eb092a9131c8ca69dbfaff32f"
-	],
-	"id": "46343c36bf7497b68e14d4c0fd713e41a737841b6a858fa41ef0eab6c4647938"
+    "version": 2,
+    "network": 30,
+    "type": 4,
+    "nonce": "2",
+    "senderPublicKey": "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
+    "fee": "2000000000",
+    "amount": "0",
+    "asset": {
+        "multiSignature": {
+            "publicKeys": [
+                "0301fd417566397113ba8c55de2f093a572744ed1829b37b56a129058000ef7bce",
+                "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd"
+            ],
+            "min": 2
+        }
+    },
+    "signatures": [
+        "0171d86f3f6552b237dd81272a7b0da7718c4d26682255223dcf1928174082ce72b07218162938c674afe741119650135338eb3da159e0626ddab6b7851882e08b",
+        "02d44d9bde77c9ea02d3516ab3263a77f4f9fbb90c30b47eba7a8bb87325edeb78dd69f914f28426e6ff661c4bc001f253130f4e7eb092a9131c8ca69dbfaff32f"
+    ],
+    "id": "46343c36bf7497b68e14d4c0fd713e41a737841b6a858fa41ef0eab6c4647938"
 }

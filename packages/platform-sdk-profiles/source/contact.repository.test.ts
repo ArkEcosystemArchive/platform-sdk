@@ -12,7 +12,7 @@ import { ContactRepository } from "./contact.repository";
 let subject: ContactRepository;
 
 const name = "John Doe";
-const addr = { coin: "ARK", network: "ark.devnet", address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib" };
+const addr = { coin: "ARK", network: "ark.devnet", address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW" };
 
 beforeAll(() => bootContainer());
 
@@ -28,7 +28,7 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../test/fixtures/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
@@ -100,7 +100,7 @@ test("#update with addresses", async () => {
 			{
 				coin: "ARK",
 				network: "ark.devnet",
-				address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+				address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 			},
 		],
 	});
