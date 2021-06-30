@@ -16,7 +16,7 @@ describe("WIF", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ wif: "SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA" });
+		expect(result).toEqual({ wif: identity.wif });
 	});
 
 	it("should fail to generate an output from an invalid mnemonic", async () => {
@@ -26,7 +26,7 @@ describe("WIF", () => {
 	it("should generate an output from a private key", async () => {
 		const result = await subject.fromPrivateKey(identity.privateKey);
 
-		expect(result).toEqual({ wif: "SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA" });
+		expect(result).toEqual({ wif: identity.wif });
 	});
 
 	it("should fail to generate an output from an invalid private key", async () => {

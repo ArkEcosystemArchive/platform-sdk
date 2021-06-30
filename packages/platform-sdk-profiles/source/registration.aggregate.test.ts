@@ -22,7 +22,7 @@ beforeAll(() => {
 		.reply(200, require("../test/fixtures/client/peers.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../test/fixtures/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet-non-resigned.json"))
 		.persist();
 });
@@ -40,6 +40,6 @@ describe("RegistrationAggregate", () => {
 		const delegates = subject.delegates();
 
 		expect(delegates).toHaveLength(1);
-		expect(delegates[0].address()).toEqual("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(delegates[0].address()).toEqual("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
 	});
 });

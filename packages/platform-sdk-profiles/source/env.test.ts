@@ -79,7 +79,7 @@ beforeAll(() => {
 				address: "AFrPtEmzu6wdVpa2CnRDEKGQQMWgq8nE9V",
 			},
 		])
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.get(/.+/)
 		.query(true)

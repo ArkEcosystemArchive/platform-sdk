@@ -16,7 +16,7 @@ describe("PublicKey", () => {
 	it("should generate an output from a mnemonic", async () => {
 		const result = await subject.fromMnemonic(identity.mnemonic);
 
-		expect(result).toEqual({ publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192" });
+		expect(result).toEqual({ publicKey: identity.publicKey });
 	});
 
 	it("should fail to generate an output from an invalid mnemonic", async () => {
@@ -39,7 +39,7 @@ describe("PublicKey", () => {
 	it("should generate an output from a wif", async () => {
 		const result = await subject.fromWIF(identity.wif);
 
-		expect(result).toEqual({ publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192" });
+		expect(result).toEqual({ publicKey: identity.publicKey });
 	});
 
 	it("should fail to generate an output from a wif", async () => {

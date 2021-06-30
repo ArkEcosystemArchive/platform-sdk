@@ -31,9 +31,9 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/syncing.json"))
 
 		// default wallet
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet-non-resigned.json"))
-		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
+		.get("/api/wallets/030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd")
 		.reply(200, require("../test/fixtures/client/wallet-non-resigned.json"))
 
 		// second wallet
@@ -133,11 +133,11 @@ describe.each([
 
 		expect(actual).toContainAllKeys(["id", "data", "settings"]);
 		expect(actual.id).toBeString();
-		expect(actual.data[WalletData.Address]).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
+		expect(actual.data[WalletData.Address]).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
 		expect(actual.data[WalletData.Coin]).toBe("ARK");
 		expect(actual.data[WalletData.Network]).toBe("ark.devnet");
 		expect(actual.data[WalletData.PublicKey]).toBe(
-			"034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+			"030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 		);
 		expect(actual.data).toMatchSnapshot();
 		expect(actual.settings).toBeObject();

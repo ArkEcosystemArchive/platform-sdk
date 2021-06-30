@@ -31,9 +31,9 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/syncing.json"))
 
 		// default wallet
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet-non-resigned.json"))
-		.get("/api/wallets/034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192")
+		.get("/api/wallets/030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd")
 		.reply(200, require("../test/fixtures/client/wallet-non-resigned.json"))
 
 		// second wallet
@@ -43,7 +43,7 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/wallet-2.json"))
 
 		// Musig wallet
-		.get("/api/wallets/DML7XEfePpj5qDFb1SbCWxLRhzdTDop7V1")
+		.get("/api/wallets/DC8mr6jx6vgXp9E2PAQPAiqUo9f3pWP3i6")
 		.reply(200, require("../test/fixtures/client/wallet-musig.json"))
 		.get("/api/wallets/02cec9caeb855e54b71e4d60c00889e78107f6136d1f664e5646ebcb2f62dae2c6")
 		.reply(200, require("../test/fixtures/client/wallet-musig.json"))
@@ -92,7 +92,7 @@ it("should sync the coin", async () => {
 it("should sync multi signature when musig", async () => {
 	wallet = new Wallet(uuidv4(), {}, profile);
 	await wallet.mutator().coin("ARK", "ark.devnet");
-	await wallet.mutator().identity("new super passphrase");
+	await wallet.mutator().identity("nuclear anxiety mandate board property fade chief mule west despair photo fiber");
 
 	await new WalletSynchroniser(wallet).multiSignature();
 

@@ -4,7 +4,7 @@ export const identity = {
 	publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
 	address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
 	wif: "SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA",
-	mnemonic: "this is a top secret passphrase",
+	mnemonic: "bomb open frame quit success evolve gain donate prison very rent later",
 	// Multi Signature
 	multiSignature: {},
 	multiSignatureAddress: "...",

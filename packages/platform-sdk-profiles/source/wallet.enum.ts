@@ -80,6 +80,8 @@ export const WalletImportMethod = {
 	Address: "ADDRESS",
 	PrivateKey: "PRIVATE_KEY",
 	PublicKey: "PUBLIC_KEY",
+	SECRET: "SECRET",
+	SECRET_WITH_ENCRYPTION: "SECRET_WITH_ENCRYPTION",
 	WIF: "WIF",
 	WIFWithEncryption: "WIF_WITH_ENCRYPTION",
 };

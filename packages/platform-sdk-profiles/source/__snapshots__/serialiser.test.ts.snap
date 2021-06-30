@@ -2,7 +2,7 @@
 
 exports[`111 should turn into an object 1`] = `
 Object {
-  "ADDRESS": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+  "ADDRESS": "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
   "BALANCE": Object {
     "available": "0",
     "fees": "0",
@@ -14,7 +14,7 @@ Object {
   "DERIVATION_TYPE": "bip39",
   "IMPORT_METHOD": undefined,
   "NETWORK": "ark.devnet",
-  "PUBLIC_KEY": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+  "PUBLIC_KEY": "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
   "SEQUENCE": "111932",
   "SIGNED_TRANSACTIONS": Object {},
   "STARRED": true,
@@ -28,7 +28,7 @@ Object {
 
 exports[`123 should turn into an object 1`] = `
 Object {
-  "ADDRESS": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+  "ADDRESS": "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
   "BALANCE": Object {
     "available": "0",
     "fees": "0",
@@ -46,7 +46,7 @@ Object {
   "DERIVATION_TYPE": "bip39",
   "IMPORT_METHOD": undefined,
   "NETWORK": "ark.devnet",
-  "PUBLIC_KEY": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+  "PUBLIC_KEY": "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
   "SEQUENCE": "111932",
   "SIGNED_TRANSACTIONS": Object {},
   "STARRED": true,
@@ -60,7 +60,7 @@ Object {
 
 exports[`456 should turn into an object 1`] = `
 Object {
-  "ADDRESS": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+  "ADDRESS": "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
   "BALANCE": Object {
     "available": "1",
     "fees": "2",
@@ -78,7 +78,7 @@ Object {
   "DERIVATION_TYPE": "bip39",
   "IMPORT_METHOD": undefined,
   "NETWORK": "ark.devnet",
-  "PUBLIC_KEY": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+  "PUBLIC_KEY": "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
   "SEQUENCE": "111932",
   "SIGNED_TRANSACTIONS": Object {},
   "STARRED": true,
@@ -92,7 +92,7 @@ Object {
 
 exports[`789 should turn into an object 1`] = `
 Object {
-  "ADDRESS": "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+  "ADDRESS": "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
   "BALANCE": Object {
     "available": "0",
     "fees": "0",
@@ -104,7 +104,7 @@ Object {
   "DERIVATION_TYPE": "bip39",
   "IMPORT_METHOD": undefined,
   "NETWORK": "ark.devnet",
-  "PUBLIC_KEY": "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+  "PUBLIC_KEY": "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
   "SEQUENCE": "111932",
   "SIGNED_TRANSACTIONS": Object {},
   "STARRED": true,

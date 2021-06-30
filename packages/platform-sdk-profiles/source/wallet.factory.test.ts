@@ -34,7 +34,7 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../test/fixtures/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
@@ -57,11 +57,11 @@ describe("#fromMnemonicWithBIP39", () => {
 		const wallet = await subject.fromMnemonicWithBIP39({
 			coin: "ARK",
 			network: "ark.devnet",
-			mnemonic: "this is a top secret passphrase",
+			mnemonic: "bomb open frame quit success evolve gain donate prison very rent later",
 		});
 
-		expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-		expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+		expect(wallet.address()).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
+		expect(wallet.publicKey()).toBe("030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd");
 	});
 
 	it("should throw if BIP39 is requested but extended public keys are used", async () => {
@@ -69,7 +69,7 @@ describe("#fromMnemonicWithBIP39", () => {
 			subject.fromMnemonicWithBIP39({
 				coin: "ADA",
 				network: "ada.testnet",
-				mnemonic: "this is a top secret passphrase",
+				mnemonic: "bomb open frame quit success evolve gain donate prison very rent later",
 			}),
 		).rejects.toThrow("The configured network uses extended public keys with BIP44 for derivation.");
 	});
@@ -78,17 +78,17 @@ describe("#fromMnemonicWithBIP39", () => {
 		const wallet = await subject.fromMnemonicWithBIP39({
 			coin: "ARK",
 			network: "ark.devnet",
-			mnemonic: "this is a top secret passphrase",
+			mnemonic: "bomb open frame quit success evolve gain donate prison very rent later",
 			password: "password",
 		});
 
-		expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-		expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+		expect(wallet.address()).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
+		expect(wallet.publicKey()).toBe("030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd");
 		expect(wallet.data().get(WalletData.Bip38EncryptedKey)).toBeString();
 
 		// @ts-ignore
 		expect(decrypt(wallet.data().get(WalletData.Bip38EncryptedKey)!, "password").privateKey.toString("hex")).toBe(
-			"d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
+			"e2511a6022953eb399fbd48f84619c04c894f735aee107b02a7690075ae67617",
 		);
 	});
 });
@@ -98,11 +98,11 @@ describe("#fromMnemonicWithBIP44", () => {
 		const wallet = await subject.fromMnemonicWithBIP44({
 			coin: "BTC",
 			network: "btc.testnet",
-			mnemonic: "this is a top secret passphrase",
+			mnemonic: "bomb open frame quit success evolve gain donate prison very rent later",
 		});
 
-		expect(wallet.address()).toBe("muJmwqMYzXinDoAxueuCBr5y3e3zca8MXY");
-		expect(wallet.publicKey()).toBe("025b7319847965a1dfda25e5337cb6f5bd4665a55fe0b456de2eff79c157d5d21e");
+		expect(wallet.address()).toBe("mkaosbN9QaSu6BCXubexhYpLEivxUVjKLH");
+		expect(wallet.publicKey()).toBe("02922570444c435d08ed8dfb2f65d3d3af25f4c3b94c528ec67dcb8fc27ca06c56");
 	});
 
 	it("should create a wallet using BIP44 (passphrase > extended public key)", async () => {
@@ -126,11 +126,11 @@ test("#fromAddress", async () => {
 	const wallet = await subject.fromAddress({
 		coin: "ARK",
 		network: "ark.devnet",
-		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 	});
 
-	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+	expect(wallet.address()).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
+	expect(wallet.publicKey()).toBe("030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd");
 
 	const mainnetWallet = await subject.fromAddress({
 		coin: "ARK",
@@ -145,34 +145,34 @@ test("#fromPublicKey", async () => {
 	const wallet = await subject.fromPublicKey({
 		coin: "ARK",
 		network: "ark.devnet",
-		publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+		publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 	});
 
-	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+	expect(wallet.address()).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
+	expect(wallet.publicKey()).toBe("030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd");
 });
 
 test("#fromPrivateKey", async () => {
 	const wallet = await subject.fromPrivateKey({
 		coin: "ARK",
 		network: "ark.devnet",
-		privateKey: "d8839c2432bfd0a67ef10a804ba991eabba19f154a3d707917681d45822a5712",
+		privateKey: "e2511a6022953eb399fbd48f84619c04c894f735aee107b02a7690075ae67617",
 	});
 
-	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+	expect(wallet.address()).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
+	expect(wallet.publicKey()).toBe("030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd");
 });
 
 test("#fromAddressWithDerivationPath", async () => {
 	const wallet = await subject.fromAddressWithDerivationPath({
 		coin: "ARK",
 		network: "ark.devnet",
-		address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
+		address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
 		path: "1",
 	});
 
-	expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-	expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+	expect(wallet.address()).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
+	expect(wallet.publicKey()).toBe("030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd");
 });
 
 describe("#fromWIF", () => {
@@ -180,15 +180,15 @@ describe("#fromWIF", () => {
 		const wallet = await subject.fromWIF({
 			coin: "ARK",
 			network: "ark.devnet",
-			wif: "SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA",
+			wif: "SHA89yQdW3bLFYyCvEBpn7ngYNR8TEojGCC1uAJjT5esJPm1NiG3",
 		});
 
-		expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-		expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+		expect(wallet.address()).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
+		expect(wallet.publicKey()).toBe("030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd");
 	});
 
 	it("should create it with a WIF and encryption", async () => {
-		const { compressed, privateKey } = decode("SGq4xLgZKCGxs7bjmwnBrWcT4C1ADFEermj846KC97FSv1WFD1dA");
+		const { compressed, privateKey } = decode("SHA89yQdW3bLFYyCvEBpn7ngYNR8TEojGCC1uAJjT5esJPm1NiG3");
 
 		const wallet = await subject.fromWIF({
 			coin: "ARK",
@@ -197,7 +197,7 @@ describe("#fromWIF", () => {
 			password: "password",
 		});
 
-		expect(wallet.address()).toBe("D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib");
-		expect(wallet.publicKey()).toBe("034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192");
+		expect(wallet.address()).toBe("D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW");
+		expect(wallet.publicKey()).toBe("030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd");
 	});
 });

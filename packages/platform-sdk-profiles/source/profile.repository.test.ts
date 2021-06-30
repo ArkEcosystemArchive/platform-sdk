@@ -33,7 +33,7 @@ beforeEach(() => {
 		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../test/fixtures/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
@@ -86,8 +86,8 @@ describe("ProfileRepository", () => {
 						id: "ac38fe6d-4b67-4ef1-85be-17c5f6841129",
 						coin: "ARK",
 						network: "ark.devnet",
-						address: "D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib",
-						publicKey: "034151a3ec46b5670a682b0a63394f863587d1bc97483b1b6c70eb58e7f0aed192",
+						address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
+						publicKey: "030fde54605c5d53436217a2849d276376d0b0f12c71219cd62b0a4539e1e75acd",
 						data: {
 							BALANCE: {},
 							SEQUENCE: {},

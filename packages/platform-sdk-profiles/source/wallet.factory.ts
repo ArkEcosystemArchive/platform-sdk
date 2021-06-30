@@ -21,6 +21,7 @@ import {
 } from "./contracts";
 
 import { Wallet } from "./wallet";
+import { ISecretOptions } from "./wallet.factory.contract";
 
 export class WalletFactory implements IWalletFactory {
 	readonly #profile: IProfile;
@@ -178,6 +179,24 @@ export class WalletFactory implements IWalletFactory {
 		}
 
 		wallet.data().set(WalletData.DerivationPath, path);
+
+		return wallet;
+	}
+
+	/** {@inheritDoc IWalletFactory.fromSecret} */
+	public async fromSecret({ coin, network, secret, password }: ISecretOptions): Promise<IReadWriteWallet> {
+		const wallet: IReadWriteWallet = new Wallet(uuidv4(), {}, this.#profile);
+
+		wallet.data().set(WalletData.ImportMethod, WalletImportMethod.SECRET);
+
+		await wallet.mutator().coin(coin, network);
+		await wallet.mutator().address(await wallet.coin().address().fromSecret(secret));
+
+		if (password) {
+			wallet.data().set(WalletData.ImportMethod, WalletImportMethod.SECRET_WITH_ENCRYPTION);
+
+			await this.#encryptWallet(wallet, password, async () => await wallet.coin().wif().fromSecret(secret));
+		}
 
 		return wallet;
 	}

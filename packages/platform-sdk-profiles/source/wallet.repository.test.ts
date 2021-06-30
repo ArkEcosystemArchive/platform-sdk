@@ -59,7 +59,7 @@ beforeEach(async () => {
 		.reply(200, require("../test/fixtures/client/cryptoConfiguration.json"))
 		.get("/api/node/syncing")
 		.reply(200, require("../test/fixtures/client/syncing.json"))
-		.get("/api/wallets/D61mfSggzbvQgTUe6JhYKH2doHaqJ3Dyib")
+		.get("/api/wallets/D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW")
 		.reply(200, require("../test/fixtures/client/wallet.json"))
 		.persist();
 
@@ -89,7 +89,12 @@ test("#last", () => {
 });
 
 test("#allByCoin", async () => {
-	await importByMnemonic("another wallet", "ARK", "ark.devnet", 39);
+	await importByMnemonic(
+		"upset boat motor few ketchup merge punch gesture lecture piano neutral uniform",
+		"ARK",
+		"ark.devnet",
+		39,
+	);
 
 	expect(subject.allByCoin()).toBeObject();
 	expect(subject.allByCoin().DARK).toBeObject();
@@ -166,7 +171,7 @@ test("#fill", async () => {
 
 	const newWallet = new Wallet(uuidv4(), {}, profile);
 	await newWallet.mutator().coin("ARK", "ark.devnet");
-	await newWallet.mutator().identity("this is another top secret passphrase");
+	await newWallet.mutator().identity("obvious office stock bind patient jazz off neutral figure truth start limb");
 
 	await expect(
 		// @ts-ignore
@@ -190,9 +195,24 @@ describe("#sortBy", () => {
 	beforeEach(async () => {
 		subject.flush();
 
-		walletARK = await importByMnemonic("a", "ARK", "ark.devnet", 39);
-		walletBTC = await importByMnemonic("b", "BTC", "btc.testnet", 44);
-		walletETH = await importByMnemonic("c", "ETH", "eth.mainnet", 44);
+		walletARK = await importByMnemonic(
+			"wood summer suggest unlock device trust else basket minimum hire lady cute",
+			"ARK",
+			"ark.devnet",
+			39,
+		);
+		walletBTC = await importByMnemonic(
+			"brisk grab cash invite labor frozen scrap endorse fault fence prison brisk",
+			"BTC",
+			"btc.testnet",
+			44,
+		);
+		walletETH = await importByMnemonic(
+			"print alert reflect tree draw assault mean lift burst pattern rain subway",
+			"ETH",
+			"eth.mainnet",
+			44,
+		);
 	});
 
 	it("should sort by coin", async () => {
@@ -254,7 +274,9 @@ describe("#sortBy", () => {
 
 			wallet = new Wallet(uuidv4(), {}, profile);
 			await wallet.mutator().coin("ARK", "ark.devnet");
-			await wallet.mutator().identity("this is another top secret passphrase");
+			await wallet
+				.mutator()
+				.identity("obvious office stock bind patient jazz off neutral figure truth start limb");
 
 			// @ts-ignore
 			await subject.fill({
@@ -269,7 +291,9 @@ describe("#sortBy", () => {
 		it("should restore", async () => {
 			const newWallet2 = new Wallet(uuidv4(), {}, profile);
 			await newWallet2.mutator().coin("ARK", "ark.devnet");
-			await newWallet2.mutator().identity("this is another top secret passphrase");
+			await newWallet2
+				.mutator()
+				.identity("obvious office stock bind patient jazz off neutral figure truth start limb");
 
 			// @ts-ignore
 			await subject.fill({
