@@ -14,8 +14,10 @@ import { SecondaryMnemonicSignatory } from "./secondary-mnemonic";
 import { SecondaryWIFSignatory } from "./secondary-wif";
 import { SenderPublicKeySignatory } from "./sender-public-key";
 import { WIFSignatory } from "./wif";
+import { HierarchicalDeterministicSignatory } from "./hierarchical-deterministic";
 
 type SignatoryType =
+	| HierarchicalDeterministicSignatory
 	| LedgerSignatory
 	| MnemonicSignatory
 	| MultiMnemonicSignatory
@@ -198,5 +200,9 @@ export class Signatory {
 
 	public actsWithLedger(): boolean {
 		return this.#signatory instanceof LedgerSignatory;
+	}
+
+	public actsWithHierarchicalDeterministic(): boolean {
+		return this.#signatory instanceof HierarchicalDeterministicSignatory;
 	}
 }

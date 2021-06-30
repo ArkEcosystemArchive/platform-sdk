@@ -1,3 +1,4 @@
+import { HierarchicalDeterministicSignatory } from "./hierarchical-deterministic";
 import { LedgerSignatory } from "./ledger";
 import { MnemonicSignatory } from "./mnemonic";
 import { MultiMnemonicSignatory } from "./multi-mnemonic";
@@ -11,6 +12,7 @@ import { Signatory } from "./signatory";
 import { WIFSignatory } from "./wif";
 
 export {
+	HierarchicalDeterministicSignatory,
 	LedgerSignatory,
 	MnemonicSignatory,
 	MultiMnemonicSignatory,
