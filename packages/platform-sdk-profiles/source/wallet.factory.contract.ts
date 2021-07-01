@@ -182,6 +182,15 @@ export interface IWalletFactory {
 	fromAddressWithDerivationPath(options: IAddressWithDerivationPathOptions): Promise<IReadWriteWallet>;
 
 	/**
+	 * Imports a wallet from a secret.
+	 *
+	 * @param {ISecretOptions} options
+	 * @return {Promise<IReadWriteWallet>}
+	 * @memberof IWalletFactory
+	 */
+	 fromSecret(options: ISecretOptions): Promise<IReadWriteWallet>;
+
+	/**
 	 * Imports a wallet from a WIF.
 	 *
 	 * @param {IWifOptions} options
