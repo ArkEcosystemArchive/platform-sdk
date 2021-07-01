@@ -1,5 +1,6 @@
+import { BIP39 } from "@arkecosystem/platform-sdk-crypto";
 import { decrypt, encrypt } from "bip38";
-import { decode } from "wif";
+import { decode, WIFReturn } from "wif";
 
 import { IReadWriteWallet, WalletData, IWalletImportFormat } from "./contracts";
 
@@ -21,15 +22,22 @@ export class WalletImportFormat implements IWalletImportFormat {
 		return (
 			await this.#wallet
 				.coin()
-
 				.wif()
 				.fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"))
 		).wif;
 	}
 
 	/** {@inheritDoc IWalletImportFormat.set} */
-	public async set(mnemonic: string, password: string): Promise<void> {
-		const { compressed, privateKey } = decode((await this.#wallet.coin().wif().fromMnemonic(mnemonic)).wif);
+	public async set(value: string, password: string): Promise<void> {
+		let wif: string | undefined;
+
+		if (BIP39.validate(value)) {
+			wif = (await this.#wallet.coin().wif().fromMnemonic(value)).wif;
+		} else {
+			wif = (await this.#wallet.coin().wif().fromSecret(value)).wif;
+		}
+
+		const { compressed, privateKey } = decode(wif);
 
 		this.#wallet.data().set(WalletData.Bip38EncryptedKey, encrypt(privateKey, compressed, password));
 
