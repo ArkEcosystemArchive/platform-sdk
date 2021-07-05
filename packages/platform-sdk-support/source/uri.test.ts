@@ -22,19 +22,9 @@ describe("URI", () => {
 		);
 	});
 
-	it("should deserialize", () => {
-		const result = subject.deserialize(
-			"ark:transfer?coin=ark&network=ark.mainnet&recipient=DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9&amount=1.2&memo=ARK",
-		);
-
-		expect(result).toEqual({
-			method: "transfer",
-			coin: "ark",
-			network: "ark.mainnet",
-			recipient: "DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9",
-			amount: "1.2",
-			memo: "ARK",
-		});
+	// @ts-ignore
+	it.each(require("../test/uri.json"))("should deserialize (%s)", (input, output) => {
+		expect(subject.deserialize(input)).toEqual(output);
 	});
 
 	it("should fail to deserialize with an invalid protocol", () => {
@@ -50,18 +40,12 @@ describe("URI", () => {
 			),
 		).toThrowError('The given data is malformed: ValidationError: "amount" must be a number');
 	});
-});
 
-describe("AIP13", () => {
-	// @ts-ignore
-	it.each(require("../test/aip13.json"))("should deserialize (%s)", (input, output) => {
-		expect(subject.deserialize(input)).toEqual(output);
-	});
-});
-
-describe("AIP26", () => {
-	// @ts-ignore
-	it.each(require("../test/aip26.json"))("should deserialize (%s)", (input, output) => {
-		expect(subject.deserialize(input)).toEqual(output);
+	it("should fail to deserialize with an invalid method", () => {
+		expect(() =>
+			subject.deserialize(
+				"ark:unknown?coin=ark&network=ark.mainnet&recipient=DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9&amount=ARK&memo=ARK",
+			),
+		).toThrowError('The given method is unknown: unknown');
 	});
 });

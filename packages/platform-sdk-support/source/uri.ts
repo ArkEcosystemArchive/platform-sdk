@@ -63,12 +63,8 @@ export class URI {
 			let method: string = parsed[1];
 			const params = querystring.parse(parsed[2].substring(1));
 
-			// When this is false we just have to assume that we are handling AIP13
-			// unless we integrate the parsing more tightly to specific coins which
-			// would enable us to validate against specific address validation rules.
 			if (!this.#methods.includes(method)) {
-				params.recipient = method;
-				method = "transfer";
+				throw new Error(`The given method is unknown: ${method}`);
 			}
 
 			const { error, value: result } = Joi.object(this.#getSchema(method)).validate({ method, ...params });
@@ -114,8 +110,8 @@ export class URI {
 	#getSchema(method: string): object {
 		const baseSchema = {
 			method: Joi.string().pattern(/(transfer|vote|sign-message|register-delegate)/),
-			coin: Joi.string().default("ark"),
-			network: Joi.string().default("ark.mainnet"),
+			coin: Joi.string().required(),
+			network: Joi.string().required(),
 			fee: Joi.number(),
 		};
 
