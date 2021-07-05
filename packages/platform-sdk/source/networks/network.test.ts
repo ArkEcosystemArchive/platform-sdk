@@ -24,7 +24,7 @@ it("should have a name", () => {
 	expect(subject.name()).toBe("Devnet");
 });
 
-it("should have a display name ", () => {
+it("should have a display name", () => {
 	expect(subject.displayName()).toBe("ARK Devnet");
 
 	jest.spyOn(subject, "isLive").mockReturnValueOnce(true);
