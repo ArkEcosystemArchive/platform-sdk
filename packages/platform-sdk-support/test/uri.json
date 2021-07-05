@@ -41,7 +41,7 @@
 		}
 	],
 	[
-		"ark:sign-message?message=This%20is%20my%20message",
+		"ark:sign-message?coin=ark&network=ark.mainnet&message=This%20is%20my%20message",
 		{
 			"coin": "ark",
 			"method": "sign-message",

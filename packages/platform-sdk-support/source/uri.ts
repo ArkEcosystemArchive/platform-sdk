@@ -114,8 +114,8 @@ export class URI {
 	#getSchema(method: string): object {
 		const baseSchema = {
 			method: Joi.string().pattern(/(transfer|vote|sign-message|register-delegate)/),
-			coin: Joi.string().default("ark"),
-			network: Joi.string().default("ark.mainnet"),
+			coin: Joi.string().required(),
+			network: Joi.string().required(),
 			fee: Joi.number(),
 		};
 
