@@ -111,3 +111,15 @@ it("should determine if the wallet uses a WIF", async () => {
 
 	expect(subject.wif().exists()).toBeTrue();
 });
+
+it.each([
+	"bomb open frame quit success evolve gain donate prison very rent later",
+	"unaware tunnel sibling bottom color fan student kitten sting seminar usual protect entire air afford potato three now win drastic salmon enable fox day",
+	"secret",
+])("should set the WIF", async (mnemonic) => {
+	expect(subject.wif().exists()).toBeFalse();
+
+	subject.wif().set(mnemonic, "password");
+
+	expect(subject.wif().exists()).toBeTrue();
+});
