@@ -60,7 +60,7 @@ export class URI {
 		}
 
 		try {
-			let method: string = parsed[1];
+			const method: string = parsed[1];
 			const params = querystring.parse(parsed[2].substring(1));
 
 			if (!this.#methods.includes(method)) {

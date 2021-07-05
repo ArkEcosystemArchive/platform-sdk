@@ -46,6 +46,6 @@ describe("URI", () => {
 			subject.deserialize(
 				"ark:unknown?coin=ark&network=ark.mainnet&recipient=DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9&amount=ARK&memo=ARK",
 			),
-		).toThrowError('The given method is unknown: unknown');
+		).toThrowError("The given method is unknown: unknown");
 	});
 });
