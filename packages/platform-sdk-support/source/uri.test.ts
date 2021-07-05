@@ -40,4 +40,12 @@ describe("URI", () => {
 			),
 		).toThrowError('The given data is malformed: ValidationError: "amount" must be a number');
 	});
+
+	it("should fail to deserialize with an invalid method", () => {
+		expect(() =>
+			subject.deserialize(
+				"ark:unknown?coin=ark&network=ark.mainnet&recipient=DNjuJEDQkhrJ7cA9FZ2iVXt5anYiM8Jtc9&amount=ARK&memo=ARK",
+			),
+		).toThrowError('The given method is unknown: unknown');
+	});
 });
