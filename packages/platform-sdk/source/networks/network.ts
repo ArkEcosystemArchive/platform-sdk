@@ -66,6 +66,17 @@ export class Network {
 	}
 
 	/**
+	 * Get the display name of the network.
+	 */
+	public displayName(): string {
+		if (this.isLive()) {
+			return this.coin();
+		}
+
+		return `${this.coin()} ${this.name()}`;
+	}
+
+	/**
 	 * Get the explorer URL of the coin that is used.
 	 */
 	public explorer(): string {
