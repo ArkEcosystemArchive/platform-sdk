@@ -119,7 +119,7 @@ it.each([
 ])("should set the WIF", async (mnemonic) => {
 	expect(subject.wif().exists()).toBeFalse();
 
-	subject.wif().set(mnemonic, "password");
+	await subject.wif().set(mnemonic, "password");
 
 	expect(subject.wif().exists()).toBeTrue();
 });
