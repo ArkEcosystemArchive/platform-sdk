@@ -70,10 +70,10 @@ export class Network {
 	 */
 	public displayName(): string {
 		if (this.isLive()) {
-			return this.coin();
+			return this.coinName();
 		}
 
-		return `${this.coin()} ${this.name()}`;
+		return `${this.coinName()} ${this.name()}`;
 	}
 
 	/**
