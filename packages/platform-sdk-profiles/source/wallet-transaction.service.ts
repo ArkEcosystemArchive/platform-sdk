@@ -396,7 +396,9 @@ export class TransactionService implements ITransactionService {
 	 * @memberof TransactionService
 	 */
 	async #signTransaction(type: string, input: any): Promise<string> {
-		const transaction: ExtendedSignedTransactionData = this.#createExtendedSignedTransactionData(await this.#wallet.coin().transaction()[type](input));
+		const transaction: ExtendedSignedTransactionData = this.#createExtendedSignedTransactionData(
+			await this.#wallet.coin().transaction()[type](input),
+		);
 
 		// When we are working with Multi-Signatures we need to sign them in split through
 		// broadcasting and fetching them multiple times until all participants have signed
