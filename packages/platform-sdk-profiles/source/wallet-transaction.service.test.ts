@@ -1059,45 +1059,49 @@ describe("addSignature failures", () => {
 	});
 
 	it("should throw if the signatory cannot act with a multi mnemonic", async () => {
-		await expect(() => subject.addSignature(
-			transactionId,
-			new Signatories.Signatory(
-				new Signatories.MultiMnemonicSignatory([], []),
+		await expect(() =>
+			subject.addSignature(
+				transactionId,
+				new Signatories.Signatory(new Signatories.MultiMnemonicSignatory([], [])),
 			),
-		)).rejects.toThrowError("The signatory cannot act with a multi mnemonic.");
+		).rejects.toThrowError("The signatory cannot act with a multi mnemonic.");
 	});
 
 	it("should throw if the signatory cannot act with a sender public key", async () => {
-		await expect(() => subject.addSignature(
-			transactionId,
-			new Signatories.Signatory(
-				new Signatories.SenderPublicKeySignatory({
-					signingKey: "upset",
-					address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
-					publicKey: "publicKey",
-				}),
+		await expect(() =>
+			subject.addSignature(
+				transactionId,
+				new Signatories.Signatory(
+					new Signatories.SenderPublicKeySignatory({
+						signingKey: "upset",
+						address: "D6i8P5N44rFto6M6RALyUXLLs7Q1A1WREW",
+						publicKey: "publicKey",
+					}),
+				),
 			),
-		)).rejects.toThrowError("The signatory cannot act with a sender public key.");
+		).rejects.toThrowError("The signatory cannot act with a sender public key.");
 	});
 
 	it("should throw if the signatory cannot act with a multi signature", async () => {
-		await expect(() => subject.addSignature(
-			transactionId,
-			new Signatories.Signatory(
-				new Signatories.MultiSignatureSignatory({
-					publicKeys: [],
-					min: 0,
-				}),
+		await expect(() =>
+			subject.addSignature(
+				transactionId,
+				new Signatories.Signatory(
+					new Signatories.MultiSignatureSignatory({
+						publicKeys: [],
+						min: 0,
+					}),
+				),
 			),
-		)).rejects.toThrowError("The signatory cannot act with a multi signature.");
+		).rejects.toThrowError("The signatory cannot act with a multi signature.");
 	});
 
 	it("should throw if the signatory cannot act with a private multi signature", async () => {
-		await expect(() => subject.addSignature(
-			transactionId,
-			new Signatories.Signatory(
-				new Signatories.PrivateMultiSignatureSignatory("key", []),
+		await expect(() =>
+			subject.addSignature(
+				transactionId,
+				new Signatories.Signatory(new Signatories.PrivateMultiSignatureSignatory("key", [])),
 			),
-		)).rejects.toThrowError("The signatory cannot act with a private multi signature.");
+		).rejects.toThrowError("The signatory cannot act with a private multi signature.");
 	});
 });

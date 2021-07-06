@@ -20,10 +20,7 @@ export class WalletImportFormat implements IWalletImportFormat {
 		}
 
 		return (
-			await this.#wallet
-				.coin()
-				.wif()
-				.fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"))
+			await this.#wallet.coin().wif().fromPrivateKey(decrypt(encryptedKey, password).privateKey.toString("hex"))
 		).wif;
 	}
 

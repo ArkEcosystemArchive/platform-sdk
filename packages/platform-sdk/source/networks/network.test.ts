@@ -24,6 +24,14 @@ it("should have a name", () => {
 	expect(subject.name()).toBe("Devnet");
 });
 
+it("should have a display name", () => {
+	expect(subject.displayName()).toBe("ARK Devnet");
+
+	jest.spyOn(subject, "isLive").mockReturnValueOnce(true);
+
+	expect(subject.displayName()).toBe("ARK");
+});
+
 it("should have an explorer", () => {
 	expect(subject.explorer()).toBe("https://dexplorer.ark.io");
 });
